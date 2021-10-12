@@ -1,1 +1,87 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  direction: rtl;
+  font-family: 'IRANSans', 'sans-serif';
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin-top: 0;
+}
+
+*:after, *:before {
+  padding: 0;
+  margin-top: 0;
+}
+
+:root {
+  --base-color: #137CB6;
+  --base-color-second: #0C505F;
+  --light-color-one: #C6ECFF;
+  --light-color-two: #E0E0E0;
+  --gray-color-light: #646564;
+  --gray-color-dark: #3E3E3E;
+  --box-shadow: 1px 1px 6px #eee;;
+  --btn-animtion: 0.3s all;
+  --white: #fff;
+  --dark: #000;
+  --radius-btn: 15px 15px 1px 15px;
+}
+button,a,li,label,span,p{
+  font-size: 14px !important;
+  text-decoration: none !important;
+}
+.responsive {
+  max-width: 1366px;
+  margin: 0 auto;
+}
+.posi-relative{
+  position: relative;
+}
+.m-auto-x {
+  margin: 0 auto;
+}
+
+.m-auto-y {
+  margin: auto 0;
+}
+
+.m-top-1 {
+  margin-top: 1rem;
+}
+
+.m-bottom-1 {
+  margin-bottom: 1rem;
+}
+.h-90{
+  height: 70%;
+}
+
+
+/*input*/
+.inp-form {
+  width: 100%;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  height: 40px;
+  padding: 0 8px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inp-form input {
+  all: unset;
+  width: 100%;
+  font-size: 14px;
+}
+
+.inp-form:after {
+  position: absolute;
+  top: 4px;
+  content: '';
+  left: 0;
+  width: 4px;
+  height: 30px;
+  background-color: var(--base-color);
+}
