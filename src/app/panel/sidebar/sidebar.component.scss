@@ -1,0 +1,146 @@
+/*sidebar*/
+.parent-sidebar {
+  width: 20%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.parent-sidebar {
+  width: 20%;
+}
+
+.sidebar {
+  width: 20%;
+  height: 92vh;
+  overflow-y: auto;
+  background: var(--white);
+  border-radius: 0 0 0 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  position: fixed;
+  right: 0;
+  top: 0;
+  border: 1px solid #f4f4f4;
+}
+
+.parnas-title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.logo-parnas {
+  padding-left: 12px;
+}
+
+.info-title-sidebar {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-title-sidebar h3 {
+  color: var(--base-color-second);
+  font-size: 15px;
+  font-weight: 500;
+  width: 100%;
+}
+
+.info-bottom-sidebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.info-bottom-sidebar span {
+  font-size: 11px !important;
+  color: var(--base-color);
+}
+
+.ul-parent-list-sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.li-list {
+  width: 100%;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--light-color-two);
+}
+
+.li-list .menu-main {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 15px;
+  color: var(--gray-color-light);
+}
+
+.li-list .menu-main img {
+  margin-left: 1rem;
+}
+
+.space-item-sidebar {
+  margin: 1rem 0;
+}
+
+.icon-sidebar-menu {
+  font-size: 11px !important;
+  width: 22px;
+  height: 22px;
+  border-radius: 8px;
+  border: 2px solid var(--graycolor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1rem;
+}
+
+.under-menu-ul {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 8px;
+  background-color: #F4F7FA;
+  padding: 1rem !important;
+}
+.under-menu-ul li{
+  padding: 8px 0;
+}
+.under-menu-ul li a {
+  color: var(--gray-color-light);
+  font-size: 14px !important;
+  padding: 4px 0;
+}
+
+.Support {
+  margin-top: 8px;
+  width: 20%;
+  position: fixed;
+  bottom: 11px;
+}
+
+.Support-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: #212E47;
+  font-size: 14px;
+}
+
+.Support-link img {
+  margin-left: 10px;
+}
+
+.Support-link:hover {
+  color: var(--base-color);
+}
+
+/*end*/

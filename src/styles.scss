@@ -31,6 +31,10 @@ button,a,li,label,span,p{
   font-size: 14px !important;
   text-decoration: none !important;
 }
+ul{
+  list-style: none;
+  padding: 0 !important;
+}
 .responsive {
   max-width: 1366px;
   margin: 0 auto;
