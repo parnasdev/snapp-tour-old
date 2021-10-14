@@ -1,0 +1,78 @@
+header {
+  border-top: 3px solid var(--base-color);
+  width: 100%;
+  height: 90px;
+  background-color: var(--white);
+}
+
+.parent-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 90px;
+}
+
+.parent-header .right {
+  width: 65%;
+  display: flex;
+  align-items: center;
+}
+
+.parent-header .left {
+  width: 35%;
+  display: flex;
+  justify-content: flex-end;
+
+}
+
+.ul-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 2rem !important;
+  width: 60%;
+  font-size: 14px;
+}
+
+.ul-menu .li-menu .menu-item {
+  color: var(--gray-color-light);
+}
+
+.ul-menu .li-menu .menu-item img {
+  margin-left: 5px !important;
+}
+
+.support {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+.support .text-support {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 8px;
+}
+.support .text-support small{
+  color: var(--gray-color-light);
+  font-weight: 300;
+  font-size: 12px;
+}
+.support .text-support span{
+  color: var(--gray-color-light);
+  font-weight: 500;
+}
+.btn-login-register{
+  display: flex;
+  align-items: center;
+  width: 140px;
+  height: 38px;
+  border-radius: var(--radius-btn);
+  color: var(--white);
+ padding-right: 10px;
+  background-color: var(--base-color-three);
+}
+.btn-login-register span{
+  margin-right: 10px;
+}

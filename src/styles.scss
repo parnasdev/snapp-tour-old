@@ -17,6 +17,7 @@ body {
 :root {
   --base-color: #137CB6;
   --base-color-second: #0C505F;
+  --base-color-three: #053742;
   --light-color-one: #C6ECFF;
   --light-color-two: #E0E0E0;
   --gray-color-light: #646564;
@@ -34,9 +35,10 @@ button,a,li,label,span,p{
 ul{
   list-style: none;
   padding: 0 !important;
+  margin-bottom: 0;
 }
-.responsive {
-  max-width: 1366px;
+.prs-responsive {
+  max-width: 1366px !important;
   margin: 0 auto;
 }
 .posi-relative{

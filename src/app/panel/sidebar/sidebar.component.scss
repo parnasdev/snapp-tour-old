@@ -80,8 +80,15 @@
   justify-content: flex-start;
   font-size: 15px;
   color: var(--gray-color-light);
+  position: relative;
 }
-
+.li-list .menu-main i{
+  position: absolute;
+  left: 6px;
+  color: var(--gray-color-light);
+  font-size: 13px;
+  transition: var(--btn-animtion);
+}
 .li-list .menu-main img {
   margin-left: 1rem;
 }
@@ -144,3 +151,10 @@
 }
 
 /*end*/
+
+
+//active
+.active-arrow{
+  transform: rotate(180deg);
+  transition: var(--btn-animtion);
+}

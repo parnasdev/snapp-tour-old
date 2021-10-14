@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {PanelModule} from "./panel/panel.module";
 import {AuthModule} from "./auth/auth.module";
+import {StoreModule} from "./store/store.module";
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import {AuthModule} from "./auth/auth.module";
     BrowserModule,
     AppRoutingModule,
     PanelModule,
-    AuthModule
+    AuthModule,
+    StoreModule
   ],
   providers: [],
   exports: [
