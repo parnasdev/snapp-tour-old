@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import {PanelModule} from "./panel/panel.module";
 import {AuthModule} from "./auth/auth.module";
 import {StoreModule} from "./store/store.module";
+import {SwiperModule} from "swiper/angular";
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import {StoreModule} from "./store/store.module";
     AppRoutingModule,
     PanelModule,
     AuthModule,
+    SwiperModule,
     StoreModule
   ],
   providers: [],
