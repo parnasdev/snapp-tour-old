@@ -5,6 +5,7 @@ import {IndexComponent} from './index/index.component';
 import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {LoginComponent} from "../auth/login/login.component";
+import {ToolsModule} from "../tools/tools/tools.module";
 
 @NgModule({
   declarations: [IndexComponent, HeaderComponent, FooterComponent],
@@ -14,6 +15,7 @@ import {LoginComponent} from "../auth/login/login.component";
   imports: [
     CommonModule,
     StoreRoutingModule,
+    ToolsModule,
   ]
 })
 export class StoreModule {

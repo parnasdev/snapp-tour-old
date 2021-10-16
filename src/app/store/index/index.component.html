@@ -11,15 +11,36 @@
           <h2>انتخاب بهترین تور فقط با یک کلیک !</h2>
           <div class="box-search">
             <div class="inp-form">
-              <input type="text" placeholder="نام کاربری">
+              <select name="" id="">
+                <option value="">شهر خود را انتخاب کنید *</option>
+              </select>
             </div>
             <div class="inp-form">
-              <input type="text" placeholder="رمز عبور">
+              <select name="" id="">
+                <option value="">چه ماهی می خواهید سفر کنید ؟</option>
+              </select>
             </div>
+            <button class="btn-search">جستجو کن !</button>
           </div>
+          <span class="Continue-trip">سفر ادامه دارد (اسکرول کنید)</span>
+          <a href="">
+            <i class="icon-scroll-down icon-down-open"></i>
+          </a>
         </div>
       </div>
     </div>
+  </div>
+</section>
+<section class="special-tour">
+  <div class="col-md-11 m-auto parent-slider-promo">
+    <swiper
+      [slidesPerView]="3"
+      [spaceBetween]="50">
+      <ng-template swiperSlide>Slide 1</ng-template>
+      <ng-template swiperSlide>Slide 2</ng-template>
+      <ng-template swiperSlide>Slide 3</ng-template>
+    </swiper>
+
   </div>
 </section>
 
