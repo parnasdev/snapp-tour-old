@@ -938,3 +938,113 @@
   font-size: 12px !important;
 }
 //end
+
+
+
+//about-agency
+.about-agency{
+  margin: 2rem 0;
+}
+.agency-parent{
+  display: flex;
+  flex-direction: column;
+}
+.box-info-about-agency{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+}
+.box-info-about-agency .right{
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 400px;
+  justify-content: space-between;
+  padding: 1.5rem 0 1rem 1rem;
+}
+.box-info-about-agency .right .text p{
+  text-align: justify;
+  line-height: 25px;
+}
+.box-info-about-agency .right .option-agency{
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.box-info-about-agency .right .option-agency .box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.box-info-about-agency .right .option-agency .box span{
+  margin-top: 10px;
+}
+
+.box-info-about-agency .left{
+  width: 43%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 400px;
+  overflow-y: auto;
+  justify-content: space-between;
+  padding: 1.5rem 0 1rem 0;
+}
+
+
+//collapse
+.box-collapse{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.box-collapse .item{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.box-collapse .item:not(:first-child) {
+  margin-top: 12px;
+}
+.parent-collapse{
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:13px 10px;
+  border: 2px solid var(--light-color-two);
+  border-radius: 20px;
+}
+.parent-collapse-active{
+  border: 2px solid var(--light-color-two);
+}
+.parent-collapse span{
+  color: var(--base-color);
+  font-weight: 500;
+}
+.parent-collapse i{
+  color: var(--gray-color-light);
+  transition: var(--btn-animtion);
+}
+.icon-rotate-collapse{
+  transform: rotate(180deg);
+  transition: var(--btn-animtion);
+}
+.child-collapse{
+  width: 90%;
+  margin: 10px auto 6px auto;
+  font-size: 14px;
+  color: var(--base-color);
+}
+//end
+//end
+
