@@ -7,19 +7,21 @@ import {PanelModule} from "./panel/panel.module";
 import {AuthModule} from "./auth/auth.module";
 import {StoreModule} from "./store/store.module";
 import {SwiperModule} from "swiper/angular";
+import {TourModule} from "./tour/tour.module";
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    PanelModule,
-    AuthModule,
-    SwiperModule,
-    StoreModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        PanelModule,
+        AuthModule,
+        SwiperModule,
+        StoreModule,
+        TourModule
+    ],
   providers: [],
   exports: [
 

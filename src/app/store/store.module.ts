@@ -6,11 +6,15 @@ import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {ToolsModule} from "../tools/tools/tools.module";
 import {SwiperModule} from "swiper/angular";
+import { AddressBarComponent } from './address-bar/address-bar.component';
 
 @NgModule({
-  declarations: [IndexComponent, HeaderComponent ,FooterComponent],
+  declarations: [IndexComponent, HeaderComponent ,FooterComponent, AddressBarComponent],
   exports: [
     IndexComponent,
+    HeaderComponent,
+    FooterComponent,
+    AddressBarComponent,
   ],
   imports: [
     CommonModule,

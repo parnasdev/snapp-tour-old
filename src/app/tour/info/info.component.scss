@@ -1,0 +1,131 @@
+//s1
+.tour-s1{
+  margin-top: 1.5rem;
+}
+.title-tour{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid var(--light-color-two);
+  padding-bottom: 1rem;
+
+}
+.title-tour .right{
+  display: flex;
+  align-items: center;
+}
+.title-tour .right .text{
+  margin-right: 13px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.title-tour .right .text h2{
+  font-size: 20px;
+  color: var(--gray-color-light);
+}
+.title-tour .right .text span{
+  font-size: 13px !important;
+  font-weight: 500;
+  color: var(--base-color);
+}
+.title-tour .left{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.title-tour .left .share{
+  margin-left: 2rem;
+  color: var(--base-color);
+}
+.title-tour .left .share a{
+  color: var(--base-color);
+  margin-right: 8px;
+}
+.title-tour .left .favorite a{
+  color: var(--base-color);
+  margin-right: 8px;
+}
+.tour-main-parent{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+.tour-main-parent .slider-box{
+  width: 49%;
+  display: flex;
+  flex-direction: column;
+}
+.tour-main-parent .details-box{
+  width: 47%;
+}
+.box-img-main{
+  height: 300px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+  position: relative;
+}
+.box-img-main .info-tour-view{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  background-color: var(--opacity-color);
+  display: flex;
+  height: 50px;
+  justify-content: flex-start;
+  padding-right: 1rem;
+  align-items: center;
+  color: var(--white);
+}
+.box-img-main .info-tour-view span{
+  margin-right: 10px;
+}
+.box-img-main .img-tour-big{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.slider-bottom{
+  margin-top: 1rem;
+}
+.swiper-slide-active img{
+  filter: brightness(100%) !important;
+}
+.swiper-slide-visible img{
+  filter: brightness(70%);
+}
+.img-gallery{
+  object-fit: cover;
+  width: 100%;
+  height: 110px;
+  box-shadow: var(--box-shadow);
+  border-radius: 15px;
+}
+
+:host::ng-deep .swiper-button-next {
+  width: 35px;
+  height: 35px;
+  background: white;
+  color: var(--gray-color-dark);
+  border-radius: 50%;
+}
+:host::ng-deep .swiper-button-next:after{
+  font-size: 25px;
+}
+
+:host::ng-deep .swiper-button-prev:after{
+  font-size: 25px;
+}
+:host::ng-deep .swiper-button-prev {
+  width: 35px;
+  height: 35px;
+  background: white;
+  color: var(--gray-color-dark);
+  border-radius: 50%;
+}
+//end

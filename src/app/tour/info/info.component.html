@@ -1,0 +1,103 @@
+<prs-header></prs-header>
+<prs-address-bar></prs-address-bar>
+
+<section class="tour-s1">
+  <div class="prs-responsive">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-10 m-auto tour-parent">
+          <div class="title-tour">
+            <div class="right">
+              <img src="assets/img/Ticket-index.svg" width="30" alt="">
+              <div class="text">
+                <h2>تور آنتالیا ۲۳ مهر ۱۴۰۰</h2>
+                <span>شروع قیمت : ۲/۱۰۰/۰۰۰ تومان</span>
+              </div>
+            </div>
+            <div class="left">
+              <div class="share">
+                <img src="assets/img/Navigation.svg" width="20" alt="">
+                <a href="">اشراک گذاری !</a>
+              </div>
+              <div class="favorite">
+                <img src="assets/img/Heart.svg" width="20" alt="">
+                <a href="">افزودن به علاقه مندی !</a>
+              </div>
+            </div>
+          </div>
+          <div class="tour-main-parent">
+            <div class="slider-box">
+              <div class="slider-top">
+                <swiper class="swiper-tour-top"
+                        [slidesPerView]="1"
+                        [spaceBetween]="50"
+                        [navigation]="true"
+                        [thumbs]="{ swiper: thumbsSwiper }">
+                  <ng-container>
+                    <ng-template swiperSlide>
+                      <div class="box-img-main">
+                        <a href="" class="info-tour-view">
+                          <img  src="assets/img/Information.svg" width="20" alt="">
+                          <span>جهت کسب اطلاعات بیشتر درباره شهر آنتالیا کلیک کنید !</span>
+                        </a>
+                        <img class="img-tour-big" src="assets/img/Header-slider-tour90-num03.png" alt="">
+                      </div>
+                    </ng-template>
+                    <ng-template swiperSlide>
+                      <div class="box-img-main">
+                        <a href="" class="info-tour-view">
+                          <img  src="assets/img/Information.svg" width="20" alt="">
+                          <span>جهت کسب اطلاعات بیشتر درباره شهر آنتالیا کلیک کنید !</span>
+                        </a>
+                        <img class="img-tour-big" src="assets/img/1200px-Sunrise_over_Kangchenjunga.png" alt="">
+                      </div>
+                    </ng-template>
+                    <ng-template swiperSlide>
+                      <div class="box-img-main">
+                        <a href="" class="info-tour-view">
+                          <img  src="assets/img/Information.svg" width="20" alt="">
+                          <span>جهت کسب اطلاعات بیشتر درباره شهر آنتالیا کلیک کنید !</span>
+                        </a>
+                        <img class="img-tour-big" src="assets/img/Header-slider-tour90-num03.png" alt="">
+                      </div>
+                    </ng-template>
+                  </ng-container>
+                </swiper>
+
+              </div>
+              <div class="slider-bottom">
+                <swiper class="thumbs-gallery" [slidesPerView]="4"
+                        [direction]="'horizontal'"
+                        [spaceBetween]="20"
+                        [navigation]="false"
+                        (swiper)="setThumbsSwiper($event)"
+                        [watchSlidesProgress]="true">
+                  <ng-container>
+                    <ng-template swiperSlide>
+                        <img class="img-gallery" src="assets/img/Header-slider-tour90-num03.png" alt="">
+                    </ng-template>
+                    <ng-template swiperSlide>
+                      <img class="img-gallery" src="assets/img/1200px-Sunrise_over_Kangchenjunga.png" alt="">
+                    </ng-template>
+                    <ng-template swiperSlide>
+                      <img class="img-gallery" src="assets/img/Header-slider-tour90-num03.png" alt="">
+                    </ng-template>
+                    <ng-template swiperSlide>
+                      <img class="img-gallery" src="assets/img/Header-slider-tour90-num03.png" alt="">
+                    </ng-template>
+                    <ng-template swiperSlide>
+                      <img class="img-gallery" src="assets/img/Header-slider-tour90-num03.png" alt="">
+                    </ng-template>
+
+                  </ng-container>
+                </swiper>
+              </div>
+            </div>
+            <div class="details-box"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<prs-footer></prs-footer>
