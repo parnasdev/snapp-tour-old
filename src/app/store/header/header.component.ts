@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+
+declare let $: any;
 
 @Component({
   selector: 'prs-header',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
+    $(document).ready(() => {
+      $(".ul-menu").on("click", "li", () => {
+      $("li").removeClass("icon-active-header-click");
+      $(this).addClass("icon-active-header-click");
+      })
+    })
   }
 
 }
