@@ -56,10 +56,15 @@ body {
   --dark: #000;
   --radius-btn: 15px 15px 1px 15px;
   --opacity-color:#3e3e3e78;
+  --red-color:#CB1639;
+  --green-color:#0D7B0D;
 }
 button,a,li,label,span,p{
   font-size: 14px !important;
   text-decoration: none !important;
+}
+button{
+  outline: none;
 }
 ul{
   list-style: none;

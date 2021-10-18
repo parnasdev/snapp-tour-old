@@ -7,15 +7,17 @@ import {FooterComponent} from './footer/footer.component';
 import {ToolsModule} from "../tools/tools/tools.module";
 import {SwiperModule} from "swiper/angular";
 import { AddressBarComponent } from './address-bar/address-bar.component';
+import { ThumbnailTourComponent } from './thumbnail-tour/thumbnail-tour.component';
 
 @NgModule({
-  declarations: [IndexComponent, HeaderComponent ,FooterComponent, AddressBarComponent],
-  exports: [
-    IndexComponent,
-    HeaderComponent,
-    FooterComponent,
-    AddressBarComponent,
-  ],
+  declarations: [IndexComponent, HeaderComponent ,FooterComponent, AddressBarComponent, ThumbnailTourComponent],
+    exports: [
+        IndexComponent,
+        HeaderComponent,
+        FooterComponent,
+        AddressBarComponent,
+        ThumbnailTourComponent,
+    ],
   imports: [
     CommonModule,
     StoreRoutingModule,
