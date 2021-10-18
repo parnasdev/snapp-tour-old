@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { InfoComponent } from './info/info.component';
 import {StoreModule} from "../store/store.module";
 import {SwiperModule} from "swiper/angular";
+import {TourRoutingModule} from "./tour-routing.module";
 
 
 
@@ -15,6 +16,7 @@ import {SwiperModule} from "swiper/angular";
   ],
   imports: [
     CommonModule,
+    TourRoutingModule,
     StoreModule,
     SwiperModule
   ]

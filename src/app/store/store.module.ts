@@ -8,9 +8,10 @@ import {ToolsModule} from "../tools/tools/tools.module";
 import {SwiperModule} from "swiper/angular";
 import { AddressBarComponent } from './address-bar/address-bar.component';
 import { ThumbnailTourComponent } from './thumbnail-tour/thumbnail-tour.component';
+import { StoreComponent } from './store.component';
 
 @NgModule({
-  declarations: [IndexComponent, HeaderComponent ,FooterComponent, AddressBarComponent, ThumbnailTourComponent],
+  declarations: [IndexComponent, HeaderComponent ,FooterComponent, AddressBarComponent, ThumbnailTourComponent, StoreComponent],
     exports: [
         IndexComponent,
         HeaderComponent,

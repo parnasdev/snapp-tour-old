@@ -40,9 +40,13 @@
                 <span>021-84278</span>
               </div>
             </div>
-            <a class="btn-login-register" href="">
+            <a class="btn-login-register" routerLink="/auth" *ngIf="!session.isLoggedIn()">
               <img src="assets/img/User-header.svg" width="18" alt="">
               <span>عضویت و ورود</span>
+            </a>
+            <a class="btn-login-register" (click)="logOut()" *ngIf="session.isLoggedIn()">
+              <img src="assets/img/User-header.svg" width="18" alt="">
+              <span>خوش آمدید / خروج{{session.getPhone()}}</span>
             </a>
           </div>
         </div>
