@@ -36,8 +36,35 @@ header {
 
 .ul-menu .li-menu .menu-item {
   color: var(--gray-color-light);
+  position: relative;
 }
-
+.ul-menu .li-menu .menu-item:hover .icon-active-header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--btn-animtion);
+}
+.icon-active-header{
+  position: absolute;
+  top: 25px;
+  width: 100%;
+  font-size: 6px !important;
+  padding-right: 1rem;
+  display: none;
+  transition: var(--btn-animtion);
+}
+.icon-active-header-click{
+  position: absolute;
+  top: 25px;
+  width: 100%;
+  font-size: 6px !important;
+  padding-right: 1rem;
+  transition: var(--btn-animtion);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--btn-animtion);
+}
 .ul-menu .li-menu .menu-item img {
   margin-left: 5px !important;
 }

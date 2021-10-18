@@ -5,6 +5,8 @@ import {MessageService} from "../../Core/Services/message.service";
 import {ErrorsService} from "../../Core/Services/errors.service";
 import {CheckErrorService} from "../../Core/Services/check-error.service";
 
+declare let $: any;
+
 @Component({
   selector: 'prs-header',
   templateUrl: './header.component.html',
@@ -20,6 +22,12 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    $(document).ready(() => {
+      $(".ul-menu").on("click", "li", () => {
+      $("li").removeClass("icon-active-header-click");
+      $(this).addClass("icon-active-header-click");
+      })
+    })
   }
 
 
