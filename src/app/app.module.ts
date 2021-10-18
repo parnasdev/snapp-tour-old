@@ -8,6 +8,7 @@ import {AuthModule} from "./auth/auth.module";
 import {StoreModule} from "./store/store.module";
 import {SwiperModule} from "swiper/angular";
 import {TourModule} from "./tour/tour.module";
+import {authInterceptorProviders} from "./Core/interceptor/auth.interceptors";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import {TourModule} from "./tour/tour.module";
         StoreModule,
         TourModule
     ],
-  providers: [],
+  providers: [authInterceptorProviders],
   exports: [
 
   ],
