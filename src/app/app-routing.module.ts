@@ -19,10 +19,7 @@ const routes: Routes = [
       },{
         path: 'panel',
         loadChildren: () => import('./panel/panel.module').then(m => m.PanelModule)
-      },{
-        path: 'blog',
-        loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule)
-      }
+      },
     ]
   }
 ];
