@@ -9,9 +9,11 @@ import {SwiperModule} from "swiper/angular";
 import { AddressBarComponent } from './address-bar/address-bar.component';
 import { ThumbnailTourComponent } from './thumbnail-tour/thumbnail-tour.component';
 import { StoreComponent } from './store.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 @NgModule({
-  declarations: [IndexComponent, HeaderComponent ,FooterComponent, AddressBarComponent, ThumbnailTourComponent, StoreComponent],
+  declarations: [IndexComponent, HeaderComponent ,FooterComponent, AddressBarComponent, ThumbnailTourComponent, StoreComponent, AboutUsComponent, ContactUsComponent],
     exports: [
         IndexComponent,
         HeaderComponent,
