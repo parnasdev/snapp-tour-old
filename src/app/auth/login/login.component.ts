@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
       this.isLoading = false;
       if (res.isDone) {
         this.session.setUserToSession(res.data);
-        this.router.navigateByUrl('')
+        this.router.navigateByUrl('/panel')
       }
     }, (error: any) => {
       this.isLoading = false;

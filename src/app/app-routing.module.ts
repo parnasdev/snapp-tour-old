@@ -16,6 +16,12 @@ const routes: Routes = [
       },{
         path: 'tour',
         loadChildren: () => import('./tour/tour.module').then(m => m.TourModule)
+      },{
+        path: 'panel',
+        loadChildren: () => import('./panel/panel.module').then(m => m.PanelModule)
+      },{
+        path: 'blog',
+        loadChildren: () => import('./blog/blog.module').then(m => m.BlogModule)
       }
     ]
   }

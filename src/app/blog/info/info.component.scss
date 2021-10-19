@@ -1,0 +1,76 @@
+:host .col-md-10 {
+  width: 81.8% !important;
+}
+
+.head {
+  margin-top: 1rem;
+
+}
+
+.head h1 {
+  font-weight: 500 !important;
+  color: var(--base-color);
+  font-size: 22px !important;
+  margin-right: 8px;
+  margin-bottom: 0 !important;
+}
+
+.tags {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 1rem;
+  height: 40px;
+  background-color: var(--light-color-second);
+}
+
+.tags .address {
+  margin-right: 6px;
+}
+
+:host .icon-circle {
+  color: var(--base-color-second);
+  margin-right: 10px;
+  font-size: 10px;
+}
+.img-main{
+  width: 100%;
+  height: 400px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-top: 1rem;
+}
+:host::ng-deep .innerhtml p {
+  line-height: 30px !important;
+  text-align: justify !important;
+  margin: 10px 0 !important;
+}
+:host::ng-deep .label-wrap{
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+}
+.label-wrap button{
+  border: none;
+  outline: none;
+  padding: 0 10px !important;
+  background-color: var(--base-color-second);
+  color: #fff;
+  height: 33px;
+  border-radius: var(--radius-btn);
+}
+:host::ng-deep .labels{
+  border-bottom: 2px solid var(--base-color) !important;
+  padding-bottom: 6px !important;
+  margin-right: 12px !important;
+  color: var(--base-color);
+  font-weight: 500;
+}
+@media only screen and (max-width: 868px) {
+  :host::ng-deep .innerhtml p {
+    font-size: 13px !important;
+  }
+  .img-main{
+    height: 200px;
+  }
+}
