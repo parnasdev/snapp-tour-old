@@ -263,7 +263,6 @@
 .title-tour-special-swiper .top .new-tour .text span {
   float: left;
   font-size: 10px !important;
-  margin-right: 6rem;
 }
 
 .title-tour-special-swiper .bottom {
@@ -295,7 +294,7 @@
 }
 :host::ng-deep .swiper-tour-special .swiper-button-next:after {
   content: "prev";
-  font-size: 19px !important;
+  font-size: 15px !important;
   font-weight: 600 !important;
   color: var(--base-color) !important;
 }
@@ -312,7 +311,7 @@
 }
 :host::ng-deep .swiper-tour-special .swiper-button-prev:after {
   content: "next";
-  font-size: 19px !important;
+  font-size: 15px !important;
   font-weight: 600 !important;
   color: var(--base-color) !important;
 }
@@ -358,7 +357,6 @@
 .title-tour-parent .top .new-tour .text span {
   float: left;
   font-size: 10px !important;
-  margin-right: 6rem;
 }
 
 .view-all-tour {
@@ -593,7 +591,7 @@
 }
 :host::ng-deep .swiper-hotel .swiper-button-next:after {
   content: "prev";
-  font-size: 19px !important;
+  font-size: 15px !important;
   font-weight: 600 !important;
   color: var(--base-color) !important;
 }
@@ -610,7 +608,7 @@
 }
 :host::ng-deep .swiper-hotel .swiper-button-prev:after {
   content: "next";
-  font-size: 19px !important;
+  font-size: 15px !important;
   font-weight: 600 !important;
   color: var(--base-color) !important;
 }
@@ -731,7 +729,6 @@
 .title-sort-swiper .top .new-tour .text span {
   float: left;
   font-size: 10px !important;
-  margin-right: 6rem;
 }
 
 .title-sort-swiper .bottom {
@@ -763,7 +760,7 @@
 }
 :host::ng-deep .swiper-sort-city .swiper-button-next:after {
   content: "prev";
-  font-size: 19px !important;
+  font-size: 15px !important;
   font-weight: 600 !important;
   color: var(--base-color) !important;
 }
@@ -780,7 +777,7 @@
 }
 :host::ng-deep .swiper-sort-city .swiper-button-prev:after {
   content: "next";
-  font-size: 19px !important;
+  font-size: 15px !important;
   font-weight: 600 !important;
   color: var(--base-color) !important;
 }
