@@ -132,3 +132,54 @@ ul{
   height: 30px;
   background-color: var(--base-color);
 }
+
+select{
+  border: 1px solid var(--gray-color-light);
+  outline: var(--base-color) !important;
+}
+
+//select
+
+.selectdiv {
+  position: relative;
+ height: 30px;
+}
+select::-ms-expand {
+  display: none;
+}
+.selectdiv:after {
+  content: '<>';
+  font: 17px "Consolas", monospace;
+  color: #333;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+  left: 11px;
+  top: 5px;
+  padding: 0 0 2px;
+  border-top: 1px solid #999;
+  position: absolute;
+  pointer-events: none;
+}
+
+.selectdiv select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: 30px;
+  float: right;
+  padding: 0 4px 0 35px;
+  font-size: 14px;
+  line-height: 1.75;
+  color: #333;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #cccccc;
+  -ms-word-break: normal;
+  word-break: normal;
+  border-radius: 2px;
+}

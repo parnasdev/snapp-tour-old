@@ -11,7 +11,8 @@ export class SidebarComponent implements OnInit {
 
   constructor() {
     $(document).ready(() => {
-      $(".menu-main-1").click(() =>{
+      $(
+        ".menu-main-1").click(() =>{
         $(".icon-1").toggleClass("active-arrow")
       })
       $(".menu-main-2").click(() =>{

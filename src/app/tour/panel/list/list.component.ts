@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
+import {Component, OnInit} from '@angular/core';
+declare let $: any;
 @Component({
   selector: 'prs-list',
   templateUrl: './list.component.html',
@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
+ $(document).ready( () => {
+  $(".item:even").css('background' , '#e6e6e6')
+   $(".item:odd").css('background' , '#f4f7fa')
+ })
   }
 
 }
