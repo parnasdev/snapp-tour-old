@@ -1,6 +1,6 @@
 <div class="add-tour">
 
-  <form>
+  <form [formGroup]="form" >
     <div class="box-info-tour">
       <div class="info-tour-header">
         <div class="right">
@@ -10,11 +10,11 @@
         <div class="left">
           <div class="selectdiv">
             <label>
-              <select>
+              <select formControlName="status">
                 <option selected> منتشر نشود </option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
               </select>
             </label>
           </div>
@@ -24,19 +24,25 @@
         <div class="top">
           <div class="item-info">
             <label for="">عنوان تور</label>
-            <input type="text">
+            <input formControlName="title" type="text">
           </div>
           <div class="item-info-2">
             <div class="select-info">
               <label for="">شهر مبدا</label>
-              <select name="" id="">
-                <option value="">تهران</option>
+              <select formControlName="stCity_id" name="" id="">
+                <option value="1">تهران</option>
+                <option value="2">شیراز</option>
+                <option value="3">کیش</option>
+                <option value="4">قشم</option>
               </select>
             </div>
             <div class="select-info">
               <label for="">شهر مقصد</label>
-              <select name="" id="">
-                <option value="">تهران</option>
+              <select formControlName="endCity_id" name="" id="">
+                <option value="1">تهران</option>
+                <option value="2">شیراز</option>
+                <option value="3">کیش</option>
+                <option value="4">قشم</option>
               </select>
             </div>
 
@@ -44,14 +50,30 @@
           <div class="item-info-2">
             <div class="select-info">
               <label for="">تعداد شب</label>
-              <select name="" id="">
-                <option value="">تهران</option>
+              <select formControlName="nightNum" name="" id="">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
               </select>
             </div>
             <div class="select-info">
               <label for="">تعداد روز</label>
-              <select name="" id="">
-                <option value="">تهران</option>
+              <select formControlName="dayNum" name="" id="">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
               </select>
             </div>
 
@@ -60,15 +82,15 @@
         <div class="bottom">
           <div class="item-info">
             <label for="">ـاریخ ورود به هتل</label>
-            <input type="text">
+            <input formControlName="dayNum" type="text">
           </div>
           <div class="item-info">
             <label for="">تاریخ خروج از هتل</label>
-            <input type="text">
+            <input formControlName="enDate"type="text">
           </div>
           <div class="item-info">
             <label for="">تاریخ انقضا پکیج</label>
-            <input type="text">
+            <input formControlName="expireDate" type="text">
           </div>
 
         </div>
@@ -127,21 +149,28 @@
         <div class="right">
           <h2>نرخ ارزها</h2>
         </div>
+        <div class="left">
+          <div class="selectdiv">
+            <label>
+              <select formControlName="defineTour">
+                <option [value]="false">یکجا</option>
+                <option [value]="true">باجزییات</option>
+              </select>
+            </label>
+          </div>
+        </div>
       </div>
       <div class="info-tour-body">
         <div class="top">
           <div class="item-info">
             <label for="">نرخ یورو(تومان)</label>
-            <input type="text">
+            <input formControlName="euroRate"  type="text">
           </div>
           <div class="item-info">
             <label for="">نرخ دلار(تومان)</label>
-            <input type="text">
+            <input formControlName="dollarRate" type="text">
           </div>
-          <div class="item-info">
-            <label for="">نرخ درهم(تومان)</label>
-            <input type="text">
-          </div>
+
         </div>
       </div>
     </div>
@@ -155,15 +184,15 @@
         <div class="top">
           <div class="item-info">
             <label for="">نرخ بیمه(تومان/ارزی)</label>
-            <input type="text">
+            <input formControlName="insuranceRate" type="text">
           </div>
           <div class="item-info">
             <label for="">نرخ ترانسفر(تومان/ارزی)</label>
-            <input type="text">
+            <input formControlName="transferRate" type="text">
           </div>
           <div class="item-info">
             <label for="">نرخ ویزا(تومان/ارزی)</label>
-            <input type="text">
+            <input formControlName="visaRate" type="text">
           </div>
         </div>
       </div>
@@ -182,7 +211,7 @@
           </div>
           <div class="item-info">
             <label for="">نرخ پرواز کودک(تومان)</label>
-            <input type="text">
+            <input formControlName="CHDFlightRate" type="text">
           </div>
           <div class="item-info">
             <label for="">نرخ پرواز نوزاد(تومان)</label>
@@ -249,11 +278,11 @@
       </div>
       <div class="details-body-tour">
         <div class="textarea">
-          <textarea name="" id="" cols="30" rows="10" placeholder="خدمات"></textarea>
-          <textarea name="" id="" cols="30" rows="10" placeholder="مدارک مورد نیاز"></textarea>
-          <textarea name="" id="" cols="30" rows="10" placeholder="توضیحات تکمیلی"></textarea>
+          <textarea formControlName="services" name="" id="" cols="30" rows="10" placeholder="خدمات"></textarea>
+          <textarea formControlName="documents" name="" id="" cols="30" rows="10" placeholder="مدارک مورد نیاز"></textarea>
+          <textarea formControlName="description" name="" id="" cols="30" rows="10" placeholder="توضیحات تکمیلی"></textarea>
         </div>
-        <button class="submit-tour">ثبت تور</button>
+        <button type="submit" class="submit-tour" (click)="getData()">ثبت تور</button>
       </div>
     </div>
   </form>
