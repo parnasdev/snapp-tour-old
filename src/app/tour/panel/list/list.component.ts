@@ -13,7 +13,13 @@ declare let $: any;
 })
 export class ListComponent implements OnInit {
 
-  tourReq!: TourListRequestDTO;
+  tourReq: TourListRequestDTO = {
+    city: '',
+    paginate: true,
+    search: '',
+    perPage: 20,
+    type: 1
+  };
   tours: TourListResDTO[] = [];
   loading = false;
   city = '';
