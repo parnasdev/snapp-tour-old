@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {TourListResDTO} from "../../Core/Models/tourDTO";
 
 @Component({
   selector: 'prs-thumbnail-tour',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./thumbnail-tour.component.scss']
 })
 export class ThumbnailTourComponent implements OnInit {
+
+  @Input() tours: TourListResDTO[] = [];
 
   constructor() { }
 

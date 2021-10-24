@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {PublicService} from "../Services/public.service";
 import {environment} from "../../../environments/environment";
 import {Result} from "../Models/result";
-import {TourListRequestDTO, TourSetRequestDTO} from "../Models/tourDTO";
+import {TourListRequestDTO, TourListResDTO, TourSetRequestDTO} from "../Models/tourDTO";
 
 @Injectable({
   providedIn: 'root'
@@ -27,9 +27,7 @@ export class TourApiService {
   }
   getTours(req: TourListRequestDTO): any {
     const strUrl = this.serverControllerName + 'getTours';
-
-
-    return this.http.post<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
+    return this.http.post<Result<TourListResDTO>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
   editTour(req: TourSetRequestDTO,tour:any): any {
     const strUrl = this.serverControllerName + `editTour/${tour}`;

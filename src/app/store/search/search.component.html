@@ -1,0 +1,37 @@
+<section class="section-one">
+  <div class="bg-section-one"></div>
+  <div class="prs-responsive">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-10 m-auto parent-box-search">
+          <h6>#بفرمائید ـ سفر</h6>
+          <h2>انتخاب بهترین تور فقط با یک کلیک !</h2>
+          <div class="box-search">
+            <div class="inp-form">
+              <select name="" [formControl]="cityFC" (change)="cityChanged()">
+                <option value="">شهر خود را انتخاب کنید *</option>
+                <option *ngFor="let city of cities" [value]="city.name">{{city.name}}</option>
+              </select>
+              <span class="text-danger">{{errorService.getError('city_id')}}</span>
+            </div>
+            <div class="inp-form">
+<!--              <select name="" id="">-->
+<!--                <option value="">چه ماهی می خواهید سفر کنید ؟</option>-->
+<!--              </select>-->
+              <mat-form-field>
+                <input matInput [matDatepicker]="picker1" placeholder="Angular forms" [formControl]="dateFC">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <button class="btn-search" (click)="search()">جستجو کن !</button>
+          </div>
+          <span class="Continue-trip">سفر ادامه دارد (اسکرول کنید)</span>
+          <a href="">
+            <i class="icon-scroll-down icon-down-open"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

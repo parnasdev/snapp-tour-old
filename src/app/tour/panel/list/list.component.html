@@ -16,9 +16,9 @@
       <span class="status">وضعیت</span>
       <span class="setting">تنظیمات</span>
     </div>
-    <div class="body-list-tour">
-      <div class="item">
-        <span class="id">2</span>
+    <div class="body-list-tour" *ngIf="tours.length > 0">
+      <div class="item" *ngFor="let tour of tours; let i = index">
+        <span class="id">{{ i }}</span>
         <span class="username">همنواز</span>
         <span class="title-tour">تست تست</span>
         <span class="from-to">تهران-کیش</span>
@@ -34,58 +34,6 @@
           <button class="delete-btn">حذف</button>
         </div>
       </div>
-      <div class="item">
-        <span class="id">2</span>
-        <span class="username">همنواز</span>
-        <span class="title-tour">تست تست</span>
-        <span class="from-to">تهران-کیش</span>
-        <span class="day">3-4</span>
-        <span class="date-create">1400/02/14</span>
-        <span class="date-create">1400/02/14</span>
-        <span class="view">12</span>
-        <span class="status">تایید شده</span>
-        <div class="button-setting">
-          <button class="edit-btn">ویرایش</button>
-          <button class="view-btn">نمایش</button>
-          <button class="copy-btn">کپی</button>
-          <button class="delete-btn">حذف</button>
-        </div>
-      </div>
-      <div class="item">
-        <span class="id">2</span>
-        <span class="username">همنواز</span>
-        <span class="title-tour">تست تست</span>
-        <span class="from-to">تهران-کیش</span>
-        <span class="day">3-4</span>
-        <span class="date-create">1400/02/14</span>
-        <span class="date-create">1400/02/14</span>
-        <span class="view">12</span>
-        <span class="status">تایید شده</span>
-        <div class="button-setting">
-          <button class="edit-btn">ویرایش</button>
-          <button class="view-btn">نمایش</button>
-          <button class="copy-btn">کپی</button>
-          <button class="delete-btn">حذف</button>
-        </div>
-      </div>
-      <div class="item">
-        <span class="id">2</span>
-        <span class="username">همنواز</span>
-        <span class="title-tour">تست تست</span>
-        <span class="from-to">تهران-کیش</span>
-        <span class="day">3-4</span>
-        <span class="date-create">1400/02/14</span>
-        <span class="date-create">1400/02/14</span>
-        <span class="view">12</span>
-        <span class="status">تایید شده</span>
-        <div class="button-setting">
-          <button class="edit-btn">ویرایش</button>
-          <button class="view-btn">نمایش</button>
-          <button class="copy-btn">کپی</button>
-          <button class="delete-btn">حذف</button>
-        </div>
-      </div>
-
     </div>
   </div>
 </div>

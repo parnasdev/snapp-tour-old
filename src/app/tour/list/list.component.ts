@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {TourListRequestDTO, TourListResDTO} from "../../../Core/Models/tourDTO";
-import {TourApiService} from "../../../Core/Https/tour-api.service";
+import {TourApiService} from "../../Core/Https/tour-api.service";
+import {TourListRequestDTO, TourListResDTO} from "../../Core/Models/tourDTO";
+import {MessageService} from "../../Core/Services/message.service";
+import {CheckErrorService} from "../../Core/Services/check-error.service";
+import {ErrorsService} from "../../Core/Services/errors.service";
 import {ActivatedRoute} from "@angular/router";
-import {CheckErrorService} from "../../../Core/Services/check-error.service";
-import {ErrorsService} from "../../../Core/Services/errors.service";
-import {MessageService} from "../../../Core/Services/message.service";
-declare let $: any;
+
 @Component({
   selector: 'prs-list',
   templateUrl: './list.component.html',
@@ -13,10 +13,16 @@ declare let $: any;
 })
 export class ListComponent implements OnInit {
 
-  tourReq!: TourListRequestDTO;
+  tourReq: TourListRequestDTO = {
+    city: '',
+    paginate: true,
+    search: '',
+    perPage: 20,
+    type: 1
+  };
   tours: TourListResDTO[] = [];
   loading = false;
-  city = '';
+  city: string | null = '';
 
   constructor(public tourApiService: TourApiService,
               public route: ActivatedRoute,
@@ -26,10 +32,8 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    $(document).ready(() => {
-      $(".item:even").css('background', '#e6e6e6')
-      $(".item:odd").css('background', '#f4f7fa')
-    })
+    this.city = this.route.snapshot.paramMap.get('slug');
+    this.tourReq.city = this.city ? this.city : '';
     this.getTours();
   }
 
