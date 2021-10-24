@@ -10,6 +10,7 @@ import {SwiperModule} from "swiper/angular";
 import {TourModule} from "./tour/tour.module";
 import {authInterceptorProviders} from "./Core/interceptor/auth.interceptors";
 import {HttpClientModule} from "@angular/common/http";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {HttpClientModule} from "@angular/common/http";
     HttpClientModule,
     SwiperModule,
     StoreModule,
-    TourModule
+    TourModule,
+    BrowserAnimationsModule
   ],
   providers: [authInterceptorProviders],
   exports: [],

@@ -14,15 +14,9 @@ const routes: Routes = [
         path: 'auth',
         loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
       },{
-        path: 'tour',
-        loadChildren: () => import('./tour/tour.module').then(m => m.TourModule)
-      },{
         path: 'panel',
         loadChildren: () => import('./panel/panel.module').then(m => m.PanelModule)
-      },{
-        path: 'panel',
-        loadChildren: () => import('./panel/panel.module').then(m => m.PanelModule)
-      },
+      }
     ]
   }
 ];

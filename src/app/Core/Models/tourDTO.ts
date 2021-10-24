@@ -2,9 +2,17 @@ export interface TourListRequestDTO {
   perPage: number;
   paginate: boolean;
   search: string;
-  city: any;
+  city: string;
   type : number
 
+}
+
+export interface TourListResDTO {
+  title: string;
+  id: number;
+  transfer_id: string;
+  dateTime:    string;
+  type:        string;
 }
 
 export interface TourSetRequestDTO {

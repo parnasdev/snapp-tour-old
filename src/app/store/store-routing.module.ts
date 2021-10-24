@@ -22,6 +22,9 @@ const routes: Routes = [
       },{
         path: 'blog',
         loadChildren: () => import('../blog/blog.module').then(m => m.BlogModule)
+      },{
+        path: 'tour',
+        loadChildren: () => import('../tour/tour.module').then(m => m.TourModule)
       }
     ]
   }

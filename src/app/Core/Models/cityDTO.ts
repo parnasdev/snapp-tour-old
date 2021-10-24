@@ -13,6 +13,11 @@ export interface CitySetRequestDTO {
   type?: boolean
 }
 
+export interface CityResponseDTO {
+  name: string;
+  id: number;
+}
+
 
 
 
