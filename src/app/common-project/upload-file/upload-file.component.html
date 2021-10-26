@@ -1,0 +1,8 @@
+<div class="uploadfilecontainer d-flex align-items-center justify-content-center"
+     (click)="fileInput.click()" prsDragDrop
+     (onFileDropped)="uploadFile($event)">
+  <input accept="image/x-png,image/gif,image/jpeg" hidden type="file" #fileInput
+         (change)="uploadFile($event.target)">
+  <p class="mb-0 text-center">{{title}}</p>
+
+</div>

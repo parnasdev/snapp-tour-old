@@ -4,6 +4,7 @@ import {PublicService} from "../Services/public.service";
 import {environment} from "../../../environments/environment";
 import {CompanySetDTO} from "../Models/companyDTO";
 import {Result} from "../Models/result";
+import {GetServiceRequestDTO} from "../Models/commonDTO";
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,7 @@ export class CommonApiService {
 
   getServices(): any {
     const strUrl = this.serverControllerName + 'getServices';
-    return this.http.get<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
+    return this.http.get<Result<GetServiceRequestDTO[]>>(strUrl, this.publicService.getDefaultHeaders());
   }
 
   getTransferTypes(): any {

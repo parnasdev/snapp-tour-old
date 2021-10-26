@@ -1,0 +1,3046 @@
+<div class="container-fluid" *ngIf="!isMobile">
+  <div class="row">
+    <div class="col-lg-12 mb-5">
+      <form [formGroup]="form" class="row-form">
+        <div class="Content">
+          <div class="col-md-12">
+            <div class="HeaderContent">
+              <div class="row">
+                <div class="col-lg-8 col-4">
+                  <h3>اطلاعات تور {{ typeTour }}</h3>
+                </div>
+                <div class="col-lg-4 col-8">
+                  <div class="row">
+                    <div class="col-md-4 col-6 px-1 text-center">
+                      <div class="custom-control custom-switch">
+                        <input
+                          type="checkbox"
+                          class="custom-control-input"
+                          formControlName="offered"
+                          id="offered1"
+                        />
+                        <label class="custom-control-label" for="offered1"
+                        >ویژه</label
+                        >
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-6 px-1 text-center">
+                      <div class="custom-control custom-switch">
+                        <input
+                          type="checkbox"
+                          class="custom-control-input"
+                          formControlName="promotion"
+                          id="promotion"
+                        />
+                        <label class="custom-control-label" for="promotion"
+                        >مخصوص</label
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="SubContent">
+              <div class="row no-gutters">
+                <div class="col-lg-6">
+                  <div class="row no-gutters">
+                    <div class="col-md-6 px-1">
+                      <small class="font-weight-bold"> عنوان تور :</small>
+                      <input
+                        type="text"
+                        [ngClass]="{
+                          ValidationError:
+                            form.get('title').touched && form.get('title').invalid
+                        }"
+                        placeholder="عنوان تور"
+                        id="title"
+                        formControlName="title"
+                        name="title"
+                      />
+                      <small
+                        class="text-danger"
+                        *ngIf="
+                          form.get('title').touched && form.get('title').invalid
+                        "
+                      >عنوان تور الزامی است</small
+                      >
+                    </div>
+                    <div class="col-lg-6 px-1 d-flex justify-content-center">
+                      <div class="row w-100">
+                        <div class="col-md-6 px-0">
+                          <small class="font-weight-bold">شهر مبدا :</small>
+                          <mat-form-field
+                            class="input-full-width"
+                            floatLabel="never"
+                            appearance="fill">
+                            <input
+                              matInput
+                              placeholder="شهر مبدا"
+                              aria-label="شهر مبدا"
+                              [matAutocomplete]="OriginInput"
+                              [ngClass]="{
+                                ValidationError:
+                                  form.get('originId').touched &&
+                                  form.get('originId').invalid
+                              }"
+                              formControlName="originId"
+                            />
+
+                            <mat-autocomplete #OriginInput="matAutocomplete">
+                              <mat-option
+                                *ngFor="let state of filteredOrigin | async"
+                                [value]="state.name"
+                              >
+                                <span>{{ state.name }}</span>
+                              </mat-option>
+                            </mat-autocomplete>
+                          </mat-form-field>
+                          <small
+                            class="text-danger"
+                            *ngIf="
+                              form.get('originId').touched &&
+                              form.get('originId').invalid
+                            "
+                          >شهر مبدا الزامی است
+                          </small>
+                        </div>
+                        <div class="col-md-6 px-1">
+                          <small class="font-weight-bold">شهر مقصد :</small>
+                          <mat-form-field
+                            class="input-full-width"
+                            floatLabel="never"
+                            appearance="fill"
+                          >
+                            <input
+                              matInput
+                              placeholder="شهر مقصد"
+                              aria-label="شهر مقصد"
+                              [matAutocomplete]="DestInput"
+                              [ngClass]="{
+                                ValidationError:
+                                  form.get('cityId').touched &&
+                                  form.get('cityId').invalid
+                              }"
+                              formControlName="cityId"
+                            />
+
+                            <mat-autocomplete #DestInput="matAutocomplete">
+                              <mat-option
+                                *ngFor="let state of filteredDest | async"
+                                [value]="state.name"
+                                (blur)="getHotels(state.id)"
+                              >
+                                <span>{{ state.name }}</span>
+                              </mat-option>
+                            </mat-autocomplete>
+                          </mat-form-field>
+                          <small
+                            class="text-danger"
+                            *ngIf="
+                              form.get('cityId').touched &&
+                              form.get('cityId').invalid
+                            "
+                          >شهر مقصد الزامی است
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-2 px-1 d-flex justify-content-center">
+                  <div class="row no-gutters w-100">
+                    <div class="col-md-6 px-1">
+                      <small class="font-weight-bold"> شب:</small>
+                      <select
+                        name="nightNum"
+                        formControlName="duration"
+                        class="mt-0"
+                        (change)="calculateDayCount()"
+                        style="padding: 3px !important"
+                      >
+                        <option
+                          *ngFor="let night of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+                        >
+                          {{ night }}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="col-md-6 px-1">
+                      <small class="font-weight-bold"> روز:</small>
+                      <input
+                        type="text"
+                        readonly
+                        placeholder="تعداد روز"
+                        class="mt-0"
+                        [(ngModel)]="dayCount"
+                        [ngModelOptions]="{ standalone: true }"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4">
+                  <div class="row no-gutters">
+                    <div class="col-md-4 px-1">
+                      <small class="font-weight-bold">تاریخ ورود به هتل :</small>
+                      <mat-form-field appearance="fill">
+                        <input
+                          #datepickerelement
+                          matInput
+                          [min]="minDate"
+                          [ngClass]="{
+                            ValidationError:
+                              form.get('dateStart').touched &&
+                              form.get('dateStart').invalid
+                          }"
+                          [matDatepicker]="picker"
+                          (click)="picker.open()"
+                          formControlName="dateStart"
+                          autocomplete="off"
+                        />
+
+                        <mat-datepicker
+                          touchUi
+                          #picker
+                          (closed)="calculateDateEnd()"
+                        ></mat-datepicker>
+                      </mat-form-field>
+                      <small
+                        class="text-danger"
+                        *ngIf="
+                          form.get('dateStart').touched &&
+                          form.get('dateStart').invalid
+                        "
+                      >تاریخ ورود الزامی است
+                      </small>
+                    </div>
+                    <div class="col-md-4 px-1">
+                      <small class="font-weight-bold"> تاریخ خروج از هتل :</small>
+                      <input
+                        formControlName="dateEnd"
+                        class="mt-0 InputDateExite"
+                        [ngClass]="{
+                          ValidationError:
+                            form.get('dateEnd').touched &&
+                            form.get('dateEnd').invalid
+                        }"
+                        autocomplete="off"
+                      />
+                      <small
+                        class="text-danger mt-2"
+                        *ngIf="
+                          form.get('dateEnd').touched &&
+                          form.get('dateEnd').invalid
+                        "
+                      >تاریخ خروج الزامی است
+                      </small>
+                    </div>
+                    <div class="col-md-4 px-1">
+                      <small class="font-weight-bold">تاریخ انقضا :</small>
+                      <mat-form-field appearance="fill">
+                        <input
+                          [placeholder]="'تاریخ انقضا'"
+                          matInput
+                          [matDatepicker]="dateExp"
+                          (click)="dateExp.open()"
+                          [ngClass]="{
+                            ValidationError:
+                              form.get('expiry').touched &&
+                              form.get('expiry').invalid
+                          }"
+                          formControlName="expiry"
+                          [min]="minDate"
+                          autocomplete="off"
+                        />
+
+                        <mat-datepicker touchUi #dateExp></mat-datepicker>
+                      </mat-form-field>
+                      <small
+                        class="text-danger"
+                        *ngIf="
+                          form.get('expiry').touched && form.get('expiry').invalid
+                        "
+                      >
+                        تاریخ انقضا الزامی است
+                      </small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="Content">
+          <div class="col-md-12">
+            <div class="HeaderContent">
+              <h3>اطلاعات پرواز</h3>
+            </div>
+            <div class="SubContent row no-gutters">
+              <div class="col-lg-6 d-inline-flex p-1 align-items-center">
+                <label class="mb-0 pl-4">تاریخ رفت :</label>
+                <div class="w-75">
+                  <mat-form-field appearance="fill">
+                    <input
+                      [placeholder]="'تاریخ رفت'"
+                      #datepickerelement
+                      [min]="minDate"
+                      matInput
+                      [matDatepicker]="flightDateIn"
+                      (click)="flightDateIn.open()"
+                      [ngClass]="{
+                        ValidationError:
+                          form.get('flightDepartureDate').touched &&
+                          form.get('flightDepartureDate').invalid
+                      }"
+                      formControlName="flightDepartureDate"
+                      autocomplete="off"
+                    />
+                    <mat-datepicker touchUi #flightDateIn></mat-datepicker>
+                  </mat-form-field>
+                  <small
+                    class="text-danger"
+                    *ngIf="
+                      form.get('flightDepartureDate').touched &&
+                      form.get('flightDepartureDate').invalid
+                    "
+                  >تاریخ رفت الزامی است</small
+                  >
+                </div>
+              </div>
+              <!--              <div class="col-lg-4 d-inline-flex p-1 align-items-center">-->
+              <!--                <label class="mb-0 pl-4">ساعت رفت :</label>-->
+              <!--                <div class="w-75">-->
+              <!--                  <input type="text" formControlName="flightStartTime" placeholder="12:00"/>-->
+              <!--                </div>-->
+              <!--              </div>-->
+              <div class="col-lg-6 d-inline-flex p-1 align-items-center">
+                <label class="mb-0 pl-4">ایرلاین رفت :</label>
+                <div class="w-75">
+                  <select
+                    name="airline_id"
+                    [ngClass]="{
+                      ValidationError:
+                        form.get('airlineDepartureID').touched &&
+                        form.get('airlineDepartureID').invalid
+                    }"
+                    formControlName="airlineDepartureID"
+                    id="airline_id"
+                    class="mt-0 mt-1"
+                  >
+                    <option *ngFor="let airline of airlines" [value]="airline.ID">
+                      {{ airline.nameFA }}
+                    </option>
+                  </select>
+                  <small
+                    class="text-danger"
+                    *ngIf="
+                      form.get('airlineDepartureID').touched &&
+                      form.get('airlineDepartureID').invalid
+                    "
+                  >ایرلاین رفت الزامی است</small
+                  >
+                </div>
+              </div>
+              <div class="col-lg-6 d-inline-flex p-1 align-items-center">
+                <label class="mb-0 pl-2">تاریخ برگشت :</label>
+                <div class="w-75">
+                  <mat-form-field appearance="fill">
+                    <input
+                      [placeholder]="'تاریخ برگشت'"
+                      matInput
+                      [matDatepicker]="flightDateOut"
+                      [ngClass]="{
+                        ValidationError:
+                          form.get('flightReturnDate').touched &&
+                          form.get('flightReturnDate').invalid
+                      }"
+                      (click)="flightDateOut.open()"
+                      formControlName="flightReturnDate"
+                      autocomplete="off"
+                    />
+                    <mat-datepicker touchUi #flightDateOut></mat-datepicker>
+                  </mat-form-field>
+                  <small
+                    class="text-danger"
+                    *ngIf="
+                      form.get('flightReturnDate').touched &&
+                      form.get('flightReturnDate').invalid
+                    "
+                  >تاریخ برگشت الزامی است</small
+                  >
+                </div>
+              </div>
+              <!--              <div class="col-lg-4 d-inline-flex p-1 align-items-center">-->
+              <!--                <label class="mb-0 pl-2">ساعت برگشت :</label>-->
+              <!--                <div class="w-75">-->
+              <!--                  <input type="text" formControlName="flightEndTime" placeholder="12:00"/>-->
+              <!--                </div>-->
+              <!--              </div>-->
+              <div class="col-md-6 d-inline-flex p-1 align-items-center">
+                <label class="mb-0 pl-2">ایرلاین برگشت :</label>
+                <div class="w-75">
+                  <select
+                    name="airline_id"
+                    [ngClass]="{
+                      ValidationError:
+                        form.get('airlineReturnID').touched &&
+                        form.get('airlineReturnID').invalid
+                    }"
+                    formControlName="airlineReturnID"
+                    id="airline_id"
+                  >
+                    <option *ngFor="let airline of airlines" [value]="airline.ID">
+                      {{ airline.nameFA }}
+                    </option>
+                  </select>
+                  <small
+                    class="text-danger"
+                    *ngIf="
+                      form.get('airlineReturnID').touched &&
+                      form.get('airlineReturnID').invalid
+                    "
+                  >ایرلاین برگشت الزامی است</small
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="Content">
+          <div class="col-md-12">
+            <div class="HeaderContent pr-3 pt-2 mb-2">
+              <div class="row">
+                <div class="col-lg-4">
+                  <h3>نرخ گذاری تور</h3>
+                </div>
+                <div class="col-lg-8">
+                  <label style="margin-left: 45px">باجزییات</label>
+                  <div class="custom-control custom-switch d-inline-block">
+                    <input
+                      type="checkbox"
+                      (change)="changeType()"
+                      class="custom-control-input"
+                      formControlName="detailed"
+                      id="detailed"
+                    />
+                    <label class="custom-control-label" for="detailed"
+                    >یکجا</label
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="SubContent" [hidden]="!form.value.detailed">
+              <div class="row no-gutters">
+                <div class="col-lg-3 pt-2 p-1 d-flex align-items-center">
+                  <strong> نرخ ارزها (به تومان) </strong>
+                </div>
+                <div class="col-lg-9">
+                  <form
+                    [formGroup]="form"
+                    formGroupName="rates"
+                    class="form-row w-100"
+                  >
+                    <div class="col-md-4">
+                      <label for="euroRate" class="pl-1">یورو</label>
+                      <div class="w-100">
+                        <input
+                          type="text"
+                          formControlName="euro"
+                          mask="separator"
+                          thousandSeparator=","
+                          name="euroRate"
+                          id="euroRate"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <label for="dollarRate" class="pl-1"> دلار</label>
+                      <div class="w-100">
+                        <input
+                          type="text"
+                          formControlName="dollar"
+                          mask="separator"
+                          thousandSeparator=","
+                          name="dollarRate"
+                          id="dollarRate"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <label for="AEDRate" class="pl-1"> درهم</label>
+                      <div class="w-100">
+                        <input
+                          type="text"
+                          formControlName="lyra"
+                          mask="separator"
+                          thousandSeparator=","
+                          name="AEDRate"
+                          id="AEDRate"
+                        />
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="row no-gutters pt-3">
+                <div class="col-lg-3 p-1 d-flex align-items-center">
+                  <strong> نرخ خدمات (تومان)</strong>
+                </div>
+                <div class="col-lg-3">
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8 p-1">
+                      <label for="insuranceRate">نرخ بیمه(تومان/ارزی) :</label>
+                      <input
+                        formControlName="insurance"
+                        type="text"
+                        mask="separator"
+                        thousandSeparator=","
+                        [ngClass]="{
+                          ValidationError:
+                            form.get('insurance').touched &&
+                            form.get('insurance').invalid
+                        }"
+                        id="insuranceRate"
+                      />
+                      <span *ngIf="form.value.insurance !== 0">{{
+                        this.calServices(
+                          form.get("insurance").value,
+                          form.get("insuranceCurrency").value
+                        ) | sperator
+                        }}</span>
+                      <small
+                        class="text-danger"
+                        *ngIf="
+                          form.get('insurance').touched &&
+                          form.get('insurance').invalid
+                        "
+                      >نرخ بیمه الزامی است</small
+                      >
+                    </div>
+                    <div class="col-lg-3 p-1">
+                      <label>نوع ارز :</label>
+                      <select
+                        formControlName="insuranceCurrency"
+                        (change)="
+                          changeCurrency('insurance', 'insuranceCurrency')
+                        "
+                        style="font-size: 12px; padding: 7px 4px"
+                      >
+                        <option
+                          [value]="92"
+                          [disabled]="
+                            form.get('rates').get('euro').value === 0 ||
+                            form.get('rates').get('euro').value === ''
+                          "
+                        >
+                          یورو
+                        </option>
+                        <option
+                          [value]="91"
+                          [disabled]="
+                            form.get('rates').get('dollar').value === 0 ||
+                            form.get('rates').get('dollar').value === ''
+                          "
+                        >
+                          دلار
+                        </option>
+                        <option
+                          [value]="93"
+                          [disabled]="
+                            form.get('rates').get('lyra').value === 0 ||
+                            form.get('rates').get('lyra').value === ''
+                          "
+                        >
+                          درهم
+                        </option>
+                        <option [value]="90">تومان</option>
+                        <option [value]="94">ندارد</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3">
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8 p-1">
+                      <label for="transferRate">نرخ ترانسفر(تومان/ارزی) :</label>
+                      <input
+                        type="text"
+                        id="transferRate"
+                        formControlName="transfer"
+                        [ngClass]="{
+                          ValidationError:
+                            form.get('transfer').touched &&
+                            form.get('transfer').invalid
+                        }"
+                        mask="separator"
+                        thousandSeparator=","
+                      />
+                      <span *ngIf="form.value.transfer !== 0">{{
+                        this.calServices(
+                          form.value.transfer,
+                          form.value.transferCurrency
+                        ) | sperator
+                        }}</span>
+                      <small
+                        class="text-danger"
+                        *ngIf="
+                          form.get('transfer').touched &&
+                          form.get('transfer').invalid
+                        "
+                      >نرخ ترنسفر الزامی است</small
+                      >
+                    </div>
+                    <div class="col-lg-3 p-1">
+                      <label>نوع ارز :</label>
+                      <select
+                        formControlName="transferCurrency"
+                        (change)="changeCurrency('transfer', 'transferCurrency')"
+                        style="font-size: 12px; padding: 7px 4px"
+                      >
+                        <option
+                          [value]="92"
+                          [disabled]="
+                            form.get('rates').get('euro').value === 0 ||
+                            form.get('rates').get('euro').value === ''
+                          "
+                        >
+                          یورو
+                        </option>
+                        <option
+                          [value]="91"
+                          [disabled]="
+                            form.get('rates').get('dollar').value === 0 ||
+                            form.get('rates').get('dollar').value === ''
+                          "
+                        >
+                          دلار
+                        </option>
+                        <option
+                          [value]="93"
+                          [disabled]="
+                            form.get('rates').get('lyra').value === 0 ||
+                            form.get('rates').get('lyra').value === ''
+                          "
+                        >
+                          درهم
+                        </option>
+                        <option [value]="90">تومان</option>
+                        <option [value]="94">ندارد</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3">
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-lg-8 p-1">
+                      <label for="visaRate">نرخ ویزا(تومان/ارزی) :</label>
+                      <input
+                        type="text"
+                        id="visaRate"
+                        mask="separator"
+                        thousandSeparator=","
+                        [ngClass]="{
+                          ValidationError:
+                            form.get('visaPrice').touched &&
+                            form.get('visaPrice').invalid
+                        }"
+                        formControlName="visaPrice"
+                      />
+                      <span *ngIf="form.value.visaPrice !== 0">{{
+                        this.calServices(
+                          form.value.visaPrice,
+                          form.value.visaCurrency
+                        ) | sperator
+                        }}</span>
+                      <small
+                        class="text-danger"
+                        *ngIf="
+                          form.get('visaPrice').touched &&
+                          form.get('visaPrice').invalid
+                        "
+                      >نرخ ویزا الزامی است</small
+                      >
+                    </div>
+                    <div class="col-lg-3 p-1">
+                      <label>نوع ارز :</label>
+                      <select
+                        formControlName="visaCurrency"
+                        (change)="changeCurrency('visaPrice', 'visaCurrency')"
+                        style="font-size: 12px; padding: 7px 4px"
+                      >
+                        <option
+                          [value]="92"
+                          [disabled]="
+                            form.get('rates').get('euro').value === 0 ||
+                            form.get('rates').get('euro').value === ''
+                          "
+                        >
+                          یورو
+                        </option>
+                        <option
+                          [value]="91"
+                          [disabled]="
+                            form.get('rates').get('dollar').value === 0 ||
+                            form.get('rates').get('dollar').value === ''
+                          "
+                        >
+                          دلار
+                        </option>
+                        <option
+                          [value]="93"
+                          [disabled]="
+                            form.get('rates').get('lyra').value === 0 ||
+                            form.get('rates').get('lyra').value === ''
+                          "
+                        >
+                          درهم
+                        </option>
+                        <option [value]="90">تومان</option>
+                        <option [value]="94">ندارد</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row no-gutters pt-3">
+                <div class="col-lg-3 p-1 d-flex align-items-center">
+                  <strong> نرخ پرواز(تومان)</strong>
+                </div>
+                <div class="col-lg-3 p-1">
+                  <label>نرخ پرواز بزرگسال :</label>
+                  <input
+                    type="text"
+                    placeholder="نرخ پرواز بزرگسال"
+                    mask="separator"
+                    thousandSeparator=","
+                    [ngClass]="{
+                      ValidationError:
+                        form.get('flightPriceAdult').touched &&
+                        form.get('flightPriceAdult').invalid
+                    }"
+                    formControlName="flightPriceAdult"
+                  />
+                  <small
+                    class="text-danger"
+                    *ngIf="
+                      form.get('flightPriceAdult').touched &&
+                      form.get('flightPriceAdult').invalid
+                    "
+                  >نرخ پرواز بزرگسال الزامی است</small
+                  >
+                </div>
+                <div class="col-lg-3 p-1">
+                  <label>نرخ پرواز کودک :</label>
+                  <input
+                    type="text"
+                    placeholder="نرخ پرواز کودک"
+                    formControlName="flightPriceChild"
+                    mask="separator"
+                    [ngClass]="{
+                      ValidationError:
+                        form.get('flightPriceChild').touched &&
+                        form.get('flightPriceChild').invalid
+                    }"
+                    thousandSeparator=","
+                  />
+                  <small
+                    class="text-danger"
+                    *ngIf="
+                      form.get('flightPriceChild').touched &&
+                      form.get('flightPriceChild').invalid
+                    "
+                  >نرخ پرواز کودک الزامی است</small
+                  >
+                </div>
+                <div class="col-lg-3 p-1">
+                  <label>نرخ پرواز نوزاد :</label>
+                  <input
+                    type="text"
+                    placeholder="نرخ پرواز نوزاد"
+                    formControlName="flightPriceInfant"
+                    mask="separator"
+                    [ngClass]="{
+                      ValidationError:
+                        form.get('flightPriceInfant').touched &&
+                        form.get('flightPriceInfant').invalid
+                    }"
+                    thousandSeparator=","
+                  />
+                  <small
+                    class="text-danger"
+                    *ngIf="
+                      form.get('flightPriceInfant').touched &&
+                      form.get('flightPriceInfant').invalid
+                    "
+                  >نرخ پرواز نوزاد الزامی است</small
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="Content">
+          <div class="col-md-12">
+            <div class="HeaderContent">
+              <div class="row">
+                <div class="col-lg-4">
+                  <h3 class="font-weight-bold">اطلاعات هتل و قیمت ها</h3>
+                </div>
+                <div class="col-lg-3">
+                  <label class="pr-4 font-weight-bold">{{ typeTour }}</label>
+                </div>
+                <div class="col-lg-5">
+                  <div class="row no-gutters">
+                    <div class="col-lg-4 p-0">
+                      <input
+                        type="text"
+                        formControlName="discount"
+                        mask="separator"
+                        thousandSeparator=","
+                      />
+                    </div>
+                    <div
+                      class="col-lg-3 border p-0 py-1 text-center"
+                      [ngClass]="{ 'grey lighten-3': operation === 1 }"
+                    >
+                      <a class="text-center" (click)="operation = 1">افزایش</a>
+                    </div>
+                    <div
+                      class="col-lg-3 border text-center p-0 py-1"
+                      [ngClass]="{ 'grey lighten-3': operation === -1 }"
+                    >
+                      <a class="text-center" (click)="operation = -1">کاهش</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="SubContent">
+              <form [formGroup]="form" formArrayName="tours" class="Grid">
+                <!-- تور خارجی -->
+                <div *ngIf="form.value.tripType === '70'">
+                  <div class="d-flex GridHeader border-bottom">
+                    <div class="p-1 font-weight-bold" style="width: 20%">
+                      <span>نام هتل</span>
+                    </div>
+                    <div class="p-1 font-weight-bold" style="width: 10%">
+                      <span>خدمات</span>
+                    </div>
+                    <div
+                      class="p-1 font-weight-bold"
+                      style="width: 10%"
+                      *ngIf="form.value.detailed"
+                    >
+                      <span>ارز هتل</span>
+                    </div>
+                    <div class="p-1 font-weight-bold" style="width: 10%">
+                      <span>دو تخته</span>
+                    </div>
+                    <div class="p-1 font-weight-bold" style="width: 10%">
+                      <span>سینگل</span>
+                    </div>
+                    <div class="p-1 font-weight-bold" style="width: 10%">
+                      <span>کودک با تخت</span>
+                    </div>
+                    <div class="p-1 font-weight-bold" style="width: 10%">
+                      <span>کودک بدون تخت</span>
+                    </div>
+                    <div class="p-1 font-weight-bold" style="width: 10%">
+                      <span>سن کودک</span>
+                    </div>
+                    <div class="p-1 font-weight-bold" style="width: 10%">
+                      <span>ویژه</span>
+                    </div>
+                    <div class="p-1 font-weight-bold"></div>
+                  </div>
+                  <div
+                    class="d-flex GridBody"
+                    *ngFor="let tour of ToursForm.controls; let i = index"
+                    [formGroupName]="i"
+                  >
+                    <!-- نام هتل -->
+                    <div class="p-1" style="width: 20%">
+                      <span>
+                        <mat-form-field
+                          class="input-full-width"
+                          floatLabel="never"
+                          appearance="fill"
+                        >
+                          <input
+                            matInput
+                            [matAutocomplete]="hotelId"
+                            [ngClass]="{
+                              ValidationError:
+                                tour.get('hotelId').touched &&
+                                tour.get('hotelId').invalid
+                            }"
+                            formControlName="hotelId"
+                          />
+
+                          <mat-autocomplete #hotelId="matAutocomplete">
+                            <mat-option
+                              *ngFor="let state of filteredhotel[i] | async"
+                              [value]="
+                                form.value.tripType === '71'
+                                  ? state.name
+                                  : state.nameEng
+                              "
+                              style="line-height: 15px"
+                              class="my-3"
+                            >
+                              <span *ngIf="form.value.tripType === '71'">{{
+                                state.name
+                                }}</span>
+                              <span *ngIf="form.value.tripType === '70'">{{
+                                state.nameEng
+                                }}</span>
+                            </mat-option>
+                          </mat-autocomplete>
+                        </mat-form-field>
+                        <span>&nbsp;</span>
+                        <small
+                          class="text-danger"
+                          *ngIf="
+                            tour.get('hotelId').touched &&
+                            tour.get('hotelId').invalid
+                          "
+                        >هتل الزامی است</small
+                        >
+                      </span>
+                    </div>
+                    <!-- نوع سرویس  -->
+                    <div class="p-1" style="width: 10%">
+                      <select
+                        formControlName="HotelServiceType"
+                        [ngClass]="{
+                          ValidationError:
+                            tour.get('hotelId').touched &&
+                            tour.get('hotelId').invalid
+                        }"
+                        style="padding: 3px !important"
+                      >
+                        <option [value]="180">B.B</option>
+                        <option [value]="181">H.B</option>
+                        <option [value]="182">F.B</option>
+                        <option [value]="183">ALL</option>
+                        <option [value]="184">UALL</option>
+                      </select>
+                      <small
+                        class="text-danger"
+                        *ngIf="
+                          tour.get('HotelServiceType').touched &&
+                          tour.get('HotelServiceType').invalid
+                        "
+                      >
+                        نوع سرویس هتل الزامی است
+                      </small>
+                    </div>
+                    <!-- نوع ارز -->
+                    <div
+                      class="p-1"
+                      style="width: 10%"
+                      *ngIf="form.value.detailed"
+                    >
+                      <select
+                        formControlName="CurrencyType"
+                        style="font-size: 12px"
+                        [ngClass]="{
+                          ValidationError:
+                            tour.get('CurrencyType').touched &&
+                            tour.get('CurrencyType').invalid
+                        }"
+                      >
+                        <option
+                          [value]="92"
+                          [disabled]="
+                            form.get('rates').get('euro').value === 0 ||
+                            form.get('rates').get('euro').value === ''
+                          "
+                        >
+                          یورو
+                        </option>
+                        <option
+                          [value]="91"
+                          [disabled]="
+                            form.get('rates').get('dollar').value === 0 ||
+                            form.get('rates').get('dollar').value === ''
+                          "
+                        >
+                          دلار
+                        </option>
+                        <option
+                          [value]="93"
+                          [disabled]="
+                            form.get('rates').get('lyra').value === 0 ||
+                            form.get('rates').get('lyra').value === ''
+                          "
+                        >
+                          درهم
+                        </option>
+                        <option [value]="90">تومان</option>
+                      </select>
+                      <small
+                        class="text-danger"
+                        *ngIf="
+                          tour.get('CurrencyType').touched &&
+                          tour.get('CurrencyType').invalid
+                        "
+                      >
+                        نوع ارز هتل الزامی است
+                      </small>
+                    </div>
+                    <!-- قیمت دو تخته -->
+                    <div class="p-1" style="width: 10%">
+                      <mat-form-field
+                        class="input-full-width"
+                        floatLabel="never"
+                        appearance="fill"
+                      >
+                        <input
+                          formControlName="Twin"
+                          mask="separator"
+                          thousandSeparator=","
+                          matInput
+                          [ngClass]="{
+                            ValidationError:
+                              tour.get('Twin').touched && tour.get('Twin').invalid
+                          }"
+                          placeholder="قیمت دو تخته"
+                        />
+                      </mat-form-field>
+                      <span *ngIf="tour.value.Twin == 0">&nbsp;</span>
+                      <span *ngIf="tour.value.Twin !== 0">{{
+                        calPriceTour(
+                          tour.get("Twin").value,
+                          tour.get("CurrencyType").value
+                        ) | sperator
+                        }}</span>
+                      <small
+                        class="text-danger"
+                        *ngIf="
+                          tour.get('Twin').touched && tour.get('Twin').invalid
+                        "
+                      >قیمت دو تخته الزامی است</small
+                      >
+                    </div>
+                    <!-- سینگل -->
+                    <div class="p-1" style="width: 10%">
+                      <mat-form-field
+                        class="input-full-width"
+                        floatLabel="never"
+                        appearance="fill"
+                      >
+                        <input
+                          formControlName="Single"
+                          mask="separator"
+                          thousandSeparator=","
+                          matInput
+                          [ngClass]="{
+                            ValidationError:
+                              tour.get('Single').touched &&
+                              tour.get('Single').invalid
+                          }"
+                          placeholder="قیمت سینگل"
+                        />
+                      </mat-form-field>
+                      <span *ngIf="tour.value.Single !== 0"
+                      >&nbsp;{{
+                        calPriceTour(
+                          tour.get("Single").value,
+                          tour.get("CurrencyType").value
+                        ) | sperator
+                        }}</span
+                      >
+                      <small
+                        class="text-danger"
+                        *ngIf="
+                          tour.get('Single').touched && tour.get('Single').invalid
+                        "
+                      >قیمت سینگل الزامی است</small
+                      >
+                    </div>
+
+                    <!-- قیمت کودک با تخت -->
+                    <div class="p-1" style="width: 10%">
+                      <mat-form-field
+                        class="input-full-width"
+                        floatLabel="never"
+                        appearance="fill"
+                      >
+                        <input
+                          formControlName="Cwb"
+                          mask="separator"
+                          thousandSeparator=","
+                          matInput
+                          [ngClass]="{
+                            ValidationError:
+                              tour.get('Cwb').touched && tour.get('Cwb').invalid
+                          }"
+                          placeholder="قیمت کودک با تخت"
+                        />
+                      </mat-form-field>
+                      <span *ngIf="tour.value.Cwb !== 0"
+                      >&nbsp;{{
+                        calPriceTourCHD(
+                          tour.get("Cwb").value,
+                          tour.get("CurrencyType").value
+                        ) | sperator
+                        }}</span
+                      >
+                      <small
+                        class="text-danger"
+                        *ngIf="tour.get('Cwb').touched && tour.get('Cwb').invalid"
+                      >قیمت کودک با تخت الزامی است</small
+                      >
+                    </div>
+                    <!-- قیمت کودک بدون تخت -->
+                    <div class="p-1" style="width: 10%">
+                      <mat-form-field
+                        class="input-full-width"
+                        floatLabel="never"
+                        appearance="fill"
+                      >
+                        <input
+                          formControlName="Cnb"
+                          mask="separator"
+                          thousandSeparator=","
+                          matInput
+                          [ngClass]="{
+                            ValidationError:
+                              tour.get('Cnb').touched && tour.get('Cnb').invalid
+                          }"
+                          placeholder="قیمت کودک بدون تخت"
+                        />
+                      </mat-form-field>
+                      <span *ngIf="tour.value.Cnb !== 0 && !form.value.detailed"
+                      >&nbsp;{{
+                        calPriceTourCHD(
+                          tour.get("Cnb").value,
+                          tour.get("CurrencyType").value | sperator
+                        )
+                        }}</span
+                      >
+                      <span *ngIf="form.value.detailed"
+                      >&nbsp;{{
+                        form.get("flightPriceChild").value | sperator
+                        }}</span
+                      >
+                      <small
+                        class="text-danger"
+                        *ngIf="tour.get('Cnb').touched && tour.get('Cnb').invalid"
+                      >قیمت کودک بدون تخت الزامی است</small
+                      >
+                    </div>
+                    <!-- سن کودک -->
+                    <div class="p-1" style="width: 10%">
+                      <mat-form-field
+                        class="input-full-width"
+                        floatLabel="never"
+                        appearance="fill"
+                      >
+                        <input
+                          formControlName="ChildAge"
+                          matInput
+                          [ngClass]="{
+                            ValidationError:
+                              tour.get('ChildAge').touched &&
+                              tour.get('ChildAge').invalid
+                          }"
+                          placeholder="سن کودک "
+                        />
+                      </mat-form-field>
+                      <span>&nbsp;</span>
+                      <small
+                        class="text-danger"
+                        *ngIf="
+                          tour.get('ChildAge').touched &&
+                          tour.get('ChildAge').invalid
+                        "
+                      >سن کودک الزامی است</small
+                      >
+                    </div>
+                    <!-- ویژه -->
+                    <div class="p-1" style="width: 10%">
+                      <div class="custom-control custom-checkbox">
+                        <input
+                          class="custom-control-input"
+                          type="checkbox"
+                          formControlName="Offered"
+                          [id]="'Offered' + i"
+                        />
+                        <label
+                          class="custom-control-label"
+                          [for]="'Offered' + i"
+                        ></label>
+                      </div>
+                    </div>
+                    <div class="p-1">
+                      <button
+                        class="DeleteButton text-center"
+                        (click)="removePakage(i)"
+                      >
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <!-- تور داخی -->
+                <div *ngIf="form.value.tripType === '71'">
+                  <div class="d-flex border-bottom GridHeader">
+                    <div class="p-1 font-weight-bold" style="width: 20%">
+                      <span>نام هتل</span>
+                    </div>
+                    <div class="p-1 font-weight-bold" style="width: 10%">
+                      <span>خدمات</span>
+                    </div>
+                    <div class="p-1 font-weight-bold" style="width: 10%">
+                      <span>دو تخته</span>
+                    </div>
+                    <div class="p-1 font-weight-bold" style="width: 10%">
+                      <span>سه تخته</span>
+                    </div>
+                    <div class="p-1 font-weight-bold" style="width: 10%">
+                      <span>چهار تخته</span>
+                    </div>
+                    <div class="p-1 font-weight-bold" style="width: 10%">
+                      <span>سن کودک</span>
+                    </div>
+                    <div class="p-1 font-weight-bold" style="width: 10%">
+                      <span>ویژه</span>
+                    </div>
+                    <div class="p-1 font-weight-bold"></div>
+                  </div>
+                  <div
+                    class="d-flex GridBody"
+                    *ngFor="let tour of ToursForm.controls; let i = index"
+                    [formGroupName]="i"
+                  >
+                    <!-- نام هتل -->
+                    <div class="p-1" style="width: 20%">
+                      <mat-form-field
+                        class="input-full-width"
+                        floatLabel="never"
+                        appearance="fill"
+                      >
+                        <input
+                          matInput
+                          [matAutocomplete]="hotelId"
+                          [ngClass]="{
+                            ValidationError:
+                              tour.get('hotelId').touched &&
+                              tour.get('hotelId').invalid
+                          }"
+                          formControlName="hotelId"
+                        />
+
+                        <mat-autocomplete #hotelId="matAutocomplete">
+                          <mat-option
+                            *ngFor="let state of filteredhotel[i] | async"
+                            [value]="
+                              form.value.tripType === '71'
+                                ? state.name
+                                : state.nameEng
+                            "
+                            style="line-height: 15px"
+                            class="my-3"
+                          >
+                            <span *ngIf="form.value.tripType === '71'">{{
+                              state.name
+                              }}</span>
+                            <span *ngIf="form.value.tripType === '70'">{{
+                              state.nameEng
+                              }}</span>
+                          </mat-option>
+                        </mat-autocomplete>
+                      </mat-form-field>
+                      <span>&nbsp;</span>
+                      <small
+                        class="text-danger"
+                        *ngIf="
+                          tour.get('hotelId').touched &&
+                          tour.get('hotelId').invalid
+                        "
+                      >هتل الزامی است</small
+                      >
+                    </div>
+                    <!-- نوع سرویس -->
+                    <div class="p-1" style="width: 10%">
+                      <select
+                        formControlName="HotelServiceType"
+                        [ngClass]="{
+                          ValidationError:
+                            tour.get('hotelId').touched &&
+                            tour.get('hotelId').invalid
+                        }"
+                        style="padding: 3px !important"
+                      >
+                        <option [value]="180">B.B</option>
+                        <option [value]="181">H.B</option>
+                        <option [value]="182">F.B</option>
+                        <option [value]="183">ALL</option>
+                        <option [value]="184">UALL</option>
+                      </select>
+                      <small
+                        class="text-danger"
+                        *ngIf="
+                          tour.get('HotelServiceType').touched &&
+                          tour.get('HotelServiceType').invalid
+                        "
+                      >
+                        نوع سرویس هتل الزامی است
+                      </small>
+                    </div>
+                    <!-- قیمت دو تخته -->
+                    <div class="p-1" style="width: 10%">
+                      <mat-form-field
+                        class="input-full-width"
+                        floatLabel="never"
+                        appearance="fill"
+                      >
+                        <input
+                          formControlName="Twin"
+                          mask="separator"
+                          thousandSeparator=","
+                          matInput
+                          [ngClass]="{
+                            ValidationError:
+                              tour.get('Twin').touched && tour.get('Twin').invalid
+                          }"
+                          placeholder="قیمت دو تخته"
+                        />
+                      </mat-form-field>
+                      <span *ngIf="tour.value.Twin == 0">&nbsp;</span>
+                      <span *ngIf="tour.value.Twin !== 0">{{
+                        calPriceTour(
+                          tour.get("Twin").value,
+                          tour.get("CurrencyType").value
+                        ) | sperator
+                        }}</span>
+                      <small
+                        class="text-danger"
+                        *ngIf="
+                          tour.get('Twin').touched && tour.get('Twin').invalid
+                        "
+                      >قیمت دو تخته الزامی است</small
+                      >
+                    </div>
+                    <!-- قیمت سه تخته -->
+                    <div class="p-1" style="width: 10%">
+                      <mat-form-field
+                        class="input-full-width"
+                        floatLabel="never"
+                        appearance="fill"
+                      >
+                        <input
+                          formControlName="Triple"
+                          mask="separator"
+                          thousandSeparator=","
+                          matInput
+                          [ngClass]="{
+                            ValidationError:
+                              tour.get('Triple').touched &&
+                              tour.get('Triple').invalid
+                          }"
+                          placeholder="قیمت سه تخته"
+                        />
+                      </mat-form-field>
+                      <span *ngIf="tour.value.Triple !== 0"
+                      >&nbsp;{{
+                        calPriceTour(
+                          tour.get("Triple").value,
+                          tour.get("CurrencyType").value
+                        ) | sperator
+                        }}</span
+                      >
+                      <small
+                        class="text-danger"
+                        *ngIf="
+                          tour.get('Triple').touched && tour.get('Triple').invalid
+                        "
+                      >قیمت سه تخته الزامی است</small
+                      >
+                    </div>
+                    <!-- قیمت چهارتخته -->
+                    <div class="p-1" style="width: 10%">
+                      <mat-form-field
+                        class="input-full-width"
+                        floatLabel="never"
+                        appearance="fill"
+                      >
+                        <input
+                          formControlName="Quad"
+                          mask="separator"
+                          thousandSeparator=","
+                          matInput
+                          [ngClass]="{
+                            ValidationError:
+                              tour.get('Quad').touched && tour.get('Quad').invalid
+                          }"
+                          placeholder="قیمت چهارتخته"
+                        />
+                      </mat-form-field>
+                      <span *ngIf="tour.value.Quad !== 0"
+                      >&nbsp;{{
+                        calPriceTour(
+                          tour.get("Quad").value,
+                          tour.get("CurrencyType").value
+                        ) | sperator
+                        }}</span
+                      >
+                      <small
+                        class="text-danger"
+                        *ngIf="
+                          tour.get('Quad').touched && tour.get('Quad').invalid
+                        "
+                      >قیمت چهار تخته الزامی است</small
+                      >
+                    </div>
+                    <!-- سن کودک -->
+                    <div class="p-1" style="width: 10%">
+                      <mat-form-field
+                        class="input-full-width"
+                        floatLabel="never"
+                        appearance="fill"
+                      >
+                        <input
+                          formControlName="ChildAge"
+                          matInput
+                          [ngClass]="{
+                            ValidationError:
+                              tour.get('ChildAge').touched &&
+                              tour.get('ChildAge').invalid
+                          }"
+                          placeholder="سن کودک "
+                        />
+                      </mat-form-field>
+                      <span>&nbsp;</span>
+                      <small
+                        class="text-danger"
+                        *ngIf="
+                          tour.get('ChildAge').touched &&
+                          tour.get('ChildAge').invalid
+                        "
+                      >سن کودک الزامی است</small
+                      >
+                    </div>
+                    <!-- ویژه -->
+                    <div class="p-1" style="width: 10%">
+                      <div class="custom-control custom-checkbox">
+                        <input
+                          class="custom-control-input"
+                          type="checkbox"
+                          formControlName="Offered"
+                          [id]="'Offered' + i"
+                        />
+                        <label
+                          class="custom-control-label"
+                          [for]="'Offered' + i"
+                        ></label>
+                      </div>
+                    </div>
+                    <div class="p-1">
+                      <button
+                        class="DeleteButton text-center"
+                        (click)="removePakage(i)"
+                      >
+                        <i class="fas fa-times"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="row pt-2 no-gutters">
+                  <div class="col-lg-2 p-0">
+                    <button (click)="addRow()" class="SubmitButton-O text-center">
+                      <i class="fas fa-plus pl-2"></i>افزودن هتل
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="Content">
+          <div class="col-md-12">
+            <div class="HeaderContent">
+              <h3 class="font-weight-bold">جزئیات تور</h3>
+            </div>
+            <div class="SubContent">
+              <div class="row no-gutters">
+                <div class="col-md-4 p-1">
+                  <label for="services">خدمات</label>
+                  <textarea
+                    class="text-right pt-2"
+                    rows="5"
+                    id="services"
+                    [ngClass]="{
+                      ValidationError:
+                        form.get('services').touched &&
+                        form.get('services').invalid
+                    }"
+                    name="services"
+                    formControlName="services"
+                  >
+                  </textarea>
+                  <small
+                    class="text-danger"
+                    *ngIf="
+                      form.get('services').touched && form.get('services').invalid
+                    "
+                  >خدمات الزامی است</small
+                  >
+                </div>
+                <div class="col-md-4 p-1">
+                  <label for="documents">مدارک مورد نیاز</label>
+                  <textarea
+                    class="text-right pt-2"
+                    rows="5"
+                    id="documents"
+                    [ngClass]="{
+                      ValidationError:
+                        form.get('documents').touched &&
+                        form.get('documents').invalid
+                    }"
+                    name="documents"
+                    formControlName="documents"
+                  >
+                  </textarea>
+                  <small
+                    class="text-danger"
+                    *ngIf="
+                      form.get('documents').touched &&
+                      form.get('documents').invalid
+                    "
+                  >مدارک لازم الزامی است</small
+                  >
+                </div>
+                <div class="col-md-4 p-1">
+                  <label for="description">توضیحات تکمیلی</label>
+                  <textarea
+                    class="text-right pt-2"
+                    rows="5"
+                    id="description"
+                    name="description"
+                    [ngClass]="{
+                      ValidationError:
+                        form.get('description').touched &&
+                        form.get('description').invalid
+                    }"
+                    formControlName="description"
+                  >
+                  </textarea>
+                  <small
+                    class="text-danger"
+                    *ngIf="
+                      form.get('description').touched &&
+                      form.get('description').invalid
+                    "
+                  >توضیحات الزامی است</small
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 clearfix">
+          <div class="row d-flex justify-content-end">
+            <div class="col-lg-2 col-6 p-2">
+              <button
+                type="button"
+                [disabled]="service.isLoading"
+                class="SubmitButton text-center w-100 float-left"
+                (click)="submit()"
+              >
+                <span
+                  class="spinner-border spinner-border-sm"
+                  *ngIf="service.isLoading"
+                ></span>
+                ثبت و انتشار
+              </button>
+            </div>
+            <div class="col-lg-2 col-6 p-2">
+              <button
+                routerLink="/panel/tours/search"
+                type="button"
+                class="float-left CancelButton text-center"
+              >
+                انصراف
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="container-fluid" *ngIf="isMobile">
+  <div class="row">
+    <div class="col-12 mb-5">
+      <form [formGroup]="form" class="row-form">
+        <div class="Content MobStyle">
+          <div class="HeaderContent">
+            <div class="row">
+              <div class="col-lg-8 col-4">
+                <h3>اطلاعات تور {{ typeTour }}</h3>
+              </div>
+              <div class="col-lg-4 col-8">
+                <div class="row">
+                  <div class="col-md-4 col-6 px-1 text-center">
+                    <div class="custom-control custom-switch">
+                      <input
+                        type="checkbox"
+                        class="custom-control-input"
+                        formControlName="offered"
+                        id="offered1"
+                      />
+                      <label class="custom-control-label" for="offered1"
+                      >ویژه</label
+                      >
+                    </div>
+                  </div>
+                  <div class="col-md-4 col-6 px-1 text-center">
+                    <div class="custom-control custom-switch">
+                      <input
+                        type="checkbox"
+                        class="custom-control-input"
+                        formControlName="promotion"
+                        id="promotion"
+                      />
+                      <label class="custom-control-label" for="promotion"
+                      >مخصوص</label
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="SubContent">
+            <div class="row no-gutters">
+              <div class="col-12 p-1">
+                <small> عنوان تور :</small>
+                <input
+                  type="text"
+                  [ngClass]="{
+                    ValidationError:
+                      form.get('title').touched && form.get('title').invalid
+                  }"
+                  placeholder="عنوان تور"
+                  id="title"
+                  formControlName="title"
+                  name="title"
+                />
+                <small
+                  class="text-danger"
+                  *ngIf="form.get('title').touched && form.get('title').invalid"
+                >عنوان تور الزامی است</small
+                >
+              </div>
+              <div class="col-6 p-1">
+                <small>شهر مبدا :</small>
+                <mat-form-field
+                  class="input-full-width"
+                  floatLabel="never"
+                  appearance="fill"
+                >
+                  <input
+                    matInput
+                    placeholder="شهر مبدا"
+                    aria-label="شهر مبدا"
+                    [matAutocomplete]="OriginInput"
+                    [ngClass]="{
+                      ValidationError:
+                        form.get('originId').touched &&
+                        form.get('originId').invalid
+                    }"
+                    formControlName="originId"
+                  />
+
+                  <mat-autocomplete #OriginInput="matAutocomplete">
+                    <mat-option
+                      *ngFor="let state of filteredOrigin | async"
+                      [value]="state.name"
+                    >
+                      <span>{{ state.name }}</span>
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    form.get('originId').touched && form.get('originId').invalid
+                  "
+                >شهر مبدا الزامی است
+                </small>
+              </div>
+              <div class="col-6 p-1">
+                <small>شهر مقصد :</small>
+                <mat-form-field
+                  class="input-full-width"
+                  floatLabel="never"
+                  appearance="fill"
+                >
+                  <input
+                    matInput
+                    placeholder="شهر مقصد"
+                    aria-label="شهر مقصد"
+                    [matAutocomplete]="DestInput"
+                    [ngClass]="{
+                      ValidationError:
+                        form.get('cityId').touched && form.get('cityId').invalid
+                    }"
+                    formControlName="cityId"
+                  />
+
+                  <mat-autocomplete #DestInput="matAutocomplete">
+                    <mat-option
+                      *ngFor="let state of filteredDest | async"
+                      [value]="state.name"
+                      (blur)="getHotels(state.id)"
+                    >
+                      <span>{{ state.name }}</span>
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+                <small
+                  class="text-danger"
+                  *ngIf="form.get('cityId').touched && form.get('cityId').invalid"
+                >شهر مقصد الزامی است
+                </small>
+              </div>
+              <div class="col-6 p-1">
+                <small> شب:</small>
+                <select
+                  name="nightNum"
+                  formControlName="duration"
+                  class="mt-0"
+                  (change)="calculateDayCount()"
+                  style="padding: 3px !important"
+                >
+                  <option *ngFor="let night of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]">
+                    {{ night }}
+                  </option>
+                </select>
+              </div>
+              <div class="col-6 p-1">
+                <small> روز:</small>
+                <input
+                  type="text"
+                  readonly
+                  placeholder="تعداد روز"
+                  class="mt-0"
+                  [(ngModel)]="dayCount"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+              </div>
+              <div class="col-4 p-1">
+                <small>تاریخ ورود:</small>
+                <mat-form-field appearance="fill">
+                  <input
+                    #datepickerelement
+                    matInput
+                    [min]="minDate"
+                    [ngClass]="{
+                      ValidationError:
+                        form.get('dateStart').touched &&
+                        form.get('dateStart').invalid
+                    }"
+                    [matDatepicker]="picker"
+                    (click)="picker.open()"
+                    formControlName="dateStart"
+                    autocomplete="off"
+                  />
+
+                  <mat-datepicker
+                    touchUi
+                    #picker
+                    (closed)="calculateDateEnd()"
+                  ></mat-datepicker>
+                </mat-form-field>
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    form.get('dateStart').touched && form.get('dateStart').invalid
+                  "
+                >تاریخ ورود الزامی است
+                </small>
+              </div>
+              <div class="col-4 p-1">
+                <small> تاریخ خروج:</small>
+                <input
+                  formControlName="dateEnd"
+                  class="mt-0 InputDateExite"
+                  [ngClass]="{
+                    ValidationError:
+                      form.get('dateEnd').touched && form.get('dateEnd').invalid
+                  }"
+                  autocomplete="off"
+                />
+                <small
+                  class="text-danger mt-2"
+                  *ngIf="
+                    form.get('dateEnd').touched && form.get('dateEnd').invalid
+                  "
+                >تاریخ خروج الزامی است
+                </small>
+              </div>
+              <div class="col-4 p-1">
+                <small>تاریخ انقضا :</small>
+                <mat-form-field appearance="fill">
+                  <input
+                    [placeholder]="'تاریخ انقضا'"
+                    matInput
+                    [matDatepicker]="dateExp"
+                    (click)="dateExp.open()"
+                    [ngClass]="{
+                      ValidationError:
+                        form.get('expiry').touched && form.get('expiry').invalid
+                    }"
+                    formControlName="expiry"
+                    [min]="minDate"
+                    autocomplete="off"
+                  />
+
+                  <mat-datepicker touchUi #dateExp></mat-datepicker>
+                </mat-form-field>
+                <small
+                  class="text-danger"
+                  *ngIf="form.get('expiry').touched && form.get('expiry').invalid"
+                >
+                  تاریخ انقضا الزامی است
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="Content MobStyle">
+          <div class="HeaderContent">
+            <h3>اطلاعات پرواز</h3>
+          </div>
+          <div class="SubContent row no-gutters">
+            <div class="col-6 p-1">
+              <small>تاریخ رفت :</small>
+              <div>
+                <mat-form-field appearance="fill">
+                  <input
+                    [placeholder]="'تاریخ رفت'"
+                    #datepickerelement
+                    [min]="minDate"
+                    matInput
+                    [matDatepicker]="flightDateIn"
+                    (click)="flightDateIn.open()"
+                    [ngClass]="{
+                      ValidationError:
+                        form.get('flightDepartureDate').touched &&
+                        form.get('flightDepartureDate').invalid
+                    }"
+                    formControlName="flightDepartureDate"
+                    autocomplete="off"
+                  />
+                  <mat-datepicker touchUi #flightDateIn></mat-datepicker>
+                </mat-form-field>
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    form.get('flightDepartureDate').touched &&
+                    form.get('flightDepartureDate').invalid
+                  "
+                >تاریخ رفت الزامی است</small
+                >
+              </div>
+            </div>
+            <div class="col-6 p-1">
+              <small>ایرلاین رفت :</small>
+              <div>
+                <select
+                  name="airline_id"
+                  [ngClass]="{
+                    ValidationError:
+                      form.get('airlineDepartureID').touched &&
+                      form.get('airlineDepartureID').invalid
+                  }"
+                  formControlName="airlineDepartureID"
+                  id="airline_id"
+                >
+                  <option *ngFor="let airline of airlines" [value]="airline.ID">
+                    {{ airline.nameFA }}
+                  </option>
+                </select>
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    form.get('airlineDepartureID').touched &&
+                    form.get('airlineDepartureID').invalid
+                  "
+                >ایرلاین رفت الزامی است</small
+                >
+              </div>
+            </div>
+            <div class="col-6 p-1">
+              <small>تاریخ برگشت :</small>
+              <div>
+                <mat-form-field appearance="fill">
+                  <input
+                    [placeholder]="'تاریخ برگشت'"
+                    matInput
+                    [matDatepicker]="flightDateOut"
+                    [ngClass]="{
+                      ValidationError:
+                        form.get('flightReturnDate').touched &&
+                        form.get('flightReturnDate').invalid
+                    }"
+                    (click)="flightDateOut.open()"
+                    formControlName="flightReturnDate"
+                    autocomplete="off"
+                  />
+                  <mat-datepicker touchUi #flightDateOut></mat-datepicker>
+                </mat-form-field>
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    form.get('flightReturnDate').touched &&
+                    form.get('flightReturnDate').invalid
+                  "
+                >تاریخ برگشت الزامی است</small
+                >
+              </div>
+            </div>
+            <div class="col-6 p-1">
+              <small>ایرلاین برگشت :</small>
+              <div>
+                <select
+                  name="airline_id"
+                  [ngClass]="{
+                    ValidationError:
+                      form.get('airlineReturnID').touched &&
+                      form.get('airlineReturnID').invalid
+                  }"
+                  formControlName="airlineReturnID"
+                  id="airline_id"
+                >
+                  <option *ngFor="let airline of airlines" [value]="airline.ID">
+                    {{ airline.nameFA }}
+                  </option>
+                </select>
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    form.get('airlineReturnID').touched &&
+                    form.get('airlineReturnID').invalid
+                  "
+                >ایرلاین برگشت الزامی است</small
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="Content MobStyle">
+          <div class="HeaderContent pr-3 pt-2 mb-2">
+            <div class="row">
+              <div class="col-12 mb-2">
+                <h3>نرخ گذاری تور</h3>
+              </div>
+              <div class="col-12">
+                <label style="margin-left: 45px">باجزییات</label>
+                <div class="custom-control custom-switch d-inline-block">
+                  <input
+                    type="checkbox"
+                    (change)="changeType()"
+                    class="custom-control-input"
+                    formControlName="detailed"
+                    id="detailed"
+                  />
+                  <label class="custom-control-label" for="detailed">یکجا</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="SubContent" [hidden]="!form.value.detailed">
+            <div class="Content-O">
+              <div class="row no-gutters">
+                <div class="col-12 mb-2 d-flex align-items-center">
+                  <strong> نرخ ارزها (به تومان) </strong>
+                </div>
+                <div class="col-12">
+                  <form
+                    [formGroup]="form"
+                    formGroupName="rates"
+                    class="form-row w-100 no-gutters"
+                  >
+                    <div class="col-4">
+                      <small for="euroRate" class="pl-1">یورو</small>
+                      <div class="w-100">
+                        <input
+                          type="text"
+                          formControlName="euro"
+                          mask="separator"
+                          thousandSeparator=","
+                          name="euroRate"
+                          id="euroRate"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <small for="dollarRate" class="pl-1"> دلار</small>
+                      <div class="w-100">
+                        <input
+                          type="text"
+                          formControlName="dollar"
+                          mask="separator"
+                          thousandSeparator=","
+                          name="dollarRate"
+                          id="dollarRate"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <small for="AEDRate" class="pl-1"> درهم</small>
+                      <div class="w-100">
+                        <input
+                          type="text"
+                          formControlName="lyra"
+                          mask="separator"
+                          thousandSeparator=","
+                          name="AEDRate"
+                          id="AEDRate"
+                        />
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="Content-O">
+              <div class="row no-gutters pt-3">
+                <div class="col-12 d-flex align-items-center">
+                  <strong> نرخ خدمات (تومان)</strong>
+                </div>
+                <div class="col-12">
+                  <div class="row no-gutters">
+                    <div class="col-9 p-1 p-1">
+                      <small for="insuranceRate">نرخ بیمه(تومان/ارزی) :</small>
+                      <input
+                        formControlName="insurance"
+                        type="text"
+                        mask="separator"
+                        thousandSeparator=","
+                        [ngClass]="{
+                          ValidationError:
+                            form.get('insurance').touched &&
+                            form.get('insurance').invalid
+                        }"
+                        id="insuranceRate"
+                      />
+                      <span *ngIf="form.value.insurance !== 0">{{
+                        this.calServices(
+                          form.get("insurance").value,
+                          form.get("insuranceCurrency").value
+                        ) | sperator
+                        }}</span>
+                      <small
+                        class="text-danger"
+                        *ngIf="
+                          form.get('insurance').touched &&
+                          form.get('insurance').invalid
+                        "
+                      >نرخ بیمه الزامی است</small
+                      >
+                    </div>
+                    <div class="col-3 p-1 p-1">
+                      <small>نوع ارز :</small>
+                      <select
+                        formControlName="insuranceCurrency"
+                        (change)="
+                          changeCurrency('insurance', 'insuranceCurrency')
+                        "
+                        style="font-size: 12px; padding: 7px 4px"
+                      >
+                        <option
+                          [value]="92"
+                          [disabled]="
+                            form.get('rates').get('euro').value === 0 ||
+                            form.get('rates').get('euro').value === ''
+                          "
+                        >
+                          یورو
+                        </option>
+                        <option
+                          [value]="91"
+                          [disabled]="
+                            form.get('rates').get('dollar').value === 0 ||
+                            form.get('rates').get('dollar').value === ''
+                          "
+                        >
+                          دلار
+                        </option>
+                        <option
+                          [value]="93"
+                          [disabled]="
+                            form.get('rates').get('lyra').value === 0 ||
+                            form.get('rates').get('lyra').value === ''
+                          "
+                        >
+                          درهم
+                        </option>
+                        <option [value]="90">تومان</option>
+                        <option [value]="94">ندارد</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="row no-gutters">
+                    <div class="col-9 p-1 p-1">
+                      <small for="transferRate">نرخ ترانسفر(تومان/ارزی) :</small>
+                      <input
+                        type="text"
+                        id="transferRate"
+                        formControlName="transfer"
+                        [ngClass]="{
+                          ValidationError:
+                            form.get('transfer').touched &&
+                            form.get('transfer').invalid
+                        }"
+                        mask="separator"
+                        thousandSeparator=","
+                      />
+                      <span *ngIf="form.value.transfer !== 0">{{
+                        this.calServices(
+                          form.value.transfer,
+                          form.value.transferCurrency
+                        ) | sperator
+                        }}</span>
+                      <small
+                        class="text-danger"
+                        *ngIf="
+                          form.get('transfer').touched &&
+                          form.get('transfer').invalid
+                        "
+                      >نرخ ترنسفر الزامی است</small
+                      >
+                    </div>
+                    <div class="col-3 p-1 p-1">
+                      <small>نوع ارز :</small>
+                      <select
+                        formControlName="transferCurrency"
+                        (change)="changeCurrency('transfer', 'transferCurrency')"
+                        style="font-size: 12px; padding: 7px 4px"
+                      >
+                        <option
+                          [value]="92"
+                          [disabled]="
+                            form.get('rates').get('euro').value === 0 ||
+                            form.get('rates').get('euro').value === ''
+                          "
+                        >
+                          یورو
+                        </option>
+                        <option
+                          [value]="91"
+                          [disabled]="
+                            form.get('rates').get('dollar').value === 0 ||
+                            form.get('rates').get('dollar').value === ''
+                          "
+                        >
+                          دلار
+                        </option>
+                        <option
+                          [value]="93"
+                          [disabled]="
+                            form.get('rates').get('lyra').value === 0 ||
+                            form.get('rates').get('lyra').value === ''
+                          "
+                        >
+                          درهم
+                        </option>
+                        <option [value]="90">تومان</option>
+                        <option [value]="94">ندارد</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="row no-gutters">
+                    <div class="col-9 p-1 p-1">
+                      <small for="visaRate">نرخ ویزا(تومان/ارزی) :</small>
+                      <input
+                        type="text"
+                        id="visaRate"
+                        mask="separator"
+                        thousandSeparator=","
+                        [ngClass]="{
+                          ValidationError:
+                            form.get('visaPrice').touched &&
+                            form.get('visaPrice').invalid
+                        }"
+                        formControlName="visaPrice"
+                      />
+                      <span *ngIf="form.value.visaPrice !== 0">{{
+                        this.calServices(
+                          form.value.visaPrice,
+                          form.value.visaCurrency
+                        ) | sperator
+                        }}</span>
+                      <small
+                        class="text-danger"
+                        *ngIf="
+                          form.get('visaPrice').touched &&
+                          form.get('visaPrice').invalid
+                        "
+                      >نرخ ویزا الزامی است</small
+                      >
+                    </div>
+                    <div class="col-3 p-1 p-1">
+                      <small>نوع ارز :</small>
+                      <select
+                        formControlName="visaCurrency"
+                        (change)="changeCurrency('visaPrice', 'visaCurrency')"
+                        style="font-size: 12px; padding: 7px 4px"
+                      >
+                        <option
+                          [value]="92"
+                          [disabled]="
+                            form.get('rates').get('euro').value === 0 ||
+                            form.get('rates').get('euro').value === ''
+                          "
+                        >
+                          یورو
+                        </option>
+                        <option
+                          [value]="91"
+                          [disabled]="
+                            form.get('rates').get('dollar').value === 0 ||
+                            form.get('rates').get('dollar').value === ''
+                          "
+                        >
+                          دلار
+                        </option>
+                        <option
+                          [value]="93"
+                          [disabled]="
+                            form.get('rates').get('lyra').value === 0 ||
+                            form.get('rates').get('lyra').value === ''
+                          "
+                        >
+                          درهم
+                        </option>
+                        <option [value]="90">تومان</option>
+                        <option [value]="94">ندارد</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="Content-O">
+              <div class="row no-gutters pt-3">
+                <div class="col-lg-12 d-flex align-items-center">
+                  <strong> نرخ پرواز(تومان)</strong>
+                </div>
+                <div class="col-4 p-1">
+                  <small>بزرگسال :</small>
+                  <input
+                    type="text"
+                    placeholder="نرخ پرواز بزرگسال"
+                    mask="separator"
+                    thousandSeparator=","
+                    [ngClass]="{
+                      ValidationError:
+                        form.get('flightPriceAdult').touched &&
+                        form.get('flightPriceAdult').invalid
+                    }"
+                    formControlName="flightPriceAdult"
+                  />
+                  <small
+                    class="text-danger"
+                    *ngIf="
+                      form.get('flightPriceAdult').touched &&
+                      form.get('flightPriceAdult').invalid
+                    "
+                  >نرخ پرواز بزرگسال الزامی است</small
+                  >
+                </div>
+                <div class="col-4 p-1">
+                  <small>کودک :</small>
+                  <input
+                    type="text"
+                    placeholder="نرخ پرواز کودک"
+                    formControlName="flightPriceChild"
+                    mask="separator"
+                    [ngClass]="{
+                      ValidationError:
+                        form.get('flightPriceChild').touched &&
+                        form.get('flightPriceChild').invalid
+                    }"
+                    thousandSeparator=","
+                  />
+                  <small
+                    class="text-danger"
+                    *ngIf="
+                      form.get('flightPriceChild').touched &&
+                      form.get('flightPriceChild').invalid
+                    "
+                  >نرخ پرواز کودک الزامی است</small
+                  >
+                </div>
+                <div class="col-4 p-1">
+                  <small> نوزاد :</small>
+                  <input
+                    type="text"
+                    placeholder="نرخ پرواز نوزاد"
+                    formControlName="flightPriceInfant"
+                    mask="separator"
+                    [ngClass]="{
+                      ValidationError:
+                        form.get('flightPriceInfant').touched &&
+                        form.get('flightPriceInfant').invalid
+                    }"
+                    thousandSeparator=","
+                  />
+                  <small
+                    class="text-danger"
+                    *ngIf="
+                      form.get('flightPriceInfant').touched &&
+                      form.get('flightPriceInfant').invalid
+                    "
+                  >نرخ پرواز نوزاد الزامی است</small
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="Content MobStyle">
+          <div class="HeaderContent">
+            <div class="row">
+              <div class="col-12 mb-2">
+                <h3 class="font-weight-bold">اطلاعات هتل و قیمت ها</h3>
+              </div>
+              <div class="col-12">
+                <label class="pr-4 font-weight-bold">{{ typeTour }}</label>
+              </div>
+              <div class="col-12">
+                <div class="row no-gutters">
+                  <div class="col-4 p-0">
+                    <input
+                      type="text"
+                      formControlName="discount"
+                      mask="separator"
+                      thousandSeparator=","
+                    />
+                  </div>
+                  <div
+                    class="col-3 border p-0 py-1 text-center"
+                    [ngClass]="{ 'grey lighten-3': operation === 1 }"
+                  >
+                    <a class="text-center" (click)="operation = 1">افزایش</a>
+                  </div>
+                  <div
+                    class="col-3 border text-center p-0 py-1"
+                    [ngClass]="{ 'grey lighten-3': operation === -1 }"
+                  >
+                    <a class="text-center" (click)="operation = -1">کاهش</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="SubContent">
+            <form [formGroup]="form" formArrayName="tours" class="Grid">
+              <!-- تور خارجی -->
+              <div *ngIf="form.value.tripType === '70'">
+                <div
+                  class="row no-gutters Content-O"
+                  *ngFor="let tour of ToursForm.controls; let i = index"
+                  [formGroupName]="i"
+                >
+                  <!-- نام هتل -->
+                  <div class="col-10 p-1">
+                    <small> نام هتل</small>
+                    <span>
+                      <mat-form-field
+                        class="input-full-width"
+                        floatLabel="never"
+                        appearance="fill"
+                      >
+                        <input
+                          matInput
+                          [matAutocomplete]="hotelId"
+                          [ngClass]="{
+                            ValidationError:
+                              tour.get('hotelId').touched &&
+                              tour.get('hotelId').invalid
+                          }"
+                          formControlName="hotelId"
+                          placholder="نام هتل"
+                        />
+
+                        <mat-autocomplete #hotelId="matAutocomplete">
+                          <mat-option
+                            *ngFor="let state of filteredhotel[i]| async"
+                            [value]="
+                              form.value.tripType === '71'
+                                ? state.name
+                                : state.nameEng
+                            "
+                            style="line-height: 15px"
+                            class="my-3"
+                          >
+                            <span *ngIf="form.value.tripType === '71'">{{
+                              state.name
+                              }}</span>
+                            <span *ngIf="form.value.tripType === '70'">{{
+                              state.nameEng
+                              }}</span>
+                          </mat-option>
+                        </mat-autocomplete>
+                      </mat-form-field>
+                      <span>&nbsp;</span>
+                      <small
+                        class="text-danger"
+                        *ngIf="
+                          tour.get('hotelId').touched &&
+                          tour.get('hotelId').invalid
+                        "
+                      >هتل الزامی است</small
+                      >
+                    </span>
+                  </div>
+                  <div class="col-2 p-1 d-flex align-items-end">
+                    <button
+                      class="DeleteButton text-center mr-auto"
+                      (click)="removePakage(i)"
+                    >
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                  <!-- نوع سرویس  -->
+                  <div class="col-6 p-1">
+                    <small>نوع سرویس</small>
+                    <select
+                      formControlName="HotelServiceType"
+                      [ngClass]="{
+                        ValidationError:
+                          tour.get('hotelId').touched &&
+                          tour.get('hotelId').invalid
+                      }"
+                      style="padding: 3px !important"
+                    >
+                      <option [value]="180">B.B</option>
+                      <option [value]="181">H.B</option>
+                      <option [value]="182">F.B</option>
+                      <option [value]="183">ALL</option>
+                      <option [value]="184">UALL</option>
+                    </select>
+                    <small
+                      class="text-danger"
+                      *ngIf="
+                        tour.get('HotelServiceType').touched &&
+                        tour.get('HotelServiceType').invalid
+                      "
+                    >
+                      نوع سرویس هتل الزامی است
+                    </small>
+                  </div>
+                  <!-- نوع ارز -->
+                  <div class="col-6 p-1" *ngIf="form.value.detailed">
+                    <small>نوع ارز</small>
+                    <select
+                      formControlName="CurrencyType"
+                      style="font-size: 12px"
+                      [ngClass]="{
+                        ValidationError:
+                          tour.get('CurrencyType').touched &&
+                          tour.get('CurrencyType').invalid
+                      }"
+                    >
+                      <option
+                        [value]="92"
+                        [disabled]="
+                          form.get('rates').get('euro').value === 0 ||
+                          form.get('rates').get('euro').value === ''
+                        "
+                      >
+                        یورو
+                      </option>
+                      <option
+                        [value]="91"
+                        [disabled]="
+                          form.get('rates').get('dollar').value === 0 ||
+                          form.get('rates').get('dollar').value === ''
+                        "
+                      >
+                        دلار
+                      </option>
+                      <option
+                        [value]="93"
+                        [disabled]="
+                          form.get('rates').get('lyra').value === 0 ||
+                          form.get('rates').get('lyra').value === ''
+                        "
+                      >
+                        درهم
+                      </option>
+                      <option [value]="90">تومان</option>
+                    </select>
+                    <small
+                      class="text-danger"
+                      *ngIf="
+                        tour.get('CurrencyType').touched &&
+                        tour.get('CurrencyType').invalid
+                      "
+                    >
+                      نوع ارز هتل الزامی است
+                    </small>
+                  </div>
+                  <!-- قیمت دو تخته -->
+                  <div class="col-6 p-1">
+                    <small>قیمت دو تخته</small>
+                    <mat-form-field
+                      class="input-full-width"
+                      floatLabel="never"
+                      appearance="fill"
+                    >
+                      <input
+                        formControlName="Twin"
+                        mask="separator"
+                        thousandSeparator=","
+                        matInput
+                        [ngClass]="{
+                          ValidationError:
+                            tour.get('Twin').touched && tour.get('Twin').invalid
+                        }"
+                        placeholder="قیمت دو تخته"
+                      />
+                    </mat-form-field>
+                    <span *ngIf="tour.value.Twin == 0">&nbsp;</span>
+                    <span *ngIf="tour.value.Twin !== 0">{{
+                      calPriceTour(
+                        tour.get("Twin").value,
+                        tour.get("CurrencyType").value
+                      ) | sperator
+                      }}</span>
+                    <small
+                      class="text-danger"
+                      *ngIf="tour.get('Twin').touched && tour.get('Twin').invalid"
+                    >قیمت دو تخته الزامی است</small
+                    >
+                  </div>
+                  <!-- سینگل -->
+                  <div class="col-6 p-1">
+                    <small>سینگل</small>
+                    <mat-form-field
+                      class="input-full-width"
+                      floatLabel="never"
+                      appearance="fill"
+                    >
+                      <input
+                        formControlName="Single"
+                        mask="separator"
+                        thousandSeparator=","
+                        matInput
+                        [ngClass]="{
+                          ValidationError:
+                            tour.get('Single').touched &&
+                            tour.get('Single').invalid
+                        }"
+                        placeholder="قیمت سینگل"
+                      />
+                    </mat-form-field>
+                    <span *ngIf="tour.value.Single !== 0"
+                    >&nbsp;{{
+                      calPriceTour(
+                        tour.get("Single").value,
+                        tour.get("CurrencyType").value
+                      ) | sperator
+                      }}</span
+                    >
+                    <small
+                      class="text-danger"
+                      *ngIf="
+                        tour.get('Single').touched && tour.get('Single').invalid
+                      "
+                    >قیمت سینگل الزامی است</small
+                    >
+                  </div>
+                  <!-- قیمت کودک با تخت -->
+                  <div class="col-6 p-1">
+                    <small>قیمت کودک با تخت</small>
+                    <mat-form-field
+                      class="input-full-width"
+                      floatLabel="never"
+                      appearance="fill"
+                    >
+                      <input
+                        formControlName="Cwb"
+                        mask="separator"
+                        thousandSeparator=","
+                        matInput
+                        [ngClass]="{
+                          ValidationError:
+                            tour.get('Cwb').touched && tour.get('Cwb').invalid
+                        }"
+                        placeholder="قیمت کودک با تخت"
+                      />
+                    </mat-form-field>
+                    <span *ngIf="tour.value.Cwb !== 0"
+                    >&nbsp;{{
+                      calPriceTourCHD(
+                        tour.get("Cwb").value,
+                        tour.get("CurrencyType").value
+                      ) | sperator
+                      }}</span
+                    >
+                    <small
+                      class="text-danger"
+                      *ngIf="tour.get('Cwb').touched && tour.get('Cwb').invalid"
+                    >قیمت کودک با تخت الزامی است</small
+                    >
+                  </div>
+                  <!-- قیمت کودک بدون تخت -->
+                  <div class="col-6 p-1">
+                    <small>قیمت کودک بدون تخت</small>
+                    <mat-form-field
+                      class="input-full-width"
+                      floatLabel="never"
+                      appearance="fill"
+                    >
+                      <input
+                        formControlName="Cnb"
+                        mask="separator"
+                        thousandSeparator=","
+                        matInput
+                        [ngClass]="{
+                          ValidationError:
+                            tour.get('Cnb').touched && tour.get('Cnb').invalid
+                        }"
+                        placeholder="قیمت کودک بدون تخت"
+                      />
+                    </mat-form-field>
+                    <span *ngIf="tour.value.Cnb !== 0 && !form.value.detailed"
+                    >&nbsp;{{
+                      calPriceTourCHD(
+                        tour.get("Cnb").value,
+                        tour.get("CurrencyType").value | sperator
+                      )
+                      }}</span
+                    >
+                    <span *ngIf="form.value.detailed"
+                    >&nbsp;{{
+                      form.get("flightPriceChild").value | sperator
+                      }}</span
+                    >
+                    <small
+                      class="text-danger"
+                      *ngIf="tour.get('Cnb').touched && tour.get('Cnb').invalid"
+                    >قیمت کودک بدون تخت الزامی است</small
+                    >
+                  </div>
+                  <!-- سن کودک -->
+                  <div class="col-6 p-1">
+                    <small>سن کودک</small>
+                    <mat-form-field
+                      class="input-full-width"
+                      floatLabel="never"
+                      appearance="fill"
+                    >
+                      <input
+                        formControlName="ChildAge"
+                        matInput
+                        [ngClass]="{
+                          ValidationError:
+                            tour.get('ChildAge').touched &&
+                            tour.get('ChildAge').invalid
+                        }"
+                        placeholder="سن کودک "
+                      />
+                    </mat-form-field>
+                    <span>&nbsp;</span>
+                    <small
+                      class="text-danger"
+                      *ngIf="
+                        tour.get('ChildAge').touched &&
+                        tour.get('ChildAge').invalid
+                      "
+                    >سن کودک الزامی است</small
+                    >
+                  </div>
+                  <!-- ویژه -->
+                  <div
+                    class="col-6 p-1 d-flex align-items-center justify-content-end"
+                  >
+                    <div class="custom-control custom-checkbox">
+                      <input
+                        class="custom-control-input"
+                        type="checkbox"
+                        formControlName="Offered"
+                        [id]="'Offered' + i"
+                      />
+                      <label class="custom-control-label" [for]="'Offered' + i"
+                      >ویژه</label
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- تور داخی -->
+              <div *ngIf="form.value.tripType === '71'">
+                <div
+                  class="row no-gutters Content-O"
+                  *ngFor="let tour of ToursForm.controls; let i = index"
+                  [formGroupName]="i"
+                >
+                  <!-- نام هتل -->
+
+                  <div class="col-10 p-1">
+                    <small>نام هتل</small>
+                    <mat-form-field
+                      class="input-full-width"
+                      floatLabel="never"
+                      appearance="fill"
+                    >
+                      <input
+                        matInput
+                        [matAutocomplete]="hotelId"
+                        [ngClass]="{
+                          ValidationError:
+                            tour.get('hotelId').touched &&
+                            tour.get('hotelId').invalid
+                        }"
+                        formControlName="hotelId"
+                      />
+
+                      <mat-autocomplete #hotelId="matAutocomplete">
+                        <mat-option
+                          *ngFor="let state of filteredhotel[i] | async"
+                          [value]="
+                            form.value.tripType === '71'
+                              ? state.name
+                              : state.nameEng
+                          "
+                          style="line-height: 15px"
+                          class="my-3"
+                        >
+                          <span *ngIf="form.value.tripType === '71'">{{
+                            state.name
+                            }}</span>
+                          <span *ngIf="form.value.tripType === '70'">{{
+                            state.nameEng
+                            }}</span>
+                        </mat-option>
+                      </mat-autocomplete>
+                    </mat-form-field>
+
+                    <small
+                      class="text-danger"
+                      *ngIf="
+                        tour.get('hotelId').touched && tour.get('hotelId').invalid
+                      "
+                    >هتل الزامی است</small
+                    >
+                  </div>
+                  <div class="col-2 p-1 d-flex align-items-end">
+                    <button
+                      class="DeleteButton text-center mr-auto"
+                      (click)="removePakage(i)"
+                    >
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                  <!-- نوع سرویس -->
+                  <div class="col-6 p-1">
+                    <small>نوع سرویس</small>
+                    <select
+                      formControlName="HotelServiceType"
+                      [ngClass]="{
+                        ValidationError:
+                          tour.get('hotelId').touched &&
+                          tour.get('hotelId').invalid
+                      }"
+                      style="padding: 3px !important"
+                    >
+                      <option [value]="180">B.B</option>
+                      <option [value]="181">H.B</option>
+                      <option [value]="182">F.B</option>
+                      <option [value]="183">ALL</option>
+                      <option [value]="184">UALL</option>
+                    </select>
+                    <small
+                      class="text-danger"
+                      *ngIf="
+                        tour.get('HotelServiceType').touched &&
+                        tour.get('HotelServiceType').invalid
+                      "
+                    >
+                      نوع سرویس هتل الزامی است
+                    </small>
+                  </div>
+                  <!-- قیمت دو تخته -->
+                  <div class="col-6 p-1">
+                    <small>قیمت دو تخته</small>
+                    <mat-form-field
+                      class="input-full-width"
+                      floatLabel="never"
+                      appearance="fill"
+                    >
+                      <input
+                        formControlName="Twin"
+                        mask="separator"
+                        thousandSeparator=","
+                        matInput
+                        [ngClass]="{
+                          ValidationError:
+                            tour.get('Twin').touched && tour.get('Twin').invalid
+                        }"
+                        placeholder="قیمت دو تخته"
+                      />
+                    </mat-form-field>
+                    <span *ngIf="tour.value.Twin == 0">&nbsp;</span>
+                    <span *ngIf="tour.value.Twin !== 0">{{
+                      calPriceTour(
+                        tour.get("Twin").value,
+                        tour.get("CurrencyType").value
+                      ) | sperator
+                      }}</span>
+                    <small
+                      class="text-danger"
+                      *ngIf="tour.get('Twin').touched && tour.get('Twin').invalid"
+                    >قیمت دو تخته الزامی است</small
+                    >
+                  </div>
+                  <!-- قیمت سه تخته -->
+                  <div class="col-6 p-1">
+                    <small>قیمت سه تخته</small>
+                    <mat-form-field
+                      class="input-full-width"
+                      floatLabel="never"
+                      appearance="fill"
+                    >
+                      <input
+                        formControlName="Triple"
+                        mask="separator"
+                        thousandSeparator=","
+                        matInput
+                        [ngClass]="{
+                          ValidationError:
+                            tour.get('Triple').touched &&
+                            tour.get('Triple').invalid
+                        }"
+                        placeholder="قیمت سه تخته"
+                      />
+                    </mat-form-field>
+                    <span *ngIf="tour.value.Triple !== 0">
+                      {{
+                      calPriceTour(
+                        tour.get("Triple").value,
+                        tour.get("CurrencyType").value
+                      ) | sperator
+                      }}</span
+                    >
+                    <small
+                      class="text-danger"
+                      *ngIf="
+                        tour.get('Triple').touched && tour.get('Triple').invalid
+                      "
+                    >قیمت سه تخته الزامی است</small
+                    >
+                  </div>
+                  <!-- قیمت چهارتخته -->
+                  <div class="col-6 p-1">
+                    <small>قیمت چهارتخته</small>
+                    <mat-form-field
+                      class="input-full-width"
+                      floatLabel="never"
+                      appearance="fill"
+                    >
+                      <input
+                        formControlName="Quad"
+                        mask="separator"
+                        thousandSeparator=","
+                        matInput
+                        [ngClass]="{
+                          ValidationError:
+                            tour.get('Quad').touched && tour.get('Quad').invalid
+                        }"
+                        placeholder="قیمت چهارتخته"
+                      />
+                    </mat-form-field>
+                    <span *ngIf="tour.value.Quad !== 0">{{
+                      calPriceTour(
+                        tour.get("Quad").value,
+                        tour.get("CurrencyType").value
+                      ) | sperator
+                      }}</span>
+                    <small
+                      class="text-danger"
+                      *ngIf="tour.get('Quad').touched && tour.get('Quad').invalid"
+                    >قیمت چهار تخته الزامی است</small
+                    >
+                  </div>
+                  <!-- سن کودک -->
+                  <div class="col-6 p-1">
+                    <small>سن کودک</small>
+                    <mat-form-field
+                      class="input-full-width"
+                      floatLabel="never"
+                      appearance="fill"
+                    >
+                      <input
+                        formControlName="ChildAge"
+                        matInput
+                        [ngClass]="{
+                          ValidationError:
+                            tour.get('ChildAge').touched &&
+                            tour.get('ChildAge').invalid
+                        }"
+                        placeholder="سن کودک "
+                      />
+                    </mat-form-field>
+                    <span>&nbsp;</span>
+                    <small
+                      class="text-danger"
+                      *ngIf="
+                        tour.get('ChildAge').touched &&
+                        tour.get('ChildAge').invalid
+                      "
+                    >سن کودک الزامی است</small
+                    >
+                  </div>
+                  <!-- ویژه -->
+                  <div
+                    class="col-6 p-1 d-flex align-items-center justify-content-end"
+                  >
+                    <div class="custom-control custom-checkbox">
+                      <input
+                        class="custom-control-input"
+                        type="checkbox"
+                        formControlName="Offered"
+                        [id]="'Offered' + i"
+                      />
+                      <label class="custom-control-label" [for]="'Offered' + i"
+                      >ویژه</label
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row pt-2 no-gutters">
+                <div class="col-12 p-1">
+                  <button (click)="addRow()" class="SubmitButton-O text-center">
+                    <i class="fas fa-plus pl-2"></i>افزودن هتل
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="Content MobStyle">
+          <div class="HeaderContent">
+            <h3 class="font-weight-bold">جزئیات تور</h3>
+          </div>
+          <div class="SubContent">
+            <div class="row no-gutters">
+              <div class="col-md-4 p-1">
+                <label for="services">خدمات</label>
+                <textarea
+                  class="text-right pt-2"
+                  rows="5"
+                  id="services"
+                  [ngClass]="{
+                    ValidationError:
+                      form.get('services').touched && form.get('services').invalid
+                  }"
+                  name="services"
+                  formControlName="services"
+                >
+                </textarea>
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    form.get('services').touched && form.get('services').invalid
+                  "
+                >خدمات الزامی است</small
+                >
+              </div>
+              <div class="col-md-4 p-1">
+                <label for="documents">مدارک مورد نیاز</label>
+                <textarea
+                  class="text-right pt-2"
+                  rows="5"
+                  id="documents"
+                  [ngClass]="{
+                    ValidationError:
+                      form.get('documents').touched &&
+                      form.get('documents').invalid
+                  }"
+                  name="documents"
+                  formControlName="documents"
+                >
+                </textarea>
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    form.get('documents').touched && form.get('documents').invalid
+                  "
+                >مدارک لازم الزامی است</small
+                >
+              </div>
+              <div class="col-md-4 p-1">
+                <label for="description">توضیحات تکمیلی</label>
+                <textarea
+                  class="text-right pt-2"
+                  rows="5"
+                  id="description"
+                  name="description"
+                  [ngClass]="{
+                    ValidationError:
+                      form.get('description').touched &&
+                      form.get('description').invalid
+                  }"
+                  formControlName="description"
+                >
+                </textarea>
+                <small
+                  class="text-danger"
+                  *ngIf="
+                    form.get('description').touched &&
+                    form.get('description').invalid
+                  "
+                >توضیحات الزامی است</small
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 mt-2 clearfix">
+          <div class="row d-flex justify-content-end">
+            <div class="col-6 p-1">
+              <button
+                type="button"
+                [disabled]="service.isLoading"
+                class="SubmitButton text-center w-100 float-left"
+                (click)="submit()"
+              >
+                <span
+                  class="spinner-border spinner-border-sm"
+                  *ngIf="service.isLoading"
+                ></span>
+                ثبت و انتشار
+              </button>
+            </div>
+            <div class="col-6 p-1">
+              <button
+                routerLink="/panel/tours/search"
+                type="button"
+                class="float-left CancelButton text-center"
+              >
+                انصراف
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

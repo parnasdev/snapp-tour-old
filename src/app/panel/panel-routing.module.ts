@@ -10,6 +10,9 @@ const routes: Routes = [
       {
         path: 'tour',
         loadChildren: () => import('../tour/panel/tour-panel.module').then(m => m.TourPanelModule)
+      }  , {
+        path: 'transfer',
+        loadChildren: () => import('../transfer/transfer.module').then(m => m.TransferModule)
       }
     ]
   }
