@@ -1,3 +1,9 @@
-<prs-upload-file (fileDTO)="getFile($event)"></prs-upload-file>
-<input type="text" [formControl]="nameFC">
-<button (click)="submit()">ثبت</button>
+<div class="form-add">
+  <prs-upload-file (fileDTO)="getFile($event)"></prs-upload-file>
+  <input class="inp" type="text" [formControl]="nameFC">
+  <div class="btn-form">
+    <button (click)="submit()">ثبت</button>
+
+  </div>
+</div>
+
