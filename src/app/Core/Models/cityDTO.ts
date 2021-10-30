@@ -18,6 +18,18 @@ export interface CityResponseDTO {
   id: number;
 }
 
+export interface MapCityResponseDTO {
+  id: number;
+  name: string;
+  cities: CityDTO[];
+}
+
+export interface CityDTO {
+  id: number;
+  coordinates: number[];
+  name: string;
+}
+
 
 
 

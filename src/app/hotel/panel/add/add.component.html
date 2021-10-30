@@ -1,0 +1,208 @@
+<div class="add-tour">
+
+  <form [formGroup]="hotelForm">
+    <div class="box-info-tour">
+      <div class="info-tour-header">
+        <div class="right">
+          <label for="">اضافه کردن هتل</label>
+          <h2>اطلاعات هتل</h2>
+        </div>
+        <div class="left">
+          <div class="selectdiv">
+            <label>
+              <select (change)="getStatus($event)">
+                <option [value]="false" selected> منتشر نشود </option>
+                <option [value]="true">انتشار</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="info-tour-body">
+        <div class="top">
+          <div class="item-info">
+            <label for="">عنوان هتل</label>
+            <input formControlName="name" type="text">
+          </div>
+          <div class="item-info-2">
+            <label for="">عنوان انگلیسی هتل</label>
+            <input formControlName="nameEn" type="text">
+          </div>
+          <div class="item-info-2">
+            <label for="">شهر</label>
+            <select formControlName="city_id" name="" id="">
+              <option value="1">تهران</option>
+              <option value="2">اصفهان</option>
+              <option value="3">شیراز</option>
+            </select>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="item-info">
+            <label for="">ـاریخ ورود به هتل</label>
+            <input type="text">
+          </div>
+          <div class="item-info">
+            <label for="">تاریخ خروج از هتل</label>
+            <input type="text">
+          </div>
+          <div class="item-info">
+            <label for="">تاریخ انقضا پکیج</label>
+            <input type="text">
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="box-info-fly">
+      <div class="info-tour-header">
+        <div class="right">
+          <h2>اطلاعات ادرس</h2>
+        </div>
+      </div>
+      <div class="info-tour-body">
+        <prs-get-location style="width: 50%;
+             height: 325px;border-radius: 10px" *ngIf="show"
+                          [inCommingLatLng]="[lat,lng]"
+                          (result)="getLatLng($event)">
+        </prs-get-location>
+      </div>
+    </div>
+    <div class="box-info-fly">
+      <div class="info-tour-header">
+        <div class="right">
+          <h2>نرخ ارزها</h2>
+        </div>
+      </div>
+      <div class="info-tour-body">
+        <div class="top">
+          <div class="item-info">
+            <label for="">نرخ یورو(تومان)</label>
+            <input type="text">
+          </div>
+          <div class="item-info">
+            <label for="">نرخ دلار(تومان)</label>
+            <input type="text">
+          </div>
+          <div class="item-info">
+            <label for="">نرخ درهم(تومان)</label>
+            <input type="text">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="box-info-fly">
+      <div class="info-tour-header">
+        <div class="right">
+          <h2>نرخ خدمات</h2>
+        </div>
+      </div>
+      <div class="info-tour-body">
+        <div class="top">
+          <div class="item-info">
+            <label for="">نرخ بیمه(تومان/ارزی)</label>
+            <input type="text">
+          </div>
+          <div class="item-info">
+            <label for="">نرخ ترانسفر(تومان/ارزی)</label>
+            <input type="text">
+          </div>
+          <div class="item-info">
+            <label for="">نرخ ویزا(تومان/ارزی)</label>
+            <input type="text">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="box-info-fly">
+      <div class="info-tour-header">
+        <div class="right">
+          <h2>نرخ پرواز</h2>
+        </div>
+      </div>
+      <div class="info-tour-body">
+        <div class="top">
+          <div class="item-info">
+            <label for="">نرخ پرواز بزرگسال(تومان)</label>
+            <input type="text">
+          </div>
+          <div class="item-info">
+            <label for="">نرخ پرواز کودک(تومان)</label>
+            <input type="text">
+          </div>
+          <div class="item-info">
+            <label for="">نرخ پرواز نوزاد(تومان)</label>
+            <input type="text">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="box-info-package">
+      <div class="info-tour-header">
+        <div class="right">
+          <h2>اطلاعات پکیج</h2>
+        </div>
+      </div>
+      <div class="info-tour-body p-0">
+        <div class="change-price-box">
+          <span>تغییر گروهی قیمت ها</span>
+          <input type="text">
+        </div>
+        <div class="header-box">
+          <div class="package-item">#</div>
+          <div class="package-item">نام هتل</div>
+          <div class="package-item">خدمات</div>
+          <div class="package-item">دو تخته (تومان)</div>
+          <div class="package-item">سه تخته (تومان)</div>
+          <div class="package-item">چهار تخته (تومان)</div>
+          <div class="package-item">سن کودک بدون تخت</div>
+          <div class="package-item"><i class="icon-plus-circled"></i></div>
+
+        </div>
+        <div class="body-box">
+          <div class="package-item id-package">1</div>
+          <div class="package-item">
+            <select name="" id="">
+              <option value="">تهران</option>
+            </select>
+          </div>
+          <div class="package-item">
+            <select name="" id="">
+              <option value="">تهران</option>
+            </select>
+          </div>
+          <div class="package-item">
+            <input type="text">
+          </div>
+          <div class="package-item">
+            <input type="text">
+          </div>
+          <div class="package-item">
+            <input type="text">
+          </div>
+          <div class="package-item">
+            <input type="text">
+          </div>
+          <div class="package-item"><i class="icon-cancel-1"></i></div>
+        </div>
+      </div>
+    </div>
+    <div class="box-details-tour">
+      <div class="info-tour-header">
+        <div class="right">
+          <h2>جزییات تور</h2>
+        </div>
+      </div>
+      <div class="details-body-tour">
+        <div class="textarea">
+          <textarea name="" id="" cols="30" rows="10" placeholder="خدمات"></textarea>
+          <textarea name="" id="" cols="30" rows="10" placeholder="مدارک مورد نیاز"></textarea>
+          <textarea name="" id="" cols="30" rows="10" placeholder="توضیحات تکمیلی"></textarea>
+        </div>
+        <button class="submit-tour">ثبت تور</button>
+      </div>
+    </div>
+  </form>
+
+</div>
+

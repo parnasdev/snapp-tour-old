@@ -7,6 +7,7 @@ import {LoginResponseDTO, UserDTO} from "../Models/AuthDTO";
 export class SessionService {
 
   user = {} as LoginResponseDTO;
+  outlineApi = false;
 
   constructor() {
   }
@@ -61,5 +62,9 @@ export class SessionService {
   }
   removeUser(): any {
     localStorage.removeItem('prs-hmz-user');
+  }
+
+  setOutlineApi(state: boolean): void {
+    this.outlineApi = state;
   }
 }

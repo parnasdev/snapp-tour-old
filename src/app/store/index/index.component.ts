@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {SwiperModule} from "swiper/angular";
 import SwiperCore, {Navigation, Pagination, Scrollbar, A11y} from 'swiper';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
