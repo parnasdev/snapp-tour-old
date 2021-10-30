@@ -13,6 +13,10 @@ const routes: Routes = [
       }  , {
         path: 'transfer',
         loadChildren: () => import('../transfer/transfer.module').then(m => m.TransferModule)
+      },
+      {
+        path: 'hotel',
+        loadChildren: () => import('../hotel/panel/hotel-panel.module').then(m => m.HotelPanelModule)
       }
     ]
   }
