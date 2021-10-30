@@ -22,10 +22,10 @@ export class GetLocationComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     // this.createMap()
-    // this.map.map.on('click', (e: any) => {
-    //   this.result.emit({lat: e.latlng.lat, lng: e.latlng.lng, token: this.apiKey})
-    //   this.addMarker(e.latlng.lat, e.latlng.lng,);
-    // });
+    this.map.map.on('click', (e: any) => {
+      this.result.emit({lat: e.latlng.lat, lng: e.latlng.lng, token: this.apiKey})
+      this.addMarker(e.latlng.lat, e.latlng.lng,);
+    });
   }
 
   ngOnChanges(changes: SimpleChanges): void {

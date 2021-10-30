@@ -7,6 +7,7 @@ import { EditComponent } from './edit/edit.component';
 import { ListComponent } from './list/list.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommonProjectModule} from "../../common-project/common-project.module";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {CommonProjectModule} from "../../common-project/common-project.module";
     CommonModule,
     HotelPanelRoutingModule,
     FormsModule,
+    MatDialogModule,
     ReactiveFormsModule,
     CommonProjectModule
   ]

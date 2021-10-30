@@ -54,7 +54,7 @@ export class HotelApiService {
     return this.http.post<Result<any>>(strUrl, entity, this.publicService.getDefaultHeaders());
   }
 
-  getServices(name: string): any {
+  getServices(): any {
     const strUrl = this.serverControllerName + `getServices`;
 
     return this.http.get<Result<any>>(strUrl, this.publicService.getDefaultHeaders());

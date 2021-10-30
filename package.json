@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
     "jalali-moment": "^3.3.10",
+    "leaflet": "^1.7.1",
     "rxjs": "~6.6.0",
     "sweetalert2": "^11.1.9",
     "swiper": "^7.0.8",
