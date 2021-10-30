@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {AppComponent} from "./app.component";
+import {PanelGuardService} from "./Core/guards/panel-guard.service";
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
         loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
       },{
         path: 'panel',
+        canActivate: [PanelGuardService],
         loadChildren: () => import('./panel/panel.module').then(m => m.PanelModule)
       }
     ]

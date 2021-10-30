@@ -5,6 +5,11 @@ import {StoreModule} from "../store/store.module";
 import {SwiperModule} from "swiper/angular";
 import {TourRoutingModule} from "./tour-routing.module";
 import {ListComponent} from './list/list.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatNativeDateModule} from "@angular/material/core";
+import {MatInputModule} from "@angular/material/input";
+import {MaterialModule} from "../common-project/persianDatePickerAdapter/material.module";
 
 
 @NgModule({
@@ -19,7 +24,8 @@ import {ListComponent} from './list/list.component';
     CommonModule,
     TourRoutingModule,
     StoreModule,
-    SwiperModule
+    SwiperModule,
+
   ]
 })
 export class TourModule {

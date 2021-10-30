@@ -24,7 +24,7 @@
                 <input id="one" type="checkbox">
                 <label for="one">من را به خاطر بسپار !</label>
               </div>
-              <prs-btn [background]="'blue'" (click)="login()" [label]="'ورود به سیستم'"></prs-btn>
+              <prs-btn [isLoading]="isLoading" [background]="'blue'" (click)="login()" [label]="'ورود به سیستم'"></prs-btn>
             </div>
           </div>
           <a class="home-link" routerLink="/">ورود به سایت اصلی</a>

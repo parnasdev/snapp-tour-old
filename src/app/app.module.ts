@@ -11,6 +11,7 @@ import {TourModule} from "./tour/tour.module";
 import {authInterceptorProviders} from "./Core/interceptor/auth.interceptors";
 import {HttpClientModule} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MaterialModule} from "./common-project/persianDatePickerAdapter/material.module";
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     SwiperModule,
     StoreModule,
+    MaterialModule,
     TourModule,
     BrowserAnimationsModule
   ],

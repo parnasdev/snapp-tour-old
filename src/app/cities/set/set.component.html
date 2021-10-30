@@ -1,0 +1,4 @@
+<input type="text" [formControl]="nameFC" placeholder="نام شهر را وارد کنید">
+<input type="text" [formControl]="desFC" placeholder="توضیحات">
+<prs-upload-file (fileDTO)="getFile($event)"></prs-upload-file>
+<prs-btn [label]="'ثبت'" (click)="submit()" [background]="'blue'" [isLoading]="isLoading"></prs-btn>

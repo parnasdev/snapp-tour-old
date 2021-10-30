@@ -18,10 +18,9 @@
 <!--              <select name="" id="">-->
 <!--                <option value="">چه ماهی می خواهید سفر کنید ؟</option>-->
 <!--              </select>-->
-              <mat-form-field>
-                <input matInput [matDatepicker]="picker1" placeholder="Angular forms" [formControl]="dateFC">
-                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                <mat-datepicker #picker1></mat-datepicker>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <input matInput [matDatepicker]="picker1" [formControl]="dateFC" (click)="picker1.open()">
+                <mat-datepicker touchUi #picker1></mat-datepicker>
               </mat-form-field>
             </div>
             <button class="btn-search" (click)="search()">جستجو کن !</button>

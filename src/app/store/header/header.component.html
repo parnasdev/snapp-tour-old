@@ -51,7 +51,8 @@
             </a>
             <a class="btn-login-register" (click)="logOut()" *ngIf="session.isLoggedIn()">
               <img src="assets/img/User-header.svg" width="18" alt="">
-              <span>خوش آمدید / خروج{{session.getPhone()}}</span>
+              <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>
+              <span>خوش آمدید / خروج</span>
             </a>
           </div>
         </div>

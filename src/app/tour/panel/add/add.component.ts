@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormControl} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
 import {ResponsiveService} from "../../../Core/Services/responsive.service";
 import {PublicService} from "../../../Core/Services/public.service";
 import {CalenderServices} from "../../../Core/Services/calender-service";
@@ -37,8 +36,6 @@ export class AddComponent implements OnInit {
   hotels: any[] = [];
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
     public hotelApi: HotelApiService,
     public message: MessageService,
     public commonApi: CommonApiService,
@@ -64,8 +61,8 @@ export class AddComponent implements OnInit {
       dateTime: new FormControl(),
       type: 0,
     },
-    enDate: new FormControl('1400/09/13'),
-    expireDate: new FormControl('1400/09/09'),
+    enDate: new FormControl(''),
+    expireDate: new FormControl(''),
     CHDFlightRate: new FormControl('12000'),
     defineTour: new FormControl(false),
     euroRate: new FormControl('14000'),
@@ -224,7 +221,6 @@ export class AddComponent implements OnInit {
   getData() {
     this.convertTour()
     this.fillObj()
-    console.log(this.tourReqDTO)
   }
 
   getService(): void {
@@ -232,9 +228,7 @@ export class AddComponent implements OnInit {
       if (res.isDone) {
         this.services = res.data;
       }
-    }, (error: any) => {
-
-    })
+    }, (error: any) => {})
   }
 
 

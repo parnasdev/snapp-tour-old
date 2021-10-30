@@ -81,15 +81,24 @@
         <div class="bottom">
           <div class="item-info">
             <label for="">ـاریخ ورود به هتل</label>
-            <input formControlName="dayNum" type="text">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <input matInput [matDatepicker]="picker1"  (click)="picker1.open()">
+              <mat-datepicker touchUi #picker1></mat-datepicker>
+            </mat-form-field>
           </div>
           <div class="item-info">
             <label for="">تاریخ خروج از هتل</label>
-            <input formControlName="enDate" type="text">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <input matInput formControlName="enDate" [matDatepicker]="picker2" (click)="picker2.open()">
+              <mat-datepicker touchUi #picker2></mat-datepicker>
+            </mat-form-field>
           </div>
           <div class="item-info">
             <label for="">تاریخ انقضا پکیج</label>
-            <input formControlName="expireDate" type="text">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <input matInput formControlName="expireDate" [matDatepicker]="picker3" (click)="picker3.open()">
+              <mat-datepicker touchUi #picker3></mat-datepicker>
+            </mat-form-field>
           </div>
 
         </div>
@@ -105,11 +114,17 @@
         <div class="top">
           <div class="item-info">
             <label for="">تاریح پرواز رفت</label>
-            <input type="text">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <input matInput [matDatepicker]="picker4" (click)="picker4.open()">
+              <mat-datepicker touchUi #picker4></mat-datepicker>
+            </mat-form-field>
           </div>
           <div class="item-info">
             <label for="">ساعت پرواز رفت</label>
-            <input type="text">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <input matInput [matDatepicker]="picker5" (click)="picker5.open()">
+              <mat-datepicker touchUi #picker5></mat-datepicker>
+            </mat-form-field>
           </div>
           <div class="item-info-2">
             <div class="select-info w-100">

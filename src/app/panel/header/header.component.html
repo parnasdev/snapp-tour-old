@@ -11,16 +11,16 @@
   </div>
   <div class="left-item-header">
     <div class="account-user">
-      <img src="assets/img/WhatsApp%20Image%202021-08-03%20at%2012.42.36%20PM.svg" alt="" class="img-user">
+      <img src="assets/img/avatar.jpg" alt="" class="img-user">
       <div class="info-user-account">
         <small class="welcome-text">خوش آمدید</small>
         <a class="name-user" href="">
-          علی گنجی زاده
+          {{session.getPhone()}}
           <i class="icon-down-open"></i>
         </a>
       </div>
     </div>
-    <a class="link-exit" href="">
+    <a class="link-exit" (click)="logOut()">
       <img src="assets/img/Off.svg" width="18" alt="">
       خروج
     </a>

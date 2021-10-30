@@ -50,6 +50,10 @@ export class SessionService {
     const user = localStorage.getItem('prs-hmz-user');
     return user ? JSON.parse(user).user.birthDay : '';
   }
+  getRole(): any {
+    const user = localStorage.getItem('prs-hmz-user');
+    return user ? JSON.parse(user).user.role : '';
+  }
 
   isLoggedIn(): any {
     const user = localStorage.getItem('prs-hmz-user');
