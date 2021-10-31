@@ -5,6 +5,7 @@ import {UploaderComponent} from "./uploader/uploader.component";
 import {GetLatLongComponent} from "./get-lat-long/get-lat-long.component";
 import {GetLocationComponent} from "./get-location/get-location.component";
 import { TimePickerComponent } from './time-picker/time-picker.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { TimePickerComponent } from './time-picker/time-picker.component';
         TimePickerComponent
     ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ]
 })
 export class CommonProjectModule {
