@@ -42,7 +42,9 @@ export class ListComponent implements OnInit {
     this.cityReq = {
       perPage: 20,
       search: null,
-      type: true
+      type: true,
+      hasTour: false,
+      hasHotel: false
     }
   }
 }

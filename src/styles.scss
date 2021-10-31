@@ -183,3 +183,6 @@ select::-ms-expand {
   word-break: normal;
   border-radius: 2px;
 }
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

@@ -1,7 +1,9 @@
 export interface CityListRequestDTO {
-  type: true
+  type: boolean
   perPage: 20
   search: null
+  hasTour: boolean
+  hasHotel: boolean
 }
 
 export interface CitySetRequestDTO {

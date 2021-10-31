@@ -9,7 +9,11 @@ import {MessageService} from "../../../Core/Services/message.service";
 import {CommonApiService} from "../../../Core/Https/common-api.service";
 import {GetServiceRequestDTO} from "../../../Core/Models/commonDTO";
 import {HotelApiService} from "../../../Core/Https/hotel-api.service";
-import {HotelRequestDTO} from "../../../Core/Models/hotelDTO";
+import {HotelListResponseDTO, HotelRequestDTO} from "../../../Core/Models/hotelDTO";
+import {CityApiService} from "../../../Core/Https/city-api.service";
+import {CityListRequestDTO, CityResponseDTO} from "../../../Core/Models/cityDTO";
+import {TransferAPIService} from "../../../Core/Https/transfer-api.service";
+import {TransferListRequestDTO} from "../../../Core/Models/transferDTO";
 
 @Component({
   selector: 'prs-add',
@@ -33,10 +37,19 @@ export class AddComponent implements OnInit {
   operation = 1;
   minPrice = 0;
   services: GetServiceRequestDTO[] = []
-  hotels: any[] = [];
+  hotels: HotelListResponseDTO[] = [];
+  cityID = 0
+  cities: CityResponseDTO[] = []
+  originDateFC = new FormControl();
+  originTimeFC = new FormControl();
+  destDateFC = new FormControl();
+  destTimeFC = new FormControl();
+  airlines: any[] = []
 
   constructor(
     public hotelApi: HotelApiService,
+    public cityApi: CityApiService,
+    public transferApi: TransferAPIService,
     public message: MessageService,
     public commonApi: CommonApiService,
     public session: SessionService,
@@ -56,11 +69,6 @@ export class AddComponent implements OnInit {
     nightNum: new FormControl('3'),
     dayNum: new FormControl('4'),
     TransferType: new FormControl(),
-    transfer: {
-      transfer_id: 0,
-      dateTime: new FormControl(),
-      type: 0,
-    },
     enDate: new FormControl(''),
     expireDate: new FormControl(''),
     CHDFlightRate: new FormControl('12000'),
@@ -69,11 +77,11 @@ export class AddComponent implements OnInit {
     dollarRate: new FormControl('26700'),
     AEDRate: new FormControl(),
     visaRate: new FormControl('14000'),
-    visaPriceType: new FormControl(),
+    visaPriceType: new FormControl(1),
     insuranceRate: new FormControl('17800'),
-    transferPriceType: new FormControl(),
+    transferPriceType: new FormControl(1),
     transferRate: new FormControl('14000'),
-    insurancePriceType: new FormControl(),
+    insurancePriceType: new FormControl(1),
     services: new FormControl('تست خدمات'),
     documents: new FormControl('تست مدارک'),
     description: new FormControl('تست توضیحات'),
@@ -81,7 +89,18 @@ export class AddComponent implements OnInit {
     packages: this.fb.array([]),
   });
 
+
+  transferForm = this.fb.group({
+    originDate: this.originDateFC,
+    originTime: this.originTimeFC,
+    destDate: this.destDateFC,
+    destTime: this.destTimeFC,
+  })
+
+
   ngOnInit() {
+    this.getCities();
+    this.getTransfer()
     this.addRow()
     this.getService()
     this.getHotels()
@@ -98,20 +117,16 @@ export class AddComponent implements OnInit {
       hotel_id: [0],
       services: ['0'],
       rate: ['0'],
-      discounts: {
-        twin: ['0'],
-        single: ['0'],
-        cwb: ['0'],
-        cnb: ['0']
-      },
-      prices: {
-        twin: ['0'],
-        single: ['0'],
-        cwb: ['0'],
-        cnb: ['0'],
-        ADLRate: ['0'],
-        age: ['0']
-      },
+      discountsTwin: ['0'],
+      discountsSingle: ['0'],
+      discountsCwb: ['0'],
+      discountsCnb: ['0'],
+      twin: ['0'],
+      single: ['0'],
+      cwb: ['0'],
+      cnb: ['0'],
+      ADLRate: ['0'],
+      age: ['0'],
       status: ['']
     });
     this.ToursForm.push(Tours);
@@ -126,18 +141,18 @@ export class AddComponent implements OnInit {
         services: item.value.services,
         rate: item.value.rate,
         discounts: {
-          twin: item.value.discounts.discounts,
-          single: item.value.discounts.single,
-          cwb: item.value.discounts.cwb,
-          cnb: item.value.discounts.cnb
+          twin: item.value.discountsTwin,
+          single: item.value.discountsSingle,
+          cwb: item.value.discountsCwb,
+          cnb: item.value.discountsCnb
         },
         prices: {
-          twin: item.value.prices.twin,
-          single: item.value.prices.single,
-          cwb: item.value.prices.cwb,
-          cnb: item.value.prices.cnb,
-          ADLRate: item.value.prices.ADLRate,
-          age: item.value.prices.age
+          twin: item.value.twin,
+          single: item.value.single,
+          cwb: item.value.cwb,
+          cnb: item.value.cnb,
+          ADLRate: item.value.ADLRate,
+          age: item.value.age
         },
         status: item.value.status
       });
@@ -147,7 +162,8 @@ export class AddComponent implements OnInit {
   getHotels(): void {
     const req: HotelRequestDTO = {
       isAdmin: true,
-      paginate: false
+      paginate: false,
+      city: this.cityID,
     }
     this.hotelApi.getHotels(req).subscribe((res: any) => {
       if (res.isDone) {
@@ -177,12 +193,12 @@ export class AddComponent implements OnInit {
       nightNum: this.form.value.nightNum,
       dayNum: this.form.value.dayNum,
       transfer: [{
-        transfer_id: 0,
-        dateTime: this.form.value.transfer.dateTime,
+        transfer_id: '',
+        dateTime: '',
         type: 'origin',
       }, {
-        transfer_id: 0,
-        dateTime: this.form.value.transfer.dateTime,
+        transfer_id: '',
+        dateTime: '',
         type: 'destination',
       },],
       enDate: this.form.value.enDate,
@@ -221,6 +237,9 @@ export class AddComponent implements OnInit {
   getData() {
     this.convertTour()
     this.fillObj()
+    console.log(this.tourReqDTO)
+    console.log(this.form)
+    console.log(this.transferForm)
   }
 
   getService(): void {
@@ -228,7 +247,8 @@ export class AddComponent implements OnInit {
       if (res.isDone) {
         this.services = res.data;
       }
-    }, (error: any) => {})
+    }, (error: any) => {
+    })
   }
 
 
@@ -254,6 +274,46 @@ export class AddComponent implements OnInit {
       this.form.controls.insuranceRate.disable()
       this.form.controls.transferRate.disable()
     }
+  }
+
+  getCities(): void {
+    const req: CityListRequestDTO = {
+      type: false,
+      hasHotel: false,
+      hasTour: false,
+      search: null,
+      perPage: 20
+    }
+    this.cityApi.getCities(req).subscribe((res: any) => {
+      if (res.isDone) {
+        this.cities = res.data;
+        this.cityID = this.cities[0].id;
+        this.getHotels();
+      }
+    }, (error: any) => {
+      this.message.error()
+    })
+  }
+
+  getTransfer(): void {
+    const req: TransferListRequestDTO = {
+      type: 0,
+      search: null,
+      paginate: false,
+      perPage: 20
+    }
+    this.transferApi.getTransfers(req).subscribe((res: any) => {
+      if (res.isDone) {
+        this.airlines = res.data
+      }
+    }, (error: any) => {
+      this.message.error()
+    })
+  }
+
+  cityDesChanged(): void {
+    this.cityID = this.form.value.endCity_id
+    this.getHotels();
   }
 }
 

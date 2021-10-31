@@ -4,7 +4,7 @@ import {PublicService} from "../Services/public.service";
 import {environment} from "../../../environments/environment";
 import {CityListRequestDTO, CitySetRequestDTO} from "../Models/cityDTO";
 import {Result} from "../Models/result";
-import {HotelRequestDTO, HotelSetRequestDTO, SetHotelPackageDTO} from "../Models/hotelDTO";
+import {HotelListResponseDTO, HotelRequestDTO, HotelSetRequestDTO, SetHotelPackageDTO} from "../Models/hotelDTO";
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +23,7 @@ export class HotelApiService {
     const strUrl = this.serverControllerName + 'getHotels';
 
 
-    return this.http.post<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
+    return this.http.post<Result<HotelListResponseDTO[]>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
 
   add(req: HotelSetRequestDTO): any {

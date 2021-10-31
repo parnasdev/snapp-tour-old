@@ -11,6 +11,7 @@ import {authInterceptorProviders} from "./Core/interceptor/auth.interceptors";
 import {HttpClientModule} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModule} from "./common-project/persianDatePickerAdapter/material.module";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {MaterialModule} from "./common-project/persianDatePickerAdapter/material
     StoreModule,
     MaterialModule,
     TourModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule
   ],
   providers: [authInterceptorProviders],
   exports: [],

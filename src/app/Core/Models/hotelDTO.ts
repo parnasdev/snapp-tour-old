@@ -26,7 +26,7 @@ export interface HotelSetRequestDTO {
 export interface HotelRequestDTO {
   isAdmin: boolean
   paginate: boolean
-
+  city: number
 }
 
 export interface SetHotelPackageDTO {
@@ -61,4 +61,14 @@ export interface PackageDTO {
   },
   "status": string
 
+}
+
+export interface HotelListResponseDTO {
+  id: number
+  name: string
+  nameEn: string
+  slug: string
+  slugEn: string
+  stars: string
+  thumbnail: string
 }
