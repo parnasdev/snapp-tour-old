@@ -11,6 +11,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatInputModule} from "@angular/material/input";
 import {MaterialModule} from "../../common-project/persianDatePickerAdapter/material.module";
+import {CommonProjectModule} from "../../common-project/common-project.module";
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import {MaterialModule} from "../../common-project/persianDatePickerAdapter/mate
         MatNativeDateModule,
         MatInputModule,
         MaterialModule,
+        CommonProjectModule,
     ]
 })
 export class TourPanelModule { }

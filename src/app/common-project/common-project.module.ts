@@ -9,10 +9,11 @@ import { TimePickerComponent } from './time-picker/time-picker.component';
 
 @NgModule({
   declarations: [UploadFileComponent, UploaderComponent, GetLatLongComponent, GetLocationComponent, TimePickerComponent],
-  exports: [
-    UploadFileComponent,
-    GetLocationComponent
-  ],
+    exports: [
+        UploadFileComponent,
+        GetLocationComponent,
+        TimePickerComponent
+    ],
   imports: [
     CommonModule
   ]
