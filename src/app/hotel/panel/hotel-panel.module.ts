@@ -8,6 +8,7 @@ import { ListComponent } from './list/list.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommonProjectModule} from "../../common-project/common-project.module";
 import {MatDialogModule} from "@angular/material/dialog";
+import {BarRatingModule} from "ngx-bar-rating";
 
 
 @NgModule({
@@ -16,13 +17,14 @@ import {MatDialogModule} from "@angular/material/dialog";
     EditComponent,
     ListComponent
   ],
-  imports: [
-    CommonModule,
-    HotelPanelRoutingModule,
-    FormsModule,
-    MatDialogModule,
-    ReactiveFormsModule,
-    CommonProjectModule
-  ]
+    imports: [
+        CommonModule,
+        HotelPanelRoutingModule,
+        FormsModule,
+        MatDialogModule,
+        ReactiveFormsModule,
+        CommonProjectModule,
+        BarRatingModule
+    ]
 })
 export class HotelPanelModule { }

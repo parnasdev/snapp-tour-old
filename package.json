@@ -25,6 +25,7 @@
     "bootstrap": "^4.5.0",
     "jalali-moment": "^3.3.10",
     "leaflet": "^1.7.1",
+    "ngx-bar-rating": "^2.0.0",
     "rxjs": "~6.6.0",
     "sweetalert2": "^11.1.9",
     "swiper": "^7.0.8",

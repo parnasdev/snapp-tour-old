@@ -1,6 +1,7 @@
 @import "~swiper/css";
 @import "~swiper/css/navigation";
 @import "~swiper/css/pagination";
+@import '~ngx-bar-rating/themes/br-default-theme';
 .swiper {
   width: 100%;
   height: 100%;
@@ -132,6 +133,42 @@ ul{
   height: 30px;
   background-color: var(--base-color);
 }
+.inp-form mat-form-field{
+  width: 100% !important;
+}
+.inp-form .mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: unset !important;
+}
+.mat-button-wrapper{
+  font-family: IRANSans !important;
+}
+.mat-calendar-body-cell-content {
+  font-family: IRANSans !important;
+  font-weight: 600 !important;
+}
+.mat-calendar-body-selected {
+  background-color: var(--base-color) !important;
+  color: #fff;
+}
+.mat-calendar-table-header, .mat-calendar-body-label {
+  font-family: IRANSans !important;
+  font-weight: 500 !important;
+  color: var(--base-color) !important;
+}
+.mat-calendar-body-label{
+  direction: rtl !important;
+  text-align: right !important;
+}
+abbr{
+  text-decoration: none !important;
+}
+.cdk-overlay-pane {
+  direction: rtl !important;
+}
+.mat-calendar-next-button, .mat-calendar-previous-button {
+  transform: rotate(180deg) !important;
+}
+//-----------------
 
 select{
   border: 1px solid var(--gray-color-light);

@@ -26,7 +26,7 @@ export class AddComponent implements OnInit {
   locationFC = new FormControl('تهرانپارس');
   addressFC = new FormControl('باقری 182 غربی پلاک 1');
   bodyFC = new FormControl('تست توضیحات');
-
+  currentStar = 0;
   lat = 0;
   lng = 0;
   reverseAddressData!: MapReverseDTO;
