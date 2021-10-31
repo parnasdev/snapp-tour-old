@@ -28,8 +28,8 @@
 }
 
 body {
-  direction: rtl;
-  font-family: 'IRANSans', 'sans-serif';
+  direction: rtl !important;
+  font-family: 'IRANSans', 'sans-serif' !important;
 }
 
 * {
@@ -221,5 +221,4 @@ select::-ms-expand {
   border-radius: 2px;
 }
 
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+

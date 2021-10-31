@@ -11,7 +11,6 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MatInputModule} from "@angular/material/input";
 import {MaterialModule} from "../../common-project/persianDatePickerAdapter/material.module";
-import {NgbTimepickerModule} from "@ng-bootstrap/ng-bootstrap";
 
 
 @NgModule({
@@ -28,7 +27,6 @@ import {NgbTimepickerModule} from "@ng-bootstrap/ng-bootstrap";
         MatNativeDateModule,
         MatInputModule,
         MaterialModule,
-        NgbTimepickerModule,
     ]
 })
 export class TourPanelModule { }
