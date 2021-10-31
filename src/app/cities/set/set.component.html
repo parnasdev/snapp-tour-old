@@ -1,4 +1,21 @@
-<input type="text" [formControl]="nameFC" placeholder="نام شهر را وارد کنید">
-<input type="text" [formControl]="desFC" placeholder="توضیحات">
-<prs-upload-file (fileDTO)="getFile($event)"></prs-upload-file>
-<prs-btn [label]="'ثبت'" (click)="submit()" [background]="'blue'" [isLoading]="isLoading"></prs-btn>
+<div class="parent-set">
+  <div class="item-inp">
+    <div  class="item-info">
+      <label  for="en-fa">نام شهر را وارد کنید</label>
+      <input id="en-fa"  type="text" [formControl]="nameFC" class="ng-untouched ng-pristine ng-valid">
+    </div>
+    <div  class="item-info">
+      <label   for="en-name">نام انگلیسی شهر را وارد کنید</label>
+      <input id="en-name" type="text" [formControl]="nameFC" placeholder="">
+    </div>
+  </div>
+  <div class="item-textarea">
+    <label for="textarea">توضیحات</label>
+    <textarea [formControl]="desFC" name="" id="textarea" cols="30" rows="10"></textarea>
+  </div>
+  <div class="upload-box">
+    <prs-upload-file (fileDTO)="getFile($event)"></prs-upload-file>
+    <img class="img-upload" src="assets/img/12123131.png" alt="">
+  </div>
+  <prs-btn [label]="'ثبت'" (click)="submit()" [background]="'blue'" [isLoading]="isLoading"></prs-btn>
+</div>

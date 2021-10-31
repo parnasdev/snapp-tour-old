@@ -1,0 +1,67 @@
+.parent-set{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  background-color: var(--white);
+  margin: 1rem auto 0 auto;
+  padding: 1rem;
+}
+.item-inp{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.item-info{
+  display: flex;
+  flex-direction: column;
+  width: 49%;
+}
+.item-info input{
+  border: 1px solid var(--light-color-two);
+  height: 30px;
+  border-radius: 4px;
+  margin-top: 8px;
+  background-color: var(--white);
+  width: 100%;
+  font-size: 13px !important;
+  font-weight: 500;
+  padding: 0 8px;
+  outline: none;
+}
+.item-textarea{
+  margin-top: 1rem;
+}
+.item-textarea textarea{
+  border: 1px solid var(--light-color-two);
+  height: 120px;
+  border-radius: 4px;
+  margin-top: 8px;
+  background-color: var(--white);
+  width: 100%;
+  font-size: 13px !important;
+  font-weight: 500;
+  padding:  8px;
+  outline: none;
+}
+:host::ng-deep .uploadfilecontainer {
+  padding: 3rem 0 !important;
+}
+:host::ng-deep .btn-blue {
+  padding: 0 44px !important;
+}
+.upload-box{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.upload-box prs-upload-file{
+  width: 68% !important;
+}
+.upload-box  .img-upload{
+  width: 30% !important;
+  object-fit: cover;
+  height: 125px;
+  border-radius: 10px;
+}
