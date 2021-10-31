@@ -1,6 +1,6 @@
 <div class="add-tour">
 
-  <form>
+  <form class="w-100">
     <div class="box-info-tour">
       <div class="info-tour-header">
         <div class="right">
@@ -42,17 +42,7 @@
         <div class="bottom">
           <div class="item-info">
             <label for="">ستاره</label>
-            <div class="selectdiv">
-
-            <select [formControl]="starFC" name="" id="">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-            </select>
-            </div>
+            <bar-rating [(rate)]="currentStar" [theme]="'default'" [max]="5"></bar-rating>
           </div>
           <div class="item-info">
             <label for="">موقعیت هتل</label>
@@ -75,7 +65,7 @@
       </div>
       <div class="info-tour-body">
         <div class="top">
-          <div class="item-info">
+          <div class="item-info-second">
             <label for="">توضیحات</label>
             <textarea type="text" [formControl]="bodyFC"></textarea>
           </div>
@@ -88,22 +78,50 @@
           <h2>آپلود تصاویر</h2>
         </div>
       </div>
-      <div class="info-tour-body">
-        <div class="top">
-          <div class="item-info">
+      <div class="info-tour-body-upload">
+        <div class="top-one">
+          <div class="item-info w-100">
             <label for="">تصویر خود را آپلود کنید</label>
             <prs-upload-file (fileDTO)="getThumbnail($event)"></prs-upload-file>
           </div>
+          <div class="single-img-upload-parent">
+            <img src="assets/img/12123131.png" width="100%" height="200" alt="">
+          </div>
         </div>
-        <div class="bottom">
-          <div class="item-info">
+        <div class="bottom-one">
+          <div class="item-info w-100">
             <label for="">تصاویر خود را آپلود کنید</label>
             <prs-upload-file (fileDTO)="getImage($event)"></prs-upload-file>
             <div class="d-flex">
               <img *ngFor="let img of images" [src]="img" width="50" alt="">
             </div>
           </div>
-
+          <div class="multi-img-upload-parent">
+            <div class="images">
+              <img src="assets/img/12123131.png" alt="">
+              <i class="icon-cancel-1"></i>
+            </div>
+            <div class="images">
+              <img src="assets/img/12123131.png" alt="">
+              <i class="icon-cancel-1"></i>
+            </div>
+            <div class="images">
+              <img src="assets/img/12123131.png" alt="">
+              <i class="icon-cancel-1"></i>
+            </div>
+            <div class="images">
+              <img src="assets/img/12123131.png" alt="">
+              <i class="icon-cancel-1"></i>
+            </div>
+            <div class="images">
+              <img src="assets/img/12123131.png" alt="">
+              <i class="icon-cancel-1"></i>
+            </div>
+            <div class="images">
+              <img src="assets/img/12123131.png" alt="">
+              <i class="icon-cancel-1"></i>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -124,7 +142,7 @@
     </div>
 
 
-    <div class="box-details-tour">
+    <div class="btn-parent-submit">
 
         <button class="submit-tour" (click)="add()">ثبت هتل</button>
     </div>
