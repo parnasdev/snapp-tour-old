@@ -242,7 +242,41 @@
   flex-direction: column;
   align-items: flex-start;
 }
+.item-info-services{
+  display: flex;
+  align-items: flex-end;
+  width: 24.5%;
+}
+.item-info-services:not(:last-child){
+  padding-left: 18px;
+}
+.item-info-services .box-services{
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 
+}
+.item-info-services .box-services input{
+  border: 1px solid var(--light-color-two);
+  height: 30px;
+  border-radius: px;
+  margin-top: 8px;
+  background-color: var(--white);
+  width: 100%;
+  font-size: 13px !important;
+  font-weight: 500;
+  padding: 0 8px;
+  outline: none;
+}
+.item-info-services .box-services label{
+  font-size: 13px !important;
+  font-weight: 500;
+}
+.item-info-services .selectdiv{
+  width: 30%;
+  padding-right: 4px;
+}
 .item-info label {
   font-size: 13px !important;
   font-weight: 500;
