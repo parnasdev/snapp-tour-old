@@ -20,25 +20,12 @@ export class TimePickerComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  increaseHour(): void {
-    debugger
-    if (+this.hourFC.value === 23) {
-      this.hour = 0;
-      this.hourFC.setValue(this.formatter(this.hour))
-
-    } else {
-      this.hour++
-      this.hourFC.setValue(this.formatter(this.hour))
-
-    }
-  }
-
   decreaseHour(): void {
     if (+this.hourFC.value === 0 || this.hourFC.value === '00') {
       this.hour = 23;
       this.hourFC.setValue(this.formatter(this.hour))
     } else {
-      debugger
+
       if (this.hour > 0){
         this.hour--
         this.hourFC.setValue(this.formatter(this.hour))
@@ -51,24 +38,43 @@ export class TimePickerComponent implements OnInit {
     }
   }
 
+  increaseHour(): void {
+    if (+this.hourFC.value === 23) {
+      this.hour = 0;
+      this.hourFC.setValue(this.formatter(this.hour));
+    } else {
+      if (+this.hourFC.value > 23 ) {
+        this.hour = 0;
+        this.hourFC.setValue('00');
+      }else{
+        this.hour++
+        this.hourFC.setValue(this.formatter(this.hour))
+      }
+
+    }
+  }
   increaseMinutes(): void {
-    debugger
     if (+this.minuteFC.value === 59) {
       this.minute = 0;
       this.minuteFC.setValue(this.formatter(this.minute))
     } else {
-      this.minute++
-      this.minuteFC.setValue(this.formatter(this.minute))
+      if (+this.minuteFC.value > 59 ) {
+        this.minute = 0;
+        this.minuteFC.setValue('00');
+      }else{
+        this.minute++
+        this.minuteFC.setValue(this.formatter(this.minute))
+      }
     }
   }
 
   decreaseMinutes(): void {
-    debugger
+
     if (+this.minuteFC.value === 0 || this.minuteFC.value === '00') {
       this.minute = 59;
       this.minuteFC.setValue(this.formatter(this.minute))
     } else {
-      debugger
+
       if (this.minute > 0){
         this.minute--
         this.minuteFC.setValue(this.formatter(this.minute))
@@ -81,12 +87,12 @@ export class TimePickerComponent implements OnInit {
 
   minutesChanged(event: any): void {
     console.log(this.pattern.test(event.target.value))
-    debugger
+
     if (!this.pattern.test(event.target.value)) {
       event.target.value = '00';
       this.minute = 0;
     }else {
-      debugger
+
       if (this.minuteFC.value.length < 3){
         if (+this.minuteFC.value > 59) {
           this.minute = 0
@@ -110,7 +116,7 @@ export class TimePickerComponent implements OnInit {
       this.hour = 0;
     }else {
       if (this.hourFC.value.length < 3){
-        if (+this.hourFC.value > 23 && this.hourFC.value.length > 2) {
+        if (+this.hourFC.value > 23) {
           this.hour = 0
           this.hourFC.setValue(this.formatter(this.hour))
         }else {
