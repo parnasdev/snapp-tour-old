@@ -76,24 +76,24 @@
         </div>
         <div class="bottom">
           <div class="item-info">
-            <label for="">ـاریخ ورود به هتل</label>
+            <label for="">تاریخ ورود به هتل</label>
             <mat-form-field class="example-full-width" appearance="fill">
-              <input matInput [matDatepicker]="picker1"  (click)="picker1.open()">
-              <mat-datepicker touchUi #picker1></mat-datepicker>
+              <input matInput [matDatepicker]="picker1" (click)="picker1.open()">
+              <mat-datepicker #picker1></mat-datepicker>
             </mat-form-field>
           </div>
           <div class="item-info">
             <label for="">تاریخ خروج از هتل</label>
             <mat-form-field class="example-full-width" appearance="fill">
               <input matInput formControlName="enDate" [matDatepicker]="picker2" (click)="picker2.open()">
-              <mat-datepicker touchUi #picker2></mat-datepicker>
+              <mat-datepicker #picker2></mat-datepicker>
             </mat-form-field>
           </div>
           <div class="item-info">
             <label for="">تاریخ انقضا پکیج</label>
             <mat-form-field class="example-full-width" appearance="fill">
               <input matInput formControlName="expireDate" [matDatepicker]="picker3" (click)="picker3.open()">
-              <mat-datepicker touchUi #picker3></mat-datepicker>
+              <mat-datepicker #picker3></mat-datepicker>
             </mat-form-field>
           </div>
 
@@ -102,60 +102,60 @@
     </div>
     <div class="box-info-fly">
 
-        <div class="info-tour-header">
-          <div class="right">
-            <h2>اطلاعات پرواز</h2>
-          </div>
+      <div class="info-tour-header">
+        <div class="right">
+          <h2>اطلاعات پرواز</h2>
         </div>
+      </div>
 
-        <div class="info-tour-body">
-          <div class="top">
-            <div class="item-info">
-              <label for="">تاریح پرواز رفت</label>
-              <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput [matDatepicker]="picker4" [formControl]="originDateFC" (click)="picker4.open()">
-                <mat-datepicker touchUi #picker4></mat-datepicker>
-              </mat-form-field>
-            </div>
-            <div class="item-info">
-              <label for="">ساعت پرواز رفت</label>
-<!--              <ngb-timepicker  [formControl]="originTimeFC" [meridian]="false"></ngb-timepicker>-->
-              <prs-time-picker></prs-time-picker>
-            </div>
-            <div class="item-info-2">
-              <div class="select-info w-100">
-                <label for="">ایرلاین</label>
-                <select name="" id="">
-                  <option value="">تهران</option>
-                </select>
-              </div>
-
-            </div>
+      <div class="info-tour-body">
+        <div class="top">
+          <div class="item-info">
+            <label for="">تاریح پرواز رفت</label>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <input matInput [matDatepicker]="picker4" [formControl]="originDateFC" (click)="picker4.open()">
+              <mat-datepicker #picker4></mat-datepicker>
+            </mat-form-field>
           </div>
-          <div class="bottom">
-            <div class="item-info">
-              <label for="">تاریخ پرواز برگشت</label>
-              <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput [matDatepicker]="picker7" [formControl]="destDateFC" (click)="picker7.open()">
-                <mat-datepicker touchUi #picker7></mat-datepicker>
-              </mat-form-field>
-            </div>
-            <div class="item-info">
-              <label for="">ساعت پرواز برگشت</label>
-<!--              <ngb-timepicker   [formControl]="destDateFC" [meridian]="false"></ngb-timepicker>-->
-            </div>
-            <div class="item-info-2">
-              <div class="select-info w-100">
-                <label for="">ایرلاین برگشت</label>
-                <select name="" id="">
-                  <option value="">تهران</option>
-                </select>
-              </div>
-
+          <div class="item-info-timer">
+            <label for="">ساعت پرواز رفت</label>
+            <!--              <ngb-timepicker  [formControl]="originTimeFC" [meridian]="false"></ngb-timepicker>-->
+            <prs-time-picker></prs-time-picker>
+          </div>
+          <div class="item-info-2">
+            <div class="select-info w-100">
+              <label for="">ایرلاین</label>
+              <select name="" id="">
+                <option value="">تهران</option>
+              </select>
             </div>
 
           </div>
         </div>
+        <div class="bottom">
+          <div class="item-info">
+            <label for="">تاریخ پرواز برگشت</label>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <input matInput [matDatepicker]="picker7" [formControl]="destDateFC" (click)="picker7.open()">
+              <mat-datepicker #picker7></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="item-info-timer">
+            <label for="">ساعت پرواز برگشت</label>
+            <prs-time-picker></prs-time-picker>
+          </div>
+          <div class="item-info-2">
+            <div class="select-info w-100">
+              <label for="">ایرلاین برگشت</label>
+              <select name="" id="">
+                <option value="">تهران</option>
+              </select>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
 
     </div>
     <div class="box-info-fly">
@@ -267,7 +267,7 @@
         <form [formGroup]="form" formArrayName="packages" action="">
           <div class="body-box" *ngFor="let tour of ToursForm.controls; let i = index"
                [formGroupName]="i">
-            <div class="package-item id-package">{{i+1}}</div>
+            <div class="package-item id-package">{{i + 1}}</div>
             <div class="package-item">
               <select name="" id="">
                 <option *ngFor="let hotel of hotels" [value]="hotel.id">{{hotel.name}}</option>
@@ -279,19 +279,19 @@
               </select>
             </div>
             <div class="package-item">
-              <input type="number"  formControlName="twin">
+              <input type="number" formControlName="twin">
             </div>
             <div class="package-item">
-              <input type="number"  formControlName="single">
+              <input type="number" formControlName="single">
             </div>
             <div class="package-item">
-              <input type="number"  formControlName="cwb">
+              <input type="number" formControlName="cwb">
             </div>
             <div class="package-item">
-              <input type="number"  formControlName="ADLRate">
+              <input type="number" formControlName="ADLRate">
             </div>
             <div class="package-item">
-              <input type="number"  formControlName="cnb">
+              <input type="number" formControlName="cnb">
             </div>
             <div class="package-item"><i class="icon-cancel-1" (click)="removePakage(i)"></i></div>
           </div>

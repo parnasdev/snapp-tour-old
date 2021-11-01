@@ -66,7 +66,7 @@
 .info-tour-body .top {
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   margin: 8px 0;
 }
@@ -74,7 +74,7 @@
 .info-tour-body .bottom {
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   margin: 8px 0;
 }
@@ -289,4 +289,23 @@
   width: 100%;
   font-size: 13px !important;
   font-weight: 500;
+}
+:host::ng-deep .mat-form-field {
+  width: 100%;
+}
+:host::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: unset !important;
+  padding: 0 !important;
+}
+:host::ng-deep .mat-form-field-underline {
+  display: none;
+}
+:host::ng-deep .mat-form-field-appearance-fill .mat-form-field-infix {
+  padding: 0 !important;
+  border: none !important;
+}
+.item-info-timer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
