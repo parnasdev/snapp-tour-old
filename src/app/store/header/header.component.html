@@ -1,4 +1,5 @@
-<header>
+<!--desktop-->
+<header  class="desktop-header">
   <div class="prs-responsive">
     <div class="container-fluid">
       <div class="row">
@@ -60,3 +61,60 @@
     </div>
   </div>
 </header>
+<!--end-->
+
+
+<!--mobile-header-->
+<header class="mobi-header">
+  <div class="nav-mobi">
+    <div class="top">
+      <div class="menu">
+        <i class="icon-align-right icon-menu"></i>
+      </div>
+      <div class="logo-web-mobi">
+        <img src="assets/img/hamnavaz-logo.png" width="80" alt="">
+      </div>
+        <a class="btn-login-register" routerLink="/auth" *ngIf="!session.isLoggedIn()">
+          <span>عضویت و ورود</span>
+        </a>
+        <a class="btn-login-register" (click)="logOut()" *ngIf="session.isLoggedIn()">
+          <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>
+          <span>خوش آمدید / خروج</span>
+        </a>
+    </div>
+  </div>
+</header>
+<div class="menu-box-mobi">
+  <ul class="ul-menu-mobile">
+    <li class="li-menu">
+      <a class="menu-item-mobile" href="">
+        <img src="assets/img/Home.svg" width="17" alt="">
+        صفحه اصلی
+        <i class="icon-circle icon-active-header"></i>
+      </a>
+    </li>
+    <li class="li-menu">
+      <a class="menu-item-mobile" href="">
+        <img src="assets/img/Location.svg" width="17" alt="">
+        تور ها
+        <i class="icon-circle icon-active-header"></i>
+
+      </a>
+    </li>
+    <li class="li-menu">
+      <a class="menu-item-mobile" href="">
+        <img src="assets/img/Dish.svg" width="17" alt="">
+        هتل
+        <i class="icon-circle icon-active-header"></i>
+      </a>
+    </li>
+    <li class="li-menu">
+      <a class="menu-item-mobile" routerLink="/blog">
+        <img src="assets/img/Document%20Align%20Center%201.svg" width="17" alt="">
+        وبلاگ
+        <i class="icon-circle icon-active-header"></i>
+      </a>
+    </li>
+  </ul>
+</div>
+<!--end-->

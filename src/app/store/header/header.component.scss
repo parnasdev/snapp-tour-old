@@ -100,15 +100,98 @@ header {
 .btn-login-register {
   display: flex;
   align-items: center;
-  width: 140px;
+  width: auto;
+  padding: 0 12px;
   height: 38px;
   font-size: 20px;
   border-radius: var(--radius-btn);
   color: var(--white);
-  padding-right: 10px;
   background-color: var(--base-color-three);
 }
 
 .btn-login-register span {
   margin-right: 10px;
+}
+
+
+.mobi-header {
+  display: none;
+}
+
+.menu-box-mobi {
+  display: none;
+}
+
+@media only screen and (max-width: 868px) {
+  .desktop-header {
+    display: none;
+  }
+  .mobi-header {
+    display: flex !important;
+    height: 70px;
+    align-items: center;
+  }
+  .nav-mobi {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .nav-mobi .top {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px;
+  }
+  .nav-mobi .menu i {
+    font-size: 18px;
+  }
+  .nav-mobi .menu {
+    width: 30%;
+  }
+  .btn-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 110px;
+    height: 33px;
+    border-radius: 10px;
+    background-color: var(--light-color-two);
+    padding: 0 2px;
+    margin-left: 0;
+  }
+  .menu-box-mobi {
+    display: none;
+    padding: 0;
+    margin-bottom: 12px;
+    background-color: var(--title-color);
+    width: 100%;
+  }
+  .menu-box-mobi ul {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  .menu-box-mobi ul li {
+    margin: 8px 0;
+  }
+  .menu-box-mobi ul li a {
+    color: var(--white);
+    font-size: 13px;
+  }
+  .btn-login-register {
+    width: 120px !important;
+    font-size: 11px !important;
+    padding: 0 3px !important;
+  }
+  .menu-item-mobile {
+    color: var(--gray-color-dark) !important;
+    position: relative;
+  }
+  .ul-menu-mobile{
+    background-color: var(--light-color-two);
+  }
+
 }
