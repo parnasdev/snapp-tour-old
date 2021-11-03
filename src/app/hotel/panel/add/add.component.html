@@ -32,9 +32,8 @@
             <label for="">شهر</label>
             <div class="selectdiv">
               <select [formControl]="cityFC" name="" id="">
-                <option value="1">تهران</option>
-                <option value="2">اصفهان</option>
-                <option value="3">شیراز</option>
+                <option *ngFor="let city of citiesResponse" [value]="city.id">{{city.name}}</option>
+
               </select>
             </div>
           </div>
@@ -81,17 +80,16 @@
       <div class="info-tour-body-upload">
         <div class="top-one">
           <div class="item-info w-100">
-            <label for="">تصویر خود را آپلود کنید</label>
-            <prs-upload-single></prs-upload-single>
+            <button (click)="getThumbnail()">تصویر خود را آپلود کنید</button>
           </div>
           <div class="single-img-upload-parent">
-            <img src="assets/img/12123131.png" width="100%" height="200" alt="">
+            <img [src]="thumbnail" width="100%" height="200" alt="">
           </div>
         </div>
         <div class="bottom-one">
           <div class="item-info w-100">
             <label for="">تصاویر خود را آپلود کنید</label>
-<!--            <prs-upload-file ></prs-upload-file>-->
+            <!--            <prs-upload-file ></prs-upload-file>-->
             <div class="d-flex">
               <img *ngFor="let img of images" [src]="img" width="50" alt="">
             </div>
@@ -125,7 +123,9 @@
         </div>
       </div>
     </div>
-
+    <div class="box-info-fly">
+      <prs-services [services]="services" (result)="getServicesResult($event)"></prs-services>
+    </div>
     <div class="box-info-fly">
       <div class="info-tour-header">
         <div class="right">
@@ -144,7 +144,7 @@
 
     <div class="btn-parent-submit">
 
-        <button class="submit-tour" (click)="add()">ثبت هتل</button>
+      <button class="submit-tour" (click)="add()">ثبت هتل</button>
     </div>
   </form>
 

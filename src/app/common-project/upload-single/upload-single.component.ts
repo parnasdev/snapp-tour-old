@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {NgForm} from "@angular/forms";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'prs-upload-single',
@@ -11,7 +12,9 @@ import {NgForm} from "@angular/forms";
 export class UploadSingleComponent implements OnInit {
 
   loadAPI:Promise<any>;
-  constructor(private http: HttpClient,private router: Router){
+  constructor(public dialogRef: MatDialogRef<UploadSingleComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              private http: HttpClient,private router: Router){
     this.loadAPI=new Promise((resoleve)=>{
       this.loadScript();
       resoleve(true);
@@ -75,5 +78,12 @@ export class UploadSingleComponent implements OnInit {
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
+  }
+
+  submit():void {
+    // @ts-ignore
+    const val = document.getElementById("photoImage").src;
+    console.log(val)
+    this.dialogRef.close(val)
   }
 }

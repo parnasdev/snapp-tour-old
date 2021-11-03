@@ -1,23 +1,14 @@
 <section class="section mt-5">
   <div class="container">
-    <hr />
-    <form class="text-right">
+    <hr/>
       <div class="form-group text-center">
-        <img id="photoImage" src="/assets/image/empty_650X350.png" class="img-thumbnail d-block m-auto" />
-        <input  type="hidden" name="photo" id="photo">
-        <a href="http://tour-api.parnasweb.com/filemanager/dialog.php?type=0&crossdomain=1&akey=key&field_id=photo&relative_url=1&multiple=0"  class="btn btn-primary text-white mt-3 iframe-btn d-inline-block"><i class="fa fa-folder-open ml-1"></i> انتخاب تصویر </a>
+        <img id="photoImage" name="photoImage" src="assets/img/Bookmark.svg" class="img-thumbnail d-block m-auto" />
+        <input type="hidden" name="context">
+        <a href="http://tour-api.parnasweb.com/filemanager/dialog.php?type=0&crossdomain=1&akey=key&field_id=photo&relative_url=1&multiple=0"
+           class="btn btn-primary text-white mt-3 iframe-btn d-inline-block">
+          <i class="fa fa-folder-open ml-1"></i> انتخاب تصویر </a>
         <a href="#" id="remove-btn" class="btn btn-danger text-white mt-3 d-none mr-2"><i class="fa fa-remove ml-1"></i>حذف تصویر </a>
       </div>
-      <div class="form-group">
-        <label>عنوان:</label>
-        <input type="text" class="form-control" >
-      </div>
-      <div class="form-group">
-        <label>متن:</label>
-        <input type="hidden" name="context" id="context" />
-        <textarea  id="wysiwyg_ckeditor"  class="form-control editor" ></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary">ذخیره</button>
-    </form>
+      <button type="submit" (click)="submit()" class="btn btn-primary">ذخیره</button>
   </div>
 </section>

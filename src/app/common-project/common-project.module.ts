@@ -5,7 +5,7 @@ import {UploaderComponent} from "./uploader/uploader.component";
 import {GetLatLongComponent} from "./get-lat-long/get-lat-long.component";
 import {GetLocationComponent} from "./get-location/get-location.component";
 import { TimePickerComponent } from './time-picker/time-picker.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { UploadSingleComponent } from './upload-single/upload-single.component';
 
 
@@ -19,8 +19,9 @@ import { UploadSingleComponent } from './upload-single/upload-single.component';
     ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    FormsModule,
+  ],entryComponents: [UploadSingleComponent]
 })
 export class CommonProjectModule {
 }

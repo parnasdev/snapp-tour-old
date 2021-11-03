@@ -9,8 +9,11 @@ import {PublicService} from "../../../Core/Services/public.service";
 import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {MapApiService} from "../../../Core/Https/map-api.service";
 import {MapReverseDTO} from "../../../Core/Models/mapDTO";
-import {CityDTO, CityResponseDTO, MapCityResponseDTO} from "../../../Core/Models/cityDTO";
-import {HotelSetRequestDTO} from "../../../Core/Models/hotelDTO";
+import {CityDTO, CityListRequestDTO, CityResponseDTO, MapCityResponseDTO} from "../../../Core/Models/cityDTO";
+import {HotelSetRequestDTO, ServiceDTO} from "../../../Core/Models/hotelDTO";
+import {CityApiService} from "../../../Core/Https/city-api.service";
+import {MatDialog} from "@angular/material/dialog";
+import {UploadSingleComponent} from "../../../common-project/upload-single/upload-single.component";
 
 @Component({
   selector: 'prs-add',
@@ -30,6 +33,8 @@ export class AddComponent implements OnInit {
   lng = 0;
   reverseAddressData!: MapReverseDTO;
   cities: CityDTO[] = [];
+  citiesResponse: CityResponseDTO[] = []
+
   public show = true;
   req: HotelSetRequestDTO = {
     name: '',
@@ -57,13 +62,16 @@ export class AddComponent implements OnInit {
   }
   images: any[] = [];
   thumbnail = ''
-  services: any[] = []
+  services: ServiceDTO[] = []
+  serviceIDs: string[] = [];
 
   constructor(private route: ActivatedRoute,
               private router: Router,
+              public cityApiService: CityApiService,
               public hotelApi: HotelApiService,
               public message: MessageService,
               public commonApi: CommonApiService,
+              public dialog: MatDialog,
               public session: SessionService,
               public calenderServices: CalenderServices,
               public publicServices: PublicService,
@@ -74,6 +82,7 @@ export class AddComponent implements OnInit {
 
   ngOnInit(): void {
     this.getServices();
+    this.getCities()
   }
 
 
@@ -112,20 +121,34 @@ export class AddComponent implements OnInit {
         lat: this.lat,
         lng: this.lng
       },
-      thumbnail: '',
+      thumbnail: this.thumbnail,
       images: [],
       body: this.bodyFC.value,
       services: [
         {
           name: 'GroupName',
-          ids: [
-            "2",
-            "3"
-          ]
+          ids: this.serviceIDs
         }
       ],
       status: this.statusFC.value
     }
+  }
+
+  getCities(): void {
+    const req: CityListRequestDTO = {
+      type: true,
+      hasHotel: false,
+      hasTour: false,
+      search: null,
+      perPage: 20
+    }
+    this.cityApiService.getCities(req).subscribe((res: any) => {
+      if (res.isDone) {
+        this.citiesResponse = res.data;
+      }
+    }, (error: any) => {
+      this.message.error()
+    })
   }
 
 
@@ -134,9 +157,10 @@ export class AddComponent implements OnInit {
     setTimeout(() => this.show = true);
   }
 
-  getThumbnail(imageStr: string): void {
-    this.thumbnail = imageStr
-  }
+  //
+  // getThumbnail(imageStr: string): void {
+  //   this.thumbnail = imageStr
+  // }
 
   getImage(imageStr: string): void {
     this.images.push(imageStr)
@@ -145,7 +169,7 @@ export class AddComponent implements OnInit {
   getServices(): void {
     this.hotelApi.getServices().subscribe((res: any) => {
       if (res.isDone) {
-        console.log(res);
+        this.services = res.data;
       } else {
         this.message.custom(res.message)
       }
@@ -154,17 +178,35 @@ export class AddComponent implements OnInit {
 
     })
   }
+
   add(): void {
     this.setReq()
+    console.log(this.req)
     this.hotelApi.add(this.req).subscribe((res: any) => {
       if (res.isDone) {
-        console.log(res);
+        this.message.showMessageBig(res.message);
+        this.router.navigateByUrl('hotel/list')
       } else {
         this.message.custom(res.message)
       }
     }, (error: any) => {
       this.message.error()
 
+    })
+  }
+
+  getServicesResult(services: any): void {
+    this.serviceIDs = [];
+    services.forEach((x: any) => {
+      this.serviceIDs.push(x.id.toString());
+    })
+  }
+
+  getThumbnail(): void {
+    const dialog = this.dialog.open(UploadSingleComponent, {});
+    dialog.afterClosed().subscribe(result => {
+      console.log(result);
+      this.thumbnail = result
     })
   }
 }

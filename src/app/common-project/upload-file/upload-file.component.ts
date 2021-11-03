@@ -65,15 +65,5 @@ export class UploadFileComponent implements OnInit {
   changeInput():void {
     // @ts-ignore
     const val = document.getElementById("gallery").value;
-    // @ts-ignore
-    document.getElementById('gallery').onchange(event => {
-      console.log('gggggggggggggggggggggggg')
-    })
-
-    // @ts-ignore
-    document.getElementById('gallery').addEventListener('change', function (evt) {
-      console.log('onchange event listener')
-    });
-
   }
 }

@@ -72,3 +72,9 @@ export interface HotelListResponseDTO {
   stars: string
   thumbnail: string
 }
+
+export interface ServiceDTO {
+  id: number;
+  name: string;
+  checked? :boolean;
+}
