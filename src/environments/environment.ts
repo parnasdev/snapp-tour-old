@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  BACK_END_IP: 'https://aliganjizadeh.ir/api/v1/',
+  BACK_END_IP: 'http://tour-api.parnasweb.com/api/v1/',
   VERSION: '0.1'
 };
 /*

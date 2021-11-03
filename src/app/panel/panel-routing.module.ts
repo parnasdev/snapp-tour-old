@@ -20,6 +20,9 @@ const routes: Routes = [
       {
         path: 'hotel',
         loadChildren: () => import('../hotel/panel/hotel-panel.module').then(m => m.HotelPanelModule)
+      },{
+        path: 'file-manager',
+        loadChildren: () => import('../file-manager/file-manager.module').then(m => m.FileManagerModule)
       }
     ]
   }

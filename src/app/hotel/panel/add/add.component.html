@@ -82,7 +82,7 @@
         <div class="top-one">
           <div class="item-info w-100">
             <label for="">تصویر خود را آپلود کنید</label>
-            <prs-upload-file (fileDTO)="getThumbnail($event)"></prs-upload-file>
+            <prs-upload-file ></prs-upload-file>
           </div>
           <div class="single-img-upload-parent">
             <img src="assets/img/12123131.png" width="100%" height="200" alt="">
@@ -91,7 +91,7 @@
         <div class="bottom-one">
           <div class="item-info w-100">
             <label for="">تصاویر خود را آپلود کنید</label>
-            <prs-upload-file (fileDTO)="getImage($event)"></prs-upload-file>
+            <prs-upload-file ></prs-upload-file>
             <div class="d-flex">
               <img *ngFor="let img of images" [src]="img" width="50" alt="">
             </div>

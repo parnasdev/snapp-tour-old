@@ -4,11 +4,11 @@ import {HttpClient, HttpHeaders } from '@angular/common/http';
 import {Router} from "@angular/router"
 
 @Component({
-    selector: 'prs-upload-file',
-    templateUrl: './upload-file.component.html',
-    styleUrls: ['./upload-file.component.scss']
+  selector: 'app-gallery-create',
+  templateUrl: './gallery-create.component.html',
+  styleUrls: ['./gallery-create.component.css']
 })
-export class UploadFileComponent implements OnInit {
+export class GalleryCreateComponent implements OnInit {
   loadAPI:Promise<any>;
   constructor(private http: HttpClient,private router: Router){
     this.loadAPI=new Promise((resoleve)=>{
@@ -23,15 +23,16 @@ export class UploadFileComponent implements OnInit {
     var  self=this;
 
     form.value.gallery=(document.getElementById('gallery') as HTMLInputElement).value;
-    return this.http.post('http://tour-api.parnasweb.com/api/galleries', JSON.stringify(form.value), {headers: this.headers})
+
+    return this.http.post('tour-api.parnasweb.com/api/galleries', JSON.stringify(form.value), {headers: this.headers})
       .toPromise()
       .then(function (res) {
         console.log(res)
         self.router.navigate(['/galleries']);
+
       })
       .catch(this.handleError);
   }
-
   public loadScript(){
     var dynamicScripts=[
       'assets/js/custom/gallery.js',

@@ -14,8 +14,7 @@ export class TimePickerComponent implements OnInit {
   minute = 0
   @Output() result = new EventEmitter()
   pattern = /^-?(0|[0-9]\d*)?$/;
-  constructor(public message: MessageService) {
-  }
+  constructor(public message: MessageService) {}
 
   ngOnInit(): void {
   }
@@ -33,9 +32,9 @@ export class TimePickerComponent implements OnInit {
         this.hour = 23;
         this.hourFC.setValue(this.formatter(this.hour))
       }
-
-
     }
+    this.result.emit({hour: this.hourFC.value, minute: this.minuteFC.value})
+
   }
 
   increaseHour(): void {
@@ -50,9 +49,11 @@ export class TimePickerComponent implements OnInit {
         this.hour++
         this.hourFC.setValue(this.formatter(this.hour))
       }
-
     }
+    this.result.emit({hour: this.hourFC.value, minute: this.minuteFC.value})
+
   }
+
   increaseMinutes(): void {
     if (+this.minuteFC.value === 59) {
       this.minute = 0;
@@ -66,6 +67,8 @@ export class TimePickerComponent implements OnInit {
         this.minuteFC.setValue(this.formatter(this.minute))
       }
     }
+    this.result.emit({hour: this.hourFC.value, minute: this.minuteFC.value})
+
   }
 
   decreaseMinutes(): void {
@@ -83,6 +86,8 @@ export class TimePickerComponent implements OnInit {
         this.minuteFC.setValue(this.formatter(this.minute))
       }
     }
+    this.result.emit({hour: this.hourFC.value, minute: this.minuteFC.value})
+
   }
 
   minutesChanged(event: any): void {

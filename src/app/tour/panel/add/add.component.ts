@@ -45,6 +45,10 @@ export class AddComponent implements OnInit {
   destDateFC = new FormControl();
   destTimeFC = new FormControl();
   airlines: any[] = []
+  originTime = ''
+  destTime = ''
+  originTransferFC = new FormControl();
+  destTransferFC = new FormControl();
 
   constructor(
     public hotelApi: HotelApiService,
@@ -194,11 +198,11 @@ export class AddComponent implements OnInit {
       dayNum: this.form.value.dayNum,
       transfer: [{
         transfer_id: '',
-        dateTime: '',
+        dateTime: this.originDateFC.value + ' ' + this.originTime,
         type: 'origin',
       }, {
         transfer_id: '',
-        dateTime: '',
+        dateTime: this.destDateFC.value + ' ' + this.destTime,
         type: 'destination',
       },],
       enDate: this.form.value.enDate,
@@ -278,7 +282,7 @@ export class AddComponent implements OnInit {
 
   getCities(): void {
     const req: CityListRequestDTO = {
-      type: false,
+      type: true,
       hasHotel: false,
       hasTour: false,
       search: null,
@@ -314,6 +318,20 @@ export class AddComponent implements OnInit {
   cityDesChanged(): void {
     this.cityID = this.form.value.endCity_id
     this.getHotels();
+  }
+
+  getOriginTime(event: any): void {
+    console.log(event)
+    if (event) {
+      this.originTime = event.hour + ' ' + event.minute;
+    }
+  }
+
+  getDestTime(event: any): void {
+    console.log(event)
+    if (event) {
+      this.destTime = event.hour + ' ' + event.minute;
+    }
   }
 }
 
