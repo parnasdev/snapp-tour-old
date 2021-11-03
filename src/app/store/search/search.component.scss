@@ -30,7 +30,7 @@
   color: #fff;
 }
 
-.parent-box-search h2 {
+.parent-box-search h1 {
   color: #fff;
   font-size: 22px;
   margin-top: 10px;
@@ -93,4 +93,10 @@
   font-size: 18px;
   font-weight: 300;
   color: var(--base-color);
+}
+:host::ng-deep .mat-input-element{
+  text-align: right !important;
+}
+:host::ng-deep .mat-form-field-underline {
+  display: none;
 }
