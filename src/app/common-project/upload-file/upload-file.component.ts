@@ -19,6 +19,10 @@ export class UploadFileComponent implements OnInit {
   }
   private headers = new HttpHeaders({'Content-Type': 'application/json'});
   ngOnInit(): void {
+    // @ts-ignore
+    document.getElementById('gallery').onchange(event => {
+      console.log('gggggggggggggggggggggggg')
+    })
   }
   onSubmit(form: NgForm){
     var  self=this;
@@ -61,6 +65,15 @@ export class UploadFileComponent implements OnInit {
   changeInput():void {
     // @ts-ignore
     const val = document.getElementById("gallery").value;
-    console.log(JSON.parse(val))
+    // @ts-ignore
+    document.getElementById('gallery').onchange(event => {
+      console.log('gggggggggggggggggggggggg')
+    })
+
+    // @ts-ignore
+    document.getElementById('gallery').addEventListener('change', function (evt) {
+      console.log('onchange event listener')
+    });
+
   }
 }

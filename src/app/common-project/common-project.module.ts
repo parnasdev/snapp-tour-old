@@ -6,14 +6,16 @@ import {GetLatLongComponent} from "./get-lat-long/get-lat-long.component";
 import {GetLocationComponent} from "./get-location/get-location.component";
 import { TimePickerComponent } from './time-picker/time-picker.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { UploadSingleComponent } from './upload-single/upload-single.component';
 
 
 @NgModule({
-  declarations: [UploadFileComponent, UploaderComponent, GetLatLongComponent, GetLocationComponent, TimePickerComponent],
+  declarations: [UploadFileComponent, UploaderComponent, GetLatLongComponent, GetLocationComponent, TimePickerComponent, UploadSingleComponent],
     exports: [
         UploadFileComponent,
         GetLocationComponent,
-        TimePickerComponent
+        TimePickerComponent,
+        UploadSingleComponent
     ],
   imports: [
     CommonModule,
