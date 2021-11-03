@@ -22,7 +22,6 @@ export class AddComponent implements OnInit {
   nameEnFC = new FormControl('test-name-hotel');
   cityFC = new FormControl('1');
   statusFC = new FormControl('show');
-  starFC = new FormControl('5');
   locationFC = new FormControl('تهرانپارس');
   addressFC = new FormControl('باقری 182 غربی پلاک 1');
   bodyFC = new FormControl('تست توضیحات');
@@ -106,7 +105,7 @@ export class AddComponent implements OnInit {
       slug: this.nameFC.value.replace(' ', '-'),
       slugEn: this.nameEnFC.value.replace(' ', '-'),
       city_id: this.cityFC.value,
-      stars: this.starFC.value,
+      stars: this.currentStar,
       location: this.locationFC.value,
       address: this.addressFC.value,
       coordinate: {

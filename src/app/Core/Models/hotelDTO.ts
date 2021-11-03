@@ -4,7 +4,7 @@ export interface HotelSetRequestDTO {
   slug: string;
   slugEn: string;
   city_id: string;
-  stars: 3;
+  stars: number;
   location: string;
   address: string;
   coordinate: {
