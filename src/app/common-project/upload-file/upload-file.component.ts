@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm } from "@angular/forms";
+import {FormControl, NgForm} from "@angular/forms";
 import {HttpClient, HttpHeaders } from '@angular/common/http';
 import {Router} from "@angular/router"
 
@@ -10,6 +10,7 @@ import {Router} from "@angular/router"
 })
 export class UploadFileComponent implements OnInit {
   loadAPI:Promise<any>;
+  galleryFC = new FormControl();
   constructor(private http: HttpClient,private router: Router){
     this.loadAPI=new Promise((resoleve)=>{
       this.loadScript();
@@ -55,5 +56,11 @@ export class UploadFileComponent implements OnInit {
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);
+  }
+
+  changeInput():void {
+    // @ts-ignore
+    const val = document.getElementById("gallery").value;
+    console.log(JSON.parse(val))
   }
 }
