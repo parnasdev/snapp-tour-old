@@ -171,8 +171,9 @@ header {
     display: flex;
     flex-direction: column;
     width: 100%;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    padding: 0 1rem !important;
   }
   .menu-box-mobi ul li {
     margin: 8px 0;
@@ -182,9 +183,9 @@ header {
     font-size: 13px;
   }
   .btn-login-register {
-    width: 120px !important;
+    width: auto !important;
     font-size: 11px !important;
-    padding: 0 3px !important;
+    padding: 0 10px !important;
   }
   .menu-item-mobile {
     color: var(--gray-color-dark) !important;
@@ -193,5 +194,7 @@ header {
   .ul-menu-mobile{
     background-color: var(--light-color-two);
   }
-
+  .btn-login-register span {
+    margin-right: 0;
+  }
 }

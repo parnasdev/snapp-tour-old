@@ -538,3 +538,85 @@ footer {
   height: 100% !important;
   width: 100% !important;
 }
+
+
+//mobile
+@media only screen and (max-width: 415px){
+  .form-footer {
+    width: 100%;
+  }
+  .map-location {
+    display: flex;
+    justify-content: center;
+  }
+  .map-location iframe{
+    width: 95%;
+  }
+  .info-box-right {
+    width: 95%;
+  }
+  .list-menu-footer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-right: 0;
+  }
+  .list-menu-footer li{
+    width: 49%;
+  }
+  .parent-footer-bottom .right, .parent-footer-bottom .left {
+    margin-top: 1rem;
+  }
+  .text-copy p, .text-copy span {
+    color: #000;
+  }
+  .parnas-footer img{
+    width: 40px;
+  }
+  .parnas-footer{
+    margin-bottom: 8px;
+  }
+  .text-parnas-design .design {
+    font-size: 11px !important;
+  }
+  .text-parnas-design .parnas-agency {
+    font-size: 11px !important;
+  }
+}
+
+
+
+//tablet
+@media only screen and (min-width: 416px) and (max-width: 868px) {
+  .form-footer {
+    width: 80%;
+  }
+  .map-location {
+    display: flex;
+    justify-content: center;
+  }
+  .map-location iframe{
+    width: 95%;
+  }
+  .info-box-right {
+    width: 95%;
+  }
+  .list-menu-footer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-right: 0;
+  }
+  .list-menu-footer li{
+    width: 33%;
+  }
+  .parent-footer-bottom .right, .parent-footer-bottom .left {
+    margin-top: 1rem;
+  }
+  .text-copy p, .text-copy span {
+    color: #000;
+  }
+  .img-hologram .img img {
+    width: 69%;
+  }
+}
