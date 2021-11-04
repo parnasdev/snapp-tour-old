@@ -79,7 +79,11 @@
         </a>
         <a class="btn-login-register" (click)="logOut()" *ngIf="session.isLoggedIn()">
           <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>
-          <span>خوش آمدید / خروج</span>
+          <span>
+          <i class="icon-user"></i>
+            /
+            خروج
+          </span>
         </a>
     </div>
   </div>

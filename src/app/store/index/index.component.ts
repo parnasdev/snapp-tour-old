@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import SwiperCore, {Navigation, Pagination, Scrollbar, A11y} from 'swiper';
+import {ResponsiveService} from "../../Core/Services/responsive.service";
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 declare let $: any;
@@ -10,8 +11,13 @@ declare let $: any;
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
-
-  constructor() {
+  isMobile;
+  isTablet;
+  constructor(
+    public responsiveService: ResponsiveService
+  ) {
+    this.isMobile = responsiveService.isMobile();
+    this.isTablet = responsiveService.isTablet();
   }
 
   ngOnInit(): void {

@@ -100,3 +100,26 @@
 :host::ng-deep .mat-form-field-underline {
   display: none;
 }
+
+@media only screen and (max-width: 868px){
+  .box-search {
+    width: 100%;
+    flex-wrap: wrap;
+    margin-top: 0;
+  }
+  .parent-box-search h1 {
+    font-size: 18px;
+  }
+  .box-search .inp-form {
+    width: 48% !important;
+  }
+  .btn-search {
+    margin: 1rem auto 0 auto;
+  }
+  .parent-box-search {
+    padding-top: 1rem;
+  }
+  .icon-scroll-down {
+    top: 8px;
+  }
+}
