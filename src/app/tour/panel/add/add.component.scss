@@ -131,7 +131,15 @@
   height: 40px;
   width: 100%;
 }
-
+.header-box-two{
+  display: grid;
+  grid-template-columns: 0.5fr 1.7fr 1fr 1.2fr 1.2fr 1.2fr 1.2fr 1.2fr 0.5fr 1fr 1fr;
+}
+.body-foreign{
+  display: grid;
+  grid-template-columns: 0.5fr 1.7fr 1fr 1.2fr 1.2fr 1.2fr 1.2fr 1.2fr 0.5fr 1fr 1fr;
+  width: 100%;
+}
 .header-box .package-item {
   height: 100%;
   display: flex;

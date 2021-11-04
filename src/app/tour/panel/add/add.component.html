@@ -286,7 +286,7 @@
 
         </div>
         <!--            foreign tour-->
-        <div class="header-box" *ngIf="!destCityTypeFC.value">
+        <div class="header-box-two" *ngIf="!destCityTypeFC.value">
           <div class="package-item">#</div>
           <div class="package-item">نام هتل</div>
           <div class="package-item">خدمات</div>
@@ -333,7 +333,7 @@
              </div>
            </ng-template>
 <!--            foreign tour-->
-            <ng-template [ngIf]="!destCityTypeFC.value">
+            <ng-template class="body-foreign" [ngIf]="!destCityTypeFC.value">
              <div class="package-item">
                <input type="number" formControlName="services">
              </div>
