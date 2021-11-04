@@ -14,7 +14,7 @@ export interface HotelSetRequestDTO {
     lng: number
   };
   thumbnail: string;
-  images: [];
+  images: any[];
   body: string;
   services: [
     {

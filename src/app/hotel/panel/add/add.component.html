@@ -89,36 +89,17 @@
         <div class="bottom-one">
           <div class="item-info w-100">
             <label for="">تصاویر خود را آپلود کنید</label>
-            <!--            <prs-upload-file ></prs-upload-file>-->
-            <div class="d-flex">
-              <img *ngFor="let img of images" [src]="img" width="50" alt="">
-            </div>
+            <button (click)="getImages()">تصاویر خود را آپلود کنید</button>
+<!--            <div class="d-flex">-->
+<!--              <img *ngFor="let img of images" [src]="img" width="50" alt="">-->
+<!--            </div>-->
           </div>
           <div class="multi-img-upload-parent">
-            <div class="images">
-              <img src="assets/img/12123131.png" alt="">
-              <i class="icon-cancel-1"></i>
+            <div class="images" *ngFor="let img of images;let i = index">
+              <img [src]="img" alt="">
+              <i class="icon-cancel-1" (click)="removeImage(i)"></i>
             </div>
-            <div class="images">
-              <img src="assets/img/12123131.png" alt="">
-              <i class="icon-cancel-1"></i>
-            </div>
-            <div class="images">
-              <img src="assets/img/12123131.png" alt="">
-              <i class="icon-cancel-1"></i>
-            </div>
-            <div class="images">
-              <img src="assets/img/12123131.png" alt="">
-              <i class="icon-cancel-1"></i>
-            </div>
-            <div class="images">
-              <img src="assets/img/12123131.png" alt="">
-              <i class="icon-cancel-1"></i>
-            </div>
-            <div class="images">
-              <img src="assets/img/12123131.png" alt="">
-              <i class="icon-cancel-1"></i>
-            </div>
+
           </div>
         </div>
       </div>

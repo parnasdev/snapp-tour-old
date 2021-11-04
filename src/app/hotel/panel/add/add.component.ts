@@ -14,6 +14,7 @@ import {HotelSetRequestDTO, ServiceDTO} from "../../../Core/Models/hotelDTO";
 import {CityApiService} from "../../../Core/Https/city-api.service";
 import {MatDialog} from "@angular/material/dialog";
 import {UploadSingleComponent} from "../../../common-project/upload-single/upload-single.component";
+import {MultipleUploadComponent} from "../../../common-project/multiple-upload/multiple-upload.component";
 
 @Component({
   selector: 'prs-add',
@@ -122,7 +123,7 @@ export class AddComponent implements OnInit {
         lng: this.lng
       },
       thumbnail: this.thumbnail,
-      images: [],
+      images: this.images,
       body: this.bodyFC.value,
       services: [
         {
@@ -209,8 +210,17 @@ export class AddComponent implements OnInit {
       this.thumbnail = result
     })
   }
+  getImages(): void {
+    const dialog = this.dialog.open(MultipleUploadComponent, {});
+    dialog.afterClosed().subscribe((result:any[]) => {
+      console.log(result);
+      result.forEach(x => {
+        this.images.push(x.path);
+      })
 
-  getFiles(event: string[]): void {
-    console.log(event)
+    })
+  }
+  removeImage(index: any):void {
+    this.images.splice(index,-1);
   }
 }
