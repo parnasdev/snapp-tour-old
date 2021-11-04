@@ -12,12 +12,14 @@
           <div class="selectdiv">
             <label>
               <select formControlName="status">
-                <option selected> منتشر نشود</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+                <option value="show"> منتشر میشود</option>
+                <option value="draft" selected> منتشر نشود</option>
               </select>
             </label>
+          </div>
+
+          <div  *ngIf="errorService.hasError('status')">
+            <span class="text-danger">{{errorService.getError('status')}}</span>
           </div>
         </div>
       </div>
@@ -26,6 +28,9 @@
           <div class="item-info">
             <label for="">عنوان تور</label>
             <input formControlName="title" type="text">
+            <div  *ngIf="errorService.hasError('title')">
+              <span class="text-danger">{{errorService.getError('title')}}</span>
+            </div>
           </div>
           <div class="item-info-2">
             <div class="select-info">
@@ -41,6 +46,9 @@
 
               </select>
             </div>
+            <div  *ngIf="errorService.hasError('stCity_id')">
+              <span class="text-danger">{{errorService.getError('stCity_id')}}</span>
+            </div>
             <div class="select-info">
               <label for="">شهر مقصد</label>
               <mat-button-toggle-group name="fontStyle" [formControl]="destCityTypeFC" (change)="destCityTypeChange()"
@@ -52,6 +60,9 @@
                 <option *ngFor="let city of destCities" [value]="city.id">{{city.name}}</option>
 
               </select>
+              <div  *ngIf="errorService.hasError('endCity_id')">
+                <span class="text-danger">{{errorService.getError('endCity_id')}}</span>
+              </div>
             </div>
 
           </div>
@@ -69,6 +80,9 @@
                 <option value="8">8</option>
                 <option value="9">9</option>
               </select>
+              <div  *ngIf="errorService.hasError('nightNum')">
+                <span class="text-danger">{{errorService.getError('nightNum')}}</span>
+              </div>
             </div>
             <div class="select-info">
               <label for="">تعداد روز</label>
@@ -83,6 +97,9 @@
                 <option value="8">8</option>
                 <option value="9">9</option>
               </select>
+              <div  *ngIf="errorService.hasError('dayNum')">
+                <span class="text-danger">{{errorService.getError('dayNum')}}</span>
+              </div>
             </div>
 
           </div>
@@ -91,9 +108,12 @@
           <div class="item-info">
             <label for="">تاریخ ورود به هتل</label>
             <mat-form-field class="example-full-width" appearance="fill">
-              <input matInput [matDatepicker]="picker1" (click)="picker1.open()">
+              <input matInput [matDatepicker]="picker1" formControlName="stDate" (click)="picker1.open()">
               <mat-datepicker #picker1></mat-datepicker>
             </mat-form-field>
+            <div  *ngIf="errorService.hasError('stDate')">
+              <span class="text-danger">{{errorService.getError('stDate')}}</span>
+            </div>
           </div>
           <div class="item-info">
             <label for="">تاریخ خروج از هتل</label>
@@ -101,6 +121,9 @@
               <input matInput formControlName="enDate" [matDatepicker]="picker2" (click)="picker2.open()">
               <mat-datepicker #picker2></mat-datepicker>
             </mat-form-field>
+            <div  *ngIf="errorService.hasError('enDate')">
+              <span class="text-danger">{{errorService.getError('enDate')}}</span>
+            </div>
           </div>
           <div class="item-info">
             <label for="">تاریخ انقضا پکیج</label>
@@ -108,6 +131,9 @@
               <input matInput formControlName="expireDate" [matDatepicker]="picker3" (click)="picker3.open()">
               <mat-datepicker #picker3></mat-datepicker>
             </mat-form-field>
+            <div  *ngIf="errorService.hasError('expireDate')">
+              <span class="text-danger">{{errorService.getError('expireDate')}}</span>
+            </div>
           </div>
 
         </div>
@@ -129,6 +155,7 @@
               <input matInput [matDatepicker]="picker4" [formControl]="originDateFC" (click)="picker4.open()">
               <mat-datepicker #picker4></mat-datepicker>
             </mat-form-field>
+
           </div>
           <div class="item-info-timer">
             <label for="">ساعت پرواز رفت</label>
@@ -371,10 +398,19 @@
       <div class="details-body-tour">
         <div class="textarea">
           <textarea formControlName="services" name="" cols="30" rows="10" placeholder="خدمات"></textarea>
+          <div  *ngIf="errorService.hasError('services')">
+            <span class="text-danger">{{errorService.getError('services')}}</span>
+          </div>
           <textarea formControlName="documents" name="" cols="30" rows="10"
                     placeholder="مدارک مورد نیاز"></textarea>
+          <div  *ngIf="errorService.hasError('documents')">
+            <span class="text-danger">{{errorService.getError('documents')}}</span>
+          </div>
           <textarea formControlName="description" name="" cols="30" rows="10"
                     placeholder="توضیحات تکمیلی"></textarea>
+          <div  *ngIf="errorService.hasError('description')">
+            <span class="text-danger">{{errorService.getError('description')}}</span>
+          </div>
         </div>
         <button  class="submit-tour" (click)="submit()">ثبت تور</button>
       </div>

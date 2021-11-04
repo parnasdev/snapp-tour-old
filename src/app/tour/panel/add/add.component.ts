@@ -16,6 +16,9 @@ import {TransferAPIService} from "../../../Core/Https/transfer-api.service";
 import {TransferListRequestDTO} from "../../../Core/Models/transferDTO";
 import {TourApiService} from "../../../Core/Https/tour-api.service";
 import {Router} from "@angular/router";
+import {TourSetRequestDTO} from "../../../Core/Models/tourDTO";
+import {ErrorsService} from "../../../Core/Services/errors.service";
+import {CheckErrorService} from "../../../Core/Services/check-error.service";
 
 @Component({
   selector: 'prs-add',
@@ -29,7 +32,7 @@ export class AddComponent implements OnInit {
   minDate = new Date(); //datepicker
 
   filteredhotel: Observable<any[]>[] = [];
-  tourReqDTO: any;
+  tourReqDTO!: TourSetRequestDTO;
   addResponse: any;
   typeTour: any;
   user: any;
@@ -61,6 +64,8 @@ export class AddComponent implements OnInit {
     public transferApi: TransferAPIService,
     public message: MessageService,
     public tourApi: TourApiService,
+    public checkError: CheckErrorService,
+    public errorService: ErrorsService,
     public router: Router,
     public commonApi: CommonApiService,
     public session: SessionService,
@@ -79,14 +84,15 @@ export class AddComponent implements OnInit {
     endCity_id: new FormControl('1'),
     nightNum: new FormControl('3'),
     dayNum: new FormControl('4'),
-    TransferType: new FormControl(),
+    TransferType: new FormControl(1),
     enDate: new FormControl(''),
+    stDate: new FormControl(''),
     expireDate: new FormControl(''),
     CHDFlightRate: new FormControl('12000'),
     defineTour: new FormControl(false),
     euroRate: new FormControl('14000'),
     dollarRate: new FormControl('26700'),
-    AEDRate: new FormControl(),
+    AEDRate: new FormControl('120000'),
     visaRate: new FormControl('14000'),
     visaPriceType: new FormControl(1),
     insuranceRate: new FormControl('17800'),
@@ -96,7 +102,7 @@ export class AddComponent implements OnInit {
     services: new FormControl('تست خدمات'),
     documents: new FormControl('تست مدارک'),
     description: new FormControl('تست توضیحات'),
-    status: new FormControl('2'),
+    status: new FormControl('show'),
     packages: this.fb.array([]),
   });
 
@@ -145,10 +151,9 @@ export class AddComponent implements OnInit {
   }
 
   convertTour() {
-    debugger
     this.ToursForm.controls.forEach(item => {
       this.tourDetail.push({
-        parent: item.parent,
+        parent: null,
         user_id: item.value.user_id,
         hotel_id: item.value.hotel_id,
         services: item.value.services,
@@ -163,14 +168,40 @@ export class AddComponent implements OnInit {
           twin: item.value.twin,
           single: item.value.single,
           cwb: item.value.cwb,
+          triple: item.value.triple,
+          quad: item.value.quad,
           cnb: item.value.cnb,
           ADLRate: item.value.ADLRate,
           age: item.value.age
         },
-        status: item.value.status
+        status: 'show'
       });
     });
     console.log(this.tourDetail)
+  }
+
+
+  submit() {
+    this.convertTour()
+    this.fillObj()
+    this.call()
+  }
+
+  call(): void {
+    console.log(this.tourReqDTO)
+    this.tourApi.createTour(this.tourReqDTO).subscribe((res: any) => {
+      if (res.isDone) {
+        this.message.showMessageBig(res.message);
+        this.router.navigateByUrl('/panel/tour')
+      }
+    }, (error: any) => {
+      if (error.status == 422) {
+        this.markFormGroupTouched(this.form);
+      }
+      this.errorService.recordError(error.error.data);
+      this.checkError.check(error);
+      this.message.showMessageBig('مشکلی رخ داده است لطفا مجددا تلاش کنید')
+    })
   }
 
   getHotels(): void {
@@ -202,27 +233,29 @@ export class AddComponent implements OnInit {
   fillObj() {
     this.tourReqDTO = {
       title: this.form.value.title,
-      stCity_id: +this.form.value.stCity_id,
-      endCity_id: +this.form.value.endCity_id,
+      stCity_id: this.form.value.stCity_id,
+      endCity_id: this.form.value.endCity_id,
       nightNum: this.form.value.nightNum,
       dayNum: this.form.value.dayNum,
-      transfer: [{
+      transfers: [{
         transfer_id: this.originTransferFC.value,
-        dateTime: (this.calenderServices.convertDate(this.originDateFC.value, 'en')) + ' ' + this.originTime,
+        dateTime: (this.calenderServices.convertDate1(this.originDateFC.value, 'en')) + ' ' + this.originTime,
         type: 'origin',
       }, {
         transfer_id: this.destTransferFC.value,
-        dateTime: (this.calenderServices.convertDate(this.destDateFC.value, 'en')) + ' ' + this.destTime,
+        dateTime: (this.calenderServices.convertDate1(this.destDateFC.value, 'en')) + ' ' + this.destTime,
         type: 'destination',
       },],
-      enDate: this.calenderServices.convertDate(this.form.value.enDate, 'en'),
-      expireDate: this.calenderServices.convertDate(this.form.value.expireDate, 'en'),
+      enDate: this.calenderServices.convertDate1(this.form.value.enDate, 'en'),
+      expireDate: this.calenderServices.convertDate1(this.form.value.expireDate, 'en'),
       CHDFlightRate: this.form.value.CHDFlightRate,
       defineTour: this.form.value.defineTour,
       euroRate: this.form.value.euroRate,
+      type: false,
       dollarRate: this.form.value.dollarRate,
       AEDRate: this.form.value.AEDRate,
       visaRate: this.form.value.visaRate,
+      stDate: this.calenderServices.convertDate1(this.form.value.stDate,'en'),
       insuranceRate: this.form.value.insuranceRate,
       transferRate: this.form.value.transferRate,
       visaPriceType: this.form.value.visaPriceType, // dollar euro derham
@@ -235,6 +268,7 @@ export class AddComponent implements OnInit {
       packages: this.tourDetail,
       TransferType: 1,
     }
+    console.log(this.tourDetail)
   }
 
 
@@ -249,20 +283,6 @@ export class AddComponent implements OnInit {
   }
 
 
-
-  submit() {
-    this.convertTour()
-    this.fillObj()
-    this.tourApi.createTour(this.tourReqDTO).subscribe((res: any) => {
-      if (res.isDone) {
-        this.message.showMessageBig(res.message);
-        this.router.navigateByUrl('/panel/tour')
-      }
-    }, (error: any) => {
-      this.message.showMessageBig('مشکلی رخ داده است لطفا مجددا تلاش کنید')
-    })
-  }
-
   getService(): void {
     this.commonApi.getServices().subscribe((res: any) => {
       if (res.isDone) {
@@ -274,7 +294,6 @@ export class AddComponent implements OnInit {
 
 
   disableFields(): void {
-    debugger
     if (this.form.value.defineTour === 'true') {
       this.form.controls.euroRate.enable()
       this.form.controls.dollarRate.enable()
@@ -379,6 +398,7 @@ export class AddComponent implements OnInit {
       this.message.error()
     })
   }
+
 
 }
 

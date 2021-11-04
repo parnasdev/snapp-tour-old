@@ -34,13 +34,13 @@ export class CalenderServices {
     }
 
     convertDate1(date: any, convertType: string): any {
-        /* convertType : fa - en */
-        // debugger;
-        if (convertType === 'fa') {
-            return moment(date).format('jYYYY-jMM-jDD');
-        } else if (convertType === 'en') {
-            return moment(date).locale('en').format('YYYY-MM-DD');
-        }
+      /* convertType : fa - en */
+      // debugger;
+      if (convertType === 'fa') {
+        return (moment(date).format('jYYYY/jMM/jDD HH:mm')).split('/').join('-');
+      } else if (convertType === 'en') {
+        return (moment(date).locale('en').format('YYYY-MM-DD HH:mm')).split('/').join('-');
+      }
     }
 
     convertFullDate(date: any, convertType: string): any {

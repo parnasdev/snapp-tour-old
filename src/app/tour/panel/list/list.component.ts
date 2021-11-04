@@ -14,11 +14,11 @@ declare let $: any;
 export class ListComponent implements OnInit {
 
   tourReq: TourListRequestDTO = {
-    city: '',
+    city: null,
     paginate: true,
     search: '',
     perPage: 20,
-    type: 1
+    type: 0
   };
   tours: TourListResDTO[] = [];
   loading = false;
