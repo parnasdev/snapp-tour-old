@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TransferAPIService} from "../../Core/Https/transfer-api.service";
 import {MessageService} from "../../Core/Services/message.service";
-import {TransferListRequestDTO} from "../../Core/Models/transferDTO";
+import {TransferListRequestDTO, TransferSetRequestDTO} from "../../Core/Models/transferDTO";
 
 @Component({
   selector: 'prs-list',
@@ -9,7 +9,8 @@ import {TransferListRequestDTO} from "../../Core/Models/transferDTO";
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  req!: TransferListRequestDTO
+  req!: TransferListRequestDTO;
+  transfers: TransferSetRequestDTO[] = [];
 
   constructor(public api: TransferAPIService,
               public message: MessageService) {
@@ -23,6 +24,7 @@ export class ListComponent implements OnInit {
     this.setRea();
     this.api.getTransfers(this.req).subscribe((res: any) => {
       if (res.isDone) {
+        this.transfers = res.data;
       } else {
         this.message.custom(res.message);
       }

@@ -1,1 +1,15 @@
-<p>list works!</p>
+<div class="parent-list">
+
+  <div class="item" *ngFor="let hotel of hotelList">
+    <img src="assets/img/12123131.png" alt="">
+    <div class="title">
+      <a [routerLink]="'panel/hotel/edit/' + hotel.slug">
+        <h2>{{ hotel.name }}</h2>
+      </a>
+      <h2>{{ hotel.nameEn }}</h2>
+      <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ،</p>
+    </div>
+  </div>
+
+</div>
+

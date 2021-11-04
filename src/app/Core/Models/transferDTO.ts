@@ -8,5 +8,4 @@ export interface TransferSetRequestDTO {
   name: string;
   logo: string;
   type: number
-
 }

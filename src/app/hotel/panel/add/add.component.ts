@@ -209,4 +209,8 @@ export class AddComponent implements OnInit {
       this.thumbnail = result
     })
   }
+
+  getFiles(event: string[]): void {
+    console.log(event)
+  }
 }

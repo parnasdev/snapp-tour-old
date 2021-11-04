@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, NgForm} from "@angular/forms";
 import {HttpClient, HttpHeaders } from '@angular/common/http';
 import {Router} from "@angular/router"
@@ -11,6 +11,7 @@ import {Router} from "@angular/router"
 export class UploadFileComponent implements OnInit {
   loadAPI:Promise<any>;
   galleryFC = new FormControl();
+  @Output() fileDTO = new EventEmitter<any>();
   constructor(private http: HttpClient,private router: Router){
     this.loadAPI=new Promise((resoleve)=>{
       this.loadScript();
@@ -65,5 +66,6 @@ export class UploadFileComponent implements OnInit {
   changeInput():void {
     // @ts-ignore
     const val = document.getElementById("gallery").value;
+    this.fileDTO.emit(JSON.parse(val))
   }
 }

@@ -5,6 +5,7 @@ import {environment} from "../../../environments/environment";
 import {CityListRequestDTO, CitySetRequestDTO} from "../Models/cityDTO";
 import {Result} from "../Models/result";
 import {
+  hotelInfoDTO, HotelListRes,
   HotelListResponseDTO,
   HotelRequestDTO,
   HotelSetRequestDTO,
@@ -57,7 +58,7 @@ export class HotelApiService {
         isAdmin
       }
 
-    return this.http.post<Result<any>>(strUrl, entity, this.publicService.getDefaultHeaders());
+    return this.http.post<Result<hotelInfoDTO>>(strUrl, entity, this.publicService.getDefaultHeaders());
   }
 
   getServices(): any {

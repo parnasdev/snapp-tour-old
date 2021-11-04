@@ -6,7 +6,7 @@ import {AddComponent} from './add/add.component';
 import {EditComponent} from './edit/edit.component';
 import {ListComponent} from './list/list.component';
 import {CommonProjectModule} from "../common-project/common-project.module";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
 
 
@@ -20,6 +20,7 @@ import {MatDialogModule} from "@angular/material/dialog";
     CommonModule,
     TransferRoutingModule,
     ReactiveFormsModule,
+    FormsModule,
     MatDialogModule,
     CommonProjectModule
   ]

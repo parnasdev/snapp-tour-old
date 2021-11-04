@@ -1,3 +1,5 @@
+import {CityResponseDTO} from "./cityDTO";
+
 export interface HotelSetRequestDTO {
   name: string;
   nameEn: string;
@@ -21,6 +23,35 @@ export interface HotelSetRequestDTO {
     }
   ];
   status: string
+}
+
+export interface hotelInfoDTO {
+  "name": string;
+  "city": CityResponseDTO;
+  "nameEn": string;
+  "stars": string;
+  "location": string;
+  "address": string;
+  "images": string[];
+  "thumbnail": string;
+  "body": string;
+  "services": [
+    {
+      name: string;
+      ids: string[]
+    }
+  ];
+  "status": string;
+}
+
+export interface HotelListRes {
+  id: number;
+  name: string;
+  nameEn: string;
+  slug: string;
+  slugEn: string;
+  stars: string;
+  thumbnail: string;
 }
 
 export interface HotelRequestDTO {

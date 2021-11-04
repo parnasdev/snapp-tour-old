@@ -4,6 +4,8 @@ import {FormControl} from "@angular/forms";
 import {TransferAPIService} from "../../Core/Https/transfer-api.service";
 import {TransferSetRequestDTO} from "../../Core/Models/transferDTO";
 import {Router} from "@angular/router";
+import {UploadSingleComponent} from "../../common-project/upload-single/upload-single.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'prs-add',
@@ -12,11 +14,13 @@ import {Router} from "@angular/router";
 })
 export class AddComponent implements OnInit {
   nameFC = new FormControl();
+  statusFC = new FormControl();
   req!: TransferSetRequestDTO
   logo: string = '';
 
   constructor(public message: MessageService,
               public router: Router,
+              public dialog: MatDialog,
               public api: TransferAPIService) {}
 
   ngOnInit(): void {}
@@ -39,6 +43,14 @@ export class AddComponent implements OnInit {
       }
     },(error:any) => {
       this.message.error()
+    })
+  }
+
+  getThumbnail(): void {
+    const dialog = this.dialog.open(UploadSingleComponent, {});
+    dialog.afterClosed().subscribe(result => {
+      console.log(result);
+      this.logo = result
     })
   }
 
