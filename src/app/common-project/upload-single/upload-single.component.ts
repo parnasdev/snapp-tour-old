@@ -32,7 +32,7 @@ export class UploadSingleComponent implements OnInit {
     if (this.testJSON((document.getElementById('photo') as HTMLInputElement).value)){
       form.value.photo=JSON.parse((document.getElementById('photo') as HTMLInputElement).value);
     }
-    return this.http.post('http://127.0.0.1:8000/api/posts', JSON.stringify(form.value), {headers: this.headers})
+    return this.http.post('http://tour-api.parnasweb.com/api/posts', JSON.stringify(form.value), {headers: this.headers})
       .toPromise()
       .then(function (res) {
         console.log(res)
