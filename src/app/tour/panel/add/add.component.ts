@@ -14,6 +14,8 @@ import {CityApiService} from "../../../Core/Https/city-api.service";
 import {CityListRequestDTO, CityResponseDTO} from "../../../Core/Models/cityDTO";
 import {TransferAPIService} from "../../../Core/Https/transfer-api.service";
 import {TransferListRequestDTO} from "../../../Core/Models/transferDTO";
+import {TourApiService} from "../../../Core/Https/tour-api.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'prs-add',
@@ -39,7 +41,8 @@ export class AddComponent implements OnInit {
   services: GetServiceRequestDTO[] = []
   hotels: HotelListResponseDTO[] = [];
   cityID = 0
-  cities: CityResponseDTO[] = []
+  originCities: CityResponseDTO[] = []
+  destCities: CityResponseDTO[] = []
   originDateFC = new FormControl();
   originTimeFC = new FormControl();
   destDateFC = new FormControl();
@@ -49,12 +52,16 @@ export class AddComponent implements OnInit {
   destTime = ''
   originTransferFC = new FormControl();
   destTransferFC = new FormControl();
+  originCityTypeFC = new FormControl(true);
+  destCityTypeFC = new FormControl(true);
 
   constructor(
     public hotelApi: HotelApiService,
     public cityApi: CityApiService,
     public transferApi: TransferAPIService,
     public message: MessageService,
+    public tourApi: TourApiService,
+    public router: Router,
     public commonApi: CommonApiService,
     public session: SessionService,
     public calenderServices: CalenderServices,
@@ -69,7 +76,7 @@ export class AddComponent implements OnInit {
   form = this.fb.group({
     title: new FormControl('تور کیش 3 روزه'),
     stCity_id: new FormControl('1'),
-    endCity_id: new FormControl('3'),
+    endCity_id: new FormControl('1'),
     nightNum: new FormControl('3'),
     dayNum: new FormControl('4'),
     TransferType: new FormControl(),
@@ -103,16 +110,15 @@ export class AddComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getCities();
+    this.getOriginCities();
+    this.getDestCities();
     this.getTransfer()
     this.addRow()
+    this.disableFields();
     this.getService()
     this.getHotels()
   }
 
-  submit() {
-
-  }
 
   addRow() {
     const Tours = this.fb.group({
@@ -129,6 +135,8 @@ export class AddComponent implements OnInit {
       single: ['0'],
       cwb: ['0'],
       cnb: ['0'],
+      quad: ['0'],
+      triple: ['0'],
       ADLRate: ['0'],
       age: ['0'],
       status: ['']
@@ -137,6 +145,7 @@ export class AddComponent implements OnInit {
   }
 
   convertTour() {
+    debugger
     this.ToursForm.controls.forEach(item => {
       this.tourDetail.push({
         parent: item.parent,
@@ -161,6 +170,7 @@ export class AddComponent implements OnInit {
         status: item.value.status
       });
     });
+    console.log(this.tourDetail)
   }
 
   getHotels(): void {
@@ -197,16 +207,16 @@ export class AddComponent implements OnInit {
       nightNum: this.form.value.nightNum,
       dayNum: this.form.value.dayNum,
       transfer: [{
-        transfer_id: '',
-        dateTime: this.originDateFC.value + ' ' + this.originTime,
+        transfer_id: this.originTransferFC.value,
+        dateTime: (this.calenderServices.convertDate(this.originDateFC.value, 'en')) + ' ' + this.originTime,
         type: 'origin',
       }, {
-        transfer_id: '',
-        dateTime: this.destDateFC.value + ' ' + this.destTime,
+        transfer_id: this.destTransferFC.value,
+        dateTime: (this.calenderServices.convertDate(this.destDateFC.value, 'en')) + ' ' + this.destTime,
         type: 'destination',
       },],
-      enDate: this.form.value.enDate,
-      expireDate: this.form.value.expireDate,
+      enDate: this.calenderServices.convertDate(this.form.value.enDate, 'en'),
+      expireDate: this.calenderServices.convertDate(this.form.value.expireDate, 'en'),
       CHDFlightRate: this.form.value.CHDFlightRate,
       defineTour: this.form.value.defineTour,
       euroRate: this.form.value.euroRate,
@@ -223,7 +233,7 @@ export class AddComponent implements OnInit {
       description: this.form.value.description,
       status: this.form.value.status,
       packages: this.tourDetail,
-      TransferType: 0,
+      TransferType: 1,
     }
   }
 
@@ -238,12 +248,19 @@ export class AddComponent implements OnInit {
     });
   }
 
-  getData() {
+
+
+  submit() {
     this.convertTour()
     this.fillObj()
-    console.log(this.tourReqDTO)
-    console.log(this.form)
-    console.log(this.transferForm)
+    this.tourApi.createTour(this.tourReqDTO).subscribe((res: any) => {
+      if (res.isDone) {
+        this.message.showMessageBig(res.message);
+        this.router.navigateByUrl('/panel/tour')
+      }
+    }, (error: any) => {
+      this.message.showMessageBig('مشکلی رخ داده است لطفا مجددا تلاش کنید')
+    })
   }
 
   getService(): void {
@@ -257,6 +274,7 @@ export class AddComponent implements OnInit {
 
 
   disableFields(): void {
+    debugger
     if (this.form.value.defineTour === 'true') {
       this.form.controls.euroRate.enable()
       this.form.controls.dollarRate.enable()
@@ -280,28 +298,10 @@ export class AddComponent implements OnInit {
     }
   }
 
-  getCities(): void {
-    const req: CityListRequestDTO = {
-      type: true,
-      hasHotel: false,
-      hasTour: false,
-      search: null,
-      perPage: 20
-    }
-    this.cityApi.getCities(req).subscribe((res: any) => {
-      if (res.isDone) {
-        this.cities = res.data;
-        this.cityID = this.cities[0].id;
-        this.getHotels();
-      }
-    }, (error: any) => {
-      this.message.error()
-    })
-  }
 
   getTransfer(): void {
     const req: TransferListRequestDTO = {
-      type: 0,
+      type: 1,
       search: null,
       paginate: false,
       perPage: 20
@@ -323,15 +323,62 @@ export class AddComponent implements OnInit {
   getOriginTime(event: any): void {
     console.log(event)
     if (event) {
-      this.originTime = event.hour + ' ' + event.minute;
+      this.originTime = event.hour + ':' + event.minute;
     }
   }
 
   getDestTime(event: any): void {
     console.log(event)
     if (event) {
-      this.destTime = event.hour + ' ' + event.minute;
+      this.destTime = event.hour + ':' + event.minute;
     }
   }
+
+  originCityTypeChange(): void {
+    this.getOriginCities()
+  }
+
+  destCityTypeChange(): void {
+    this.getDestCities()
+  }
+
+  getOriginCities(): void {
+    const req: CityListRequestDTO = {
+      type: this.originCityTypeFC.value,
+      hasHotel: false,
+      hasTour: false,
+      search: null,
+      perPage: 20
+    }
+    this.cityApi.getCities(req).subscribe((res: any) => {
+      if (res.isDone) {
+        this.originCities = res.data;
+        this.form.controls.stCity_id.setValue(this.originCities[0].id.toString());
+      }
+    }, (error: any) => {
+      this.message.error()
+    })
+  }
+
+  getDestCities(): void {
+    const req: CityListRequestDTO = {
+      type: this.destCityTypeFC.value,
+      hasHotel: false,
+      hasTour: false,
+      search: null,
+      perPage: 20
+    }
+    this.cityApi.getCities(req).subscribe((res: any) => {
+      if (res.isDone) {
+        this.destCities = res.data;
+        this.form.controls.endCity_id.setValue(this.destCities[0].id.toString());
+        this.cityID = this.destCities[0].id;
+        this.getHotels();
+      }
+    }, (error: any) => {
+      this.message.error()
+    })
+  }
+
 }
 

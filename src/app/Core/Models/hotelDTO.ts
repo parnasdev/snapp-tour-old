@@ -57,7 +57,7 @@ export interface HotelListRes {
 export interface HotelRequestDTO {
   isAdmin: boolean
   paginate: boolean
-  city: number
+  city: number | null;
 }
 
 export interface SetHotelPackageDTO {

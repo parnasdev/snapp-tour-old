@@ -1,13 +1,23 @@
+<div class="selectdiv">
+  <select [formControl]="cityFC" (change)="getList()" name="" id="">
+    <option *ngFor="let city of citiesResponse" [value]="city.id">{{city.name}}</option>
+  </select>
+</div>
+<mat-button-toggle-group name="fontStyle" [(ngModel)]="cityType" (ngModelChange)="typeChange()" aria-label="Font Style">
+  <mat-button-toggle [value]="true">داخلی</mat-button-toggle>
+  <mat-button-toggle [value]="false">خارجی</mat-button-toggle>
+</mat-button-toggle-group>
+
 <div class="parent-list">
 
   <div class="item" *ngFor="let hotel of hotelList">
-    <img src="assets/img/12123131.png" alt="">
+    <img [src]="hotel.thumbnail" alt="">
     <div class="title">
       <a [routerLink]="'panel/hotel/edit/' + hotel.slug">
         <h2>{{ hotel.name }}</h2>
       </a>
       <h2>{{ hotel.nameEn }}</h2>
-      <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ،</p>
+      <p>{{hotel.slug}}</p>
     </div>
   </div>
 

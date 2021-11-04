@@ -21,8 +21,6 @@ export class TourApiService {
 
   createTour(req: TourSetRequestDTO): any {
     const strUrl = this.serverControllerName + 'createTour';
-
-
     return this.http.post<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
   getTours(req: TourListRequestDTO): any {

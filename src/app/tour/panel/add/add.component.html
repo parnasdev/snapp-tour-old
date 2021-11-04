@@ -3,8 +3,10 @@
     <div class="box-info-tour">
       <div class="info-tour-header">
         <div class="right">
-          <label for="">تور داخلی</label>
+          <label for="">{{destCityTypeFC.value ? 'تور داخلی' : 'تور خارجی'}}</label>
           <h2>اطلاعات تور</h2>
+
+
         </div>
         <div class="left">
           <div class="selectdiv">
@@ -27,16 +29,27 @@
           </div>
           <div class="item-info-2">
             <div class="select-info">
+
               <label for="">شهر مبدا</label>
+              <mat-button-toggle-group name="fontStyle" [formControl]="originCityTypeFC"
+                                       (change)="originCityTypeChange()" aria-label="Font Style">
+                <mat-button-toggle [value]="true">داخلی</mat-button-toggle>
+                <mat-button-toggle [value]="false">خارجی</mat-button-toggle>
+              </mat-button-toggle-group>
               <select formControlName="stCity_id" name="" id="">
-                <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
+                <option *ngFor="let city of originCities" [value]="city.id">{{city.name}}</option>
 
               </select>
             </div>
             <div class="select-info">
               <label for="">شهر مقصد</label>
+              <mat-button-toggle-group name="fontStyle" [formControl]="destCityTypeFC" (change)="destCityTypeChange()"
+                                       aria-label="Font Style">
+                <mat-button-toggle [value]="true">داخلی</mat-button-toggle>
+                <mat-button-toggle [value]="false">خارجی</mat-button-toggle>
+              </mat-button-toggle-group>
               <select formControlName="endCity_id" (change)="cityDesChanged()" name="" id="">
-                <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
+                <option *ngFor="let city of destCities" [value]="city.id">{{city.name}}</option>
 
               </select>
             </div>
@@ -260,14 +273,26 @@
           <span>تغییر گروهی قیمت ها</span>
           <input type="text">
         </div>
-        <div class="header-box">
+        <div class="header-box" *ngIf="destCityTypeFC.value">
           <div class="package-item">#</div>
           <div class="package-item">نام هتل</div>
           <div class="package-item">خدمات</div>
           <div class="package-item">دو تخته (تومان)</div>
           <div class="package-item">سه تخته (تومان)</div>
           <div class="package-item">چهار تخته (تومان)</div>
+          <div class="package-item">سن کودک بدون تخت</div>
+          <div class="package-item"><i class="icon-plus-circled" (click)="addRow()"></i></div>
+
+        </div>
+        <div class="header-box" *ngIf="!destCityTypeFC.value">
+          <div class="package-item">#</div>
+          <div class="package-item">نام هتل</div>
+          <div class="package-item">خدمات</div>
+          <div class="package-item">دو تخته (تومان)</div>
+          <div class="package-item">یه تخته (تومان)</div>
           <div class="package-item">نرخ بزرگسال (تومان)</div>
+          <div class="package-item">کودک بدون تخت (تومان)</div>
+          <div class="package-item">کودک بدون تخت (تومان)</div>
           <div class="package-item">سن کودک بدون تخت</div>
           <div class="package-item"><i class="icon-plus-circled" (click)="addRow()"></i></div>
 
@@ -277,30 +302,55 @@
                [formGroupName]="i">
             <div class="package-item id-package">{{i + 1}}</div>
             <div class="package-item">
-              <select name="" id="">
+              <select name="" id="" formControlName="hotel_id">
                 <option *ngFor="let hotel of hotels" [value]="hotel.id">{{hotel.name}}</option>
               </select>
             </div>
             <div class="package-item">
-              <select name="" id="" formControlName="age">
+              <select name="" id="" formControlName="services">
                 <option *ngFor="let service of services" [value]="service.id">{{service.name}}</option>
               </select>
             </div>
-            <div class="package-item">
-              <input type="number" formControlName="twin">
-            </div>
-            <div class="package-item">
-              <input type="number" formControlName="single">
-            </div>
-            <div class="package-item">
-              <input type="number" formControlName="cwb">
-            </div>
-            <div class="package-item">
-              <input type="number" formControlName="ADLRate">
-            </div>
-            <div class="package-item">
-              <input type="number" formControlName="cnb">
-            </div>
+           <ng-template [ngIf]="destCityTypeFC.value">
+             <div class="package-item">
+               <input type="number" formControlName="services">
+             </div>
+             <div class="package-item">
+               <input type="number" formControlName="twin">
+             </div>
+             <div class="package-item">
+               <input type="number" formControlName="triple">
+             </div>
+             <div class="package-item">
+               <input type="number" formControlName="quad">
+             </div>
+             <div class="package-item">
+               <input type="number" formControlName="age">
+             </div>
+           </ng-template>
+            <ng-template [ngIf]="!destCityTypeFC.value">
+             <div class="package-item">
+               <input type="number" formControlName="services">
+             </div>
+             <div class="package-item">
+               <input type="number" formControlName="twin">
+             </div>
+             <div class="package-item">
+               <input type="number" formControlName="single">
+             </div>
+             <div class="package-item">
+               <input type="number" formControlName="ADLRate">
+             </div>
+             <div class="package-item">
+               <input type="number" formControlName="cnb">
+             </div>
+              <div class="package-item">
+               <input type="number" formControlName="cwb">
+             </div>
+              <div class="package-item">
+               <input type="number" formControlName="age">
+             </div>
+           </ng-template>
             <div class="package-item"><i class="icon-cancel-1" (click)="removePakage(i)"></i></div>
           </div>
         </form>
@@ -321,7 +371,7 @@
           <textarea formControlName="description" name="" cols="30" rows="10"
                     placeholder="توضیحات تکمیلی"></textarea>
         </div>
-        <button type="submit" class="submit-tour" (click)="getData()">ثبت تور</button>
+        <button  class="submit-tour" (click)="submit()">ثبت تور</button>
       </div>
     </div>
   </form>

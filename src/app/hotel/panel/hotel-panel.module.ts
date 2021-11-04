@@ -12,6 +12,7 @@ import {BarRatingModule} from "ngx-bar-rating";
 import {ServicesComponent} from './services/services.component';
 import {MatRadioButton} from "@angular/material/radio";
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     HotelPanelRoutingModule,
     FormsModule,
     MatDialogModule,
+    MatButtonToggleModule,
     ReactiveFormsModule,
     MatCheckboxModule,
     CommonProjectModule,
