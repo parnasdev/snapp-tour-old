@@ -108,7 +108,7 @@
           <div class="item-info">
             <label for="">تاریخ ورود به هتل</label>
             <mat-form-field class="example-full-width" appearance="fill">
-              <input matInput [matDatepicker]="picker1" formControlName="stDate" (click)="picker1.open()">
+              <input matInput [matDatepicker]="picker1" formControlName="stDate" [min]="minDate" (click)="picker1.open()">
               <mat-datepicker #picker1></mat-datepicker>
             </mat-form-field>
             <div  *ngIf="errorService.hasError('stDate')">
@@ -118,7 +118,7 @@
           <div class="item-info">
             <label for="">تاریخ خروج از هتل</label>
             <mat-form-field class="example-full-width" appearance="fill">
-              <input matInput formControlName="enDate" [matDatepicker]="picker2" (click)="picker2.open()">
+              <input matInput formControlName="enDate" [matDatepicker]="picker2" [min]="minDate" (click)="picker2.open()">
               <mat-datepicker #picker2></mat-datepicker>
             </mat-form-field>
             <div  *ngIf="errorService.hasError('enDate')">
@@ -128,7 +128,7 @@
           <div class="item-info">
             <label for="">تاریخ انقضا پکیج</label>
             <mat-form-field class="example-full-width" appearance="fill">
-              <input matInput formControlName="expireDate" [matDatepicker]="picker3" (click)="picker3.open()">
+              <input matInput formControlName="expireDate" [matDatepicker]="picker3" [min]="minDate" (click)="picker3.open()">
               <mat-datepicker #picker3></mat-datepicker>
             </mat-form-field>
             <div  *ngIf="errorService.hasError('expireDate')">
@@ -152,7 +152,7 @@
           <div class="item-info">
             <label for="">تاریح پرواز رفت</label>
             <mat-form-field class="example-full-width" appearance="fill">
-              <input matInput [matDatepicker]="picker4" [formControl]="originDateFC" (click)="picker4.open()">
+              <input matInput [matDatepicker]="picker4" [formControl]="originDateFC" [min]="minDate" (click)="picker4.open()">
               <mat-datepicker #picker4></mat-datepicker>
             </mat-form-field>
 
@@ -176,7 +176,7 @@
           <div class="item-info">
             <label for="">تاریخ پرواز برگشت</label>
             <mat-form-field class="example-full-width" appearance="fill">
-              <input matInput [matDatepicker]="picker7" [formControl]="destDateFC" (click)="picker7.open()">
+              <input matInput [matDatepicker]="picker7" [formControl]="destDateFC" [min]="minDate" (click)="picker7.open()">
               <mat-datepicker #picker7></mat-datepicker>
             </mat-form-field>
           </div>
@@ -343,9 +343,7 @@
 
 <!--            local tour-->
            <ng-template [ngIf]="destCityTypeFC.value">
-             <div class="package-item">
-               <input type="number" formControlName="services">
-             </div>
+
              <div class="package-item">
                <input type="number" formControlName="twin">
              </div>
@@ -361,9 +359,7 @@
            </ng-template>
 <!--            foreign tour-->
             <ng-template class="body-foreign" [ngIf]="!destCityTypeFC.value">
-             <div class="package-item">
-               <input type="number" formControlName="services">
-             </div>
+
              <div class="package-item">
                <input type="number" formControlName="twin">
              </div>
