@@ -3,6 +3,7 @@ import {CityApiService} from "../../Core/Https/city-api.service";
 import {MessageService} from "../../Core/Services/message.service";
 import {CityListRequestDTO, CityResponseDTO} from "../../Core/Models/cityDTO";
 import {CheckErrorService} from "../../Core/Services/check-error.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'prs-list',
@@ -15,11 +16,13 @@ export class ListComponent implements OnInit {
   isLoading = false;
 
   constructor(public api: CityApiService,
+              public router: Router,
               public checkErrorService: CheckErrorService,
               public message: MessageService) {
   }
 
   ngOnInit(): void {
+    this.getCities()
   }
 
   getCities(): void {
@@ -42,9 +45,23 @@ export class ListComponent implements OnInit {
     this.cityReq = {
       perPage: 20,
       search: null,
-      type: true,
+      type: false,
       hasTour: false,
       hasHotel: false
     }
+  }
+
+  remove(name: string): void {
+    this.api.remove(name).subscribe((res: any) => {
+      if (res.isDone) {
+        this.message.custom(res.message);
+      }
+    }, (error: any) => {
+      this.message.error()
+    })
+  }
+
+  edit(name: string): void {
+this.router.navigateByUrl(`/panel/cities/set/${name}`)
   }
 }

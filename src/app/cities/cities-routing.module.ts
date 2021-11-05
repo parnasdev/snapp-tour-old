@@ -10,6 +10,9 @@ const routes: Routes = [
   }, {
     path: 'set',
     component: SetComponent
+  },{
+    path: 'set/:city',
+    component: SetComponent
   }
 ];
 

@@ -6,7 +6,13 @@
     </div>
     <div  class="item-info">
       <label   for="en-name">نام انگلیسی شهر را وارد کنید</label>
-      <input id="en-name" type="text" [formControl]="nameFC" placeholder="">
+      <input id="en-name" type="text" [formControl]="nameEnFC" placeholder="">
+    </div>
+    <div class="item-info">
+      <mat-button-toggle-group name="fontStyle" [formControl]="typeFC" aria-label="Font Style">
+        <mat-button-toggle [value]="true">خارجی</mat-button-toggle>
+        <mat-button-toggle [value]="false">داخلی</mat-button-toggle>
+      </mat-button-toggle-group>
     </div>
   </div>
   <div class="item-textarea">
@@ -14,8 +20,15 @@
     <textarea [formControl]="desFC" name="" id="textarea" cols="30" rows="10"></textarea>
   </div>
   <div class="upload-box">
+    <prs-btn [background]="'dark'" (click)="getImages()" [label]="'تصاویر خود را آپلود کنید'"></prs-btn>
 <!--    <prs-upload-file (fileDTO)="getFile($event)"></prs-upload-file>-->
-    <img class="img-upload" src="assets/img/12123131.png" alt="">
+    <div class="multi-img-upload-parent" *ngIf="images.length > 0">
+      <div class="images" *ngFor="let img of images;let i = index">
+        <img [src]="img" alt="">
+        <i class="icon-cancel-1" (click)="removeImage(i)"></i>
+      </div>
+
+    </div>
   </div>
   <prs-btn [label]="'ثبت'" (click)="submit()" [background]="'blue'" [isLoading]="isLoading"></prs-btn>
 </div>

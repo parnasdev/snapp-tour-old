@@ -1,5 +1,8 @@
 <div class="container">
   <ul class="list-group">
-    <li class="list-group-item" *ngFor="let city of cities">{{city.name}}</li>
+    <li class="list-group-item" *ngFor="let city of cities">{{city.name}}
+      <prs-btn [label]="'حذف'" [background]="'dark'" (click)="remove(city.name)"></prs-btn>
+      <prs-btn [label]="'ویرایش'" [background]="'blue'" (click)="edit(city.name)"></prs-btn>
+    </li>
   </ul>
 </div>

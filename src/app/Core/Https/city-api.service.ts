@@ -35,6 +35,13 @@ export class CityApiService {
 
     return this.http.patch<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
+
+  remove(name: string): any {
+    const strUrl = this.serverControllerName + `deleteCity/${name}`;
+
+    return this.http.delete<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
+  }
+
   getCity(name: string): any {
     const strUrl = this.serverControllerName + `getCity/${name}`;
 

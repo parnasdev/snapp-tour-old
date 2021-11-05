@@ -8,10 +8,9 @@ export interface CityListRequestDTO {
 
 export interface CitySetRequestDTO {
   name?: string;
-  data: {
-    images: any[],
-    description: string
-  },
+  nameEn: string
+  images: any[],
+  description: string
   type?: boolean
 }
 

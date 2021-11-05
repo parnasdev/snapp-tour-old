@@ -8,6 +8,7 @@ import {CommonProjectModule} from "../common-project/common-project.module";
 import {ToolsModule} from "../tools/tools/tools.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
+import {MatButtonToggle, MatButtonToggleModule} from "@angular/material/button-toggle";
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {MatDialogModule} from "@angular/material/dialog";
     CitiesRoutingModule,
     CommonProjectModule,
     ReactiveFormsModule,
+    MatButtonToggleModule,
     MatDialogModule,
     ToolsModule
   ]
