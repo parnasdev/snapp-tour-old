@@ -272,7 +272,6 @@ export class AddComponent implements OnInit {
       packages: this.tourDetail,
       TransferType: 1,
     }
-    console.log(this.tourDetail)
   }
 
 
@@ -362,14 +361,12 @@ export class AddComponent implements OnInit {
   }
 
   getOriginTime(event: any): void {
-    console.log(event)
     if (event) {
       this.originTime = event.hour + ':' + event.minute;
     }
   }
 
   getDestTime(event: any): void {
-    console.log(event)
     if (event) {
       this.destTime = event.hour + ':' + event.minute;
     }

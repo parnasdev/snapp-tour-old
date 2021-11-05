@@ -283,6 +283,9 @@
             <div class="box-services w-100">
               <label for="">نرخ پرواز کودک(تومان)</label>
               <input formControlName="CHDFlightRate" type="text" mask="separator" thousandSeparator=",">
+              <div  *ngIf="errorService.hasError('CHDFlightRate')">
+                <span class="text-danger">{{errorService.getError('CHDFlightRate')}}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -419,7 +422,7 @@
             <span class="text-danger">{{errorService.getError('description')}}</span>
           </div>
         </div>
-        <button  class="submit-tour" (click)="submit()">ثبت تور</button>
+        <prs-btn [background]="'blue'" (click)="submit()" [isLoading]="isLoading" [label]="'ثبت تور'"></prs-btn>
       </div>
     </div>
   </form>
