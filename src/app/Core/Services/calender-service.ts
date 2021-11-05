@@ -39,7 +39,7 @@ export class CalenderServices {
       if (convertType === 'fa') {
         return (moment(date).format('jYYYY/jMM/jDD HH:mm')).split('/').join('-');
       } else if (convertType === 'en') {
-        return (moment(date).locale('en').format('YYYY-MM-DD HH:mm')).split('/').join('-');
+        return (moment(date).locale('en').format('YYYY-MM-DD HH:mm'));
       }
     }
 

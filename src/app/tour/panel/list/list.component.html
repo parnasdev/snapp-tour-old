@@ -1,7 +1,23 @@
 <div class="list-tour">
   <div class="title">
     <h2>تورها</h2>
-    <button>اضافه</button>
+<!--    <div class="select-info">-->
+
+<!--      <label for="">شهر مبدا</label>-->
+<!--      <mat-button-toggle-group name="fontStyle" [formControl]="originCityTypeFC"-->
+<!--                               (change)="originCityTypeChange()" aria-label="Font Style">-->
+<!--        <mat-button-toggle [value]="true">داخلی</mat-button-toggle>-->
+<!--        <mat-button-toggle [value]="false">خارجی</mat-button-toggle>-->
+<!--      </mat-button-toggle-group>-->
+<!--      <select formControlName="stCity_id" name="" id="">-->
+<!--        <option *ngFor="let city of originCities" [value]="city.id">{{city.name}}</option>-->
+
+<!--      </select>-->
+<!--    </div>-->
+    <button>
+      <a routerLink="/panel/tour/add">اضافه</a>
+    </button>
+
   </div>
   <div class="table-list-tour">
     <div class="header-list-tour">
@@ -18,20 +34,20 @@
     </div>
     <div class="body-list-tour" *ngIf="tours.length > 0">
       <div class="item" *ngFor="let tour of tours; let i = index">
-        <span class="id">{{ i }}</span>
-        <span class="username">همنواز</span>
-        <span class="title-tour">تست تست</span>
-        <span class="from-to">تهران-کیش</span>
-        <span class="day">3-4</span>
-        <span class="date-create">1400/02/14</span>
-        <span class="date-create">1400/02/14</span>
-        <span class="view">12</span>
-        <span class="status">تایید شده</span>
+        <span class="id">{{ i + 1 }}</span>
+        <span class="username">{{ tour.user.name + ' ' + tour.user.family }}</span>
+        <span class="title-tour">{{ tour.title }}</span>
+        <span class="from-to">{{ tour.stCity + '-' +  tour.endCity }}</span>
+        <span class="day">{{ tour.nightNum + '-' + tour.dayNum }}</span>
+        <span class="date-create">{{this.calService.convertDate1(tour.createdAt, 'fa') }}</span>
+        <span class="date-create">{{ this.calService.convertDate1(tour.expireDate, 'fa') }}</span>
+        <span class="view">{{ tour.viewCount }}</span>
+        <span class="status">{{ tour.status }}</span>
         <div class="button-setting">
-          <button class="edit-btn">ویرایش</button>
-          <button class="view-btn">نمایش</button>
-          <button class="copy-btn">کپی</button>
-          <button class="delete-btn">حذف</button>
+          <a routerLink="/panel/tour/edit" class="edit-btn">ویرایش</a>
+          <a routerLink="/tour/info" class="view-btn">نمایش</a>
+<!--          <button class="copy-btn">کپی</button>-->
+          <button (click)="deleteTour(tour.slug)" class="delete-btn">حذف</button>
         </div>
       </div>
     </div>

@@ -9,10 +9,20 @@ export interface TourListRequestDTO {
 
 export interface TourListResDTO {
   title: string;
-  id: number;
-  transfer_id: string;
-  dateTime: string;
-  type: string;
+  createdAt: string;
+  dayNum: number;
+  endCity: string;
+  expireDate: string;
+  nightNum: number;
+  offered: string;
+  slug: string;
+  stCity: string;
+  status: string;
+  user: {
+    name: string;
+    family: string;
+  };
+  viewCount: 0;
 }
 
 export interface TourSetRequestDTO {
@@ -28,7 +38,7 @@ export interface TourSetRequestDTO {
   expireDate: string;
   type: boolean
   CHDFlightRate: number;
-  defineTour: number;
+  defineTour: boolean;
   euroRate: number;
   dollarRate: number;
   AEDRate: number;
