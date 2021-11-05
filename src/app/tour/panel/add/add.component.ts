@@ -188,19 +188,23 @@ export class AddComponent implements OnInit {
   }
 
   call(): void {
-    console.log(this.tourReqDTO)
+    this.isLoading = true
     this.tourApi.createTour(this.tourReqDTO).subscribe((res: any) => {
+      this.isLoading = false;
       if (res.isDone) {
         this.message.showMessageBig(res.message);
         this.router.navigateByUrl('/panel/tour')
       }
     }, (error: any) => {
+      this.isLoading = false;
       if (error.status == 422) {
+        this.errorService.recordError(error.error.data);
         this.markFormGroupTouched(this.form);
+        this.message.showMessageBig('اطلاعات ارسال شده را مجددا بررسی کنید')
+      } else {
+        this.message.showMessageBig('مشکلی رخ داده است لطفا مجددا تلاش کنید')
       }
-      this.errorService.recordError(error.error.data);
       this.checkError.check(error);
-      this.message.showMessageBig('مشکلی رخ داده است لطفا مجددا تلاش کنید')
     })
   }
 
@@ -255,7 +259,7 @@ export class AddComponent implements OnInit {
       dollarRate: this.form.value.dollarRate,
       AEDRate: this.form.value.AEDRate,
       visaRate: this.form.value.visaRate,
-      stDate: this.calenderServices.convertDate1(this.form.value.stDate,'en'),
+      stDate: this.calenderServices.convertDate1(this.form.value.stDate, 'en'),
       insuranceRate: this.form.value.insuranceRate,
       transferRate: this.form.value.transferRate,
       visaPriceType: this.form.value.visaPriceType, // dollar euro derham
@@ -294,27 +298,45 @@ export class AddComponent implements OnInit {
 
 
   disableFields(): void {
-    if (this.form.value.defineTour === 'true') {
-      this.form.controls.euroRate.enable()
-      this.form.controls.dollarRate.enable()
-      this.form.controls.AEDRate.enable()
-      this.form.controls.visaPriceType.enable()
-      this.form.controls.transferPriceType.enable()
-      this.form.controls.insurancePriceType.enable()
-      this.form.controls.visaRate.enable()
-      this.form.controls.insuranceRate.enable()
-      this.form.controls.transferRate.enable()
-    } else {
+    if (this.form.value.defineTour === 'true') {           // with details
+      if (this.destCityTypeFC.value) {// inner tour
+        this.form.controls.transferRate.enable()
+        this.form.controls.insuranceRate.enable()
+        this.form.controls.CHDFlightRate.enable()
+        this.form.controls.visaRate.disable()
+        this.form.controls.AEDRate.disable()
+        this.form.controls.euroRate.disable()
+        this.form.controls.dollarRate.disable()
+        this.form.controls.visaPriceType.disable()
+        this.form.controls.transferPriceType.disable()
+        this.form.controls.insurancePriceType.disable()
+      } else { // foreign tour
+        this.form.controls.visaRate.enable()
+        this.form.controls.AEDRate.enable()
+        this.form.controls.euroRate.enable()
+        this.form.controls.dollarRate.enable()
+        this.form.controls.visaPriceType.enable()
+        this.form.controls.transferPriceType.enable()
+        this.form.controls.insurancePriceType.enable()
+        this.form.controls.transferRate.enable()
+        this.form.controls.insuranceRate.enable()
+        this.form.controls.CHDFlightRate.enable()
+      }
+
+    } else {   // without details
+      this.form.controls.visaRate.disable()
+      this.form.controls.AEDRate.disable()
       this.form.controls.euroRate.disable()
       this.form.controls.dollarRate.disable()
-      this.form.controls.AEDRate.disable()
       this.form.controls.visaPriceType.disable()
       this.form.controls.transferPriceType.disable()
       this.form.controls.insurancePriceType.disable()
-      this.form.controls.visaRate.disable()
-      this.form.controls.insuranceRate.disable()
       this.form.controls.transferRate.disable()
+      this.form.controls.insuranceRate.disable()
+      this.form.controls.CHDFlightRate.disable()
+
     }
+
   }
 
 
@@ -358,6 +380,7 @@ export class AddComponent implements OnInit {
   }
 
   destCityTypeChange(): void {
+    this.disableFields()
     this.getDestCities()
   }
 
@@ -399,7 +422,7 @@ export class AddComponent implements OnInit {
     })
   }
 
-   clean(obj:any):void {
+  clean(obj: any): void {
     for (var propName in obj) {
       if (obj[propName] === null || obj[propName] === undefined) {
         delete obj[propName];
