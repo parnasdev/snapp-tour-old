@@ -132,7 +132,7 @@ export class AddComponent implements OnInit {
       user_id: null,
       hotel_id: [0],
       services: [null],
-      rate: [null],
+      rate: [1],
       discountsTwin: [null],
       discountsSingle: [null],
       discountsCwb: [null],
