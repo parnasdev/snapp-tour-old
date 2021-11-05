@@ -13,6 +13,10 @@ import {MatInputModule} from "@angular/material/input";
 import {MaterialModule} from "../../common-project/persianDatePickerAdapter/material.module";
 import {CommonProjectModule} from "../../common-project/common-project.module";
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {IConfig, NgxMaskModule} from "ngx-mask";
+const maskConfig: Partial<IConfig> = {
+  validation: false,
+};
 
 
 @NgModule({
@@ -31,6 +35,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     MatInputModule,
     MaterialModule,
     CommonProjectModule,
+    NgxMaskModule.forRoot(maskConfig),
   ]
 })
 export class TourPanelModule {

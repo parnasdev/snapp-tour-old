@@ -218,11 +218,11 @@
         <div class="top">
           <div class="item-info">
             <label for="">نرخ یورو(تومان)</label>
-            <input formControlName="euroRate" type="text">
+            <input formControlName="euroRate" type="text" mask="separator" thousandSeparator=",">
           </div>
           <div class="item-info">
             <label for="">نرخ دلار(تومان)</label>
-            <input formControlName="dollarRate" type="text">
+            <input formControlName="dollarRate" type="text" mask="separator" thousandSeparator=",">
           </div>
 
         </div>
@@ -254,7 +254,7 @@
           <div class="item-info-services">
             <div class="box-services">
               <label for="">نرخ ترانسفر(تومان/ارزی)</label>
-              <input formControlName="transferRate" type="text">
+              <input formControlName="transferRate" type="text" mask="separator" thousandSeparator=",">
             </div>
             <div class="selectdiv">
               <select formControlName="transferPriceType">
@@ -268,7 +268,7 @@
           <div class="item-info-services">
             <div class="box-services">
               <label for="">نرخ ویزا(تومان/ارزی)</label>
-              <input formControlName="visaRate" type="text">
+              <input formControlName="visaRate" type="text" mask="separator" thousandSeparator=",">
             </div>
             <div class="selectdiv">
               <select formControlName="visaPriceType">
@@ -282,7 +282,7 @@
           <div class="item-info-services">
             <div class="box-services w-100">
               <label for="">نرخ پرواز کودک(تومان)</label>
-              <input formControlName="CHDFlightRate" type="text">
+              <input formControlName="CHDFlightRate" type="text" mask="separator" thousandSeparator=",">
             </div>
           </div>
         </div>
@@ -345,38 +345,48 @@
            <ng-template [ngIf]="destCityTypeFC.value">
 
              <div class="package-item">
-               <input type="number" formControlName="twin">
+               <input type="text" formControlName="twin" mask="separator" thousandSeparator=",">
              </div>
              <div class="package-item">
-               <input type="number" formControlName="triple">
+               <input type="text" formControlName="triple" mask="separator" thousandSeparator=",">
              </div>
              <div class="package-item">
-               <input type="number" formControlName="quad">
+               <input type="text" formControlName="quad" mask="separator" thousandSeparator=",">
              </div>
              <div class="package-item">
-               <input type="number" formControlName="age">
+               <input type="text" formControlName="age">
              </div>
            </ng-template>
 <!--            foreign tour-->
             <ng-template class="body-foreign" [ngIf]="!destCityTypeFC.value">
 
              <div class="package-item">
-               <input type="number" formControlName="twin">
+               <input type="text" formControlName="twin" mask="separator" thousandSeparator=",">
              </div>
              <div class="package-item">
-               <input type="number" formControlName="single">
+               <input type="text" formControlName="single" mask="separator" thousandSeparator=",">
              </div>
              <div class="package-item">
-               <input type="number" formControlName="ADLRate">
-             </div>
-             <div class="package-item">
-               <input type="number" formControlName="cnb">
+               <input type="text" formControlName="ADLRate" mask="separator" thousandSeparator=",">
              </div>
               <div class="package-item">
-               <input type="number" formControlName="cwb">
+                <div class="selectdiv">
+                  <select formControlName="rate">
+                    <option [value]="3">دلار</option>
+                    <option [value]="2">یورو</option>
+                    <option [value]="4">درهم</option>
+                    <option [value]="1">تومان</option>
+                  </select>
+                </div>
+              </div>
+             <div class="package-item">
+               <input type="text" formControlName="cnb" mask="separator" thousandSeparator=",">
              </div>
               <div class="package-item">
-               <input type="number" formControlName="age">
+               <input type="text" formControlName="cwb" mask="separator" thousandSeparator=",">
+             </div>
+              <div class="package-item">
+               <input type="text" formControlName="age">
              </div>
               <div class="package-item"><i class="icon-cancel-1" (click)="removePakage(i)"></i></div>
             </ng-template>

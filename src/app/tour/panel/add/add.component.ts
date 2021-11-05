@@ -131,21 +131,21 @@ export class AddComponent implements OnInit {
       parent: null,
       user_id: null,
       hotel_id: [0],
-      services: ['0'],
-      rate: ['0'],
-      discountsTwin: ['0'],
-      discountsSingle: ['0'],
-      discountsCwb: ['0'],
-      discountsCnb: ['0'],
-      twin: ['0'],
-      single: ['0'],
-      cwb: ['0'],
-      cnb: ['0'],
-      quad: ['0'],
-      triple: ['0'],
-      ADLRate: ['0'],
-      age: ['0'],
-      status: ['']
+      services: [null],
+      rate: [null],
+      discountsTwin: [null],
+      discountsSingle: [null],
+      discountsCwb: [null],
+      discountsCnb: [null],
+      twin: [null],
+      single: [null],
+      cwb: [null],
+      cnb: [null],
+      quad: [null],
+      triple: [null],
+      ADLRate: [null],
+      age: [null],
+      status: [null]
     });
     this.ToursForm.push(Tours);
   }
@@ -156,7 +156,7 @@ export class AddComponent implements OnInit {
         parent: null,
         user_id: item.value.user_id,
         hotel_id: item.value.hotel_id,
-        services: item.value.services,
+        services: +item.value.services,
         rate: item.value.rate,
         discounts: {
           twin: item.value.discountsTwin,
@@ -164,7 +164,7 @@ export class AddComponent implements OnInit {
           cwb: item.value.discountsCwb,
           cnb: item.value.discountsCnb
         },
-        prices: {
+        prices: this.clean({
           twin: item.value.twin,
           single: item.value.single,
           cwb: item.value.cwb,
@@ -173,7 +173,7 @@ export class AddComponent implements OnInit {
           cnb: item.value.cnb,
           ADLRate: item.value.ADLRate,
           age: item.value.age
-        },
+        },),
         status: 'show'
       });
     });
