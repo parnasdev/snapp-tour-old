@@ -253,7 +253,7 @@ export class AddComponent implements OnInit {
       enDate: this.calenderServices.convertDate1(this.form.value.enDate, 'en'),
       expireDate: this.calenderServices.convertDate1(this.form.value.expireDate, 'en'),
       CHDFlightRate: this.form.value.CHDFlightRate,
-      defineTour: this.form.value.defineTour,
+      defineTour: this.form.value.defineTour === 'true',
       euroRate: this.form.value.euroRate,
       type: false,
       dollarRate: this.form.value.dollarRate,
@@ -297,6 +297,7 @@ export class AddComponent implements OnInit {
 
 
   disableFields(): void {
+    debugger
     if (this.form.value.defineTour === 'true') {           // with details
       if (this.destCityTypeFC.value) {// inner tour
         this.form.controls.transferRate.enable()
