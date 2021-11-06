@@ -3,6 +3,7 @@ import {SessionService} from "../../Core/Services/session.service";
 import {AuthApiService} from "../../Core/Https/auth-api.service";
 import {MessageService} from "../../Core/Services/message.service";
 import {CheckErrorService} from "../../Core/Services/check-error.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'prs-header',
@@ -14,6 +15,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(public session: SessionService,
               public api: AuthApiService,
+              public router: Router,
               public message: MessageService,
               public checkError: CheckErrorService) {
   }
@@ -26,6 +28,8 @@ export class HeaderComponent implements OnInit {
       this.isLoading = false;
       if (res.isDone) {
         this.session.removeUser();
+        this.router.navigateByUrl('/')
+
       }
     }, (error: any) => {
       this.isLoading = false;
