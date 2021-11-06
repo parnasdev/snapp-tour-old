@@ -297,7 +297,6 @@ export class AddComponent implements OnInit {
 
 
   disableFields(): void {
-    debugger
     if (this.form.value.defineTour === 'true') {           // with details
       if (this.destCityTypeFC.value) {// inner tour
         this.form.controls.transferRate.enable()
@@ -358,6 +357,8 @@ export class AddComponent implements OnInit {
 
   cityDesChanged(): void {
     this.cityID = this.form.value.endCity_id
+    this.ToursForm.clear();
+    this.addRow()
     this.getHotels();
   }
 
@@ -379,6 +380,8 @@ export class AddComponent implements OnInit {
 
   destCityTypeChange(): void {
     this.disableFields()
+    this.ToursForm.clear();
+    this.addRow()
     this.getDestCities()
   }
 
