@@ -172,7 +172,7 @@
   position: absolute;
   display: flex;
   right: -26px;
-  top: 27px;
+  top: 8px;
   flex-direction: column;
   align-items: flex-start;
 }
@@ -603,18 +603,21 @@
   font-size: 22px;
   font-weight: 600;
 }
+
 .required-documents p, .services-agency p {
   color: var(--gray-color-light);
   font-weight: 500;
   margin-top: 1rem;
   line-height: 26px;
 }
-.img-fix-s3{
+
+.img-fix-s3 {
   position: absolute;
   bottom: 8px;
   left: 8px;
 }
-.complete-details{
+
+.complete-details {
   width: 100%;
   border-radius: 10px;
   border: 2px solid var(--base-color-three);
@@ -626,15 +629,103 @@
   margin-top: 1.5rem;
 }
 
-.complete-details h2{
+.complete-details h2 {
   color: var(--base-color);
   font-size: 22px;
   font-weight: 600;
 }
-.complete-details  p {
+
+.complete-details p {
   color: var(--gray-color-light);
   font-weight: 500;
   margin-top: 1rem;
   line-height: 26px;
 }
+
 //end
+
+
+//mobile
+@media only screen and (max-width: 449px) {
+  .title-tour {
+    flex-direction: column;
+  }
+  .title-tour .left {
+    margin-top: 12px !important;
+  }
+  .title-tour .right img {
+    width: 25px !important;
+  }
+  .tour-main-parent {
+    flex-direction: column;
+  }
+  .login-date-fly .text .right span {
+    font-size: 12px !important;
+    margin-right: 4px !important;
+  }
+  .text-base-color {
+    font-size: 12px !important;
+    margin-right: 4px !important;
+  }
+  .exit-date-fly .text .right span{
+    font-size: 12px !important;
+    margin-right: 4px !important;
+  }
+  .title-s2 .text h2 {
+    font-size: 15px;
+  }
+  .btn-download-pdf {
+    width: 110px;
+  }
+  .btn-download-pdf span {
+    font-size: 12px !important;
+  }
+  .btn-download-pdf img {
+    width: 15px !important;
+  }
+  .details-agency .top {
+    flex-direction: column;
+  }
+  .required-documents, .services-agency {
+    width: 100%;
+    margin-top: 8px;
+  }
+  .complete-details {
+    width: 100%;
+    margin-top: 8px;
+    height: 300px;
+  }
+  .border-fix{
+    display: none;
+  }
+  .tour-main-parent .details-box {
+    width: 100%;
+    padding-right: 0;
+  }
+}
+
+//tablet
+@media only screen and (min-width: 450px) and (max-width: 868px) {
+  .tour-main-parent {
+    flex-direction: column;
+  }
+  .title-s2 .text h2 {
+    font-size: 17px;
+  }
+  .details-agency .top {
+    flex-direction: column;
+  }
+  .required-documents, .services-agency {
+    width: 100%;
+    margin-top: 8px;
+  }
+  .complete-details {
+    width: 100%;
+    margin-top: 8px;
+    height: 300px;
+  }
+  .tour-main-parent .details-box {
+    width: 100%;
+    padding-right: 0;
+  }
+}

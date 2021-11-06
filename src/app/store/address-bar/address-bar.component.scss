@@ -1,19 +1,32 @@
-.address-bar{
+.address-bar {
   width: 100%;
   height: 40px;
   background-color: var(--base-color);
 }
-.parent-address-bar{
+
+.parent-address-bar {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   height: 40px;
   color: var(--white);
 }
-.parent-address-bar i{
+
+.parent-address-bar i {
   font-size: 13px;
   margin: 0 6px;
 }
-.parent-address-bar  a{
+
+.parent-address-bar a {
   color: var(--white);
+}
+
+@media only screen and (max-width: 600px) {
+  .address-bar span {
+    font-size: 12px !important;
+  }
+  .address-bar a{
+    font-size: 12px !important;
+
+  }
 }

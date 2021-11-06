@@ -128,6 +128,8 @@ export interface PricesDTO {
   single: number;
   cwb: number;
   cnb: number;
+  quad: string;
+  triple: string;
   ADLRate: number;
   age: string;
 }
