@@ -28,6 +28,7 @@ export class AddComponent implements OnInit {
     name: '',
     family: '',
     phone: '',
+    birthDay: '',
     password: '',
     permissions: [],
     role_id: 1
@@ -110,6 +111,7 @@ export class AddComponent implements OnInit {
       name: this.userForm.value.name,
       family: this.userForm.value.family,
       phone: this.userForm.value.phone,
+      birthDay: this.calService.convertDate1(this.userForm.value.birthDay, 'en'),
       password: this.userForm.value.password,
       permissions: this.setPermissions,
       role_id: this.userForm.value.role_id,

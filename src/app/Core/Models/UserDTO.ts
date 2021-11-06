@@ -18,6 +18,7 @@ export interface UserCreateReq {
   family: string;
   phone: string;
   password: string;
+  birthDay: string;
   permissions: string[],
   role_id: number;
 }
@@ -28,3 +29,4 @@ export interface UserRolesDTO {
   name: string;
   use: boolean;
 }
+

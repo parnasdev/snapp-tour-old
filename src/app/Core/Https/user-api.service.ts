@@ -33,7 +33,7 @@ export class UserApiService {
     return this.http.post<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
 
-  editUser(req: UserReqDTO, userId: string): any {
+  editUser(req: UserCreateReq, userId: string): any {
     const strUrl = this.serverControllerName + `editUser/${userId}`;
     return this.http.patch<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
