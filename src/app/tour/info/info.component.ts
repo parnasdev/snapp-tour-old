@@ -26,7 +26,7 @@ export class InfoComponent implements OnInit {
 
   thumbsSwiper: any;
   loading = false;
-  tourSlug = 'تور-کیش-3-روزه-2';
+  tourSlug = 'تور-چهار-روزه-ی-استانبول';
   tourInfo!: TourInfoDTO;
 
   constructor(public tourApiService: TourApiService,

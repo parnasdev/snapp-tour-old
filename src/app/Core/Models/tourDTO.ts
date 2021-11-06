@@ -95,7 +95,10 @@ export interface TourPackageDTO {
   parent: null;
   user_id: null;
   hotel_id: string;
-  services: number;
+  services: {
+    id: number;
+    name: string;
+  };
   hotel: HotelDTO;
   rate: number;
   discounts: DiscountsDTO;
