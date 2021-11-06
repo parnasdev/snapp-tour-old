@@ -8,7 +8,7 @@
       <label   for="en-name">نام انگلیسی شهر را وارد کنید</label>
       <input id="en-name" type="text" [formControl]="nameEnFC" placeholder="">
     </div>
-    <div class="item-info">
+    <div class="item-info-mat">
       <mat-button-toggle-group name="fontStyle" [formControl]="typeFC" aria-label="Font Style">
         <mat-button-toggle [value]="true">خارجی</mat-button-toggle>
         <mat-button-toggle [value]="false">داخلی</mat-button-toggle>
@@ -30,5 +30,5 @@
 
     </div>
   </div>
-  <prs-btn [label]="'ثبت'" (click)="submit()" [background]="'blue'" [isLoading]="isLoading"></prs-btn>
+  <prs-btn class="mt-2" [label]="'ثبت'" (click)="submit()" [background]="'blue'" [isLoading]="isLoading"></prs-btn>
 </div>

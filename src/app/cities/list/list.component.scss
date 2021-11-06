@@ -1,0 +1,23 @@
+.parent-list-cities{
+  width: 99%;
+}
+.list-group{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 1.5rem 0;
+}
+.list-group-item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.parent-btn{
+  display: flex;
+  align-items: center;
+}
+.edit{
+  margin-left: 10px;
+}

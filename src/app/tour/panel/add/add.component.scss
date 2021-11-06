@@ -377,12 +377,13 @@
   font-size: 13px !important;
   font-weight: 500 !important;
 }
+:host::ng-deep .mat-button-toggle-group-appearance-standard {
+  margin-top: 8px !important;
+}
+
 .btn-submit-tour{
   margin-top: 1rem;
 }
 :host::ng-deep .btn-submit-tour .btn-blue{
   padding: 0 35px !important;
-}
-:host::ng-deep .mat-button-toggle-group-appearance-standard {
-  margin-top: 8px !important;
 }

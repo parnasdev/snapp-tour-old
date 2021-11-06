@@ -15,7 +15,10 @@
 .item-info{
   display: flex;
   flex-direction: column;
-  width: 49%;
+  width: 41%;
+}
+.item-info-mat{
+  width: 15%;
 }
 .item-info input{
   border: 1px solid var(--light-color-two);
@@ -95,4 +98,25 @@
   top: 6px;
   color: var(--white);
   cursor: pointer;
+}
+:host::ng-deep .mat-button-toggle{
+  height: 30px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+:host::ng-deep .mat-button-toggle button{
+  height: 100% !important;
+  padding-bottom: 0 !important;
+  outline: none;
+}
+:host::ng-deep.mat-button-toggle-label-content {
+  line-height: 30px !important;
+  font-family: IRANSans !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+}
+:host::ng-deep .mat-button-toggle-group-appearance-standard {
+  margin-top: 27px !important;
+  display: flex;
+  justify-content: flex-end;
 }
