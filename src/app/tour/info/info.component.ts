@@ -63,4 +63,12 @@ export class InfoComponent implements OnInit {
     });
   }
 
+  getStars(count: string): number[]{
+    return Array.from(Array(+count).keys());
+  }
+
+  getStarterPrice(): number{
+    return this.tourInfo.defineTour ? this.tourInfo.packages[0].prices.single : this.tourInfo.packages[0].prices.twin;
+  }
+
 }

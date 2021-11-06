@@ -11,7 +11,7 @@
               <img src="assets/img/Ticket-index.svg" width="30" alt="">
               <div class="text">
                 <h2>{{ tourInfo.title }}</h2>
-                <span>شروع قیمت : ۲/۱۰۰/۰۰۰ تومان</span>
+                <span> شروع قیمت از :{{ getStarterPrice() | number}} تومان </span>
               </div>
             </div>
             <div class="left">
@@ -195,9 +195,7 @@
               </div>
               <div class="service-box">
                 <div class="star-icon">
-                  <i class="icon-star"></i>
-                  <i class="icon-star"></i>
-                  <i class="icon-star"></i>
+                  <i class="icon-star" *ngFor="let star of getStars(item.hotel.stars)"></i>
                 </div>
                 <div class="service-hotel-text">
                   <span>{{ item.services.name }}</span>
@@ -213,49 +211,33 @@
                 <label class="complete-user-label">تکمیل ظرفیت</label>
               </div>
             </div>
-            <div class="bottom-thumbnail">
+
+            <!-- local tour -->
+            <div class="bottom-thumbnail" *ngIf="!tourInfo.defineTour">
               <div class="child">
                 <div class="title-info-box">
                   <span>دو تخته (هر نفر)</span>
                 </div>
                 <div class="price-box">
-                  <strong>6,450,000 </strong>
+                  <strong>{{ +item.prices.twin | number }}</strong>
                   <span>تومان</span>
                 </div>
               </div>
               <div class="child">
                 <div class="title-info-box">
-                  <span>یک تخته</span>
+                  <span>سه تخته</span>
                 </div>
                 <div class="price-box">
-                  <strong>6,450,000 </strong>
+                  <strong>{{ +item.prices.triple | number }}</strong>
                   <span>تومان</span>
                 </div>
               </div>
               <div class="child">
                 <div class="title-info-box">
-                  <span>کودک با تخت</span>
+                  <span>چهار تخته</span>
                 </div>
                 <div class="price-box">
-                  <strong>6,450,000 </strong>
-                  <span>تومان</span>
-                </div>
-              </div>
-              <div class="child">
-                <div class="title-info-box">
-                  <span>کودک بدون تخت</span>
-                </div>
-                <div class="price-box">
-                  <strong>6,450,000 </strong>
-                  <span>تومان</span>
-                </div>
-              </div>
-              <div class="child">
-                <div class="title-info-box">
-                  <span>نوزاد</span>
-                </div>
-                <div class="price-box">
-                  <strong>6,450,000 </strong>
+                  <strong>{{ +item.prices.quad | number }}</strong>
                   <span>تومان</span>
                 </div>
               </div>
@@ -264,10 +246,68 @@
                   <span>سن کودک با تخت</span>
                 </div>
                 <div class="price-box">
-                  <span>۷ تا ۱۱ سال</span>
+                  <span>{{ item.prices.age }}</span>
                 </div>
               </div>
             </div>
+
+            <!-- foreign tour -->
+            <div class="bottom-thumbnail" *ngIf="tourInfo.defineTour">
+              <div class="child">
+                <div class="title-info-box">
+                  <span>دو تخته (هر نفر)</span>
+                </div>
+                <div class="price-box">
+                  <strong>{{ +item.prices.twin | number }}</strong>
+                  <span>تومان</span>
+                </div>
+              </div>
+              <div class="child">
+                <div class="title-info-box">
+                  <span>یک تخته</span>
+                </div>
+                <div class="price-box">
+                  <strong>{{ +item.prices.single | number }}</strong>
+                  <span>تومان</span>
+                </div>
+              </div>
+              <div class="child">
+                <div class="title-info-box">
+                  <span>کودک با تخت</span>
+                </div>
+                <div class="price-box">
+                  <strong>{{ +item.prices.cwb | number }}</strong>
+                  <span>تومان</span>
+                </div>
+              </div>
+              <div class="child">
+                <div class="title-info-box">
+                  <span>کودک بدون تخت</span>
+                </div>
+                <div class="price-box">
+                  <strong>{{ +item.prices.cnb | number }}</strong>
+                  <span>تومان</span>
+                </div>
+              </div>
+<!--              <div class="child">-->
+<!--                <div class="title-info-box">-->
+<!--                  <span>نوزاد</span>-->
+<!--                </div>-->
+<!--                <div class="price-box">-->
+<!--                  <strong>6,450,000 </strong>-->
+<!--                  <span>تومان</span>-->
+<!--                </div>-->
+<!--              </div>-->
+              <div class="child">
+                <div class="title-info-box">
+                  <span>سن کودک با تخت</span>
+                </div>
+                <div class="price-box">
+                  <span>{{ item.prices.age }}</span>
+                </div>
+              </div>
+            </div>
+
           </div>
 
         </div>
