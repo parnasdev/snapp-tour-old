@@ -89,6 +89,9 @@
   height: 30px;
   padding: 0 10px;
   border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .button-setting .view-btn {
   width: auto;
@@ -99,6 +102,9 @@
   height: 30px;
   padding: 0 10px;
   border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .button-setting .delete-btn {
   width: auto;
@@ -123,4 +129,14 @@
 
 .date-create {
   direction: ltr;
+}
+.btn-add-tour{
+  background-color: var(--base-color);
+  color: var(--white);
+  width: 120px;
+  height: 38px;
+  border-radius: var(--radius-btn);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
