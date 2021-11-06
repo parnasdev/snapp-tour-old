@@ -10,7 +10,7 @@
             <div class="right">
               <img src="assets/img/Ticket-index.svg" width="30" alt="">
               <div class="text">
-                <h2>تور آنتالیا ۲۳ مهر ۱۴۰۰</h2>
+                <h2>{{ tourInfo.title }}</h2>
                 <span>شروع قیمت : ۲/۱۰۰/۰۰۰ تومان</span>
               </div>
             </div>
@@ -104,11 +104,12 @@
                   <img src="assets/img/Up%20Down%202.svg" width="20" alt="">
                   <div class="text">
                     <div class="right">
-                      <span>تهران</span>
+                      <span>{{ this.tourInfo.stCity  }}</span>
                       <span class="mt-2 text-red">تاریخ و ساعت پرواز رفت :</span>
                     </div>
                     <div class="left">
-                      <span class="text-red">1400/07/21   |   21:45 </span>
+
+                      <span class="text-red">{{ this.calService.convertDate1(tourInfo.stDate, 'fa')  }}</span>
                     </div>
                   </div>
                 </div>
@@ -116,7 +117,7 @@
                   <img src="assets/img/Dish.svg" width="20" alt="">
                   <div class="text">
                     <span class="text-base-color">تاریخ ورود به هتل :</span>
-                    <span class="text-base-color">1400/07/22</span>
+                    <span class="text-base-color">{{ this.calService.convertDate1(tourInfo.stDate, 'fa')  }}</span>
                   </div>
                 </div>
               </div>
@@ -124,8 +125,8 @@
               <div class="middle-tour-login">
                 <img src="assets/img/Moon%202.svg" width="22" alt="">
                 <div class="text">
-                  <span class="text-gray-color">مدت اقامت در آنتالیا :</span>
-                  <span class="text-base-color">۶ شب و ۵ روز</span>
+                  <span class="text-gray-color">مدت اقامت در {{ this.tourInfo.endCity  }} :</span>
+                  <span class="text-base-color">{{ this.tourInfo.dayNum + ' ' + 'روز و' + this.tourInfo.nightNum + ' شب' }}</span>
                 </div>
               </div>
               <div class="border-box">
@@ -141,11 +142,11 @@
                   <img src="assets/img/Up%20Down%202.svg" width="20" alt="">
                   <div class="text">
                     <div class="right">
-                      <span>ایتالیا</span>
+                      <span>{{ this.tourInfo.endCity  }}</span>
                       <span class="mt-2 text-red">تاریخ و ساعت پرواز برگشت :</span>
                     </div>
                     <div class="left">
-                      <span class="text-red">1400/07/21   |   21:45 </span>
+                      <span class="text-red">{{ this.calService.convertDate1(tourInfo.enDate, 'fa')  }}</span>
                     </div>
                   </div>
                 </div>
@@ -153,7 +154,7 @@
                   <img src="assets/img/Dish.svg" width="20" alt="">
                   <div class="text">
                     <span class="text-base-color">تاریخ خروج از هتل  :</span>
-                    <span class="text-base-color">1400/07/22</span>
+                    <span class="text-base-color">{{ this.calService.convertDate1(tourInfo.enDate, 'fa')  }}</span>
                   </div>
                 </div>
               </div>
@@ -182,14 +183,14 @@
               <span>دانلود فایل PDF</span>
             </a>
           </div>
-          <!--          thumbnail-one-->
-          <div class="thumbnail-one">
+
+          <div class="thumbnail-one" *ngFor="let item of tourInfo.packages">
             <div class="top">
               <div class="title-box">
                 <img class="img-hotel" src="assets/img/1200px-Sunrise_over_Kangchenjunga.png" alt="">
                 <div class="info-title">
-                  <h2 class="title-en">HIMEROS HOTELS AYT</h2>
-                  <span class="title-fa"> هتل هيمروس آنتاليا </span>
+                  <h2 class="title-en">{{ item.hotel.nameEn }}</h2>
+                  <span class="title-fa">{{ item.hotel.name }}</span>
                 </div>
               </div>
               <div class="service-box">
@@ -206,169 +207,9 @@
                 <span class="book-phone">رزرو تلفنی : ۸۴۲۷۷۸-۰۲۱</span>
                 <span class="or">یا</span>
                 <button class="btn-complete-book">تکمیل کردن فرم رزرو</button>
+                <button class="btn-pay-online" *ngIf="false">پرداخت آنلاین</button>
               </div>
-            </div>
-            <div class="bottom-thumbnail">
-              <div class="child">
-                <div class="title-info-box">
-                  <span>دو تخته (هر نفر)</span>
-                </div>
-                <div class="price-box">
-                  <strong>6,450,000 </strong>
-                  <span>تومان</span>
-                </div>
-              </div>
-              <div class="child">
-                <div class="title-info-box">
-                  <span>یک تخته</span>
-                </div>
-                <div class="price-box">
-                  <strong>6,450,000 </strong>
-                  <span>تومان</span>
-                </div>
-              </div>
-              <div class="child">
-                <div class="title-info-box">
-                  <span>کودک با تخت</span>
-                </div>
-                <div class="price-box">
-                  <strong>6,450,000 </strong>
-                  <span>تومان</span>
-                </div>
-              </div>
-              <div class="child">
-                <div class="title-info-box">
-                  <span>کودک بدون تخت</span>
-                </div>
-                <div class="price-box">
-                  <strong>6,450,000 </strong>
-                  <span>تومان</span>
-                </div>
-              </div>
-              <div class="child">
-                <div class="title-info-box">
-                  <span>نوزاد</span>
-                </div>
-                <div class="price-box">
-                  <strong>6,450,000 </strong>
-                  <span>تومان</span>
-                </div>
-              </div>
-              <div class="child">
-                <div class="title-info-box">
-                  <span>سن کودک با تخت</span>
-                </div>
-                <div class="price-box">
-                  <span>۷ تا ۱۱ سال</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--          end-->
-
-          <!--          thumbnail-two-->
-          <div class="thumbnail-two">
-            <div class="top">
-              <div class="title-box">
-                <label class="offer-hotel-label">آفر ویژه روی هتل !</label>
-                <div class="info-title">
-                  <h2 class="title-en">HIMEROS HOTELS AYT</h2>
-                  <span class="title-fa"> هتل هيمروس آنتاليا </span>
-                </div>
-              </div>
-              <div class="service-box">
-                <div class="star-icon">
-                  <i class="icon-star"></i>
-                  <i class="icon-star"></i>
-                  <i class="icon-star"></i>
-                </div>
-                <div class="service-hotel-text">
-                  <span>ALL</span>
-                </div>
-              </div>
-              <div class="book-box">
-                <span class="book-phone">رزرو تلفنی : ۸۴۲۷۷۸-۰۲۱</span>
-                <span class="or">یا</span>
-                <button class="btn-pay-online">پرداخت آنلاین</button>
-              </div>
-            </div>
-            <div class="bottom-thumbnail">
-              <div class="child">
-                <div class="title-info-box">
-                  <span>دو تخته (هر نفر)</span>
-                </div>
-                <div class="price-box">
-                  <strong>6,450,000 </strong>
-                  <span>تومان</span>
-                </div>
-              </div>
-              <div class="child">
-                <div class="title-info-box">
-                  <span>یک تخته</span>
-                </div>
-                <div class="price-box">
-                  <strong>6,450,000 </strong>
-                  <span>تومان</span>
-                </div>
-              </div>
-              <div class="child">
-                <div class="title-info-box">
-                  <span>کودک با تخت</span>
-                </div>
-                <div class="price-box">
-                  <strong>6,450,000 </strong>
-                  <span>تومان</span>
-                </div>
-              </div>
-              <div class="child">
-                <div class="title-info-box">
-                  <span>کودک بدون تخت</span>
-                </div>
-                <div class="price-box">
-                  <strong>6,450,000 </strong>
-                  <span>تومان</span>
-                </div>
-              </div>
-              <div class="child">
-                <div class="title-info-box">
-                  <span>نوزاد</span>
-                </div>
-                <div class="price-box">
-                  <strong>6,450,000 </strong>
-                  <span>تومان</span>
-                </div>
-              </div>
-              <div class="child">
-                <div class="title-info-box">
-                  <span>سن کودک با تخت</span>
-                </div>
-                <div class="price-box">
-                  <span>۷ تا ۱۱ سال</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--          end-->
-          <div class="thumbnail-one">
-            <div class="top">
-              <div class="title-box">
-                <img class="img-hotel" src="assets/img/1200px-Sunrise_over_Kangchenjunga.png" alt="">
-                <div class="info-title">
-                  <h2 class="title-en">HIMEROS HOTELS AYT</h2>
-                  <span class="title-fa"> هتل هيمروس آنتاليا </span>
-                </div>
-              </div>
-              <div class="service-box">
-                <div class="star-icon">
-                  <i class="icon-star"></i>
-                  <i class="icon-star"></i>
-                  <i class="icon-star"></i>
-                </div>
-                <div class="service-hotel-text">
-                  <span>ALL</span>
-                </div>
-              </div>
-              <div class="book-box">
+              <div class="book-box" *ngIf="false">
                 <label class="complete-user-label">تکمیل ظرفیت</label>
               </div>
             </div>
@@ -428,6 +269,7 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -446,43 +288,32 @@
           <div class="top">
             <div class="required-documents">
               <h2>مدارک لازم</h2>
-              <p>
-                پاسپورت با حداقل 6 ماه اعتبار
-                <br>
-                داشتن تست pcr منفی 72 ساعت قبل از پرواز
-              </p>
+              <p>{{ this.tourInfo.documents }}</p>
               <img class="img-fix-s3" src="assets/img/Credit%20Card.svg" width="80" alt="">
             </div>
             <div class="services-agency">
               <h2>خدمات آژانس</h2>
-              <p>
-                پرواز رفت و برگشت با  پرواز ایران ایر
-                <br>
-                ترانسفر فرودگاهی
-                <br>
-                تورلیدر فارسی زبان
-                <br>
-                بیمه مسافرتی
-              </p>
+              <p>{{ this.tourInfo.services }}</p>
               <img class="img-fix-s3" src="assets/img/Verified.svg" width="80" alt="">
             </div>
           </div>
           <div class="complete-details">
-            <h2>مدارک لازم</h2>
-            <p>
-              مسئولیت کنترل پاسپورت بابت (حداقل 6 ماه) و هرگونه ممنوعیت خروج از کشور به عهده آژانس ثبت کننده میباشد و آژانس همنواز آسمان آبی در این مورد هیچ گونه مسئولیتی ندارد .
-              <br>
-              -بلیط و هتل چارتر و غیر قابل استرداد می باشد .
-              <br>
-              -نرخ بچه بدون تخت 4.70.000تومان و نت می باشد .
-              <br>
-              -نرخ کودکان زیر 2 سال 950.000 تومان و نت می باشد .
-              <br>
-              -قیمت ها به تومان می باشد و ارسال 60% از کل مبلغ تور هنگام رزرو الزامیست و در صورت عدم واریزی و ابطال قرارداد از سوی شرکت همنواز آسمان آبی کلیه ی مسئولیت ها به عهده درخواست کننده می باشد .
-              -در صورت افزایش 5% نرخ ارز ما به التفاوت دریافت می گردد . (در صورت تسویه در روز ثبت شامل افزایش نرخ نمی شود)
-              -  همراه داشتن تست منفی کرونا 72 ساعت قبل از پرواز الزامی می باشد.
-              -  طبق بخشنامه وزارت بهداشت ترکیه تمام مسافران برای  سفر به کشور ترکیه موظف به انجام ثبت نام در سایت اعلام شده می باشند. register.health.gov.ir
-            </p>
+            <h2>توضیحات</h2>
+<!--            <p>-->
+<!--              مسئولیت کنترل پاسپورت بابت (حداقل 6 ماه) و هرگونه ممنوعیت خروج از کشور به عهده آژانس ثبت کننده میباشد و آژانس همنواز آسمان آبی در این مورد هیچ گونه مسئولیتی ندارد .-->
+<!--              <br>-->
+<!--              -بلیط و هتل چارتر و غیر قابل استرداد می باشد .-->
+<!--              <br>-->
+<!--              -نرخ بچه بدون تخت 4.70.000تومان و نت می باشد .-->
+<!--              <br>-->
+<!--              -نرخ کودکان زیر 2 سال 950.000 تومان و نت می باشد .-->
+<!--              <br>-->
+<!--              -قیمت ها به تومان می باشد و ارسال 60% از کل مبلغ تور هنگام رزرو الزامیست و در صورت عدم واریزی و ابطال قرارداد از سوی شرکت همنواز آسمان آبی کلیه ی مسئولیت ها به عهده درخواست کننده می باشد .-->
+<!--              -در صورت افزایش 5% نرخ ارز ما به التفاوت دریافت می گردد . (در صورت تسویه در روز ثبت شامل افزایش نرخ نمی شود)-->
+<!--              -  همراه داشتن تست منفی کرونا 72 ساعت قبل از پرواز الزامی می باشد.-->
+<!--              -  طبق بخشنامه وزارت بهداشت ترکیه تمام مسافران برای  سفر به کشور ترکیه موظف به انجام ثبت نام در سایت اعلام شده می باشند. register.health.gov.ir-->
+<!--            </p>-->
+            <p>{{ this.tourInfo.description }}</p>
             <img class="img-fix-s3" src="assets/img/Message-info-tour.svg" width="80" alt="">
           </div>
         </div>
@@ -502,7 +333,7 @@
           <div class="title-s2">
             <div class="text">
               <img src="assets/img/Notification%202.svg" width="35" alt="">
-              <h2>هتل های قابل ارائه تور</h2>
+              <h2>تور های مشابه</h2>
             </div>
           </div>
           <prs-thumbnail-tour></prs-thumbnail-tour>

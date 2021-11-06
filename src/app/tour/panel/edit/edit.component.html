@@ -1,1 +1,434 @@
-<p>edit works!</p>
+<div class="add-tour">
+  <form [formGroup]="form">
+    <div class="box-info-tour">
+      <div class="info-tour-header">
+        <div class="right">
+          <label for="">{{destCityTypeFC.value ? 'تور داخلی' : 'تور خارجی'}}</label>
+          <h2>اطلاعات تور</h2>
+
+
+        </div>
+        <div class="left">
+          <div class="selectdiv">
+            <label>
+              <select formControlName="status">
+                <option value="show"> منتشر میشود</option>
+                <option value="draft" selected> منتشر نشود</option>
+              </select>
+            </label>
+          </div>
+
+          <div  *ngIf="errorService.hasError('status')">
+            <span class="text-danger">{{errorService.getError('status')}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="info-tour-body">
+        <div class="top">
+          <div class="item-info">
+            <label for="">عنوان تور</label>
+            <input formControlName="title" type="text">
+            <div  *ngIf="errorService.hasError('title')">
+              <span class="text-danger">{{errorService.getError('title')}}</span>
+            </div>
+          </div>
+          <div class="item-info-2">
+            <div class="select-info">
+
+              <label for="">شهر مبدا</label>
+              <mat-button-toggle-group name="fontStyle" [formControl]="originCityTypeFC"
+                                       (change)="originCityTypeChange()" aria-label="Font Style">
+                <mat-button-toggle [value]="true">داخلی</mat-button-toggle>
+                <mat-button-toggle [value]="false">خارجی</mat-button-toggle>
+              </mat-button-toggle-group>
+              <select formControlName="stCity_id" name="" id="">
+                <option *ngFor="let city of originCities" [value]="city.id">{{city.name}}</option>
+
+              </select>
+            </div>
+            <div  *ngIf="errorService.hasError('stCity_id')">
+              <span class="text-danger">{{errorService.getError('stCity_id')}}</span>
+            </div>
+            <div class="select-info">
+              <label for="">شهر مقصد</label>
+              <mat-button-toggle-group name="fontStyle" [formControl]="destCityTypeFC" (change)="destCityTypeChange()"
+                                       aria-label="Font Style">
+                <mat-button-toggle [value]="true">داخلی</mat-button-toggle>
+                <mat-button-toggle [value]="false">خارجی</mat-button-toggle>
+              </mat-button-toggle-group>
+              <select formControlName="endCity_id" (change)="cityDesChanged()" name="" id="">
+                <option *ngFor="let city of destCities" [value]="city.id">{{city.name}}</option>
+
+              </select>
+              <div  *ngIf="errorService.hasError('endCity_id')">
+                <span class="text-danger">{{errorService.getError('endCity_id')}}</span>
+              </div>
+            </div>
+
+          </div>
+          <div class="item-info-2">
+            <div class="select-info">
+              <label for="">تعداد شب</label>
+              <select formControlName="nightNum" name="" id="">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+              </select>
+              <div  *ngIf="errorService.hasError('nightNum')">
+                <span class="text-danger">{{errorService.getError('nightNum')}}</span>
+              </div>
+            </div>
+            <div class="select-info">
+              <label for="">تعداد روز</label>
+              <select formControlName="dayNum" name="" id="">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+              </select>
+              <div  *ngIf="errorService.hasError('dayNum')">
+                <span class="text-danger">{{errorService.getError('dayNum')}}</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="item-info">
+            <label for="">تاریخ ورود به هتل</label>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <input matInput [matDatepicker]="picker1" formControlName="stDate" [min]="minDate" (click)="picker1.open()">
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+            <div  *ngIf="errorService.hasError('stDate')">
+              <span class="text-danger">{{errorService.getError('stDate')}}</span>
+            </div>
+          </div>
+          <div class="item-info">
+            <label for="">تاریخ خروج از هتل</label>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <input matInput formControlName="enDate" [matDatepicker]="picker2" [min]="minDate" (click)="picker2.open()">
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+            <div  *ngIf="errorService.hasError('enDate')">
+              <span class="text-danger">{{errorService.getError('enDate')}}</span>
+            </div>
+          </div>
+          <div class="item-info">
+            <label for="">تاریخ انقضا پکیج</label>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <input matInput formControlName="expireDate" [matDatepicker]="picker3" [min]="minDate" (click)="picker3.open()">
+              <mat-datepicker #picker3></mat-datepicker>
+            </mat-form-field>
+            <div  *ngIf="errorService.hasError('expireDate')">
+              <span class="text-danger">{{errorService.getError('expireDate')}}</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="box-info-fly">
+
+      <div class="info-tour-header">
+        <div class="right">
+          <h2>اطلاعات پرواز</h2>
+        </div>
+      </div>
+
+      <div class="info-tour-body">
+        <div class="top">
+          <div class="item-info">
+            <label for="">تاریح پرواز رفت</label>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <input matInput [matDatepicker]="picker4" [formControl]="originDateFC" [min]="minDate" (click)="picker4.open()">
+              <mat-datepicker #picker4></mat-datepicker>
+            </mat-form-field>
+
+          </div>
+          <div class="item-info-timer">
+            <label for="">ساعت پرواز رفت</label>
+            <!--              <ngb-timepicker  [formControl]="originTimeFC" [meridian]="false"></ngb-timepicker>-->
+            <prs-time-picker (result)="getOriginTime($event)"></prs-time-picker>
+          </div>
+          <div class="item-info-2">
+            <div class="select-info w-100">
+              <label for="">ایرلاین</label>
+              <select [formControl]="originTransferFC">
+                <option *ngFor="let item of airlines" [value]="item.id">{{item.name}}</option>
+              </select>
+            </div>
+
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="item-info">
+            <label for="">تاریخ پرواز برگشت</label>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <input matInput [matDatepicker]="picker7" [formControl]="destDateFC" [min]="minDate" (click)="picker7.open()">
+              <mat-datepicker #picker7></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="item-info-timer">
+            <label for="">ساعت پرواز برگشت</label>
+            <prs-time-picker (result)="getDestTime($event)"></prs-time-picker>
+          </div>
+          <div class="item-info-2">
+            <div class="select-info w-100">
+              <label for="">ایرلاین برگشت</label>
+              <select [formControl]="destTransferFC">
+                <option *ngFor="let item of airlines" [value]="item.id">{{item.name}}</option>
+              </select>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="box-info-fly">
+      <div class="info-tour-header">
+        <div class="right">
+          <h2>نرخ ارزها</h2>
+        </div>
+        <div class="left">
+          <div class="selectdiv">
+            <label>
+              <select formControlName="defineTour" (change)="disableFields()">
+                <option [value]="false">یکجا</option>
+                <option [value]="true">باجزییات</option>
+              </select>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="info-tour-body">
+        <div class="top">
+          <div class="item-info">
+            <label for="">نرخ یورو(تومان)</label>
+            <input formControlName="euroRate" type="text" mask="separator" thousandSeparator=",">
+          </div>
+          <div class="item-info">
+            <label for="">نرخ دلار(تومان)</label>
+            <input formControlName="dollarRate" type="text" mask="separator" thousandSeparator=",">
+          </div>
+          <div class="item-info">
+            <label for="">نرخ درهم(تومان)</label>
+            <input formControlName="AEDRate" type="text" mask="separator" thousandSeparator=",">
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="box-info-fly">
+      <div class="info-tour-header">
+        <div class="right">
+          <h2>نرخ خدمات</h2>
+        </div>
+      </div>
+      <div class="info-tour-body">
+        <div class="top">
+          <div class="item-info-services">
+            <div class="box-services">
+              <label for="">نرخ بیمه(تومان/ارزی)</label>
+              <input formControlName="insuranceRate" type="text">
+            </div>
+            <div class="selectdiv">
+              <select formControlName="insurancePriceType">
+                <option [value]="3">دلار</option>
+                <option [value]="2">یورو</option>
+                <option [value]="4">درهم</option>
+                <option [value]="1">تومان</option>
+              </select>
+            </div>
+          </div>
+          <div class="item-info-services">
+            <div class="box-services">
+              <label for="">نرخ ترانسفر(تومان/ارزی)</label>
+              <input formControlName="transferRate" type="text" mask="separator" thousandSeparator=",">
+            </div>
+            <div class="selectdiv">
+              <select formControlName="transferPriceType">
+                <option [value]="3">دلار</option>
+                <option [value]="2">یورو</option>
+                <option [value]="4">درهم</option>
+                <option [value]="1">تومان</option>
+              </select>
+            </div>
+          </div>
+          <div class="item-info-services">
+            <div class="box-services">
+              <label for="">نرخ ویزا(تومان/ارزی)</label>
+              <input formControlName="visaRate" type="text" mask="separator" thousandSeparator=",">
+            </div>
+            <div class="selectdiv">
+              <select formControlName="visaPriceType">
+                <option [value]="3">دلار</option>
+                <option [value]="2">یورو</option>
+                <option [value]="4">درهم</option>
+                <option [value]="1">تومان</option>
+              </select>
+            </div>
+          </div>
+          <div class="item-info-services">
+            <div class="box-services w-100">
+              <label for="">نرخ پرواز کودک(تومان)</label>
+              <input formControlName="CHDFlightRate" type="text" mask="separator" thousandSeparator=",">
+              <div  *ngIf="errorService.hasError('CHDFlightRate')">
+                <span class="text-danger">{{errorService.getError('CHDFlightRate')}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box-info-package">
+      <div class="info-tour-header">
+        <div class="right">
+          <h2>اطلاعات پکیج</h2>
+        </div>
+      </div>
+      <div class="info-tour-body p-0">
+        <div class="change-price-box">
+          <span>تغییر گروهی قیمت ها</span>
+          <input type="text">
+        </div>
+        <!--            local tour-->
+        <div class="header-box" *ngIf="destCityTypeFC.value">
+          <div class="package-item">#</div>
+          <div class="package-item">نام هتل</div>
+          <div class="package-item">خدمات</div>
+          <div class="package-item">دو تخته (تومان)</div>
+          <div class="package-item">سه تخته (تومان)</div>
+          <div class="package-item">چهار تخته (تومان)</div>
+          <div class="package-item">سن کودک بدون تخت</div>
+          <div class="package-item"><i class="icon-plus-circled" (click)="addRow()"></i></div>
+
+        </div>
+        <!--            foreign tour-->
+        <div class="header-box-two" *ngIf="!destCityTypeFC.value">
+          <div class="package-item">#</div>
+          <div class="package-item">نام هتل</div>
+          <div class="package-item">خدمات</div>
+          <div class="package-item">دو تخته (تومان)</div>
+          <div class="package-item">یه تخته (تومان)</div>
+          <div class="package-item">نرخ بزرگسال (تومان)</div>
+          <div class="package-item" *ngIf="form.value.defineTour">نرخ</div>
+          <div class="package-item">کودک بدون تخت (تومان)</div>
+          <div class="package-item">کودک بدون تخت (تومان)</div>
+          <div class="package-item">سن کودک بدون تخت</div>
+          <div class="package-item"><i class="icon-plus-circled" (click)="addRow()"></i></div>
+
+        </div>
+        <form [formGroup]="form" formArrayName="packages" action="">
+          <div class="body-box" *ngFor="let tour of ToursForm.controls; let i = index"
+               [formGroupName]="i">
+            <div class="package-item id-package">{{i + 1}}</div>
+            <div class="package-item">
+              <select name="" id="" formControlName="hotel_id">
+                <option *ngFor="let hotel of hotels" [value]="hotel.id">{{hotel.name}}</option>
+              </select>
+            </div>
+            <div class="package-item">
+              <select name="" id="" formControlName="services">
+                <option *ngFor="let service of services" [value]="service.id">{{service.name}}</option>
+              </select>
+            </div>
+
+            <!--            local tour-->
+            <ng-template [ngIf]="destCityTypeFC.value">
+
+              <div class="package-item">
+                <input type="text" formControlName="twin" mask="separator" thousandSeparator=",">
+              </div>
+              <div class="package-item">
+                <input type="text" formControlName="triple" mask="separator" thousandSeparator=",">
+              </div>
+              <div class="package-item">
+                <input type="text" formControlName="quad" mask="separator" thousandSeparator=",">
+              </div>
+              <div class="package-item">
+                <input type="text" formControlName="age">
+              </div>
+            </ng-template>
+            <!--            foreign tour-->
+            <ng-template class="body-foreign" [ngIf]="!destCityTypeFC.value">
+
+              <div class="package-item">
+                <input type="text" formControlName="twin" mask="separator" thousandSeparator=",">
+              </div>
+              <div class="package-item">
+                <input type="text" formControlName="single" mask="separator" thousandSeparator=",">
+              </div>
+              <div class="package-item">
+                <input type="text" formControlName="ADLRate" mask="separator" thousandSeparator=",">
+              </div>
+              <div class="package-item" *ngIf="form.value.defineTour">
+                <div class="selectdiv">
+                  <select formControlName="rate" >
+                    <option [value]="3">دلار</option>
+                    <option [value]="2">یورو</option>
+                    <option [value]="4">درهم</option>
+                    <option [value]="1">تومان</option>
+                  </select>
+                </div>
+              </div>
+              <div class="package-item">
+                <input type="text" formControlName="cnb" mask="separator" thousandSeparator=",">
+              </div>
+              <div class="package-item">
+                <input type="text" formControlName="cwb" mask="separator" thousandSeparator=",">
+              </div>
+              <div class="package-item">
+                <input type="text" formControlName="age">
+              </div>
+              <div class="package-item"><i class="icon-cancel-1" (click)="removePakage(i)"></i></div>
+            </ng-template>
+          </div>
+        </form>
+
+      </div>
+    </div>
+    <div class="box-details-tour">
+      <div class="info-tour-header">
+        <div class="right">
+          <h2>جزییات تور</h2>
+        </div>
+      </div>
+      <div class="details-body-tour">
+        <div class="textarea">
+          <textarea formControlName="services" name="" cols="30" rows="10" placeholder="خدمات"></textarea>
+          <div  *ngIf="errorService.hasError('services')">
+            <span class="text-danger">{{errorService.getError('services')}}</span>
+          </div>
+          <textarea formControlName="documents" name="" cols="30" rows="10"
+                    placeholder="مدارک مورد نیاز"></textarea>
+          <div  *ngIf="errorService.hasError('documents')">
+            <span class="text-danger">{{errorService.getError('documents')}}</span>
+          </div>
+          <textarea formControlName="description" name="" cols="30" rows="10"
+                    placeholder="توضیحات تکمیلی"></textarea>
+          <div  *ngIf="errorService.hasError('description')">
+            <span class="text-danger">{{errorService.getError('description')}}</span>
+          </div>
+        </div>
+        <prs-btn [background]="'blue'" (click)="submit()" [isLoading]="isLoading" [label]="'ثبت تور'"></prs-btn>
+      </div>
+    </div>
+  </form>
+
+</div>

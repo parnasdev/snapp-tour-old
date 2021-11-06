@@ -55,15 +55,62 @@ export interface TourSetRequestDTO {
   packages: TourPackageDTO[];
 }
 
+export interface TourInfoDTO {
+  AEDRate: number;
+  CHDFlightRate: string;
+  TransferType: string;
+  dayNum: number;
+  defineTour: number;
+  description: string;
+  documents: string;
+  dollarRate: number;
+  enDate: string;
+  endCity: string;
+  euroRate: number;
+  expireDate: string;
+  insurancePriceType: number;
+  insuranceRate: number;
+  nightNum: number;
+  offered: null
+  packages: TourPackageDTO[];
+  services: string;
+  slug: string;
+  stCity: string;
+  stDate: string;
+  status: string;
+  title: string;
+  transfer: TourTransferDTO[];
+  transferPriceType: number;
+  transferRate: number;
+  type: number;
+  user: {
+    name: string;
+    family: string;
+  }
+  visaPriceType: number;
+  visaRate: number;
+}
+
 export interface TourPackageDTO {
   parent: null;
   user_id: null;
   hotel_id: string;
   services: number;
+  hotel: HotelDTO;
   rate: number;
   discounts: DiscountsDTO;
   prices: PricesDTO;
   status: string;
+}
+
+export interface HotelDTO {
+  id: number;
+  name: string;
+  nameEn: string;
+  slug: string;
+  slugEn: string;
+  stars: string;
+  thumbnail: string;
 }
 
 export interface DiscountsDTO {
