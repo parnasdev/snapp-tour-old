@@ -5,11 +5,11 @@ import {ListComponent} from "./list/list.component";
 
 const routes: Routes = [
   {
-    path: 'info',
+    path: ':slug',
     component: InfoComponent
   },
   {
-    path: 'list/:slug',
+    path: 'list',
     component: ListComponent
   },
 
