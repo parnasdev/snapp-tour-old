@@ -28,58 +28,43 @@ export class HotelApiService {
 
   getHotels(req: HotelRequestDTO): any {
     const strUrl = this.serverControllerName + 'getHotels';
-
-
     return this.http.post<Result<HotelListResponseDTO[]>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
 
   add(req: HotelSetRequestDTO): any {
     const strUrl = this.serverControllerName + 'createHotel';
-
     return this.http.post<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
 
   edit(req: HotelSetRequestDTO, name: string): any {
     const strUrl = this.serverControllerName + `editHotel/${name}`;
-
     return this.http.patch<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
 
   delete(name: string): any {
     const strUrl = this.serverControllerName + `deleteHotel/${name}`;
-
     return this.http.delete<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
   }
 
   getHotel(name: string, isAdmin: boolean): any {
     const strUrl = this.serverControllerName + `getHotel/${name}`;
-    const entity =
-      {
-        isAdmin
-      }
-
+    const entity = {isAdmin}
     return this.http.post<Result<hotelInfoDTO>>(strUrl, entity, this.publicService.getDefaultHeaders());
   }
 
   getServices(): any {
     const strUrl = this.serverControllerName + `getServices`;
-
     return this.http.get<Result<ServiceDTO[]>>(strUrl, this.publicService.getDefaultHeaders());
   }
 
   getHotelPackages(req: HotelRequestDTO): any {
     const strUrl = this.serverControllerName + `getHotelPackages`;
-
     return this.http.post<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
   }
 
   getHotelPackage(isAdmin: boolean, name: string): any {
     const strUrl = this.serverControllerName + `getHotelPackage/${name}`;
-    const entity =
-      {
-        isAdmin
-      }
-
+    const entity = {isAdmin}
     return this.http.post<Result<any>>(strUrl, entity, this.publicService.getDefaultHeaders());
   }
 
