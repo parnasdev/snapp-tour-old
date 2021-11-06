@@ -172,7 +172,7 @@
   position: absolute;
   display: flex;
   right: -26px;
-  top: 8px;
+  top: 25px;
   flex-direction: column;
   align-items: flex-start;
 }
@@ -667,7 +667,7 @@
     font-size: 12px !important;
     margin-right: 4px !important;
   }
-  .exit-date-fly .text .right span{
+  .exit-date-fly .text .right span {
     font-size: 12px !important;
     margin-right: 4px !important;
   }
@@ -695,13 +695,72 @@
     margin-top: 8px;
     height: 300px;
   }
-  .border-fix{
+  .border-fix {
     display: none;
   }
   .tour-main-parent .details-box {
     width: 100%;
     padding-right: 0;
+    margin-top: 1rem;
   }
+  .tour-main-parent .slider-box {
+    width: 100%;
+  }
+  .box-img-main {
+    height: 230px;
+  }
+  .title-tour .right .text h2 {
+    margin-bottom: 1px;
+  }
+  .middle-tour-login .text span {
+    font-size: 12px !important;
+    margin-right: 4px;
+  }
+
+
+  //thumbnail
+  .thumbnail-one .top {
+    flex-direction: column;
+  }
+  .thumbnail-one .top .title-box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .thumbnail-one .top .title-box .img-hotel {
+    width: 100px;
+    height: 90px;
+  }
+  .title-en {
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+  .book-phone {
+    font-size: 12px !important;
+  }
+  .btn-complete-book {
+    width: auto;
+    font-size: 12px !important;
+    padding: 0 10px;
+  }
+  .bottom-thumbnail {
+    flex-wrap: wrap;
+  }
+  .bottom-thumbnail .child {
+    width: 48%;
+    margin-top: 12px;
+  }
+  .service-box {
+    width: 100%;
+    margin: 8px 0;
+  }
+  .info-tour-view span{
+    font-size: 12px !important;
+  }
+  .border-box {
+    height: 50px;
+  }
+  //end
 }
 
 //tablet
@@ -727,5 +786,21 @@
   .tour-main-parent .details-box {
     width: 100%;
     padding-right: 0;
+    margin-top: 1rem;
   }
+  .box-img-main {
+    height: 250px;
+  }
+  .tour-main-parent .slider-box {
+    width: 100%;
+  }
+  .title-tour .right .text h2 {
+    margin-bottom: 1px;
+  }
+
+  //thumbnail
+  .border-box {
+    height: 60px;
+  }
+  //end
 }

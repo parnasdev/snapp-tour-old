@@ -66,7 +66,8 @@
 
               </div>
               <div class="slider-bottom">
-                <swiper class="thumbs-gallery" [slidesPerView]="4"
+                <swiper class="thumbs-gallery"
+                        [slidesPerView]=" this.isMobile? 2 :(isTablet ? 4:4)"
                         [direction]="'horizontal'"
                         [spaceBetween]="20"
                         [navigation]="false"
@@ -183,7 +184,6 @@
               <span>دانلود فایل PDF</span>
             </a>
           </div>
-
           <div class="thumbnail-one" *ngFor="let item of tourInfo.packages">
             <div class="top">
               <div class="title-box">
@@ -211,6 +211,7 @@
                 <label class="complete-user-label">تکمیل ظرفیت</label>
               </div>
             </div>
+
 
             <!-- local tour -->
             <div class="bottom-thumbnail" *ngIf="!tourInfo.defineTour">
@@ -309,7 +310,6 @@
             </div>
 
           </div>
-
         </div>
       </div>
     </div>

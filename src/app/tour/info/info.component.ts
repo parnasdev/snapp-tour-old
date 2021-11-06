@@ -14,6 +14,7 @@ import {ErrorsService} from "../../Core/Services/errors.service";
 import {MessageService} from "../../Core/Services/message.service";
 import {TourInfoDTO, TourSetRequestDTO} from "../../Core/Models/tourDTO";
 import {CalenderServices} from "../../Core/Services/calender-service";
+import {ResponsiveService} from "../../Core/Services/responsive.service";
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs]);
 
@@ -23,7 +24,8 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs]);
   styleUrls: ['./info.component.scss']
 })
 export class InfoComponent implements OnInit {
-
+  isMobile;
+  isTablet;
   thumbsSwiper: any;
   loading = false;
   tourSlug = 'تور-چهار-روزه-ی-استانبول';
@@ -34,9 +36,11 @@ export class InfoComponent implements OnInit {
               public calService: CalenderServices,
               public checkErrorService: CheckErrorService,
               public errorService: ErrorsService,
-              public message: MessageService) {
+              public responsiveService: ResponsiveService,
+  public message: MessageService) {
+    this.isMobile = responsiveService.isMobile();
+    this.isTablet = responsiveService.isTablet();
   }
-
   setThumbsSwiper(swiper: any): void {
     this.thumbsSwiper = swiper;
   }
