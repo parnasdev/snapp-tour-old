@@ -48,7 +48,7 @@
 <!--        <span class="date-create">{{this.calService.convertDate1(tour.createdAt, 'fa') }}</span>-->
 <!--        <span class="status">{{ hotel.status }}</span>-->
         <div class="button-setting">
-          <a routerLink="/panel/hotel/edit" class="edit-btn">ویرایش</a>
+          <a routerLink="/panel/hotel/edit/{{ hotel.slug }}" class="edit-btn">ویرایش</a>
           <a routerLink="/hotel/info" class="view-btn">نمایش</a>
           <!--          <button class="copy-btn">کپی</button>-->
           <button (click)="deleteHotel(hotel.slug)" class="delete-btn">حذف</button>
