@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CityApiService} from "../../Core/Https/city-api.service";
 import {CityListRequestDTO, CityResponseDTO} from "../../Core/Models/cityDTO";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
@@ -15,11 +15,7 @@ import {Router} from "@angular/router";
 })
 export class SearchComponent implements OnInit {
 
-  cities: CityResponseDTO[] = [
-    {name: 'تهران', id: 1},
-    {name: 'اصفهان', id: 2},
-    {name: 'شیراز', id: 3},
-  ];
+  cities: CityResponseDTO[] = [];
   cityReq!: CityListRequestDTO;
   cityFC = new FormControl('', Validators.required);
   dateFC = new FormControl(new Date());
@@ -35,10 +31,17 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.getCities();
+    this.getCities();
   }
 
   getCities(): void {
+    this.cityReq = {
+      type: false,
+      perPage: 20,
+      search: null,
+      hasTour: false,
+      hasHotel: false,
+    }
     this.cityApiService.getCities(this.cityReq).subscribe((res: any) => {
       if (res.isDone) {
         this.cities = res.data
@@ -56,8 +59,7 @@ export class SearchComponent implements OnInit {
   cityChanged(): void {
   }
 
-  search(){
-    console.log(this.calendarService.convertFullDate(this.dateFC, 'fa'))
+  search() {
     this.router.navigate(['tour/list/' + this.cityFC.value]);
   }
 

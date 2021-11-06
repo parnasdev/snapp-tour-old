@@ -2,11 +2,11 @@
   <div class="tour-city">
     <img src="assets/img/Location.svg" width="40" alt="">
     <div class="info-tour-city">
-      <h6>تور آنتالیا ۰۳ مهر</h6>
+      <h6>{{tour.title}}</h6>
       <div class="text-price">
         <small class="title-price">شروع قیمت از :</small>
         <strong class="price-tour">
-          7,450,000 تومان
+          قیمتی ثبت نشده
         </strong>
       </div>
     </div>
@@ -14,18 +14,18 @@
   <div class="tour-days">
     <div class="night">
       <img src="assets/img/Moon%201.svg" width="15" alt="">
-      <span>۶ شب</span>
+      <span>{{tour.nightNum}} شب</span>
     </div>
     <div class="day">
       <img src="assets/img/Sun.svg" width="17" alt="">
-      <span> ۵ روز</span>
+      <span> {{tour.dayNum}} روز</span>
     </div>
   </div>
   <div class="date-tour">
     <img src="assets/img/Up%20Down%201.svg" width="22" alt="">
     <div class="info-date">
-      <span class="from">1400/07/04</span>
-      <span class="to">1400/07/۱۰</span>
+      <span class="from">{{calenderServices.convertDate(tour.createdAt, 'fa')}}</span>
+      <span class="to">{{calenderServices.convertDate(tour.expireDate, 'fa')}}</span>
     </div>
   </div>
   <div class="type">

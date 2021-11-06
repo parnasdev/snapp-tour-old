@@ -28,7 +28,7 @@
                     [slidesPerView]=" this.isMobile? 1 :(isTablet ? 2:4)"
                     [navigation]="true"
                     [spaceBetween]="30">
-              <ng-template swiperSlide>
+              <ng-template swiperSlide *ngFor="let tour of tours">
                 <div class="box-special-tour">
                   <div class="img-special-tour">
                     <div class="hover-info-img">
@@ -40,19 +40,19 @@
                   <div class="top-info-tour-special">
                     <div class="day">
                       <img src="assets/img/Moon%201.svg" width="17" alt="">
-                      <span>۶ شب و ۵ روز</span>
+                      <span>{{tour.nightNum}} شب و {{tour.dayNum}} روز</span>
                     </div>
                     <div class="location">
                       <img src="assets/img/Location-base-color.svg" width="17" alt="">
-                      <span>ایران - کیش</span>
+                      <span>{{tour.stCity}} - {{tour.endCity}}</span>
                     </div>
                   </div>
                   <div class="mid-info-tour-special">
-                    <h3 class="title-tour-special">تور آنتالیا ۰۳ مهر</h3>
+                    <h3 class="title-tour-special">{{tour.title}}</h3>
                     <div class="date-special">
-                      <span class="from">1400/07/04</span>
+                      <span class="from">{{calenderServices.convertDate(tour.createdAt, 'fa')}}</span>
                       <img src="assets/img/Up%20Down%201.svg" width="20" alt="">
-                      <span class="to">1400/07/۱۰</span>
+                      <span class="to">{{calenderServices.convertDate(tour.expireDate, 'fa')}}</span>
                     </div>
                   </div>
                   <div class="bottom-info-tour-special">
@@ -60,154 +60,11 @@
                       <img src="assets/img/Ticket-index.svg" width="17" alt="">
                       <span>شروع قیمت از :</span>
                     </div>
-                    <strong class="price-tour-special">7,450,000 تومان</strong>
+                    <strong class="price-tour-special">قیمتی ثبت نشده</strong>
                   </div>
                 </div>
               </ng-template>
-              <ng-template swiperSlide>
-                <div class="box-special-tour">
-                  <div class="img-special-tour">
-                    <div class="hover-info-img">
-                      <img class="img-hover-child" src="assets/img/Attachment%201.svg" width="30" alt="">
-                      <a class="view-details-more" href="">مشاهده جزئیات بیشتر</a>
-                    </div>
-                    <img src="assets/img/Header-slider-tour90-num02.svg" alt="">
-                  </div>
-                  <div class="top-info-tour-special">
-                    <div class="day">
-                      <img src="assets/img/Moon%201.svg" width="17" alt="">
-                      <span>۶ شب و ۵ روز</span>
-                    </div>
-                    <div class="location">
-                      <img src="assets/img/Location-base-color.svg" width="17" alt="">
-                      <span>ایران - کیش</span>
-                    </div>
-                  </div>
-                  <div class="mid-info-tour-special">
-                    <h3 class="title-tour-special">تور آنتالیا ۰۳ مهر</h3>
-                    <div class="date-special">
-                      <span class="from">1400/07/04</span>
-                      <img src="assets/img/Up%20Down%201.svg" width="20" alt="">
-                      <span class="to">1400/07/۱۰</span>
-                    </div>
-                  </div>
-                  <div class="bottom-info-tour-special">
-                    <div class="title-price">
-                      <img src="assets/img/Ticket-index.svg" width="17" alt="">
-                      <span>شروع قیمت از :</span>
-                    </div>
-                    <strong class="price-tour-special">7,450,000 تومان</strong>
-                  </div>
-                </div>
-              </ng-template>
-              <ng-template swiperSlide>
-                <div class="box-special-tour">
-                  <div class="img-special-tour">
-                    <div class="hover-info-img">
-                      <img class="img-hover-child" src="assets/img/Attachment%201.svg" width="30" alt="">
-                      <a class="view-details-more" href="">مشاهده جزئیات بیشتر</a>
-                    </div>
-                    <img src="assets/img/Header-slider-tour90-num02.svg" alt="">
-                  </div>
-                  <div class="top-info-tour-special">
-                    <div class="day">
-                      <img src="assets/img/Moon%201.svg" width="17" alt="">
-                      <span>۶ شب و ۵ روز</span>
-                    </div>
-                    <div class="location">
-                      <img src="assets/img/Location-base-color.svg" width="17" alt="">
-                      <span>ایران - کیش</span>
-                    </div>
-                  </div>
-                  <div class="mid-info-tour-special">
-                    <h3 class="title-tour-special">تور آنتالیا ۰۳ مهر</h3>
-                    <div class="date-special">
-                      <span class="from">1400/07/04</span>
-                      <img src="assets/img/Up%20Down%201.svg" width="20" alt="">
-                      <span class="to">1400/07/۱۰</span>
-                    </div>
-                  </div>
-                  <div class="bottom-info-tour-special">
-                    <div class="title-price">
-                      <img src="assets/img/Ticket-index.svg" width="17" alt="">
-                      <span>شروع قیمت از :</span>
-                    </div>
-                    <strong class="price-tour-special">7,450,000 تومان</strong>
-                  </div>
-                </div>
-              </ng-template>
-              <ng-template swiperSlide>
-                <div class="box-special-tour">
-                  <div class="img-special-tour">
-                    <div class="hover-info-img">
-                      <img class="img-hover-child" src="assets/img/Attachment%201.svg" width="30" alt="">
-                      <a class="view-details-more" href="">مشاهده جزئیات بیشتر</a>
-                    </div>
-                    <img src="assets/img/Header-slider-tour90-num02.svg" alt="">
-                  </div>
-                  <div class="top-info-tour-special">
-                    <div class="day">
-                      <img src="assets/img/Moon%201.svg" width="17" alt="">
-                      <span>۶ شب و ۵ روز</span>
-                    </div>
-                    <div class="location">
-                      <img src="assets/img/Location-base-color.svg" width="17" alt="">
-                      <span>ایران - کیش</span>
-                    </div>
-                  </div>
-                  <div class="mid-info-tour-special">
-                    <h3 class="title-tour-special">تور آنتالیا ۰۳ مهر</h3>
-                    <div class="date-special">
-                      <span class="from">1400/07/04</span>
-                      <img src="assets/img/Up%20Down%201.svg" width="20" alt="">
-                      <span class="to">1400/07/۱۰</span>
-                    </div>
-                  </div>
-                  <div class="bottom-info-tour-special">
-                    <div class="title-price">
-                      <img src="assets/img/Ticket-index.svg" width="17" alt="">
-                      <span>شروع قیمت از :</span>
-                    </div>
-                    <strong class="price-tour-special">7,450,000 تومان</strong>
-                  </div>
-                </div>
-              </ng-template>
-              <ng-template swiperSlide>
-                <div class="box-special-tour">
-                  <div class="img-special-tour">
-                    <div class="hover-info-img">
-                      <img class="img-hover-child" src="assets/img/Attachment%201.svg" width="30" alt="">
-                      <a class="view-details-more" href="">مشاهده جزئیات بیشتر</a>
-                    </div>
-                    <img src="assets/img/Header-slider-tour90-num02.svg" alt="">
-                  </div>
-                  <div class="top-info-tour-special">
-                    <div class="day">
-                      <img src="assets/img/Moon%201.svg" width="17" alt="">
-                      <span>۶ شب و ۵ روز</span>
-                    </div>
-                    <div class="location">
-                      <img src="assets/img/Location-base-color.svg" width="17" alt="">
-                      <span>ایران - کیش</span>
-                    </div>
-                  </div>
-                  <div class="mid-info-tour-special">
-                    <h3 class="title-tour-special">تور آنتالیا ۰۳ مهر</h3>
-                    <div class="date-special">
-                      <span class="from">1400/07/04</span>
-                      <img src="assets/img/Up%20Down%201.svg" width="20" alt="">
-                      <span class="to">1400/07/۱۰</span>
-                    </div>
-                  </div>
-                  <div class="bottom-info-tour-special">
-                    <div class="title-price">
-                      <img src="assets/img/Ticket-index.svg" width="17" alt="">
-                      <span>شروع قیمت از :</span>
-                    </div>
-                    <strong class="price-tour-special">7,450,000 تومان</strong>
-                  </div>
-                </div>
-              </ng-template>
+
 
             </swiper>
           </div>
@@ -243,10 +100,10 @@
             </div>
           </div>
           <div class="tour-list">
-            <prs-thumbnail-tour></prs-thumbnail-tour>
-            <prs-thumbnail-tour></prs-thumbnail-tour>
-            <prs-thumbnail-tour></prs-thumbnail-tour>
-            <prs-thumbnail-tour></prs-thumbnail-tour>
+            <prs-thumbnails-tour></prs-thumbnails-tour>
+            <prs-thumbnails-tour></prs-thumbnails-tour>
+            <prs-thumbnails-tour></prs-thumbnails-tour>
+            <prs-thumbnails-tour></prs-thumbnails-tour>
 
           </div>
         </div>

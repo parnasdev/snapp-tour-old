@@ -4,15 +4,18 @@ import {InfoComponent} from "./info/info.component";
 import {ListComponent} from "./list/list.component";
 
 const routes: Routes = [
+
+  {
+    path: 'list',
+    component: ListComponent
+  }, {
+    path: 'list/:slug',
+    component: ListComponent
+  },
   {
     path: ':slug',
     component: InfoComponent
   },
-  {
-    path: 'list',
-    component: ListComponent
-  },
-
 ];
 
 @NgModule({

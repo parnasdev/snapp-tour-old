@@ -18,7 +18,7 @@ export class ListComponent implements OnInit {
     paginate: true,
     search: '',
     perPage: 20,
-    type: 1
+    type: 0
   };
   tours: TourListResDTO[] = [];
   loading = false;
@@ -33,7 +33,7 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.city = this.route.snapshot.paramMap.get('slug');
-    this.tourReq.city = this.city ? this.city : '';
+    this.tourReq.city = this.city ? this.city : null;
     this.getTours();
   }
 

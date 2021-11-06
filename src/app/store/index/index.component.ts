@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import SwiperCore, {Navigation, Pagination, Scrollbar, A11y} from 'swiper';
 import {ResponsiveService} from "../../Core/Services/responsive.service";
+import {TourApiService} from "../../Core/Https/tour-api.service";
+import {TourListRequestDTO, TourListResDTO} from "../../Core/Models/tourDTO";
+import {CalenderServices} from "../../Core/Services/calender-service";
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 declare let $: any;
@@ -13,7 +16,11 @@ declare let $: any;
 export class IndexComponent implements OnInit {
   isMobile;
   isTablet;
+  tours: TourListResDTO[] = []
+
   constructor(
+    public api: TourApiService,
+    public calenderServices: CalenderServices,
     public responsiveService: ResponsiveService
   ) {
     this.isMobile = responsiveService.isMobile();
@@ -41,7 +48,21 @@ export class IndexComponent implements OnInit {
         $(".icon-6").toggleClass("icon-rotate-collapse")
       })
     })
-
+    this.getTours();
   }
 
+  getTours(): void {
+    const reqDTO: TourListRequestDTO = {
+      city: null,
+      paginate: false,
+      perPage: 10,
+      search: '',
+      type: 0
+    }
+    this.api.getTours(reqDTO).subscribe((res: any) => {
+      if (res.isDone) {
+        this.tours = res.data;
+      }
+    })
+  }
 }
