@@ -332,7 +332,7 @@
           <div class="package-item">دو تخته (تومان)</div>
           <div class="package-item">یه تخته (تومان)</div>
           <div class="package-item">نرخ بزرگسال (تومان)</div>
-          <div class="package-item" *ngIf="form.value.defineTour">نرخ</div>
+          <div class="package-item" *ngIf="form.value.defineTour == 'true'">نرخ</div>
           <div class="package-item">کودک بدون تخت (تومان)</div>
           <div class="package-item">کودک بدون تخت (تومان)</div>
           <div class="package-item">سن کودک بدون تخت</div>
@@ -382,7 +382,7 @@
              <div class="package-item">
                <input type="text" formControlName="ADLRate" mask="separator" thousandSeparator=",">
              </div>
-              <div class="package-item" *ngIf="form.value.defineTour">
+              <div class="package-item" *ngIf="form.value.defineTour == 'true'">
                 <div class="selectdiv">
                   <select formControlName="rate" >
                     <option [value]="3">دلار</option>
