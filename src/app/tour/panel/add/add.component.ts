@@ -102,7 +102,7 @@ export class AddComponent implements OnInit {
     services: new FormControl(''),
     documents: new FormControl(''),
     description: new FormControl(''),
-    status: new FormControl('show'),
+    status: new FormControl('Show'),
     packages: this.fb.array([]),
   });
 
