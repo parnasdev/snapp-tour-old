@@ -30,7 +30,7 @@
           <ul class="under-menu-ul">
             <li><a routerLink="/panel/tour/add">اضافه کردن تور</a></li>
             <li><a routerLink="/panel/tour">لیست تورها</a></li>
-            <li><a routerLink="/panel/tour">تورهای ویژه</a></li>
+            <li><a (click)="showMessage()">تورهای ویژه</a></li>
           </ul>
         </div>
       </li>
@@ -45,7 +45,7 @@
           <ul class="under-menu-ul">
             <li><a routerLink="/panel/hotel/add">اضافه کردن هتل</a></li>
             <li><a routerLink="/panel/hotel/list">لیست هتل ها</a></li>
-            <li><a routerLink="/panel/hotel/list">هتل های ویژه</a></li>
+            <li><a (click)="showMessage()">هتل های ویژه</a></li>
             <li><a routerLink="/panel/cities">لیست شهر ها</a></li>
             <li><a routerLink="/panel/cities/set">اضافه کردن شهر</a></li>
           </ul>
@@ -74,9 +74,8 @@
         </a>
         <div class="collapse" id="collapseExample4">
           <ul class="under-menu-ul">
-            <li><a href="">لیست مطلب</a></li>
-            <li><a href="">لیست مطلب</a></li>
-            <li><a href="">لیست مطلب</a></li>
+            <li><a (click)="showMessage()">لیست مطالب</a></li>
+            <li><a (click)="showMessage()">اضافه کردن مطلب </a></li>
           </ul>
         </div>
       </li>
@@ -89,9 +88,8 @@
         </a>
         <div class="collapse" id="collapseExample5">
           <ul class="under-menu-ul">
-            <li><a href="">لیست مطلب</a></li>
-            <li><a href="">لیست مطلب</a></li>
-            <li><a href="">لیست مطلب</a></li>
+            <li><a (click)="showMessage()">لیست کاربران</a></li>
+            <li><a (click)="showMessage()">اضافه کردن کاربر جدید</a></li>
           </ul>
         </div>
       </li>
@@ -104,9 +102,7 @@
         </a>
         <div class="collapse" id="collapseExample6">
           <ul class="under-menu-ul">
-            <li><a href="">لیست مطلب</a></li>
-            <li><a href="">لیست مطلب</a></li>
-            <li><a href="">لیست مطلب</a></li>
+            <li><a (click)="showMessage()">لیست تیکت ها</a></li>
           </ul>
         </div>
       </li>

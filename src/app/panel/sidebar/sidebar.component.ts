@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {MessageService} from "../../Core/Services/message.service";
 
 declare let $: any;
 
@@ -9,7 +10,7 @@ declare let $: any;
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() {
+  constructor(public message: MessageService,) {
     $(document).ready(() => {
       $(
         ".menu-main-1").click(() =>{
@@ -35,6 +36,10 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+
+  showMessage(){
+    this.message.custom('این گزینه در حال بروزرسانی می باشد')
   }
 
 }
