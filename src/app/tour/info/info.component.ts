@@ -42,6 +42,8 @@ export class InfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // @ts-ignore
+    this.tourSlug = this.route.snapshot.paramMap.get('slug');
     this.getTourInfo();
   }
 
