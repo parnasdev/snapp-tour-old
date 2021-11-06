@@ -174,7 +174,7 @@ export class AddComponent implements OnInit {
           ADLRate: item.value.ADLRate,
           age: item.value.age
         },),
-        status: 'show'
+        status: 'Show'
       });
     });
     console.log(this.tourDetail)
@@ -243,11 +243,11 @@ export class AddComponent implements OnInit {
       dayNum: this.form.value.dayNum,
       transfers: [{
         transfer_id: this.originTransferFC.value,
-        dateTime: (this.calenderServices.convertDate1(this.originDateFC.value, 'en')) + ' ' + this.originTime,
+        dateTime: (this.calenderServices.convertDate1(this.originDateFC.value, 'en')).split(' ')[0] + ' ' + this.originTime,
         type: 'origin',
       }, {
         transfer_id: this.destTransferFC.value,
-        dateTime: (this.calenderServices.convertDate1(this.destDateFC.value, 'en')) + ' ' + this.destTime,
+        dateTime: (this.calenderServices.convertDate1(this.destDateFC.value, 'en')).split(' ')[0] + ' ' + this.destTime,
         type: 'destination',
       },],
       enDate: this.calenderServices.convertDate1(this.form.value.enDate, 'en'),
