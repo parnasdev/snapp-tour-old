@@ -1,4 +1,3 @@
-
 export interface UserReqDTO {
   perPage: number;
   paginate: boolean;
@@ -14,6 +13,18 @@ export interface UserResDTO {
   role: string;
 }
 
-export interface UserPermissionsDTO {
+export interface UserCreateReq {
+  name: string;
+  family: string;
+  phone: string;
+  password: string;
+  permissions: string[],
+  role_id: number;
+}
 
+export interface UserRolesDTO {
+  id: number;
+  label: string;
+  name: string;
+  use: boolean;
 }

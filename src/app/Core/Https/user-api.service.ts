@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {PublicService} from "../Services/public.service";
 import {environment} from "../../../environments/environment";
 import {Result} from "../Models/result";
-import {UserReqDTO} from "../Models/UserDTO";
+import {UserCreateReq, UserReqDTO} from "../Models/UserDTO";
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +28,7 @@ export class UserApiService {
     return this.http.get<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
   }
 
-  addUser(req: UserReqDTO): any {
+  addUser(req: UserCreateReq): any {
     const strUrl = this.serverControllerName + `createUser`;
     return this.http.post<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
   }

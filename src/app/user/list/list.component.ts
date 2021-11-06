@@ -65,7 +65,7 @@ export class ListComponent implements OnInit {
     this.loading = true;
     this.userApi.deleteUser(userId).subscribe((res: any) => {
       if (res.isDone) {
-        this.message.custom('تور مورد نظر حذف شد');
+        this.message.custom('کاربر مورد نظر حذف شد');
         this.getUsers();
       } else {
         this.message.custom(res.message);
