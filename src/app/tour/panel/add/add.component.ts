@@ -151,6 +151,7 @@ export class AddComponent implements OnInit {
   }
 
   convertTour() {
+    this.tourDetail = [];
     this.ToursForm.controls.forEach(item => {
       this.tourDetail.push({
         parent: null,
@@ -177,7 +178,6 @@ export class AddComponent implements OnInit {
         status: 'show'
       });
     });
-    console.log(this.tourDetail)
   }
 
 

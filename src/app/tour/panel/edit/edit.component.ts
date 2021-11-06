@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
-import {TourSetRequestDTO} from "../../../Core/Models/tourDTO";
+import {TourInfoDTO, TourSetRequestDTO} from "../../../Core/Models/tourDTO";
 import {GetServiceRequestDTO} from "../../../Core/Models/commonDTO";
 import {HotelListResponseDTO, HotelRequestDTO} from "../../../Core/Models/hotelDTO";
 import {CityListRequestDTO, CityResponseDTO} from "../../../Core/Models/cityDTO";
@@ -12,7 +12,7 @@ import {MessageService} from "../../../Core/Services/message.service";
 import {TourApiService} from "../../../Core/Https/tour-api.service";
 import {CheckErrorService} from "../../../Core/Services/check-error.service";
 import {ErrorsService} from "../../../Core/Services/errors.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {CommonApiService} from "../../../Core/Https/common-api.service";
 import {SessionService} from "../../../Core/Services/session.service";
 import {CalenderServices} from "../../../Core/Services/calender-service";
@@ -27,6 +27,7 @@ import {TransferListRequestDTO} from "../../../Core/Models/transferDTO";
 })
 export class EditComponent implements OnInit {
   //public Variable
+  slug: string | null = ''
   isMobile;
   isLoading = false;
   minDate = new Date(); //datepicker
@@ -41,18 +42,20 @@ export class EditComponent implements OnInit {
   tourDetail: any = [];
   operation = 1;
   minPrice = 0;
+  info!: TourInfoDTO
   services: GetServiceRequestDTO[] = []
   hotels: HotelListResponseDTO[] = [];
   cityID = 0
   originCities: CityResponseDTO[] = []
   destCities: CityResponseDTO[] = []
+
+  airlines: any[] = []
+  originTime = ''
+  destTime = ''
   originDateFC = new FormControl();
   originTimeFC = new FormControl();
   destDateFC = new FormControl();
   destTimeFC = new FormControl();
-  airlines: any[] = []
-  originTime = ''
-  destTime = ''
   originTransferFC = new FormControl();
   destTransferFC = new FormControl();
   originCityTypeFC = new FormControl(true);
@@ -64,6 +67,7 @@ export class EditComponent implements OnInit {
     public transferApi: TransferAPIService,
     public message: MessageService,
     public tourApi: TourApiService,
+    public route: ActivatedRoute,
     public checkError: CheckErrorService,
     public errorService: ErrorsService,
     public router: Router,
@@ -116,6 +120,8 @@ export class EditComponent implements OnInit {
 
 
   ngOnInit() {
+    this.slug = this.route.snapshot.paramMap.get('slug');
+    this.getInfo()
     this.getOriginCities();
     this.getDestCities();
     this.getTransfer()
@@ -149,6 +155,7 @@ export class EditComponent implements OnInit {
     });
     this.ToursForm.push(Tours);
   }
+
 
   convertTour() {
     this.ToursForm.controls.forEach(item => {
@@ -431,4 +438,54 @@ export class EditComponent implements OnInit {
     }
     return obj
   }
+
+  getInfo(): void {
+    if (this.slug) {
+      this.tourApi.getTour(this.slug).subscribe((res: any) => {
+        if (res.isDone) {
+          this.info = res.data;
+          this.setValue()
+        }
+      }, (error: any) => {
+        this.message.error()
+      })
+    }
+  }
+
+  setValue(): void {
+    this.form.controls.title.setValue(this.info.title)
+    this.form.controls.stCity_id.setValue(this.info.stCity)
+    this.form.controls.endCity_id.setValue(this.info.endCity)
+    this.form.controls.nightNum.setValue(this.info.nightNum)
+    this.form.controls.dayNum.setValue(this.info.dayNum)
+    this.form.controls.TransferType.setValue(this.info.TransferType)
+    this.form.controls.enDate.setValue(this.info.enDate)
+    this.form.controls.stDate.setValue(this.info.stDate)
+    this.form.controls.expireDate.setValue(this.info.expireDate)
+    this.form.controls.CHDFlightRate.setValue(this.info.CHDFlightRate)
+    this.form.controls.defineTour.setValue(this.info.defineTour)
+    this.form.controls.euroRate.setValue(this.info.euroRate)
+    this.form.controls.dollarRate.setValue(this.info.dollarRate)
+    this.form.controls.AEDRate.setValue(this.info.AEDRate)
+    this.form.controls.visaRate.setValue(this.info.visaRate)
+    this.form.controls.visaPriceType.setValue(this.info.visaPriceType)
+    this.form.controls.insuranceRate.setValue(this.info.insuranceRate)
+    this.form.controls.transferPriceType.setValue(this.info.transferPriceType)
+    this.form.controls.transferRate.setValue(this.info.transferRate)
+    this.form.controls.insurancePriceType.setValue(this.info.insurancePriceType)
+    this.form.controls.services.setValue(this.info.services)
+    this.form.controls.documents.setValue(this.info.documents)
+    this.form.controls.description.setValue(this.info.description)
+    this.form.controls.status.setValue(this.info.status)
+    this.originDateFC.setValue(this.info.transfers[0].dateTime.split(' ')[0]);
+    this.originTimeFC.setValue(this.info.transfers[0].dateTime.split(' ')[1]);
+    this.destDateFC.setValue(this.info.transfers[1].dateTime.split(' ')[0]);
+    this.destTimeFC.setValue(this.info.transfers[1].dateTime.split(' ')[1]);
+    this.originTransferFC.setValue(+this.info.transfers[0].transfer_id);
+    this.destTransferFC.setValue(+this.info.transfers[1].transfer_id);
+    this.originCityTypeFC.setValue(this.info)
+    this.destCityTypeFC.setValue(this.info)
+
+  }
+
 }

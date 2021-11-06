@@ -43,7 +43,7 @@
         <span class="view">{{ tour.viewCount }}</span>
         <span class="status">{{ tour.status }}</span>
         <div class="button-setting">
-          <a routerLink="/panel/tour/edit" class="edit-btn">ویرایش</a>
+          <a routerLink="/panel/tour/edit/{{tour.slug}}" class="edit-btn">ویرایش</a>
           <a routerLink="/tour/{{ tour.slug }}" class="view-btn">نمایش</a>
 <!--          <button class="copy-btn">کپی</button>-->
           <button (click)="deleteTour(tour.slug)" class="delete-btn">حذف</button>

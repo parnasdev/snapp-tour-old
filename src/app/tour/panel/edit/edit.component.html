@@ -12,8 +12,13 @@
           <div class="selectdiv">
             <label>
               <select formControlName="status">
-                <option value="show"> منتشر میشود</option>
-                <option value="draft" selected> منتشر نشود</option>
+                <option value="Show">انتشار</option>
+                <option value="Draft" selected>پیش نویس</option>
+                <option value="Accepted">تایید شده</option>
+                <option value="NotAccepted">عدم تایید</option>
+                <option value="Pending">در انتظار تایید</option>
+                <option value="Suspended">ساسپند</option>
+                <option value="Completion">تکمیل شده</option>
               </select>
             </label>
           </div>
@@ -327,7 +332,7 @@
           <div class="package-item">دو تخته (تومان)</div>
           <div class="package-item">یه تخته (تومان)</div>
           <div class="package-item">نرخ بزرگسال (تومان)</div>
-          <div class="package-item" *ngIf="form.value.defineTour">نرخ</div>
+          <div class="package-item" *ngIf="form.value.defineTour == 'true'">نرخ</div>
           <div class="package-item">کودک بدون تخت (تومان)</div>
           <div class="package-item">کودک بدون تخت (تومان)</div>
           <div class="package-item">سن کودک بدون تخت</div>
@@ -377,7 +382,7 @@
               <div class="package-item">
                 <input type="text" formControlName="ADLRate" mask="separator" thousandSeparator=",">
               </div>
-              <div class="package-item" *ngIf="form.value.defineTour">
+              <div class="package-item" *ngIf="form.value.defineTour == 'true'">
                 <div class="selectdiv">
                   <select formControlName="rate" >
                     <option [value]="3">دلار</option>
@@ -426,7 +431,7 @@
             <span class="text-danger">{{errorService.getError('description')}}</span>
           </div>
         </div>
-        <prs-btn [background]="'blue'" (click)="submit()" [isLoading]="isLoading" [label]="'ثبت تور'"></prs-btn>
+        <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="submit()" [isLoading]="isLoading" [label]="'ثبت تور'"></prs-btn>
       </div>
     </div>
   </form>

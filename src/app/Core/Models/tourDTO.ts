@@ -79,7 +79,7 @@ export interface TourInfoDTO {
   stDate: string;
   status: string;
   title: string;
-  transfer: TourTransferDTO[];
+  transfers: TourTransferDTO[];
   transferPriceType: number;
   transferRate: number;
   type: number;
