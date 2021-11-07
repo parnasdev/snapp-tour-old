@@ -26,22 +26,23 @@ export interface HotelSetRequestDTO {
 }
 
 export interface hotelInfoDTO {
-  "name": string;
-  "city": CityResponseDTO;
-  "nameEn": string;
-  "stars": string;
-  "location": string;
-  "address": string;
-  "images": string[];
-  "thumbnail": string;
-  "body": string;
-  "services": [
+  name: string;
+  city: CityResponseDTO;
+  nameEn: string;
+  stars: string;
+  location: string;
+  address: string;
+  coordinate: {lat: number,lng: number}
+  images: string[];
+  thumbnail: string;
+  body: string;
+  services: [
     {
       name: string;
       ids: string[]
     }
   ];
-  "status": string;
+  status: string;
 }
 
 export interface HotelListRes {

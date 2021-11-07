@@ -12,6 +12,9 @@ import {CalenderServices} from "../../../Core/Services/calender-service";
 import {PublicService} from "../../../Core/Services/public.service";
 import {MapApiService} from "../../../Core/Https/map-api.service";
 import {CityApiService} from "../../../Core/Https/city-api.service";
+import {UploadSingleComponent} from "../../../common-project/upload-single/upload-single.component";
+import {MultipleUploadComponent} from "../../../common-project/multiple-upload/multiple-upload.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'prs-edit',
@@ -73,6 +76,7 @@ export class EditComponent implements OnInit {
               public message: MessageService,
               public commonApi: CommonApiService,
               public cityApiService: CityApiService,
+              public dialog: MatDialog,
               public session: SessionService,
               public calenderServices: CalenderServices,
               public publicServices: PublicService,
@@ -124,8 +128,8 @@ export class EditComponent implements OnInit {
         lat: this.lat,
         lng: this.lng
       },
-      thumbnail: '',
-      images: [],
+      thumbnail: this.thumbnail,
+      images: this.images,
       body: this.bodyFC.value,
       services: [
         {
@@ -139,7 +143,8 @@ export class EditComponent implements OnInit {
       status: this.statusFC.value
     }
   }
-  cityTypeChange():void {
+
+  cityTypeChange(): void {
     this.getCities()
   }
 
@@ -148,9 +153,6 @@ export class EditComponent implements OnInit {
     setTimeout(() => this.show = true);
   }
 
-  getThumbnail(imageStr: string): void {
-    this.thumbnail = imageStr
-  }
 
   getImage(imageStr: string): void {
     this.images.push(imageStr)
@@ -172,9 +174,10 @@ export class EditComponent implements OnInit {
 
   edit(): void {
     this.setReq()
-    this.hotelApi.add(this.req).subscribe((res: any) => {
+    this.hotelApi.edit(this.req, this.hotelName).subscribe((res: any) => {
       if (res.isDone) {
-        console.log(res);
+        this.message.custom(res.message);
+        this.router.navigateByUrl('/panel/hotel/list')
       } else {
         this.message.custom(res.message)
       }
@@ -190,7 +193,6 @@ export class EditComponent implements OnInit {
         this.hotelInfo = res.data;
         this.cityTypeFC.setValue(this.hotelInfo.city.type != 0)
         this.getCities()
-
       } else {
         this.message.custom(res.message)
       }
@@ -227,6 +229,31 @@ export class EditComponent implements OnInit {
     this.locationFC.setValue(this.hotelInfo.location)
     this.addressFC.setValue(this.hotelInfo.address)
     this.bodyFC.setValue(this.hotelInfo.body)
+    this.images = this.hotelInfo.images
+    this.thumbnail = this.hotelInfo.thumbnail
+    this.lat = this.hotelInfo.coordinate.lat
+    this.lng = this.hotelInfo.coordinate.lng
+    this.reload()
   }
 
+  getThumbnail(): void {
+    const dialog = this.dialog.open(UploadSingleComponent, {});
+    dialog.afterClosed().subscribe(result => {
+      this.thumbnail = result
+    })
+  }
+
+  getImages(): void {
+    const dialog = this.dialog.open(MultipleUploadComponent, {});
+    dialog.afterClosed().subscribe((result: any[]) => {
+      result.forEach(x => {
+        this.images.push(x.path);
+      })
+
+    })
+  }
+
+  removeImage(index: any): void {
+    this.images.splice(index, -1);
+  }
 }

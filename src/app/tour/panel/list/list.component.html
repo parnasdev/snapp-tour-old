@@ -1,24 +1,24 @@
 <div class="list-tour">
   <div class="title">
     <h2>تورها</h2>
-<!--    <div class="select-info">-->
+    <!--    <div class="select-info">-->
 
-<!--      <label for="">شهر مبدا</label>-->
-<!--      <mat-button-toggle-group name="fontStyle" [formControl]="originCityTypeFC"-->
-<!--                               (change)="originCityTypeChange()" aria-label="Font Style">-->
-<!--        <mat-button-toggle [value]="true">داخلی</mat-button-toggle>-->
-<!--        <mat-button-toggle [value]="false">خارجی</mat-button-toggle>-->
-<!--      </mat-button-toggle-group>-->
-<!--      <select formControlName="stCity_id" name="" id="">-->
-<!--        <option *ngFor="let city of originCities" [value]="city.id">{{city.name}}</option>-->
+    <!--      <label for="">شهر مبدا</label>-->
+    <!--      <mat-button-toggle-group name="fontStyle" [formControl]="originCityTypeFC"-->
+    <!--                               (change)="originCityTypeChange()" aria-label="Font Style">-->
+    <!--        <mat-button-toggle [value]="true">داخلی</mat-button-toggle>-->
+    <!--        <mat-button-toggle [value]="false">خارجی</mat-button-toggle>-->
+    <!--      </mat-button-toggle-group>-->
+    <!--      <select formControlName="stCity_id" name="" id="">-->
+    <!--        <option *ngFor="let city of originCities" [value]="city.id">{{city.name}}</option>-->
 
-<!--      </select>-->
-<!--    </div>-->
-      <a class="btn-add-tour" routerLink="/panel/tour/add">اضافه</a>
+    <!--      </select>-->
+    <!--    </div>-->
+    <a class="btn-add-tour" routerLink="/panel/tour/add">اضافه</a>
 
 
   </div>
-  <div class="table-list-tour">
+  <div class="table-list-tour table-list-tour-desktop">
     <div class="header-list-tour">
       <span class="id">#</span>
       <span class="username">نام کاربر</span>
@@ -36,7 +36,7 @@
         <span class="id">{{ i + 1 }}</span>
         <span class="username">{{ tour.user.name + ' ' + tour.user.family }}</span>
         <span class="title-tour">{{ tour.title }}</span>
-        <span class="from-to">{{ tour.stCity + '-' +  tour.endCity }}</span>
+        <span class="from-to">{{ tour.stCity + '-' + tour.endCity }}</span>
         <span class="day">{{ tour.nightNum + '-' + tour.dayNum }}</span>
         <span class="date-create">{{this.calService.convertDate1(tour.createdAt, 'fa') }}</span>
         <span class="date-create">{{ this.calService.convertDate1(tour.expireDate, 'fa') }}</span>
@@ -45,10 +45,63 @@
         <div class="button-setting">
           <a routerLink="/panel/tour/edit/{{tour.slug}}" class="edit-btn">ویرایش</a>
           <a routerLink="/tour/{{ tour.slug }}" class="view-btn">نمایش</a>
-<!--          <button class="copy-btn">کپی</button>-->
+          <!--          <button class="copy-btn">کپی</button>-->
           <button (click)="deleteTour(tour.slug)" class="delete-btn">حذف</button>
         </div>
       </div>
     </div>
   </div>
-</div>
+  <div class="table-list-tour-mobile">
+    <div class="list-tour-box">
+      <label class="user-id" for="">شماره شناسه : 2</label>
+      <div class="item-list-tour mt-3">
+        <div class="item-tour">
+          <span class="title">نام کاربری :</span>
+          <span class="text">علی گنجی</span>
+        </div>
+        <div class="item-tour">
+          <span class="title">عنوان تور :</span>
+          <span class="text">تور کیش</span>
+        </div>
+        <div class="item-tour">
+          <span class="title">مبدا-مقصد :</span>
+          <span class="text">تهران-کیش</span>
+        </div>
+        <div class="item-tour">
+          <span class="title">تاریخ ایجاد :</span>
+          <span class="text">1400-08-16 11:27</span>
+        </div>
+      </div>
+      <a data-toggle="collapse" class="btn-details-more" href="#one">جزییات بیشتر
+      <i class="icon-down-open"></i>
+      </a>
+      <div id="one" class="box-details-more collapse">
+        <div  class="item-list-tour">
+          <div class="item-tour">
+            <span class="title">شب و روز :</span>
+            <span class="text">3-4</span>
+          </div>
+          <div class="item-tour">
+            <span class="title">تاریخ انقضا :</span>
+            <span class="text">1400-08-19 00:00</span>
+          </div>
+          <div class="item-tour">
+            <span class="title">بازدید :</span>
+            <span class="text">2</span>
+          </div>
+          <div class="item-tour">
+            <span class="title">وضعیت :</span>
+            <span class="text text-danger">Show</span>
+          </div>
+        </div>
+        <div class="operation">
+          <a  class="edit-btn">ویرایش</a>
+          <a  class="view-btn">نمایش</a>
+          <button  class="delete-btn">حذف</button>
+        </div>
+
+      </div>
+      </div>
+    </div>
+  </div>
+
