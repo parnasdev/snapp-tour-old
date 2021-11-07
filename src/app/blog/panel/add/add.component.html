@@ -1,1 +1,99 @@
-<p>add works!</p>
+<div class="add-tour">
+  <form [formGroup]="postForm">
+    <div class="box-info-tour">
+      <div class="info-tour-header">
+        <div class="right">
+          <h2>اطلاعات تور</h2>
+        </div>
+        <div class="left">
+          <div class="selectdiv">
+            <label>
+              <select formControlName="status">
+                <option value="Show" selected>انتشار</option>
+                <option value="Draft">پیش نویس</option>
+                <option value="Accepted">تایید شده</option>
+                <option value="NotAccepted">عدم تایید</option>
+                <option value="Pending">در انتظار تایید</option>
+                <option value="Suspended">ساسپند</option>
+                <option value="Completion">تکمیل شده</option>
+              </select>
+            </label>
+          </div>
+
+          <div  *ngIf="errorService.hasError('status')">
+            <span class="text-danger">{{errorService.getError('status')}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="info-tour-body">
+        <div class="top">
+          <div class="item-info">
+            <label for="">عنوان مطلب</label>
+            <input formControlName="title" type="text">
+            <div  *ngIf="errorService.hasError('title')">
+              <span class="text-danger">{{errorService.getError('title')}}</span>
+            </div>
+          </div>
+          <div class="item-info">
+            <label for="">لینک مطلب</label>
+            <input formControlName="slug" type="text">
+            <div  *ngIf="errorService.hasError('slug')">
+              <span class="text-danger">{{errorService.getError('slug')}}</span>
+            </div>
+          </div>
+
+        </div>
+        <div class="bottom">
+          <div class="item-info">
+            <label for="">توضیحات مطلب</label>
+            <input formControlName="description" type="text">
+            <div  *ngIf="errorService.hasError('description')">
+              <span class="text-danger">{{errorService.getError('description')}}</span>
+            </div>
+          </div>
+          <div class="item-info">
+            <label for="">عنوان مطلب</label>
+            <input formControlName="body" type="text">
+            <div  *ngIf="errorService.hasError('body')">
+              <span class="text-danger">{{errorService.getError('body')}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="box-info-fly">
+
+      <div class="box-info-fly">
+        <div class="info-tour-header">
+          <div class="right">
+            <h2>آپلود تصاویر</h2>
+          </div>
+        </div>
+        <div class="info-tour-body-upload">
+          <div class="top-one">
+            <div class="item-info w-100">
+              <button class="btn-upload-img" (click)="getThumbnail()">تصویر خود را آپلود کنید</button>
+            </div>
+            <div class="single-img-upload-parent">
+              <img [src]="thumbnail" width="100%" height="200" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="box-details-tour">
+      <div class="info-tour-header">
+        <div class="right">
+          <h2>جزییات تور</h2>
+        </div>
+      </div>
+      <div class="details-body-tour">
+        <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="createPost()" [isLoading]="isLoading" [label]="'ثبت مطلب'"></prs-btn>
+      </div>
+    </div>
+  </form>
+
+</div>
+

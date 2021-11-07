@@ -21,5 +21,12 @@ export interface PostReqDTO {
 }
 
 export interface PostSetReqDTO {
-
+  thumbnail: string;
+  title: string;
+  slug: string;
+  body: string;
+  description: string;
+  tags: string[];
+  status: string;
+  categories: number[];
 }

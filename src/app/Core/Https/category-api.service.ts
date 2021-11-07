@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {PublicService} from "../Services/public.service";
 import {environment} from "../../../environments/environment";
 import {Result} from "../Models/result";
-import {CategoryListReqDTO, CategoryListResDTO, CategorySetReqDTO} from "../Models/CategoryDTO";
+import {CategoryReqDTO, CategoryResDTO, CategorySetReqDTO} from "../Models/CategoryDTO";
 
 @Injectable({
   providedIn: 'root'
@@ -18,14 +18,14 @@ export class CategoryApiService {
       environment.BACK_END_IP + this.serverControllerName;
   }
 
-  createCategory(req: CategoryListReqDTO): any {
+  createCategory(req: CategoryReqDTO): any {
     const strUrl = this.serverControllerName + 'createCategory';
     return this.http.post<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
 
-  getCategories(req: CategoryListReqDTO): any {
+  getCategories(req: CategoryReqDTO): any {
     const strUrl = this.serverControllerName + 'getCategories';
-    return this.http.post<Result<CategoryListResDTO>>(strUrl, req, this.publicService.getDefaultHeaders());
+    return this.http.post<Result<CategoryResDTO>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
 
   editCategory(req: CategorySetReqDTO,categoryName:any): any {

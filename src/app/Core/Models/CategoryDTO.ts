@@ -1,12 +1,12 @@
-export interface CategoryListResDTO {
+export interface CategoryResDTO {
 
 }
 
 
-export interface CategoryListReqDTO {
+export interface CategoryReqDTO {
   perPage: number;
   paginate: boolean;
-  search: string;
+  search: string | null;
   getParent: boolean;
 }
 
