@@ -1013,7 +1013,9 @@
   font-size: 14px;
   color: var(--base-color);
 }
-
+.info-blog h6{
+  font-size: 16px !important;
+}
 //end
 //end
 
@@ -1133,6 +1135,9 @@
   .box-blog-parent .left-blog .bottom {
     height: 110px;
     margin-top: 8px;
+  }
+  .info-blog h6{
+    font-size: 14px !important;
   }
 }
 @media only screen and (min-width: 416px) and (max-width: 868px) {
