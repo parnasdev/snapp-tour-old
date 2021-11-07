@@ -1,0 +1,30 @@
+<div class="list-tour">
+  <div class="title">
+    <h2>لیست مطالب</h2>
+    <a class="btn-add-tour" routerLink="/panel/blog/add">اضافه</a>
+  </div>
+  <div class="table-list-tour">
+    <div class="header-list-tour">
+      <span class="id">#</span>
+      <span class="title-tour">عنوان مطلب</span>
+      <span class="username">نویسنده</span>
+      <span class="date-create">تاریخ ایجاد مطلب</span>
+      <span class="status">وضعیت</span>
+      <span class="setting">تنظیمات</span>
+    </div>
+    <div class="body-list-tour" *ngIf="posts.length > 0">
+      <div class="item" *ngFor="let post of posts; let i = index">
+        <span class="id">{{ i + 1 }}</span>
+        <span class="title-tour">{{ post.title }}</span>
+        <span class="username">{{ post.user.name + ' ' + post.user.family }}</span>
+        <span class="date-create">{{ calService.convertDate1(post.createdAt, 'fa') }}</span>
+        <span class="status">{{ post.status }}</span>
+        <div class="button-setting">
+          <a routerLink="/panel/post/edit/{{post.slug}}" class="edit-btn">ویرایش</a>
+          <a routerLink="/post/{{ post.slug }}" class="view-btn">نمایش</a>
+          <!--          <button class="copy-btn">کپی</button>-->
+          <button (click)="deletePost(post.slug)" class="delete-btn">حذف</button>
+        </div>
+      </div>
+    </div>
+</div>
