@@ -158,6 +158,7 @@ export class EditComponent implements OnInit {
 
 
   convertTour() {
+    this.tourDetail = [];
     this.ToursForm.controls.forEach(item => {
       this.tourDetail.push({
         parent: null,
@@ -184,7 +185,6 @@ export class EditComponent implements OnInit {
         status: 'show'
       });
     });
-    console.log(this.tourDetail)
   }
 
 
@@ -262,7 +262,7 @@ export class EditComponent implements OnInit {
       CHDFlightRate: this.form.value.CHDFlightRate,
       defineTour: this.form.value.defineTour === 'true',
       euroRate: this.form.value.euroRate,
-      type: false,
+      type: this.destCityTypeFC.value,
       dollarRate: this.form.value.dollarRate,
       AEDRate: this.form.value.AEDRate,
       visaRate: this.form.value.visaRate,
@@ -454,8 +454,8 @@ export class EditComponent implements OnInit {
 
   setValue(): void {
     this.form.controls.title.setValue(this.info.title)
-    this.form.controls.stCity_id.setValue(this.info.stCity)
-    this.form.controls.endCity_id.setValue(this.info.endCity)
+    this.form.controls.stCity_id.setValue(this.info.stCity.id)
+    this.form.controls.endCity_id.setValue(this.info.endCity.id)
     this.form.controls.nightNum.setValue(this.info.nightNum)
     this.form.controls.dayNum.setValue(this.info.dayNum)
     this.form.controls.TransferType.setValue(this.info.TransferType)
@@ -483,8 +483,9 @@ export class EditComponent implements OnInit {
     this.destTimeFC.setValue(this.info.transfers[1].dateTime.split(' ')[1]);
     this.originTransferFC.setValue(+this.info.transfers[0].transfer_id);
     this.destTransferFC.setValue(+this.info.transfers[1].transfer_id);
+
     this.originCityTypeFC.setValue(this.info)
-    this.destCityTypeFC.setValue(this.info)
+    this.destCityTypeFC.setValue(this.info.type)
 
   }
 

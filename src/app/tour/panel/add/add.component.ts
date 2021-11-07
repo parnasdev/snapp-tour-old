@@ -93,7 +93,7 @@ export class AddComponent implements OnInit {
     euroRate: new FormControl(''),
     dollarRate: new FormControl(''),
     AEDRate: new FormControl(''),
-    visaRate: new FormControl(''),
+    visaRate: new FormControl('0'),
     visaPriceType: new FormControl(1),
     insuranceRate: new FormControl(''),
     transferPriceType: new FormControl(1),
@@ -184,6 +184,7 @@ export class AddComponent implements OnInit {
   submit() {
     this.convertTour()
     this.fillObj()
+    // console.log(this.tourReqDTO)
     this.call()
   }
 
@@ -235,6 +236,7 @@ export class AddComponent implements OnInit {
 
 
   fillObj() {
+    console.log(this.form.value.visaRate)
     this.tourReqDTO = {
       title: this.form.value.title,
       stCity_id: this.form.value.stCity_id,
@@ -255,7 +257,7 @@ export class AddComponent implements OnInit {
       CHDFlightRate: this.form.value.CHDFlightRate,
       defineTour: this.form.value.defineTour === 'true',
       euroRate: this.form.value.euroRate,
-      type: false,
+      type: this.destCityTypeFC.value,
       dollarRate: this.form.value.dollarRate,
       AEDRate: this.form.value.AEDRate,
       visaRate: this.form.value.visaRate,
@@ -321,7 +323,6 @@ export class AddComponent implements OnInit {
         this.form.controls.insuranceRate.enable()
         this.form.controls.CHDFlightRate.enable()
       }
-
     } else {   // without details
       this.form.controls.visaRate.disable()
       this.form.controls.AEDRate.disable()
@@ -333,7 +334,6 @@ export class AddComponent implements OnInit {
       this.form.controls.transferRate.disable()
       this.form.controls.insuranceRate.disable()
       this.form.controls.CHDFlightRate.disable()
-
     }
 
   }
