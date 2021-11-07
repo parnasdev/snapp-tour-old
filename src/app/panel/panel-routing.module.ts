@@ -30,6 +30,10 @@ const routes: Routes = [
       {
         path: 'user',
         loadChildren: () => import('../user/user.module').then(m => m.UserModule)
+      },
+      {
+        path: 'blog',
+        loadChildren: () => import('../blog/panel/blog-panel.module').then(m => m.BlogPanelModule)
       }
     ]
   }
