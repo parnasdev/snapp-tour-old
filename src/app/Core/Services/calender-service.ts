@@ -22,6 +22,17 @@ export class CalenderServices {
             return moment(date).locale('en').format('YYYY/MM/DD');
         }
     }
+    convertDateSpecial(date: any, convertType: string): any {
+      /* convertType : fa - en */
+      // debugger;
+      if (convertType === 'fa') {
+        return (moment(date).format('jYYYY/jMM/jDD')).split('/').join('-');
+      } else if (convertType === 'en') {
+        return (moment(date).locale('en').format('YYYY/MM/DD')).split('/').join('-');
+      }
+    }
+
+
 
     convertDateAndTime(date: any, convertType: string): any {
         /* convertType : fa - en */

@@ -50,8 +50,8 @@ export class EditComponent implements OnInit {
   destCities: CityResponseDTO[] = []
 
   airlines: any[] = []
-  originTime = ''
-  destTime = ''
+  originTime = '00:00'
+  destTime = '00:00'
   originDateFC = new FormControl();
   originTimeFC = new FormControl();
   destDateFC = new FormControl();
@@ -60,6 +60,8 @@ export class EditComponent implements OnInit {
   destTransferFC = new FormControl();
   originCityTypeFC = new FormControl(true);
   destCityTypeFC = new FormControl(true);
+
+
 
   constructor(
     public hotelApi: HotelApiService,
@@ -242,42 +244,43 @@ export class EditComponent implements OnInit {
 
 
   fillObj() {
-    this.tourReqDTO = {
-      title: this.form.value.title,
-      stCity_id: this.form.value.stCity_id,
-      endCity_id: this.form.value.endCity_id,
-      nightNum: this.form.value.nightNum,
-      dayNum: this.form.value.dayNum,
-      transfers: [{
-        transfer_id: this.originTransferFC.value,
-        dateTime: (this.calenderServices.convertDate1(this.originDateFC.value, 'en')) + ' ' + this.originTime,
-        type: 'origin',
-      }, {
-        transfer_id: this.destTransferFC.value,
-        dateTime: (this.calenderServices.convertDate1(this.destDateFC.value, 'en')) + ' ' + this.destTime,
-        type: 'destination',
-      },],
-      enDate: this.calenderServices.convertDate1(this.form.value.enDate, 'en'),
-      expireDate: this.calenderServices.convertDate1(this.form.value.expireDate, 'en'),
-      CHDFlightRate: this.form.value.CHDFlightRate,
-      defineTour: this.form.value.defineTour === 'true',
-      euroRate: this.form.value.euroRate,
-      type: this.destCityTypeFC.value,
-      dollarRate: this.form.value.dollarRate,
-      AEDRate: this.form.value.AEDRate,
-      visaRate: this.form.value.visaRate,
-      stDate: this.calenderServices.convertDate1(this.form.value.stDate, 'en'),
-      insuranceRate: this.form.value.insuranceRate,
-      transferRate: this.form.value.transferRate,
-      visaPriceType: this.form.value.visaPriceType, // dollar euro derham
-      transferPriceType: this.form.value.transferPriceType,
-      insurancePriceType: this.form.value.insurancePriceType,
-      services: this.form.value.services,
-      documents: this.form.value.documents,
-      description: this.form.value.description,
-      status: this.form.value.status,
-      packages: this.tourDetail,
-      TransferType: 1,
+      this.tourReqDTO = {
+        title: this.form.value.title,
+        stCity_id: this.form.value.stCity_id,
+        endCity_id: this.form.value.endCity_id,
+        nightNum: this.form.value.nightNum,
+        dayNum: this.form.value.dayNum,
+        transfers: [{
+          transfer_id: this.originTransferFC.value,
+          dateTime: this.calenderServices.convertDateSpecial(this.originDateFC.value, 'en')+ ' ' + this.originTime,
+          type: 'origin',
+        }, {
+          transfer_id: this.destTransferFC.value,
+          dateTime: this.calenderServices.convertDateSpecial(this.destDateFC.value, 'en') + ' ' + this.destTime,
+          type: 'destination',
+        },],
+        enDate: this.calenderServices.convertDateSpecial(this.form.value.enDate, 'en'),
+        expireDate: this.calenderServices.convertDateSpecial(this.form.value.expireDate, 'en'),
+        CHDFlightRate: this.form.value.CHDFlightRate,
+        defineTour: this.form.value.defineTour === 'true',
+        euroRate: this.form.value.euroRate,
+        type: this.destCityTypeFC.value,
+        dollarRate: this.form.value.dollarRate,
+        AEDRate: this.form.value.AEDRate,
+        visaRate: this.form.value.visaRate,
+        stDate: this.calenderServices.convertDateSpecial(this.form.value.stDate, 'en'),
+        insuranceRate: this.form.value.insuranceRate,
+        transferRate: this.form.value.transferRate,
+        visaPriceType: this.form.value.visaPriceType, // dollar euro derham
+        transferPriceType: this.form.value.transferPriceType,
+        insurancePriceType: this.form.value.insurancePriceType,
+        services: this.form.value.services,
+        documents: this.form.value.documents,
+        description: this.form.value.description,
+        status: this.form.value.status,
+        packages: this.tourDetail,
+        TransferType: 1,
+
     }
   }
 
@@ -486,6 +489,8 @@ export class EditComponent implements OnInit {
 
     this.originCityTypeFC.setValue(this.info)
     this.destCityTypeFC.setValue(this.info.type)
+    this.originTime = this.info.transfers[0].dateTime.split(' ')[1]
+    this.destTime = this.info.transfers[1].dateTime.split(' ')[1]
 
   }
 
