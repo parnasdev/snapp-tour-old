@@ -17,6 +17,7 @@ export interface CitySetRequestDTO {
 export interface CityResponseDTO {
   name: string;
   id: number;
+  type: number
 }
 
 export interface MapCityResponseDTO {

@@ -25,8 +25,10 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
   imports: [
     CommonModule,
     HotelPanelRoutingModule,
-    FormsModule,
+
     MatDialogModule,
+    MatButtonToggleModule,
+    FormsModule,
     MatButtonToggleModule,
     ReactiveFormsModule,
     MatCheckboxModule,

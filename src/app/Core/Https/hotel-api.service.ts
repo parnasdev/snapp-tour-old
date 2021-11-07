@@ -62,6 +62,11 @@ export class HotelApiService {
     return this.http.post<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
   }
 
+  deletePackage(id: number): any {
+    const strUrl = environment.BACK_END_IP + `package/deletePackage/${id}`;
+    return this.http.delete<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
+  }
+
   getHotelPackage(isAdmin: boolean, name: string): any {
     const strUrl = this.serverControllerName + `getHotelPackage/${name}`;
     const entity = {isAdmin}

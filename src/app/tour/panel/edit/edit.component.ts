@@ -270,8 +270,15 @@ export class EditComponent implements OnInit {
   }
 
 
-  removePakage(i: any) {
-    this.ToursForm.removeAt(i);
+  removePakage(i: any,id: number) {
+    this.hotelApi.deletePackage(id).subscribe((res: any) => {
+      if (res.isDone) {
+        this.message.custom(res.message);
+        this.ToursForm.removeAt(i);
+      }
+    }, (error: any) => {
+      this.message.error()
+    })
   }
 
 
@@ -401,7 +408,6 @@ export class EditComponent implements OnInit {
   }
 
   cityDesChanged(): void {
-    console.log('city dest changes')
     this.cityID = this.form.value.endCity_id
     this.ToursForm.clear();
     this.addRow({} as TourPackageDTO)
@@ -491,7 +497,6 @@ export class EditComponent implements OnInit {
           this.getDestCities();
           this.getTransfer()
           this.disableFields();
-          console.log('میخواد کال بشه')
           this.getHotels()
         }
       }, (error: any) => {
