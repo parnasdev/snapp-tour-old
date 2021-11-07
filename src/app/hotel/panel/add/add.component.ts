@@ -22,20 +22,20 @@ import {MultipleUploadComponent} from "../../../common-project/multiple-upload/m
   styleUrls: ['./add.component.scss']
 })
 export class AddComponent implements OnInit {
-  nameFC = new FormControl('تست نام هتل');
-  nameEnFC = new FormControl('test-name-hotel');
-  cityFC = new FormControl('1');
-  statusFC = new FormControl('show');
-  locationFC = new FormControl('تهرانپارس');
-  addressFC = new FormControl('باقری 182 غربی پلاک 1');
-  bodyFC = new FormControl('تست توضیحات');
+  nameFC = new FormControl('');
+  nameEnFC = new FormControl('');
+  cityFC = new FormControl('');
+  statusFC = new FormControl('Show');
+  locationFC = new FormControl('');
+  addressFC = new FormControl('');
+  bodyFC = new FormControl('');
   currentStar = 0;
   lat = 0;
   lng = 0;
   reverseAddressData!: MapReverseDTO;
   cities: CityDTO[] = [];
   citiesResponse: CityResponseDTO[] = []
-
+  cityTypeFC = new FormControl(true)
   public show = true;
   req: HotelSetRequestDTO = {
     name: '',
@@ -137,7 +137,7 @@ export class AddComponent implements OnInit {
 
   getCities(): void {
     const req: CityListRequestDTO = {
-      type: true,
+      type: this.cityTypeFC.value,
       hasHotel: false,
       hasTour: false,
       search: null,
@@ -152,7 +152,9 @@ export class AddComponent implements OnInit {
     })
   }
 
-
+  cityTypeChange():void {
+    this.getCities()
+  }
   reload() {
     this.show = false;
     setTimeout(() => this.show = true);

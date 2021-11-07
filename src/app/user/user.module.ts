@@ -15,13 +15,14 @@ import {MaterialModule} from "../common-project/persianDatePickerAdapter/materia
 import {CommonProjectModule} from "../common-project/common-project.module";
 import {ToolsModule} from "../tools/tools/tools.module";
 import {DxTagBoxModule} from "devextreme-angular";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 @NgModule({
   declarations: [
     AddComponent,
     ListComponent,
-    EditComponent
+    EditComponent,
   ],
   imports: [
     CommonModule,
@@ -29,8 +30,9 @@ import {DxTagBoxModule} from "devextreme-angular";
     FormsModule,
     MatButtonToggleModule,
     DxTagBoxModule,
-    ReactiveFormsModule,
     MatDatepickerModule,
+    MatCheckboxModule,
+    ReactiveFormsModule,
     MatFormFieldModule,
     MatNativeDateModule,
     MatInputModule,

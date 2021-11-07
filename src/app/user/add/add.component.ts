@@ -11,6 +11,13 @@ import {PublicService} from "../../Core/Services/public.service";
 import {ResponsiveService} from "../../Core/Services/responsive.service";
 import {MessageService} from "../../Core/Services/message.service";
 import {UserApiService} from "../../Core/Https/user-api.service";
+import {ServiceDTO} from "../../Core/Models/hotelDTO";
+import {installTempPackage} from "@angular/cli/utilities/install-package";
+
+export interface PermissionDTO {
+  name: string;
+  checked: boolean;
+}
 
 @Component({
   selector: 'prs-add',
@@ -22,7 +29,7 @@ export class AddComponent implements OnInit {
   isMobile: any;
   isLoading = false;
   minDate = new Date(); //datepicker
-  permissions: string[] = [];
+  permissions: PermissionDTO[] = [];
   roles: UserRolesDTO[] = [];
   userReq: UserCreateReq = {
     name: '',
@@ -54,6 +61,7 @@ export class AddComponent implements OnInit {
               public publicServices: PublicService) {
     this.isMobile = mobileService.isMobile();
   }
+
 // chips
   onCustomItemCreating(args: any) {
     const newValue = args.text;
@@ -64,6 +72,7 @@ export class AddComponent implements OnInit {
   userForm = this.fb.group({
     name: new FormControl(''),
     family: new FormControl(''),
+    permission: new FormControl(''),
     birthDate: new FormControl(''),
     phone: new FormControl(''),
     password: new FormControl(''),
@@ -91,7 +100,10 @@ export class AddComponent implements OnInit {
   getUserPermissions() {
     this.userApi.getUserPermission().subscribe((res: any) => {
       if (res.isDone) {
-        this.permissions = res.data;
+
+        res.data.forEach((x: any) => {
+          this.permissions.push({name: x, checked: false})
+        })
       } else {
         this.message.custom(res.message);
       }
@@ -101,9 +113,7 @@ export class AddComponent implements OnInit {
     });
   }
 
-  addPermission(event: any) {
-    this.setPermissions.push(event.target.value);
-  }
+
 
   private markFormGroupTouched(formGroup: any) {
     (<any>Object).values(formGroup.controls).forEach((control: any) => {
@@ -150,5 +160,17 @@ export class AddComponent implements OnInit {
     });
   }
 
+  changeChecked(): void {
+    let result: string[] = []
+    console.log(this.permissions)
+    this.permissions.forEach(x => {
+      if (x.checked) {
+        result.push(x.name);
+      }
+    })
+    this.setPermissions = result
+    console.log(this.setPermissions)
+
+  }
 
 }

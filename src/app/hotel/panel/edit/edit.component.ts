@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl} from "@angular/forms";
 import {MapReverseDTO} from "../../../Core/Models/mapDTO";
-import {CityDTO} from "../../../Core/Models/cityDTO";
+import {CityDTO, CityListRequestDTO, CityResponseDTO} from "../../../Core/Models/cityDTO";
 import {hotelInfoDTO, HotelSetRequestDTO} from "../../../Core/Models/hotelDTO";
 import {ActivatedRoute, Router} from "@angular/router";
 import {HotelApiService} from "../../../Core/Https/hotel-api.service";
@@ -11,6 +11,7 @@ import {SessionService} from "../../../Core/Services/session.service";
 import {CalenderServices} from "../../../Core/Services/calender-service";
 import {PublicService} from "../../../Core/Services/public.service";
 import {MapApiService} from "../../../Core/Https/map-api.service";
+import {CityApiService} from "../../../Core/Https/city-api.service";
 
 @Component({
   selector: 'prs-edit',
@@ -22,20 +23,22 @@ export class EditComponent implements OnInit {
   hotelName = '';
   hotelInfo!: hotelInfoDTO;
 
-  nameFC = new FormControl('تست نام هتل');
-  nameEnFC = new FormControl('test-name-hotel');
-  cityFC = new FormControl('1');
-  statusFC = new FormControl('show');
-  starFC = new FormControl('5');
-  locationFC = new FormControl('تهرانپارس');
-  addressFC = new FormControl('باقری 182 غربی پلاک 1');
-  bodyFC = new FormControl('تست توضیحات');
-
+  nameFC = new FormControl('');
+  nameEnFC = new FormControl('');
+  cityFC = new FormControl('');
+  statusFC = new FormControl('Show');
+  starFC = new FormControl('');
+  locationFC = new FormControl('');
+  addressFC = new FormControl('1');
+  bodyFC = new FormControl('');
+  cityTypeFC = new FormControl(true)
   lat = 0;
   lng = 0;
   reverseAddressData!: MapReverseDTO;
   cities: CityDTO[] = [];
   public show = true;
+  citiesResponse: CityResponseDTO[] = []
+
   req: HotelSetRequestDTO = {
     name: '',
     nameEn: '',
@@ -69,6 +72,7 @@ export class EditComponent implements OnInit {
               public hotelApi: HotelApiService,
               public message: MessageService,
               public commonApi: CommonApiService,
+              public cityApiService: CityApiService,
               public session: SessionService,
               public calenderServices: CalenderServices,
               public publicServices: PublicService,
@@ -80,7 +84,8 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     // @ts-ignore
     this.hotelName = this.route.snapshot.paramMap.get('slug');
-    this.getServices();
+    this.getInfo();
+
   }
 
 
@@ -134,7 +139,9 @@ export class EditComponent implements OnInit {
       status: this.statusFC.value
     }
   }
-
+  cityTypeChange():void {
+    this.getCities()
+  }
 
   reload() {
     this.show = false;
@@ -152,7 +159,8 @@ export class EditComponent implements OnInit {
   getServices(): void {
     this.hotelApi.getServices().subscribe((res: any) => {
       if (res.isDone) {
-        console.log(res);
+        this.setData()
+
       } else {
         this.message.custom(res.message)
       }
@@ -180,8 +188,9 @@ export class EditComponent implements OnInit {
     this.hotelApi.getHotel(this.hotelName, true).subscribe((res: any) => {
       if (res.isDone) {
         this.hotelInfo = res.data;
-        this.setData(this.hotelInfo)
-        console.log(res);
+        this.cityTypeFC.setValue(this.hotelInfo.city.type != 0)
+        this.getCities()
+
       } else {
         this.message.custom(res.message)
       }
@@ -191,15 +200,33 @@ export class EditComponent implements OnInit {
     })
   }
 
-  setData(hotelInfo: hotelInfoDTO): void {
-    this.nameFC.setValue(hotelInfo.name)
-    this.nameEnFC.setValue(hotelInfo.nameEn)
-    this.cityFC.setValue(hotelInfo.city.id)
-    this.statusFC.setValue(hotelInfo.status)
-    this.starFC.setValue(hotelInfo.stars)
-    this.locationFC.setValue(hotelInfo.location)
-    this.addressFC.setValue(hotelInfo.address)
-    this.bodyFC.setValue(hotelInfo.body)
+  getCities(): void {
+    const req: CityListRequestDTO = {
+      type: this.cityTypeFC.value,
+      hasHotel: false,
+      hasTour: false,
+      search: null,
+      perPage: 20
+    }
+    this.cityApiService.getCities(req).subscribe((res: any) => {
+      if (res.isDone) {
+        this.citiesResponse = res.data;
+        this.getServices()
+      }
+    }, (error: any) => {
+      this.message.error()
+    })
+  }
+
+  setData(): void {
+    this.nameFC.setValue(this.hotelInfo.name)
+    this.nameEnFC.setValue(this.hotelInfo.nameEn)
+    this.cityFC.setValue(+this.hotelInfo.city.id)
+    this.statusFC.setValue(this.hotelInfo.status)
+    this.starFC.setValue(this.hotelInfo.stars)
+    this.locationFC.setValue(this.hotelInfo.location)
+    this.addressFC.setValue(this.hotelInfo.address)
+    this.bodyFC.setValue(this.hotelInfo.body)
   }
 
 }
