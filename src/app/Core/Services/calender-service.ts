@@ -48,9 +48,9 @@ export class CalenderServices {
       /* convertType : fa - en */
       // debugger;
       if (convertType === 'fa') {
-        return (moment(date).format('jYYYY/jMM/jDD HH:mm')).split('/').join('-');
+        return (moment(date).format('jYYYY/jMM/jDD HH:mm:ss')).split('/').join('-');
       } else if (convertType === 'en') {
-        return (moment(date).locale('en').format('YYYY-MM-DD HH:mm'));
+        return (moment(date).locale('en').format('YYYY-MM-DD HH:mm:ss')).split('/').join('-');
       }
     }
 

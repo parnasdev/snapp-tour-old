@@ -96,13 +96,14 @@ export interface TourInfoDTO {
 export interface TourPackageDTO {
   parent: null;
   user_id: null;
+  id: number
   hotel_id: string;
   services: {
     id: number;
     name: string;
   };
   hotel: HotelDTO;
-  rate: number;
+  rate: { id: number, name: string };
   discounts: DiscountsDTO;
   prices: PricesDTO;
   status: string;

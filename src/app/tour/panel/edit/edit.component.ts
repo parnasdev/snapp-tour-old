@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
-import {TourInfoDTO, TourSetRequestDTO} from "../../../Core/Models/tourDTO";
+import {TourInfoDTO, TourPackageDTO, TourSetRequestDTO} from "../../../Core/Models/tourDTO";
 import {GetServiceRequestDTO} from "../../../Core/Models/commonDTO";
-import {HotelListResponseDTO, HotelRequestDTO} from "../../../Core/Models/hotelDTO";
+import {HotelListResponseDTO, HotelRequestDTO, PackageDTO} from "../../../Core/Models/hotelDTO";
 import {CityListRequestDTO, CityResponseDTO} from "../../../Core/Models/cityDTO";
 import {FormArray, FormBuilder, FormControl} from "@angular/forms";
 import {HotelApiService} from "../../../Core/Https/hotel-api.service";
@@ -60,7 +60,6 @@ export class EditComponent implements OnInit {
   destTransferFC = new FormControl();
   originCityTypeFC = new FormControl(true);
   destCityTypeFC = new FormControl(true);
-
 
 
   constructor(
@@ -124,46 +123,76 @@ export class EditComponent implements OnInit {
   ngOnInit() {
     this.slug = this.route.snapshot.paramMap.get('slug');
     this.getInfo()
-    this.getOriginCities();
-    this.getDestCities();
-    this.getTransfer()
-    this.addRow()
-    this.disableFields();
-    this.getService()
-    this.getHotels()
+
   }
 
 
-  addRow() {
-    const Tours = this.fb.group({
-      parent: null,
-      user_id: null,
-      hotel_id: [0],
-      services: [null],
-      rate: [1],
-      discountsTwin: [null],
-      discountsSingle: [null],
-      discountsCwb: [null],
-      discountsCnb: [null],
-      twin: [null],
-      single: [null],
-      cwb: [null],
-      cnb: [null],
-      quad: [null],
-      triple: [null],
-      ADLRate: [null],
-      age: [null],
-      status: [null]
-    });
-    this.ToursForm.push(Tours);
+  addRow(packageItem: TourPackageDTO = {} as TourPackageDTO) {
+    if (!this.isEmpty(packageItem)) {
+      const Tours = this.fb.group({
+        parent: packageItem.parent,
+        id: packageItem.id,
+        user_id: packageItem.user_id,
+        hotel_id: [packageItem.hotel.id],
+        services: [packageItem.services.id],
+        rate: [packageItem.rate.id],
+        discountsTwin: [packageItem.discounts.twin],
+        discountsSingle: [packageItem.discounts.single],
+        discountsCwb: [packageItem.discounts.cwb],
+        discountsCnb: [packageItem.discounts.cnb],
+        twin: [packageItem.prices.twin],
+        single: [packageItem.prices.single],
+        cwb: [packageItem.prices.cwb],
+        cnb: [packageItem.prices.cnb],
+        quad: [packageItem.prices.quad],
+        triple: [packageItem.prices.triple],
+        ADLRate: [packageItem.prices.ADLRate],
+        age: [packageItem.prices.age],
+        status: [packageItem.status]
+      })
+      this.ToursForm.push(Tours);
+    } else {
+      const Tours = this.fb.group({
+        parent: null,
+        user_id: null,
+        hotel_id: [0],
+        services: [null],
+        rate: [1],
+        id: [null],
+        discountsTwin: [null],
+        discountsSingle: [null],
+        discountsCwb: [null],
+        discountsCnb: [null],
+        twin: [null],
+        single: [null],
+        cwb: [null],
+        cnb: [null],
+        quad: [null],
+        triple: [null],
+        ADLRate: [null],
+        age: [null],
+        status: [null]
+      });
+      this.ToursForm.push(Tours);
+    }
+
   }
 
+  isEmpty(obj: any) {
+    for (var prop in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, prop)) {
+        return false;
+      }
+    }
+    return JSON.stringify(obj) === JSON.stringify({});
+  }
 
   convertTour() {
     this.tourDetail = [];
     this.ToursForm.controls.forEach(item => {
       this.tourDetail.push({
         parent: null,
+        id: item.value.id,
         user_id: item.value.user_id,
         hotel_id: item.value.hotel_id,
         services: +item.value.services,
@@ -198,7 +227,7 @@ export class EditComponent implements OnInit {
 
   call(): void {
     this.isLoading = true
-    this.tourApi.createTour(this.tourReqDTO).subscribe((res: any) => {
+    this.tourApi.editTour(this.tourReqDTO, this.slug).subscribe((res: any) => {
       this.isLoading = false;
       if (res.isDone) {
         this.message.showMessageBig(res.message);
@@ -226,6 +255,9 @@ export class EditComponent implements OnInit {
     this.hotelApi.getHotels(req).subscribe((res: any) => {
       if (res.isDone) {
         this.hotels = res.data;
+        this.getService()
+
+
       }
     }, (error: any) => {
       this.message.error();
@@ -244,42 +276,42 @@ export class EditComponent implements OnInit {
 
 
   fillObj() {
-      this.tourReqDTO = {
-        title: this.form.value.title,
-        stCity_id: this.form.value.stCity_id,
-        endCity_id: this.form.value.endCity_id,
-        nightNum: this.form.value.nightNum,
-        dayNum: this.form.value.dayNum,
-        transfers: [{
-          transfer_id: this.originTransferFC.value,
-          dateTime: this.calenderServices.convertDateSpecial(this.originDateFC.value, 'en')+ ' ' + this.originTime,
-          type: 'origin',
-        }, {
-          transfer_id: this.destTransferFC.value,
-          dateTime: this.calenderServices.convertDateSpecial(this.destDateFC.value, 'en') + ' ' + this.destTime,
-          type: 'destination',
-        },],
-        enDate: this.calenderServices.convertDateSpecial(this.form.value.enDate, 'en'),
-        expireDate: this.calenderServices.convertDateSpecial(this.form.value.expireDate, 'en'),
-        CHDFlightRate: this.form.value.CHDFlightRate,
-        defineTour: this.form.value.defineTour === 'true',
-        euroRate: this.form.value.euroRate,
-        type: this.destCityTypeFC.value,
-        dollarRate: this.form.value.dollarRate,
-        AEDRate: this.form.value.AEDRate,
-        visaRate: this.form.value.visaRate,
-        stDate: this.calenderServices.convertDateSpecial(this.form.value.stDate, 'en'),
-        insuranceRate: this.form.value.insuranceRate,
-        transferRate: this.form.value.transferRate,
-        visaPriceType: this.form.value.visaPriceType, // dollar euro derham
-        transferPriceType: this.form.value.transferPriceType,
-        insurancePriceType: this.form.value.insurancePriceType,
-        services: this.form.value.services,
-        documents: this.form.value.documents,
-        description: this.form.value.description,
-        status: this.form.value.status,
-        packages: this.tourDetail,
-        TransferType: 1,
+    this.tourReqDTO = {
+      title: this.form.value.title,
+      stCity_id: this.form.value.stCity_id,
+      endCity_id: this.form.value.endCity_id,
+      nightNum: this.form.value.nightNum,
+      dayNum: this.form.value.dayNum,
+      transfers: [{
+        transfer_id: this.originTransferFC.value,
+        dateTime: this.calenderServices.convertDateSpecial(this.originDateFC.value, 'en') + ' ' + this.originTime,
+        type: 'origin',
+      }, {
+        transfer_id: this.destTransferFC.value,
+        dateTime: this.calenderServices.convertDateSpecial(this.destDateFC.value, 'en') + ' ' + this.destTime,
+        type: 'destination',
+      },],
+      enDate: this.calenderServices.convertDate1(this.form.value.enDate, 'en'),
+      expireDate: this.calenderServices.convertDate1(this.form.value.expireDate, 'en'),
+      CHDFlightRate: this.form.value.CHDFlightRate,
+      defineTour: this.form.value.defineTour === 'true',
+      euroRate: this.form.value.euroRate,
+      type: this.destCityTypeFC.value,
+      dollarRate: this.form.value.dollarRate,
+      AEDRate: this.form.value.AEDRate,
+      visaRate: this.form.value.visaRate,
+      stDate: this.calenderServices.convertDate1(this.form.value.stDate, 'en'),
+      insuranceRate: this.form.value.insuranceRate,
+      transferRate: this.form.value.transferRate,
+      visaPriceType: this.form.value.visaPriceType, // dollar euro derham
+      transferPriceType: this.form.value.transferPriceType,
+      insurancePriceType: this.form.value.insurancePriceType,
+      services: this.form.value.services,
+      documents: this.form.value.documents,
+      description: this.form.value.description,
+      status: this.form.value.status,
+      packages: this.tourDetail,
+      TransferType: 1,
 
     }
   }
@@ -300,6 +332,9 @@ export class EditComponent implements OnInit {
     this.commonApi.getServices().subscribe((res: any) => {
       if (res.isDone) {
         this.services = res.data;
+        this.setValue()
+        this.setFormArray(this.info.packages)
+
       }
     }, (error: any) => {
     })
@@ -366,9 +401,10 @@ export class EditComponent implements OnInit {
   }
 
   cityDesChanged(): void {
+    console.log('city dest changes')
     this.cityID = this.form.value.endCity_id
     this.ToursForm.clear();
-    this.addRow()
+    this.addRow({} as TourPackageDTO)
     this.getHotels();
   }
 
@@ -391,7 +427,7 @@ export class EditComponent implements OnInit {
   destCityTypeChange(): void {
     this.disableFields()
     this.ToursForm.clear();
-    this.addRow()
+    this.addRow({} as TourPackageDTO)
     this.getDestCities()
   }
 
@@ -406,7 +442,7 @@ export class EditComponent implements OnInit {
     this.cityApi.getCities(req).subscribe((res: any) => {
       if (res.isDone) {
         this.originCities = res.data;
-        this.form.controls.stCity_id.setValue(this.originCities[0].id.toString());
+        this.form.controls.stCity_id.setValue(this.info.stCity.id === 0 ? this.originCities[0].id.toString() : this.info.stCity.id)
       }
     }, (error: any) => {
       this.message.error()
@@ -424,9 +460,10 @@ export class EditComponent implements OnInit {
     this.cityApi.getCities(req).subscribe((res: any) => {
       if (res.isDone) {
         this.destCities = res.data;
-        this.form.controls.endCity_id.setValue(this.destCities[0].id.toString());
-        this.cityID = this.destCities[0].id;
-        this.getHotels();
+        this.form.controls.endCity_id.setValue(this.info.endCity.id === 0 ? this.destCities[0].id.toString() : this.info.endCity.id)
+
+        this.cityID = this.info.endCity.id === 0 ? this.destCities[0].id : this.info.endCity.id;
+        // this.getHotels();
       }
     }, (error: any) => {
       this.message.error()
@@ -447,7 +484,15 @@ export class EditComponent implements OnInit {
       this.tourApi.getTour(this.slug).subscribe((res: any) => {
         if (res.isDone) {
           this.info = res.data;
-          this.setValue()
+          this.cityID = this.info.endCity.id;
+          this.destCityTypeFC.setValue(this.info.type)
+
+          this.getOriginCities();
+          this.getDestCities();
+          this.getTransfer()
+          this.disableFields();
+          console.log('میخواد کال بشه')
+          this.getHotels()
         }
       }, (error: any) => {
         this.message.error()
@@ -457,8 +502,6 @@ export class EditComponent implements OnInit {
 
   setValue(): void {
     this.form.controls.title.setValue(this.info.title)
-    this.form.controls.stCity_id.setValue(this.info.stCity.id)
-    this.form.controls.endCity_id.setValue(this.info.endCity.id)
     this.form.controls.nightNum.setValue(this.info.nightNum)
     this.form.controls.dayNum.setValue(this.info.dayNum)
     this.form.controls.TransferType.setValue(this.info.TransferType)
@@ -486,12 +529,17 @@ export class EditComponent implements OnInit {
     this.destTimeFC.setValue(this.info.transfers[1].dateTime.split(' ')[1]);
     this.originTransferFC.setValue(+this.info.transfers[0].transfer_id);
     this.destTransferFC.setValue(+this.info.transfers[1].transfer_id);
-
-    this.originCityTypeFC.setValue(this.info)
-    this.destCityTypeFC.setValue(this.info.type)
+    this.originCityTypeFC.setValue(true)
     this.originTime = this.info.transfers[0].dateTime.split(' ')[1]
     this.destTime = this.info.transfers[1].dateTime.split(' ')[1]
+  }
 
+
+  setFormArray(packages: TourPackageDTO[]): void {
+    this.ToursForm.clear();
+    packages.forEach(x => {
+      this.addRow(x);
+    })
   }
 
 }

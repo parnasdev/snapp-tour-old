@@ -26,7 +26,9 @@ export class TimePickerComponent implements OnInit,OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.hourFC.setValue(this.inCommingTime.split(':')[0])
+    this.hour = +this.inCommingTime.split(':')[0]
     this.minuteFC.setValue(this.inCommingTime.split(':')[1])
+    this.minute = +this.inCommingTime.split(':')[1]
   }
 
   decreaseHour(): void {

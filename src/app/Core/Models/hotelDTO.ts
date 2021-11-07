@@ -85,7 +85,10 @@ export interface PackageDTO {
   };
   "prices": {
     twin: number;
+    triple: number
+    quad: number
     single: number;
+    ADLRate: number
     cwb: number;
     cnb: number;
     age: string

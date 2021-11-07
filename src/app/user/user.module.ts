@@ -14,6 +14,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MaterialModule} from "../common-project/persianDatePickerAdapter/material.module";
 import {CommonProjectModule} from "../common-project/common-project.module";
 import {ToolsModule} from "../tools/tools/tools.module";
+import {DxTagBoxModule} from "devextreme-angular";
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import {ToolsModule} from "../tools/tools/tools.module";
     UserRoutingModule,
     FormsModule,
     MatButtonToggleModule,
+    DxTagBoxModule,
     ReactiveFormsModule,
     MatDatepickerModule,
     MatFormFieldModule,
