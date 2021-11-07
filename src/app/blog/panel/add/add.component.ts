@@ -13,7 +13,6 @@ import {PublicService} from "../../../Core/Services/public.service";
 import {ResponsiveService} from "../../../Core/Services/responsive.service";
 import {PostSetReqDTO} from "../../../Core/Models/BlogDTO";
 import {BlogApiService} from "../../../Core/Https/blog-api.service";
-import {CategoryReqDTO, CategoryResDTO} from "../../../Core/Models/CategoryDTO";
 import {CategoryApiService} from "../../../Core/Https/category-api.service";
 import {MatDialog} from "@angular/material/dialog";
 import {UploadSingleComponent} from "../../../common-project/upload-single/upload-single.component";
@@ -31,6 +30,7 @@ export class AddComponent implements OnInit {
 
   selectedTags: string[] = []
   thumbnail = '';
+  tags: string[] = [];
 
   postReq: PostSetReqDTO = {
     title: '',
@@ -76,6 +76,19 @@ export class AddComponent implements OnInit {
   ngOnInit() {
   }
 
+  setSlug(){
+    if(this.postForm.value.title !== '' && this.postForm.value.slug === ''){
+      this.postForm.controls.slug.setValue(this.postForm.value.title.split(' ').join('-'));
+    } else if (this.postForm.value.title === '' && this.postForm.value.slug !== ''){
+      this.postForm.controls.slug.setValue('');
+    }
+  }
+
+  // chips
+  onCustomItemCreating(args: any) {
+    this.tags.unshift(args.text);
+  }
+
   createPost(): void {
     this.isLoading = true;
     this.fillObj();
@@ -107,7 +120,7 @@ export class AddComponent implements OnInit {
       categories: [2],
       description: this.postForm.value.description,
       status: 'Show',
-      tags: [],
+      tags: this.tags,
       thumbnail: this.thumbnail
     }
   }

@@ -28,6 +28,7 @@ export class EditComponent implements OnInit {
   userReq: UserCreateReq = {
     name: '',
     family: '',
+    username: '',
     phone: '',
     password: '',
     birthDay: '',
@@ -58,6 +59,7 @@ export class EditComponent implements OnInit {
   userForm = this.fb.group({
     name: new FormControl(''),
     family: new FormControl(''),
+    username: new FormControl(''),
     birthDay: new FormControl(''),
     phone: new FormControl(''),
     role_id: new FormControl(2)
@@ -146,6 +148,7 @@ export class EditComponent implements OnInit {
       name: this.userForm.value.name,
       family: this.userForm.value.family,
       phone: this.userForm.value.phone,
+      username: this.userForm.value.username,
       birthDay: this.userForm.value.birthDay,
       password: this.userForm.value.password,
       permissions: this.setPermissions,

@@ -52,7 +52,6 @@ export class LoginComponent implements OnInit {
     this.req = {
       phone: this.userNameFC.value,
       password: this.passwordFC.value,
-      authType: 0
     }
   }
 

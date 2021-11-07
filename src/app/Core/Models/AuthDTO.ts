@@ -1,5 +1,4 @@
 export interface AuthRequestDTO {
-  authType?: number;
   password?: string;
   code? :string;
   phone?: string;

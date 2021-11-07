@@ -3,7 +3,7 @@
     <div class="box-info-tour">
       <div class="info-tour-header">
         <div class="right">
-          <h2>ایجاد کاربر جدید</h2>
+          <h2>تغییر اطلاعات کاربر</h2>
         </div>
       </div>
       <div class="info-tour-body">
@@ -20,6 +20,14 @@
             <input formControlName="family" type="text">
             <div  *ngIf="errorService.hasError('family')">
               <span class="text-danger">{{errorService.getError('family')}}</span>
+            </div>
+          </div>
+
+          <div class="item-info">
+            <label for="">نام کاربری</label>
+            <input formControlName="username" type="text">
+            <div  *ngIf="errorService.hasError('username')">
+              <span class="text-danger">{{errorService.getError('username')}}</span>
             </div>
           </div>
 

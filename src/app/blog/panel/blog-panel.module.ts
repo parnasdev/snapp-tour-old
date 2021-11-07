@@ -9,6 +9,7 @@ import {ToolsModule} from "../../tools/tools/tools.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommonProjectModule} from "../../common-project/common-project.module";
 import {MatDialogModule} from "@angular/material/dialog";
+import {DxTagBoxModule} from "devextreme-angular";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {MatDialogModule} from "@angular/material/dialog";
     FormsModule,
     ReactiveFormsModule,
     CommonProjectModule,
+    DxTagBoxModule,
     MatDialogModule,
   ]
 })

@@ -11,8 +11,6 @@ import {PublicService} from "../../Core/Services/public.service";
 import {ResponsiveService} from "../../Core/Services/responsive.service";
 import {MessageService} from "../../Core/Services/message.service";
 import {UserApiService} from "../../Core/Https/user-api.service";
-import {ServiceDTO} from "../../Core/Models/hotelDTO";
-import {installTempPackage} from "@angular/cli/utilities/install-package";
 
 export interface PermissionDTO {
   name: string;
@@ -34,6 +32,7 @@ export class AddComponent implements OnInit {
   userReq: UserCreateReq = {
     name: '',
     family: '',
+    username: '',
     phone: '',
     birthDay: '',
     password: '',
@@ -41,9 +40,6 @@ export class AddComponent implements OnInit {
     role_id: 1
   }
   setPermissions: string[] = [];
-
-  // chips
-  editableProducts: string[] = [];
 
   constructor(public fb: FormBuilder,
               public userApi: UserApiService,
@@ -62,18 +58,12 @@ export class AddComponent implements OnInit {
     this.isMobile = mobileService.isMobile();
   }
 
-// chips
-  onCustomItemCreating(args: any) {
-    const newValue = args.text;
-    this.editableProducts.unshift(newValue);
-    args.customItem = newValue;
-  }
-
   userForm = this.fb.group({
     name: new FormControl(''),
     family: new FormControl(''),
     permission: new FormControl(''),
     birthDate: new FormControl(''),
+    username: new FormControl(''),
     phone: new FormControl(''),
     password: new FormControl(''),
     role_id: new FormControl(2)
@@ -114,7 +104,6 @@ export class AddComponent implements OnInit {
   }
 
 
-
   private markFormGroupTouched(formGroup: any) {
     (<any>Object).values(formGroup.controls).forEach((control: any) => {
       control.markAsTouched();
@@ -132,6 +121,7 @@ export class AddComponent implements OnInit {
       phone: this.userForm.value.phone,
       birthDay: this.calService.convertDate1(this.userForm.value.birthDay, 'en'),
       password: this.userForm.value.password,
+      username: this.userForm.value.username,
       permissions: this.setPermissions,
       role_id: this.userForm.value.role_id,
     };

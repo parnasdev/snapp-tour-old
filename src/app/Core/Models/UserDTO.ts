@@ -17,6 +17,7 @@ export interface UserCreateReq {
   name: string;
   family: string;
   phone: string;
+  username: string;
   password: string;
   birthDay: string;
   permissions: string[],
