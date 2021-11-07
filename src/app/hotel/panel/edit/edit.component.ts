@@ -124,8 +124,8 @@ export class EditComponent implements OnInit {
         lat: this.lat,
         lng: this.lng
       },
-      thumbnail: '',
-      images: [],
+      thumbnail: this.thumbnail,
+      images: this.images,
       body: this.bodyFC.value,
       services: [
         {
@@ -172,9 +172,10 @@ export class EditComponent implements OnInit {
 
   edit(): void {
     this.setReq()
-    this.hotelApi.add(this.req).subscribe((res: any) => {
+    this.hotelApi.edit(this.req,this.hotelName).subscribe((res: any) => {
       if (res.isDone) {
         console.log(res);
+        this.router.navigateByUrl('/panel/hotel/list')
       } else {
         this.message.custom(res.message)
       }
@@ -190,7 +191,6 @@ export class EditComponent implements OnInit {
         this.hotelInfo = res.data;
         this.cityTypeFC.setValue(this.hotelInfo.city.type != 0)
         this.getCities()
-
       } else {
         this.message.custom(res.message)
       }
