@@ -1,0 +1,96 @@
+<div class="add-tour">
+  <form [formGroup]="userForm">
+    <div class="box-info-tour">
+      <div class="info-tour-header">
+        <div class="right">
+          <h2>ایجاد کاربر جدید</h2>
+        </div>
+<!--        <div class="left">-->
+<!--          <div class="selectdiv">-->
+<!--            <label>-->
+<!--              <select formControlName="status">-->
+<!--                <option value="Show">انتشار</option>-->
+<!--                <option value="Draft" selected>پیش نویس</option>-->
+<!--                <option value="Accepted">تایید شده</option>-->
+<!--                <option value="NotAccepted">عدم تایید</option>-->
+<!--                <option value="Pending">در انتظار تایید</option>-->
+<!--                <option value="Suspended">ساسپند</option>-->
+<!--                <option value="Completion">تکمیل شده</option>-->
+<!--              </select>-->
+<!--            </label>-->
+<!--          </div>-->
+<!--          <div  *ngIf="errorService.hasError('status')">-->
+<!--            <span class="text-danger">{{errorService.getError('status')}}</span>-->
+<!--          </div>-->
+<!--        </div>-->
+      </div>
+      <div class="info-tour-body">
+        <div class="top">
+          <div class="item-info">
+            <label for="">نام</label>
+            <input formControlName="name" type="text">
+            <div  *ngIf="errorService.hasError('name')">
+              <span class="text-danger">{{errorService.getError('name')}}</span>
+            </div>
+          </div>
+          <div class="item-info">
+            <label for="">نام خانوادگی</label>
+            <input formControlName="family" type="text">
+            <div  *ngIf="errorService.hasError('family')">
+              <span class="text-danger">{{errorService.getError('family')}}</span>
+            </div>
+          </div>
+          <div class="item-info">
+            <label for="">شماره همراه</label>
+            <input formControlName="phone" type="text">
+            <div  *ngIf="errorService.hasError('phone')">
+              <span class="text-danger">{{errorService.getError('phone')}}</span>
+            </div>
+          </div>
+          <div class="item-info-2">
+            <div class="select-info">
+              <label for="">دسترسی ها</label>
+              <select (change)="addPermission($event)"  name="" id="">
+                <option *ngFor="let permission of permissions" value="{{ permission }}">{{ permission }}</option>
+              </select>
+<!--              <button (click)="addPermission()">ثبت دسترسی</button>-->
+            </div>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="item-info">
+            <label for="">تاریخ تولد</label>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <input matInput [matDatepicker]="picker1" formControlName="birthDate" [min]="minDate" (click)="picker1.open()">
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+            <div  *ngIf="errorService.hasError('birthDate')">
+              <span class="text-danger">{{errorService.getError('birthDate')}}</span>
+            </div>
+          </div>
+          <div class="item-info">
+            <label for="">پسوورد</label>
+            <input formControlName="password" type="text">
+            <div  *ngIf="errorService.hasError('password')">
+              <span class="text-danger">{{errorService.getError('password')}}</span>
+            </div>
+          </div>
+          <div class="item-info-2">
+            <div class="select-info">
+              <label for="">نقش در سیستم</label>
+              <select formControlName="role_id" name="" id="">
+                <option *ngFor="let role of roles" value="{{ role.id }}">{{ role.label }}</option>
+              </select>
+              <div  *ngIf="errorService.hasError('role_id')">
+                <span class="text-danger">{{errorService.getError('role_id')}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="submit()" [isLoading]="isLoading" [label]="'ایجاد کاربر'"></prs-btn>
+      </div>
+    </div>
+  </form>
+
+</div>
+

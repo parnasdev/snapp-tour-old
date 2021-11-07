@@ -18,15 +18,17 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import {MaterialModule} from "../common-project/persianDatePickerAdapter/material.module";
+import { ThumbnailTourInfoComponent } from './thumbnail-tour-info/thumbnail-tour-info.component';
 
 @NgModule({
-  declarations: [IndexComponent, HeaderComponent, FooterComponent, AddressBarComponent, ThumbnailsTourComponent, StoreComponent, AboutUsComponent, ContactUsComponent, SearchComponent],
+  declarations: [IndexComponent, HeaderComponent, FooterComponent, AddressBarComponent, ThumbnailsTourComponent, StoreComponent, AboutUsComponent, ContactUsComponent, SearchComponent, ThumbnailTourInfoComponent],
   exports: [
     IndexComponent,
     HeaderComponent,
     FooterComponent,
     AddressBarComponent,
     ThumbnailsTourComponent,
+    ThumbnailTourInfoComponent,
   ],
   imports: [
     CommonModule,

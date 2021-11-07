@@ -163,7 +163,7 @@ header {
   .menu-box-mobi {
     display: none;
     padding: 0;
-    margin-bottom: 12px;
+    margin-bottom: 2px;
     background-color: var(--title-color);
     width: 100%;
   }
@@ -173,7 +173,7 @@ header {
     width: 100%;
     align-items: flex-start;
     justify-content: center;
-    padding: 0 1rem !important;
+    padding: 10px 1rem !important;
   }
   .menu-box-mobi ul li {
     margin: 8px 0;
@@ -192,9 +192,16 @@ header {
     position: relative;
   }
   .ul-menu-mobile{
-    background-color: #f7f1e3;
+    background-color: var(--base-color-second);
   }
   .btn-login-register span {
     margin-right: 0;
+  }
+  .menu-item-mobile img{
+    filter: brightness(250%);
+    margin-left: 1rem;
+  }
+  .menu-item-mobile {
+    color: var(--white) !important;
   }
 }
