@@ -1,4 +1,4 @@
-import {Component, OnInit, EventEmitter, Output} from '@angular/core';
+import {Component, OnInit, EventEmitter, Output, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {MessageService} from "../../Core/Services/message.service";
 
@@ -7,16 +7,28 @@ import {MessageService} from "../../Core/Services/message.service";
   templateUrl: './time-picker.component.html',
   styleUrls: ['./time-picker.component.scss']
 })
-export class TimePickerComponent implements OnInit {
+export class TimePickerComponent implements OnInit,OnChanges {
   hourFC = new FormControl('00')
   minuteFC = new FormControl('00')
   hour = 0;
   minute = 0
   @Output() result = new EventEmitter()
+  @Input() inCommingTime='00:00';
   pattern = /^-?(0|[0-9]\d*)?$/;
-  constructor(public message: MessageService) {}
+
+  constructor(public message: MessageService) {
+  }
 
   ngOnInit(): void {
+    this.result.emit({hour: this.hourFC.value, minute: this.minuteFC.value})
+  }
+
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.hourFC.setValue(this.inCommingTime.split(':')[0])
+    this.hour = +this.inCommingTime.split(':')[0]
+    this.minuteFC.setValue(this.inCommingTime.split(':')[1])
+    this.minute = +this.inCommingTime.split(':')[1]
   }
 
   decreaseHour(): void {
@@ -25,7 +37,7 @@ export class TimePickerComponent implements OnInit {
       this.hourFC.setValue(this.formatter(this.hour))
     } else {
 
-      if (this.hour > 0){
+      if (this.hour > 0) {
         this.hour--
         this.hourFC.setValue(this.formatter(this.hour))
       } else {
@@ -42,10 +54,10 @@ export class TimePickerComponent implements OnInit {
       this.hour = 0;
       this.hourFC.setValue(this.formatter(this.hour));
     } else {
-      if (+this.hourFC.value > 23 ) {
+      if (+this.hourFC.value > 23) {
         this.hour = 0;
         this.hourFC.setValue('00');
-      }else{
+      } else {
         this.hour++
         this.hourFC.setValue(this.formatter(this.hour))
       }
@@ -59,10 +71,10 @@ export class TimePickerComponent implements OnInit {
       this.minute = 0;
       this.minuteFC.setValue(this.formatter(this.minute))
     } else {
-      if (+this.minuteFC.value > 59 ) {
+      if (+this.minuteFC.value > 59) {
         this.minute = 0;
         this.minuteFC.setValue('00');
-      }else{
+      } else {
         this.minute++
         this.minuteFC.setValue(this.formatter(this.minute))
       }
@@ -78,7 +90,7 @@ export class TimePickerComponent implements OnInit {
       this.minuteFC.setValue(this.formatter(this.minute))
     } else {
 
-      if (this.minute > 0){
+      if (this.minute > 0) {
         this.minute--
         this.minuteFC.setValue(this.formatter(this.minute))
       } else {
@@ -96,13 +108,13 @@ export class TimePickerComponent implements OnInit {
     if (!this.pattern.test(event.target.value)) {
       event.target.value = '00';
       this.minute = 0;
-    }else {
+    } else {
 
-      if (this.minuteFC.value.length < 3){
+      if (this.minuteFC.value.length < 3) {
         if (+this.minuteFC.value > 59) {
           this.minute = 0
           this.minuteFC.setValue(this.formatter(this.minute))
-        }else {
+        } else {
           this.minute = +this.minuteFC.value
         }
       } else {
@@ -119,12 +131,12 @@ export class TimePickerComponent implements OnInit {
     if (!this.pattern.test(event.target.value)) {
       event.target.value = '00';
       this.hour = 0;
-    }else {
-      if (this.hourFC.value.length < 3){
+    } else {
+      if (this.hourFC.value.length < 3) {
         if (+this.hourFC.value > 23) {
           this.hour = 0
           this.hourFC.setValue(this.formatter(this.hour))
-        }else {
+        } else {
           this.hour = +this.hourFC.value
         }
       } else {
@@ -143,8 +155,9 @@ export class TimePickerComponent implements OnInit {
     if (this.pattern.test(event.target.value)) {
       event.target.value = '00';
       this.message.custom('لطفا فقط عدد وارد کنید');
-    }else {
+    } else {
 
     }
   }
+
 }

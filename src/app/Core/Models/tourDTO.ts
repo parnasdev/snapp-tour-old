@@ -1,3 +1,5 @@
+import {CityDTO} from "./cityDTO";
+
 export interface TourListRequestDTO {
   perPage: number;
   paginate: boolean;
@@ -65,7 +67,7 @@ export interface TourInfoDTO {
   documents: string;
   dollarRate: number;
   enDate: string;
-  endCity: string;
+  endCity: CityTourInfoDTO;
   euroRate: number;
   expireDate: string;
   insurancePriceType: number;
@@ -75,7 +77,7 @@ export interface TourInfoDTO {
   packages: TourPackageDTO[];
   services: string;
   slug: string;
-  stCity: string;
+  stCity: CityTourInfoDTO;
   stDate: string;
   status: string;
   title: string;
@@ -94,13 +96,14 @@ export interface TourInfoDTO {
 export interface TourPackageDTO {
   parent: null;
   user_id: null;
+  id: number
   hotel_id: string;
   services: {
     id: number;
     name: string;
   };
   hotel: HotelDTO;
-  rate: number;
+  rate: { id: number, name: string };
   discounts: DiscountsDTO;
   prices: PricesDTO;
   status: string;
@@ -138,4 +141,13 @@ export interface TourTransferDTO {
   transfer_id: string;
   dateTime: string;
   type: string;
+}
+
+export interface CityTourInfoDTO {
+  id: number;
+  name: string;
+  slug: string;
+  images: any[];
+  description: string;
+  type: number
 }

@@ -81,3 +81,28 @@
   font-size: 13px !important;
   color: var(--base-color);
 }
+
+
+
+//mobile
+@media only screen and (max-width: 499px){
+  .list {
+    grid-template-columns: 1fr;
+  }
+  .title-blog .text h2 {
+    font-size: 17px;
+    margin-bottom: 4px;
+  }
+}
+
+
+//tablet
+@media only screen and (min-width: 500px)and (max-width: 868px){
+  .list {
+    grid-template-columns: 1fr 1fr;
+  }
+  .title-blog .text h2 {
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+}

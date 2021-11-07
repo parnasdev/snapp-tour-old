@@ -93,7 +93,7 @@ export class AddComponent implements OnInit {
     euroRate: new FormControl(''),
     dollarRate: new FormControl(''),
     AEDRate: new FormControl(''),
-    visaRate: new FormControl(''),
+    visaRate: new FormControl('0'),
     visaPriceType: new FormControl(1),
     insuranceRate: new FormControl(''),
     transferPriceType: new FormControl(1),
@@ -184,7 +184,8 @@ export class AddComponent implements OnInit {
   submit() {
     this.convertTour()
     this.fillObj()
-    this.call()
+    console.log(this.tourReqDTO)
+    // this.call()
   }
 
   call(): void {
@@ -235,6 +236,11 @@ export class AddComponent implements OnInit {
 
 
   fillObj() {
+    debugger
+    console.log(this.originTime)
+    console.log(this.destTime)
+    // console.log((this.calenderServices.convertDate(this.originDateFC.value, 'en')).split(' ')[0])
+    // console.log((this.calenderServices.convertDate(this.destDateFC.value, 'en')).split(' ')[0])
     this.tourReqDTO = {
       title: this.form.value.title,
       stCity_id: this.form.value.stCity_id,
@@ -243,23 +249,23 @@ export class AddComponent implements OnInit {
       dayNum: this.form.value.dayNum,
       transfers: [{
         transfer_id: this.originTransferFC.value,
-        dateTime: (this.calenderServices.convertDate1(this.originDateFC.value, 'en')).split(' ')[0] + ' ' + this.originTime,
+       dateTime: this.calenderServices.convertDateSpecial(this.originDateFC.value, 'en')+ ' ' + this.originTime,
         type: 'origin',
       }, {
         transfer_id: this.destTransferFC.value,
-        dateTime: (this.calenderServices.convertDate1(this.destDateFC.value, 'en')).split(' ')[0] + ' ' + this.destTime,
+        dateTime: this.calenderServices.convertDateSpecial(this.destDateFC.value, 'en') + ' ' + this.destTime,
         type: 'destination',
       },],
-      enDate: this.calenderServices.convertDate1(this.form.value.enDate, 'en'),
-      expireDate: this.calenderServices.convertDate1(this.form.value.expireDate, 'en'),
+      enDate: this.calenderServices.convertDateSpecial(this.form.value.enDate, 'en'),
+      expireDate: this.calenderServices.convertDateSpecial(this.form.value.expireDate, 'en'),
       CHDFlightRate: this.form.value.CHDFlightRate,
       defineTour: this.form.value.defineTour === 'true',
       euroRate: this.form.value.euroRate,
-      type: false,
+      type: this.destCityTypeFC.value,
       dollarRate: this.form.value.dollarRate,
       AEDRate: this.form.value.AEDRate,
       visaRate: this.form.value.visaRate,
-      stDate: this.calenderServices.convertDate1(this.form.value.stDate, 'en'),
+      stDate: this.calenderServices.convertDateSpecial(this.form.value.stDate, 'en'),
       insuranceRate: this.form.value.insuranceRate,
       transferRate: this.form.value.transferRate,
       visaPriceType: this.form.value.visaPriceType, // dollar euro derham
@@ -321,7 +327,6 @@ export class AddComponent implements OnInit {
         this.form.controls.insuranceRate.enable()
         this.form.controls.CHDFlightRate.enable()
       }
-
     } else {   // without details
       this.form.controls.visaRate.disable()
       this.form.controls.AEDRate.disable()
@@ -333,7 +338,6 @@ export class AddComponent implements OnInit {
       this.form.controls.transferRate.disable()
       this.form.controls.insuranceRate.disable()
       this.form.controls.CHDFlightRate.disable()
-
     }
 
   }

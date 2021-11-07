@@ -35,6 +35,9 @@ export class AddComponent implements OnInit {
   }
   setPermissions: string[] = [];
 
+  // chips
+  editableProducts: string[] = [];
+
   constructor(public fb: FormBuilder,
               public userApi: UserApiService,
               public route: ActivatedRoute,
@@ -50,6 +53,12 @@ export class AddComponent implements OnInit {
               public mobileService: ResponsiveService,
               public publicServices: PublicService) {
     this.isMobile = mobileService.isMobile();
+  }
+// chips
+  onCustomItemCreating(args: any) {
+    const newValue = args.text;
+    this.editableProducts.unshift(newValue);
+    args.customItem = newValue;
   }
 
   userForm = this.fb.group({

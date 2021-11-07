@@ -165,7 +165,7 @@
           <div class="item-info-timer">
             <label for="">ساعت پرواز رفت</label>
             <!--              <ngb-timepicker  [formControl]="originTimeFC" [meridian]="false"></ngb-timepicker>-->
-            <prs-time-picker (result)="getOriginTime($event)"></prs-time-picker>
+            <prs-time-picker [inCommingTime]="originTime" (result)="getOriginTime($event)"></prs-time-picker>
           </div>
           <div class="item-info-2">
             <div class="select-info w-100">
@@ -187,7 +187,7 @@
           </div>
           <div class="item-info-timer">
             <label for="">ساعت پرواز برگشت</label>
-            <prs-time-picker (result)="getDestTime($event)"></prs-time-picker>
+            <prs-time-picker [inCommingTime]="destTime" (result)="getDestTime($event)"></prs-time-picker>
           </div>
           <div class="item-info-2">
             <div class="select-info w-100">
@@ -334,7 +334,7 @@
           <div class="package-item">نرخ بزرگسال (تومان)</div>
           <div class="package-item" *ngIf="form.value.defineTour == 'true'">نرخ</div>
           <div class="package-item">کودک بدون تخت (تومان)</div>
-          <div class="package-item">کودک بدون تخت (تومان)</div>
+          <div class="package-item">کودک با تخت (تومان)</div>
           <div class="package-item">سن کودک بدون تخت</div>
           <div class="package-item"><i class="icon-plus-circled" (click)="addRow()"></i></div>
 

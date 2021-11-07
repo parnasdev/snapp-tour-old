@@ -23,7 +23,24 @@
 <!--            <span class="text-danger">{{errorService.getError('status')}}</span>-->
 <!--          </div>-->
 <!--        </div>-->
+
+
+
+<!--        chips-->
+        <div class="dx-field">
+          <div class="dx-field-label">Add custom items</div>
+          <div class="dx-field-value">
+            <dx-tag-box
+              [items]="editableProducts"
+              [acceptCustomValue]="true"
+              (onCustomItemCreating)="onCustomItemCreating($event)"
+            >
+            </dx-tag-box>
+          </div>
+        </div>
       </div>
+      <!--        chips-->
+
       <div class="info-tour-body">
         <div class="top">
           <div class="item-info">

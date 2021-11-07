@@ -22,6 +22,17 @@ export class CalenderServices {
             return moment(date).locale('en').format('YYYY/MM/DD');
         }
     }
+    convertDateSpecial(date: any, convertType: string): any {
+      /* convertType : fa - en */
+      // debugger;
+      if (convertType === 'fa') {
+        return (moment(date).format('jYYYY/jMM/jDD')).split('/').join('-');
+      } else if (convertType === 'en') {
+        return (moment(date).locale('en').format('YYYY/MM/DD')).split('/').join('-');
+      }
+    }
+
+
 
     convertDateAndTime(date: any, convertType: string): any {
         /* convertType : fa - en */
@@ -37,9 +48,9 @@ export class CalenderServices {
       /* convertType : fa - en */
       // debugger;
       if (convertType === 'fa') {
-        return (moment(date).format('jYYYY/jMM/jDD HH:mm')).split('/').join('-');
+        return (moment(date).format('jYYYY/jMM/jDD HH:mm:ss')).split('/').join('-');
       } else if (convertType === 'en') {
-        return (moment(date).locale('en').format('YYYY-MM-DD HH:mm'));
+        return (moment(date).locale('en').format('YYYY-MM-DD HH:mm:ss')).split('/').join('-');
       }
     }
 
