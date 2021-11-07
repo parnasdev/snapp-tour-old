@@ -116,3 +116,136 @@
     </a>
   </div>
 </div>
+
+
+
+<!--mobile$tablet-->
+<section id="mobile-sidebar">
+  <div class="nav-fade d-none"></div>
+  <div class="wrapper">
+    <nav>
+<!--      <div class="img-header-mobile w-100 d-flex justify-content-center" >-->
+<!--        <img src="assets/img/hamnavaz-logo.png" routerLink="/" width="170" alt="">-->
+<!--      </div>-->
+      <div class="parnas-title">
+        <div class="logo-parnas"><img src="assets/img/logo-parnas.agencyFinail%20(1).png" width="55" alt=""></div>
+        <div class="info-title-sidebar">
+          <h3>سیستم هوشمند تور و گردشگری</h3>
+          <div class="info-bottom-sidebar">
+            <span>طراحی و توسعه آژانس خلاقیت پارناس</span>
+          </div>
+        </div>
+      </div>
+      <ul class="ul-parent-list-sidebar parent-menu-mobile-static">
+        <li class="li-list">
+          <a class="menu-main" href="">
+            <img src="assets/img/Home.svg" width="20" alt="">
+            داشبورد
+          </a>
+        </li>
+        <li class="li-list">
+          <a class="menu-main menu-main-1" data-toggle="collapse" href="#collapseExample1-mobi" role="button"
+             aria-expanded="false" aria-controls="collapseExample">
+            <img src="assets/img/master-tour.svg" width="20" alt="">
+            مدیریت تور ها
+            <i class="icon-down-open icon-1"></i>
+          </a>
+          <div class="collapse" id="collapseExample1-mobi">
+            <ul class="under-menu-ul">
+              <li><a routerLink="/panel/tour/add">اضافه کردن تور</a></li>
+              <li><a routerLink="/panel/tour">لیست تورها</a></li>
+              <li><a (click)="showMessage()">تورهای ویژه</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="li-list">
+          <a class="menu-main menu-main-2" data-toggle="collapse" href="#collapseExample2-mobi" role="button"
+             aria-expanded="false" aria-controls="collapseExample">
+            <img src="assets/img/Dish.svg" width="20" alt="">
+            مدیریت هتل و شهر ها
+            <i class="icon-down-open icon-2"></i>
+          </a>
+          <div class="collapse" id="collapseExample2-mobi">
+            <ul class="under-menu-ul">
+              <li><a routerLink="/panel/hotel/add">اضافه کردن هتل</a></li>
+              <li><a routerLink="/panel/hotel/list">لیست هتل ها</a></li>
+              <li><a (click)="showMessage()">هتل های ویژه</a></li>
+              <li><a routerLink="/panel/cities">لیست شهر ها</a></li>
+              <li><a routerLink="/panel/cities/set">اضافه کردن شهر</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="li-list">
+          <a class="menu-main menu-main-3" data-toggle="collapse" href="#collapseExample3-mobi" role="button"
+             aria-expanded="false" aria-controls="collapseExample">
+            <img src="assets/img/Ticket.svg" width="20" alt="">
+            مدیریت ایرلاین ها
+            <i class="icon-down-open icon-3"></i>
+          </a>
+          <div class="collapse" id="collapseExample3-mobi">
+            <ul class="under-menu-ul">
+              <li><a routerLink="/panel/transfer">لیست ایرلاین ها</a></li>
+              <li><a routerLink="/panel/transfer/add">اضافه کردن</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="li-list">
+          <a class="menu-main menu-main-4" data-toggle="collapse" href="#collapseExample4-mobi" role="button"
+             aria-expanded="false" aria-controls="collapseExample">
+            <img src="assets/img/Pen.svg" width="20" alt="">
+            نوشته ها و نظرات
+            <i class="icon-down-open icon-4"></i>
+          </a>
+          <div class="collapse" id="collapseExample4-mobi">
+            <ul class="under-menu-ul">
+              <li><a (click)="showMessage()">لیست مطالب</a></li>
+              <li><a (click)="showMessage()">اضافه کردن مطلب </a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="li-list">
+          <a class="menu-main menu-main-5" data-toggle="collapse" href="#collapseExample5-mobi" role="button"
+             aria-expanded="false" aria-controls="collapseExample">
+            <img src="assets/img/User%20Accepted.svg" width="20" alt="">
+            مدیریت کاربران
+            <i class="icon-down-open icon-5"></i>
+          </a>
+          <div class="collapse" id="collapseExample5-mobi">
+            <ul class="under-menu-ul">
+              <li><a routerLink="user/list">لیست کاربران</a></li>
+              <li><a routerLink="user/add">اضافه کردن کاربر جدید</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="li-list">
+          <a class="menu-main menu-main-6" data-toggle="collapse" href="#collapseExample6-mobi" role="button"
+             aria-expanded="false" aria-controls="collapseExample">
+            <img src="assets/img/User%20Accepted.svg" width="20" alt="">
+            تیکت های کاربران
+            <i class="icon-down-open icon-6"></i>
+          </a>
+          <div class="collapse" id="collapseExample6-mobi">
+            <ul class="under-menu-ul">
+              <li><a (click)="showMessage()">لیست تیکت ها</a></li>
+            </ul>
+          </div>
+        </li>
+
+      </ul>
+      <div class="Support">
+        <a target="_blank" class="Support-link" href="">
+          <img src="assets/img/need.svg" width="24" alt="">
+          نیاز به پشتیبانی دارید ؟!
+        </a>
+      </div>
+    </nav>
+    <div class="parent-mobi-top">
+      <div class="mobile-nav">
+        <span></span>
+      </div>
+      <div class="logo-header">
+        <img src="assets/img/hamnavaz-logo.png" width="60px" alt="">
+      </div>
+    </div>
+    </div>
+</section>

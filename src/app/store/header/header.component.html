@@ -1,5 +1,5 @@
 <!--desktop-->
-<header  class="desktop-header">
+<header class="desktop-header">
   <div class="prs-responsive">
     <div class="container-fluid">
       <div class="row">
@@ -72,24 +72,34 @@
         <i class="icon-align-right icon-menu"></i>
       </div>
       <div class="logo-web-mobi">
-        <img src="assets/img/hamnavaz-logo.png" width="110" alt="">
+        <img src="assets/img/hamnavaz-logo.png" width="130" alt="">
       </div>
-        <a class="btn-login-register" routerLink="/auth" *ngIf="!session.isLoggedIn()">
-          <span>عضویت و ورود</span>
-        </a>
-        <a class="btn-login-register" (click)="logOut()" *ngIf="session.isLoggedIn()">
-          <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>
-          <span>
-          <i class="icon-user"></i>
-            /
-            خروج
-          </span>
-        </a>
+      <!--        <a class="btn-login-register" routerLink="/auth" *ngIf="!session.isLoggedIn()">-->
+      <!--          <span>عضویت و ورود</span>-->
+      <!--        </a>-->
+      <!--        <a class="btn-login-register" (click)="logOut()" *ngIf="session.isLoggedIn()">-->
+      <!--          <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>-->
+      <!--          <span>-->
+      <!--          <i class="icon-user"></i>-->
+      <!--            /-->
+      <!--            خروج-->
+      <!--          </span>-->
+      <!--        </a>-->
     </div>
   </div>
 </header>
 <div class="menu-box-mobi">
   <ul class="ul-menu-mobile">
+    <li class="btn-parent-mobile">
+      <a class="btn-register" href="">
+        <i class="icon-user"></i>
+        <span>ورود و عضویت</span>
+      </a>
+      <a class="btn-exit" href="">
+        <i class="icon-logout"></i>
+       <span> خروج</span>
+      </a>
+    </li>
     <li class="li-menu">
       <a class="menu-item-mobile" href="">
         <img src="assets/img/Home.svg" width="17" alt="">
