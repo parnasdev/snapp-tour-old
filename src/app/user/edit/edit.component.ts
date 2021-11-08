@@ -24,6 +24,7 @@ export class EditComponent implements OnInit {
   isLoading = false;
   minDate = new Date(); //datepicker
   permissions: PermissionDTO[] = [];
+  userPermissions: PermissionDTO[] = [];
   roles: UserRolesDTO[] = [];
   userReq: UserCreateReq = {
     name: '',
@@ -38,6 +39,14 @@ export class EditComponent implements OnInit {
   setPermissions: string[] = [];
   userId = '';
   userInfo!: UserResDTO;
+  show = false
+  nameFC = new FormControl();
+  familyFC = new FormControl()
+  usernameFC = new FormControl();
+  birthdayFC = new FormControl();
+  phoneFC = new FormControl();
+  roleFC=new FormControl();
+  passwordFC=new FormControl();
 
   constructor(public fb: FormBuilder,
               public userApi: UserApiService,
@@ -56,22 +65,14 @@ export class EditComponent implements OnInit {
     this.isMobile = mobileService.isMobile();
   }
 
-  userForm = this.fb.group({
-    name: new FormControl(''),
-    family: new FormControl(''),
-    permission: new FormControl(''),
-    username: new FormControl(''),
-    birthDay: new FormControl(''),
-    phone: new FormControl(''),
-    role_id: new FormControl(2)
-  });
+
 
   ngOnInit(): void {
     // @ts-ignore
     this.userId = this.route.snapshot.paramMap.get('userId');
     this.getUser();
     this.getRoles();
-    this.getUserPermissions();
+    this.getAllPermissions();
   }
 
   getUser(): void {
@@ -89,10 +90,10 @@ export class EditComponent implements OnInit {
   }
 
   fillForm(): void {
-    this.userForm.controls.name.setValue(this.userInfo.name);
-    this.userForm.controls.family.setValue(this.userInfo.family);
-    this.userForm.controls.phone.setValue(this.userInfo.phone);
-    this.userForm.controls.birthDay.setValue(this.userInfo.birthDay);
+    this.nameFC.setValue(this.userInfo.name);
+    this.familyFC.setValue(this.userInfo.family);
+    this.phoneFC.setValue(this.userInfo.phone);
+    this.birthdayFC.setValue(this.userInfo.birthDay);
     this.setRoleId()
     this.setPermission();
   }
@@ -100,7 +101,7 @@ export class EditComponent implements OnInit {
   setRoleId(): void {
     this.roles.forEach(item => {
       if (this.userInfo.role === item.name) {
-        this.userForm.controls.role_id.setValue(item.id);
+        this.roleFC.setValue(item.id);
       }
     })
   }
@@ -122,11 +123,15 @@ export class EditComponent implements OnInit {
     });
   }
 
-  getUserPermissions(): void {
+  getAllPermissions(): void {
     this.userApi.getUserPermission().subscribe((res: any) => {
       if (res.isDone) {
         res.data.forEach((x: any) => {
-          this.permissions.push({name: x, checked: false})
+          const item = {
+            name: x,
+            checked: false
+          }
+          this.permissions.push(item)
         })
         this.getUserPermissionWithId();
       } else {
@@ -138,18 +143,14 @@ export class EditComponent implements OnInit {
     });
   }
 
+
   getUserPermissionWithId(): void {
     this.userApi.getUserPermissionWithId(+this.userId).subscribe((res: any) => {
       if (res.isDone) {
-        debugger
-        this.permissions.forEach((x: any) => {
-          res.data.forEach((y: string) => {
-            if (x.name === y) {
-              x.checked = true;
-            }
-          });
-        });
-
+        res.data.forEach((x: any) => {
+          this.userPermissions.push({name: x, checked: false})
+        })
+        this.calculateChecking()
       } else {
         this.message.custom(res.message);
       }
@@ -157,6 +158,18 @@ export class EditComponent implements OnInit {
       this.message.error();
       this.checkErrorService.check(error);
     });
+
+  }
+
+  calculateChecking(): void {
+    this.permissions.forEach((x: any) => {
+      this.userPermissions.forEach((y: any) => {
+        if (x.name === y.name) {
+          x.checked = true;
+        }
+      });
+    });
+    console.log(this.permissions)
   }
 
   private markFormGroupTouched(formGroup: any) {
@@ -171,14 +184,14 @@ export class EditComponent implements OnInit {
 
   setReq() {
     this.userReq = {
-      name: this.userForm.value.name,
-      family: this.userForm.value.family,
-      phone: this.userForm.value.phone,
-      username: this.userForm.value.username,
-      birthDay: this.userForm.value.birthDay,
-      password: this.userForm.value.password,
+      name: this.nameFC.value,
+      family: this.familyFC.value,
+      phone: this.phoneFC.value,
+      username: this.usernameFC.value,
+      birthDay: this.birthdayFC.value,
+      password: this.passwordFC.value,
       permissions: this.setPermissions,
-      role_id: this.userForm.value.role_id,
+      role_id: this.roleFC.value,
     };
   }
 
@@ -187,7 +200,6 @@ export class EditComponent implements OnInit {
     this.userApi.editUser(this.userReq, this.userId).subscribe((res: any) => {
       if (res.isDone) {
         this.message.custom(res.message);
-        this.userForm.reset();
         this.router.navigate(['/panel/user/list']);
       } else {
         this.message.custom(res.message);
@@ -195,7 +207,7 @@ export class EditComponent implements OnInit {
     }, (error: any) => {
       if (error.status == 422) {
         this.errorService.recordError(error.error.data);
-        this.markFormGroupTouched(this.userForm);
+        // this.markFormGroupTouched(this.userForm);
         this.message.showMessageBig('اطلاعات ارسال شده را مجددا بررسی کنید')
       } else {
         this.message.showMessageBig('مشکلی رخ داده است لطفا مجددا تلاش کنید')
@@ -206,7 +218,7 @@ export class EditComponent implements OnInit {
   }
 
   changeChecked(): void {
-    debugger
+
     let result: string[] = []
     this.permissions.forEach(x => {
       if (x.checked) {
