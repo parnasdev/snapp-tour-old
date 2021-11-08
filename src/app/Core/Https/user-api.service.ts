@@ -47,4 +47,9 @@ export class UserApiService {
     const strUrl = this.serverControllerName + `getUserPermission`;
     return this.http.get<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
   }
+
+  getUserPermissionWithId(userId: number): any {
+    const strUrl = this.serverControllerName + `getUserPermission/${userId}`;
+    return this.http.get<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
+  }
 }

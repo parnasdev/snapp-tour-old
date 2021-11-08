@@ -31,3 +31,8 @@ export interface UserRolesDTO {
   use: boolean;
 }
 
+export interface PermissionDTO {
+  name: string;
+  checked: boolean;
+}
+

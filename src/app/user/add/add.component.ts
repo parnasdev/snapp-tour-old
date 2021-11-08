@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UserCreateReq, UserReqDTO, UserRolesDTO} from "../../Core/Models/UserDTO";
+import {PermissionDTO, UserCreateReq, UserReqDTO, UserRolesDTO} from "../../Core/Models/UserDTO";
 import {FormBuilder, FormControl} from "@angular/forms";
 import {CheckErrorService} from "../../Core/Services/check-error.service";
 import {ErrorsService} from "../../Core/Services/errors.service";
@@ -11,11 +11,6 @@ import {PublicService} from "../../Core/Services/public.service";
 import {ResponsiveService} from "../../Core/Services/responsive.service";
 import {MessageService} from "../../Core/Services/message.service";
 import {UserApiService} from "../../Core/Https/user-api.service";
-
-export interface PermissionDTO {
-  name: string;
-  checked: boolean;
-}
 
 @Component({
   selector: 'prs-add',

@@ -30,16 +30,6 @@
               <span class="text-danger">{{errorService.getError('username')}}</span>
             </div>
           </div>
-
-          <div class="item-info-2">
-            <div class="select-info">
-              <label for="">دسترسی ها</label>
-              <select (change)="addPermission($event)"  name="" id="">
-                <option *ngFor="let permission of permissions" value="{{ permission }}">{{ permission }}</option>
-              </select>
-              <!--              <button (click)="addPermission()">ثبت دسترسی</button>-->
-            </div>
-          </div>
         </div>
         <div class="bottom">
           <div class="item-info">
@@ -63,6 +53,11 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="item-info-2 permission">
+          <mat-checkbox *ngFor="let item of permissions" formControlName="permission" (change)="changeChecked()" [(ngModel)]="item.checked">
+            {{item.name}}
+          </mat-checkbox>
         </div>
         <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="submit()" [isLoading]="isLoading" [label]="'تغییر کاربر'"></prs-btn>
       </div>
