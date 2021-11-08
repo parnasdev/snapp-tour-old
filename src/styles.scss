@@ -2,6 +2,7 @@
 @import "~swiper/css/navigation";
 @import "~swiper/css/pagination";
 @import '~ngx-bar-rating/themes/br-default-theme';
+
 .swiper {
   width: 100%;
   height: 100%;
@@ -56,32 +57,39 @@ body {
   --white: #fff;
   --dark: #000;
   --radius-btn: 15px 15px 1px 15px;
-  --opacity-color:#3e3e3e78;
-  --red-color:#CB1639;
-  --green-color:#0D7B0D;
+  --opacity-color: #3e3e3e78;
+  --red-color: #CB1639;
+  --green-color: #0D7B0D;
 }
-button,a,li,label,span,p{
+
+button, a, li, label, span, p {
   font-size: 14px !important;
   text-decoration: none !important;
 }
-h1,h2,h3,h4,h5,h6{
+
+h1, h2, h3, h4, h5, h6 {
   font-family: 'IRANSans', 'sans-serif' !important;
 }
-button{
+
+button {
   outline: none;
 }
-ul{
+
+ul {
   list-style: none;
   padding: 0 !important;
   margin-bottom: 0;
 }
+
 .prs-responsive {
   max-width: 1366px !important;
   margin: 0 auto;
 }
-.posi-relative{
+
+.posi-relative {
   position: relative;
 }
+
 .m-auto-x {
   margin: 0 auto;
 }
@@ -97,7 +105,8 @@ ul{
 .m-bottom-1 {
   margin-bottom: 1rem;
 }
-.h-90{
+
+.h-90 {
   height: 70%;
 }
 
@@ -119,8 +128,9 @@ ul{
   width: 100%;
   font-size: 14px;
 }
+
 .inp-form select {
- border: none;
+  border: none;
   outline: none;
   background: unset;
   width: 100%;
@@ -136,44 +146,55 @@ ul{
   height: 30px;
   background-color: var(--base-color);
 }
-.inp-form mat-form-field{
+
+.inp-form mat-form-field {
   width: 100% !important;
 }
+
 .inp-form .mat-form-field-appearance-fill .mat-form-field-flex {
   background-color: unset !important;
 }
-.mat-button-wrapper{
+
+.mat-button-wrapper {
   font-family: IRANSans !important;
 }
+
 .mat-calendar-body-cell-content {
   font-family: IRANSans !important;
   font-weight: 600 !important;
 }
+
 .mat-calendar-body-selected {
   background-color: var(--base-color) !important;
   color: #fff;
 }
+
 .mat-calendar-table-header, .mat-calendar-body-label {
   font-family: IRANSans !important;
   font-weight: 500 !important;
   color: var(--base-color) !important;
 }
-.mat-calendar-body-label{
+
+.mat-calendar-body-label {
   direction: rtl !important;
   text-align: right !important;
 }
-abbr{
+
+abbr {
   text-decoration: none !important;
 }
+
 .cdk-overlay-pane {
   direction: rtl !important;
 }
+
 .mat-calendar-next-button, .mat-calendar-previous-button {
   transform: rotate(180deg) !important;
 }
+
 //-----------------
 
-select{
+select {
   border: 1px solid var(--gray-color-light);
   outline: var(--base-color) !important;
 }
@@ -182,11 +203,13 @@ select{
 
 .selectdiv {
   position: relative;
- height: 30px;
+  height: 30px;
 }
+
 select::-ms-expand {
   display: none;
 }
+
 .selectdiv:after {
   content: '<>';
   font: 17px "Consolas", monospace;
@@ -225,15 +248,46 @@ select::-ms-expand {
 }
 
 
+html, body {
+  height: 100%;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .title-en {
   color: var(--base-color);
   font-family: "Ubuntu", sans-serif !important;
   font-weight: 700;
 }
-.title-small-fa{
+
+.title-small-fa {
   color: var(--gray-color-light);
+}
+
+.text-en {
+  text-align: left !important;
+  font-family: "Ubuntu", sans-serif !important;
+  color: var(--gray-color-light);
+  line-height: 28px;
+}
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #F5F5F5;
+  float: right;
+  border-radius: 20px;
+  padding: 1px;
+  height: 20vh !important;
+}
+::-webkit-scrollbar-thumb{
+  background-color: #707070;
+  border-radius: 20px;
+  float: right;
+  width: 5px;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: #707070;
 }
