@@ -33,6 +33,6 @@ export interface UserRolesDTO {
 
 export interface PermissionDTO {
   name: string;
-  checked: boolean;
+  checked: boolean | null;
 }
 

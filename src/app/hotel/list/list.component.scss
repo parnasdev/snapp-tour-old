@@ -59,7 +59,8 @@
   justify-content: space-between;
   padding: 8px 10px;
 }
-.opacity-bg-parent:hover{
+
+.opacity-bg-parent:hover {
   background-color: #137cb6b3;
 }
 
@@ -106,4 +107,40 @@
 .rate i {
   color: #FFB102;
   font-size: 13px;
+}
+
+//mobile
+@media only screen and (max-width: 499px) {
+  .box-hotel-parent {
+    grid-template-columns: 1fr;
+  }
+  .box-search {
+    flex-direction: column;
+  }
+  .inp-form {
+    width: 100% !important;
+    margin-top: 12px;
+  }
+  .btn-search {
+    width: 100%;
+    margin-top: 12px;
+  }
+}
+
+
+//tablet
+@media only screen and (min-width: 500px) and (max-width: 868px) {
+  .box-hotel-parent {
+    grid-template-columns: 1fr 1fr;
+  }
+  .btn-search {
+    width: 40%;
+    margin: 12px auto;
+  }
+  .box-search {
+    flex-wrap: wrap;
+  }
+  .inp-form {
+    width: 48.5% !important;
+  }
 }
