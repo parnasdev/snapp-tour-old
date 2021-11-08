@@ -43,11 +43,9 @@
 
           <div class="item-info">
             <label for="">تگ ها</label>
-            <div class="dx-field-value">
-              <dx-tag-box
-                [acceptCustomValue]="true"
-                (onCustomItemCreating)="onCustomItemCreating($event)">
-              </dx-tag-box>
+            <input formControlName="tag" type="text">
+            <div *ngIf="errorService.hasError('tag')">
+              <span class="text-danger">{{errorService.getError('tag')}}</span>
             </div>
           </div>
 

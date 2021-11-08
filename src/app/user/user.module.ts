@@ -31,7 +31,6 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     ReactiveFormsModule,
     MatDatepickerModule,
     MatCheckboxModule,
-    ReactiveFormsModule,
     MatFormFieldModule,
     MatNativeDateModule,
     MatInputModule,
