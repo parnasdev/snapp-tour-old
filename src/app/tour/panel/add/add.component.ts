@@ -119,18 +119,17 @@ export class AddComponent implements OnInit {
     this.getOriginCities();
     this.getDestCities();
     this.getTransfer()
-    this.addRow()
     this.disableFields();
-    this.getService()
-    this.getHotels()
+    this.getService();
+    this.getHotels();
   }
 
 
-  addRow() {
+  addRow(hotelId: number) {
     const Tours = this.fb.group({
       parent: null,
       user_id: null,
-      hotel_id: [0],
+      hotel_id: [hotelId],
       services: [null],
       rate: [1],
       discountsTwin: [null],
@@ -151,6 +150,7 @@ export class AddComponent implements OnInit {
   }
 
   convertTour() {
+    debugger
     this.tourDetail = [];
     this.ToursForm.controls.forEach(item => {
       this.tourDetail.push({
@@ -182,10 +182,10 @@ export class AddComponent implements OnInit {
 
 
   submit() {
-    this.convertTour()
-    this.fillObj()
-    console.log(this.tourReqDTO)
-    // this.call()
+    this.convertTour();
+    this.fillObj();
+    // console.log(this.tourReqDTO)
+    this.call();
   }
 
   call(): void {
@@ -218,6 +218,7 @@ export class AddComponent implements OnInit {
     this.hotelApi.getHotels(req).subscribe((res: any) => {
       if (res.isDone) {
         this.hotels = res.data;
+        this.addRow(this.hotels[0].id);
       }
     }, (error: any) => {
       this.message.error();
@@ -236,11 +237,7 @@ export class AddComponent implements OnInit {
 
 
   fillObj() {
-    debugger
-    console.log(this.originTime)
-    console.log(this.destTime)
-    // console.log((this.calenderServices.convertDate(this.originDateFC.value, 'en')).split(' ')[0])
-    // console.log((this.calenderServices.convertDate(this.destDateFC.value, 'en')).split(' ')[0])
+
     this.tourReqDTO = {
       title: this.form.value.title,
       stCity_id: this.form.value.stCity_id,
@@ -362,7 +359,6 @@ export class AddComponent implements OnInit {
   cityDesChanged(): void {
     this.cityID = this.form.value.endCity_id
     this.ToursForm.clear();
-    this.addRow()
     this.getHotels();
   }
 
@@ -383,10 +379,9 @@ export class AddComponent implements OnInit {
   }
 
   destCityTypeChange(): void {
-    this.disableFields()
+    this.disableFields();
     this.ToursForm.clear();
-    this.addRow()
-    this.getDestCities()
+    this.getDestCities();
   }
 
   getOriginCities(): void {
