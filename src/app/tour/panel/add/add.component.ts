@@ -432,5 +432,90 @@ export class AddComponent implements OnInit {
     }
     return obj
   }
+
+
+  calculatePrice(type: number, price: string){
+
+    if (type === 1){
+      // adult rate/price
+      return +this.ToursForm.value.ADLRate + (+price * this.form.value.nightNum * this.checkRatePrice()) +
+        (this.form.value.insuranceRate * this.checkInsuranceRatePrice()) +
+        (this.form.value.visaRate * this.checkVisaRatePrice()) +
+        (this.form.value.transferRate * this.checkTransferRatePrice())
+      // + نرخ افزایشس کاهشی
+    } else {
+      // child rate/price
+      return +this.ToursForm.value.CHDFlightRate + (+price * this.form.value.nightNum * this.checkRatePrice()) +
+        (this.form.value.insuranceRate * this.checkInsuranceRatePrice()) +
+        (this.form.value.visaRate * this.checkVisaRatePrice()) +
+        (this.form.value.transferRate * this.checkTransferRatePrice())
+      // + نرخ افزایشس کاهشی
+    }
+
+  }
+
+  checkRatePrice(): any{
+    if(this.form.value.visaPriceType === 1){
+      // toman
+      return 1
+    } else if (this.form.value.visaPriceType === 2){
+      // euro
+      return this.form.value.euroRate
+    }else if (this.form.value.visaPriceType === 3) {
+      // dollar
+      return this.form.value.dollarRate
+    } else {
+      // derham
+      return this.form.value.AEDRate
+    }
+  }
+
+  checkInsuranceRatePrice(){
+    if(this.form.value.insurancePriceType === 1){
+      // toman
+      return 1
+    } else if (this.form.value.insurancePriceType === 2){
+      // euro
+      return this.form.value.euroRate
+    }else if (this.form.value.insurancePriceType === 3) {
+      // dollar
+      return this.form.value.dollarRate
+    } else {
+      // derham
+      return this.form.value.AEDRate
+    }
+  }
+
+  checkVisaRatePrice(){
+    if(this.form.value.visaPriceType === 1){
+      // toman
+      return 1
+    } else if (this.form.value.visaPriceType === 2){
+      // euro
+      return this.form.value.euroRate
+    }else if (this.form.value.visaPriceType === 3) {
+      // dollar
+      return this.form.value.dollarRate
+    } else {
+      // derham
+      return this.form.value.AEDRate
+    }
+  }
+
+  checkTransferRatePrice(){
+    if(this.form.value.transferPriceType === 1){
+      // toman
+      return 1
+    } else if (this.form.value.transferPriceType === 2){
+      // euro
+      return this.form.value.euroRate
+    }else if (this.form.value.transferPriceType === 3) {
+      // dollar
+      return this.form.value.dollarRate
+    } else {
+      // derham
+      return this.form.value.AEDRate
+    }
+  }
 }
 
