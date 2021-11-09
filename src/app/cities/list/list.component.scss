@@ -21,3 +21,9 @@
 .edit{
   margin-left: 10px;
 }
+:host::ng-deep .btn-blue{
+  height: 33px !important;
+}
+:host::ng-deep .btn-dark{
+  height: 33px !important;
+}
