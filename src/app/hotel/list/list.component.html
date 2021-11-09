@@ -20,13 +20,13 @@
                  [style.background-image]="'url(' + hotel.thumbnail + ')'"
                  class="box-hotel">
               <div class="opacity-bg-parent">
-                <a routerLink="/hotel/info">
+                <a routerLink="/hotel/{{ hotel.slug }}">
                   <div class="info-img">
                     <img src="assets/img/Information.svg" width="22" alt="">
                   </div>
                 </a>
                 <div class="info-hotel">
-                  <a routerLink="/hotel/info">
+                  <a routerLink="/hotel/{{ hotel.slug }}">
                     <h6>{{ hotel.name }}</h6>
                   </a>
                   <div class="footer-hotel-info">

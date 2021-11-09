@@ -1,4 +1,5 @@
 import {CityResponseDTO} from "./cityDTO";
+import {TourListResDTO} from "./tourDTO";
 
 export interface HotelSetRequestDTO {
   name: string;
@@ -36,13 +37,10 @@ export interface hotelInfoDTO {
   images: string[];
   thumbnail: string;
   body: string;
-  services: [
-    {
-      name: string;
-      ids: string[]
-    }
-  ];
+  services: servicesDTO[];
   status: string;
+  phone: string;
+  tours: TourListResDTO[];
 }
 
 export interface HotelListRes {
@@ -115,4 +113,9 @@ export interface ServiceDTO {
   id: number;
   name: string;
   checked?: boolean;
+}
+
+export interface servicesDTO {
+  name: string;
+  ids: string[]
 }

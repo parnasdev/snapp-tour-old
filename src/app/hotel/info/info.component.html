@@ -8,8 +8,8 @@
             <div class="right">
               <img src="assets/img/Tag.svg" width="35" alt="">
               <div class="text">
-                <h2 class="title-fa">استودیو صنعتی دنج ترکیه </h2>
-                <h2 class="title-en">Cozy Industrial Studio</h2>
+                <h2 class="title-fa">{{ hotelInfo.name }}</h2>
+                <h2 class="title-en">{{ hotelInfo.nameEn }}</h2>
               </div>
             </div>
             <div class="left">
@@ -27,22 +27,23 @@
             <div class="title-hotel">
               <div class="name-city-country">
                 <img src="assets/img/Location.svg" width="20" alt="">
-                <span class="title-small-fa">کشور و شهر :</span>
-                <span class="title-en">Fatih, İstanbul, Turkey</span>
+                <span class="title-small-fa">شهر و منطقه:</span>
+                <span class="title-en">{{ hotelInfo.city.name }}, </span>
+                <span class="title-en">{{ hotelInfo.location }}</span>
               </div>
               <div class="rate-star">
                 <span class="title-small-fa">درجه هتل :</span>
-                <!--                <bar-rating [(rate)]="currentStar" [theme]="'default'" [max]="5"></bar-rating>-->
+                <i class="icon-star" *ngFor="let star of getStars(hotelInfo.stars)"></i>
               </div>
             </div>
             <div class="parent-gallery">
               <div class="right-gallery">
-                <img class="top-right" src="assets/img/Mask%20Group%202.png" alt="">
-                <img class="left-right" src="assets/img/Mask%20Group%202.png" alt="">
-                <img class="bottom-right" src="assets/img/Mask%20Group%202.png" alt="">
-                <img class="bottom-left" src="assets/img/Mask%20Group%202.png" alt="">
+                <img class="top-right" [src]="hotelInfo.images[0]" alt="">
+                <img class="left-right" [src]="hotelInfo.images[1]" alt="">
+                <img class="bottom-right" [src]="hotelInfo.images[2]" alt="">
+                <img class="bottom-left" [src]="hotelInfo.images[3]" alt="">
               </div>
-              <div class="left-gallery">
+              <div class="left-gallery" [style.background-image]="'url(' + hotelInfo.thumbnail + ')'">
                 <div class="parent-view-all-photo">
                   <a class="btn-photos" href="">
                     <img src="assets/img/Menu-hotel.svg" width="20" alt="">
@@ -59,51 +60,17 @@
                 <a class="btn-map" href="">مسیریابی از مبدا شما !</a>
                 <div class="address">
                   <img src="assets/img/008-maps.svg" width="20" alt="">
-                  <p class="text-en">
-                    Sultanahmet is the heart of historic Old Istanbul, what 19th-century travelers used to call
-                    “Stamboul.”
-                  </p>
+                  <p class="text-en">{{ hotelInfo.address }}</p>
                 </div>
                 <div class="telephone">
                   <img src="assets/img/003-telephone.svg" width="20" alt="">
-                  <p>+۹۸ ۹۶۶۳۳۲۳۱۱۶</p>
+                  <p>{{ hotelInfo.phone ? hotelInfo.phone : '-' }}</p>
                 </div>
               </div>
               <div class="info-about-hotel">
                 <div class="scrollbar" id="style-1"></div>
                 <h2>درباره هتل استودیو صنعتی دنج ترکیه بیشتر بدانید :</h2>
-                <p>این آپارتمان یک استودیو با طراحی زیبا است که هر آنچه را که برای اقامت کوتاه مدت نیاز دارید ارائه می
-                  دهد. این استودیو دارای یک حمام خصوصی با دوش، یک آشپزخانه کوچک مجهز، یک قسمت نشیمن، یک تلویزیون بزرگ،
-                  وای فای رایگان، سیستم تهویه مطبوع و گرمایش مرکزی است. همچنین سرویس اتاق روزانه و دربان 24 ساعته اقامت
-                  شما را راحت تر و امن تر می کند. شما همچنین می توانید قهوه خود را در میز اطلاعات 18 ساعته در دسترس و در
-                  حین دریافت اطلاعات در مورد اسرار شهر یا پاسخ به سوالات خود میل کنید.
-                </p>
-                <div class="inf-two">
-                  <h2>فضای اتاق ها</h2>
-                  <p>
-                    همچنین مهمانان من 10% تخفیف و نوشیدنی گرم رایگان در رستوران خواهند داشت، لطفاً ذکر کنید که شما مهمان
-                    یوسف هستید:)
-                    این آپارتمان یک استودیو با طراحی زیبا است که هر آنچه را که برای اقامت کوتاه مدت نیاز دارید ارائه می
-                    دهد. این استودیو دارای یک حمام خصوصی با دوش، یک آشپزخانه کوچک مجهز، یک قسمت نشیمن، یک تلویزیون بزرگ،
-                    وای فای رایگان، سیستم تهویه مطبوع و گرمایش مرکزی است. همچنین سرویس اتاق روزانه و دربان 24 ساعته
-                    اقامت شما را راحت تر و امن تر می کند. شما همچنین می توانید قهوه خود را در میز اطلاعات 18 ساعته در
-                    دسترس و در حین دریافت اطلاعات در مورد اسرار شهر یا پاسخ به سوالات خود میل کنید.
-
-                  </p>
-                </div>
-                <div class="inf-two">
-                  <h2>فضای اتاق ها</h2>
-                  <p>
-                    همچنین مهمانان من 10% تخفیف و نوشیدنی گرم رایگان در رستوران خواهند داشت، لطفاً ذکر کنید که شما مهمان
-                    یوسف هستید:)
-                    این آپارتمان یک استودیو با طراحی زیبا است که هر آنچه را که برای اقامت کوتاه مدت نیاز دارید ارائه می
-                    دهد. این استودیو دارای یک حمام خصوصی با دوش، یک آشپزخانه کوچک مجهز، یک قسمت نشیمن، یک تلویزیون بزرگ،
-                    وای فای رایگان، سیستم تهویه مطبوع و گرمایش مرکزی است. همچنین سرویس اتاق روزانه و دربان 24 ساعته
-                    اقامت شما را راحت تر و امن تر می کند. شما همچنین می توانید قهوه خود را در میز اطلاعات 18 ساعته در
-                    دسترس و در حین دریافت اطلاعات در مورد اسرار شهر یا پاسخ به سوالات خود میل کنید.
-
-                  </p>
-                </div>
+                <p [innerHTML]="hotelInfo.body"></p>
               </div>
             </div>
             <div class="notes-hotel">
@@ -122,66 +89,28 @@
               </div>
               <div class="option">
                 <h2>امکانات هتل ، اتاق ها و خدمات دیگر در یک نگاه</h2>
-                <div class="parent-item-option">
-                  <div class="item">
+                <div class="parent-item-option" *ngIf="hotelInfo.services.length > 0">
+                  <div class="item" *ngFor="let service of hotelInfo.services">
                     <img src="assets/img/Modem.svg" width="20" alt="">
                     <span>وای فای رایگان</span>
                   </div>
-                  <div class="item">
-                    <img src="assets/img/Modem.svg" width="20" alt="">
-                    <span>وای فای رایگان</span>
-                  </div>
-                  <div class="item">
-                    <img src="assets/img/Modem.svg" width="20" alt="">
-                    <span>وای فای رایگان</span>
-                  </div>
-                  <div class="item">
-                    <img src="assets/img/Modem.svg" width="20" alt="">
-                    <span>وای فای رایگان</span>
-                  </div>
-                  <div class="item">
-                    <img src="assets/img/Modem.svg" width="20" alt="">
-                    <span>وای فای رایگان</span>
-                  </div>
-                  <div class="item">
-                    <img src="assets/img/Modem.svg" width="20" alt="">
-                    <span>وای فای رایگان</span>
-                  </div>
-                  <div class="item">
-                    <img src="assets/img/Modem.svg" width="20" alt="">
-                    <span>وای فای رایگان</span>
-                  </div>
-                  <div class="item">
-                    <img src="assets/img/Modem.svg" width="20" alt="">
-                    <span>وای فای رایگان</span>
-                  </div>
-                  <div class="item">
-                    <img src="assets/img/Modem.svg" width="20" alt="">
-                    <span>وای فای رایگان</span>
-                  </div>
-                  <div class="item">
-                    <img src="assets/img/Modem.svg" width="20" alt="">
-                    <span>وای فای رایگان</span>
-                  </div>
-
                 </div>
-                <div class="parent-view-option">
-                  <a class="btn-option" href="">مشاهده تمامی امکانات</a>
+                <div class="parent-item-option" *ngIf="hotelInfo.services.length === 0">
+                  امکاناتی برای این هتل وجود ندارد.
                 </div>
+<!--                <div class="parent-view-option">-->
+<!--                  <a class="btn-option" href="">مشاهده تمامی امکانات</a>-->
+<!--                </div>-->
               </div>
             </div>
-            <div class="Similar-tour">
+            <div class="Similar-tour" *ngIf="hotelInfo.tours">
               <div class="title-s2">
                 <div class="text">
                   <img src="assets/img/Notification%202.svg" width="35" alt="">
-                  <h2>تور های مشابه</h2>
+                  <h2>تور های هتل</h2>
                 </div>
               </div>
-              <prs-thumbnails-tour></prs-thumbnails-tour>
-              <prs-thumbnails-tour></prs-thumbnails-tour>
-              <prs-thumbnails-tour></prs-thumbnails-tour>
-              <prs-thumbnails-tour></prs-thumbnails-tour>
-              <prs-thumbnails-tour></prs-thumbnails-tour>
+              <prs-thumbnails-tour *ngIf="hotelInfo.tours.length > 0" [tours]="hotelInfo.tours"></prs-thumbnails-tour>
             </div>
           </div>
         </div>
