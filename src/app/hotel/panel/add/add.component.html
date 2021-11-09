@@ -51,10 +51,6 @@
             <label for="">موقعیت هتل</label>
             <input type="text" [formControl]="locationFC">
           </div>
-          <div class="item-info">
-            <label for="">آدرس</label>
-            <input type="text" [formControl]="addressFC">
-          </div>
 
         </div>
       </div>
@@ -117,11 +113,20 @@
         </div>
       </div>
       <div class="info-tour-body">
-        <prs-get-location style="width: 100%;
-             height: 325px;border-radius: 10px"
-                          [inCommingLatLng]="[lat,lng]"
-                          (result)="getLatLng($event)">
-        </prs-get-location>
+        <div class="address-parent">
+          <prs-get-location style="width: 60%;
+             height: 286px;border-radius: 10px"
+                            [inCommingLatLng]="[lat,lng]"
+                            (result)="getLatLng($event)">
+          </prs-get-location>
+
+          <div class="address-hotel">
+            <label for="address">آدرس </label>
+            <textarea name="" id="address" cols="30" rows="10" placeholder="آدرس را وارد کنید"></textarea>
+          </div>
+        </div>
+
+
       </div>
     </div>
 
