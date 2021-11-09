@@ -33,7 +33,7 @@
           <div class="item-info">
             <label for="">عنوان تور</label>
             <input formControlName="title" type="text">
-            <div  *ngIf="errorService.hasError('title')">
+            <div *ngIf="errorService.hasError('title')">
               <span class="text-danger">{{errorService.getError('title')}}</span>
             </div>
           </div>
@@ -155,7 +155,7 @@
       <div class="info-tour-body">
         <div class="top">
           <div class="item-info">
-            <label for="">تاریح پرواز رفت</label>
+            <label for="">تاریخ پرواز رفت</label>
             <mat-form-field class="example-full-width" appearance="fill">
               <input matInput [matDatepicker]="picker4" [formControl]="originDateFC" [min]="minDate" (click)="picker4.open()">
               <mat-datepicker #picker4></mat-datepicker>
@@ -331,9 +331,9 @@
           <div class="package-item">خدمات</div>
           <div class="package-item">دو تخته (تومان)</div>
           <div class="package-item">یه تخته (تومان)</div>
-          <div class="package-item">نرخ بزرگسال (تومان)</div>
+          <div class="package-item" *ngIf="form.value.defineTour == 'true'">نرخ بزرگسال (تومان)</div>
           <div class="package-item" *ngIf="form.value.defineTour == 'true'">نرخ</div>
-          <div class="package-item">کودک بدون تخت (تومان)</div>
+          <div class="package-item">کودک با تخت (تومان)</div>
           <div class="package-item">کودک بدون تخت (تومان)</div>
           <div class="package-item">سن کودک بدون تخت</div>
           <div class="package-item"><i class="icon-plus-circled" (click)="addRow(0)"></i></div>
@@ -379,7 +379,7 @@
              <div class="package-item">
                <input type="text" formControlName="single" mask="separator" thousandSeparator=",">
              </div>
-             <div class="package-item">
+             <div class="package-item" *ngIf="form.value.defineTour == 'true'">
                <input type="text" formControlName="ADLRate" mask="separator" thousandSeparator=",">
              </div>
               <div class="package-item" *ngIf="form.value.defineTour == 'true'">

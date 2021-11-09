@@ -194,7 +194,8 @@ export class AddComponent implements OnInit {
       this.isLoading = false;
       if (res.isDone) {
         this.message.showMessageBig(res.message);
-        this.router.navigateByUrl('/panel/tour')
+        this.errorService.clear();
+        this.router.navigateByUrl('/panel/tour');
       }
     }, (error: any) => {
       this.isLoading = false;
