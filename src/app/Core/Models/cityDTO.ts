@@ -1,17 +1,17 @@
 export interface CityListRequestDTO {
-  type: boolean
-  perPage: 20
-  search: null
-  hasTour: boolean
-  hasHotel: boolean
+  type: boolean | null;
+  perPage: number;
+  search: string | null;
+  hasTour: boolean;
+  hasHotel: boolean;
 }
 
 export interface CitySetRequestDTO {
   name?: string;
-  nameEn: string
-  images: any[],
-  description: string
-  type?: boolean
+  nameEn: string;
+  images: any[];
+  description: string;
+  type?: boolean;
 }
 
 export interface CityResponseDTO {

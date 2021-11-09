@@ -32,7 +32,7 @@ export interface hotelInfoDTO {
   stars: string;
   location: string;
   address: string;
-  coordinate: {lat: number,lng: number}
+  coordinate: { lat: number, lng: number }
   images: string[];
   thumbnail: string;
   body: string;
@@ -53,12 +53,15 @@ export interface HotelListRes {
   slugEn: string;
   stars: string;
   thumbnail: string;
+  city: string;
+  location: string;
 }
 
 export interface HotelRequestDTO {
   isAdmin: boolean
   paginate: boolean
   city: number | null;
+  search: string | null;
 }
 
 export interface SetHotelPackageDTO {
@@ -111,5 +114,5 @@ export interface HotelListResponseDTO {
 export interface ServiceDTO {
   id: number;
   name: string;
-  checked? :boolean;
+  checked?: boolean;
 }

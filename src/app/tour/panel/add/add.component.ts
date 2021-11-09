@@ -215,6 +215,7 @@ export class AddComponent implements OnInit {
       isAdmin: true,
       paginate: false,
       city: this.cityID,
+      search: null,
     }
     this.hotelApi.getHotels(req).subscribe((res: any) => {
       if (res.isDone) {

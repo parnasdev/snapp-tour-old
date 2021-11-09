@@ -6,288 +6,43 @@
         <div class="col-md-10 m-auto parent-list-hotel">
           <div class="box-search">
             <div class="inp-form">
-              <select name="" id="">
-                <option disabled selected value="">شهر خود را انتخاب کنید *</option>
-                <option  value="">تهران</option>
-                <option  value="">شیراز</option>
+              <select [formControl]="cityFC" name="" id="">
+                <option *ngFor="let city of citiesResponse" [value]="city.id">{{city.name}}</option>
               </select>
             </div>
             <div class="inp-form">
-              <select name="" id="">
-                <option disabled selected value="">بر اساس نام هتل</option>
-                <option  value="">تهران</option>
-                <option  value="">شیراز</option>
-              </select>
+              <input [formControl]="searchFC" type="text" placeholder="بر اساس نام هتل">
             </div>
-            <button class="btn-search">جستجو کن !</button>
+            <button (click)="getList()" class="btn-search">جستجو کن !</button>
           </div>
           <div class="box-hotel-parent">
-            <div routerlink="/hotel/info" style="background-image: url('assets/img/image_bd8cd2e2-bb81-44d0-82ea-0d0cc32435a3.png') "
+            <div *ngFor="let hotel of hotelList"
+                 [style.background-image]="'url(' + hotel.thumbnail + ')'"
                  class="box-hotel">
               <div class="opacity-bg-parent">
-                <div class="info-img"><img src="assets/img/Information.svg" width="22" alt=""></div>
+                <a routerLink="/hotel/info">
+                  <div class="info-img">
+                    <img src="assets/img/Information.svg" width="22" alt="">
+                  </div>
+                </a>
                 <div class="info-hotel">
-                  <h6> هتل اسپیناس پالاس</h6>
+                  <a routerLink="/hotel/info">
+                    <h6>{{ hotel.name }}</h6>
+                  </a>
                   <div class="footer-hotel-info">
                     <div class="location-hotel">
                       <img src="assets/img/Location-white.svg" width="17" alt="">
-                      <span>ایران - تهران</span>
+                      <span>{{ hotel.city }}</span>
+                      <span> - </span>
+                      <span>{{ hotel.location }}</span>
                     </div>
                     <div class="rate">
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
+                      <i class="icon-star" *ngFor="let star of getStars(hotel.stars)"></i>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div style="background-image: url('assets/img/image_bd8cd2e2-bb81-44d0-82ea-0d0cc32435a3.png') "
-                 class="box-hotel">
-              <div class="opacity-bg-parent">
-                <div class="info-img"><img src="assets/img/Information.svg" width="22" alt=""></div>
-                <div class="info-hotel">
-                  <h6> هتل اسپیناس پالاس</h6>
-                  <div class="footer-hotel-info">
-                    <div class="location-hotel">
-                      <img src="assets/img/Location-white.svg" width="17" alt="">
-                      <span>ایران - تهران</span>
-                    </div>
-                    <div class="rate">
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div style="background-image: url('assets/img/image_bd8cd2e2-bb81-44d0-82ea-0d0cc32435a3.png') "
-                 class="box-hotel">
-              <div class="opacity-bg-parent">
-                <div class="info-img"><img src="assets/img/Information.svg" width="22" alt=""></div>
-                <div class="info-hotel">
-                  <h6> هتل اسپیناس پالاس</h6>
-                  <div class="footer-hotel-info">
-                    <div class="location-hotel">
-                      <img src="assets/img/Location-white.svg" width="17" alt="">
-                      <span>ایران - تهران</span>
-                    </div>
-                    <div class="rate">
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div style="background-image: url('assets/img/image_bd8cd2e2-bb81-44d0-82ea-0d0cc32435a3.png') "
-                 class="box-hotel">
-              <div class="opacity-bg-parent">
-                <div class="info-img"><img src="assets/img/Information.svg" width="22" alt=""></div>
-                <div class="info-hotel">
-                  <h6> هتل اسپیناس پالاس</h6>
-                  <div class="footer-hotel-info">
-                    <div class="location-hotel">
-                      <img src="assets/img/Location-white.svg" width="17" alt="">
-                      <span>ایران - تهران</span>
-                    </div>
-                    <div class="rate">
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div style="background-image: url('assets/img/image_bd8cd2e2-bb81-44d0-82ea-0d0cc32435a3.png') "
-                 class="box-hotel">
-              <div class="opacity-bg-parent">
-                <div class="info-img"><img src="assets/img/Information.svg" width="22" alt=""></div>
-                <div class="info-hotel">
-                  <h6> هتل اسپیناس پالاس</h6>
-                  <div class="footer-hotel-info">
-                    <div class="location-hotel">
-                      <img src="assets/img/Location-white.svg" width="17" alt="">
-                      <span>ایران - تهران</span>
-                    </div>
-                    <div class="rate">
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div style="background-image: url('assets/img/image_bd8cd2e2-bb81-44d0-82ea-0d0cc32435a3.png') "
-                 class="box-hotel">
-              <div class="opacity-bg-parent">
-                <div class="info-img"><img src="assets/img/Information.svg" width="22" alt=""></div>
-                <div class="info-hotel">
-                  <h6> هتل اسپیناس پالاس</h6>
-                  <div class="footer-hotel-info">
-                    <div class="location-hotel">
-                      <img src="assets/img/Location-white.svg" width="17" alt="">
-                      <span>ایران - تهران</span>
-                    </div>
-                    <div class="rate">
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div style="background-image: url('assets/img/image_bd8cd2e2-bb81-44d0-82ea-0d0cc32435a3.png') "
-                 class="box-hotel">
-              <div class="opacity-bg-parent">
-                <div class="info-img"><img src="assets/img/Information.svg" width="22" alt=""></div>
-                <div class="info-hotel">
-                  <h6> هتل اسپیناس پالاس</h6>
-                  <div class="footer-hotel-info">
-                    <div class="location-hotel">
-                      <img src="assets/img/Location-white.svg" width="17" alt="">
-                      <span>ایران - تهران</span>
-                    </div>
-                    <div class="rate">
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div style="background-image: url('assets/img/image_bd8cd2e2-bb81-44d0-82ea-0d0cc32435a3.png') "
-                 class="box-hotel">
-              <div class="opacity-bg-parent">
-                <div class="info-img"><img src="assets/img/Information.svg" width="22" alt=""></div>
-                <div class="info-hotel">
-                  <h6> هتل اسپیناس پالاس</h6>
-                  <div class="footer-hotel-info">
-                    <div class="location-hotel">
-                      <img src="assets/img/Location-white.svg" width="17" alt="">
-                      <span>ایران - تهران</span>
-                    </div>
-                    <div class="rate">
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div style="background-image: url('assets/img/image_bd8cd2e2-bb81-44d0-82ea-0d0cc32435a3.png') "
-                 class="box-hotel">
-              <div class="opacity-bg-parent">
-                <div class="info-img"><img src="assets/img/Information.svg" width="22" alt=""></div>
-                <div class="info-hotel">
-                  <h6> هتل اسپیناس پالاس</h6>
-                  <div class="footer-hotel-info">
-                    <div class="location-hotel">
-                      <img src="assets/img/Location-white.svg" width="17" alt="">
-                      <span>ایران - تهران</span>
-                    </div>
-                    <div class="rate">
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div style="background-image: url('assets/img/image_bd8cd2e2-bb81-44d0-82ea-0d0cc32435a3.png') "
-                 class="box-hotel">
-              <div class="opacity-bg-parent">
-                <div class="info-img"><img src="assets/img/Information.svg" width="22" alt=""></div>
-                <div class="info-hotel">
-                  <h6> هتل اسپیناس پالاس</h6>
-                  <div class="footer-hotel-info">
-                    <div class="location-hotel">
-                      <img src="assets/img/Location-white.svg" width="17" alt="">
-                      <span>ایران - تهران</span>
-                    </div>
-                    <div class="rate">
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div style="background-image: url('assets/img/image_bd8cd2e2-bb81-44d0-82ea-0d0cc32435a3.png') "
-                 class="box-hotel">
-              <div class="opacity-bg-parent">
-                <div class="info-img"><img src="assets/img/Information.svg" width="22" alt=""></div>
-                <div class="info-hotel">
-                  <h6> هتل اسپیناس پالاس</h6>
-                  <div class="footer-hotel-info">
-                    <div class="location-hotel">
-                      <img src="assets/img/Location-white.svg" width="17" alt="">
-                      <span>ایران - تهران</span>
-                    </div>
-                    <div class="rate">
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div style="background-image: url('assets/img/image_bd8cd2e2-bb81-44d0-82ea-0d0cc32435a3.png') "
-                 class="box-hotel">
-              <div class="opacity-bg-parent">
-                <div class="info-img"><img src="assets/img/Information.svg" width="22" alt=""></div>
-                <div class="info-hotel">
-                  <h6> هتل اسپیناس پالاس</h6>
-                  <div class="footer-hotel-info">
-                    <div class="location-hotel">
-                      <img src="assets/img/Location-white.svg" width="17" alt="">
-                      <span>ایران - تهران</span>
-                    </div>
-                    <div class="rate">
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                      <i class="icon-star"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-
           </div>
         </div>
       </div>
