@@ -80,7 +80,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 0.5fr 0.7fr 1.5fr 1fr;
-  background-color: var(--white);
+  background-color: #D5D5D5;
   border-bottom: 1px solid var(--light-color-two);
 }
 
@@ -117,7 +117,7 @@
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding-left: 4px;
 }
 

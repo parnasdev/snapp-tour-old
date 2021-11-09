@@ -29,6 +29,7 @@
 .parnas-title {
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
@@ -40,13 +41,16 @@
   width: 90%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .info-title-sidebar h3 {
-  color: var(--base-color-second);
   font-size: 15px;
   font-weight: 500;
   width: 100%;
+  margin-bottom: 3px;
+  color: var(--white);
+  text-align: center;
 }
 
 .info-bottom-sidebar {
@@ -57,7 +61,7 @@
 
 .info-bottom-sidebar span {
   font-size: 11px !important;
-  color: var(--base-color);
+  color: var(--white);
 }
 
 .ul-parent-list-sidebar {

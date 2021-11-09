@@ -39,6 +39,10 @@
 :host::ng-deep select{
   border: 1px solid #eee !important;
 }
+:host::ng-deep textarea{
+  border: 1px solid #eee !important;
+  padding: 8px;
+}
 :host::ng-deep label {
   font-weight: 400 !important;
   font-size: 13px !important;

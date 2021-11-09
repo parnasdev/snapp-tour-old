@@ -22,7 +22,7 @@
   justify-content: space-between;
   padding: 0 2rem;
   width: 99%;
-  background-color: var(--white);
+  background-color: #D5D5D5;
 }
 
 .info-tour-header .right {
@@ -58,7 +58,7 @@
 .info-tour-body {
   display: flex;
   flex-direction: column;
-  border: 2px solid var(--light-color-two);
+  border: 1px solid #eee;
   padding: 1rem 2rem;
   width: 99%;
 }
@@ -66,7 +66,7 @@
 .info-tour-body .top {
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   margin: 8px 0;
 }
@@ -88,7 +88,6 @@
   overflow: hidden;
   margin-top: 2rem;
 }
-
 .box-info-package {
   width: 100%;
   display: flex;
@@ -399,4 +398,31 @@
   margin-bottom: 12px;
   border: none;
   outline: none;
+}
+prs-services{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  width: 100%;
+}
+:host::ng-deep .mat-checkbox-label{
+  margin-right: 10px !important;
+  font-family: IRANSans !important;
+}
+:host::ng-deep .mat-checkbox{
+  margin-top: 12px !important;
+}
+.address-parent{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.address-parent textarea{
+  margin-top: 1rem;
+  height: 250px;
+  border-radius: 4px;
+}
+.address-hotel{
+  display: flex;
+  flex-direction: column;
+  width: 38%;
 }
