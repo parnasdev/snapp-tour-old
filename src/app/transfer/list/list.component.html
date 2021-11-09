@@ -1,10 +1,44 @@
-<div class="parent-list">
-  <div class="item" *ngFor="let transfer of transfers">
-    <img [src]="transfer.logo" alt="">
-    <div class="title">
-      <h2>{{ transfer.name }}</h2>
-    </div>
+<!--<div class="parent-list">-->
+<!--  <div class="item" *ngFor="let transfer of transfers">-->
+<!--    <img [src]="transfer.logo" alt="">-->
+<!--    <div class="title">-->
+<!--      <h2>{{ transfer.name }}</h2>-->
+<!--    </div>-->
 
+<!--  </div>-->
+
+<!--</div>-->
+
+
+
+<div class="list-tour">
+  <div class="title">
+    <h2>لیست هتل ها</h2>
+    <a class="btn-add-tour" routerLink="/panel/hotel/add">اضافه</a>
   </div>
-
+  <div class="table-list-tour">
+    <div class="header-list-tour">
+      <span class="id">#</span>
+      <!--      <span class="username">نام کاربر</span>-->
+      <span class="title-tour">عنوان ایرلاین</span>
+      <span class="from-to">نوع حمل و نقل</span>
+      <span class="setting">تنظیمات</span>
+    </div>
+    <div class="body-list-tour" *ngIf="transfers.length > 0">
+      <div class="item" *ngFor="let transfer of transfers;let i = index">
+        <span class="id">{{ i + 1 }}</span>
+        <!--    <img [src]="hotel.thumbnail" alt="">-->
+        <span class="title-tour">{{ transfer.name }}</span>
+        <span class="title-tour">{{ transfer?.type?.name }}</span>
+        <!--        <span class="date-create">{{this.calService.convertDate1(tour.createdAt, 'fa') }}</span>-->
+        <!--        <span class="status">{{ hotel.status }}</span>-->
+        <div class="button-setting">
+          <a routerLink="/panel/hotel/edit/{{ transfer.id }}" class="edit-btn">ویرایش</a>
+          <a routerLink="/hotel/info" class="view-btn">نمایش</a>
+          <!--          <button class="copy-btn">کپی</button>-->
+          <button (click)="deleteHotel(transfer.id)" class="delete-btn">حذف</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

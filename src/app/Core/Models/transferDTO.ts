@@ -7,5 +7,16 @@ export interface TransferListRequestDTO {
 export interface TransferSetRequestDTO {
   name: string;
   logo: string;
-  type: number
+  type: number;
+}
+
+export interface TransferListDTO {
+  name: string;
+  id: number;
+  createdAt: string;
+  logo: string;
+  type: {
+    id: number;
+    name: string;
+  }
 }

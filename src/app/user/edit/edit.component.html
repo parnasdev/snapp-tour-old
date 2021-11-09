@@ -54,7 +54,7 @@
             </div>
           </div>
         </div>
-        <div class="item-info-2 permission">
+          <div class="checkbox-parent permission">
           <mat-checkbox *ngFor="let item of permissions"
                         [(ngModel)]="item.checked"
                         (change)="changeChecked()">

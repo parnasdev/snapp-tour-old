@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TransferAPIService} from "../../Core/Https/transfer-api.service";
 import {MessageService} from "../../Core/Services/message.service";
-import {TransferListRequestDTO, TransferSetRequestDTO} from "../../Core/Models/transferDTO";
+import {TransferListDTO, TransferListRequestDTO, TransferSetRequestDTO} from "../../Core/Models/transferDTO";
 
 @Component({
   selector: 'prs-list',
@@ -10,7 +10,7 @@ import {TransferListRequestDTO, TransferSetRequestDTO} from "../../Core/Models/t
 })
 export class ListComponent implements OnInit {
   req!: TransferListRequestDTO;
-  transfers: TransferSetRequestDTO[] = [];
+  transfers: TransferListDTO[] = [];
 
   constructor(public api: TransferAPIService,
               public message: MessageService) {
@@ -40,5 +40,9 @@ export class ListComponent implements OnInit {
       search: null,
       type: 1
     }
+  }
+
+  deleteHotel(id:number){
+
   }
 }
