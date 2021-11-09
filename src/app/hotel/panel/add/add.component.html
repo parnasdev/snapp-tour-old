@@ -30,16 +30,19 @@
           </div>
           <div class="item-info">
             <label for="">شهر</label>
-            <mat-button-toggle-group name="fontStyle" [formControl]="cityTypeFC"
-                                     (change)="cityTypeChange()" aria-label="Font Style">
-              <mat-button-toggle [value]="true">داخلی</mat-button-toggle>
-              <mat-button-toggle [value]="false">خارجی</mat-button-toggle>
-            </mat-button-toggle-group>
-            <div class="selectdiv">
-              <select [formControl]="cityFC" name="" id="">
-                <option *ngFor="let city of citiesResponse" [value]="city.id">{{city.name}}</option>
-              </select>
+            <div class="d-flex align-items-center w-100 city-parent">
+              <mat-button-toggle-group name="fontStyle" [formControl]="cityTypeFC"
+                                       (change)="cityTypeChange()" aria-label="Font Style">
+                <mat-button-toggle [value]="true">داخلی</mat-button-toggle>
+                <mat-button-toggle [value]="false">خارجی</mat-button-toggle>
+              </mat-button-toggle-group>
+              <div class="selectdiv">
+                <select [formControl]="cityFC" name="" id="">
+                  <option *ngFor="let city of citiesResponse" [value]="city.id">{{city.name}}</option>
+                </select>
+              </div>
             </div>
+
           </div>
         </div>
         <div class="bottom">
