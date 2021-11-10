@@ -8,15 +8,17 @@ import { TimePickerComponent } from './time-picker/time-picker.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { UploadSingleComponent } from './upload-single/upload-single.component';
 import { MultipleUploadComponent } from './multiple-upload/multiple-upload.component';
+import { EditorComponent } from './editor/editor.component';
 
 
 @NgModule({
-  declarations: [UploadFileComponent, UploaderComponent, GetLatLongComponent, GetLocationComponent, TimePickerComponent, UploadSingleComponent, MultipleUploadComponent],
+  declarations: [UploadFileComponent, UploaderComponent, GetLatLongComponent, GetLocationComponent, TimePickerComponent, UploadSingleComponent, MultipleUploadComponent, EditorComponent],
     exports: [
         UploadFileComponent,
         GetLocationComponent,
         TimePickerComponent,
-        UploadSingleComponent
+        UploadSingleComponent,
+      EditorComponent
     ],
   imports: [
     CommonModule,

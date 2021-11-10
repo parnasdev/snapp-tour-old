@@ -60,7 +60,7 @@ $(function() {
       theme:'silver',
       menubar: true,
       branding: false,
-      skin: 'oxide-dark',
+      skin: 'oxide',
       toolbar1: 'undo redo | formatSelect | bold italic blockquote strikethrough underline forecolor backcolor | numlist bullist | alignright aligncenter alignleft alignjustify | rtl ltr | link unlink | removeformat',
       toolbar2: 'fontselect | fontsizeselect | indent outdent | cut copy paste pastetext | charmap image media responsivefilemanager table emoticons hr | searchreplace preview code fullscreen help editormode',
       plugins: 'lists,advlist,directionality,link,paste,charmap,table,emoticons,codesample,preview,code,fullscreen,help,hr,nonbreaking,searchreplace,visualblocks,visualchars,autolink,image,media,responsivefilemanager',
@@ -71,9 +71,9 @@ $(function() {
       lineheight_formats: "1pt 2pt 3pt 4pt 5pt 6pt 7pt 8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 20pt 22pt 24pt 26pt 36pt 38pt 40pt 42pt 44pt 46pt 48pt 50pt 60pt 70pt 80pt 100pt",
       directionality :'rtl',
       language: 'fa_IR',
-      external_filemanager_path:"http://localhost:8000/filemanager/",
+      external_filemanager_path:"http://tour-api.parnasweb.com/filemanager/",
       filemanager_title:"مدیریت فایل ها" ,
-      external_plugins: { "filemanager" : "http://localhost:8000/filemanager/plugin.min.js"},
+      external_plugins: { "filemanager" : "http://tour-api.parnasweb.com/filemanager/plugin.min.js"},
       filemanager_crossdomain:true,
       setup: function(editor) {
         editor.on('change', function (e) {
