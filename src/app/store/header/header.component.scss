@@ -37,6 +37,8 @@ header {
 .ul-menu .li-menu .menu-item {
   color: var(--gray-color-light);
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .ul-menu .li-menu .menu-item:hover .icon-active-header {

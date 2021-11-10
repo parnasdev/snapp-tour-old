@@ -581,6 +581,10 @@
   padding: 8px 10px;
 }
 
+.opacity-bg-parent:hover {
+  background-color: #137cb6b3;
+}
+
 .opacity-bg-parent .info-img {
   display: flex;
   justify-content: flex-start;
@@ -593,9 +597,10 @@
   margin-bottom: 8px;
 }
 
-.info-hotel h6 {
+.info-hotel h1 {
   color: var(--white);
   font-weight: 500;
+  font-size: 15px;
 }
 
 .footer-hotel-info {
