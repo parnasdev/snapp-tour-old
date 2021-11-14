@@ -164,7 +164,7 @@ export class AddComponent implements OnInit {
   }
 
   convertTour() {
-    debugger
+
     this.tourDetail = [];
     this.ToursForm.controls.forEach(item => {
       this.tourDetail.push({
@@ -457,7 +457,7 @@ export class AddComponent implements OnInit {
 
 
   calculatePrice(type: string, price: any, isADL: boolean) {
-    debugger
+
     let finallyPrice = '';
     const ratePrice = +price.target.value.replace(',', '') * (+this.form.value.nightNum * this.getRatePrice()) ;
     const insurancePrice = (+this.form.value.insuranceRate) * this.checkInsuranceRatePrice();
