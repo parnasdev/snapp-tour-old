@@ -94,6 +94,7 @@ export class EditComponent implements OnInit {
     stDate: new FormControl(''),
     expireDate: new FormControl(''),
     CHDFlightRate: new FormControl(''),
+    ADLFlightRate: new FormControl(''),
     defineTour: new FormControl(false),
     euroRate: new FormControl(''),
     dollarRate: new FormControl(''),
@@ -107,7 +108,7 @@ export class EditComponent implements OnInit {
     services: new FormControl(''),
     documents: new FormControl(''),
     description: new FormControl(''),
-    status: new FormControl('show'),
+    status: new FormControl('Show'),
     packages: this.fb.array([]),
   });
 
@@ -300,6 +301,7 @@ export class EditComponent implements OnInit {
       enDate: this.calenderServices.convertDate1(this.form.value.enDate, 'en'),
       expireDate: this.calenderServices.convertDate1(this.form.value.expireDate, 'en'),
       CHDFlightRate: this.form.value.CHDFlightRate,
+      ADLFlightRate: this.form.value.ADLFlightRate,
       defineTour: this.form.value.defineTour === 'true',
       euroRate: this.form.value.euroRate,
       type: this.destCityTypeFC.value,

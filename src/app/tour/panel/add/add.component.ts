@@ -58,6 +58,12 @@ export class AddComponent implements OnInit {
   originCityTypeFC = new FormControl(true);
   destCityTypeFC = new FormControl(true);
 
+  singleRate = '';
+  twinRate = '';
+  tripleRate = '';
+  quadRate = '';
+  cwbRate = '';
+
   constructor(
     public hotelApi: HotelApiService,
     public cityApi: CityApiService,
@@ -80,6 +86,7 @@ export class AddComponent implements OnInit {
 ////formGroup
   form = this.fb.group({
     title: new FormControl(''),
+    rate: new FormControl(''),
     stCity_id: new FormControl(''),
     endCity_id: new FormControl(''),
     nightNum: new FormControl(''),
@@ -89,11 +96,12 @@ export class AddComponent implements OnInit {
     stDate: new FormControl(''),
     expireDate: new FormControl(''),
     CHDFlightRate: new FormControl(''),
+    ADLFlightRate: new FormControl(''),
     defineTour: new FormControl(false),
     euroRate: new FormControl(''),
     dollarRate: new FormControl(''),
     AEDRate: new FormControl(''),
-    visaRate: new FormControl('0'),
+    visaRate: new FormControl(''),
     visaPriceType: new FormControl(1),
     insuranceRate: new FormControl(''),
     transferPriceType: new FormControl(1),
@@ -142,7 +150,13 @@ export class AddComponent implements OnInit {
       cnb: [null],
       quad: [null],
       triple: [null],
-      ADLRate: [null],
+      twinRate: [null],
+      singleRate: [null],
+      cwbRate: [null],
+      cnbRate: [null],
+      quadRate: [null],
+      tripleRate: [null],
+      ADLRate: [this.form.value.ADLFlightRate ? this.form.value.ADLFlightRate : null],
       age: [null],
       status: [null]
     });
@@ -172,6 +186,12 @@ export class AddComponent implements OnInit {
           triple: item.value.triple,
           quad: item.value.quad,
           cnb: item.value.cnb,
+          twinRate: item.value.twinRate,
+          singleRate: item.value.singleRate,
+          cwbRate: item.value.cwbRate,
+          tripleRate: item.value.tripleRate,
+          quadRate: item.value.quadRate,
+          cnbRate: item.value.cnbRate,
           ADLRate: item.value.ADLRate,
           age: item.value.age
         },),
@@ -248,7 +268,7 @@ export class AddComponent implements OnInit {
       dayNum: this.form.value.dayNum,
       transfers: [{
         transfer_id: this.originTransferFC.value,
-       dateTime: this.calenderServices.convertDateSpecial(this.originDateFC.value, 'en')+ ' ' + this.originTime,
+        dateTime: this.calenderServices.convertDateSpecial(this.originDateFC.value, 'en') + ' ' + this.originTime,
         type: 'origin',
       }, {
         transfer_id: this.destTransferFC.value,
@@ -258,6 +278,7 @@ export class AddComponent implements OnInit {
       enDate: this.calenderServices.convertDateSpecial(this.form.value.enDate, 'en'),
       expireDate: this.calenderServices.convertDateSpecial(this.form.value.expireDate, 'en'),
       CHDFlightRate: this.form.value.CHDFlightRate,
+      ADLFlightRate: this.form.value.ADLFlightRate,
       defineTour: this.form.value.defineTour === 'true',
       euroRate: this.form.value.euroRate,
       type: this.destCityTypeFC.value,
@@ -279,7 +300,6 @@ export class AddComponent implements OnInit {
     }
   }
 
-
   private markFormGroupTouched(formGroup: any) {
     (<any>Object).values(formGroup.controls).forEach((control: any) => {
       control.markAsTouched();
@@ -289,7 +309,6 @@ export class AddComponent implements OnInit {
       }
     });
   }
-
 
   getService(): void {
     this.commonApi.getServices().subscribe((res: any) => {
@@ -307,6 +326,7 @@ export class AddComponent implements OnInit {
         this.form.controls.transferRate.enable()
         this.form.controls.insuranceRate.enable()
         this.form.controls.CHDFlightRate.enable()
+        this.form.controls.ADLFlightRate.enable()
         this.form.controls.visaRate.disable()
         this.form.controls.AEDRate.disable()
         this.form.controls.euroRate.disable()
@@ -325,6 +345,7 @@ export class AddComponent implements OnInit {
         this.form.controls.transferRate.enable()
         this.form.controls.insuranceRate.enable()
         this.form.controls.CHDFlightRate.enable()
+        this.form.controls.ADLFlightRate.enable()
       }
     } else {   // without details
       this.form.controls.visaRate.disable()
@@ -337,6 +358,7 @@ export class AddComponent implements OnInit {
       this.form.controls.transferRate.disable()
       this.form.controls.insuranceRate.disable()
       this.form.controls.CHDFlightRate.disable()
+      this.form.controls.ADLFlightRate.disable()
     }
 
   }
@@ -434,88 +456,92 @@ export class AddComponent implements OnInit {
   }
 
 
-  calculatePrice(type: number, price: string){
-
-    if (type === 1){
-      // adult rate/price
-      return +this.ToursForm.value.ADLRate + (+price * this.form.value.nightNum * this.checkRatePrice()) +
-        (this.form.value.insuranceRate * this.checkInsuranceRatePrice()) +
-        (this.form.value.visaRate * this.checkVisaRatePrice()) +
-        (this.form.value.transferRate * this.checkTransferRatePrice())
-      // + نرخ افزایشس کاهشی
+  calculatePrice(type: string, price: any, isADL: boolean) {
+    debugger
+    let finallyPrice = '';
+    const ratePrice = +price.target.value.replace(',', '') * (+this.form.value.nightNum * this.getRatePrice()) ;
+    const insurancePrice = (+this.form.value.insuranceRate) * this.checkInsuranceRatePrice();
+    const visaPrice = (this.form.value.visaRate ? (+this.form.value.visaRate) * this.checkVisaRatePrice() : 1);
+    const transferPrice = (+this.form.value.transferRate) * this.checkTransferRatePrice();
+    // + نرخ افزایشس کاهشی
+    if (isADL) {
+      finallyPrice = ( this.form.value.ADLFlightRate + ratePrice + insurancePrice + visaPrice + transferPrice).toString();
     } else {
-      // child rate/price
-      return +this.ToursForm.value.CHDFlightRate + (+price * this.form.value.nightNum * this.checkRatePrice()) +
-        (this.form.value.insuranceRate * this.checkInsuranceRatePrice()) +
-        (this.form.value.visaRate * this.checkVisaRatePrice()) +
-        (this.form.value.transferRate * this.checkTransferRatePrice())
-      // + نرخ افزایشس کاهشی
+      finallyPrice = ( this.form.value.CHDFlightRate + ratePrice + insurancePrice + visaPrice + transferPrice).toString();
     }
-
-  }
-
-  checkRatePrice(): any{
-    if(this.form.value.visaPriceType === 1){
-      // toman
-      return 1
-    } else if (this.form.value.visaPriceType === 2){
-      // euro
-      return this.form.value.euroRate
-    }else if (this.form.value.visaPriceType === 3) {
-      // dollar
-      return this.form.value.dollarRate
-    } else {
-      // derham
-      return this.form.value.AEDRate
+    switch (type) {
+      case 'single':
+        this.ToursForm.controls.find(x=> x.get('singleRate')?.setValue(finallyPrice));
+        break;
+      case 'twin':
+        this.ToursForm.controls.find(x=> x.get('twinRate')?.setValue(finallyPrice));
+        break;
+      case 'triple':
+        this.ToursForm.controls.find(x=> x.get('tripleRate')?.setValue(finallyPrice));
+        break;
+      case 'quad':
+        this.ToursForm.controls.find(x=> x.get('quadRate')?.setValue(finallyPrice));
+        break;
+      case 'cwb':
+        this.ToursForm.controls.find(x=> x.get('cwbRate')?.setValue(finallyPrice));
+        break;
     }
   }
 
-  checkInsuranceRatePrice(){
-    if(this.form.value.insurancePriceType === 1){
-      // toman
-      return 1
-    } else if (this.form.value.insurancePriceType === 2){
-      // euro
-      return this.form.value.euroRate
-    }else if (this.form.value.insurancePriceType === 3) {
-      // dollar
-      return this.form.value.dollarRate
+  getRatePrice(): number {
+    if (this.form.value.rate === 2) {
+      return (+this.form.value.euroRate);
+    } else if (this.form.value.rate === 3) {
+      return +this.form.value.nightNum * (+this.form.value.dollarRate);
+    } else if (this.form.value.rate === 4) {
+      return +this.form.value.nightNum * (+this.form.value.AEDRate);
     } else {
-      // derham
-      return this.form.value.AEDRate
+      return 1;
     }
   }
 
-  checkVisaRatePrice(){
-    if(this.form.value.visaPriceType === 1){
-      // toman
-      return 1
-    } else if (this.form.value.visaPriceType === 2){
-      // euro
-      return this.form.value.euroRate
-    }else if (this.form.value.visaPriceType === 3) {
-      // dollar
-      return this.form.value.dollarRate
+  checkInsuranceRatePrice(): number {
+    if (this.form.value.insurancePriceType === '2') {
+      return +this.form.value.euroRate;
+    } else if (this.form.value.insurancePriceType === '3') {
+      return +this.form.value.dollarRate;
+    } else if (this.form.value.insurancePriceType === '4') {
+      return +this.form.value.AEDRate;
     } else {
-      // derham
-      return this.form.value.AEDRate
+      return 1
     }
   }
 
-  checkTransferRatePrice(){
-    if(this.form.value.transferPriceType === 1){
-      // toman
-      return 1
-    } else if (this.form.value.transferPriceType === 2){
-      // euro
-      return this.form.value.euroRate
-    }else if (this.form.value.transferPriceType === 3) {
-      // dollar
-      return this.form.value.dollarRate
+  checkVisaRatePrice(): number {
+    if (this.form.value.visaPriceType === '2') {
+      return +this.form.value.euroRate;
+    } else if (this.form.value.visaPriceType === '3') {
+      return +this.form.value.dollarRate;
+    } else if (this.form.value.visaPriceType === '4') {
+      return +this.form.value.AEDRate;
     } else {
-      // derham
-      return this.form.value.AEDRate
+      return 1;
     }
+  }
+
+  checkTransferRatePrice(): number {
+    if (this.form.value.transferPriceType === '2') {
+      return +this.form.value.euroRate
+    } else if (this.form.value.transferPriceType === '3') {
+      return +this.form.value.dollarRate
+    } else if (this.form.value.transferPriceType === '4') {
+      return +this.form.value.AEDRate
+    } else {
+      return 1;
+    }
+  }
+
+  setADLRate(event: any) {
+    this.ToursForm.controls.find(x=> x.get('ADLRate')?.setValue(event.target.value))
+  }
+
+  getData(index: any){
+    return (<FormArray>this.form.get('packages')).at(index);
   }
 }
 

@@ -92,15 +92,7 @@
             <div class="select-info">
               <label for="">تعداد روز</label>
               <select formControlName="dayNum" name="" id="">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
+                <option [value]="+form.value.nightNum + 1">{{ +form.value.nightNum + 1 }}</option>
               </select>
               <div *ngIf="errorService.hasError('dayNum')">
                 <span class="text-danger">{{errorService.getError('dayNum')}}</span>
@@ -239,6 +231,10 @@
             <input formControlName="AEDRate" type="text" mask="separator" thousandSeparator=",">
           </div>
 
+          <div>
+            <p>نکته مهم: لطفا برای نمایش هر نرخ در باکس نرخ ها مقدار نرخ را وارد کنید.</p>
+          </div>
+
         </div>
       </div>
     </div>
@@ -254,14 +250,14 @@
           <div class="item-info-services">
             <div class="box-services">
               <label for="">نرخ بیمه(تومان/ارزی)</label>
-              <input formControlName="insuranceRate" type="text">
+              <input formControlName="insuranceRate" type="text" mask="separator" thousandSeparator=",">
             </div>
             <div class="selectdiv">
               <select formControlName="insurancePriceType">
-                <option [value]="3">دلار</option>
-                <option [value]="2">یورو</option>
-                <option [value]="4">درهم</option>
-                <option [value]="1">تومان</option>
+                <option *ngIf="form.value.dollarRate" [value]="3">دلار</option>
+                <option *ngIf="form.value.euroRate" [value]="2">یورو</option>
+                <option *ngIf="form.value.AEDRate" [value]="4">درهم</option>
+                <option [value]="1" selected>تومان</option>
               </select>
             </div>
           </div>
@@ -272,9 +268,9 @@
             </div>
             <div class="selectdiv">
               <select formControlName="transferPriceType">
-                <option [value]="3">دلار</option>
-                <option [value]="2">یورو</option>
-                <option [value]="4">درهم</option>
+                <option *ngIf="form.value.dollarRate" [value]="3">دلار</option>
+                <option *ngIf="form.value.euroRate" [value]="2">یورو</option>
+                <option *ngIf="form.value.AEDRate" [value]="4">درهم</option>
                 <option [value]="1">تومان</option>
               </select>
             </div>
@@ -286,13 +282,36 @@
             </div>
             <div class="selectdiv">
               <select formControlName="visaPriceType">
-                <option [value]="3">دلار</option>
-                <option [value]="2">یورو</option>
-                <option [value]="4">درهم</option>
+                <option *ngIf="form.value.dollarRate" [value]="3">دلار</option>
+                <option *ngIf="form.value.euroRate" [value]="2">یورو</option>
+                <option *ngIf="form.value.AEDRate" [value]="4">درهم</option>
                 <option [value]="1">تومان</option>
               </select>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box-info-fly">
+      <div class="info-tour-header">
+        <div class="right">
+          <h2>نرخ پرواز</h2>
+        </div>
+      </div>
+      <div class="info-tour-body">
+        <div class="top">
+
+          <div class="item-info-services">
+            <div class="box-services w-100">
+              <label for="">نرخ پرواز بزرگسال(تومان)</label>
+              <input (change)="setADLRate($event)" formControlName="ADLFlightRate" type="text" mask="separator" thousandSeparator=",">
+              <div *ngIf="errorService.hasError('ADLFlightRate')">
+                <span class="text-danger">{{errorService.getError('ADLFlightRate')}}</span>
+              </div>
+            </div>
+          </div>
+
           <div class="item-info-services">
             <div class="box-services w-100">
               <label for="">نرخ پرواز کودک(تومان)</label>
@@ -302,6 +321,7 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -321,11 +341,12 @@
         <div class="header-box" *ngIf="destCityTypeFC.value">
           <div class="package-item">#</div>
           <div class="package-item">نام هتل</div>
-          <div class="package-item">نرخ / خدمات</div>
-          <div class="package-item">دو تخته </div>
-          <div class="package-item">سه تخته </div>
-          <div class="package-item">چهار تخته </div>
+          <div class="package-item">خدمات</div>
+          <div class="package-item">دو تخته</div>
+          <div class="package-item">سه تخته</div>
+          <div class="package-item">چهار تخته</div>
           <div class="package-item">سن کودک</div>
+          <div class="package-item" *ngIf="form.value.defineTour == 'true'">نرخ بزرگسال</div>
           <div></div>
           <div></div>
         </div>
@@ -334,11 +355,11 @@
           <div class="package-item">#</div>
           <div class="package-item">نام هتل</div>
           <div class="package-item">نرخ / خدمات</div>
-          <div class="package-item">دو تخته </div>
-          <div class="package-item">یه تخته </div>
+          <div class="package-item">دو تخته</div>
+          <div class="package-item">یه تخته</div>
           <div class="package-item">کودک با تخت </div>
           <div class="package-item">سن کودک</div>
-          <div class="package-item">نرخ بزرگسال </div>
+          <div class="package-item" *ngIf="form.value.defineTour == 'true'">نرخ بزرگسال</div>
           <div></div>
         </div>
         <form [formGroup]="form" formArrayName="packages" action="">
@@ -363,9 +384,9 @@
               </div>
               <div class="package-item" *ngIf="form.value.defineTour == 'true' && !destCityTypeFC.value">
                   <select formControlName="rate">
-                    <option [value]="3">دلار</option>
-                    <option [value]="2">یورو</option>
-                    <option [value]="4">درهم</option>
+                    <option *ngIf="form.value.dollarRate" [value]="3">دلار</option>
+                    <option *ngIf="form.value.euroRate" [value]="2">یورو</option>
+                    <option *ngIf="form.value.AEDRate" [value]="4">درهم</option>
                     <option [value]="1">تومان</option>
                   </select>
               </div>
@@ -374,16 +395,28 @@
             <!--            local tour-->
             <ng-template class="body-local" [ngIf]="destCityTypeFC.value">
               <div class="package-item">
-                <input type="text" formControlName="twin" mask="separator" thousandSeparator=",">
+                <input (change)="calculatePrice('twin', $event, true)" type="text" formControlName="twin" mask="separator" thousandSeparator=",">
+                <div *ngIf="form.value.defineTour == 'true'">
+                  <p>{{ getData(i).value.twinRate }}</p>
+                </div>
               </div>
               <div class="package-item">
-                <input type="text" formControlName="triple" mask="separator" thousandSeparator=",">
+                <input (change)="calculatePrice('triple', $event, true)" type="text" formControlName="triple" mask="separator" thousandSeparator=",">
+                <div *ngIf="form.value.defineTour == 'true'">
+                  <p>{{ getData(i).value.tripleRate }}</p>
+                </div>
               </div>
               <div class="package-item">
-                <input type="text" formControlName="quad" mask="separator" thousandSeparator=",">
+                <input (change)="calculatePrice('quad', $event, true)" type="text" formControlName="quad" mask="separator" thousandSeparator=",">
+                <div *ngIf="form.value.defineTour == 'true'">
+                  <p>{{ getData(i).value.quadRate }}</p>
+                </div>
               </div>
               <div class="package-item">
                 <input type="text" formControlName="age">
+              </div>
+              <div class="package-item" *ngIf="form.value.defineTour == 'true'">
+                <input type="text" formControlName="ADLRate">
               </div>
               <div></div>
               <div class="package-item"><i class="icon-trash text-danger" (click)="removePakage(i)"></i></div>
@@ -391,13 +424,22 @@
             <!--            foreign tour-->
             <ng-template class="body-foreign" [ngIf]="!destCityTypeFC.value">
               <div class="package-item">
-                <input type="text" formControlName="twin" mask="separator" thousandSeparator=",">
+                <input (change)="calculatePrice('twin', $event, true)" type="text" formControlName="twin" mask="separator" thousandSeparator=",">
+                <div *ngIf="form.value.defineTour == 'true'">
+                  <p>{{ getData(i).value.twinRate }}</p>
+                </div>
               </div>
               <div class="package-item">
-                <input type="text" formControlName="single" mask="separator" thousandSeparator=",">
+                <input (change)="calculatePrice('single', $event, true)" type="text" formControlName="single" mask="separator" thousandSeparator=",">
+                <div *ngIf="form.value.defineTour == 'true'">
+                  <p>{{ getData(i).value.singleRate }}</p>
+                </div>
               </div>
               <div class="package-item">
-                <input type="text" formControlName="cwb" mask="separator" thousandSeparator=",">
+                <input (change)="calculatePrice('cwb', $event, true)" type="text" formControlName="cwb" mask="separator" thousandSeparator=",">
+                <div *ngIf="form.value.defineTour == 'true'">
+                  <p>{{ cwbRate }}</p>
+                </div>
               </div>
               <div class="package-item">
                 <input type="text" formControlName="age">

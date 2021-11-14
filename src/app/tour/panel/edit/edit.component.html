@@ -288,15 +288,39 @@
               </select>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box-info-fly">
+      <div class="info-tour-header">
+        <div class="right">
+          <h2>نرخ پرواز</h2>
+        </div>
+      </div>
+      <div class="info-tour-body">
+        <div class="top">
+
+          <div class="item-info-services">
+            <div class="box-services w-100">
+              <label for="">نرخ پرواز بزرگسال(تومان)</label>
+              <input formControlName="َADLFlightRate" type="text" mask="separator" thousandSeparator=",">
+              <div *ngIf="errorService.hasError('ADLFlightRate')">
+                <span class="text-danger">{{errorService.getError('ADLFlightRate')}}</span>
+              </div>
+            </div>
+          </div>
+
           <div class="item-info-services">
             <div class="box-services w-100">
               <label for="">نرخ پرواز کودک(تومان)</label>
               <input formControlName="CHDFlightRate" type="text" mask="separator" thousandSeparator=",">
-              <div  *ngIf="errorService.hasError('CHDFlightRate')">
+              <div *ngIf="errorService.hasError('CHDFlightRate')">
                 <span class="text-danger">{{errorService.getError('CHDFlightRate')}}</span>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>

@@ -40,6 +40,7 @@ export interface TourSetRequestDTO {
   expireDate: string;
   type: boolean
   CHDFlightRate: number;
+  ADLFlightRate: number;
   defineTour: boolean;
   euroRate: number;
   dollarRate: number;
@@ -60,6 +61,7 @@ export interface TourSetRequestDTO {
 export interface TourInfoDTO {
   AEDRate: number;
   CHDFlightRate: string;
+  ADLFlightRate: string;
   TransferType: string;
   dayNum: number;
   defineTour: number;
@@ -133,6 +135,12 @@ export interface PricesDTO {
   cnb: number;
   quad: string;
   triple: string;
+  twinRate: number;
+  singleRate: number;
+  cwbRate: number;
+  cnbRate: number;
+  quadRate: string;
+  tripleRate: string;
   ADLRate: number;
   age: string;
 }
