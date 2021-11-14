@@ -6,6 +6,9 @@ import {SperatorPipe} from "./sperator.pipe";
 
 @NgModule({
   declarations: [SperatorPipe],
+  exports: [
+    SperatorPipe
+  ],
   imports: [
     CommonModule
   ]

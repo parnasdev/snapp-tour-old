@@ -3,7 +3,7 @@
     <div class="box-info-tour">
       <div class="info-tour-header">
         <div class="right">
-          <label for="">{{destCityTypeFC.value ? 'تور داخلی' : 'تور خارجی'}}</label>
+          <label for="">{{form.value.endCity.type.type ? 'تور داخلی' : 'تور خارجی'}}</label>
           <h2>اطلاعات تور</h2>
 
 
@@ -41,13 +41,8 @@
             <div class="select-info">
 
               <label for="">شهر مبدا</label>
-              <mat-button-toggle-group name="fontStyle" [formControl]="originCityTypeFC"
-                                       (change)="originCityTypeChange()" aria-label="Font Style">
-                <mat-button-toggle [value]="true">داخلی</mat-button-toggle>
-                <mat-button-toggle [value]="false">خارجی</mat-button-toggle>
-              </mat-button-toggle-group>
               <select formControlName="stCity_id" name="" id="">
-                <option *ngFor="let city of originCities" [value]="city.id">{{city.name}}</option>
+                <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
 
               </select>
             </div>
@@ -56,13 +51,8 @@
             </div>
             <div class="select-info">
               <label for="">شهر مقصد</label>
-              <mat-button-toggle-group name="fontStyle" [formControl]="destCityTypeFC" (change)="destCityTypeChange()"
-                                       aria-label="Font Style">
-                <mat-button-toggle [value]="true">داخلی</mat-button-toggle>
-                <mat-button-toggle [value]="false">خارجی</mat-button-toggle>
-              </mat-button-toggle-group>
-              <select formControlName="endCity_id" (change)="cityDesChanged()" name="" id="">
-                <option *ngFor="let city of destCities" [value]="city.id">{{city.name}}</option>
+              <select formControlName="endCity" (change)="cityDesChanged()" name="" id="">
+                <option *ngFor="let city of cities" [ngValue]="city">{{city.name}}</option>
 
               </select>
               <div *ngIf="errorService.hasError('endCity_id')">
@@ -74,7 +64,7 @@
           <div class="item-info-2">
             <div class="select-info">
               <label for="">تعداد شب</label>
-              <select formControlName="nightNum" name="" id="">
+              <select (change)="updatePackagePrices()" formControlName="nightNum" name="" id="">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -91,9 +81,10 @@
             </div>
             <div class="select-info">
               <label for="">تعداد روز</label>
-              <select formControlName="dayNum" name="" id="">
-                <option [value]="+form.value.nightNum + 1">{{ +form.value.nightNum + 1 }}</option>
-              </select>
+<!--              <select formControlName="dayNum" name="" id="">-->
+<!--                <option [value]="+form.value.nightNum + 1">{{ +form.value.nightNum + 1 }}</option>-->
+<!--              </select>-->
+              <span>{{+form.value.nightNum + 1}}</span>
               <div *ngIf="errorService.hasError('dayNum')">
                 <span class="text-danger">{{errorService.getError('dayNum')}}</span>
               </div>
@@ -338,7 +329,7 @@
           <input type="text">
         </div>
         <!--            local tour-->
-        <div class="header-box" *ngIf="destCityTypeFC.value">
+        <div class="header-box" *ngIf="form.value.endCity.type">
           <div class="package-item">#</div>
           <div class="package-item">نام هتل</div>
           <div class="package-item">خدمات</div>
@@ -351,7 +342,7 @@
           <div></div>
         </div>
         <!--            foreign tour-->
-        <div class="header-box-two" *ngIf="!destCityTypeFC.value">
+        <div class="header-box-two" *ngIf="!form.value.endCity.type">
           <div class="package-item">#</div>
           <div class="package-item">نام هتل</div>
           <div class="package-item">نرخ / خدمات</div>
@@ -362,11 +353,11 @@
           <div class="package-item" *ngIf="form.value.defineTour == 'true'">نرخ بزرگسال</div>
           <div></div>
         </div>
-        <form [formGroup]="form" formArrayName="packages" action="">
-          <div class="body-box" *ngFor="let tour of ToursForm.controls; let i = index"
+        <form [formGroup]="form" class="example-list" formArrayName="packages" action="" cdkDropList  (cdkDropListDropped)="drop($event)">
+          <div class="body-box example-box" *ngFor="let tour of ToursForm.controls; let i = index" cdkDrag
                [formGroupName]="i">
             <div class="package-item id-package">
-              <div class="icon-from-to">
+              <div class="icon-from-to" >
                 <i class="icon-up-open"></i>
                 <i class="icon-down-open"></i>
               </div>
@@ -382,8 +373,8 @@
                   <option *ngFor="let service of services" [value]="service.id">{{service.name}}</option>
                 </select>
               </div>
-              <div class="package-item" *ngIf="form.value.defineTour == 'true' && !destCityTypeFC.value">
-                  <select formControlName="rate">
+              <div class="package-item" *ngIf="form.value.defineTour == 'true' && !form.value.endCity.type">
+                  <select (change)="updatePackagePrices()" formControlName="rate">
                     <option *ngIf="form.value.dollarRate" [value]="3">دلار</option>
                     <option *ngIf="form.value.euroRate" [value]="2">یورو</option>
                     <option *ngIf="form.value.AEDRate" [value]="4">درهم</option>
@@ -393,52 +384,23 @@
             </div>
 
             <!--            local tour-->
-            <ng-template class="body-local" [ngIf]="destCityTypeFC.value">
+            <ng-template class="body-local" [ngIf]="form.value.endCity.type">
               <div class="package-item">
-                <input (keyup)="calculatePrice('twin', $event, true)" type="text" formControlName="twin" mask="separator" thousandSeparator=",">
-                <div *ngIf="form.value.defineTour == 'true'">
-                  <p>{{ getData(i).value.twinRate }}</p>
+                <input (keyup)="calculatePrice('twin', $event, true, i)" type="text" formControlName="twin" mask="separator" thousandSeparator=",">
+              </div>
+              <div *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].twin > 0">
+                <p>{{ form.get('packages')?.value[i].twinRate | sperator }}</p>
+              </div>
+              <div class="package-item">
+                <input (keyup)="calculatePrice('triple', $event, true, i)" type="text" formControlName="triple" mask="separator" thousandSeparator=",">
+                <div *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].triple > 0">
+                  <p>{{ form.get('packages')?.value[i].tripleRate | sperator }}</p>
                 </div>
               </div>
               <div class="package-item">
-                <input (keyup)="calculatePrice('triple', $event, true)" type="text" formControlName="triple" mask="separator" thousandSeparator=",">
-                <div *ngIf="form.value.defineTour == 'true'">
-                  <p>{{ getData(i).value.tripleRate }}</p>
-                </div>
-              </div>
-              <div class="package-item">
-                <input (keyup)="calculatePrice('quad', $event, true)" type="text" formControlName="quad" mask="separator" thousandSeparator=",">
-                <div *ngIf="form.value.defineTour == 'true'">
-                  <p>{{ getData(i).value.quadRate }}</p>
-                </div>
-              </div>
-              <div class="package-item">
-                <input type="text" formControlName="age">
-              </div>
-              <div class="package-item" *ngIf="form.value.defineTour == 'true'">
-                <input type="text" formControlName="ADLRate">
-              </div>
-              <div></div>
-              <div class="package-item"><i class="icon-trash text-danger" (click)="removePakage(i)"></i></div>
-            </ng-template>
-            <!--            foreign tour-->
-            <ng-template class="body-foreign" [ngIf]="!destCityTypeFC.value">
-              <div class="package-item">
-                <input (keyup)="calculatePrice('twin', $event, true)" type="text" formControlName="twin" mask="separator" thousandSeparator=",">
-                <div *ngIf="form.value.defineTour == 'true'">
-                  <p>{{ getData(i).value.twinRate }}</p>
-                </div>
-              </div>
-              <div class="package-item">
-                <input (keyup)="calculatePrice('single', $event, true)" type="text" formControlName="single" mask="separator" thousandSeparator=",">
-                <div *ngIf="form.value.defineTour == 'true'">
-                  <p>{{ getData(i).value.singleRate }}</p>
-                </div>
-              </div>
-              <div class="package-item">
-                <input (keyup)="calculatePrice('cwb', $event, true)" type="text" formControlName="cwb" mask="separator" thousandSeparator=",">
-                <div *ngIf="form.value.defineTour == 'true'">
-                  <p>{{ cwbRate }}</p>
+                <input (keyup)="calculatePrice('quad', $event, true, i)" type="text" formControlName="quad" mask="separator" thousandSeparator=",">
+                <div *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].quad > 0">
+                  <p>{{ form.get('packages')?.value[i].quadRate | sperator }}</p>
                 </div>
               </div>
               <div class="package-item">
@@ -447,8 +409,38 @@
               <div class="package-item" *ngIf="form.value.defineTour == 'true'">
                 <input type="text" formControlName="ADLRate" mask="separator" thousandSeparator=",">
               </div>
+              <div>
+              </div>
+              <div class="package-item"><i class="icon-trash text-danger" (click)="removePackage(i)"></i></div>
+            </ng-template>
+            <!--            foreign tour-->
+            <ng-template class="body-foreign" [ngIf]="!form.value.endCity.type">
+              <div class="package-item">
+                <input (keyup)="calculatePrice('twin', $event, true, i)" type="text" formControlName="twin" mask="separator" thousandSeparator=",">
+                <div *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].twin > 0">
+                  <p>{{ form.get('packages')?.value[i].twinRate | sperator }}</p>
+                </div>
+              </div>
+              <div class="package-item">
+                <input (keyup)="calculatePrice('single', $event, true, i)" type="text" formControlName="single" mask="separator" thousandSeparator=",">
+                <div *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].single > 0">
+                  <p>{{ form.get('packages')?.value[i].singleRate | sperator }}</p>
+                </div>
+              </div>
+              <div class="package-item">
+                <input (keyup)="calculatePrice('cwb', $event, true, i)" type="text" formControlName="cwb" mask="separator" thousandSeparator=",">
+                <div *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].cwb > 0">
+                  <p>{{ form.get('packages')?.value[i].cwbRate | sperator }}</p>
+                </div>
+              </div>
+              <div class="package-item">
+                <input type="text" formControlName="age">
+              </div>
+              <div class="package-item" *ngIf="form.value.defineTour == 'true'">
+                <input (change)="updatePackagePrices()" type="text" formControlName="ADLRate" mask="separator" thousandSeparator=",">
+              </div>
               <div></div>
-              <div class="package-item"><i class="icon-trash text-danger" (click)="removePakage(i)"></i></div>
+              <div class="package-item"><i class="icon-trash text-danger" (click)="removePackage(i)"></i></div>
             </ng-template>
 
           </div>

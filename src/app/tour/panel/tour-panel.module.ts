@@ -18,6 +18,8 @@ import {ToolsModule} from "../../tools/tools/tools.module";
 const maskConfig: Partial<IConfig> = {
   validation: false,
 };
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {PipesModule} from "../../common-project/pipes/pipes.module";
 
 
 @NgModule({
@@ -31,6 +33,7 @@ const maskConfig: Partial<IConfig> = {
     MatButtonToggleModule,
     ReactiveFormsModule,
     MatDatepickerModule,
+    DragDropModule,
     MatFormFieldModule,
     MatNativeDateModule,
     MatInputModule,
@@ -38,6 +41,7 @@ const maskConfig: Partial<IConfig> = {
     CommonProjectModule,
     NgxMaskModule.forRoot(maskConfig),
     ToolsModule,
+    PipesModule,
   ]
 })
 export class TourPanelModule {
