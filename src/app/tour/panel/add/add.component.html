@@ -395,19 +395,19 @@
             <!--            local tour-->
             <ng-template class="body-local" [ngIf]="destCityTypeFC.value">
               <div class="package-item">
-                <input (change)="calculatePrice('twin', $event, true)" type="text" formControlName="twin" mask="separator" thousandSeparator=",">
+                <input (keyup)="calculatePrice('twin', $event, true)" type="text" formControlName="twin" mask="separator" thousandSeparator=",">
                 <div *ngIf="form.value.defineTour == 'true'">
                   <p>{{ getData(i).value.twinRate }}</p>
                 </div>
               </div>
               <div class="package-item">
-                <input (change)="calculatePrice('triple', $event, true)" type="text" formControlName="triple" mask="separator" thousandSeparator=",">
+                <input (keyup)="calculatePrice('triple', $event, true)" type="text" formControlName="triple" mask="separator" thousandSeparator=",">
                 <div *ngIf="form.value.defineTour == 'true'">
                   <p>{{ getData(i).value.tripleRate }}</p>
                 </div>
               </div>
               <div class="package-item">
-                <input (change)="calculatePrice('quad', $event, true)" type="text" formControlName="quad" mask="separator" thousandSeparator=",">
+                <input (keyup)="calculatePrice('quad', $event, true)" type="text" formControlName="quad" mask="separator" thousandSeparator=",">
                 <div *ngIf="form.value.defineTour == 'true'">
                   <p>{{ getData(i).value.quadRate }}</p>
                 </div>
@@ -424,19 +424,19 @@
             <!--            foreign tour-->
             <ng-template class="body-foreign" [ngIf]="!destCityTypeFC.value">
               <div class="package-item">
-                <input (change)="calculatePrice('twin', $event, true)" type="text" formControlName="twin" mask="separator" thousandSeparator=",">
+                <input (keyup)="calculatePrice('twin', $event, true)" type="text" formControlName="twin" mask="separator" thousandSeparator=",">
                 <div *ngIf="form.value.defineTour == 'true'">
                   <p>{{ getData(i).value.twinRate }}</p>
                 </div>
               </div>
               <div class="package-item">
-                <input (change)="calculatePrice('single', $event, true)" type="text" formControlName="single" mask="separator" thousandSeparator=",">
+                <input (keyup)="calculatePrice('single', $event, true)" type="text" formControlName="single" mask="separator" thousandSeparator=",">
                 <div *ngIf="form.value.defineTour == 'true'">
                   <p>{{ getData(i).value.singleRate }}</p>
                 </div>
               </div>
               <div class="package-item">
-                <input (change)="calculatePrice('cwb', $event, true)" type="text" formControlName="cwb" mask="separator" thousandSeparator=",">
+                <input (keyup)="calculatePrice('cwb', $event, true)" type="text" formControlName="cwb" mask="separator" thousandSeparator=",">
                 <div *ngIf="form.value.defineTour == 'true'">
                   <p>{{ cwbRate }}</p>
                 </div>

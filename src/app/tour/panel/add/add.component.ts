@@ -461,13 +461,13 @@ export class AddComponent implements OnInit {
     let finallyPrice = '';
     const ratePrice = +price.target.value.replace(',', '') * (+this.form.value.nightNum * this.getRatePrice()) ;
     const insurancePrice = (+this.form.value.insuranceRate) * this.checkInsuranceRatePrice();
-    const visaPrice = (this.form.value.visaRate ? (+this.form.value.visaRate) * this.checkVisaRatePrice() : 1);
+    const visaPrice = (this.form.value.visaRate ? (+this.form.value.visaRate) * this.checkVisaRatePrice() : 0);
     const transferPrice = (+this.form.value.transferRate) * this.checkTransferRatePrice();
     // + نرخ افزایشس کاهشی
     if (isADL) {
-      finallyPrice = ( this.form.value.ADLFlightRate + ratePrice + insurancePrice + visaPrice + transferPrice).toString();
+      finallyPrice = ((+this.form.value.ADLFlightRate) + ratePrice + insurancePrice + visaPrice + transferPrice).toString();
     } else {
-      finallyPrice = ( this.form.value.CHDFlightRate + ratePrice + insurancePrice + visaPrice + transferPrice).toString();
+      finallyPrice = ((+this.form.value.CHDFlightRate) + ratePrice + insurancePrice + visaPrice + transferPrice).toString();
     }
     switch (type) {
       case 'single':
@@ -492,9 +492,9 @@ export class AddComponent implements OnInit {
     if (this.form.value.rate === 2) {
       return (+this.form.value.euroRate);
     } else if (this.form.value.rate === 3) {
-      return +this.form.value.nightNum * (+this.form.value.dollarRate);
+      return (+this.form.value.dollarRate);
     } else if (this.form.value.rate === 4) {
-      return +this.form.value.nightNum * (+this.form.value.AEDRate);
+      return (+this.form.value.AEDRate);
     } else {
       return 1;
     }
@@ -541,6 +541,11 @@ export class AddComponent implements OnInit {
   }
 
   getData(index: any){
+    debugger
+    const data = (<FormArray>this.form.get('packages')).at(index);
+    console.log(this.form.get('packages'))
+    // @ts-ignore
+    console.log(this.form.get('packages').at(index))
     return (<FormArray>this.form.get('packages')).at(index);
   }
 }
