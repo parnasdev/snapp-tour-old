@@ -127,12 +127,22 @@ export class AddComponent implements OnInit {
     this.getHotels();
   }
 
+  isEmpty(obj: any) {
+    for(var prop in obj) {
+      if(Object.prototype.hasOwnProperty.call(obj, prop)) {
+        return false;
+      }
+    }
 
-  addRow(hotelId: number) {
+    return JSON.stringify(obj) === JSON.stringify({});
+  }
+
+
+  addRow(hotel?: any) {
     const Tours = this.fb.group({
       parent: null,
       user_id: null,
-      hotel_id: [hotelId],
+      hotel: [this.isEmpty(hotel) ? 0 : hotel],
       services: [null],
       rate: [1],
       discountsTwin: [null],
@@ -153,34 +163,10 @@ export class AddComponent implements OnInit {
       tripleRate: [null],
       ADLRate: [this.form.value.ADLFlightRate ? this.form.value.ADLFlightRate : null],
       age: [null],
+      offered: false,
       status: [null]
     });
     this.ToursForm.push(Tours);
-  }
-
-  getPrice(price: string, index: number) {
-    return +price * (+this.form.value.nightNum * this.getRatePrice(index));
-  }
-
-  updatePackagePrices() {
-    debugger
-    const insurancePrice = (this.form.value.insuranceRate ? (+this.form.value.insuranceRate) * this.checkInsuranceRatePrice() : 0);
-    const visaPrice = (this.form.value.visaRate ? (+this.form.value.visaRate) * this.checkVisaRatePrice() : 0);
-    const transferPrice = (this.form.value.transferRate ? (+this.form.value.transferRate) * this.checkTransferRatePrice() : 0);
-    let finallyPrice = '';
-    this.ToursForm.controls.forEach((item, index) => {
-      // @ts-ignore
-      item.controls.twinRate.setValue(((+item.value.ADLRate.split(',').join('')) + this.getPrice(item.value.twin, index) + insurancePrice + visaPrice + transferPrice).toString());
-      // @ts-ignore
-      item.controls.singleRate.setValue(((+item.value.ADLRate.split(',').join('')) + this.getPrice(item.value.single, index) + insurancePrice + visaPrice + transferPrice).toString());
-      // @ts-ignore
-      item.controls.cwbRate.setValue(((+format.value.CHDFlightRate.split(',').join('')) + this.getPrice(item.value.cwb, index) + insurancePrice + visaPrice + transferPrice).toString());
-      // @ts-ignore
-      item.controls.quadRate.setValue(((+item.value.ADLRate.split(',').join('')) + this.getPrice(item.value.quad, index) + insurancePrice + visaPrice + transferPrice).toString());
-      // @ts-ignore
-      item.controls.tripleRate.setValue(((+item.value.ADLRate.split(',').join('')) + this.getPrice(item.value.triple, index) + insurancePrice + visaPrice + transferPrice).toString());
-      // + نرخ افزایشس کاهشی
-    });
   }
 
   convertTour() {
@@ -190,9 +176,9 @@ export class AddComponent implements OnInit {
       this.tourDetail.push({
         parent: null,
         order_item: index,
-        offered: false,
+        offered: item.value.offered,
         user_id: item.value.user_id,
-        hotel_id: item.value.hotel_id,
+        hotel_id: item.value.hotel.id,
         services: +item.value.services,
         rate: item.value.rate,
         discounts: {
@@ -262,7 +248,7 @@ export class AddComponent implements OnInit {
       if (res.isDone) {
         this.hotels = res.data;
         if (this.hotels.length > 0) {
-          this.addRow(this.hotels[0].id);
+          this.addRow(this.hotels[0]);
         }
       }
     }, (error: any) => {
@@ -488,6 +474,7 @@ export class AddComponent implements OnInit {
 
 
   calculatePrice(type: string, price: any, isADL: boolean, i: number) {
+    debugger
     let finallyPrice = '';
     const ratePrice = +price.target.value.split(',').join('') * (+this.form.value.nightNum * this.getRatePrice(i));
     const insurancePrice = (this.form.value.insuranceRate ? (+this.form.value.insuranceRate) * this.checkInsuranceRatePrice() : 0);
@@ -523,8 +510,34 @@ export class AddComponent implements OnInit {
     }
   }
 
-  getRatePrice(index: number): number {
+  updatePackagePrices() {
     debugger
+    const insurancePrice = (this.form.value.insuranceRate ? (+this.form.value.insuranceRate) * this.checkInsuranceRatePrice() : 0);
+    const visaPrice = (this.form.value.visaRate ? (+this.form.value.visaRate) * this.checkVisaRatePrice() : 0);
+    const transferPrice = (this.form.value.transferRate ? (+this.form.value.transferRate) * this.checkTransferRatePrice() : 0);
+    let finallyPrice = '';
+    this.ToursForm.controls.forEach((item, index) => {
+      const ADLRate = item.value.ADLRate ? +item.value.ADLRate.split(',').join('') : 0;
+      const CHDFlightRate = this.form.value.CHDFlightRate ? +this.form.value.CHDFlightRate?.split(',').join('') : 0;
+      // @ts-ignore
+      item.controls.twinRate.setValue((ADLRate + this.getPrice(+item.value.twin, index) + insurancePrice + visaPrice + transferPrice).toString());
+      // @ts-ignore
+      item.controls.singleRate.setValue((ADLRate + this.getPrice(+item.value.single, index) + insurancePrice + visaPrice + transferPrice).toString());
+      // @ts-ignore
+      item.controls.cwbRate.setValue((CHDFlightRate + this.getPrice(+item.value.cwb, index) + insurancePrice + visaPrice + transferPrice).toString());
+      // @ts-ignore
+      item.controls.quadRate.setValue((ADLRate + this.getPrice(+item.value.quad, index) + insurancePrice + visaPrice + transferPrice).toString());
+      // @ts-ignore
+      item.controls.tripleRate.setValue((ADLRate + this.getPrice(+item.value.triple, index) + insurancePrice + visaPrice + transferPrice).toString());
+      // + نرخ افزایشس کاهشی
+    });
+  }
+
+  getPrice(price: number, index: number) {
+    return +price * (+this.form.value.nightNum * this.getRatePrice(index));
+  }
+
+  getRatePrice(index: number): number {
     if (+this.form.get('packages')?.value[index].rate === 2) {
       return (+this.form.value.euroRate);
     } else if (+this.form.get('packages')?.value[index].rate === 3) {
@@ -574,16 +587,26 @@ export class AddComponent implements OnInit {
 
   setADLRate(event: any) {
     this.ToursForm.controls.find(x => x.get('ADLRate')?.setValue(event.target.value))
-  }
-
-  getData(index: any) {
-    // @ts-ignore
-    return (<FormArray>this.form.get('packages')).at(index);
+    this.updatePackagePrices();
   }
 
   drop(event: any) {
+    this.getStars(event.previousIndex);
     // @ts-ignore
     moveItemInArray(this.ToursForm.controls, event.previousIndex, event.currentIndex);
   }
+
+  getData(index: number) {
+    // @ts-ignore
+    return this.ToursForm.controls[index].controls
+  }
+
+  // @ts-ignore
+  getStars(index: number): number[]{
+    // @ts-ignore
+    const stars = +this.ToursForm.controls[index].controls.hotel.value.stars;
+    return Array.from(Array(stars ? stars : 0).keys());
+  }
+
 }
 

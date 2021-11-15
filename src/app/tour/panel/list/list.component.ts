@@ -20,9 +20,10 @@ export class ListComponent implements OnInit {
   tourReq: TourListRequestDTO = {
     city: null,
     paginate: true,
+    isAdmin: true,
     search: '',
     perPage: 20,
-    type: 0
+    type: null
   };
   tours: TourListResDTO[] = [];
   loading = false;
