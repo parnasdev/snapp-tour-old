@@ -15,7 +15,7 @@ import {CityListRequestDTO, CityResponseDTO} from "../../../Core/Models/cityDTO"
 import {TransferAPIService} from "../../../Core/Https/transfer-api.service";
 import {TransferListRequestDTO} from "../../../Core/Models/transferDTO";
 import {TourApiService} from "../../../Core/Https/tour-api.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {TourSetRequestDTO} from "../../../Core/Models/tourDTO";
 import {ErrorsService} from "../../../Core/Services/errors.service";
 import {CheckErrorService} from "../../../Core/Services/check-error.service";
@@ -32,7 +32,6 @@ export class AddComponent implements OnInit {
   isLoading = false;
   minDate = new Date(); //datepicker
 
-  filteredhotel: Observable<any[]>[] = [];
   tourReqDTO!: TourSetRequestDTO;
   addResponse: any;
   typeTour: any;
@@ -65,6 +64,7 @@ export class AddComponent implements OnInit {
     public tourApi: TourApiService,
     public checkError: CheckErrorService,
     public errorService: ErrorsService,
+    public route: ActivatedRoute,
     public router: Router,
     public commonApi: CommonApiService,
     public session: SessionService,
@@ -74,7 +74,6 @@ export class AddComponent implements OnInit {
     public mobileService: ResponsiveService) {
     this.isMobile = mobileService.isMobile();
   }
-
 
 ////formGroup
   form = this.fb.group({
@@ -110,14 +109,12 @@ export class AddComponent implements OnInit {
     packages: this.fb.array([],Validators.required),
   });
 
-
   transferForm = this.fb.group({
     originDate: this.originDateFC,
     originTime: this.originTimeFC,
     destDate: this.destDateFC,
     destTime: this.destTimeFC,
   })
-
 
   ngOnInit() {
     this.getCities();
@@ -136,7 +133,6 @@ export class AddComponent implements OnInit {
 
     return JSON.stringify(obj) === JSON.stringify({});
   }
-
 
   addRow(hotel?: any) {
     const Tours = this.fb.group({
@@ -170,7 +166,6 @@ export class AddComponent implements OnInit {
   }
 
   convertTour() {
-
     this.tourDetail = [];
     this.ToursForm.controls.forEach((item, index) => {
       this.tourDetail.push({
@@ -207,7 +202,6 @@ export class AddComponent implements OnInit {
       });
     });
   }
-
 
   submit() {
     this.convertTour();
@@ -256,16 +250,13 @@ export class AddComponent implements OnInit {
     })
   }
 
-
   get ToursForm() {
     return this.form.get('packages') as FormArray;
   }
 
-
   removePackage(i: any) {
     this.ToursForm.removeAt(i);
   }
-
 
   fillObj() {
     this.tourReqDTO = {
@@ -309,7 +300,7 @@ export class AddComponent implements OnInit {
     }
   }
 
-  private markFormGroupTouched(formGroup: any) {
+  markFormGroupTouched(formGroup: any) {
     (<any>Object).values(formGroup.controls).forEach((control: any) => {
       control.markAsTouched();
 
@@ -327,7 +318,6 @@ export class AddComponent implements OnInit {
     }, (error: any) => {
     })
   }
-
 
   disableFields(): void {
     if (this.form.value.defineTour === 'true') {           // with details
@@ -395,7 +385,6 @@ export class AddComponent implements OnInit {
     }
   }
 
-
   getTransfer(): void {
     const req: TransferListRequestDTO = {
       type: 1,
@@ -416,7 +405,7 @@ export class AddComponent implements OnInit {
     this.cityID = this.form.value.endCity.id
     this.ToursForm.clear();
     this.getHotels();
-    this.disableFields()
+    this.disableFields();
   }
 
   getOriginTime(event: any): void {
@@ -462,7 +451,6 @@ export class AddComponent implements OnInit {
     })
   }
 
-
   clean(obj: any): void {
     for (var propName in obj) {
       if (obj[propName] === null || obj[propName] === undefined) {
@@ -471,7 +459,6 @@ export class AddComponent implements OnInit {
     }
     return obj
   }
-
 
   calculatePrice(type: string, price: any, isADL: boolean, i: number) {
     debugger
