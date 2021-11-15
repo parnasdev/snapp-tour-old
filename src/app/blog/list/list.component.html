@@ -1,4 +1,4 @@
-<prs-address-bar></prs-address-bar>
+<prs-address-bar [path]="'بلاگ ها'" [path2]="''"></prs-address-bar>
 <section class="blog-list">
   <div class="prs-responsive">
     <div class="container-fluid">
@@ -8,178 +8,25 @@
             <img src="assets/img/Document-align-2.svg" width="30" alt="">
             <div class="text">
               <h2>وبلاگ ها</h2>
-              <span>۱۹۰۰ مقاله گردشگری و شهرگردی</span>
+              <span>{{blogs.length}} مقاله گردشگری و شهرگردی</span>
             </div>
           </div>
           <div class="list">
-            <div class="box-blog">
-              <div class="img">
+            <div class="box-blog" *ngFor="let item of blogs">
+              <div class="img" >
                 <a class="info-img">
                   <img src="assets/img/Attachment%201.svg" width="22" alt="">
-                  <span>مشاهده جزئیات بیشتر</span>
+                  <span routerLink="/blog/{{item.slug}}">مشاهده جزئیات بیشتر</span>
                 </a>
-                <img class="img-fix" src="assets/img/1200px-Sunrise_over_Kangchenjunga.png" alt="">
+                <img class="img-fix" [src]="item.thumbnail" alt="">
               </div>
-              <h3 class="title-box-blog">راهنمای سفر با تور آنتالیا</h3>
+              <h3 class="title-box-blog" routerLink="/blog/{{item.slug}}">{{item.title}}</h3>
               <div class="date">
                 <img src="assets/img/Watch-blog.svg" width="18" alt="">
-                <span>انتشار شده در ۱۴۰۰/۰۷/۰۱</span>
+                <span>انتشار شده در {{calenderServices.convertDate(item.createdAt,'fa')}}</span>
               </div>
             </div>
-            <div class="box-blog">
-              <div class="img">
-                <a class="info-img">
-                  <img src="assets/img/Attachment%201.svg" width="22" alt="">
-                  <span>مشاهده جزئیات بیشتر</span>
-                </a>
-                <img class="img-fix" src="assets/img/1200px-Sunrise_over_Kangchenjunga.png" alt="">
-              </div>
-              <h3 class="title-box-blog">راهنمای سفر با تور آنتالیا</h3>
-              <div class="date">
-                <img src="assets/img/Watch-blog.svg" width="18" alt="">
-                <span>انتشار شده در ۱۴۰۰/۰۷/۰۱</span>
-              </div>
-            </div>
-            <div class="box-blog">
-              <div class="img">
-                <a class="info-img">
-                  <img src="assets/img/Attachment%201.svg" width="22" alt="">
-                  <span>مشاهده جزئیات بیشتر</span>
-                </a>
-                <img class="img-fix" src="assets/img/1200px-Sunrise_over_Kangchenjunga.png" alt="">
-              </div>
-              <h3 class="title-box-blog">راهنمای سفر با تور آنتالیا</h3>
-              <div class="date">
-                <img src="assets/img/Watch-blog.svg" width="18" alt="">
-                <span>انتشار شده در ۱۴۰۰/۰۷/۰۱</span>
-              </div>
-            </div>
-            <div class="box-blog">
-              <div class="img">
-                <a class="info-img">
-                  <img src="assets/img/Attachment%201.svg" width="22" alt="">
-                  <span>مشاهده جزئیات بیشتر</span>
-                </a>
-                <img class="img-fix" src="assets/img/1200px-Sunrise_over_Kangchenjunga.png" alt="">
-              </div>
-              <h3 class="title-box-blog">راهنمای سفر با تور آنتالیا</h3>
-              <div class="date">
-                <img src="assets/img/Watch-blog.svg" width="18" alt="">
-                <span>انتشار شده در ۱۴۰۰/۰۷/۰۱</span>
-              </div>
-            </div>
-            <div class="box-blog">
-              <div class="img">
-                <a class="info-img">
-                  <img src="assets/img/Attachment%201.svg" width="22" alt="">
-                  <span>مشاهده جزئیات بیشتر</span>
-                </a>
-                <img class="img-fix" src="assets/img/1200px-Sunrise_over_Kangchenjunga.png" alt="">
-              </div>
-              <h3 class="title-box-blog">راهنمای سفر با تور آنتالیا</h3>
-              <div class="date">
-                <img src="assets/img/Watch-blog.svg" width="18" alt="">
-                <span>انتشار شده در ۱۴۰۰/۰۷/۰۱</span>
-              </div>
-            </div>
-            <div class="box-blog">
-              <div class="img">
-                <a class="info-img">
-                  <img src="assets/img/Attachment%201.svg" width="22" alt="">
-                  <span>مشاهده جزئیات بیشتر</span>
-                </a>
-                <img class="img-fix" src="assets/img/1200px-Sunrise_over_Kangchenjunga.png" alt="">
-              </div>
-              <h3 class="title-box-blog">راهنمای سفر با تور آنتالیا</h3>
-              <div class="date">
-                <img src="assets/img/Watch-blog.svg" width="18" alt="">
-                <span>انتشار شده در ۱۴۰۰/۰۷/۰۱</span>
-              </div>
-            </div>
-            <div class="box-blog">
-              <div class="img">
-                <a class="info-img">
-                  <img src="assets/img/Attachment%201.svg" width="22" alt="">
-                  <span>مشاهده جزئیات بیشتر</span>
-                </a>
-                <img class="img-fix" src="assets/img/1200px-Sunrise_over_Kangchenjunga.png" alt="">
-              </div>
-              <h3 class="title-box-blog">راهنمای سفر با تور آنتالیا</h3>
-              <div class="date">
-                <img src="assets/img/Watch-blog.svg" width="18" alt="">
-                <span>انتشار شده در ۱۴۰۰/۰۷/۰۱</span>
-              </div>
-            </div>
-            <div class="box-blog">
-              <div class="img">
-                <a class="info-img">
-                  <img src="assets/img/Attachment%201.svg" width="22" alt="">
-                  <span>مشاهده جزئیات بیشتر</span>
-                </a>
-                <img class="img-fix" src="assets/img/1200px-Sunrise_over_Kangchenjunga.png" alt="">
-              </div>
-              <h3 class="title-box-blog">راهنمای سفر با تور آنتالیا</h3>
-              <div class="date">
-                <img src="assets/img/Watch-blog.svg" width="18" alt="">
-                <span>انتشار شده در ۱۴۰۰/۰۷/۰۱</span>
-              </div>
-            </div>
-            <div class="box-blog">
-              <div class="img">
-                <a class="info-img">
-                  <img src="assets/img/Attachment%201.svg" width="22" alt="">
-                  <span>مشاهده جزئیات بیشتر</span>
-                </a>
-                <img class="img-fix" src="assets/img/1200px-Sunrise_over_Kangchenjunga.png" alt="">
-              </div>
-              <h3 class="title-box-blog">راهنمای سفر با تور آنتالیا</h3>
-              <div class="date">
-                <img src="assets/img/Watch-blog.svg" width="18" alt="">
-                <span>انتشار شده در ۱۴۰۰/۰۷/۰۱</span>
-              </div>
-            </div>
-            <div class="box-blog">
-              <div class="img">
-                <a class="info-img">
-                  <img src="assets/img/Attachment%201.svg" width="22" alt="">
-                  <span>مشاهده جزئیات بیشتر</span>
-                </a>
-                <img class="img-fix" src="assets/img/1200px-Sunrise_over_Kangchenjunga.png" alt="">
-              </div>
-              <h3 class="title-box-blog">راهنمای سفر با تور آنتالیا</h3>
-              <div class="date">
-                <img src="assets/img/Watch-blog.svg" width="18" alt="">
-                <span>انتشار شده در ۱۴۰۰/۰۷/۰۱</span>
-              </div>
-            </div>
-            <div class="box-blog">
-              <div class="img">
-                <a class="info-img">
-                  <img src="assets/img/Attachment%201.svg" width="22" alt="">
-                  <span>مشاهده جزئیات بیشتر</span>
-                </a>
-                <img class="img-fix" src="assets/img/1200px-Sunrise_over_Kangchenjunga.png" alt="">
-              </div>
-              <h3 class="title-box-blog">راهنمای سفر با تور آنتالیا</h3>
-              <div class="date">
-                <img src="assets/img/Watch-blog.svg" width="18" alt="">
-                <span>انتشار شده در ۱۴۰۰/۰۷/۰۱</span>
-              </div>
-            </div>
-            <div class="box-blog">
-              <div class="img">
-                <a class="info-img">
-                  <img src="assets/img/Attachment%201.svg" width="22" alt="">
-                  <span>مشاهده جزئیات بیشتر</span>
-                </a>
-                <img class="img-fix" src="assets/img/1200px-Sunrise_over_Kangchenjunga.png" alt="">
-              </div>
-              <h3 class="title-box-blog">راهنمای سفر با تور آنتالیا</h3>
-              <div class="date">
-                <img src="assets/img/Watch-blog.svg" width="18" alt="">
-                <span>انتشار شده در ۱۴۰۰/۰۷/۰۱</span>
-              </div>
-            </div>
+
           </div>
         </div>
       </div>

@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {PostReqDTO, PostResDTO} from "../../Core/Models/BlogDTO";
+import {BlogApiService} from "../../Core/Https/blog-api.service";
+import {MessageService} from "../../Core/Services/message.service";
+import {CalenderServices} from "../../Core/Services/calender-service";
 
 @Component({
   selector: 'prs-list',
@@ -7,43 +11,41 @@ import {Router} from "@angular/router";
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
+  blogs: PostResDTO[] = [];
 
-  // source: PostListDTO[] = [];
-  // p = 1;
-  // req = {} as PostReqDTO;
   isLoading = false;
 
   constructor(
-              public router: Router) {
+    public blogApiService: BlogApiService,
+    public message: MessageService,
+    public calenderServices: CalenderServices,
+    public router: Router) {
   }
 
   ngOnInit(): void {
-    // this.getList();
+    this.getBlog()
   }
-  //
-  // getList(): void {
-  //   this.setReq();
-  //   this.isLoading = true;
-  //   this.api.getList(this.req).subscribe((res: any) => {
-  //     this.isLoading = false;
-  //     if (res.isDone) {
-  //       this.source = res.data;
-  //     } else {
-  //
-  //     }
-  //   }, (error: any) => {
-  //     this.isLoading = false;
-  //
-  //   });
-  // }
-  //
-  // setReq(): void {
-  //   this.req = {
-  //     category: 'پست-ها',
-  //     limit: null,
-  //     search: null
-  //   };
-  // }
+
+  getBlog(): void {
+    const req: PostReqDTO = {
+      perPage: 0,
+      paginate: false,
+      search: null,
+      isAdmin: false,
+      limit: null,
+      withTrash: false,
+    }
+    this.blogApiService.getPosts(req).subscribe((res: any) => {
+      if (res.isDone) {
+        this.blogs = res.data
+      } else {
+        this.message.custom(res.message)
+      }
+    }, (error: any) => {
+      this.message.error()
+
+    })
+  }
 
   goToInfo(slug: string): void {
     // alert('در حال توسعه میباشد');
