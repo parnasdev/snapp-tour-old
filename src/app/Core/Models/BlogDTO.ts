@@ -1,3 +1,5 @@
+import {CategoryResDTO} from "./CategoryDTO";
+
 export interface PostResDTO {
   thumbnail: string;
   title: string;
@@ -9,6 +11,10 @@ export interface PostResDTO {
   description: string;
   status: string;
   createdAt: string;
+  body: string
+  categories: CategoryResDTO[]
+  tags: string[]
+  viewCount: 0
 }
 
 export interface PostReqDTO {

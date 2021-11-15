@@ -1,5 +1,8 @@
 export interface CategoryResDTO {
-
+  id: number
+  name: string
+  parent: {id: number, name: string}
+  slug: string
 }
 
 

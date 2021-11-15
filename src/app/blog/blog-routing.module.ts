@@ -10,7 +10,7 @@ const routes: Routes = [
     data: {title: 'لیست مطالب'}
   },
   {
-    path: 'info',
+    path: ':slug',
     component: InfoComponent,
     data: {title: 'جزئیات مطلب'}
   },
