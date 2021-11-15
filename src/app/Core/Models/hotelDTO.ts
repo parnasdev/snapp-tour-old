@@ -107,6 +107,9 @@ export interface HotelListResponseDTO {
   slugEn: string
   stars: string
   thumbnail: string
+  city: string
+  location: string
+
 }
 
 export interface ServiceDTO {

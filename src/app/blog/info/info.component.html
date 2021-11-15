@@ -10,22 +10,19 @@
                 <div class="title-blog">
                   <img src="assets/img/Document-align-2.svg" width="30" alt="">
                   <div class="text">
-                    <h2>راهنمای سفر با تور آنتالیا</h2>
-                    <span>دسته بندی مقاله : گردشگری</span>
+                    <h2>{{info.title}}</h2>
+                    <span *ngIf="info.categories.length > 0">دسته بندی مقاله : {{info.categories[0].name}}</span>
                   </div>
                 </div>
-                <p>شهر استانبول جزو شهرهای بسیار قدیمی دنیاست که قدمت آن به قرن‌ها قبل از میلاد مسیح برمی‌گردد. به همین
-                  دلیل آثار قدیمی و تاریخی زیادی در این کلان شهر دیده می‌شود. ترکیه در سال‌های اخیر تلاش زیادی کرده است
-                  که هرچه سریع‌تر پیشرفت کند و از سایر کشورهای اروپایی عقب نیفتد. همین موضوع باعث شده است که پروژه‌های
-                  بزرگ و مهمی در نقاط مختلف ترکیه و شهر استانبول احداث شوند. یکی از معروف‌ترین اماکن ساخته شده در
-                  سال‌های اخیر، برج چاملیجا استانبول است که به نماد جدید این شهر تبدیل شده است.
+                <p>
+                  {{info.body}}
                 </p>
               </div>
               <div class="box-details">
                 <div class="box-details-top">
                   <div class="view-number">
                     <img src="assets/img/Scanning%205.svg" width="22" alt="">
-                    <span> تعداد دیدیگاه : 0 </span>
+                    <span> تعداد دیدیگاه : {{info.viewCount}} </span>
                   </div>
                   <div class="date">
                     <span>1400/06/22</span>

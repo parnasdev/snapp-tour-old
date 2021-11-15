@@ -141,8 +141,9 @@
                 <img src="assets/img/Bookmark.svg" width="17" alt="">
                 <div class="text">
                   <h3>هتل های برگزیده شهر</h3>
-                  <select name="" id="">
-                    <option value="">انتخاب شهر</option>
+                  <select [formControl]="hotelCityFC" name="" id="" (change)="hotelCityChanged()">
+                    <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
+
                   </select>
                 </div>
               </div>
@@ -156,152 +157,27 @@
                   [slidesPerView]=" this.isMobile? 1 :(isTablet ? 2:4)"
                   [navigation]="true"
                   [spaceBetween]="30">
-            <ng-template swiperSlide>
-              <div style="background-image: url('assets/img/image_bd8cd2e2-bb81-44d0-82ea-0d0cc32435a3.png') "
+            <ng-template swiperSlide *ngFor="let hotel of hotels">
+              <div [style.background-image]="'url(' + hotel.thumbnail + ')'"
                    class="box-hotel">
                 <div class="opacity-bg-parent">
                   <div class="info-img"><img src="assets/img/Information.svg" width="22" alt=""></div>
                   <div class="info-hotel">
-                    <h1> هتل اسپیناس پالاس</h1>
+                    <h1> {{hotel.name}}</h1>
                     <div class="footer-hotel-info">
                       <div class="location-hotel">
                         <img src="assets/img/Location-white.svg" width="17" alt="">
-                        <span>ایران - تهران</span>
+                        <span>{{hotel.city}} - {{hotel.location ? hotel.location : 'ثبت نشده'}}</span>
                       </div>
                       <div class="rate">
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template swiperSlide>
-              <div style="background-image: url('assets/img/image_bd8cd2e2-bb81-44d0-82ea-0d0cc32435a3.png') "
-                   class="box-hotel">
-                <div class="opacity-bg-parent">
-                  <div class="info-img"><img src="assets/img/Information.svg" width="22" alt=""></div>
-                  <div class="info-hotel">
-                    <h1> هتل اسپیناس پالاس</h1>
-                    <div class="footer-hotel-info">
-                      <div class="location-hotel">
-                        <img src="assets/img/Location-white.svg" width="17" alt="">
-                        <span>ایران - تهران</span>
-                      </div>
-                      <div class="rate">
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template swiperSlide>
-              <div style="background-image: url('assets/img/image_bd8cd2e2-bb81-44d0-82ea-0d0cc32435a3.png') "
-                   class="box-hotel">
-                <div class="opacity-bg-parent">
-                  <div class="info-img"><img src="assets/img/Information.svg" width="22" alt=""></div>
-                  <div class="info-hotel">
-                    <h1> هتل اسپیناس پالاس</h1>
-                    <div class="footer-hotel-info">
-                      <div class="location-hotel">
-                        <img src="assets/img/Location-white.svg" width="17" alt="">
-                        <span>ایران - تهران</span>
-                      </div>
-                      <div class="rate">
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template swiperSlide>
-              <div style="background-image: url('assets/img/image_bd8cd2e2-bb81-44d0-82ea-0d0cc32435a3.png') "
-                   class="box-hotel">
-                <div class="opacity-bg-parent">
-                  <div class="info-img"><img src="assets/img/Information.svg" width="22" alt=""></div>
-                  <div class="info-hotel">
-                    <h1> هتل اسپیناس پالاس</h1>
-                    <div class="footer-hotel-info">
-                      <div class="location-hotel">
-                        <img src="assets/img/Location-white.svg" width="17" alt="">
-                        <span>ایران - تهران</span>
-                      </div>
-                      <div class="rate">
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template swiperSlide>
-              <div style="background-image: url('assets/img/image_bd8cd2e2-bb81-44d0-82ea-0d0cc32435a3.png') "
-                   class="box-hotel">
-                <div class="opacity-bg-parent">
-                  <div class="info-img"><img src="assets/img/Information.svg" width="22" alt=""></div>
-                  <div class="info-hotel">
-                    <h1> هتل اسپیناس پالاس</h1>
-                    <div class="footer-hotel-info">
-                      <div class="location-hotel">
-                        <img src="assets/img/Location-white.svg" width="17" alt="">
-                        <span>ایران - تهران</span>
-                      </div>
-                      <div class="rate">
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template swiperSlide>
-              <div style="background-image: url('assets/img/image_bd8cd2e2-bb81-44d0-82ea-0d0cc32435a3.png') "
-                   class="box-hotel">
-                <div class="opacity-bg-parent">
-                  <div class="info-img"><img src="assets/img/Information.svg" width="22" alt=""></div>
-                  <div class="info-hotel">
-                    <h1> هتل اسپیناس پالاس</h1>
-                    <div class="footer-hotel-info">
-                      <div class="location-hotel">
-                        <img src="assets/img/Location-white.svg" width="17" alt="">
-                        <span>ایران - تهران</span>
-                      </div>
-                      <div class="rate">
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-                        <i class="icon-star"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </ng-template>
+                        <i class="icon-star" *ngFor="let star of getStars(hotel.stars)"></i>
 
-
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
 
           </swiper>
 
@@ -337,90 +213,21 @@
                   [slidesPerView]=" this.isMobile? 2 :(isTablet ? 3:5)"
                   [navigation]="true"
                   [spaceBetween]="30">
-            <ng-template swiperSlide>
+            <ng-template swiperSlide *ngFor="let city of cities">
               <div class="box-sort-tour-city">
-                <div class="img-sort-tour-city">
-                  <div class="info-img-sort-tour-city animated fadeInDown">
+                <div class="img-sort-tour-city" routerLink="/tour/list/{{city.slug}}">
+                  <div class="info-img-sort-tour-city animated fadeInDown"  >
                     <img class="img-hover-child" src="assets/img/Attachment%201.svg" width="30" alt="">
-                    <a class="view-details-more" href="">مشاهده جزئیات بیشتر</a>
+                    <a class="view-details-more">مشاهده جزئیات بیشتر</a>
                   </div>
-                  <img src="assets/img/image_bd8cd2e2-bb81-44d0-82ea-0d0cc32435a3.png" alt="">
+                  <img [src]="city.image" alt="">
                 </div>
                 <div class="text-sort-tour-city">
-                  <span>تور دبی</span>
+                  <span>تور {{city.name}}</span>
                 </div>
               </div>
             </ng-template>
-            <ng-template swiperSlide>
-              <div class="box-sort-tour-city">
-                <div class="img-sort-tour-city">
-                  <div class="info-img-sort-tour-city animated fadeInDown">
-                    <img class="img-hover-child" src="assets/img/Attachment%201.svg" width="30" alt="">
-                    <a class="view-details-more" href="">مشاهده جزئیات بیشتر</a>
-                  </div>
-                  <img src="assets/img/image_bd8cd2e2-bb81-44d0-82ea-0d0cc32435a3.png" alt="">
-                </div>
-                <div class="text-sort-tour-city">
-                  <span>تور دبی</span>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template swiperSlide>
-              <div class="box-sort-tour-city">
-                <div class="img-sort-tour-city">
-                  <div class="info-img-sort-tour-city animated fadeInDown">
-                    <img class="img-hover-child" src="assets/img/Attachment%201.svg" width="30" alt="">
-                    <a class="view-details-more" href="">مشاهده جزئیات بیشتر</a>
-                  </div>
-                  <img src="assets/img/image_bd8cd2e2-bb81-44d0-82ea-0d0cc32435a3.png" alt="">
-                </div>
-                <div class="text-sort-tour-city">
-                  <span>تور دبی</span>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template swiperSlide>
-              <div class="box-sort-tour-city">
-                <div class="img-sort-tour-city">
-                  <div class="info-img-sort-tour-city animated fadeInDown">
-                    <img class="img-hover-child" src="assets/img/Attachment%201.svg" width="30" alt="">
-                    <a class="view-details-more" href="">مشاهده جزئیات بیشتر</a>
-                  </div>
-                  <img src="assets/img/image_bd8cd2e2-bb81-44d0-82ea-0d0cc32435a3.png" alt="">
-                </div>
-                <div class="text-sort-tour-city">
-                  <span>تور دبی</span>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template swiperSlide>
-              <div class="box-sort-tour-city">
-                <div class="img-sort-tour-city">
-                  <div class="info-img-sort-tour-city animated fadeInDown">
-                    <img class="img-hover-child" src="assets/img/Attachment%201.svg" width="30" alt="">
-                    <a class="view-details-more" href="">مشاهده جزئیات بیشتر</a>
-                  </div>
-                  <img src="assets/img/image_bd8cd2e2-bb81-44d0-82ea-0d0cc32435a3.png" alt="">
-                </div>
-                <div class="text-sort-tour-city">
-                  <span>تور دبی</span>
-                </div>
-              </div>
-            </ng-template>
-            <ng-template swiperSlide>
-              <div class="box-sort-tour-city">
-                <div class="img-sort-tour-city">
-                  <div class="info-img-sort-tour-city animated fadeInDown">
-                    <img class="img-hover-child" src="assets/img/Attachment%201.svg" width="30" alt="">
-                    <a class="view-details-more" href="">مشاهده جزئیات بیشتر</a>
-                  </div>
-                  <img src="assets/img/image_bd8cd2e2-bb81-44d0-82ea-0d0cc32435a3.png" alt="">
-                </div>
-                <div class="text-sort-tour-city">
-                  <span>تور دبی</span>
-                </div>
-              </div>
-            </ng-template>
+
 
 
 
@@ -448,7 +255,7 @@
                   <span>هتل ها، مکان های دیدنی، پارک های آبی همه و همه در اینجا</span>
                 </div>
               </div>
-              <a class="view-all-tour" href="">مشاهده همه وبلاگ ها</a>
+              <a class="view-all-tour" routerLink="/blog">مشاهده همه وبلاگ ها</a>
             </div>
             <div class="bottom">
               <div class="border-right"></div>
@@ -456,41 +263,41 @@
             </div>
           </div>
           <div class="box-blog-parent">
-            <div class="right-blog">
+            <div class="right-blog" routerLink="/blog/{{blogs[0].slug}}" [style.background-image]="'url(' + blogs[0].thumbnail + ')'">
               <div class="info-blog">
-                <h6>راهنمای سفر با تور آنتالیا</h6>
+                <h6>{{blogs[0].title}}</h6>
                 <div class="date-info">
                   <img src="assets/img/Watch.svg" width="20" alt="">
-                  <small>انتشار شده در ۱۴۰۰/۰۷/۰۱</small>
+                  <small>انتشار شده در {{calenderServices.convertDate(blogs[0].createdAt,'fa')}}</small>
                 </div>
               </div>
             </div>
             <div class="left-blog">
-              <div class="top">
+              <div class="top" routerLink="/blog/{{blogs[1].slug}}" [style.background-image]="'url(' + blogs[1].thumbnail + ')'">
                 <div class="info-blog">
-                  <h6>راهنمای سفر با تور آنتالیا</h6>
+                  <h6>{{blogs[1].title}}</h6>
                   <div class="date-info">
                     <img src="assets/img/Watch.svg" width="20" alt="">
-                    <small>انتشار شده در ۱۴۰۰/۰۷/۰۱</small>
+                    <small>انتشار شده در {{calenderServices.convertDate(blogs[1].createdAt,'fa')}}</small>
                   </div>
                 </div>
               </div>
               <div class="bottom">
-                <div class="bottom-left-blog">
+                <div class="bottom-left-blog" routerLink="/blog/{{blogs[2].slug}}" [style.background-image]="'url(' + blogs[2].thumbnail + ')'">
                   <div class="info-blog">
-                    <h6>راهنمای سفر با تور آنتالیا</h6>
+                    <h6>{{blogs[2].title}}</h6>
                     <div class="date-info">
                       <img src="assets/img/Watch.svg" width="20" alt="">
-                      <small>انتشار شده در ۱۴۰۰/۰۷/۰۱</small>
+                      <small>انتشار شده در {{calenderServices.convertDate(blogs[2].createdAt,'fa')}}</small>
                     </div>
                   </div>
                 </div>
-                <div class="bottom-right-blog">
+                <div class="bottom-right-blog" routerLink="/blog/{{blogs[3].slug}}" [style.background-image]="'url(' + blogs[3].thumbnail + ')'">
                   <div class="info-blog">
-                    <h6>راهنمای سفر با تور آنتالیا</h6>
+                    <h6>{{blogs[3].title}}</h6>
                     <div class="date-info">
                       <img src="assets/img/Watch.svg" width="20" alt="">
-                      <small>انتشار شده در ۱۴۰۰/۰۷/۰۱</small>
+                      <small>انتشار شده در {{calenderServices.convertDate(blogs[3].createdAt,'fa')}}</small>
                     </div>
                   </div>
                 </div>

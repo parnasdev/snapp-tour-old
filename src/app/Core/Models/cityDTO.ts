@@ -18,6 +18,8 @@ export interface CityResponseDTO {
   name: string;
   id: number;
   type: number
+  image: string
+  slug: string
 }
 
 export interface MapCityResponseDTO {
