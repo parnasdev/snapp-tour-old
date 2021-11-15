@@ -3,10 +3,8 @@
     <div class="box-info-tour">
       <div class="info-tour-header">
         <div class="right">
-          <label for="">{{form.value.endCity.type.type ? 'تور داخلی' : 'تور خارجی'}}</label>
+          <label for="">{{form.value.endCity.type ? 'تور داخلی' : 'تور خارجی'}}</label>
           <h2>اطلاعات تور</h2>
-
-
         </div>
         <div class="left">
           <div class="selectdiv">
@@ -22,7 +20,9 @@
               </select>
             </label>
           </div>
-
+          <span class="required f-10" *ngIf="form.get('status')?.touched && form.get('status')?.invalid">
+            این فیلد الزامی است
+          </span>
           <div *ngIf="errorService.hasError('status')">
             <span class="text-danger">{{errorService.getError('status')}}</span>
           </div>
@@ -33,6 +33,9 @@
           <div class="item-info">
             <label for="">عنوان تور</label>
             <input formControlName="title" type="text">
+            <span class="required f-10" *ngIf="form.get('title')?.touched && form.get('title')?.invalid">
+            این فیلد الزامی است
+          </span>
             <div *ngIf="errorService.hasError('title')">
               <span class="text-danger">{{errorService.getError('title')}}</span>
             </div>

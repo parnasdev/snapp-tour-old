@@ -4,7 +4,7 @@ export interface TourListRequestDTO {
   perPage: number;
   paginate: boolean;
   search: string;
-  isAdmin?: boolean;
+  isAdmin?: boolean | null;
   city: string | null;
   type: number | null;
 }

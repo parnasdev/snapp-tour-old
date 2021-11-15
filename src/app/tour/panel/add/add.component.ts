@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormControl} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, Validators} from "@angular/forms";
 import {ResponsiveService} from "../../../Core/Services/responsive.service";
 import {PublicService} from "../../../Core/Services/public.service";
 import {CalenderServices} from "../../../Core/Services/calender-service";
@@ -78,22 +78,22 @@ export class AddComponent implements OnInit {
 
 ////formGroup
   form = this.fb.group({
-    title: new FormControl(''),
-    stCity_id: new FormControl(''),
+    title: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+    stCity_id: new FormControl('', Validators.required),
     endCity: new FormControl({
       name: '',
       id: 0,
       type: true
-    }),
-    nightNum: new FormControl('1'),
-    dayNum: new FormControl('لطفا تعداد شب را انتخاب کنید'),
+    },Validators.required),
+    nightNum: new FormControl('1',Validators.required),
+    dayNum: new FormControl('لطفا تعداد شب را انتخاب کنید', Validators.required),
     TransferType: new FormControl(),
-    enDate: new FormControl(''),
-    stDate: new FormControl(''),
-    expireDate: new FormControl(''),
+    enDate: new FormControl('',Validators.required),
+    stDate: new FormControl('',Validators.required),
+    expireDate: new FormControl('',Validators.required),
     CHDFlightRate: new FormControl(''),
     ADLFlightRate: new FormControl(''),
-    defineTour: new FormControl(false),
+    defineTour: new FormControl(false,Validators.required),
     euroRate: new FormControl(''),
     dollarRate: new FormControl(''),
     AEDRate: new FormControl(''),
@@ -106,8 +106,8 @@ export class AddComponent implements OnInit {
     services: new FormControl(''),
     documents: new FormControl(''),
     description: new FormControl(''),
-    status: new FormControl('Show'),
-    packages: this.fb.array([]),
+    status: new FormControl('Show',Validators.required),
+    packages: this.fb.array([],Validators.required),
   });
 
 

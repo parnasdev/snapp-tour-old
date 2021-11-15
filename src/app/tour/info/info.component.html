@@ -34,36 +34,17 @@
                         [navigation]="true"
                         [thumbs]="{ swiper: thumbsSwiper }">
                   <ng-container>
-                    <ng-template swiperSlide>
+                    <ng-template swiperSlide *ngFor="let image of tourInfo.endCity.images">
                       <div class="box-img-main">
                         <a href="" class="info-tour-view">
                           <img src="assets/img/Information.svg" width="20" alt="">
-                          <span>جهت کسب اطلاعات بیشتر درباره شهر آنتالیا کلیک کنید !</span>
+                          <span>جهت کسب اطلاعات بیشتر درباره شهر {{ tourInfo.endCity.name }} کلیک کنید !</span>
                         </a>
-                        <img class="img-tour-big" src="assets/img/Header-slider-tour90-num03.png" alt="">
-                      </div>
-                    </ng-template>
-                    <ng-template swiperSlide>
-                      <div class="box-img-main">
-                        <a href="" class="info-tour-view">
-                          <img src="assets/img/Information.svg" width="20" alt="">
-                          <span>جهت کسب اطلاعات بیشتر درباره شهر آنتالیا کلیک کنید !</span>
-                        </a>
-                        <img class="img-tour-big" src="assets/img/1200px-Sunrise_over_Kangchenjunga.png" alt="">
-                      </div>
-                    </ng-template>
-                    <ng-template swiperSlide>
-                      <div class="box-img-main">
-                        <a href="" class="info-tour-view">
-                          <img src="assets/img/Information.svg" width="20" alt="">
-                          <span>جهت کسب اطلاعات بیشتر درباره شهر آنتالیا کلیک کنید !</span>
-                        </a>
-                        <img class="img-tour-big" src="assets/img/Header-slider-tour90-num03.png" alt="">
+                        <img class="img-tour-big" [src]="image" alt="">
                       </div>
                     </ng-template>
                   </ng-container>
                 </swiper>
-
               </div>
               <div class="slider-bottom">
                 <swiper class="thumbs-gallery"
@@ -74,22 +55,9 @@
                         (swiper)="setThumbsSwiper($event)"
                         [watchSlidesProgress]="true">
                   <ng-container>
-                    <ng-template swiperSlide>
-                      <img class="img-gallery" src="assets/img/Header-slider-tour90-num03.png" alt="">
+                    <ng-template swiperSlide *ngFor="let image of tourInfo.endCity.images">
+                      <img class="img-gallery" [src]="image" alt="">
                     </ng-template>
-                    <ng-template swiperSlide>
-                      <img class="img-gallery" src="assets/img/1200px-Sunrise_over_Kangchenjunga.png" alt="">
-                    </ng-template>
-                    <ng-template swiperSlide>
-                      <img class="img-gallery" src="assets/img/Header-slider-tour90-num03.png" alt="">
-                    </ng-template>
-                    <ng-template swiperSlide>
-                      <img class="img-gallery" src="assets/img/Header-slider-tour90-num03.png" alt="">
-                    </ng-template>
-                    <ng-template swiperSlide>
-                      <img class="img-gallery" src="assets/img/Header-slider-tour90-num03.png" alt="">
-                    </ng-template>
-
                   </ng-container>
                 </swiper>
               </div>
@@ -220,7 +188,7 @@
                   <span>دو تخته (هر نفر)</span>
                 </div>
                 <div class="price-box">
-                  <strong>{{ +item.prices.twin | number }}</strong>
+                  <strong>{{ +item.prices.twinRate | number }}</strong>
                   <span>تومان</span>
                 </div>
               </div>
@@ -229,7 +197,7 @@
                   <span>سه تخته</span>
                 </div>
                 <div class="price-box">
-                  <strong>{{ +item.prices.triple | number }}</strong>
+                  <strong>{{ +item.prices.tripleRate | number }}</strong>
                   <span>تومان</span>
                 </div>
               </div>
@@ -238,7 +206,7 @@
                   <span>چهار تخته</span>
                 </div>
                 <div class="price-box">
-                  <strong>{{ +item.prices.quad | number }}</strong>
+                  <strong>{{ +item.prices.quadRate | number }}</strong>
                   <span>تومان</span>
                 </div>
               </div>
@@ -259,7 +227,7 @@
                   <span>دو تخته (هر نفر)</span>
                 </div>
                 <div class="price-box">
-                  <strong>{{ +item.prices.twin | number }}</strong>
+                  <strong>{{ +item.prices.twinRate | number }}</strong>
                   <span>تومان</span>
                 </div>
               </div>
@@ -268,7 +236,7 @@
                   <span>یک تخته</span>
                 </div>
                 <div class="price-box">
-                  <strong>{{ +item.prices.single | number }}</strong>
+                  <strong>{{ +item.prices.singleRate | number }}</strong>
                   <span>تومان</span>
                 </div>
               </div>
@@ -277,7 +245,7 @@
                   <span>کودک با تخت</span>
                 </div>
                 <div class="price-box">
-                  <strong>{{ +item.prices.cwb | number }}</strong>
+                  <strong>{{ +item.prices.cwbRate | number }}</strong>
                   <span>تومان</span>
                 </div>
               </div>
@@ -286,7 +254,7 @@
                   <span>کودک بدون تخت</span>
                 </div>
                 <div class="price-box">
-                  <strong>{{ +item.prices.cnb | number }}</strong>
+                  <strong>{{ +item.prices.cnbRate | number }}</strong>
                   <span>تومان</span>
                 </div>
               </div>

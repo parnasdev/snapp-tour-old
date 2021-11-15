@@ -15,6 +15,7 @@ export class ListComponent implements OnInit {
 
   tourReq: TourListRequestDTO = {
     city: '',
+    isAdmin: false,
     paginate: true,
     search: '',
     perPage: 20,
