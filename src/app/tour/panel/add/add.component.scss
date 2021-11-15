@@ -142,7 +142,8 @@
 
 .header-box {
   display: grid;
-  grid-template-columns: 0.5fr 1.5fr 0.7fr 1.2fr 1fr 1fr 0.7fr 1fr 0.5fr 0.7fr;
+  padding: 0 2px;
+  grid-template-columns: 0.1fr 1.5fr 1.3fr 1fr 1fr 1fr 0.7fr 0.7fr 0.5fr 0.7fr;
   border-bottom: 1px solid #eee;
   height: 40px;
   width: 100%;
@@ -156,7 +157,7 @@
 }
 .header-box-two {
   display: grid;
-  grid-template-columns: 0.5fr 1.5fr 0.7fr 1.2fr 1fr 1fr 0.7fr 1fr 0.5fr 0.7fr;
+  grid-template-columns: 0.1fr 1.5fr 1.3fr 1fr 1fr 1fr 0.7fr 0.7fr 0.5fr 0.7fr;
   border-bottom: 1px solid #eee;
   height: 40px;
   width: 100%;
@@ -171,11 +172,25 @@
 
 .body-box .package-item {
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
-
+.under-package{
+  position: absolute;
+  top: 40px;
+  font-size: 12px !important;
+}
+.under-package-text{
+  position: absolute;
+  top: 37px;
+  font-size: 12px !important;
+}
 .body-foreign {
   display: grid;
-  grid-template-columns: 0.5fr 1.5fr 0.7fr 1.2fr 1fr 1fr 0.7fr 1fr 0.5fr 0.7fr;
+  grid-template-columns: 0.1fr 1.5fr 1.3fr 1fr 1fr 1fr 0.7fr 0.7fr 0.5fr 0.7fr;
   width: 100%;
 }
 
@@ -192,9 +207,9 @@
 
 .body-box {
   display: grid;
-  grid-template-columns: 0.5fr 1.5fr 0.7fr 1.2fr 1fr 1fr 0.7fr 1fr 0.5fr 0.7fr;
+  grid-template-columns: 0.1fr 1.5fr 1.3fr 1fr 1fr 1fr 0.7fr 0.7fr 0.5fr 0.7fr;
   border-bottom: 1px solid var(--light-color-two);
-  height: 60px;
+  height: 80px;
   width: 100%;
 }
 
@@ -212,6 +227,7 @@
 .body-box .package-item select {
   height: 30px;
   width: 90%;
+  text-align: center;
   outline: none;
   border: 1px solid var(--light-color-two);
 }
@@ -228,11 +244,19 @@
 
 .id-package {
   color: var(--red-color);
+  padding-right: 0 !important;
 }
 
 .body-box .package-item input {
   height: 30px;
   width: 90%;
+  outline: none;
+  border: 1px solid var(--light-color-two);
+}
+
+.body-box .package-item .offer-checkbox {
+  height: 15px !important;
+  width: 15px !important;
   outline: none;
   border: 1px solid var(--light-color-two);
 }
@@ -449,7 +473,7 @@
   padding: 0 35px !important;
 }
 .example-list {
-  width: 500px;
+  width: 100%;
   max-width: 100%;
   border: solid 1px #ccc;
   min-height: 60px;
@@ -464,13 +488,9 @@
 //for drag and drop packages
 .example-box {
   direction: rtl !important;
-  padding: 20px 10px;
+  padding: 20px 2px;
   border-bottom: solid 1px #ccc;
   color: rgba(0, 0, 0, 0.87);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
   box-sizing: border-box;
   cursor: move;
   background: white;
@@ -501,3 +521,20 @@
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 //for drag and drop packages
+
+
+.w-55 {
+  width: 55% !important;
+  font-size: 11px !important;
+}
+
+.w-45 {
+  width: 45% !important;
+  font-size: 11px !important;
+}
+
+.parent-box-rate {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
