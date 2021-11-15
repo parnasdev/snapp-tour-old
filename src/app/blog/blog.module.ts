@@ -6,6 +6,7 @@ import {InfoComponent} from './info/info.component';
 import {ListComponent} from './list/list.component';
 import {SwiperModule} from "swiper/angular";
 import {StoreModule} from "../store/store.module";
+import {PipesModule} from "../common-project/pipes/pipes.module";
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {StoreModule} from "../store/store.module";
         BlogRoutingModule,
         SwiperModule,
         StoreModule,
+        PipesModule,
     ]
 })
 export class BlogModule {

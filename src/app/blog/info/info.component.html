@@ -1,4 +1,4 @@
-<prs-address-bar></prs-address-bar>
+<prs-address-bar [path]="'بلاگ'" [path2]="info.title?info.title : ''"></prs-address-bar>
 <section class="blog-info">
   <div class="prs-responsive">
     <div class="container-fluid">
@@ -15,7 +15,7 @@
                   </div>
                 </div>
                 <p>
-                  {{info.body}}
+                  {{info.description}}
                 </p>
               </div>
               <div class="box-details">
@@ -25,7 +25,7 @@
                     <span> تعداد دیدیگاه : {{info.viewCount}} </span>
                   </div>
                   <div class="date">
-                    <span>1400/06/22</span>
+                    <span>{{calenderServices.convertDate(info.createdAt,'fa')}}</span>
                   </div>
                 </div>
                 <div class="box-details-bottom">
@@ -58,20 +58,10 @@
 
               </div>
             </div>
-            <div class="img"><img src="assets/img/12123131.png" alt=""></div>
+            <div class="img"><img [src]="info.thumbnail" alt=""></div>
           </div>
           <div class="bottom">
-            <h2>تاریخچه احداث برج چاملیجا</h2>
-            <p>در سال 2011 شهرداری استانبول تصمیم گرفت که برجی بلند را در این شهر بسازند و فرستنده‌های رادیویی و
-              تلویزیونی را آن جا نصب کنند. بعد از طی شدن مراحل مختلف و انتخاب پیمانکار، سال 2016 رسما کار ساخت و ساز
-              بلندترین ساختمان استانبول شروع شد. ساخت این برج بلند و مدرن تنها 4 سال طول کشید و در سپتامبر 2020 این
-              پروژه تکمیل شد.</p>
-            <img class="img-bottom-blog" src="assets/img/1634191054BLOG1.png" alt="">
-            <p>در نهایت خرداد ماه سال 1400، برج چاملیجا استانبول توسط رجب طیب اردوغان افتتاح شد و گردشگران می‌توانند از
-              این ساختمان دیدن کنند. ارتفاع برج چاملیجا 369 متر است. این برج 45 طبقه روی سطح زمین و 4 طبقه هم زیر سطح
-              زمین دارد. برج چاملیجا حتی از برج ایفل هم بلندتر است و توانسته لقب بلندترین آسمان خراش اروپا را از آن خودش
-              کند.
-            </p>
+     <p [innerHTML]="info.body | safeHtml"></p>
           </div>
         </div>
       </div>

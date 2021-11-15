@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {BlogApiService} from "../../Core/Https/blog-api.service";
 import {PostResDTO} from "../../Core/Models/BlogDTO";
+import {CalenderServices} from "../../Core/Services/calender-service";
 
 @Component({
   selector: 'prs-info',
@@ -15,6 +16,7 @@ export class InfoComponent implements OnInit {
   isLoading = false;
 
   constructor(public route: ActivatedRoute,
+              public calenderServices: CalenderServices,
               public api: BlogApiService) {
   }
 

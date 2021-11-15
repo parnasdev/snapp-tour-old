@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {SperatorPipe} from "./sperator.pipe";
+import {SafeHtmlPipe} from "./safe-html.pipe";
 
 
 
 @NgModule({
-  declarations: [SperatorPipe],
+  declarations: [SperatorPipe,SafeHtmlPipe],
   exports: [
-    SperatorPipe
+    SperatorPipe,
+    SafeHtmlPipe
   ],
   imports: [
     CommonModule

@@ -9,6 +9,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { UploadSingleComponent } from './upload-single/upload-single.component';
 import { MultipleUploadComponent } from './multiple-upload/multiple-upload.component';
 import { EditorComponent } from './editor/editor.component';
+import {ToolsModule} from "../tools/tools/tools.module";
 
 
 @NgModule({
@@ -20,11 +21,12 @@ import { EditorComponent } from './editor/editor.component';
         UploadSingleComponent,
       EditorComponent
     ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-  ],entryComponents: [UploadSingleComponent]
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        ToolsModule,
+    ],entryComponents: [UploadSingleComponent]
 })
 export class CommonProjectModule {
 }

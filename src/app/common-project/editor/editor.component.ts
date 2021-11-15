@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit,EventEmitter, Output} from '@angular/core';
 
 @Component({
   selector: 'prs-editor',
@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditorComponent implements OnInit {
   loadAPI:Promise<any>;
+  @Output() body = new EventEmitter();
   constructor() {
     this.loadAPI=new Promise((resoleve)=>{
       this.loadScript();
@@ -16,6 +17,14 @@ export class EditorComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+
+  submit():void {
+
+  }
+
+  getBody():void {
+    this.body.emit((document.getElementById('context') as HTMLInputElement).value)
   }
 
   public loadScript(){
@@ -40,6 +49,8 @@ export class EditorComponent implements OnInit {
       node.async=false;
       document.getElementsByTagName('body')[0].appendChild(node);
     }
+    console.log( document.getElementsByTagName('body'))
+
   }
 
   public testJSON(text:string) {
@@ -48,6 +59,7 @@ export class EditorComponent implements OnInit {
     }
     try {
       JSON.parse(text);
+      console.log(text)
       return true;
     } catch (error) {
       return false;

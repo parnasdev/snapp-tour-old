@@ -83,7 +83,6 @@ export class UploadSingleComponent implements OnInit {
   submit():void {
     // @ts-ignore
     const val = document.getElementById("photoImage").src;
-    console.log(val)
     this.dialogRef.close(val)
   }
 }

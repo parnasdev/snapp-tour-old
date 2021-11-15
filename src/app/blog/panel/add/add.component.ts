@@ -88,6 +88,14 @@ export class AddComponent implements OnInit {
   onCustomItemCreating(args: any) {
     this.tags.unshift(args.text);
   }
+  submit():void {
+    debugger
+    if (this.postForm.controls.body.value !== '') {
+      this.createPost()
+    }else {
+      this.message.custom('لطفا متن بلاگ خود را وارد کنید و دکمه تایید نوشته را بزنید')
+    }
+  }
 
   createPost(): void {
     this.isLoading = true;
@@ -132,7 +140,9 @@ export class AddComponent implements OnInit {
       this.thumbnail = result
     })
   }
-
+  getBody(body: any):void {
+    this.postForm.controls.body.setValue(body);
+  }
 
   private markFormGroupTouched(formGroup: any) {
     (<any>Object).values(formGroup.controls).forEach((control: any) => {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
   selector: 'prs-address-bar',
@@ -6,8 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./address-bar.component.scss']
 })
 export class AddressBarComponent implements OnInit {
+  @Input() path = 'همنواز آسمان آبی';
+  @Input() path2 = ''
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

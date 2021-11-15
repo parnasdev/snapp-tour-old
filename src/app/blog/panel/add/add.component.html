@@ -65,7 +65,7 @@
             <div *ngIf="errorService.hasError('body')">
               <span class="text-danger">{{errorService.getError('body')}}</span>
             </div>
-            <prs-editor></prs-editor>
+            <prs-editor (body)="getBody($event)"></prs-editor>
           </div>
         </div>
       </div>
@@ -94,7 +94,7 @@
 
     <div class="box-details-tour">
       <div class="details-body-tour">
-        <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="createPost()" [isLoading]="isLoading"
+        <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="submit()" [isLoading]="isLoading"
                  [label]="'ثبت مطلب'"></prs-btn>
       </div>
     </div>
