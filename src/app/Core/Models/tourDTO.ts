@@ -15,9 +15,11 @@ export interface TourListResDTO {
   dayNum: number;
   endCity: string;
   expireDate: string;
+  minPrice: string;
   nightNum: number;
   offered: string;
   slug: string;
+  transfers: TourTransferDTO[];
   stCity: string;
   status: string;
   user: {
@@ -148,6 +150,7 @@ export interface PricesDTO {
 export interface TourTransferDTO {
   transfer_id: string;
   dateTime: string;
+  transfer?: string;
   type: string;
 }
 

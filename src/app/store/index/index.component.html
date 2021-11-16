@@ -60,7 +60,8 @@
                       <img src="assets/img/Ticket-index.svg" width="17" alt="">
                       <span>شروع قیمت از :</span>
                     </div>
-                    <strong class="price-tour-special">قیمتی ثبت نشده</strong>
+                    <strong class="price-tour-special" *ngIf="tour.minPrice === '0'">قیمتی ثبت نشده</strong>
+                    <strong class="price-tour-special" *ngIf="tour.minPrice !== '0'">{{tour.minPrice | sperator}} تومان </strong>
                   </div>
                 </div>
               </ng-template>

@@ -124,7 +124,7 @@ export class IndexComponent implements OnInit {
       paginate: false,
       perPage: 10,
       search: '',
-      type: 0
+      type: null
     }
     this.api.getTours(reqDTO).subscribe((res: any) => {
       if (res.isDone) {
