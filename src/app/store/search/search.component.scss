@@ -8,7 +8,7 @@
 }
 
 .section-one .bg-section-one {
-  background-color: #3e3e3eab;
+  background-color: #3e3e3e85;
   z-index: -1;
   position: absolute;
   height: 100%;
@@ -28,12 +28,13 @@
 
 .parent-box-search h6 {
   color: #fff;
+  font-size: 14px;
 }
 
 .parent-box-search h1 {
   color: #fff;
   font-size: 22px;
-  margin-top: 10px;
+  margin-top: 0;
 }
 
 .box-search {
