@@ -209,14 +209,14 @@
               <div class="border-left"></div>
             </div>
           </div>
-          <swiper class="swiper-sort-city"
+          <swiper #swiper  class="swiper-sort-city"
                   [slidesPerView]=" this.isMobile? 2 :(isTablet ? 3:5)"
                   [navigation]="true"
                   [spaceBetween]="30">
             <ng-template swiperSlide *ngFor="let city of cities">
               <div class="box-sort-tour-city">
                 <div class="img-sort-tour-city" routerLink="/tour/list/{{city.slug}}">
-                  <div class="info-img-sort-tour-city animated fadeInDown"  >
+                  <div class="info-img-sort-tour-city animated fadeInDown">
                     <img class="img-hover-child" src="assets/img/Attachment%201.svg" width="30" alt="">
                     <a class="view-details-more">مشاهده جزئیات بیشتر</a>
                   </div>
@@ -227,12 +227,9 @@
                 </div>
               </div>
             </ng-template>
-
-
-
-
           </swiper>
-
+          <button (click)="slideNext()">Next slide</button>
+          <button (click)="slidePrev()">Prev slide</button>
         </div>
       </div>
     </div>
@@ -252,6 +249,7 @@
                 <img src="assets/img/Bookmark.svg" width="17" alt="">
                 <div class="text">
                   <h3>وبلاگ گردشگری همنواز</h3>
+
                   <span>هتل ها، مکان های دیدنی، پارک های آبی همه و همه در اینجا</span>
                 </div>
               </div>
@@ -263,41 +261,45 @@
             </div>
           </div>
           <div class="box-blog-parent">
-            <div class="right-blog" routerLink="/blog/{{blogs[0].slug}}" [style.background-image]="'url(' + blogs[0].thumbnail + ')'">
+            <div class="right-blog" routerLink="/blog/{{blogs[0].slug}}"
+                 [style.background-image]="'url(' + blogs[0].thumbnail + ')'">
               <div class="info-blog">
                 <h6>{{blogs[0].title}}</h6>
                 <div class="date-info">
                   <img src="assets/img/Watch.svg" width="20" alt="">
-                  <small>انتشار شده در {{calenderServices.convertDate(blogs[0].createdAt,'fa')}}</small>
+                  <small>انتشار شده در {{calenderServices.convertDate(blogs[0].createdAt, 'fa')}}</small>
                 </div>
               </div>
             </div>
             <div class="left-blog">
-              <div class="top" routerLink="/blog/{{blogs[1].slug}}" [style.background-image]="'url(' + blogs[1].thumbnail + ')'">
+              <div class="top" routerLink="/blog/{{blogs[1].slug}}"
+                   [style.background-image]="'url(' + blogs[1].thumbnail + ')'">
                 <div class="info-blog">
                   <h6>{{blogs[1].title}}</h6>
                   <div class="date-info">
                     <img src="assets/img/Watch.svg" width="20" alt="">
-                    <small>انتشار شده در {{calenderServices.convertDate(blogs[1].createdAt,'fa')}}</small>
+                    <small>انتشار شده در {{calenderServices.convertDate(blogs[1].createdAt, 'fa')}}</small>
                   </div>
                 </div>
               </div>
               <div class="bottom">
-                <div class="bottom-left-blog" routerLink="/blog/{{blogs[2].slug}}" [style.background-image]="'url(' + blogs[2].thumbnail + ')'">
+                <div class="bottom-left-blog" routerLink="/blog/{{blogs[2].slug}}"
+                     [style.background-image]="'url(' + blogs[2].thumbnail + ')'">
                   <div class="info-blog">
                     <h6>{{blogs[2].title}}</h6>
                     <div class="date-info">
                       <img src="assets/img/Watch.svg" width="20" alt="">
-                      <small>انتشار شده در {{calenderServices.convertDate(blogs[2].createdAt,'fa')}}</small>
+                      <small>انتشار شده در {{calenderServices.convertDate(blogs[2].createdAt, 'fa')}}</small>
                     </div>
                   </div>
                 </div>
-                <div class="bottom-right-blog" routerLink="/blog/{{blogs[3].slug}}" [style.background-image]="'url(' + blogs[3].thumbnail + ')'">
+                <div class="bottom-right-blog" routerLink="/blog/{{blogs[3].slug}}"
+                     [style.background-image]="'url(' + blogs[3].thumbnail + ')'">
                   <div class="info-blog">
                     <h6>{{blogs[3].title}}</h6>
                     <div class="date-info">
                       <img src="assets/img/Watch.svg" width="20" alt="">
-                      <small>انتشار شده در {{calenderServices.convertDate(blogs[3].createdAt,'fa')}}</small>
+                      <small>انتشار شده در {{calenderServices.convertDate(blogs[3].createdAt, 'fa')}}</small>
                     </div>
                   </div>
                 </div>

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import SwiperCore, {Navigation, Pagination, Scrollbar, A11y} from 'swiper';
 import {ResponsiveService} from "../../Core/Services/responsive.service";
 import {TourApiService} from "../../Core/Https/tour-api.service";
@@ -12,8 +12,9 @@ import {HotelApiService} from "../../Core/Https/hotel-api.service";
 import {HotelListResponseDTO, HotelRequestDTO} from "../../Core/Models/hotelDTO";
 import {BlogApiService} from "../../Core/Https/blog-api.service";
 import {PostReqDTO, PostResDTO} from "../../Core/Models/BlogDTO";
-
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+import { SwiperComponent } from "swiper/angular";
+
 declare let $: any;
 
 @Component({
@@ -24,12 +25,13 @@ declare let $: any;
 export class IndexComponent implements OnInit {
   isMobile;
   isTablet;
+  @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
+
   tours: TourListResDTO[] = []
   cities: CityResponseDTO[] = []
   hotelCityFC = new FormControl(1);
   hotels: HotelListResponseDTO[] = [];
   blogs: PostResDTO[] = [];
-
   constructor(
     public api: TourApiService,
     public calenderServices: CalenderServices,
@@ -64,13 +66,23 @@ export class IndexComponent implements OnInit {
         $(".icon-6").toggleClass("icon-rotate-collapse")
       })
     })
+
+
+
     this.getTours();
     this.getCities()
     this.getHotels()
     this.getBlog()
   }
 
-
+  slideNext(){
+    // @ts-ignore
+    this.swiper.swiperRef.slideNext(100);
+  }
+  slidePrev(){
+    // @ts-ignore
+    this.swiper.swiperRef.slidePrev(100);
+  }
   getCities(): void {
     const req: CityListRequestDTO = {
       type: null,
@@ -87,6 +99,7 @@ export class IndexComponent implements OnInit {
       this.message.error()
     })
   }
+
 
   getHotels(): void {
     const req: HotelRequestDTO = {
