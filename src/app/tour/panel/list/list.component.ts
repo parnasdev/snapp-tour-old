@@ -104,4 +104,19 @@ export class ListComponent implements OnInit {
     });
   }
 
+  getStatus(statusEn: string): string{
+    switch (statusEn) {
+      case 'Show':
+        return'نمایش'
+      case 'Draft':
+        return'پیش نویس'
+      case 'Suspended':
+        return'معلق/منقضی شده'
+      case 'Pending':
+        return'در انتظار'
+      default:
+        return ''
+    }
+  }
+
 }
