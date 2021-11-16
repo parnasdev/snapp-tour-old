@@ -34,10 +34,11 @@ import {MatDialogModule} from "@angular/material/dialog";
     CommonModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule,
-    MatDialogModule,
     FormsModule,
     MatAutocompleteModule,
+    MatInputModule,
+    MatDialogModule,
+
     ToolsModule,
   ], entryComponents: [UploadSingleComponent,AlertDialogComponent]
 })

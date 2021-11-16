@@ -3,7 +3,6 @@ import {TourInfoDTO, TourPackageDTO} from "../../../Core/Models/tourDTO";
 import {AddComponent} from "../add/add.component";
 import {HotelRequestDTO} from "../../../Core/Models/hotelDTO";
 import {CityListRequestDTO} from "../../../Core/Models/cityDTO";
-
 declare var $: any;
 
 @Component({
@@ -81,7 +80,6 @@ export class EditComponent extends AddComponent implements OnInit {
       });
       this.ToursForm.push(Tours);
     }
-
   }
 
   getInfo(): void {
