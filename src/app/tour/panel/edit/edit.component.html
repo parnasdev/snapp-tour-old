@@ -56,7 +56,7 @@
 
               <label for="">شهر مبدا</label>
 
-              <prs-select-city [hasHotel]="true" [inCommingCity]="cities[0]" [cities]="cities" (citySelected)="getStCity($event)"></prs-select-city>
+              <prs-select-city [hasHotel]="true" [inCommingCity]="info.stCity" [cities]="cities" (citySelected)="getStCity($event)"></prs-select-city>
 
             </div>
             <div *ngIf="errorService.hasError('stCity_id')">
@@ -65,7 +65,7 @@
             <div class="select-info">
               <label for="">شهر مقصد</label>
 
-              <prs-select-city [hasHotel]="true" [inCommingCity]="cities[1]" [cities]="cities" (citySelected)="getEndCity($event)"></prs-select-city>
+              <prs-select-city [hasHotel]="true" [inCommingCity]="info.endCity" [cities]="cities" (citySelected)="getEndCity($event)"></prs-select-city>
               <div *ngIf="errorService.hasError('endCity_id')">
                 <span class="text-danger">{{errorService.getError('endCity_id')}}</span>
               </div>
