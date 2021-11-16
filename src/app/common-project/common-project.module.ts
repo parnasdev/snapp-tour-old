@@ -39,7 +39,7 @@ import {MatDialogModule} from "@angular/material/dialog";
     FormsModule,
     MatAutocompleteModule,
     ToolsModule,
-  ], entryComponents: [UploadSingleComponent]
+  ], entryComponents: [UploadSingleComponent,AlertDialogComponent]
 })
 export class CommonProjectModule {
 }

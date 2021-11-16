@@ -9,7 +9,11 @@ import {CalenderServices} from "../../../Core/Services/calender-service";
 import {CityListRequestDTO, CityResponseDTO} from "../../../Core/Models/cityDTO";
 import {CityApiService} from "../../../Core/Https/city-api.service";
 import {FormControl} from "@angular/forms";
+import {MatDialog} from "@angular/material/dialog";
+import {AlertDialogComponent, AlertDialogDTO} from "../../../common-project/alert-dialog/alert-dialog.component";
+
 declare let $: any;
+
 @Component({
   selector: 'prs-list',
   templateUrl: './list.component.html',
@@ -33,6 +37,7 @@ export class ListComponent implements OnInit {
 
   constructor(public tourApiService: TourApiService,
               public cityApi: CityApiService,
+              public dialog: MatDialog,
               public route: ActivatedRoute,
               public checkErrorService: CheckErrorService,
               public calService: CalenderServices,
@@ -87,7 +92,7 @@ export class ListComponent implements OnInit {
     this.getOriginCities()
   }
 
-  deleteTour(slug: string): void{
+  deleteTour(slug: string): void {
     this.loading = true;
     this.tourApiService.deleteTour(slug).subscribe((res: any) => {
       if (res.isDone) {
@@ -104,19 +109,35 @@ export class ListComponent implements OnInit {
     });
   }
 
-  getStatus(statusEn: string): string{
+  getStatus(statusEn: string): string {
     switch (statusEn) {
       case 'Show':
-        return'نمایش'
+        return 'نمایش'
       case 'Draft':
-        return'پیش نویس'
+        return 'پیش نویس'
       case 'Suspended':
-        return'معلق/منقضی شده'
+        return 'معلق/منقضی شده'
       case 'Pending':
-        return'در انتظار'
+        return 'در انتظار'
       default:
         return ''
     }
   }
 
+  deleteClicked(slug: string) {
+    const obj: AlertDialogDTO = {
+      description: 'حذف شود؟',
+      icon: 'null',
+      title: 'اطمینان دارید'
+    };
+    const dialog = this.dialog.open(AlertDialogComponent, {
+      width: '30%',
+      data: obj
+    });
+    dialog.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteTour(slug)
+      }
+    });
+  }
 }
