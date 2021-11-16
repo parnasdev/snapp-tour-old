@@ -1,1 +1,15 @@
-<p>select-city works!</p>
+<form class="example-form">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <input type="text"
+           placeholder="شهر خود را انتخاب کنید"
+           aria-label="Number"
+           matInput
+           [formControl]="cityFC"
+           [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async" (blur)="changed(option)"  [value]="option.name">
+        {{option.name}} {{option.nameEn}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
