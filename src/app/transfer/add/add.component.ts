@@ -49,7 +49,6 @@ export class AddComponent implements OnInit {
   getThumbnail(): void {
     const dialog = this.dialog.open(UploadSingleComponent, {});
     dialog.afterClosed().subscribe(result => {
-      console.log(result);
       this.logo = result
     })
   }

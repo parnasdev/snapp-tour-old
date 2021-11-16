@@ -15,7 +15,7 @@ import {CityApiService} from "../../../Core/Https/city-api.service";
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  cityFC = new FormControl();
+  cityFC = new FormControl(1);
   hotelReq: HotelRequestDTO = {
     isAdmin: true,
     paginate: true,
@@ -37,7 +37,6 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getCities();
     this.getList();
   }
 
@@ -63,29 +62,6 @@ export class ListComponent implements OnInit {
   }
 
 
-  getCities(): void {
-    const req: CityListRequestDTO = {
-      type: this.cityType,
-      hasHotel: false,
-      hasTour: false,
-      search: null,
-      perPage: 20
-    }
-    this.cityApiService.getCities(req).subscribe((res: any) => {
-      if (res.isDone) {
-        this.citiesResponse = res.data;
-        this.cityFC.setValue(this.citiesResponse[0].id)
-        this.getList()
-      }
-    }, (error: any) => {
-      this.message.error()
-    })
-  }
-
-  typeChange(): void {
-    this.getCities();
-  }
-
   deleteHotel(slug: string) {
     this.hotelApi.delete(slug).subscribe((res: any) => {
       if (res.isDone) {
@@ -98,5 +74,8 @@ export class ListComponent implements OnInit {
       this.message.error()
     })
   }
-
+  getCitySelected(item: any):void {
+    this.cityFC.setValue(item.id);
+    this.getList()
+  }
 }

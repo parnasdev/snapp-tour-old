@@ -261,8 +261,13 @@ footer {
   color: var(--base-color);
   margin-right: 4px;
 }
+.parnas-footer:hover .text-parnas-design{
+  display: flex !important;
+  align-items: center;
+}
 .text-parnas-design{
   margin-left: 10px;
+  display: none !important;
 }
 .text-copy {
   display: flex;
@@ -342,6 +347,12 @@ footer {
 .wrapper i{
   color: var(--gray-color-light);
 }
+.wrapper i:hover{
+  color: #fff;
+}
+.wrapper .icon:hover{
+  color: #fff;
+}
 .wrapper .icon {
   position: relative;
   background-color: unset;
@@ -408,14 +419,13 @@ footer {
 .wrapper .facebook:hover,
 .wrapper .facebook:hover .tooltip,
 .wrapper .facebook:hover .tooltip::before {
-  background-color: var(--base-color-second);
+  background-color: var(--base-color);
   color: #ffffff;
 }
-
 .wrapper .twitter:hover,
 .wrapper .twitter:hover .tooltip,
 .wrapper .twitter:hover .tooltip::before {
-  background-color: var(--base-color-second);
+  background-color: var(--base-color);
   color: #000;
 }
 .wrapper .icon-span{
@@ -425,21 +435,23 @@ footer {
 .wrapper .instagram:hover,
 .wrapper .instagram:hover .tooltip,
 .wrapper .instagram:hover .tooltip::before {
-  background-color: var(--base-color-second);
+  background-color: var(--base-color);
   color: #ffffff;
 }
-
+.wrapper .instagram:hover i{
+  color: #fff;
+}
 .wrapper .github:hover,
 .wrapper .github:hover .tooltip,
 .wrapper .github:hover .tooltip::before {
-  background-color: var(--base-color-second);
+  background-color: var(--base-color);
   color: #ffffff;
 }
 
 .wrapper .youtube:hover,
 .wrapper .youtube:hover .tooltip,
 .wrapper .youtube:hover .tooltip::before {
-  background-color: var(--base-color-second);
+  background-color: var(--base-color);
   color: #ffffff;
 }
 .copyright{

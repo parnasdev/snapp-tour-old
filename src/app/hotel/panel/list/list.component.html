@@ -17,15 +17,16 @@
 <div class="list-tour">
   <div class="title">
     <h2>لیست هتل ها</h2>
-    <div class="selectdiv">
-      <select [formControl]="cityFC" (change)="getList()" name="" id="">
-        <option *ngFor="let city of citiesResponse" [value]="city.id">{{city.name}}</option>
-      </select>
-    </div>
-    <mat-button-toggle-group name="fontStyle" [(ngModel)]="cityType" (ngModelChange)="typeChange()" aria-label="Font Style">
-      <mat-button-toggle [value]="true">داخلی</mat-button-toggle>
-      <mat-button-toggle [value]="false">خارجی</mat-button-toggle>
-    </mat-button-toggle-group>
+    <prs-select-city [hasHotel]="true" [callCity]="true" (citySelected)="getCitySelected($event)"></prs-select-city>
+<!--    <div class="selectdiv">-->
+<!--      <select [formControl]="cityFC" (change)="getList()" name="" id="">-->
+<!--        <option *ngFor="let city of citiesResponse" [value]="city.id">{{city.name}}</option>-->
+<!--      </select>-->
+<!--    </div>-->
+<!--    <mat-button-toggle-group name="fontStyle" [(ngModel)]="cityType" (ngModelChange)="typeChange()" aria-label="Font Style">-->
+<!--      <mat-button-toggle [value]="true">داخلی</mat-button-toggle>-->
+<!--      <mat-button-toggle [value]="false">خارجی</mat-button-toggle>-->
+<!--    </mat-button-toggle-group>-->
 
       <a class="btn-add-tour" routerLink="/panel/hotel/add">اضافه</a>
 
