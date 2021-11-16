@@ -18,19 +18,7 @@
   <div class="title">
     <h2>لیست هتل ها</h2>
     <prs-select-city [hasHotel]="true" [callCity]="true" (citySelected)="getCitySelected($event)"></prs-select-city>
-<!--    <div class="selectdiv">-->
-<!--      <select [formControl]="cityFC" (change)="getList()" name="" id="">-->
-<!--        <option *ngFor="let city of citiesResponse" [value]="city.id">{{city.name}}</option>-->
-<!--      </select>-->
-<!--    </div>-->
-<!--    <mat-button-toggle-group name="fontStyle" [(ngModel)]="cityType" (ngModelChange)="typeChange()" aria-label="Font Style">-->
-<!--      <mat-button-toggle [value]="true">داخلی</mat-button-toggle>-->
-<!--      <mat-button-toggle [value]="false">خارجی</mat-button-toggle>-->
-<!--    </mat-button-toggle-group>-->
-
       <a class="btn-add-tour" routerLink="/panel/hotel/add">اضافه</a>
-
-
   </div>
   <div class="table-list-tour">
     <div class="header-list-tour">
@@ -52,7 +40,7 @@
           <a routerLink="/panel/hotel/edit/{{ hotel.slug }}" class="edit-btn">ویرایش</a>
           <a routerLink="/hotel/info" class="view-btn">نمایش</a>
           <!--          <button class="copy-btn">کپی</button>-->
-          <button (click)="deleteHotel(hotel.slug)" class="delete-btn">حذف</button>
+          <button (click)="deleteClicked(hotel.slug)" class="delete-btn">حذف</button>
         </div>
       </div>
     </div>

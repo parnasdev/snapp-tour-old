@@ -8,6 +8,8 @@ import {HotelListRes, HotelRequestDTO} from "../../../Core/Models/hotelDTO";
 import {FormControl} from "@angular/forms";
 import {CityListRequestDTO, CityResponseDTO} from "../../../Core/Models/cityDTO";
 import {CityApiService} from "../../../Core/Https/city-api.service";
+import {AlertDialogComponent, AlertDialogDTO} from "../../../common-project/alert-dialog/alert-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'prs-list',
@@ -28,6 +30,7 @@ export class ListComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
+              public dialog: MatDialog,
               public hotelApi: HotelApiService,
               public message: MessageService,
               public cityApiService: CityApiService,
@@ -77,5 +80,22 @@ export class ListComponent implements OnInit {
   getCitySelected(item: any):void {
     this.cityFC.setValue(item.id);
     this.getList()
+  }
+
+  deleteClicked(slug: string) {
+    const obj: AlertDialogDTO = {
+      description: 'حذف شود؟',
+      icon: 'null',
+      title: 'اطمینان دارید'
+    };
+    const dialog = this.dialog.open(AlertDialogComponent, {
+      width: '30%',
+      data: obj
+    });
+    dialog.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteHotel(slug)
+      }
+    });
   }
 }
