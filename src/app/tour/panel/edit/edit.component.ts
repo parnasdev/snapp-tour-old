@@ -4,6 +4,8 @@ import {AddComponent} from "../add/add.component";
 import {HotelRequestDTO} from "../../../Core/Models/hotelDTO";
 import {CityListRequestDTO} from "../../../Core/Models/cityDTO";
 
+declare var $: any;
+
 @Component({
   selector: 'prs-edit',
   templateUrl: './edit.component.html',
@@ -17,6 +19,7 @@ export class EditComponent extends AddComponent implements OnInit {
   info!: TourInfoDTO
   originTime = '00:00'
   destTime = '00:00'
+  destCityId = 0;
 
   ngOnInit() {
     this.slug = this.route.snapshot.paramMap.get('slug');
@@ -28,9 +31,9 @@ export class EditComponent extends AddComponent implements OnInit {
       const Tours = this.fb.group({
         parent: packageItem.parent,
         id: packageItem.id,
-        offered: false,
+        offered: [packageItem.offered],
         user_id: packageItem.user_id,
-        hotel: [packageItem.hotel],
+        hotel_id: [packageItem.hotel.id],
         services: [packageItem.services.id],
         rate: [packageItem.rate.id],
         discountsTwin: [packageItem.discounts.twin],
@@ -86,13 +89,9 @@ export class EditComponent extends AddComponent implements OnInit {
       this.tourApi.getTour(this.slug).subscribe((res: any) => {
         if (res.isDone) {
           this.info = res.data;
-          this.getEditCities();
+          this.getCities();
           this.getTransfer();
-          this.getHotels();
           this.getService();
-          this.setValue();
-          this.setFormArray(this.info.packages);
-          this.disableFields();
         }
       }, (error: any) => {
         this.message.error()
@@ -100,7 +99,7 @@ export class EditComponent extends AddComponent implements OnInit {
     }
   }
 
-  getEditCities(): void {
+  getCities(): void {
     const req: CityListRequestDTO = {
       type: null,
       hasHotel: true,
@@ -112,22 +111,18 @@ export class EditComponent extends AddComponent implements OnInit {
       if (res.isDone) {
         this.cities = res.data;
         this.cityID = this.info.endCity.id;
-        debugger
-        this.form.controls.stCity_id.patchValue(this.info.stCity.id);
-        this.form.controls.endCity.patchValue(this.info.endCity);
-        this.getHotels();
-        // {
-        //   name: this.info.endCity.name,
-        //     id: this.info.endCity.id,
-        //   type: this.info.endCity.type
-        // }
+        this.form.controls.stCity_id.setValue(this.info.stCity.id);
+        this.form.controls.endCity_id.setValue(this.info.endCity.id);
+        // @ts-ignore
+        this.tourType = this.cities.find(x => x.id === +this.form.value.endCity_id)?.type;
+        this.setHotelsData();
       }
     }, (error: any) => {
       this.message.error()
     })
   }
 
-  getHotels(): void {
+  setHotelsData(): void {
     const req: HotelRequestDTO = {
       isAdmin: true,
       paginate: false,
@@ -137,6 +132,9 @@ export class EditComponent extends AddComponent implements OnInit {
     this.hotelApi.getHotels(req).subscribe((res: any) => {
       if (res.isDone) {
         this.hotels = res.data;
+        this.setValue();
+        this.setFormArray(this.info.packages);
+        this.disableFields();
       }
     }, (error: any) => {
       this.message.error();
@@ -210,6 +208,10 @@ export class EditComponent extends AddComponent implements OnInit {
       }
       this.checkError.check(error);
     })
+  }
+
+  hotelChanged(index: number){
+    this.getStars(index);
   }
 
 }

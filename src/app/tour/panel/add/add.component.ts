@@ -4,7 +4,6 @@ import {ResponsiveService} from "../../../Core/Services/responsive.service";
 import {PublicService} from "../../../Core/Services/public.service";
 import {CalenderServices} from "../../../Core/Services/calender-service";
 import {SessionService} from "../../../Core/Services/session.service";
-import {Observable} from "rxjs";
 import {MessageService} from "../../../Core/Services/message.service";
 import {CommonApiService} from "../../../Core/Https/common-api.service";
 import {GetServiceRequestDTO} from "../../../Core/Models/commonDTO";
@@ -55,6 +54,7 @@ export class AddComponent implements OnInit {
   originTransferFC = new FormControl();
   destTransferFC = new FormControl();
   destCityTypeFC = new FormControl(true);
+  tourType = false;
 
   constructor(
     public hotelApi: HotelApiService,
@@ -79,20 +79,16 @@ export class AddComponent implements OnInit {
   form = this.fb.group({
     title: new FormControl('', [Validators.required, Validators.maxLength(50)]),
     stCity_id: new FormControl('', Validators.required),
-    endCity: new FormControl({
-      name: '',
-      id: 0,
-      type: true
-    },Validators.required),
-    nightNum: new FormControl('1',Validators.required),
+    endCity_id: new FormControl('', Validators.required),
+    nightNum: new FormControl('1', Validators.required),
     dayNum: new FormControl('لطفا تعداد شب را انتخاب کنید', Validators.required),
     TransferType: new FormControl(),
-    enDate: new FormControl('',Validators.required),
-    stDate: new FormControl('',Validators.required),
-    expireDate: new FormControl('',Validators.required),
+    enDate: new FormControl('', Validators.required),
+    stDate: new FormControl('', Validators.required),
+    expireDate: new FormControl('', Validators.required),
     CHDFlightRate: new FormControl(''),
     ADLFlightRate: new FormControl(''),
-    defineTour: new FormControl(false,Validators.required),
+    defineTour: new FormControl(false, Validators.required),
     euroRate: new FormControl(''),
     dollarRate: new FormControl(''),
     AEDRate: new FormControl(''),
@@ -105,8 +101,8 @@ export class AddComponent implements OnInit {
     services: new FormControl(''),
     documents: new FormControl(''),
     description: new FormControl(''),
-    status: new FormControl('Show',Validators.required),
-    packages: this.fb.array([],Validators.required),
+    status: new FormControl('Show', Validators.required),
+    packages: this.fb.array([], Validators.required),
   });
 
   transferForm = this.fb.group({
@@ -125,8 +121,8 @@ export class AddComponent implements OnInit {
   }
 
   isEmpty(obj: any) {
-    for(var prop in obj) {
-      if(Object.prototype.hasOwnProperty.call(obj, prop)) {
+    for (var prop in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, prop)) {
         return false;
       }
     }
@@ -134,11 +130,11 @@ export class AddComponent implements OnInit {
     return JSON.stringify(obj) === JSON.stringify({});
   }
 
-  addRow(hotel?: any) {
+  addRow(hotel_id: number) {
     const Tours = this.fb.group({
       parent: null,
       user_id: null,
-      hotel: [this.isEmpty(hotel) ? 0 : hotel],
+      hotel_id: [hotel_id],
       services: [null],
       rate: [1],
       discountsTwin: [null],
@@ -171,9 +167,10 @@ export class AddComponent implements OnInit {
       this.tourDetail.push({
         parent: null,
         order_item: index,
+        id: item.value.id ? item.value.id : null,
         offered: item.value.offered,
         user_id: item.value.user_id,
-        hotel_id: item.value.hotel.id,
+        hotel_id: item.value.hotel_id,
         services: +item.value.services,
         rate: item.value.rate,
         discounts: {
@@ -242,7 +239,7 @@ export class AddComponent implements OnInit {
       if (res.isDone) {
         this.hotels = res.data;
         if (this.hotels.length > 0) {
-          this.addRow(this.hotels[0]);
+          this.addRow(this.hotels[0].id);
         }
       }
     }, (error: any) => {
@@ -262,7 +259,7 @@ export class AddComponent implements OnInit {
     this.tourReqDTO = {
       title: this.form.value.title,
       stCity_id: this.form.value.stCity_id,
-      endCity_id: this.form.value.endCity.id,
+      endCity_id: this.form.value.endCity_id,
       nightNum: this.form.value.nightNum,
       dayNum: (+this.form.value.nightNum) + 1,
       transfers: [
@@ -321,7 +318,7 @@ export class AddComponent implements OnInit {
 
   disableFields(): void {
     if (this.form.value.defineTour === 'true') {           // with details
-      if (this.form.value.endCity.type) {// inner tour
+      if (this.tourType) {// inner tour
         this.form.controls.transferRate.enable()
         this.form.controls.insuranceRate.enable()
         this.form.controls.CHDFlightRate.enable()
@@ -366,7 +363,7 @@ export class AddComponent implements OnInit {
   clearFields(): void {
     if (this.form.value.defineTour === 'true') {
       // with details
-      if (this.form.value.endCity.type) {// inner tour
+      if (this.tourType) {// inner tour
         this.form.controls.visaRate.reset()
         this.form.controls.AEDRate.reset()
         this.form.controls.euroRate.reset()
@@ -382,6 +379,23 @@ export class AddComponent implements OnInit {
       this.form.controls.insuranceRate.reset()
       this.form.controls.CHDFlightRate.reset()
       this.form.controls.ADLFlightRate.reset()
+      this.form.controls.visaPriceType.setValue(1)
+      this.form.controls.transferPriceType.setValue(1)
+      this.form.controls.insurancePriceType.setValue(1)
+      this.ToursForm.controls.forEach(item => {
+        // @ts-ignore
+        item.controls.singleRate.reset()
+        // @ts-ignore
+        item.controls.twinRate.reset()
+        // @ts-ignore
+        item.controls.tripleRate.reset()
+        // @ts-ignore
+        item.controls.quadRate.reset()
+        // @ts-ignore
+        item.controls.cwbRate.reset()
+        // @ts-ignore
+        item.controls.rate.setValue(1)
+      })
     }
   }
 
@@ -402,7 +416,9 @@ export class AddComponent implements OnInit {
   }
 
   cityDesChanged(): void {
-    this.cityID = this.form.value.endCity.id
+    // @ts-ignore
+    this.tourType = this.cities.find(x => x.id === +this.form.value.endCity_id)?.type;
+    this.cityID = this.form.value.endCity_id;
     this.ToursForm.clear();
     this.getHotels();
     this.disableFields();
@@ -443,7 +459,9 @@ export class AddComponent implements OnInit {
         this.cities = res.data;
         this.cityID = this.cities[1].id;
         this.form.controls.stCity_id.setValue(this.cities[0].id.toString());
-        this.form.controls.endCity.setValue(this.cities[1]);
+        this.form.controls.endCity_id.setValue(this.cities[1].id.toString());
+        // @ts-ignore
+        this.tourType = this.cities.find(x => x.id === +this.form.value.endCity_id)?.type;
         this.getHotels();
       }
     }, (error: any) => {
@@ -589,10 +607,10 @@ export class AddComponent implements OnInit {
   }
 
   // @ts-ignore
-  getStars(index: number): number[]{
+  getStars(index: number): number[] {
     // @ts-ignore
-    const stars = +this.ToursForm.controls[index].controls.hotel.value.stars;
-    return Array.from(Array(stars ? stars : 0).keys());
+    const item = this.hotels.find(x => x.id === +this.ToursForm.controls[index].controls.hotel_id.value);
+    return Array.from(Array(item ? +item.stars : 0).keys());
   }
 
 }

@@ -98,7 +98,8 @@ export interface TourInfoDTO {
 export interface TourPackageDTO {
   parent: null;
   user_id: null;
-  id: number
+  offered: boolean;
+  id: number;
   hotel_id: string;
   services: {
     id: number;
