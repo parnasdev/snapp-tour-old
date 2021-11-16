@@ -8,7 +8,7 @@
            [matAutocomplete]="auto">
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
       <mat-option *ngFor="let option of filteredOptions | async" (blur)="changed(option)"  [value]="option.name">
-        {{option.name}} {{option.nameEn}}
+        {{option.name}}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>
