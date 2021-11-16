@@ -415,14 +415,6 @@ export class AddComponent implements OnInit {
     })
   }
 
-  cityDesChanged(): void {
-    // @ts-ignore
-    this.tourType = this.cities.find(x => x.id === +this.form.value.endCity_id)?.type;
-    this.cityID = this.form.value.endCity_id;
-    this.ToursForm.clear();
-    this.getHotels();
-    this.disableFields();
-  }
 
   getOriginTime(event: any): void {
     if (event) {
@@ -612,6 +604,22 @@ export class AddComponent implements OnInit {
     const item = this.hotels.find(x => x.id === +this.ToursForm.controls[index].controls.hotel_id.value);
     return Array.from(Array(item ? +item.stars : 0).keys());
   }
+
+  getEndCity(cityItemSelected: any): void {
+    // @ts-ignore
+    this.form.controls.endCity_id.setValue(cityItemSelected.id);
+    this.tourType = cityItemSelected.type;
+    this.cityID = this.form.value.endCity_id;
+    this.ToursForm.clear();
+    this.getHotels();
+    this.disableFields();
+  }
+
+  getStCity(cityItemSelected: any): void {
+    this.form.controls.stCity_id.setValue(cityItemSelected.id);
+
+  }
+
 
 }
 

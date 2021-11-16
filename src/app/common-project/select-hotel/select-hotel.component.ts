@@ -27,10 +27,7 @@ export class SelectHotelComponent implements OnInit,OnChanges {
   filteredOptions!: Observable<HotelListResponseDTO[]>;
 
   ngOnInit() {
-    this.filteredOptions = this.hotelFC.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value)),
-    );
+
   }
 
   private _filter(value: string): HotelListResponseDTO[] {
@@ -45,6 +42,10 @@ export class SelectHotelComponent implements OnInit,OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    this.filteredOptions = this.hotelFC.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value)),
+    );
     if (this.inCommingHotel) {
       this.hotelFC.setValue(this.inCommingHotel.name)
     }
