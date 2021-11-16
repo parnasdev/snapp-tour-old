@@ -14,7 +14,7 @@
 <div class="list-tour">
   <div class="title">
     <h2>لیست هتل ها</h2>
-    <a class="btn-add-tour" routerLink="/panel/hotel/add">اضافه</a>
+    <a class="btn-add-tour" routerLink="/panel/transfer/add">اضافه</a>
   </div>
   <div class="table-list-tour">
     <div class="header-list-tour">
@@ -33,8 +33,8 @@
         <!--        <span class="date-create">{{this.calService.convertDate1(tour.createdAt, 'fa') }}</span>-->
         <!--        <span class="status">{{ hotel.status }}</span>-->
         <div class="button-setting">
-          <a routerLink="/panel/hotel/edit/{{ transfer.id }}" class="edit-btn">ویرایش</a>
-          <a routerLink="/hotel/info" class="view-btn">نمایش</a>
+          <a routerLink="/panel/transfer/edit/{{ transfer.id }}" class="edit-btn">ویرایش</a>
+<!--          <a routerLink="/transfer/info" class="view-btn">نمایش</a>-->
           <!--          <button class="copy-btn">کپی</button>-->
           <button (click)="deleteHotel(transfer.id)" class="delete-btn">حذف</button>
         </div>

@@ -11,5 +11,7 @@
         {{option.name}} {{option.nameEn}}
       </mat-option>
     </mat-autocomplete>
+    <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>
+
   </mat-form-field>
 </form>

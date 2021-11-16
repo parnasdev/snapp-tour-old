@@ -1,1 +1,55 @@
-<p>edit works!</p>
+<div class="add-tour">
+
+  <form class="w-100">
+    <div class="box-info-tour">
+      <div class="info-tour-header">
+        <div class="right">
+          <label for="">ویرایش ایرلاین </label>
+          <h2>اطلاعات ایرلاین</h2>
+        </div>
+<!--        <div class="left">-->
+<!--          <div class="selectdiv">-->
+<!--            <label>-->
+<!--              <select [formControl]="statusFC">-->
+<!--                <option value="hide" selected> منتشر نشود</option>-->
+<!--                <option value="show">انتشار</option>-->
+<!--              </select>-->
+<!--            </label>-->
+<!--          </div>-->
+<!--        </div>-->
+      </div>
+      <div class="info-tour-body">
+        <div class="top">
+          <div class="item-info">
+            <label for="">عنوان ایرلاین</label>
+            <input [formControl]="nameFC" type="text">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="box-info-fly">
+      <div class="info-tour-header">
+        <div class="right">
+          <h2>آپلود لوگو</h2>
+        </div>
+      </div>
+      <div class="info-tour-body-upload">
+        <div class="top-one">
+          <div class="item-info w-100">
+            <button class="btn-upload-img" (click)="getThumbnail()">لوگو ایرلاین را آپلود کنید</button>
+          </div>
+          <div class="single-img-upload-parent" *ngIf="logo !== ''">
+            <img [src]="logo" width="100%" height="200" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="btn-parent-submit">
+
+      <button class="submit-tour" (click)="submit()">ویرایش</button>
+    </div>
+  </form>
+
+</div>
+

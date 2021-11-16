@@ -25,7 +25,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     TimePickerComponent,
     UploadSingleComponent,
     EditorComponent,
-    SelectHotelComponent
+    SelectHotelComponent,
+    SelectCityComponent
   ],
   imports: [
     CommonModule,

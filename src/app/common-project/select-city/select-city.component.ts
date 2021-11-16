@@ -16,8 +16,10 @@ export class SelectCityComponent implements OnInit {
   @Input() cities: CityResponseDTO[] = []
 
   @Input() callCity: boolean = false;
+  @Input() hasHotel: boolean = false;
+  @Input() hasTour: boolean = false;
   @Input() inCommingCity: any
-
+  isLoading = false
   constructor(
     public cityApi: CityApiService,
     public message: MessageService) {
@@ -55,20 +57,29 @@ export class SelectCityComponent implements OnInit {
   }
 
   getCities(): void {
+    this.isLoading = true
     const req: CityListRequestDTO = {
       type: null,
-      hasHotel: true,
-      hasTour: false,
+      hasHotel: this.hasHotel,
+      hasTour: this.hasTour,
       search: null,
       perPage: 20
     }
     this.cityApi.getCities(req).subscribe((res: any) => {
+      this.isLoading = false
       if (res.isDone) {
         this.cities = res.data;
+        this.filteredOptions = this.cityFC.valueChanges.pipe(
+          startWith(''),
+          map(value => this._filter(value)),
+        );
       }
     }, (error: any) => {
+      this.isLoading = false
       this.message.error()
     })
   }
-
+  optionChanged(item: any):void {
+    console.log('dddddd')
+  }
 }

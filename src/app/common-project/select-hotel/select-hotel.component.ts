@@ -17,7 +17,8 @@ export class SelectHotelComponent implements OnInit,OnChanges {
   @Input() hotels: any[] =  [];
   @Input() callHotel: boolean =  false;
   @Input() inCommingHotel : any
-
+  @Input() isAdmin = false
+  isLoading = false;
   constructor(
     public hotelApi: HotelApiService,
     public message: MessageService) {
@@ -54,17 +55,26 @@ export class SelectHotelComponent implements OnInit,OnChanges {
   }
 
   getHotels(): void {
+    this.isLoading = true
     const req: HotelRequestDTO = {
-      isAdmin: true,
+      isAdmin: this.isAdmin,
       paginate: false,
       city: null,
       search: null,
     }
     this.hotelApi.getHotels(req).subscribe((res: any) => {
+      this.isLoading = false
+
       if (res.isDone) {
         this.hotels = res.data;
+        this.filteredOptions = this.hotelFC.valueChanges.pipe(
+          startWith(''),
+          map(value => this._filter(value)),
+        );
       }
     }, (error: any) => {
+      this.isLoading = false
+
       this.message.error();
     })
   }

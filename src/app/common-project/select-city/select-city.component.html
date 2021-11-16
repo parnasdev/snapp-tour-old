@@ -7,9 +7,12 @@
            [formControl]="cityFC"
            [matAutocomplete]="auto">
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      <mat-option *ngFor="let option of filteredOptions | async" (blur)="changed(option)"  [value]="option.name">
+      <mat-option *ngFor="let option of filteredOptions | async" (blur)="changed(option)"
+                  [value]="option.name">
         {{option.name}}
       </mat-option>
     </mat-autocomplete>
+    <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>
+
   </mat-form-field>
 </form>
