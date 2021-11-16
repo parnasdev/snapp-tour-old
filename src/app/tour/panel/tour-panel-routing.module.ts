@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {ListComponent} from "./list/list.component";
 import {AddComponent} from "./add/add.component";
 import {EditComponent} from "./edit/edit.component";
+import {CopyComponent} from "./copy/copy.component";
 
 const routes: Routes = [
   {
@@ -15,6 +16,9 @@ const routes: Routes = [
   }, {
     path: 'edit/:slug',
     component: EditComponent
+  },{
+    path: 'copy/:slug',
+    component: CopyComponent
   }
 ];
 

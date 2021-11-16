@@ -20,12 +20,14 @@ const maskConfig: Partial<IConfig> = {
 };
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {PipesModule} from "../../common-project/pipes/pipes.module";
+import { CopyComponent } from './copy/copy.component';
 
 
 @NgModule({
   declarations: [AddComponent,
     EditComponent,
-    ListComponent],
+    ListComponent,
+    CopyComponent],
   imports: [
     CommonModule,
     TourPanelRoutingModule,
