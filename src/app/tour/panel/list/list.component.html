@@ -26,7 +26,7 @@
         <span class="date-create">{{this.calService.convertDate1(tour.createdAt, 'fa') }}</span>
         <span class="date-create">{{ this.calService.convertDate1(tour.expireDate, 'fa') }}</span>
         <span class="view">{{ tour.viewCount }}</span>
-        <span class="status">{{ tour.status }}</span>
+        <span class="status">{{ getStatus(tour.status) }}</span>
         <div class="button-setting">
           <a routerLink="/panel/tour/edit/{{tour.slug}}" class="edit-btn">ویرایش</a>
           <a routerLink="/tour/{{ tour.slug }}" class="view-btn">نمایش</a>
