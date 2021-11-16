@@ -4,7 +4,7 @@
     <div class="box-info-tour">
       <div class="info-tour-header">
         <div class="right">
-          <label for="">{{form.value.endCity.type ? 'تور داخلی' : 'تور خارجی'}}</label>
+          <label for="">{{ tourType ? 'تور داخلی' : 'تور خارجی'}}</label>
           <h2>اطلاعات تور</h2>
         </div>
         <div class="left">
@@ -26,6 +26,16 @@
           </span>
           <div *ngIf="errorService.hasError('status')">
             <span class="text-danger">{{errorService.getError('status')}}</span>
+          </div>
+        </div>
+        <div class="left">
+          <div class="selectdiv">
+            <label>
+              <select formControlName="defineTour" (change)="disableFields()">
+                <option [value]="false">یکجا</option>
+                <option [value]="true">باجزییات</option>
+              </select>
+            </label>
           </div>
         </div>
       </div>
@@ -55,11 +65,11 @@
             </div>
             <div class="select-info">
               <label for="">شهر مقصد</label>
-              <select formControlName="endCity" (change)="cityDesChanged()" name="city" id="city">
-                <option *ngFor="let city of cities" [value]="city">{{city.name}}</option>
+              <select formControlName="endCity_id" (change)="cityDesChanged()" name="city" id="city">
+                <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
               </select>
-              <div *ngIf="errorService.hasError('endCity')">
-                <span class="text-danger">{{errorService.getError('endCity')}}</span>
+              <div *ngIf="errorService.hasError('endCity_id')">
+                <span class="text-danger">{{errorService.getError('endCity_id')}}</span>
               </div>
             </div>
 
@@ -154,7 +164,7 @@
           <div class="item-info-timer">
             <label for="">ساعت پرواز رفت</label>
             <!--              <ngb-timepicker  [formControl]="originTimeFC" [meridian]="false"></ngb-timepicker>-->
-            <prs-time-picker (result)="getOriginTime($event)"></prs-time-picker>
+            <prs-time-picker [inCommingTime]="originTime" (result)="getOriginTime($event)"></prs-time-picker>
           </div>
           <div class="item-info-2">
             <div class="select-info w-100">
@@ -177,7 +187,7 @@
           </div>
           <div class="item-info-timer">
             <label for="">ساعت پرواز برگشت</label>
-            <prs-time-picker (result)="getDestTime($event)"></prs-time-picker>
+            <prs-time-picker [inCommingTime]="destTime" (result)="getDestTime($event)"></prs-time-picker>
           </div>
           <div class="item-info-2">
             <div class="select-info w-100">
@@ -193,20 +203,11 @@
       </div>
 
     </div>
-    <div class="box-info-fly">
+
+    <div class="box-info-fly" *ngIf="form.value.defineTour == 'true' && !tourType">
       <div class="info-tour-header">
         <div class="right">
           <h2>نرخ ارزها</h2>
-        </div>
-        <div class="left">
-          <div class="selectdiv">
-            <label>
-              <select formControlName="defineTour" (change)="disableFields()">
-                <option [value]="false">یکجا</option>
-                <option [value]="true">باجزییات</option>
-              </select>
-            </label>
-          </div>
         </div>
       </div>
       <div class="info-tour-body">
@@ -235,7 +236,7 @@
       </div>
     </div>
 
-    <div class="box-info-fly">
+    <div class="box-info-fly" *ngIf="form.value.defineTour == 'true'">
       <div class="info-tour-header">
         <div class="right">
           <h2>نرخ خدمات</h2>
@@ -273,7 +274,7 @@
               </select>
             </div>
           </div>
-          <div class="item-info-services">
+          <div class="item-info-services" *ngIf="!tourType">
             <div class="box-services">
               <label for="">نرخ ویزا(تومان/ارزی)</label>
               <input (keyup)="updatePackagePrices()" formControlName="visaRate" type="text" mask="separator"
@@ -292,7 +293,7 @@
       </div>
     </div>
 
-    <div class="box-info-fly">
+    <div class="box-info-fly" *ngIf="form.value.defineTour == 'true'">
       <div class="info-tour-header">
         <div class="right">
           <h2>نرخ پرواز</h2>
@@ -339,7 +340,7 @@
           <input type="text">
         </div>
         <!--            local tour-->
-        <div class="header-box" *ngIf="form.value.endCity.type">
+        <div class="header-box" *ngIf="tourType">
           <div class="package-item">#</div>
           <div class="package-item">نام هتل</div>
           <div class="package-item">خدمات</div>
@@ -352,7 +353,7 @@
           <div></div>
         </div>
         <!--            foreign tour-->
-        <div class="header-box-two" *ngIf="!form.value.endCity.type">
+        <div class="header-box-two" *ngIf="!tourType">
           <div class="package-item">#</div>
           <div class="package-item">نام هتل</div>
           <div class="package-item">{{ form.value.defineTour == 'true' ? 'نرخ / خدمات' : 'خدمات'}}</div>
@@ -375,9 +376,9 @@
               </div>
             </div>
             <div class="package-item">
-              <select name="" id="" formControlName="hotel">
+              <select name="" id="" formControlName="hotel_id" (change)="hotelChanged(i)">
                 <option *ngFor="let hotel of hotels"
-                        [value]="hotel">{{form.value.endCity.type ? hotel.name : hotel.nameEn}}</option>
+                        [value]="hotel.id">{{tourType ? hotel.name : hotel.nameEn}}</option>
               </select>
               <div class="parent-icon under-package d-flex align-items-center">
                 <i class="icon-star text-warning" *ngFor="let star of getStars(i)"></i>
@@ -386,7 +387,7 @@
             <div class="package-item">
               <div class="d-flex align-items-center w-100 parent-box-rate">
                 <div class="package-item rate-width"
-                     *ngIf="form.value.defineTour == 'true' && !form.value.endCity.type">
+                     *ngIf="form.value.defineTour == 'true' && !tourType">
                   <select (change)="updatePackagePrices()" formControlName="rate">
                     <option *ngIf="form.value.dollarRate" [value]="3">دلار</option>
                     <option *ngIf="form.value.euroRate" [value]="2">یورو</option>
@@ -403,7 +404,7 @@
             </div>
 
             <!--            local tour-->
-            <ng-template class="body-local" [ngIf]="form.value.endCity.type">
+            <ng-template class="body-local" [ngIf]="tourType">
               <div class="package-item">
                 <input (keyup)="calculatePrice('twin', $event, true, i)" type="text" formControlName="twin"
                        mask="separator" thousandSeparator=",">
@@ -441,7 +442,7 @@
               <div class="package-item"><i class="icon-trash text-danger" (click)="removePackage(i)"></i></div>
             </ng-template>
             <!--            foreign tour-->
-            <ng-template class="body-foreign" [ngIf]="!form.value.endCity.type">
+            <ng-template class="body-foreign" [ngIf]="!tourType">
               <div class="package-item">
                 <input (keyup)="calculatePrice('twin', $event, true, i)" type="text" formControlName="twin"
                        mask="separator" thousandSeparator=",">
@@ -482,7 +483,7 @@
           </div>
         </form>
         <div class="package-item">
-          <a (click)="addRow({})" class="btn-add-tour-fix">
+          <a (click)="addRow(0)" class="btn-add-tour-fix">
             <i class="icon-plus-squared-alt"></i>
             <span>اضافه</span>
           </a>
