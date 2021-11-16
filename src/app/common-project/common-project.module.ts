@@ -15,10 +15,12 @@ import {SelectHotelComponent} from './select-hotel/select-hotel.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from "@angular/material/input";
 import {MatFormFieldModule} from "@angular/material/form-field";
+import {AlertDialogComponent} from "./alert-dialog/alert-dialog.component";
+import {MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
-  declarations: [UploadFileComponent, UploaderComponent, GetLatLongComponent, GetLocationComponent, TimePickerComponent, UploadSingleComponent, MultipleUploadComponent, EditorComponent, SelectCityComponent, SelectHotelComponent],
+  declarations: [UploadFileComponent,AlertDialogComponent, UploaderComponent, GetLatLongComponent, GetLocationComponent, TimePickerComponent, UploadSingleComponent, MultipleUploadComponent, EditorComponent, SelectCityComponent, SelectHotelComponent],
   exports: [
     UploadFileComponent,
     GetLocationComponent,
@@ -33,6 +35,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatDialogModule,
     FormsModule,
     MatAutocompleteModule,
     ToolsModule,
