@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {MessageService} from "../../Core/Services/message.service";
 import {FormControl} from "@angular/forms";
 import {Observable} from "rxjs";
@@ -11,7 +11,7 @@ import {CityApiService} from "../../Core/Https/city-api.service";
   templateUrl: './select-city.component.html',
   styleUrls: ['./select-city.component.scss']
 })
-export class SelectCityComponent implements OnInit {
+export class SelectCityComponent implements OnInit, OnChanges {
   @Output() citySelected = new EventEmitter()
   @Input() cities: CityResponseDTO[] = []
 
@@ -20,6 +20,7 @@ export class SelectCityComponent implements OnInit {
   @Input() hasTour: boolean = false;
   @Input() inCommingCity: any
   isLoading = false
+
   constructor(
     public cityApi: CityApiService,
     public message: MessageService) {
@@ -29,10 +30,7 @@ export class SelectCityComponent implements OnInit {
   filteredOptions!: Observable<CityResponseDTO[]>;
 
   ngOnInit() {
-    this.filteredOptions = this.cityFC.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filter(value)),
-    );
+
   }
 
   private _filter(value: string): CityResponseDTO[] {
@@ -47,7 +45,11 @@ export class SelectCityComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.inCommingCity) {
+    this.filteredOptions = this.cityFC.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value)),
+    );
+    if (changes.inCommingCity) {
       this.cityFC.setValue(this.inCommingCity.name)
     }
 
@@ -79,7 +81,5 @@ export class SelectCityComponent implements OnInit {
       this.message.error()
     })
   }
-  optionChanged(item: any):void {
-    console.log('dddddd')
-  }
+
 }

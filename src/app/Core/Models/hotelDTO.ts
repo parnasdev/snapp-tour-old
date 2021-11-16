@@ -109,7 +109,6 @@ export interface HotelListResponseDTO {
   thumbnail: string
   city: string
   location: string
-
 }
 
 export interface ServiceDTO {

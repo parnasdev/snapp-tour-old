@@ -54,20 +54,17 @@
             <div class="select-info">
 
               <label for="">شهر مبدا</label>
-              <select formControlName="stCity_id" name="" id="">
-                <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
 
-              </select>
+              <prs-select-city [hasHotel]="true" [inCommingCity]="cities[0]" [cities]="cities" (citySelected)="getStCity($event)"></prs-select-city>
+
             </div>
             <div *ngIf="errorService.hasError('stCity_id')">
               <span class="text-danger">{{errorService.getError('stCity_id')}}</span>
             </div>
             <div class="select-info">
               <label for="">شهر مقصد</label>
-              <select formControlName="endCity_id" (change)="cityDesChanged()" name="" id="">
-                <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
 
-              </select>
+              <prs-select-city [hasHotel]="true" [inCommingCity]="cities[1]" [cities]="cities" (citySelected)="getEndCity($event)"></prs-select-city>
               <div *ngIf="errorService.hasError('endCity_id')">
                 <span class="text-danger">{{errorService.getError('endCity_id')}}</span>
               </div>
@@ -380,6 +377,7 @@
                 <option *ngFor="let hotel of hotels"
                         [value]="hotel.id">{{tourType ? hotel.name : hotel.nameEn}}</option>
               </select>
+
               <div class="parent-icon under-package d-flex align-items-center">
                 <i class="icon-star text-warning" *ngFor="let star of getStars(i)"></i>
               </div>
