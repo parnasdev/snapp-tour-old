@@ -27,6 +27,7 @@
 
 .title-tour .right .text h2 {
   font-size: 20px;
+  margin-bottom: 2px;
   color: var(--gray-color-light);
 }
 
@@ -343,8 +344,6 @@
 }
 
 
-
-
 //thumbnail-two
 
 .thumbnail-two {
@@ -599,14 +598,73 @@
     width: 100%;
     margin: 8px 0;
   }
-  .info-tour-view span{
-    font-size: 12px !important;
+  .info-tour-view span {
+    font-size: 10px !important;
   }
   .border-box {
     height: 50px;
   }
+
+  .title-fixed {
+    position: fixed !important;
+    top: 0;
+    width: 100%;
+    background-color: var(--white);
+    z-index: 100;
+    right: 0;
+    margin: 0 auto;
+    padding: 2rem 10px !important;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    overflow-x: hidden;
+    border-bottom: 2px solid #eee;
+  }
+  .title-tour {
+    display: none;
+  }
+  .title-tour-mobile{
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    border-bottom: 1px solid var(--light-color-two);
+    padding-bottom: 1rem;
+  }
+  .title-tour-mobile .right{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .title-tour-mobile .right img{
+    width: 25px;
+  }
+  .title-tour-mobile .right h2{
+    margin-bottom: 0;
+    margin-right: 8px;
+  }
+  .title-tour-mobile .left{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 12px;
+  }
+  .title-tour-mobile .left span{
+    font-size: 13px !important;
+    color: var(--gray-color-light);
+  }
+  .share{
+    margin-left: 8px;
+  }
   //end
 }
+
+
+.title-tour-mobile{
+  display: none;
+}
+
 
 //tablet
 @media only screen and (min-width: 450px) and (max-width: 868px) {
@@ -647,5 +705,34 @@
   .border-box {
     height: 60px;
   }
+  .title-fixed {
+    position: fixed !important;
+    top: 0;
+    width: 100%;
+    background-color: var(--white);
+    z-index: 100;
+    right: 0;
+    margin: 0 auto;
+    padding: 1rem 10px !important;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    overflow-x: hidden;
+  }
   //end
 }
+
+.title-fixed {
+  position: fixed !important;
+  top: 0;
+  width: 100%;
+  background-color: var(--white);
+  z-index: 100;
+  right: 0;
+  margin: 0 auto;
+  padding: 2rem 7.8rem;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+

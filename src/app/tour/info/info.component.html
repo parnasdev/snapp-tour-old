@@ -15,14 +15,32 @@
               </div>
             </div>
             <div class="left">
-              <div class="share">
+              <a class="share">
                 <img src="assets/img/Navigation.svg" width="20" alt="">
-                <a href="">اشراک گذاری !</a>
-              </div>
-              <div class="favorite">
+              </a>
+              <a class="favorite">
                 <img src="assets/img/Heart.svg" width="20" alt="">
-                <a href="">افزودن به علاقه مندی !</a>
+              </a>
+            </div>
+          </div>
+          <div class="title-tour-mobile">
+            <div class="right">
+              <img src="assets/img/Ticket-index.svg" width="30" alt="">
+              <div class="text">
+                <h2>{{ tourInfo.title }}</h2>
               </div>
+            </div>
+            <div class="left">
+              <span> شروع قیمت از :{{ getStarterPrice() | number}} تومان </span>
+              <div class="d-flex">
+                <a class="share">
+                  <img src="assets/img/Navigation.svg" width="20" alt="">
+                </a>
+                <a class="favorite">
+                  <img src="assets/img/Heart.svg" width="20" alt="">
+                </a>
+              </div>
+
             </div>
           </div>
           <div class="tour-main-parent">
@@ -142,7 +160,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-10 m-auto thumbnail-parent">
-          <div class="title-s2">
+          <div class="title-s2 title-section-two">
             <div class="text">
               <img src="assets/img/Document%20Align%20Center%201.svg" width="25" alt="">
               <h2>هتل های قابل ارائه تور</h2>
@@ -152,6 +170,7 @@
               <span>دانلود فایل PDF</span>
             </a>
           </div>
+
           <prs-thumbnail-tour-two class="w-100"></prs-thumbnail-tour-two>
         </div>
       </div>
