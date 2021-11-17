@@ -1,7 +1,17 @@
 <div class="list-tour">
   <div class="title">
     <h2>تورها</h2>
+    <mat-button-toggle-group name="fontStyle" [(ngModel)]="status"
+                             aria-label="Font Style">
+      <mat-button-toggle value="All">همه</mat-button-toggle>
+      <mat-button-toggle value="Show">نمایش</mat-button-toggle>
+      <mat-button-toggle value="Draft">پیش نویس</mat-button-toggle>
+      <mat-button-toggle value="Suspended">معلق/منقضی شده</mat-button-toggle>
+      <mat-button-toggle value="Pending">در انتظار</mat-button-toggle>
+    </mat-button-toggle-group>
     <a class="btn-add-tour" routerLink="/panel/tour/add">اضافه</a>
+
+
   </div>
   <div class="table-list-tour table-list-tour-desktop">
     <div class="header-list-tour">
@@ -17,14 +27,14 @@
       <span class="setting">تنظیمات</span>
     </div>
     <div class="body-list-tour" *ngIf="tours.length > 0">
-      <div class="item" *ngFor="let tour of tours; let i = index">
+      <div class="item" *ngFor="let tour of tours |tourStatusFilter : status; let i = index">
         <span class="id">{{ i + 1 }}</span>
         <span class="username">{{ tour.user.name + ' ' + tour.user.family }}</span>
         <span class="title-tour">{{ tour.title }}</span>
         <span class="from-to">{{ tour.stCity + '-' + tour.endCity }}</span>
         <span class="day">{{ tour.nightNum + '-' + tour.dayNum }}</span>
         <span class="date-create">{{this.calService.convertDate1(tour.createdAt, 'fa') }}</span>
-        <span class="date-create">{{ this.calService.convertDate1(tour.expireDate, 'fa') }}</span>
+        <span class="date-create">{{ this.calService.convertDate(tour.expireDate, 'fa') }}</span>
         <span class="view">{{ tour.viewCount }}</span>
         <span class="status">{{ getStatus(tour.status) }}</span>
         <div class="button-setting">

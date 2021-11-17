@@ -21,7 +21,7 @@ declare let $: any;
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-
+  status = 'All'
   tourReq: TourListRequestDTO = {
     city: null,
     paginate: true,
@@ -97,6 +97,10 @@ export class ListComponent implements OnInit {
 
   originCityTypeChange(): void {
     this.getOriginCities()
+  }
+
+  statusChanged():void {
+
   }
 
   deleteTour(slug: string): void {
