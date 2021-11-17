@@ -540,7 +540,7 @@
   .complete-details {
     width: 100%;
     margin-top: 8px;
-    height: 300px;
+    height: 350px;
   }
   .border-fix {
     display: none;
@@ -659,6 +659,27 @@
   }
   .share{
     margin-left: 8px;
+  }
+  .services-agency , .required-documents{
+    height: 300px;
+  }
+  .services-agency p , .required-documents p {
+    margin-top: 0;
+    overflow-y: auto;
+    height: 160px;
+  }
+  .services-agency h2 , .required-documents h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .complete-details p {
+    margin-top: 0;
+    overflow-y: auto;
+    height: 200px;
+  }
+  .complete-details h2 {
+    font-size: 16px;
+    margin-bottom: 10px;
   }
   //end
 }

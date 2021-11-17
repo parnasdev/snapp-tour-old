@@ -80,12 +80,12 @@ export class IndexComponent implements OnInit {
 
   slideNext() {
     // @ts-ignore
-    this.swiper.swiperRef.slideNext(100);
+    this.swiper.swiperRef.slideNext(200);
   }
 
   slidePrev() {
     // @ts-ignore
-    this.swiper.swiperRef.slidePrev(100);
+    this.swiper.swiperRef.slidePrev(200);
   }
 
   getCities(): void {
