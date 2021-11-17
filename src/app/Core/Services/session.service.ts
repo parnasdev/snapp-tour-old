@@ -15,6 +15,7 @@ export class SessionService {
   setUserToSession(obj: LoginResponseDTO): void {
     this.user = {
       user: {
+        id: obj.user.id,
         birthDay: obj.user.birthDay,
         family: obj.user.family,
         name: obj.user.name,
@@ -29,6 +30,11 @@ export class SessionService {
   getToken(): any {
     const user = localStorage.getItem('prs-hmz-user');
     return user ? JSON.parse(user).token : '';
+  }
+
+  getId(): any {
+    const user = localStorage.getItem('prs-hmz-user');
+    return user ? JSON.parse(user).user.id : '';
   }
 
 

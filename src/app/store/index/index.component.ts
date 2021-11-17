@@ -12,8 +12,9 @@ import {HotelApiService} from "../../Core/Https/hotel-api.service";
 import {HotelListResponseDTO, HotelRequestDTO} from "../../Core/Models/hotelDTO";
 import {BlogApiService} from "../../Core/Https/blog-api.service";
 import {PostReqDTO, PostResDTO} from "../../Core/Models/BlogDTO";
+
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
-import { SwiperComponent } from "swiper/angular";
+import {SwiperComponent} from "swiper/angular";
 
 declare let $: any;
 
@@ -25,7 +26,7 @@ declare let $: any;
 export class IndexComponent implements OnInit {
   isMobile;
   isTablet;
-  @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
+  @ViewChild('swiper', {static: false}) swiper?: SwiperComponent;
 
   tours: TourListResDTO[] = []
   cities: CityResponseDTO[] = []
@@ -33,6 +34,7 @@ export class IndexComponent implements OnInit {
   hotels: HotelListResponseDTO[] = [];
   blogs: PostResDTO[] = [];
   p = 1
+
   constructor(
     public api: TourApiService,
     public calenderServices: CalenderServices,
@@ -69,21 +71,22 @@ export class IndexComponent implements OnInit {
     })
 
 
-
     this.getTours();
     this.getCities()
     this.getHotels()
     this.getBlog()
   }
 
-  slideNext(){
+  slideNext() {
     // @ts-ignore
     this.swiper.swiperRef.slideNext(100);
   }
-  slidePrev(){
+
+  slidePrev() {
     // @ts-ignore
     this.swiper.swiperRef.slidePrev(100);
   }
+
   getCities(): void {
     const req: CityListRequestDTO = {
       type: null,
@@ -104,7 +107,7 @@ export class IndexComponent implements OnInit {
 
   getHotels(): void {
     const req: HotelRequestDTO = {
-      isAdmin: true,
+      isAdmin: false,
       paginate: false,
       city: this.hotelCityFC.value,
       search: null,

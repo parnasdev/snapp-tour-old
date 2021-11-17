@@ -4,6 +4,8 @@ import {SessionService} from "../../Core/Services/session.service";
 import {AuthApiService} from "../../Core/Https/auth-api.service";
 import {Router} from "@angular/router";
 import {CheckErrorService} from "../../Core/Services/check-error.service";
+import {UserApiService} from "../../Core/Https/user-api.service";
+import {PermissionDTO} from "../../Core/Models/UserDTO";
 
 declare let $: any;
 
@@ -13,9 +15,12 @@ declare let $: any;
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+
   isLoading = false
+  userPermissions: PermissionDTO[] = [];
 
   constructor(public session: SessionService,
+              public userApi: UserApiService,
               public api: AuthApiService,
               public router: Router,
               public message: MessageService,
@@ -45,6 +50,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.toggleMenu()
+    this.getUserPermission();
   }
 
   toggleMenu(): void {
@@ -79,6 +85,28 @@ export class SidebarComponent implements OnInit {
 
   showMessage() {
     this.message.custom('این گزینه در حال بروزرسانی می باشد')
+  }
+
+  getUserPermission(): void {
+    this.userApi.getUserPermission().subscribe((res: any) => {
+      if (res.isDone) {
+        this.userPermissions = res.data;
+      } else {
+        this.message.custom(res.message);
+      }
+    }, (error: any) => {
+      this.message.error();
+      this.checkError.check(error);
+    });
+
+  }
+
+  checkPermission(item: string) {
+    return !!this.userPermissions.find(x => x.name.split('.')[0] === item)
+  }
+
+  checkItemPermission(item: string) {
+    return !!this.userPermissions.find(x => x.name === item)
   }
 
   logOut(): void {
