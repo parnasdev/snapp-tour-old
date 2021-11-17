@@ -42,7 +42,7 @@ export class ListComponent implements OnInit {
   getList(): void {
     this.hotelList = [];
     this.hotelReq = {
-      isAdmin: true,
+      isAdmin: false,
       paginate: true,
       city: +this.cityFC.value,
       search: this.searchFC.value

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, EventEmitter,Output} from '@angular/core';
+import {Component, Input, OnInit, EventEmitter, Output} from '@angular/core';
 import {ServiceDTO} from "../../../Core/Models/hotelDTO";
 
 @Component({
@@ -7,20 +7,22 @@ import {ServiceDTO} from "../../../Core/Models/hotelDTO";
   styleUrls: ['./services.component.scss']
 })
 export class ServicesComponent implements OnInit {
-@Input() services : ServiceDTO[] = []
+  @Input() services: ServiceDTO[] = []
   @Output() result = new EventEmitter();
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
-  changeChecked():void {
-  let result: ServiceDTO[] = []
-  this.services.forEach(x => {
-    if (x.checked) {
-      result.push(x);
-    }
-  })
-    console.log(result)
+
+  changeChecked(): void {
+    let result: ServiceDTO[] = []
+    this.services.forEach(x => {
+      if (x.checked) {
+        result.push(x);
+      }
+    })
     this.result.emit(result);
   }
 }

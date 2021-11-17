@@ -1,6 +1,6 @@
 export interface AuthRequestDTO {
   password?: string;
-  code? :string;
+  code?: string;
   phone?: string;
   tokenType?: string;
 }
@@ -11,6 +11,7 @@ export interface LoginResponseDTO {
 }
 
 export interface UserDTO {
+  id: number;
   role: string;
   phone: string;
   username: string;

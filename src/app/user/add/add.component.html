@@ -12,21 +12,21 @@
           <div class="item-info">
             <label for="">نام</label>
             <input formControlName="name" type="text">
-            <div  *ngIf="errorService.hasError('name')">
+            <div *ngIf="errorService.hasError('name')">
               <span class="text-danger">{{errorService.getError('name')}}</span>
             </div>
           </div>
           <div class="item-info">
             <label for="">نام خانوادگی</label>
             <input formControlName="family" type="text">
-            <div  *ngIf="errorService.hasError('family')">
+            <div *ngIf="errorService.hasError('family')">
               <span class="text-danger">{{errorService.getError('family')}}</span>
             </div>
           </div>
           <div class="item-info">
             <label for="">شماره همراه</label>
             <input formControlName="phone" type="text">
-            <div  *ngIf="errorService.hasError('phone')">
+            <div *ngIf="errorService.hasError('phone')">
               <span class="text-danger">{{errorService.getError('phone')}}</span>
             </div>
           </div>
@@ -36,17 +36,17 @@
           <div class="item-info">
             <label for="">تاریخ تولد</label>
             <mat-form-field class="example-full-width" appearance="fill">
-              <input matInput [matDatepicker]="picker1" formControlName="birthDate" [min]="minDate" (click)="picker1.open()">
+              <input matInput [matDatepicker]="picker1" formControlName="birthDate" (click)="picker1.open()">
               <mat-datepicker #picker1></mat-datepicker>
             </mat-form-field>
-            <div  *ngIf="errorService.hasError('birthDate')">
+            <div *ngIf="errorService.hasError('birthDate')">
               <span class="text-danger">{{errorService.getError('birthDate')}}</span>
             </div>
           </div>
           <div class="item-info">
             <label for="">گذرواژه</label>
             <input formControlName="password" type="text">
-            <div  *ngIf="errorService.hasError('password')">
+            <div *ngIf="errorService.hasError('password')">
               <span class="text-danger">{{errorService.getError('password')}}</span>
             </div>
           </div>
@@ -56,26 +56,23 @@
               <select formControlName="role_id" name="" id="">
                 <option *ngFor="let role of roles" value="{{ role.id }}">{{ role.label }}</option>
               </select>
-              <div  *ngIf="errorService.hasError('role_id')">
+              <div *ngIf="errorService.hasError('role_id')">
                 <span class="text-danger">{{errorService.getError('role_id')}}</span>
               </div>
             </div>
             <div class="item-info w-47">
               <label for="">نام کاربری</label>
               <input formControlName="username" type="text">
-              <div  *ngIf="errorService.hasError('username')">
+              <div *ngIf="errorService.hasError('username')">
                 <span class="text-danger">{{errorService.getError('username')}}</span>
               </div>
             </div>
           </div>
 
         </div>
-        <div class="checkbox-parent permission">
-          <mat-checkbox *ngFor="let item of permissions" formControlName="permission" (change)="changeChecked()" [(ngModel)]="item.checked">
-            {{item.name}}
-          </mat-checkbox>
-        </div>
-        <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="submit()" [isLoading]="isLoading" [label]="'ایجاد کاربر'"></prs-btn>
+        <prs-permissions (setPermissions)="getPermissions($event)"></prs-permissions>
+        <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="submit()" [isLoading]="isLoading"
+                 [label]="'ایجاد کاربر'"></prs-btn>
       </div>
     </div>
   </form>

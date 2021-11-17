@@ -12,7 +12,7 @@ export class PanelGuardService implements CanActivate  {
   }
 
   canActivate(): any {
-    if (this.session.isLoggedIn() && (this.role === 'Admin')) {
+    if (this.session.isLoggedIn() && (this.role === 'Admin' || this.role === 'Staff')) {
       return true;
     } else {
       this.router.navigate(['/no-access']);

@@ -30,12 +30,25 @@
         <div class="button-setting">
           <a routerLink="/panel/tour/edit/{{tour.slug}}" class="edit-btn">ویرایش</a>
           <a routerLink="/tour/{{ tour.slug }}" class="view-btn">نمایش</a>
-                    <a routerLink="/tour/copy/{{ tour.slug }}" class="copy-btn">کپی</a>
+          <a routerLink="/tour/copy/{{ tour.slug }}" class="copy-btn">کپی</a>
           <button (click)="deleteClicked(tour.slug)" class="delete-btn">حذف</button>
         </div>
       </div>
     </div>
   </div>
+  <div>
+    <pagination-controls
+      *ngIf="!isLoading && paginate.lastPage > 1"
+      class="pagination-control"
+      (pageChange)="onPageChanged($event)"
+      previousLabel="قبلی"
+      nextLabel="بعدی"
+      screenReaderPaginationLabel="صفحه بندی"
+      screenReaderPageLabel="صفحه"
+      screenReaderCurrentLabel="شما در صفحه ی">
+    </pagination-controls>
+  </div>
+
   <div class="table-list-tour-mobile">
     <div class="list-tour-box">
       <label class="user-id" for="">شماره شناسه : 2</label>
@@ -58,10 +71,10 @@
         </div>
       </div>
       <a data-toggle="collapse" class="btn-details-more" href="#one">جزییات بیشتر
-      <i class="icon-down-open"></i>
+        <i class="icon-down-open"></i>
       </a>
       <div id="one" class="box-details-more collapse">
-        <div  class="item-list-tour">
+        <div class="item-list-tour">
           <div class="item-tour">
             <span class="title">شب و روز :</span>
             <span class="text">3-4</span>
@@ -80,13 +93,14 @@
           </div>
         </div>
         <div class="operation">
-          <a  class="edit-btn">ویرایش</a>
-          <a  class="view-btn">نمایش</a>
-          <button  class="delete-btn">حذف</button>
+          <a class="edit-btn">ویرایش</a>
+          <a class="view-btn">نمایش</a>
+          <button class="delete-btn">حذف</button>
         </div>
 
       </div>
-      </div>
     </div>
   </div>
+
+</div>
 
