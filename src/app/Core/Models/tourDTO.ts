@@ -122,6 +122,7 @@ export interface HotelDTO {
   slugEn: string;
   stars: string;
   thumbnail: string;
+  location: string;
 }
 
 export interface DiscountsDTO {

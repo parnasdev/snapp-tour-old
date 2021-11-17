@@ -28,7 +28,7 @@ export class InfoComponent implements OnInit {
   isTablet;
   thumbsSwiper: any;
   loading = false;
-  tourSlug = 'تور-چهار-روزه-ی-استانبول';
+  tourSlug = '';
   tourInfo!: TourInfoDTO;
 
   constructor(public tourApiService: TourApiService,
@@ -66,10 +66,6 @@ export class InfoComponent implements OnInit {
       this.message.error();
       this.checkErrorService.check(error);
     });
-  }
-
-  getStars(count: string): number[]{
-    return Array.from(Array(+count).keys());
   }
 
   getStarterPrice(): number{
