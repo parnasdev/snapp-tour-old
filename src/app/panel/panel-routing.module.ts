@@ -34,6 +34,9 @@ const routes: Routes = [
       {
         path: 'blog',
         loadChildren: () => import('../blog/panel/blog-panel.module').then(m => m.BlogPanelModule)
+      },{
+        path: 'setting',
+        loadChildren: () => import('../setting/setting.module').then(m => m.SettingModule)
       }
     ]
   }
