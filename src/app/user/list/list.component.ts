@@ -1,9 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {TourListRequestDTO, TourListResDTO} from "../../Core/Models/tourDTO";
-import {CityListRequestDTO, CityResponseDTO} from "../../Core/Models/cityDTO";
-import {FormControl} from "@angular/forms";
-import {TourApiService} from "../../Core/Https/tour-api.service";
-import {CityApiService} from "../../Core/Https/city-api.service";
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {CheckErrorService} from "../../Core/Services/check-error.service";
 import {CalenderServices} from "../../Core/Services/calender-service";
@@ -61,7 +56,7 @@ export class ListComponent implements OnInit {
     });
   }
 
-  deleteUser(userId: number): void{
+  deleteUser(userId: number): void {
     this.loading = true;
     this.userApi.deleteUser(userId).subscribe((res: any) => {
       if (res.isDone) {
@@ -76,6 +71,19 @@ export class ListComponent implements OnInit {
       this.message.error();
       this.checkErrorService.check(error);
     });
+  }
+
+  getRoleFa(role: string) {
+    switch (role) {
+      case 'Admin':
+        return 'ادمین'
+      case 'Staff':
+        return 'کارمند'
+      case 'User':
+        return 'کاربر'
+      default:
+        return '-'
+    }
   }
 
 }
