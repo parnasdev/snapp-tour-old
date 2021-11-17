@@ -6,7 +6,7 @@ import { ListComponent } from './list/list.component';
 import { SetComponent } from './set/set.component';
 import {CommonProjectModule} from "../common-project/common-project.module";
 import {ToolsModule} from "../tools/tools/tools.module";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonToggle, MatButtonToggleModule} from "@angular/material/button-toggle";
 
@@ -21,6 +21,7 @@ import {MatButtonToggle, MatButtonToggleModule} from "@angular/material/button-t
     CitiesRoutingModule,
     CommonProjectModule,
     ReactiveFormsModule,
+    FormsModule,
     MatButtonToggleModule,
     MatDialogModule,
     ToolsModule

@@ -17,21 +17,34 @@ import {MatInputModule} from "@angular/material/input";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {AlertDialogComponent} from "./alert-dialog/alert-dialog.component";
 import {MatDialogModule} from "@angular/material/dialog";
-import { ChipsComponent } from './chips/chips.component';
+import {ChipsComponent} from './chips/chips.component';
 
 
 @NgModule({
-  declarations: [UploadFileComponent,AlertDialogComponent, UploaderComponent, GetLatLongComponent, GetLocationComponent, TimePickerComponent, UploadSingleComponent, MultipleUploadComponent, EditorComponent, SelectCityComponent, SelectHotelComponent, ChipsComponent],
-    exports: [
-        UploadFileComponent,
-        GetLocationComponent,
-        TimePickerComponent,
-        UploadSingleComponent,
-        EditorComponent,
-        SelectHotelComponent,
-        SelectCityComponent,
-        ChipsComponent
-    ],
+  declarations: [
+    UploadFileComponent,
+    AlertDialogComponent,
+    UploaderComponent,
+    GetLatLongComponent,
+    GetLocationComponent,
+    TimePickerComponent,
+    UploadSingleComponent,
+    MultipleUploadComponent,
+    EditorComponent,
+    SelectCityComponent,
+    SelectHotelComponent,
+    ChipsComponent,
+  ],
+  exports: [
+    UploadFileComponent,
+    GetLocationComponent,
+    TimePickerComponent,
+    UploadSingleComponent,
+    EditorComponent,
+    SelectHotelComponent,
+    SelectCityComponent,
+    ChipsComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -42,7 +55,7 @@ import { ChipsComponent } from './chips/chips.component';
     MatDialogModule,
 
     ToolsModule,
-  ], entryComponents: [UploadSingleComponent,AlertDialogComponent]
+  ], entryComponents: [UploadSingleComponent, AlertDialogComponent]
 })
 export class CommonProjectModule {
 }

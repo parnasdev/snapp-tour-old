@@ -1,0 +1,5 @@
+<div class="d-flex">
+  <div *ngFor="let item of logs">
+    <span>{{item.user.name + ' ' +item.user.family + ' / ' + item.message + ' / '+calenderServices.convertDateAndTime(item.createdAt,'fa')}}</span>
+  </div>
+</div>

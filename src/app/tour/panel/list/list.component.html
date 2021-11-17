@@ -31,6 +31,7 @@
           <a routerLink="/panel/tour/edit/{{tour.slug}}" class="edit-btn">ویرایش</a>
           <a routerLink="/tour/{{ tour.slug }}" class="view-btn">نمایش</a>
           <a routerLink="/tour/copy/{{ tour.slug }}" class="copy-btn">کپی</a>
+          <button (click)="openLogs(tour.id)" class="log-btn">لاگ ها</button>
           <button (click)="deleteClicked(tour.slug)" class="delete-btn">حذف</button>
         </div>
       </div>
