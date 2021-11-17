@@ -30,7 +30,6 @@ export class EditComponent implements OnInit {
 
   selectedTags: string[] = []
   thumbnail = '';
-  tags: string[] = [];
 
   postReq: PostSetReqDTO = {
     title: '',
@@ -70,6 +69,7 @@ export class EditComponent implements OnInit {
   postForm = this.fb.group({
     title: new FormControl(''),
     slug: new FormControl(''),
+    tags: new FormControl(),
     body: new FormControl(''),
     description: new FormControl(''),
     status: new FormControl('Show'),
@@ -87,11 +87,6 @@ export class EditComponent implements OnInit {
     this.generateSlug();
   }
 
-
-  // chips
-  onCustomItemCreating(args: any) {
-    this.tags.unshift(args.text);
-  }
 
   submit(): void {
     if (this.postForm.controls.body.value !== '') {
@@ -154,7 +149,7 @@ export class EditComponent implements OnInit {
       categories: [2],
       description: this.postForm.value.description,
       status: 'Show',
-      tags: this.tags,
+      tags: this.postForm.value.tags,
       thumbnail: this.thumbnail
     }
   }
@@ -195,5 +190,9 @@ export class EditComponent implements OnInit {
     } else {
 
     }
+  }
+
+  getTags(tags: string[]): void {
+    this.postForm.controls.tags.setValue(tags);
   }
 }

@@ -18,7 +18,7 @@
         <span class="title-tour">{{ post.title }}</span>
         <span class="username">{{ post.user.name + ' ' + post.user.family }}</span>
         <span class="date-create">{{ calService.convertDate1(post.createdAt, 'fa') }}</span>
-        <span class="status">{{ post.status }}</span>
+        <span class="status">{{ getStatus(post.status) }}</span>
         <div class="button-setting">
           <a routerLink="/panel/blog/edit/{{post.slug}}" class="edit-btn">ویرایش</a>
           <a routerLink="/blog/{{ post.slug }}" class="view-btn">نمایش</a>
