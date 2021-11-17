@@ -258,12 +258,35 @@ footer {
 
 .text-parnas-design .parnas-agency {
   font-size: 13px !important;
-  color: var(--base-color);
+  color: var(--white);
   margin-right: 4px;
+}
+.parnas-footer{
+  transition: all 0.8s;
 }
 .parnas-footer:hover .text-parnas-design{
   display: flex !important;
   align-items: center;
+  background-color: var(--base-color);
+  color: var(--white) !important;
+  border-radius: 8px;
+  height: 35px;
+  padding: 0 8px;
+  justify-content: flex-start;
+  position: relative;
+  transition: all 0.8s;
+}
+.parnas-footer:hover .text-parnas-design:after{
+  content: "\e80e";
+  position: absolute;
+  left: -6px;
+  margin-top: 1px;
+  font-family: fontello !important;
+  color: var(--base-color);
+  font-size: 20px !important;
+}
+.parnas-footer:hover .text-parnas-design span ,.parnas-footer:hover .text-parnas-design span{
+  color: var(--white) !important;
 }
 .text-parnas-design{
   margin-left: 10px;
