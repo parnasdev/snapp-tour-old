@@ -148,15 +148,22 @@
                   </select>
                 </div>
               </div>
+              <div class="parent-btn-slider">
+                <button class="btn-next-slider" (click)="slideNext()">
+                  <i class="icon-right-open"></i>
+                </button>
+                <button class="btn-prev-slider" (click)="slidePrev()">
+                  <i class="icon-left-open"></i>
+                </button>
+              </div>
             </div>
             <div class="bottom">
               <div class="border-right"></div>
               <div class="border-left"></div>
             </div>
           </div>
-          <swiper class="swiper-hotel"
+          <swiper #swiper class="swiper-hotel"
                   [slidesPerView]=" this.isMobile? 1 :(isTablet ? 2:4)"
-                  [navigation]="true"
                   [spaceBetween]="30">
             <ng-template swiperSlide *ngFor="let hotel of hotels">
               <div [style.background-image]="'url(' + hotel.thumbnail + ')'"
@@ -210,7 +217,7 @@
               <div class="border-left"></div>
             </div>
           </div>
-          <swiper #swiper  class="swiper-sort-city"
+          <swiper  class="swiper-sort-city"
                   [slidesPerView]=" this.isMobile? 2 :(isTablet ? 3:5)"
                   [navigation]="true"
                   [spaceBetween]="30">
@@ -229,8 +236,7 @@
               </div>
             </ng-template>
           </swiper>
-          <button (click)="slideNext()">Next slide</button>
-          <button (click)="slidePrev()">Prev slide</button>
+
         </div>
       </div>
     </div>
