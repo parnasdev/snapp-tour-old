@@ -12,7 +12,7 @@ export interface TourListRequestDTO {
 export interface TourListResDTO {
   title: string;
   createdAt: string;
-  id?:number
+  id?: number
   dayNum: number;
   endCity: string;
   expireDate: string;
@@ -36,6 +36,7 @@ export interface TourSetRequestDTO {
   endCity_id: string;
   nightNum: number;
   dayNum: number;
+  offered: boolean;
   TransferType: number;
   transfers: TourTransferDTO[];
   enDate: string;

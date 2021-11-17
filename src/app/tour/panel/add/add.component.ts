@@ -82,6 +82,7 @@ export class AddComponent implements OnInit {
     endCity_id: new FormControl('', Validators.required),
     nightNum: new FormControl('1', Validators.required),
     dayNum: new FormControl('لطفا تعداد شب را انتخاب کنید', Validators.required),
+    offered: new FormControl(),
     TransferType: new FormControl(),
     enDate: new FormControl('', Validators.required),
     stDate: new FormControl('', Validators.required),
@@ -261,6 +262,7 @@ export class AddComponent implements OnInit {
       stCity_id: this.form.value.stCity_id,
       endCity_id: this.form.value.endCity_id,
       nightNum: this.form.value.nightNum,
+      offered: this.form.value.offered,
       dayNum: (+this.form.value.nightNum) + 1,
       transfers: [
         {

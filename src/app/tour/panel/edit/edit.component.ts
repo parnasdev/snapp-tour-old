@@ -143,6 +143,7 @@ export class EditComponent extends AddComponent implements OnInit {
     this.form.controls.title.setValue(this.info.title)
     this.form.controls.nightNum.setValue(this.info.nightNum)
     this.form.controls.dayNum.setValue(this.info.dayNum)
+    this.form.controls.offered.setValue(this.info.offered)
     this.form.controls.TransferType.setValue(this.info.TransferType)
     this.form.controls.enDate.setValue(this.info.enDate)
     this.form.controls.stDate.setValue(this.info.stDate)

@@ -103,10 +103,6 @@
           </div>
         </div>
         <div class="bottom">
-          <div class="item-info">
-            <label for="">تاریخ ورود به هتل</label>
-            <input type="text">
-          </div>
 
           <div class="item-info">
             <label for="">تاریخ ورود به هتل</label>
@@ -140,6 +136,10 @@
             <div *ngIf="errorService.hasError('expireDate')">
               <span class="text-danger">{{errorService.getError('expireDate')}}</span>
             </div>
+          </div>
+          <div class="item-info">
+            <label for="">تور ویژ</label>
+            <input formControlName="offered" type="checkbox">
           </div>
         </div>
       </div>
