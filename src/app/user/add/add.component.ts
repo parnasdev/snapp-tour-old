@@ -21,7 +21,6 @@ export class AddComponent implements OnInit {
   //public Variable
   isMobile: any;
   isLoading = false;
-  minDate = new Date(); //datepicker
   permissions: PermissionDTO[] = [];
   roles: UserRolesDTO[] = [];
   userReq: UserCreateReq = {
@@ -66,7 +65,6 @@ export class AddComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRoles();
-    this.getUserPermissions();
   }
 
   getRoles() {
@@ -82,24 +80,7 @@ export class AddComponent implements OnInit {
     });
   }
 
-  getUserPermissions() {
-    this.userApi.getUserPermission().subscribe((res: any) => {
-      if (res.isDone) {
-
-        res.data.forEach((x: any) => {
-          this.permissions.push({name: x, checked: false})
-        })
-      } else {
-        this.message.custom(res.message);
-      }
-    }, (error: any) => {
-      this.message.error();
-      this.checkErrorService.check(error);
-    });
-  }
-
-
-  private markFormGroupTouched(formGroup: any) {
+  markFormGroupTouched(formGroup: any) {
     (<any>Object).values(formGroup.controls).forEach((control: any) => {
       control.markAsTouched();
 
@@ -145,17 +126,7 @@ export class AddComponent implements OnInit {
     });
   }
 
-  changeChecked(): void {
-    let result: string[] = []
-    console.log(this.permissions)
-    this.permissions.forEach(x => {
-      if (x.checked) {
-        result.push(x.name);
-      }
-    })
-    this.setPermissions = result
-    console.log(this.setPermissions)
-
+  getPermissions(permissions: string[]) {
+    this.setPermissions = permissions;
   }
-
 }

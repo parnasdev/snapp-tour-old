@@ -1,0 +1,15 @@
+.permission {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.checkbox-parent{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+.checkbox-parent mat-checkbox{
+  margin-top: 12px;
+}
+:host::ng-deep .mat-checkbox-label{
+  margin-right: 10px !important;
+}

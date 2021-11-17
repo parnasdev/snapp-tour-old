@@ -9,6 +9,7 @@ export interface UserResDTO {
   family: string;
   id: number;
   name: string;
+  username: string;
   phone: string;
   role: string;
 }
@@ -33,6 +34,7 @@ export interface UserRolesDTO {
 
 export interface PermissionDTO {
   name: string;
+  label: string;
   checked: boolean | null;
 }
 

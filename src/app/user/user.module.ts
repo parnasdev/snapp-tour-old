@@ -15,6 +15,7 @@ import {MaterialModule} from "../common-project/persianDatePickerAdapter/materia
 import {CommonProjectModule} from "../common-project/common-project.module";
 import {ToolsModule} from "../tools/tools/tools.module";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { PermissionsComponent } from './permissions/permissions.component';
 
 
 @NgModule({
@@ -22,21 +23,22 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     AddComponent,
     ListComponent,
     EditComponent,
+    PermissionsComponent,
   ],
-  imports: [
-    CommonModule,
-    UserRoutingModule,
-    FormsModule,
-    MatButtonToggleModule,
-    ReactiveFormsModule,
-    MatDatepickerModule,
-    MatCheckboxModule,
-    MatFormFieldModule,
-    MatNativeDateModule,
-    MatInputModule,
-    MaterialModule,
-    CommonProjectModule,
-    ToolsModule,
-  ]
+    imports: [
+        CommonModule,
+        UserRoutingModule,
+        FormsModule,
+        MatButtonToggleModule,
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        MatCheckboxModule,
+        MatFormFieldModule,
+        MatNativeDateModule,
+        MatInputModule,
+        MaterialModule,
+        CommonProjectModule,
+        ToolsModule,
+    ]
 })
 export class UserModule { }
