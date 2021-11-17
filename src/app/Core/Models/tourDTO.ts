@@ -12,6 +12,7 @@ export interface TourListRequestDTO {
 export interface TourListResDTO {
   title: string;
   createdAt: string;
+  id?:number
   dayNum: number;
   endCity: string;
   expireDate: string;
@@ -122,6 +123,7 @@ export interface HotelDTO {
   slugEn: string;
   stars: string;
   thumbnail: string;
+  location: string;
 }
 
 export interface DiscountsDTO {

@@ -11,6 +11,7 @@ import {ListComponent} from './list/list.component';
   declarations: [
     InfoComponent,
     ListComponent,
+
   ],
   exports: [
     InfoComponent

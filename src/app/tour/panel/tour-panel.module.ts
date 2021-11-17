@@ -15,38 +15,41 @@ import {CommonProjectModule} from "../../common-project/common-project.module";
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {IConfig, NgxMaskModule} from "ngx-mask";
 import {ToolsModule} from "../../tools/tools/tools.module";
+
 const maskConfig: Partial<IConfig> = {
   validation: false,
 };
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {PipesModule} from "../../common-project/pipes/pipes.module";
-import { CopyComponent } from './copy/copy.component';
+import {CopyComponent} from './copy/copy.component';
 import {NgxPaginationModule} from "ngx-pagination";
+import {LogsComponent} from "./logs/logs.component";
 
 
 @NgModule({
   declarations: [AddComponent,
     EditComponent,
     ListComponent,
+    LogsComponent,
     CopyComponent],
-    imports: [
-        CommonModule,
-        TourPanelRoutingModule,
-        FormsModule,
-        MatButtonToggleModule,
-        ReactiveFormsModule,
-        MatDatepickerModule,
-        DragDropModule,
-        MatFormFieldModule,
-        MatNativeDateModule,
-        MatInputModule,
-        MaterialModule,
-        CommonProjectModule,
-        NgxMaskModule.forRoot(maskConfig),
-        ToolsModule,
-        PipesModule,
-        NgxPaginationModule,
-    ]
+  imports: [
+    CommonModule,
+    TourPanelRoutingModule,
+    FormsModule,
+    MatButtonToggleModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    DragDropModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MaterialModule,
+    CommonProjectModule,
+    NgxMaskModule.forRoot(maskConfig),
+    ToolsModule,
+    PipesModule,
+    NgxPaginationModule,
+  ], entryComponents: [LogsComponent]
 })
 export class TourPanelModule {
 }

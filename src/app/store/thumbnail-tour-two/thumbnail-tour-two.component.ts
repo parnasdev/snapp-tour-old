@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {TourInfoDTO} from "../../Core/Models/tourDTO";
+import {TourInfoDTO, TourPackageDTO} from "../../Core/Models/tourDTO";
 
 @Component({
   selector: 'prs-thumbnail-tour-two',
@@ -8,7 +8,9 @@ import {TourInfoDTO} from "../../Core/Models/tourDTO";
 })
 export class ThumbnailTourTwoComponent implements OnInit {
 
-  @Input() tourInfo!: TourInfoDTO;
+  @Input() packages: TourPackageDTO[] = [];
+  @Input() tourType = false;
+  @Input() defineTour = false;
 
   constructor() { }
 

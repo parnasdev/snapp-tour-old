@@ -37,4 +37,5 @@ export class CommonApiService {
     const strUrl = this.serverControllerName + 'getTransferTypes';
     return this.http.get<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
   }
+
 }

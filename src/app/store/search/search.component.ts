@@ -36,10 +36,10 @@ export class SearchComponent implements OnInit {
 
   getCities(): void {
     this.cityReq = {
-      type: false,
+      type: null,
       perPage: 20,
       search: null,
-      hasTour: false,
+      hasTour: true,
       hasHotel: false,
     }
     this.cityApiService.getCities(this.cityReq).subscribe((res: any) => {
