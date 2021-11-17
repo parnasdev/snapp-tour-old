@@ -10,7 +10,7 @@ export class ChipsComponent implements OnInit, OnChanges {
   textFC = new FormControl('', Validators.required);
   list: any[] = [];
   @Output() result = new EventEmitter()
-  @Input() inComing = []
+  @Input() inComing: string[] = []
   @Input() placeHolder = 'کلمه خود را وارد کنید سپس دکمه Enter را بزنید'
 
   constructor() {

@@ -11,6 +11,7 @@ import {CityApiService} from "../../../Core/Https/city-api.service";
 import {FormControl} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";
 import {AlertDialogComponent, AlertDialogDTO} from "../../../common-project/alert-dialog/alert-dialog.component";
+import {LogsComponent} from "../logs/logs.component";
 
 declare let $: any;
 
@@ -20,7 +21,7 @@ declare let $: any;
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-
+  status = 'All'
   tourReq: TourListRequestDTO = {
     city: null,
     paginate: true,
@@ -42,6 +43,7 @@ export class ListComponent implements OnInit {
   constructor(public tourApiService: TourApiService,
               public cityApi: CityApiService,
               public dialog: MatDialog,
+
               public route: ActivatedRoute,
               public checkErrorService: CheckErrorService,
               public calService: CalenderServices,
@@ -97,6 +99,10 @@ export class ListComponent implements OnInit {
     this.getOriginCities()
   }
 
+  statusChanged():void {
+
+  }
+
   deleteTour(slug: string): void {
     this.loading = true;
     this.tourApiService.deleteTour(slug).subscribe((res: any) => {
@@ -130,7 +136,6 @@ export class ListComponent implements OnInit {
   }
 
   onPageChanged(event: any) {
-    console.log(event);
     this.p = event;
     this.getTours();
   }
@@ -148,6 +153,17 @@ export class ListComponent implements OnInit {
     dialog.afterClosed().subscribe(result => {
       if (result) {
         this.deleteTour(slug)
+      }
+    });
+  }
+
+  openLogs(id: any): void {
+    const dialog = this.dialog.open(LogsComponent, {
+      width: '30%',
+      data: id
+    });
+    dialog.afterClosed().subscribe(result => {
+      if (result) {
       }
     });
   }

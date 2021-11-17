@@ -4,6 +4,7 @@ import {MessageService} from "../../Core/Services/message.service";
 import {CityListRequestDTO, CityResponseDTO} from "../../Core/Models/cityDTO";
 import {CheckErrorService} from "../../Core/Services/check-error.service";
 import {Router} from "@angular/router";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'prs-list',
@@ -14,6 +15,9 @@ export class ListComponent implements OnInit {
   cityReq!: CityListRequestDTO;
   cities: CityResponseDTO[] = [];
   isLoading = false;
+  typeFC = new FormControl(false)
+  hasHotel = false;
+  hasTour = false
 
   constructor(public api: CityApiService,
               public router: Router,
@@ -45,9 +49,9 @@ export class ListComponent implements OnInit {
     this.cityReq = {
       perPage: 20,
       search: null,
-      type: false,
-      hasTour: false,
-      hasHotel: false
+      type: this.typeFC.value,
+      hasTour: this.hasTour,
+      hasHotel: this.hasHotel
     }
   }
 

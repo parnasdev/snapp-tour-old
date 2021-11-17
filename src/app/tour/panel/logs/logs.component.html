@@ -1,0 +1,10 @@
+  <h1>لاگ ها</h1>
+  <hr>
+
+
+<div *ngFor="let item of logs">
+    <span>{{item.user.name + ' ' +item.user.family + ' / ' + item.message + ' / '+calenderServices.convertDateAndTime(item.createdAt,'fa')}}</span>
+    <hr>
+  </div>
+
+<prs-btn [label]="'بستن'" (click)="dialogRef.close()"></prs-btn>

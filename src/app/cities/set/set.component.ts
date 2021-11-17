@@ -5,7 +5,7 @@ import {CitySetRequestDTO} from "../../Core/Models/cityDTO";
 import {FormControl} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";
 import {MultipleUploadComponent} from "../../common-project/multiple-upload/multiple-upload.component";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'prs-set',
@@ -31,27 +31,45 @@ export class SetComponent implements OnInit {
 
   constructor(public api: CityApiService,
               public dialog: MatDialog,
+              public router: Router,
               public route: ActivatedRoute,
               public message: MessageService) {
   }
 
   ngOnInit(): void {
     this.city = this.route.snapshot.paramMap.get('city')
+    console.log(this.city)
     this.getInfo();
   }
 
 
   submit(): void {
-    this.setReq()
-    this.isLoading = true;
-    this.api.add(this.req).subscribe((res: any) => {
-      this.isLoading = false;
-      if (res.isDone) {
-        this.message.custom(res.message);
-      }
-    }, (error: any) => {
-      this.isLoading = false;
-    })
+    if (this.city) {
+      this.setReq()
+      this.isLoading = true;
+      this.api.edit(this.req,this.city).subscribe((res: any) => {
+        this.isLoading = false;
+        if (res.isDone) {
+          this.message.custom(res.message);
+          this.router.navigateByUrl('/panel/cities')
+        }
+      }, (error: any) => {
+        this.isLoading = false;
+      })
+    }else {
+      this.setReq()
+      this.isLoading = true;
+      this.api.add(this.req).subscribe((res: any) => {
+        this.isLoading = false;
+        if (res.isDone) {
+          this.message.custom(res.message);
+          this.router.navigateByUrl('/panel/cities')
+        }
+      }, (error: any) => {
+        this.isLoading = false;
+      })
+    }
+
   }
 
   setValue(): void {

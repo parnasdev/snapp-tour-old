@@ -12,6 +12,7 @@ export interface TourListRequestDTO {
 export interface TourListResDTO {
   title: string;
   createdAt: string;
+  id?:number
   dayNum: number;
   endCity: string;
   expireDate: string;

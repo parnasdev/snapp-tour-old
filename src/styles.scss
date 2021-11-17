@@ -55,30 +55,6 @@ body {
 }
 
 @media only screen and (max-width: 868px) {
-::-webkit-scrollbar{
-  background: unset !important;
-}
-  ::-webkit-scrollbar-track {
-    -webkit-box-shadow: unset !important;
-    background-color: #fff !important;
-    float: right;
-    border-radius: 20px;
-    padding: 1px;
-    height: 20vh !important;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background-color: #fff !important;
-    border-radius: 20px;
-    float: right;
-    width: 5px;
-  }
-
-  ::-webkit-scrollbar {
-    width: 8px;
-    background-color: #fff !important;
-  }
-
 }
 :root {
   --base-color: #137CB6;

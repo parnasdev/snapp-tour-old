@@ -6,6 +6,8 @@ import {ErrorsService} from "../../Core/Services/errors.service";
 import {MessageService} from "../../Core/Services/message.service";
 import {UserApiService} from "../../Core/Https/user-api.service";
 import {UserReqDTO, UserResDTO} from "../../Core/Models/UserDTO";
+import {AlertDialogComponent, AlertDialogDTO} from "../../common-project/alert-dialog/alert-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 declare var $: any;
 
@@ -28,6 +30,7 @@ export class ListComponent implements OnInit {
               public route: ActivatedRoute,
               public checkErrorService: CheckErrorService,
               public calService: CalenderServices,
+              public dialog: MatDialog,
               public errorService: ErrorsService,
               public message: MessageService) {
   }
@@ -55,6 +58,23 @@ export class ListComponent implements OnInit {
       this.checkErrorService.check(error);
     });
   }
+  deleteClicked(userId: number):void {
+    const obj: AlertDialogDTO = {
+      description: 'حذف شود؟',
+      icon: 'null',
+      title: 'اطمینان دارید'
+    };
+    const dialog = this.dialog.open(AlertDialogComponent, {
+      width: '30%',
+      data: obj
+    });
+    dialog.afterClosed().subscribe((result:any) => {
+      if (result) {
+        this.deleteUser(userId)
+      }
+    });
+  }
+
 
   deleteUser(userId: number): void {
     this.loading = true;
