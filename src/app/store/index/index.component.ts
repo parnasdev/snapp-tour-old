@@ -32,6 +32,7 @@ export class IndexComponent implements OnInit {
   hotelCityFC = new FormControl(1);
   hotels: HotelListResponseDTO[] = [];
   blogs: PostResDTO[] = [];
+  p = 1
   constructor(
     public api: TourApiService,
     public calenderServices: CalenderServices,
@@ -126,7 +127,7 @@ export class IndexComponent implements OnInit {
       search: '',
       type: null
     }
-    this.api.getTours(reqDTO).subscribe((res: any) => {
+    this.api.getTours(reqDTO, this.p).subscribe((res: any) => {
       if (res.isDone) {
         this.tours = res.data;
       }

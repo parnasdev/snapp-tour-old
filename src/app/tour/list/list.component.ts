@@ -24,6 +24,7 @@ export class ListComponent implements OnInit {
   tours: TourListResDTO[] = [];
   loading = false;
   city: string | null = '';
+  p = 1
 
   constructor(public tourApiService: TourApiService,
               public route: ActivatedRoute,
@@ -40,7 +41,7 @@ export class ListComponent implements OnInit {
 
   getTours(): void {
     this.loading = true;
-    this.tourApiService.getTours(this.tourReq).subscribe((res: any) => {
+    this.tourApiService.getTours(this.tourReq, this.p).subscribe((res: any) => {
       if (res.isDone) {
         this.tours = res.data
       } else {
