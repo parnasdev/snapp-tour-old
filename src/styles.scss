@@ -43,7 +43,14 @@ body {
   padding: 0;
   margin-top: 0;
 }
-
+.scrolling-area {
+  max-width: 100%;
+  max-height: 100%;
+  overflow: auto;
+}
+.main-web{
+  direction: rtl !important;
+}
 :root {
   --base-color: #137CB6;
   --base-color-second: #0C505F;
