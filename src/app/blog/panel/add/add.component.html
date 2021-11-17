@@ -57,16 +57,8 @@
               <span class="text-danger">{{errorService.getError('description')}}</span>
             </div>
           </div>
-          <div class="item-info">
-            <label for="">عنوان مطلب</label>
-            <input formControlName="body" type="text">
-            <div *ngIf="errorService.hasError('body')">
-              <span class="text-danger">{{errorService.getError('body')}}</span>
-            </div>
-            <prs-editor (body)="getBody($event)"></prs-editor>
-          </div>
         </div>
-        <prs-editor class="w-100"></prs-editor>
+        <prs-editor (body)="getBody($event)" class="w-100"></prs-editor>
 
       </div>
     </div>
@@ -93,10 +85,10 @@
     </div>
 
     <div class="box-details-tour">
-      <div class="details-body-tour">
+
         <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="submit()" [isLoading]="isLoading"
                  [label]="'ثبت مطلب'"></prs-btn>
-      </div>
+
     </div>
   </form>
 
