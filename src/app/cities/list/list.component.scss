@@ -23,7 +23,28 @@
 }
 :host::ng-deep .btn-blue{
   height: 33px !important;
+  border-radius: 4px !important;
 }
 :host::ng-deep .btn-dark{
   height: 33px !important;
+  border-radius: 4px !important;
+}
+
+
+
+.list-city-header {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  width: 100%;
+  background-color: #d5d5d5bd;
+  margin-top: 1.5rem;
+}
+.list-city-header h2{
+  color: var(--base-color);
+  margin-right: 10px;
+  margin-bottom: 0;
+  font-size: 16px;
 }

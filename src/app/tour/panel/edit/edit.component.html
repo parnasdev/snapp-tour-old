@@ -1,4 +1,3 @@
-
 <div class="add-tour">
   <form [formGroup]="form">
     <div class="box-info-tour">
@@ -7,29 +6,30 @@
           <label for="">{{ tourType ? 'تور داخلی' : 'تور خارجی'}}</label>
           <h2>اطلاعات تور</h2>
         </div>
-        <div class="left">
-          <div class="selectdiv">
-            <label>
-              <select formControlName="status">
-                <option value="Show">انتشار</option>
-                <option value="Draft" selected>پیش نویس</option>
-                <option value="Accepted">تایید شده</option>
-                <option value="NotAccepted">عدم تایید</option>
-                <option value="Pending">در انتظار تایید</option>
-                <option value="Suspended">معلق شده/منقضی شده</option>
-                <option value="Completion">تکمیل شده</option>
-              </select>
-            </label>
-          </div>
-          <span class="required f-10" *ngIf="form.get('status')?.touched && form.get('status')?.invalid">
+
+        <div class="left d-flex align-items-center">
+          <div>
+            <div class="selectdiv">
+              <label>
+                <select formControlName="status">
+                  <option value="Show">انتشار</option>
+                  <option value="Draft" selected>پیش نویس</option>
+                  <option value="Accepted">تایید شده</option>
+                  <option value="NotAccepted">عدم تایید</option>
+                  <option value="Pending">در انتظار تایید</option>
+                  <option value="Suspended">معلق شده/منقضی شده</option>
+                  <option value="Completion">تکمیل شده</option>
+                </select>
+              </label>
+            </div>
+            <span class="required f-10" *ngIf="form.get('status')?.touched && form.get('status')?.invalid">
             این فیلد الزامی است
           </span>
-          <div *ngIf="errorService.hasError('status')">
-            <span class="text-danger">{{errorService.getError('status')}}</span>
+            <div *ngIf="errorService.hasError('status')">
+              <span class="text-danger">{{errorService.getError('status')}}</span>
+            </div>
           </div>
-        </div>
-        <div class="left">
-          <div class="selectdiv">
+          <div class="selectdiv me-2">
             <label>
               <select formControlName="defineTour" (change)="disableFields()">
                 <option [value]="false">یکجا</option>
@@ -56,7 +56,8 @@
 
               <label for="">شهر مبدا</label>
 
-              <prs-select-city [hasHotel]="true" [inCommingCity]="info.stCity" [cities]="cities" (citySelected)="getStCity($event)"></prs-select-city>
+              <prs-select-city [hasHotel]="true" [inCommingCity]="info.stCity" [cities]="cities"
+                               (citySelected)="getStCity($event)"></prs-select-city>
 
             </div>
             <div *ngIf="errorService.hasError('stCity_id')">
@@ -65,7 +66,8 @@
             <div class="select-info">
               <label for="">شهر مقصد</label>
 
-              <prs-select-city [hasHotel]="true" [inCommingCity]="info.endCity" [cities]="cities" (citySelected)="getEndCity($event)"></prs-select-city>
+              <prs-select-city [hasHotel]="true" [inCommingCity]="info.endCity" [cities]="cities"
+                               (citySelected)="getEndCity($event)"></prs-select-city>
               <div *ngIf="errorService.hasError('endCity_id')">
                 <span class="text-danger">{{errorService.getError('endCity_id')}}</span>
               </div>

@@ -100,7 +100,7 @@
 
 .img-hotel {
   width: 120px;
-  height: 100px;
+  height: 110px;
   object-fit: cover;
   border-radius: 4px;
 }
@@ -108,7 +108,7 @@
 .info-info-hotel {
   display: flex;
   flex-direction: column;
-  width: auto;
+  width: 80%;
   padding-right: 10px;
   justify-content: center;
   align-items: flex-start;
@@ -157,8 +157,15 @@
   font-size: 15px;
   margin-top: 6px;
 }
-
-
+.location i{
+  color: var(--base-color);
+}
+.location span{
+  margin-right: 4px;
+  color: var(--gray-color-dark);
+  font-size: 13px !important;
+  font-weight: 500;
+}
 .thumbnail-mobile {
   display: none;
 }

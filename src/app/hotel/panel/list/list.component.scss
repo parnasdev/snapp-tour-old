@@ -192,3 +192,20 @@
   font-size: 13px !important;
   font-weight: 500 !important;
 }
+prs-select-city{
+  width: 32% !important;
+}
+:host::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: unset !important;
+}
+:host::ng-deep .mat-form-field-underline {
+display: none;
+}
+::ng-deep .cdk-overlay-pane {
+  left: 447.3px !important;
+}
+.edit-btn,.view-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
