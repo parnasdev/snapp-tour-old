@@ -27,7 +27,7 @@ export class UploadSingleComponent implements OnInit {
   }
   onSubmit(form: NgForm){
     var  self=this;
-    form.value.content=(document.getElementById('context') as HTMLInputElement).value
+    form.value.content=(document.getElementById('photo') as HTMLInputElement).value
     form.value.photo=null;
     if (this.testJSON((document.getElementById('photo') as HTMLInputElement).value)){
       form.value.photo=JSON.parse((document.getElementById('photo') as HTMLInputElement).value);

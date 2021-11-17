@@ -27,10 +27,9 @@ export class AddComponent implements OnInit {
   //public Variable
   isMobile;
   isLoading = false;
-
+  isSlugGenerated = false;
   selectedTags: string[] = []
   thumbnail = '';
-  tags: string[] = [];
 
   postReq: PostSetReqDTO = {
     title: '',
@@ -68,6 +67,7 @@ export class AddComponent implements OnInit {
     title: new FormControl(''),
     slug: new FormControl(''),
     body: new FormControl(''),
+    tags: new FormControl(),
     description: new FormControl(''),
     status: new FormControl('Show'),
   });
@@ -76,23 +76,16 @@ export class AddComponent implements OnInit {
   ngOnInit() {
   }
 
-  setSlug(){
-    if(this.postForm.value.title !== '' && this.postForm.value.slug === ''){
-      this.postForm.controls.slug.setValue(this.postForm.value.title.split(' ').join('-'));
-    } else if (this.postForm.value.title === '' && this.postForm.value.slug !== ''){
-      this.postForm.controls.slug.setValue('');
-    }
+  setSlug() {
+    this.generateSlug();
   }
 
-  // chips
-  onCustomItemCreating(args: any) {
-    this.tags.unshift(args.text);
-  }
-  submit():void {
+
+  submit(): void {
     debugger
     if (this.postForm.controls.body.value !== '') {
       this.createPost()
-    }else {
+    } else {
       this.message.custom('لطفا متن بلاگ خود را وارد کنید و دکمه تایید نوشته را بزنید')
     }
   }
@@ -128,7 +121,7 @@ export class AddComponent implements OnInit {
       categories: [2],
       description: this.postForm.value.description,
       status: 'Show',
-      tags: this.tags,
+      tags: this.postForm.value.tags,
       thumbnail: this.thumbnail
     }
   }
@@ -136,11 +129,11 @@ export class AddComponent implements OnInit {
   getThumbnail(): void {
     const dialog = this.dialog.open(UploadSingleComponent, {});
     dialog.afterClosed().subscribe(result => {
-      console.log(result);
       this.thumbnail = result
     })
   }
-  getBody(body: any):void {
+
+  getBody(body: any): void {
     this.postForm.controls.body.setValue(body);
   }
 
@@ -154,4 +147,22 @@ export class AddComponent implements OnInit {
     });
   }
 
+  generateSlug(): void {
+    if (!this.isSlugGenerated) {
+      this.blogApi.generateSlug(this.postForm.value.title).subscribe((res: any) => {
+        if (res.data) {
+          this.postForm.controls.slug.setValue(res.data);
+          this.isSlugGenerated = true
+        } else {
+          this.message.custom(res.message)
+        }
+      }, (error: any) => {
+        this.message.error()
+      })
+    } else {}
+  }
+
+  getTags(tags: string[]): void {
+    this.postForm.controls.tags.setValue(tags);
+  }
 }

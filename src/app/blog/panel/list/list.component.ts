@@ -9,6 +9,8 @@ import {ErrorsService} from "../../../Core/Services/errors.service";
 import {MessageService} from "../../../Core/Services/message.service";
 import {PostReqDTO, PostResDTO} from "../../../Core/Models/BlogDTO";
 import {BlogApiService} from "../../../Core/Https/blog-api.service";
+import {AlertDialogComponent, AlertDialogDTO} from "../../../common-project/alert-dialog/alert-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 declare var $: any;
 
@@ -32,6 +34,7 @@ export class ListComponent implements OnInit {
 
   constructor(public blogApi: BlogApiService,
               public route: ActivatedRoute,
+              public dialog: MatDialog,
               public checkErrorService: CheckErrorService,
               public calService: CalenderServices,
               public errorService: ErrorsService,
@@ -61,12 +64,28 @@ export class ListComponent implements OnInit {
       this.checkErrorService.check(error);
     });
   }
+  deleteClicked(slug: string):void {
+    const obj: AlertDialogDTO = {
+      description: 'حذف شود؟',
+      icon: 'null',
+      title: 'اطمینان دارید'
+    };
+    const dialog = this.dialog.open(AlertDialogComponent, {
+      width: '30%',
+      data: obj
+    });
+    dialog.afterClosed().subscribe(result => {
+      if (result) {
+        this.deletePost(slug)
+      }
+    });
+  }
 
   deletePost(slug: string): void {
     this.loading = true;
     this.blogApi.deletePost(slug).subscribe((res: any) => {
       if (res.isDone) {
-        this.message.custom('تور مورد نظر حذف شد');
+        this.message.custom(res.message);
         this.getPosts();
       } else {
         this.message.custom(res.message);

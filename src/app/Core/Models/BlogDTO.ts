@@ -17,6 +17,7 @@ export interface PostResDTO {
   viewCount: 0
 }
 
+
 export interface PostReqDTO {
   perPage: number;
   paginate: boolean;
