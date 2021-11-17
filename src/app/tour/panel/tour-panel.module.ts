@@ -21,6 +21,7 @@ const maskConfig: Partial<IConfig> = {
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {PipesModule} from "../../common-project/pipes/pipes.module";
 import { CopyComponent } from './copy/copy.component';
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 @NgModule({
@@ -28,23 +29,24 @@ import { CopyComponent } from './copy/copy.component';
     EditComponent,
     ListComponent,
     CopyComponent],
-  imports: [
-    CommonModule,
-    TourPanelRoutingModule,
-    FormsModule,
-    MatButtonToggleModule,
-    ReactiveFormsModule,
-    MatDatepickerModule,
-    DragDropModule,
-    MatFormFieldModule,
-    MatNativeDateModule,
-    MatInputModule,
-    MaterialModule,
-    CommonProjectModule,
-    NgxMaskModule.forRoot(maskConfig),
-    ToolsModule,
-    PipesModule,
-  ]
+    imports: [
+        CommonModule,
+        TourPanelRoutingModule,
+        FormsModule,
+        MatButtonToggleModule,
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        DragDropModule,
+        MatFormFieldModule,
+        MatNativeDateModule,
+        MatInputModule,
+        MaterialModule,
+        CommonProjectModule,
+        NgxMaskModule.forRoot(maskConfig),
+        ToolsModule,
+        PipesModule,
+        NgxPaginationModule,
+    ]
 })
 export class TourPanelModule {
 }

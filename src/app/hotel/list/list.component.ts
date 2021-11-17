@@ -34,6 +34,7 @@ export class ListComponent implements OnInit {
               public session: SessionService,) { }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0)
     this.getCities();
     this.getList();
   }
@@ -41,7 +42,7 @@ export class ListComponent implements OnInit {
   getList(): void {
     this.hotelList = [];
     this.hotelReq = {
-      isAdmin: true,
+      isAdmin: false,
       paginate: true,
       city: +this.cityFC.value,
       search: this.searchFC.value

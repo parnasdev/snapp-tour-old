@@ -36,16 +36,17 @@
           </div>
           <div class="item-info">
             <label for="">لینک مطلب</label>
-            <input formControlName="slug" type="text">
+            <input *ngIf="isSlugGenerated" formControlName="slug" type="text">
+            <span *ngIf="!isSlugGenerated">{{postForm.value.slug}}</span>
             <div *ngIf="errorService.hasError('slug')">
               <span class="text-danger">{{errorService.getError('slug')}}</span></div>
           </div>
 
           <div class="item-info">
             <label for="">تگ ها</label>
-            <input formControlName="tag" type="text">
-            <div *ngIf="errorService.hasError('tag')">
-              <span class="text-danger">{{errorService.getError('tag')}}</span>
+            <prs-chips (result)="getTags($event)"></prs-chips>
+            <div *ngIf="errorService.hasError('tags')">
+              <span class="text-danger">{{errorService.getError('tags')}}</span>
             </div>
           </div>
         </div>
@@ -73,7 +74,7 @@
         <div class="info-tour-body-upload">
           <div class="top-one">
             <div class="item-info w-100">
-              <button class="btn-upload-img" (click)="getThumbnail()">تصویر خود را آپلود کنید</button>
+              <button type="button" class="btn-upload-img" (click)="getThumbnail()">تصویر خود را آپلود کنید</button>
             </div>
             <div class="single-img-upload-parent" *ngIf="thumbnail !== ''">
               <img [src]="thumbnail" width="100%" height="200" alt="">

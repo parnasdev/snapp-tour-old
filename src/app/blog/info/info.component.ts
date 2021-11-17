@@ -21,6 +21,7 @@ export class InfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0)
     // @ts-ignore
     this.slug = this.route.snapshot.paramMap.get('slug');
     this.getInfo();

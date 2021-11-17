@@ -1,0 +1,6 @@
+<input type="text" id="chips" name="chips" (keyup.enter)="add()" placeholder="{{placeHolder}}" [formControl]="textFC">
+<div class="d-flex">
+ <div  *ngFor="let item of list;let i =index">
+   <span style="background-color: chocolate;margin: 20px"  (click)="remove(i)">{{item}}</span>
+ </div>
+</div>

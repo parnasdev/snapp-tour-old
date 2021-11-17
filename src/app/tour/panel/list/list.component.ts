@@ -30,10 +30,14 @@ export class ListComponent implements OnInit {
     type: null
   };
   tours: TourListResDTO[] = [];
+  paginate: any;
   loading = false;
   city = '';
   originCities: CityResponseDTO[] = []
   originCityTypeFC = new FormControl(true);
+  p = 1;
+
+  isLoading = false;
 
   constructor(public tourApiService: TourApiService,
               public cityApi: CityApiService,
@@ -55,9 +59,10 @@ export class ListComponent implements OnInit {
 
   getTours(): void {
     this.loading = true;
-    this.tourApiService.getTours(this.tourReq).subscribe((res: any) => {
+    this.tourApiService.getTours(this.tourReq, this.p).subscribe((res: any) => {
       if (res.isDone) {
-        this.tours = res.data
+        this.tours = res.data;
+        this.paginate = res.paginate;
       } else {
         this.message.custom(res.message);
       }
@@ -122,6 +127,12 @@ export class ListComponent implements OnInit {
       default:
         return ''
     }
+  }
+
+  onPageChanged(event: any) {
+    console.log(event);
+    this.p = event;
+    this.getTours();
   }
 
   deleteClicked(slug: string) {
