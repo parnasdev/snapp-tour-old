@@ -34,6 +34,7 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0)
     this.city = this.route.snapshot.paramMap.get('slug');
     this.tourReq.city = this.city ? this.city : null;
     this.getTours();

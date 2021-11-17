@@ -49,6 +49,7 @@ export class InfoComponent implements OnInit {
     // @ts-ignore
     this.tourSlug = this.route.snapshot.paramMap.get('slug');
     this.getTourInfo();
+    window.scrollTo(0, 0)
   }
 
   getTourInfo(): void{

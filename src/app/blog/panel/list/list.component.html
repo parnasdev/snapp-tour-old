@@ -20,10 +20,10 @@
         <span class="date-create">{{ calService.convertDate1(post.createdAt, 'fa') }}</span>
         <span class="status">{{ post.status }}</span>
         <div class="button-setting">
-          <a routerLink="/panel/post/edit/{{post.slug}}" class="edit-btn">ویرایش</a>
-          <a routerLink="/post/{{ post.slug }}" class="view-btn">نمایش</a>
+          <a routerLink="/panel/blog/edit/{{post.slug}}" class="edit-btn">ویرایش</a>
+          <a routerLink="/blog/{{ post.slug }}" class="view-btn">نمایش</a>
           <!--          <button class="copy-btn">کپی</button>-->
-          <button (click)="deletePost(post.slug)" class="delete-btn">حذف</button>
+          <button (click)="deleteClicked(post.slug)" class="delete-btn">حذف</button>
         </div>
       </div>
     </div>

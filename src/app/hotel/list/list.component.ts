@@ -34,6 +34,7 @@ export class ListComponent implements OnInit {
               public session: SessionService,) { }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0)
     this.getCities();
     this.getList();
   }

@@ -49,6 +49,7 @@ export class IndexComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0)
     $(document).ready(() => {
       $(".collapse-1").click(() => {
         $(".icon-1").toggleClass("icon-rotate-collapse")

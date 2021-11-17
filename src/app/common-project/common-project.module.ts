@@ -17,19 +17,21 @@ import {MatInputModule} from "@angular/material/input";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {AlertDialogComponent} from "./alert-dialog/alert-dialog.component";
 import {MatDialogModule} from "@angular/material/dialog";
+import { ChipsComponent } from './chips/chips.component';
 
 
 @NgModule({
-  declarations: [UploadFileComponent,AlertDialogComponent, UploaderComponent, GetLatLongComponent, GetLocationComponent, TimePickerComponent, UploadSingleComponent, MultipleUploadComponent, EditorComponent, SelectCityComponent, SelectHotelComponent],
-  exports: [
-    UploadFileComponent,
-    GetLocationComponent,
-    TimePickerComponent,
-    UploadSingleComponent,
-    EditorComponent,
-    SelectHotelComponent,
-    SelectCityComponent
-  ],
+  declarations: [UploadFileComponent,AlertDialogComponent, UploaderComponent, GetLatLongComponent, GetLocationComponent, TimePickerComponent, UploadSingleComponent, MultipleUploadComponent, EditorComponent, SelectCityComponent, SelectHotelComponent, ChipsComponent],
+    exports: [
+        UploadFileComponent,
+        GetLocationComponent,
+        TimePickerComponent,
+        UploadSingleComponent,
+        EditorComponent,
+        SelectHotelComponent,
+        SelectCityComponent,
+        ChipsComponent
+    ],
   imports: [
     CommonModule,
     ReactiveFormsModule,

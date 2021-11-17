@@ -26,6 +26,7 @@ export class InfoComponent implements OnInit {
               public session: SessionService,) { }
 
   ngOnInit(): void {
+    window.scrollTo(0, 0)
     // @ts-ignore
     this.hotelName = this.route.snapshot.paramMap.get('slug');
     this.getInfo();

@@ -43,4 +43,11 @@ export class BlogApiService {
     const strUrl = this.serverControllerName + `getPost/${title}`;
     return this.http.get<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
   }
+  generateSlug(title:string): any {
+    const strUrl = this.serverControllerName + `generateSlug`;
+    const entity = {
+      title
+    }
+    return this.http.post<Result<string>>(strUrl,entity, this.publicService.getDefaultHeaders());
+  }
 }
