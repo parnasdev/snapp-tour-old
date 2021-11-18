@@ -32,6 +32,7 @@ export class ListComponent implements OnInit {
   };
   tours: TourListResDTO[] = [];
   paginate: any;
+  paginateConfig: any;
   loading = false;
   city = '';
   originCities: CityResponseDTO[] = []
@@ -43,7 +44,6 @@ export class ListComponent implements OnInit {
   constructor(public tourApiService: TourApiService,
               public cityApi: CityApiService,
               public dialog: MatDialog,
-
               public route: ActivatedRoute,
               public checkErrorService: CheckErrorService,
               public calService: CalenderServices,
@@ -65,6 +65,11 @@ export class ListComponent implements OnInit {
       if (res.isDone) {
         this.tours = res.data;
         this.paginate = res.paginate;
+        this.paginateConfig = {
+          itemsPerPage: this.paginate.perPage,
+          totalItems: this.paginate.total,
+          currentPage: this.paginate.currentPage
+        }
       } else {
         this.message.custom(res.message);
       }
@@ -82,7 +87,7 @@ export class ListComponent implements OnInit {
       hasHotel: false,
       hasTour: false,
       search: null,
-      perPage: 20
+      perPage: 10
     }
     this.cityApi.getCities(req).subscribe((res: any) => {
       if (res.isDone) {
@@ -99,7 +104,7 @@ export class ListComponent implements OnInit {
     this.getOriginCities()
   }
 
-  statusChanged():void {
+  statusChanged(): void {
 
   }
 
