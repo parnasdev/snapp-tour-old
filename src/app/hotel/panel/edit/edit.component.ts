@@ -25,11 +25,13 @@ export class EditComponent implements OnInit {
 
   hotelName = '';
   hotelInfo!: hotelInfoDTO;
-
+  serviceIDs: string[] = [];
   nameFC = new FormControl('');
   nameEnFC = new FormControl('');
   cityFC = new FormControl('');
   statusFC = new FormControl('Show');
+  currentStar = 0;
+
   starFC = new FormControl('');
   locationFC = new FormControl('');
   addressFC = new FormControl('1');
@@ -40,6 +42,7 @@ export class EditComponent implements OnInit {
   reverseAddressData!: MapReverseDTO;
   cities: CityDTO[] = [];
   public show = true;
+  showServices = false;
   citiesResponse: CityResponseDTO[] = []
 
   req: HotelSetRequestDTO = {
@@ -157,16 +160,24 @@ export class EditComponent implements OnInit {
   getImage(imageStr: string): void {
     this.images.push(imageStr)
   }
-
+  getDescriptionFromEditor(body:any):void {
+    this.bodyFC.setValue(body)
+  }
   getServices(): void {
+    this.showServices = false
     this.hotelApi.getServices().subscribe((res: any) => {
       if (res.isDone) {
+        this.services = res.data
         this.setData()
+        this.showServices = true
 
       } else {
+        this.showServices = false
+
         this.message.custom(res.message)
       }
     }, (error: any) => {
+      this.showServices = false
       this.message.error()
 
     })
@@ -191,8 +202,11 @@ export class EditComponent implements OnInit {
     this.hotelApi.getHotel(this.hotelName, true).subscribe((res: any) => {
       if (res.isDone) {
         this.hotelInfo = res.data;
+        this.currentStar= +this.hotelInfo.stars
         this.cityTypeFC.setValue(this.hotelInfo.city.type != 0)
         this.getCities()
+        this.getServices()
+
       } else {
         this.message.custom(res.message)
       }
@@ -213,7 +227,6 @@ export class EditComponent implements OnInit {
     this.cityApiService.getCities(req).subscribe((res: any) => {
       if (res.isDone) {
         this.citiesResponse = res.data;
-        this.getServices()
       }
     }, (error: any) => {
       this.message.error()
@@ -242,7 +255,12 @@ export class EditComponent implements OnInit {
       this.thumbnail = result
     })
   }
-
+  getServicesResult(services: any): void {
+    this.serviceIDs = [];
+    services.forEach((x: any) => {
+      this.serviceIDs.push(x.id.toString());
+    })
+  }
   getImages(): void {
     const dialog = this.dialog.open(MultipleUploadComponent, {});
     dialog.afterClosed().subscribe((result: any[]) => {

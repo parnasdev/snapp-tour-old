@@ -46,6 +46,16 @@ export class GetLocationComponent implements OnInit, OnChanges {
             lng: this.inCommingLatLng[1] === 0 ? 51.382296 : this.inCommingLatLng[1],
           },
           zoom: 15,
+          i18n: {
+            fa: {
+              'custom-baselayer-1': 'لایه یک',
+              'custom-baselayer-2': 'لایه دو',
+            },
+            en: {
+              'custom-baselayer-1': 'Baselayer one',
+              'custom-baselayer-2': 'Baselayer two',
+            }
+        },
         },
         apiKey: this.apiKey
       });

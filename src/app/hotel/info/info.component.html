@@ -36,16 +36,18 @@
                 <i class="icon-star" *ngFor="let star of getStars(hotelInfo.stars)"></i>
               </div>
             </div>
+
+
             <div class="parent-gallery">
               <div class="right-gallery">
-                <img class="top-right" [src]="hotelInfo.images[0]" alt="">
-                <img class="left-right" [src]="hotelInfo.images[1]" alt="">
-                <img class="bottom-right" [src]="hotelInfo.images[2]" alt="">
-                <img class="bottom-left" [src]="hotelInfo.images[3]" alt="">
+                <img class="top-right" [lightbox]="0" [gallery]="galleryId" [src]="hotelInfo.images[0]" alt="">
+                <img class="left-right" [lightbox]="1" [gallery]="galleryId" [src]="hotelInfo.images[1]" alt="">
+                <img class="bottom-right" [lightbox]="2" [gallery]="galleryId" [src]="hotelInfo.images[2]" alt="">
+                <img class="bottom-left" [lightbox]="3" [gallery]="galleryId" [src]="hotelInfo.images[3]" alt="">
               </div>
               <div class="left-gallery" [style.background-image]="'url(' + hotelInfo.thumbnail + ')'">
                 <div class="parent-view-all-photo">
-                  <a class="btn-photos" href="">
+                  <a class="btn-photos" [lightbox]="0" [gallery]="galleryId">
                     <img src="assets/img/Menu-hotel.svg" width="20" alt="">
                     <span>مشاهده همه عکس ها</span>
                   </a>

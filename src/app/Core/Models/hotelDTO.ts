@@ -37,7 +37,7 @@ export interface hotelInfoDTO {
   images: string[];
   thumbnail: string;
   body: string;
-  services: servicesDTO[];
+  services: ServicesDTO[];
   status: string;
   phone: string;
   tours: TourListResDTO[];
@@ -117,7 +117,7 @@ export interface ServiceDTO {
   checked?: boolean;
 }
 
-export interface servicesDTO {
+export interface ServicesDTO {
   name: string;
   ids: string[]
 }
