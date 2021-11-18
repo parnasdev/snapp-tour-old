@@ -10,9 +10,9 @@ import {CommonProjectModule} from "../../common-project/common-project.module";
 import {MatDialogModule} from "@angular/material/dialog";
 import {BarRatingModule} from "ngx-bar-rating";
 import {ServicesComponent} from './services/services.component';
-import {MatRadioButton} from "@angular/material/radio";
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 @NgModule({
@@ -25,7 +25,6 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
   imports: [
     CommonModule,
     HotelPanelRoutingModule,
-
     MatDialogModule,
     MatButtonToggleModule,
     FormsModule,
@@ -33,7 +32,8 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
     ReactiveFormsModule,
     MatCheckboxModule,
     CommonProjectModule,
-    BarRatingModule
+    BarRatingModule,
+    NgxPaginationModule,
   ]
 })
 export class HotelPanelModule {

@@ -26,8 +26,10 @@ export class HotelApiService {
       environment.BACK_END_IP + this.serverControllerName;
   }
 
-  getHotels(req: HotelRequestDTO): any {
-    const strUrl = this.serverControllerName + 'getHotels';
+  getHotels(req: HotelRequestDTO, page?: number): any {
+    debugger
+    const address = page ? `getHotels?=${page}` : 'getHotels'
+    const strUrl = this.serverControllerName + address;
     return this.http.post<Result<HotelListResponseDTO[]>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
 
@@ -82,6 +84,7 @@ export class HotelApiService {
     const strUrl = this.serverControllerName + `editHotelPackage/${name}`;
     return this.http.patch<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
+
   deleteHotelPackage(name: string): any {
     const strUrl = this.serverControllerName + `deleteHotelPackage/${name}`;
     return this.http.delete<Result<any>>(strUrl, this.publicService.getDefaultHeaders());

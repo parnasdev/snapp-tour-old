@@ -28,6 +28,12 @@ export class ListComponent implements OnInit {
   hotelList: HotelListRes[] = [];
   cityType = false;
 
+  isLoading = false;
+
+  paginateConfig: any;
+  paginate: any;
+  p = 1;
+
   constructor(private route: ActivatedRoute,
               private router: Router,
               public dialog: MatDialog,
@@ -51,10 +57,15 @@ export class ListComponent implements OnInit {
       city: +this.cityFC.value,
       search: null
     }
-    this.hotelApi.getHotels(this.hotelReq).subscribe((res: any) => {
+    this.hotelApi.getHotels(this.hotelReq, this.p).subscribe((res: any) => {
       if (res.isDone) {
         this.hotelList = res.data;
-
+        this.paginate = res.paginate;
+        this.paginateConfig = {
+          itemsPerPage: this.paginate.perPage,
+          totalItems: this.paginate.total,
+          currentPage: this.paginate.currentPage
+        }
       } else {
         this.message.custom(res.message)
       }
@@ -77,7 +88,8 @@ export class ListComponent implements OnInit {
       this.message.error()
     })
   }
-  getCitySelected(item: any):void {
+
+  getCitySelected(item: any): void {
     this.cityFC.setValue(item.id);
     this.getList()
   }
@@ -97,5 +109,10 @@ export class ListComponent implements OnInit {
         this.deleteHotel(slug)
       }
     });
+  }
+
+  onPageChanged(event: any) {
+    this.p = event;
+    this.getList();
   }
 }

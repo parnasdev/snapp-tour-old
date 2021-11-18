@@ -16,7 +16,7 @@
             <button (click)="getList()" class="btn-search">جستجو کن !</button>
           </div>
           <div class="box-hotel-parent">
-            <div *ngFor="let hotel of hotelList"
+            <div *ngFor="let hotel of hotelList| paginate: paginateConfig"
                  [style.background-image]="'url(' + hotel.thumbnail + ')'"
                  class="box-hotel">
               <div class="opacity-bg-parent">
@@ -43,6 +43,18 @@
                 </div>
               </div>
             </div>
+          </div>
+          <div>
+            <pagination-controls
+              *ngIf="!isLoading && paginate.lastPage > 1"
+              class="pagination-control"
+              (pageChange)="onPageChanged($event)"
+              previousLabel="قبلی"
+              nextLabel="بعدی"
+              screenReaderPaginationLabel="صفحه بندی"
+              screenReaderPageLabel="صفحه"
+              screenReaderCurrentLabel="شما در صفحه ی">
+            </pagination-controls>
           </div>
         </div>
       </div>

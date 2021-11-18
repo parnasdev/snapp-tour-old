@@ -8,6 +8,7 @@ import {StoreModule} from "../store/store.module";
 import {GALLERY_CONFIG, GalleryModule} from 'ng-gallery';
 import {LIGHTBOX_CONFIG, LightboxModule} from "ng-gallery/lightbox";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 @NgModule({
@@ -23,6 +24,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     LightboxModule,
     GalleryModule,
     StoreModule,
+    NgxPaginationModule,
+
   ],providers:[
     {
       provide: LIGHTBOX_CONFIG,
@@ -32,5 +35,4 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     }
   ]
 })
-export class HotelModule {
-}
+export class HotelModule { }

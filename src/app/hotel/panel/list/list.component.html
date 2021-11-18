@@ -1,19 +1,4 @@
 
-<!--<div class="parent-list">-->
-
-<!--  <div class="item" *ngFor="let hotel of hotelList">-->
-<!--    <img [src]="hotel.thumbnail" alt="">-->
-<!--    <div class="title">-->
-<!--      <a [routerLink]="'panel/hotel/edit/' + hotel.slug">-->
-<!--        <h2>{{ hotel.name }}</h2>-->
-<!--      </a>-->
-<!--      <h2>{{ hotel.nameEn }}</h2>-->
-<!--      <p>{{hotel.slug}}</p>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--</div>-->
-
 <div class="list-tour">
   <div class="title">
     <h2>لیست هتل ها</h2>
@@ -23,15 +8,13 @@
   <div class="table-list-tour">
     <div class="header-list-tour">
       <span class="id">#</span>
-<!--      <span class="username">نام کاربر</span>-->
       <span class="title-tour">عنوان هتل</span>
       <span class="from-to">عنوان خارجی هتل</span>
       <span class="setting">تنظیمات</span>
     </div>
     <div class="body-list-tour" *ngIf="hotelList.length > 0">
-      <div class="item" *ngFor="let hotel of hotelList;let i = index">
+      <div class="item" *ngFor="let hotel of hotelList | paginate: paginateConfig;let i = index">
         <span class="id">{{ i + 1 }}</span>
-        <!--    <img [src]="hotel.thumbnail" alt="">-->
         <span class="title-tour">{{ hotel.name }}</span>
         <span class="title-tour">{{ hotel.nameEn }}</span>
 <!--        <span class="date-create">{{this.calService.convertDate1(tour.createdAt, 'fa') }}</span>-->
@@ -42,6 +25,18 @@
           <!--          <button class="copy-btn">کپی</button>-->
           <button (click)="deleteClicked(hotel.slug)" class="delete-btn">حذف</button>
         </div>
+      </div>
+      <div>
+        <pagination-controls
+          *ngIf="!isLoading && paginate.lastPage > 1"
+          class="pagination-control"
+          (pageChange)="onPageChanged($event)"
+          previousLabel="قبلی"
+          nextLabel="بعدی"
+          screenReaderPaginationLabel="صفحه بندی"
+          screenReaderPageLabel="صفحه"
+          screenReaderCurrentLabel="شما در صفحه ی">
+        </pagination-controls>
       </div>
     </div>
   </div>
