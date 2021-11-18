@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {HotelListRes, HotelRequestDTO} from "../../Core/Models/hotelDTO";
 import {CityListRequestDTO, CityResponseDTO} from "../../Core/Models/cityDTO";
@@ -27,11 +27,17 @@ export class ListComponent implements OnInit {
   cityType = false;
   searchFC = new FormControl(null);
 
+  paginate: any;
+  paginateConfig: any;
+  isLoading = false;
+  p = 1;
+
   constructor(public hotelApi: HotelApiService,
               public message: MessageService,
               public cityApiService: CityApiService,
               public commonApi: CommonApiService,
-              public session: SessionService,) { }
+              public session: SessionService,) {
+  }
 
   ngOnInit(): void {
     window.scrollTo(0, 0)
@@ -47,10 +53,15 @@ export class ListComponent implements OnInit {
       city: +this.cityFC.value,
       search: this.searchFC.value
     }
-    this.hotelApi.getHotels(this.hotelReq).subscribe((res: any) => {
+    this.hotelApi.getHotels(this.hotelReq, this.p).subscribe((res: any) => {
       if (res.isDone) {
         this.hotelList = res.data;
-
+        this.paginate = res.paginate;
+        this.paginateConfig = {
+          itemsPerPage: this.paginate.perPage,
+          totalItems: this.paginate.total,
+          currentPage: this.paginate.currentPage
+        }
       } else {
         this.message.custom(res.message)
       }
@@ -80,8 +91,13 @@ export class ListComponent implements OnInit {
     })
   }
 
-  getStars(count: string): number[]{
+  getStars(count: string): number[] {
     return Array.from(Array(+count).keys());
+  }
+
+  onPageChanged(event: any) {
+    this.p = event;
+    this.getList();
   }
 
 }

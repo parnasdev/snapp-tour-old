@@ -5,6 +5,7 @@ import {StoreModule} from "../store/store.module";
 import {SwiperModule} from "swiper/angular";
 import {TourRoutingModule} from "./tour-routing.module";
 import {ListComponent} from './list/list.component';
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 @NgModule({
@@ -21,7 +22,7 @@ import {ListComponent} from './list/list.component';
     TourRoutingModule,
     StoreModule,
     SwiperModule,
-
+    NgxPaginationModule,
   ]
 })
 export class TourModule {
