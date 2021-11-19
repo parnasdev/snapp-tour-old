@@ -15,39 +15,53 @@ import {SearchComponent} from './search/search.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatFormFieldModule} from "@angular/material/form-field";
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatInputModule } from '@angular/material/input';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatInputModule} from '@angular/material/input';
 import {MaterialModule} from "../common-project/persianDatePickerAdapter/material.module";
-import { ThumbnailTourInfoComponent } from './thumbnail-tour-info/thumbnail-tour-info.component';
-import { ThumbnailTourTwoComponent } from './thumbnail-tour-two/thumbnail-tour-two.component';
+import {ThumbnailTourInfoComponent} from './thumbnail-tour-info/thumbnail-tour-info.component';
+import {ThumbnailTourTwoComponent} from './thumbnail-tour-two/thumbnail-tour-two.component';
 import {PipesModule} from "../common-project/pipes/pipes.module";
-import { LoadingComponent } from './loading/loading.component';
+
+import {LoadingComponent} from './loading/loading.component';
 
 @NgModule({
-  declarations: [IndexComponent, HeaderComponent, FooterComponent, AddressBarComponent, ThumbnailsTourComponent, StoreComponent, AboutUsComponent, ContactUsComponent, SearchComponent, ThumbnailTourInfoComponent, ThumbnailTourTwoComponent, LoadingComponent],
-    exports: [
-        IndexComponent,
-        HeaderComponent,
-        FooterComponent,
-        AddressBarComponent,
-        ThumbnailsTourComponent,
-        ThumbnailTourInfoComponent,
-        ThumbnailTourTwoComponent,
-        LoadingComponent,
-    ],
-    imports: [
-        CommonModule,
-        StoreRoutingModule,
-        ReactiveFormsModule,
-        ToolsModule,
-        SwiperModule,
-        MatDatepickerModule,
-        MatFormFieldModule,
-        MatNativeDateModule,
-        MatInputModule,
-        MaterialModule,
-        PipesModule,
-    ]
+  declarations: [
+    IndexComponent,
+    HeaderComponent,
+    FooterComponent,
+    AddressBarComponent,
+    ThumbnailsTourComponent,
+    StoreComponent,
+    AboutUsComponent,
+    ContactUsComponent,
+    SearchComponent,
+    ThumbnailTourInfoComponent,
+    ThumbnailTourTwoComponent,
+    LoadingComponent
+  ],
+  exports: [
+    IndexComponent,
+    HeaderComponent,
+    FooterComponent,
+    AddressBarComponent,
+    ThumbnailsTourComponent,
+    ThumbnailTourInfoComponent,
+    ThumbnailTourTwoComponent,
+    LoadingComponent,
+  ],
+  imports: [
+    CommonModule,
+    StoreRoutingModule,
+    ReactiveFormsModule,
+    ToolsModule,
+    SwiperModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MaterialModule,
+    PipesModule,
+  ]
 })
 export class StoreModule {
 }

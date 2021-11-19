@@ -26,6 +26,7 @@ declare let $: any;
 export class IndexComponent implements OnInit {
   isMobile;
   isTablet;
+  isLoading = false;
   @ViewChild('swiper', {static: false}) swiper?: SwiperComponent;
 
   tours: TourListResDTO[] = []
@@ -107,6 +108,7 @@ export class IndexComponent implements OnInit {
 
 
   getHotels(): void {
+    this.isLoading = true;
     const req: HotelRequestDTO = {
       isAdmin: false,
       paginate: false,
@@ -117,8 +119,10 @@ export class IndexComponent implements OnInit {
       if (res.isDone) {
         this.hotels = res.data;
       }
+      this.isLoading = false;
     }, (error: any) => {
       this.message.error();
+      this.isLoading = false;
     })
   }
 
