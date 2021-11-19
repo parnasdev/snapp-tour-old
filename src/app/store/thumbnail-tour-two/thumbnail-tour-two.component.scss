@@ -4,6 +4,7 @@
   font-weight: 700 !important;
   font-family: 'Ubuntu', sans-serif !important;
   margin-bottom: 2px;
+  line-height: 23px;
 }
 
 .title-fa {
@@ -72,7 +73,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 3fr 1fr 1fr 1fr 1fr 1fr 1.5fr;
-  height: 125px;
+  height: 135px;
   border: 1px solid #eee;
   border-radius: 4px;
   margin-top: 12px;
@@ -100,7 +101,7 @@
 
 .img-hotel {
   width: 120px;
-  height: 110px;
+  height: 120px;
   object-fit: cover;
   border-radius: 4px;
 }
@@ -285,4 +286,14 @@
 }
 .gap {
   margin-right: 4px;
+}
+
+
+
+@media print {
+  p.header-box {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr 1fr 1fr 1fr 0.5fr;
+  }
 }
