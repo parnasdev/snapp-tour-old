@@ -50,6 +50,7 @@ export class ListComponent implements OnInit {
   }
 
   getList(): void {
+    this.isLoading = true;
     this.hotelList = [];
     this.hotelReq = {
       isAdmin: true,
@@ -58,6 +59,7 @@ export class ListComponent implements OnInit {
       search: null
     }
     this.hotelApi.getHotels(this.hotelReq, this.p).subscribe((res: any) => {
+      this.isLoading = false;
       if (res.isDone) {
         this.hotelList = res.data;
         this.paginate = res.paginate;
@@ -70,6 +72,7 @@ export class ListComponent implements OnInit {
         this.message.custom(res.message)
       }
     }, (error: any) => {
+      this.isLoading = false;
       this.message.error()
 
     })

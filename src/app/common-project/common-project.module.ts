@@ -18,6 +18,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {AlertDialogComponent} from "./alert-dialog/alert-dialog.component";
 import {MatDialogModule} from "@angular/material/dialog";
 import {ChipsComponent} from './chips/chips.component';
+import {Page404Component} from "./page404/page404.component";
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import {ChipsComponent} from './chips/chips.component';
     SelectCityComponent,
     SelectHotelComponent,
     ChipsComponent,
+    Page404Component
   ],
   exports: [
     UploadFileComponent,

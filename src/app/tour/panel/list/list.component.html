@@ -1,3 +1,5 @@
+<prs-loading *ngIf="loading"></prs-loading>
+
 <div class="list-tour">
   <div class="title">
     <h2>تورها</h2>
@@ -48,7 +50,7 @@
     </div>
     <div>
       <pagination-controls
-        *ngIf="!isLoading && paginate.lastPage > 1"
+        *ngIf="!loading && paginate.lastPage > 1"
         class="pagination-control"
         (pageChange)="onPageChanged($event)"
         previousLabel="قبلی"
@@ -116,7 +118,7 @@
     </div>
     <div>
       <pagination-controls
-        *ngIf="!isLoading && paginate.lastPage > 1"
+        *ngIf="!loading && paginate.lastPage > 1"
         class="pagination-control"
         (pageChange)="onPageChanged($event)"
         previousLabel="قبلی"

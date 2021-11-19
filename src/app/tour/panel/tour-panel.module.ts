@@ -24,6 +24,7 @@ import {PipesModule} from "../../common-project/pipes/pipes.module";
 import {CopyComponent} from './copy/copy.component';
 import {NgxPaginationModule} from "ngx-pagination";
 import {LogsComponent} from "./logs/logs.component";
+import {StoreModule} from "../../store/store.module";
 
 
 @NgModule({
@@ -32,24 +33,25 @@ import {LogsComponent} from "./logs/logs.component";
     ListComponent,
     LogsComponent,
     CopyComponent],
-  imports: [
-    CommonModule,
-    TourPanelRoutingModule,
-    FormsModule,
-    MatButtonToggleModule,
-    ReactiveFormsModule,
-    MatDatepickerModule,
-    DragDropModule,
-    MatFormFieldModule,
-    MatNativeDateModule,
-    MatInputModule,
-    MaterialModule,
-    CommonProjectModule,
-    NgxMaskModule.forRoot(maskConfig),
-    ToolsModule,
-    PipesModule,
-    NgxPaginationModule,
-  ], entryComponents: [LogsComponent]
+    imports: [
+        CommonModule,
+        TourPanelRoutingModule,
+        FormsModule,
+        MatButtonToggleModule,
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        DragDropModule,
+        MatFormFieldModule,
+        MatNativeDateModule,
+        MatInputModule,
+        MaterialModule,
+        CommonProjectModule,
+        NgxMaskModule.forRoot(maskConfig),
+        ToolsModule,
+        PipesModule,
+        NgxPaginationModule,
+        StoreModule,
+    ], entryComponents: [LogsComponent]
 })
 export class TourPanelModule {
 }
