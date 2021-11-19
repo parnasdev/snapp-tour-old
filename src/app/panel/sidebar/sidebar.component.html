@@ -53,6 +53,20 @@
           </ul>
         </div>
       </li>
+      <li class="li-list">
+        <a class="menu-main menu-main-3" data-toggle="collapse" href="#collapseExample3" role="button"
+           aria-expanded="false" aria-controls="collapseExample">
+          <img src="assets/img/Ticket.svg" width="20" alt="">
+          مدیریت اتاق ها
+          <i class="icon-down-open icon-3"></i>
+        </a>
+        <div class="collapse" id="collapseExample3">
+          <ul class="under-menu-ul">
+            <li><a routerLink="/panel/roomType">لیست اتاق ها</a></li>
+            <li><a routerLink="/panel/roomType/add">اضافه کردن</a></li>
+          </ul>
+        </div>
+      </li>
       <li class="li-list" *ngIf="checkPermission('Transfer')">
         <a class="menu-main menu-main-3" data-toggle="collapse" href="#collapseExample3" role="button"
            aria-expanded="false" aria-controls="collapseExample">
@@ -104,7 +118,7 @@
         </a>
         <div class="collapse" id="collapseExample6">
           <ul class="under-menu-ul">
-            <li><a routerLink="gallery">لیست تیکت ها</a></li>
+            <li><a routerLink="gallery">گالری</a></li>
           </ul>
         </div>
       </li>

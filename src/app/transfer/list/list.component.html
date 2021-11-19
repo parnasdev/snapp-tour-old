@@ -1,15 +1,3 @@
-<!--<div class="parent-list">-->
-<!--  <div class="item" *ngFor="let transfer of transfers">-->
-<!--    <img [src]="transfer.logo" alt="">-->
-<!--    <div class="title">-->
-<!--      <h2>{{ transfer.name }}</h2>-->
-<!--    </div>-->
-
-<!--  </div>-->
-
-<!--</div>-->
-
-
 
 <div class="list-tour">
   <div class="title">
@@ -36,7 +24,7 @@
           <a routerLink="/panel/transfer/edit/{{ transfer.id }}" class="edit-btn">ویرایش</a>
 <!--          <a routerLink="/transfer/info" class="view-btn">نمایش</a>-->
           <!--          <button class="copy-btn">کپی</button>-->
-          <button (click)="deleteHotel(transfer.id)" class="delete-btn">حذف</button>
+          <button (click)="deleteTransfer(transfer.id)" class="delete-btn">حذف</button>
         </div>
       </div>
     </div>

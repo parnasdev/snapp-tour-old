@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TransferAPIService} from "../../Core/Https/transfer-api.service";
 import {MessageService} from "../../Core/Services/message.service";
-import {TransferListDTO, TransferListRequestDTO, TransferSetRequestDTO} from "../../Core/Models/transferDTO";
+import {TransferListDTO, TransferListRequestDTO} from "../../Core/Models/transferDTO";
 
 @Component({
   selector: 'prs-list',
@@ -42,7 +42,8 @@ export class ListComponent implements OnInit {
     }
   }
 
-  deleteHotel(id:number){
+  deleteTransfer(id: number){
 
   }
+
 }

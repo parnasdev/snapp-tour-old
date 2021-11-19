@@ -194,7 +194,8 @@ export class AddComponent implements OnInit {
           quadRate: item.value.quadRate,
           cnbRate: item.value.cnbRate,
           ADLRate: item.value.ADLRate,
-          age: item.value.age
+          age: item.value.age,
+
         },),
         status: 'Show'
       });
@@ -652,6 +653,10 @@ export class AddComponent implements OnInit {
         }
       });
     }
+  }
+
+  openRoomPopup(index: number) {
+
   }
 
 }

@@ -1,4 +1,5 @@
 import {CityDTO} from "./cityDTO";
+import {RoomTypePriceDTO} from "./roomTypeDTO";
 
 export interface TourListRequestDTO {
   perPage: number;
@@ -149,6 +150,7 @@ export interface PricesDTO {
   tripleRate: string;
   ADLRate: number;
   age: string;
+  roomType: RoomTypePriceDTO;
 }
 
 export interface TourTransferDTO {
@@ -166,8 +168,9 @@ export interface CityTourInfoDTO {
   description: string;
   type: number
 }
+
 export interface ReserveReqDTO {
   package_id: number
-  phone : string
-  count : number
+  phone: string
+  count: number
 }
