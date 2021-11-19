@@ -50,11 +50,11 @@
               <img src="assets/img/User-header.svg" width="18" alt="">
               <span>عضویت و ورود</span>
             </a>
-<!--            <a class="btn-login-register" (click)="logOut()" *ngIf="session.isLoggedIn()">-->
-<!--              <img src="assets/img/User-header.svg" width="18" alt="">-->
-<!--              <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>-->
-<!--              <span>خوش آمدید / خروج</span>-->
-<!--            </a>-->
+            <!--            <a class="btn-login-register" (click)="logOut()" *ngIf="session.isLoggedIn()">-->
+            <!--              <img src="assets/img/User-header.svg" width="18" alt="">-->
+            <!--              <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>-->
+            <!--              <span>خوش آمدید / خروج</span>-->
+            <!--            </a>-->
           </div>
         </div>
       </div>
@@ -91,24 +91,24 @@
 <div class="menu-box-mobi">
   <ul class="ul-menu-mobile">
     <li class="btn-parent-mobile">
-      <a class="btn-register" href="">
+      <a class="btn-register" routerLink="/auth" *ngIf="!session.isLoggedIn()">
         <i class="icon-user"></i>
         <span>ورود و عضویت</span>
       </a>
-      <a class="btn-exit" href="">
+      <a class="btn-exit" (click)="logOut()" *ngIf="session.isLoggedIn()">
         <i class="icon-logout"></i>
-       <span> خروج</span>
+        <span> خروج</span>
       </a>
     </li>
     <li class="li-menu">
-      <a class="menu-item-mobile" href="">
+      <a class="menu-item-mobile" href="/">
         <img src="assets/img/header/home.svg" width="17" alt="">
         صفحه اصلی
         <i class="icon-circle icon-active-header"></i>
       </a>
     </li>
     <li class="li-menu">
-      <a class="menu-item-mobile" href="">
+      <a class="menu-item-mobile" routerLink="/tour/list">
         <img src="assets/img/header/placeholder.svg" width="17" alt="">
         تور ها
         <i class="icon-circle icon-active-header"></i>
@@ -116,7 +116,7 @@
       </a>
     </li>
     <li class="li-menu">
-      <a class="menu-item-mobile" href="">
+      <a class="menu-item-mobile" routerLink="/hotel/list">
         <img src="assets/img/header/hotel.svg" width="17" alt="">
         هتل
         <i class="icon-circle icon-active-header"></i>

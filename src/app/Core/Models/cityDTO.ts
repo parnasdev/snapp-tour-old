@@ -21,6 +21,17 @@ export interface CityResponseDTO {
   image: string
   slug: string
 }
+export interface CityInfoResDTO {
+  description: string
+  id: number
+  images: string[]
+  name: string
+  nameEn: string
+  slug: string
+  type: boolean
+
+}
+
 
 export interface MapCityResponseDTO {
   id: number;

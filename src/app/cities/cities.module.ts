@@ -1,20 +1,25 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { CitiesRoutingModule } from './cities-routing.module';
-import { ListComponent } from './list/list.component';
-import { SetComponent } from './set/set.component';
+import {CitiesRoutingModule} from './cities-routing.module';
+import {ListComponent} from './list/list.component';
+import {SetComponent} from './set/set.component';
 import {CommonProjectModule} from "../common-project/common-project.module";
 import {ToolsModule} from "../tools/tools/tools.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonToggle, MatButtonToggleModule} from "@angular/material/button-toggle";
+import {InfoComponent} from './info/info.component';
+import {StoreModule} from "../store/store.module";
+import {LightboxModule} from "ng-gallery/lightbox";
+import {GalleryModule} from "ng-gallery";
 
 
 @NgModule({
   declarations: [
     ListComponent,
-    SetComponent
+    SetComponent,
+    InfoComponent
   ],
   imports: [
     CommonModule,
@@ -22,9 +27,13 @@ import {MatButtonToggle, MatButtonToggleModule} from "@angular/material/button-t
     CommonProjectModule,
     ReactiveFormsModule,
     FormsModule,
+    LightboxModule,
+    GalleryModule,
     MatButtonToggleModule,
     MatDialogModule,
-    ToolsModule
+    ToolsModule,
+    StoreModule
   ]
 })
-export class CitiesModule { }
+export class CitiesModule {
+}

@@ -76,25 +76,24 @@
               </div>
             </div>
             <div class="notes-hotel">
-              <h2>نکات برجسته هتل استودیو صنعتی دنج ترکیه</h2>
+              <h2>نکات برجسته هتل {{hotelInfo.name}}</h2>
               <div class="details">
                 <div class="right-box">
                   <img src="assets/img/Credit%20Card.svg" alt="">
-                  <p>این آپارتمان یک استودیو با طراحی زیبا است که هر آنچه را که برای اقامت کوتاه مدت نیاز دارید ارائه می
-                    دهد. این استودیو دارای یک حمام خصوصی با دوش، یک آشپزخانه کوچک مجهز</p>
+                  <p>---
+                    </p>
                 </div>
                 <div class="left-box">
                   <img src="assets/img/Verified.svg" alt="">
-                  <p>این آپارتمان یک استودیو با طراحی زیبا است که هر آنچه را که برای اقامت کوتاه مدت نیاز دارید ارائه می
-                    دهد. این استودیو دارای یک حمام خصوصی با دوش، یک آشپزخانه کوچک مجهز</p>
+                  <p>---</p>
                 </div>
               </div>
               <div class="option">
                 <h2>امکانات هتل ، اتاق ها و خدمات دیگر در یک نگاه</h2>
                 <div class="parent-item-option" *ngIf="hotelInfo.services.length > 0">
-                  <div class="item" *ngFor="let service of hotelInfo.services">
-                    <img src="assets/img/Modem.svg" width="20" alt="">
-                    <span>وای فای رایگان</span>
+                  <div class="item" *ngFor="let service of hotelServices">
+<!--                    <img src="assets/img/Modem.svg" width="20" alt="">-->
+                    <span>{{service.name}}</span>
                   </div>
                 </div>
                 <div class="parent-item-option" *ngIf="hotelInfo.services.length === 0">
@@ -105,7 +104,7 @@
 <!--                </div>-->
               </div>
             </div>
-            <div class="Similar-tour" *ngIf="hotelInfo.tours">
+            <div class="Similar-tour" *ngIf="hotelInfo.tours.length > 0">
               <div class="title-s2">
                 <div class="text">
                   <img src="assets/img/Notification%202.svg" width="35" alt="">
