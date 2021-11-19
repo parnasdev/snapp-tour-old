@@ -7,7 +7,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {StoreModule} from "../store/store.module";
 import {GALLERY_CONFIG, GalleryModule} from 'ng-gallery';
 import {LIGHTBOX_CONFIG, LightboxModule} from "ng-gallery/lightbox";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {NgxPaginationModule} from "ngx-pagination";
 
 
