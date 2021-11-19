@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {TourInfoDTO, TourPackageDTO} from "../../Core/Models/tourDTO";
+import {ReservePopupComponent} from "../../tour/reserve-popup/reserve-popup.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'prs-thumbnail-tour-two',
@@ -12,13 +14,23 @@ export class ThumbnailTourTwoComponent implements OnInit {
   @Input() tourType = false;
   @Input() defineTour = false;
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
   getStars(count: string): number[]{
     return Array.from(Array(+count).keys());
+  }
+
+
+  reserve(id: number):void {
+    const dialog = this.dialog.open(ReservePopupComponent, {
+      data: id
+    })
+    dialog.afterClosed().subscribe(result => {
+
+    })
   }
 
 }

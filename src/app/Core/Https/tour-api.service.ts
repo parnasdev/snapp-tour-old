@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {PublicService} from "../Services/public.service";
 import {environment} from "../../../environments/environment";
 import {Result} from "../Models/result";
-import {TourListRequestDTO, TourListResDTO, TourSetRequestDTO} from "../Models/tourDTO";
+import {ReserveReqDTO, TourListRequestDTO, TourListResDTO, TourSetRequestDTO} from "../Models/tourDTO";
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +29,7 @@ export class TourApiService {
     return this.http.post<Result<TourListResDTO>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
 
-  editTour(req: TourSetRequestDTO,tour:any): any {
+  editTour(req: TourSetRequestDTO, tour: any): any {
     const strUrl = this.serverControllerName + `editTour/${tour}`;
     return this.http.patch<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
@@ -39,12 +39,18 @@ export class TourApiService {
     return this.http.delete<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
   }
 
-  getTour(title:string): any {
+  getTour(title: string): any {
     const strUrl = this.serverControllerName + `getTour/${title}`;
     return this.http.get<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
   }
-  getLogs(id:number): any {
+
+  getLogs(id: number): any {
     const strUrl = environment.BACK_END_IP + `log/tours/${id}`;
     return this.http.get<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
+  }
+
+  reserve(req: ReserveReqDTO): any {
+    const strUrl = environment.BACK_END_IP + `reserve/createReserve`;
+    return this.http.post<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
 }

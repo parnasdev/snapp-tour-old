@@ -15,6 +15,8 @@ import {MessageService} from "../../Core/Services/message.service";
 import {TourInfoDTO, TourSetRequestDTO} from "../../Core/Models/tourDTO";
 import {CalenderServices} from "../../Core/Services/calender-service";
 import {ResponsiveService} from "../../Core/Services/responsive.service";
+import {MatDialog} from "@angular/material/dialog";
+import {ReservePopupComponent} from "../reserve-popup/reserve-popup.component";
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs]);
 
@@ -34,6 +36,7 @@ export class InfoComponent implements OnInit {
   constructor(public tourApiService: TourApiService,
               public route: ActivatedRoute,
               public calService: CalenderServices,
+              public dialog: MatDialog,
               public checkErrorService: CheckErrorService,
               public errorService: ErrorsService,
               public responsiveService: ResponsiveService,
@@ -67,6 +70,7 @@ export class InfoComponent implements OnInit {
       this.checkErrorService.check(error);
     });
   }
+
 
   getStarterPrice(): number{
     return this.tourInfo.defineTour ? this.tourInfo.packages[0].prices.single : this.tourInfo.packages[0].prices.twin;

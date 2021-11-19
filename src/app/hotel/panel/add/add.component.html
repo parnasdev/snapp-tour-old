@@ -67,9 +67,9 @@
       </div>
       <div class="info-tour-body">
         <div class="top">
-          <div class="item-info-second">
+          <div class="item-info-second w-100">
             <label for="">توضیحات</label>
-            <textarea type="text" [formControl]="bodyFC"></textarea>
+            <prs-editor (body)="getDescriptionFromEditor($event)" ></prs-editor>
           </div>
         </div>
       </div>

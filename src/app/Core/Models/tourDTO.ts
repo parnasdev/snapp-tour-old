@@ -166,3 +166,8 @@ export interface CityTourInfoDTO {
   description: string;
   type: number
 }
+export interface ReserveReqDTO {
+  package_id: number
+  phone : string
+  count : number
+}

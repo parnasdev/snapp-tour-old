@@ -8,13 +8,16 @@ import {FileManagerRoutingModule} from "./file-manager-routing.module";
 
 
 @NgModule({
-  declarations: [
-    GalleryCreateComponent,
-  ],
-  imports: [
-    CommonModule,
-    FileManagerRoutingModule,
-    FormsModule
-  ],
+    declarations: [
+        GalleryCreateComponent,
+    ],
+    imports: [
+        CommonModule,
+        FileManagerRoutingModule,
+        FormsModule
+    ],
+    exports: [
+        GalleryCreateComponent
+    ]
 })
 export class FileManagerModule { }

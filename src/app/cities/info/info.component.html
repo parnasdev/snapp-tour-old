@@ -1,0 +1,116 @@
+<prs-address-bar [path]="'هتل'" [path2]="info.name ? info.name : ''"></prs-address-bar>
+<section class="info-hotel">
+  <div class="prs-responsive">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-10 m-auto parent-info-hotel">
+          <div class="title-info-hotel">
+            <div class="right">
+              <img src="assets/img/Tag.svg" width="35" alt="">
+              <div class="text">
+                <h2 class="title-fa">{{ info.name }}</h2>
+                <h2 class="title-en">{{ info.nameEn }}</h2>
+              </div>
+            </div>
+            <div class="left">
+              <a class="share">
+                <img src="assets/img/Navigation.svg" width="18" alt="">
+                <span>اشتراک گذاری !</span>
+              </a>
+
+            </div>
+          </div>
+          <div class="box-info-hotel">
+            <div class="title-hotel">
+              <div class="name-city-country">
+                <img src="assets/img/Location.svg" width="20" alt="">
+                <span class="title-small-fa">نام شهر:</span>
+                <span class="title-en">{{ info.name }} </span>
+              </div>
+              <div class="rate-star">
+                <span class="title-en">{{ info.nameEn }} </span>
+
+              </div>
+            </div>
+
+
+            <div class="parent-gallery">
+<!--              <div class="right-gallery">-->
+<!--                <img class="top-right" [lightbox]="0" [gallery]="galleryId" [src]="info.images[0]" alt="">-->
+<!--                <img class="left-right" [lightbox]="1" [gallery]="galleryId" [src]="info.images[1]" alt="">-->
+<!--                <img class="bottom-right" [lightbox]="2" [gallery]="galleryId" [src]="info.images[2]" alt="">-->
+<!--                <img class="bottom-left" [lightbox]="3" [gallery]="galleryId" [src]="info.images[3]" alt="">-->
+<!--              </div>-->
+<!--              <div class="left-gallery" [style.background-image]="'url(' + info.images[0] + ')'">-->
+<!--                <div class="parent-view-all-photo">-->
+<!--                  <a class="btn-photos" [lightbox]="0" [gallery]="galleryId">-->
+<!--                    <img src="assets/img/Menu-hotel.svg" width="20" alt="">-->
+<!--                    <span>مشاهده همه عکس ها</span>-->
+<!--                  </a>-->
+<!--                </div>-->
+<!--              </div>-->
+              <gallery class="w-100" [lightbox]="0" [gallery]="galleryId" [items]="items" ></gallery>
+            </div>
+            <div class="info-about-hotel">
+              <div class="scrollbar" id="style-1"></div>
+              <h2>درباره شهر {{info.name}} بیشتر بدانید :</h2>
+              <p [innerHTML]="info.description"></p>
+            </div>
+          </div>
+<!--            <div class="about-hotel">-->
+<!--              <div class="map">-->
+<!--                <a class="btn-map" href="">مسیریابی از مبدا شما !</a>-->
+<!--                <div class="address">-->
+<!--                  <img src="assets/img/008-maps.svg" width="20" alt="">-->
+<!--                  <p class="text-en">{{ info. }}</p>-->
+<!--                </div>-->
+<!--                <div class="telephone">-->
+<!--                  <img src="assets/img/003-telephone.svg" width="20" alt="">-->
+<!--                  <p>{{ info.phone ? info.phone : '-' }}</p>-->
+<!--                </div>-->
+<!--              </div>-->
+
+<!--            <div class="notes-hotel">-->
+<!--              <h2>نکات برجسته هتل استودیو صنعتی دنج ترکیه</h2>-->
+<!--              <div class="details">-->
+<!--                <div class="right-box">-->
+<!--                  <img src="assets/img/Credit%20Card.svg" alt="">-->
+<!--                  <p>این آپارتمان یک استودیو با طراحی زیبا است که هر آنچه را که برای اقامت کوتاه مدت نیاز دارید ارائه می-->
+<!--                    دهد. این استودیو دارای یک حمام خصوصی با دوش، یک آشپزخانه کوچک مجهز</p>-->
+<!--                </div>-->
+<!--                <div class="left-box">-->
+<!--                  <img src="assets/img/Verified.svg" alt="">-->
+<!--                  <p>این آپارتمان یک استودیو با طراحی زیبا است که هر آنچه را که برای اقامت کوتاه مدت نیاز دارید ارائه می-->
+<!--                    دهد. این استودیو دارای یک حمام خصوصی با دوش، یک آشپزخانه کوچک مجهز</p>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--&lt;!&ndash;              <div class="option">&ndash;&gt;-->
+<!--&lt;!&ndash;                <h2>امکانات هتل ، اتاق ها و خدمات دیگر در یک نگاه</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;                <div class="parent-item-option" *ngIf="info.services.length > 0">&ndash;&gt;-->
+<!--&lt;!&ndash;                  <div class="item" *ngFor="let service of info.services">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <img src="assets/img/Modem.svg" width="20" alt="">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <span>وای فای رایگان</span>&ndash;&gt;-->
+<!--&lt;!&ndash;                  </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                </div>&ndash;&gt;-->
+
+<!--                &lt;!&ndash;                <div class="parent-view-option">&ndash;&gt;-->
+<!--                &lt;!&ndash;                  <a class="btn-option" href="">مشاهده تمامی امکانات</a>&ndash;&gt;-->
+<!--                &lt;!&ndash;                </div>&ndash;&gt;-->
+<!--&lt;!&ndash;              </div>&ndash;&gt;-->
+<!--            </div>-->
+<!--            <div class="Similar-tour" *ngIf="info.tours">-->
+<!--              <div class="title-s2">-->
+<!--                <div class="text">-->
+<!--                  <img src="assets/img/Notification%202.svg" width="35" alt="">-->
+<!--                  <h2>تور های هتل</h2>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <prs-thumbnails-tour *ngIf="info.tours.length > 0" [tours]="info.tours"></prs-thumbnails-tour>-->
+<!--         </div>-->
+<!--          </div>-->
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>

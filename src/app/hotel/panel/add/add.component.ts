@@ -182,9 +182,12 @@ export class AddComponent implements OnInit {
     })
   }
 
+  getDescriptionFromEditor(body:any):void {
+    this.bodyFC.setValue(body)
+  }
+
   add(): void {
     this.setReq()
-    console.log(this.req)
     this.hotelApi.add(this.req).subscribe((res: any) => {
       if (res.isDone) {
         this.message.showMessageBig(res.message);

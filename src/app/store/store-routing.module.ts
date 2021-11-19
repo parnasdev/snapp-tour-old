@@ -28,6 +28,9 @@ const routes: Routes = [
       },{
         path: 'hotel',
         loadChildren: () => import('../hotel/hotel.module').then(m => m.HotelModule)
+      },{
+        path: 'city',
+        loadChildren: () => import('../cities/cities.module').then(m => m.CitiesModule)
       }
     ]
   }
