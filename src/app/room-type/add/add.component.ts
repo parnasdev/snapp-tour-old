@@ -48,7 +48,6 @@ export class AddComponent implements OnInit {
   }
 
   fillData() {
-    debugger
     const roomItem = this.roomTypes.find((x: any) => x.id === +this.roomId);
     // @ts-ignore
     this.nameFC.setValue(roomItem.name);
