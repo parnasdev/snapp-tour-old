@@ -180,10 +180,10 @@
               <img src="assets/img/Document%20Align%20Center%201.svg" width="25" alt="">
               <h2>هتل های قابل ارائه تور</h2>
             </div>
-            <a class="btn-download-pdf" href="">
+            <button (click)="print()" class="btn-download-pdf" href="">
               <img src="assets/img/Download.svg" width="20" alt="">
               <span>دانلود فایل PDF</span>
-            </a>
+            </button>
           </div>
 
           <prs-thumbnail-tour-two [packages]="tourInfo.packages" class="w-100"></prs-thumbnail-tour-two>
