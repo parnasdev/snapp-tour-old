@@ -2,10 +2,9 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {PublicService} from "../Services/public.service";
 import {environment} from "../../../environments/environment";
-import {CityListRequestDTO, CitySetRequestDTO} from "../Models/cityDTO";
 import {Result} from "../Models/result";
 import {
-  hotelInfoDTO, HotelListRes,
+  hotelInfoDTO,
   HotelListResponseDTO,
   HotelRequestDTO,
   HotelSetRequestDTO,
@@ -27,7 +26,6 @@ export class HotelApiService {
   }
 
   getHotels(req: HotelRequestDTO, page?: number): any {
-    debugger
     const address = page ? `getHotels?=${page}` : 'getHotels'
     const strUrl = this.serverControllerName + address;
     return this.http.post<Result<HotelListResponseDTO[]>>(strUrl, req, this.publicService.getDefaultHeaders());
