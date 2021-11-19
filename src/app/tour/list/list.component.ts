@@ -12,7 +12,6 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-
   tourReq: TourListRequestDTO = {
     city: '',
     isAdmin: false,

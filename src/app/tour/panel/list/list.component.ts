@@ -39,7 +39,6 @@ export class ListComponent implements OnInit {
   originCityTypeFC = new FormControl(true);
   p = 1;
 
-  isLoading = false;
 
   constructor(public tourApiService: TourApiService,
               public cityApi: CityApiService,

@@ -15,6 +15,7 @@ import {Gallery, GalleryItem, ImageItem} from 'ng-gallery';
   styleUrls: ['./info.component.scss']
 })
 export class InfoComponent implements OnInit {
+  isLoading = false
   galleryId = 'myLightbox';
   imgs = ['https://www.imgonline.com.ua/examples/bee-on-daisy.jpg',
     'https:http://tour-api.parnasweb.com///source///images///2021///46366665.jpg']
@@ -44,7 +45,9 @@ export class InfoComponent implements OnInit {
   }
 
   getInfo(): void {
+    this.isLoading = true;
     this.hotelApi.getHotel(this.hotelName, false).subscribe((res: any) => {
+      this.isLoading = false;
       if (res.isDone) {
         this.hotelInfo = res.data;
         this.fillAlbum(this.hotelInfo.images)
@@ -53,6 +56,7 @@ export class InfoComponent implements OnInit {
         this.message.custom(res.message)
       }
     }, (error: any) => {
+      this.isLoading = false;
       this.message.error()
 
     })

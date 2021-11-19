@@ -13,6 +13,7 @@ import {ServicesComponent} from './services/services.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {NgxPaginationModule} from "ngx-pagination";
+import {StoreModule} from "../../store/store.module";
 
 
 @NgModule({
@@ -22,19 +23,20 @@ import {NgxPaginationModule} from "ngx-pagination";
     ListComponent,
     ServicesComponent
   ],
-  imports: [
-    CommonModule,
-    HotelPanelRoutingModule,
-    MatDialogModule,
-    MatButtonToggleModule,
-    FormsModule,
-    MatButtonToggleModule,
-    ReactiveFormsModule,
-    MatCheckboxModule,
-    CommonProjectModule,
-    BarRatingModule,
-    NgxPaginationModule,
-  ]
+    imports: [
+        CommonModule,
+        HotelPanelRoutingModule,
+        MatDialogModule,
+        MatButtonToggleModule,
+        FormsModule,
+        MatButtonToggleModule,
+        ReactiveFormsModule,
+        MatCheckboxModule,
+        CommonProjectModule,
+        BarRatingModule,
+        NgxPaginationModule,
+        StoreModule,
+    ]
 })
 export class HotelPanelModule {
 }

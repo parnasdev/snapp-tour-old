@@ -72,6 +72,7 @@ export class EditComponent implements OnInit {
   images: any[] = [];
   thumbnail = ''
   services: any[] = []
+  isLoading = false;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -160,9 +161,11 @@ export class EditComponent implements OnInit {
   getImage(imageStr: string): void {
     this.images.push(imageStr)
   }
-  getDescriptionFromEditor(body:any):void {
+
+  getDescriptionFromEditor(body: any): void {
     this.bodyFC.setValue(body)
   }
+
   getServices(): void {
     this.showServices = false
     this.hotelApi.getServices().subscribe((res: any) => {
@@ -199,10 +202,12 @@ export class EditComponent implements OnInit {
   }
 
   getInfo(): void {
+    this.isLoading = true;
     this.hotelApi.getHotel(this.hotelName, true).subscribe((res: any) => {
+      this.isLoading = false;
       if (res.isDone) {
         this.hotelInfo = res.data;
-        this.currentStar= +this.hotelInfo.stars
+        this.currentStar = +this.hotelInfo.stars
         this.cityTypeFC.setValue(this.hotelInfo.city.type != 0)
         this.getCities()
         this.getServices()
@@ -211,6 +216,7 @@ export class EditComponent implements OnInit {
         this.message.custom(res.message)
       }
     }, (error: any) => {
+      this.isLoading = false
       this.message.error()
 
     })
@@ -255,12 +261,14 @@ export class EditComponent implements OnInit {
       this.thumbnail = result
     })
   }
+
   getServicesResult(services: any): void {
     this.serviceIDs = [];
     services.forEach((x: any) => {
       this.serviceIDs.push(x.id.toString());
     })
   }
+
   getImages(): void {
     const dialog = this.dialog.open(MultipleUploadComponent, {});
     dialog.afterClosed().subscribe((result: any[]) => {
