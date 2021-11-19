@@ -47,7 +47,7 @@
           <ul class="under-menu-ul">
             <li *ngIf="checkItemPermission('Hotel.create')"><a routerLink="/panel/hotel/add">اضافه کردن هتل</a></li>
             <li *ngIf="checkItemPermission('Hotel.read')"><a routerLink="/panel/hotel/list">لیست هتل ها</a></li>
-<!--            <li *ngIf="checkItemPermission('Hotel.read')"><a (click)="showMessage()">هتل های ویژه</a></li>-->
+            <!--            <li *ngIf="checkItemPermission('Hotel.read')"><a (click)="showMessage()">هتل های ویژه</a></li>-->
             <li *ngIf="checkItemPermission('City.read')"><a routerLink="/panel/cities">لیست شهر ها</a></li>
             <li *ngIf="checkItemPermission('City.create')"><a routerLink="/panel/cities/set">اضافه کردن شهر</a></li>
           </ul>
@@ -92,6 +92,19 @@
           <ul class="under-menu-ul">
             <li *ngIf="checkItemPermission('User.read')"><a routerLink="user/list">لیست کاربران</a></li>
             <li *ngIf="checkItemPermission('User.create')"><a routerLink="user/add">اضافه کردن کاربر جدید</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="li-list">
+        <a class="menu-main menu-main-6" data-toggle="collapse" href="#collapseExample6" role="button"
+           aria-expanded="false" aria-controls="collapseExample">
+          <img src="assets/img/User%20Accepted.svg" width="20" alt="">
+          مدیریت گالری
+          <i class="icon-down-open icon-6"></i>
+        </a>
+        <div class="collapse" id="collapseExample6">
+          <ul class="under-menu-ul">
+            <li><a routerLink="gallery">لیست تیکت ها</a></li>
           </ul>
         </div>
       </li>
