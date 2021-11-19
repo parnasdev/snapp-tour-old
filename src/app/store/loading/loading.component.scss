@@ -1,0 +1,50 @@
+
+//flight loading
+.parent-loading{
+  position: fixed;
+  top: 40%;
+  right: 41.5%;
+  width: 300px;
+  height: 250px;
+  background-color: #fffffff0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-btn);
+  border: 1px solid #eee;
+  box-shadow: var(--box-shadow);
+}
+.flight-preloader {
+  svg {
+    max-width: 95%;
+    max-height: 95%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    path {
+      fill-opacity: 0;
+      stroke: var(--base-color);
+      stroke-width: 3;
+      stroke-dasharray: 670;
+      stroke-dashoffset: 670;
+      animation: draw 3s infinite linear;
+    }
+  }
+  @keyframes draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+}
+
+.title-loading{
+  position: relative;
+  top: 90px;
+  color: var(--base-color);
+  font-weight: 600;
+  font-size: 20px;
+}

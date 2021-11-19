@@ -44,6 +44,11 @@
 :host::ng-deep input{
   border: 1px solid #eee !important;
 }
+:host::ng-deep input[type='checkbox']{
+  border: 1px solid #eee !important;
+  width: 15px !important;
+  height: 15px !important;
+}
 :host::ng-deep select{
   border: 1px solid #eee !important;
 }

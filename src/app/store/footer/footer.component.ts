@@ -21,7 +21,7 @@ export class FooterComponent implements OnInit {
 
     btn.on('click', (e: any) => {
       e.preventDefault();
-      $('html, body').animate({scrollTop: 0}, '300');
+      $('.scrolling-area').animate({scrollTop: 0}, '300');
     });
   }
 

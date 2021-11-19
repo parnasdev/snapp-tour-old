@@ -6,7 +6,7 @@ $(document).ready(function (){
   })
 
 $(".button-down-scroll").click(function (){
-  $("html").animate({scrollTop: 400} , 300)
+  $(".scrolling-area").animate({scrollTop: 400} , 300)
 })
 })
 $(window).scroll(function (){
