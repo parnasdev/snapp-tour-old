@@ -21,9 +21,10 @@ import {MaterialModule} from "../common-project/persianDatePickerAdapter/materia
 import { ThumbnailTourInfoComponent } from './thumbnail-tour-info/thumbnail-tour-info.component';
 import { ThumbnailTourTwoComponent } from './thumbnail-tour-two/thumbnail-tour-two.component';
 import {PipesModule} from "../common-project/pipes/pipes.module";
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
-  declarations: [IndexComponent, HeaderComponent, FooterComponent, AddressBarComponent, ThumbnailsTourComponent, StoreComponent, AboutUsComponent, ContactUsComponent, SearchComponent, ThumbnailTourInfoComponent, ThumbnailTourTwoComponent],
+  declarations: [IndexComponent, HeaderComponent, FooterComponent, AddressBarComponent, ThumbnailsTourComponent, StoreComponent, AboutUsComponent, ContactUsComponent, SearchComponent, ThumbnailTourInfoComponent, ThumbnailTourTwoComponent, LoadingComponent],
     exports: [
         IndexComponent,
         HeaderComponent,
@@ -32,6 +33,7 @@ import {PipesModule} from "../common-project/pipes/pipes.module";
         ThumbnailsTourComponent,
         ThumbnailTourInfoComponent,
         ThumbnailTourTwoComponent,
+        LoadingComponent,
     ],
     imports: [
         CommonModule,
