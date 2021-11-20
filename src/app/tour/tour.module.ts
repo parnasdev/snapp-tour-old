@@ -20,9 +20,10 @@ import { ExpireTourComponent } from './expire-tour/expire-tour.component';
     ExpireTourComponent,
 
   ],
-  exports: [
-    InfoComponent
-  ],
+    exports: [
+        InfoComponent,
+        ExpireTourComponent
+    ],
   imports: [
     CommonModule,
     ReactiveFormsModule,

@@ -23,6 +23,7 @@ import {ThumbnailTourTwoComponent} from './thumbnail-tour-two/thumbnail-tour-two
 import {PipesModule} from "../common-project/pipes/pipes.module";
 
 import {LoadingComponent} from './loading/loading.component';
+import {TourModule} from "../tour/tour.module";
 
 @NgModule({
   declarations: [
@@ -49,19 +50,19 @@ import {LoadingComponent} from './loading/loading.component';
     ThumbnailTourTwoComponent,
     LoadingComponent,
   ],
-  imports: [
-    CommonModule,
-    StoreRoutingModule,
-    ReactiveFormsModule,
-    ToolsModule,
-    SwiperModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatNativeDateModule,
-    MatInputModule,
-    MaterialModule,
-    PipesModule,
-  ]
+    imports: [
+        CommonModule,
+        StoreRoutingModule,
+        ReactiveFormsModule,
+        ToolsModule,
+        SwiperModule,
+        MatDatepickerModule,
+        MatFormFieldModule,
+        MatNativeDateModule,
+        MatInputModule,
+        MaterialModule,
+        PipesModule,
+    ]
 })
 export class StoreModule {
 }
