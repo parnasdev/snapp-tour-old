@@ -1,0 +1,28 @@
+<div class="list-tour">
+  <div class="title">
+    <h2>لیست لینک ها</h2>
+    <a class="btn-add-tour" (click)="add()">اضافه</a>
+  </div>
+  <div class="table-list-tour">
+    <div class="header-list-tour">
+      <span class="id">#</span>
+      <span class="title-tour">شناسه</span>
+      <span class="from-to">آدرس قدیم</span>
+      <span class="setting">آدرس جدید</span>
+    </div>
+    <div class="body-list-tour" >
+      <div class="item" *ngFor="let url of urls ;let i = index">
+        <span class="id">{{ url.id }}</span>
+        <span class="title-tour">{{ url.oldUrl }}</span>
+        <span class="title-tour">{{ url.newUrl }}</span>
+        <div class="button-setting">
+          <a (click)="edit(url)" class="edit-btn">ویرایش</a>
+          <a (click)="delete(url.id)" class="edit-btn">حذف</a>
+        </div>
+      </div>
+      <div>
+
+      </div>
+    </div>
+  </div>
+</div>

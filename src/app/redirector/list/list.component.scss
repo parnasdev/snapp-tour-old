@@ -1,3 +1,32 @@
+//.parent-list{
+//  display: grid;
+//  grid-template-columns: 1fr 1fr 1fr;
+//  width: 99%;
+//  margin-top: 1rem;
+//}
+//.parent-list .item{
+//  height: 150px;
+//  background-color: var(--white);
+//  border-radius: 5px;
+//  padding: 10px;
+//  display: flex;
+//  align-items: center;
+//  width: 95%;
+//  margin: 1rem auto 0 auto;
+//}
+//.parent-list .item img{
+//  width: 100px;
+//  height: 100px;
+//  border-radius: 50%;
+//  object-fit: cover;
+//}
+//.title{
+//  width: 74%;
+//  display: flex;
+//  flex-direction: column;
+//  align-items: flex-start;
+//  padding-right: 1rem;
+//}
 .title h2{
   font-size: 20px;
   font-weight: 500;
@@ -51,7 +80,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 0.5fr 0.7fr 1.5fr 1fr;
-  background-color: #d5d5d5;
+  background-color: #D5D5D5;
   border-bottom: 1px solid var(--light-color-two);
 }
 
@@ -162,4 +191,21 @@
   font-family: IRANSans !important;
   font-size: 13px !important;
   font-weight: 500 !important;
+}
+prs-select-city{
+  width: 32% !important;
+}
+:host::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: unset !important;
+}
+:host::ng-deep .mat-form-field-underline {
+  display: none;
+}
+::ng-deep .cdk-overlay-pane {
+  left: 447.3px !important;
+}
+.edit-btn,.view-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

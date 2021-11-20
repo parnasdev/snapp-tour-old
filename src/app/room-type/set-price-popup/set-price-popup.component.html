@@ -1,0 +1,53 @@
+<div class="box-info-package">
+  <div class="info-tour-header">
+    <div class="right">
+      <h2>اطلاعات نوع اتاق</h2>
+    </div>
+  </div>
+  <div class="info-tour-body p-0">
+    <!--            local tour-->
+    <div class="header-box">
+      <div class="package-item">#</div>
+      <div class="package-item">نام اتاق</div>
+      <div class="package-item">هزینه اتاق</div>
+      <div></div>
+    </div>
+    <form [formGroup]="form"  action="" class="example-list">
+      <div formArrayName="rooms">
+        <div class="body-box example-box" *ngFor="let room of RoomForm.controls; let i = index"
+             [formGroupName]="i">
+          <div class="package-item id-package">
+            <div class="icon-from-to">
+              <p>{{ i + 1 }}</p>
+            </div>
+          </div>
+          <div class="package-item">
+            <select name="" id="" formControlName="name">
+              <option *ngFor="let room of roomTypes"
+                      [value]="room.name">{{ room.name }}</option>
+            </select>
+          </div>
+
+          <div class="package-item">
+            <input type="text" formControlName="price" mask="separator" thousandSeparator=",">
+            <!--          <div class="under-package-text d-flex align-items-center"-->
+            <!--               *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].twin > 0">-->
+            <!--            <p>{{ getData(i).twinRate.value | sperator }}</p>-->
+            <!--          </div>-->
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="package-item">
+      <a (click)="addRow()" class="btn-add-tour-fix">
+        <i class="icon-plus-squared-alt"></i>
+        <span>اضافه</span>
+      </a>
+    </div>
+  </div>
+
+  <div>
+    <button class="w-100" (click)="submit()">ثبت اطلاعات اتاق</button>
+  </div>
+
+</div>

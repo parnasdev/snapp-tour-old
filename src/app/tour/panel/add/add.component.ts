@@ -19,6 +19,10 @@ import {TourSetRequestDTO} from "../../../Core/Models/tourDTO";
 import {ErrorsService} from "../../../Core/Services/errors.service";
 import {CheckErrorService} from "../../../Core/Services/check-error.service";
 import {moveItemInArray} from '@angular/cdk/drag-drop';
+import {MatDialog} from "@angular/material/dialog";
+import {MultipleUploadComponent} from "../../../common-project/multiple-upload/multiple-upload.component";
+import {SetPricePopupComponent} from "../../../room-type/set-price-popup/set-price-popup.component";
+import {RoomTypeSetDTO} from "../../../Core/Models/roomTypeDTO";
 
 @Component({
   selector: 'prs-add',
@@ -70,6 +74,7 @@ export class AddComponent implements OnInit {
     public session: SessionService,
     public calenderServices: CalenderServices,
     public publicServices: PublicService,
+    public dialog: MatDialog,
     public fb: FormBuilder,
     public mobileService: ResponsiveService) {
     this.isMobile = mobileService.isMobile();
@@ -157,7 +162,8 @@ export class AddComponent implements OnInit {
       ADLRate: [this.form.value.ADLFlightRate ? this.form.value.ADLFlightRate : null],
       age: [null],
       offered: false,
-      status: [null]
+      status: [null],
+      roomType: [[]]
     });
     this.ToursForm.push(Tours);
   }
@@ -194,7 +200,8 @@ export class AddComponent implements OnInit {
           quadRate: item.value.quadRate,
           cnbRate: item.value.cnbRate,
           ADLRate: item.value.ADLRate,
-          age: item.value.age
+          age: item.value.age,
+          roomType: item.value.roomType
         },),
         status: 'Show'
       });
@@ -251,6 +258,7 @@ export class AddComponent implements OnInit {
   get ToursForm() {
     return this.form.get('packages') as FormArray;
   }
+
 
   removePackage(i: any) {
     this.ToursForm.removeAt(i);
@@ -456,10 +464,10 @@ export class AddComponent implements OnInit {
         this.cities = res.data;
         this.cityID = this.cities[1].id;
         this.form.controls.stCity_id.setValue(this.cities[0].id.toString());
-        this.form.controls.endCity_id.setValue(this.cities[1].id.toString());
+        // this.form.controls.endCity_id.setValue(this.cities[1].id.toString());
         // @ts-ignore
-        this.tourType = this.cities.find(x => x.id === +this.form.value.endCity_id)?.type;
-        this.getHotels();
+        // this.tourType = this.cities.find(x => x.id === +this.form.value.endCity_id)?.type;
+        // this.getHotels();
       }
     }, (error: any) => {
       this.message.error()
@@ -589,6 +597,11 @@ export class AddComponent implements OnInit {
     this.updatePackagePrices();
   }
 
+  setCnbRate(event: any) {
+    this.ToursForm.controls.find(x => x.get('cnb')?.setValue(event.target.value))
+    this.updatePackagePrices();
+  }
+
   drop(event: any) {
     this.getStars(event.previousIndex);
     // @ts-ignore
@@ -652,6 +665,25 @@ export class AddComponent implements OnInit {
         }
       });
     }
+  }
+
+  hotelChange(event: any , index: number) {
+    //@ts-ignore
+    this.ToursForm.controls[index].controls.hotel_id.setValue(event.id);
+  }
+
+  openRoomPopup(index: number) {
+    // @ts-ignore
+    const data = this.ToursForm.controls[index].controls.roomType.value
+    const dialog = this.dialog.open(SetPricePopupComponent, {
+      width: '70%',
+      height: '60%',
+      data: data
+    });
+    dialog.afterClosed().subscribe((result: RoomTypeSetDTO[]) => {
+      // @ts-ignore
+      this.ToursForm.controls[index].controls.roomType.setValue(result);
+    })
   }
 
 }

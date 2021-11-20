@@ -30,6 +30,9 @@ const routes: Routes = [
       {
         path: 'user',
         loadChildren: () => import('../user/user.module').then(m => m.UserModule)
+      }, {
+        path: 'redirector',
+        loadChildren: () => import('../redirector/redirector.module').then(m => m.RedirectorModule)
       },
       {
         path: 'blog',
@@ -42,6 +45,10 @@ const routes: Routes = [
       {
         path: 'gallery',
         loadChildren: () => import('../gallery/gallery.module').then(m => m.GalleryModule)
+      },
+      {
+        path: 'roomType',
+        loadChildren: () => import('../room-type/room-type.module').then(m => m.RoomTypeModule)
       }
     ]
   }

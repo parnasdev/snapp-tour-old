@@ -7,8 +7,13 @@
            [formControl]="hotelFC"
            [matAutocomplete]="auto">
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      <mat-option *ngFor="let option of filteredOptions | async" (blur)="changed(option)"  [value]="option.name">
-        {{option.name}} {{option.nameEn}}
+      <mat-option *ngFor="let option of filteredOptions | async" (blur)="changed(option)"  [value]="type ? option.name : option.nameEn">
+        <span *ngIf="type">
+            {{option.name}}
+        </span>
+        <span *ngIf="!type">
+          {{option.nameEn}}
+        </span>
       </mat-option>
     </mat-autocomplete>
     <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>

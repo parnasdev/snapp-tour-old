@@ -73,7 +73,7 @@ export class InfoComponent implements OnInit {
   }
 
   getStarterPrice(): number {
-    return this.tourInfo.defineTour ? this.tourInfo.packages[0].prices.single : this.tourInfo.packages[0].prices.twin;
+    return this.tourInfo.defineTour ? this.tourInfo.packages[0].prices.twinRate : this.tourInfo.packages[0].prices.twin;
   }
 
   getTagsHtml(tagName: keyof HTMLElementTagNameMap): string {
