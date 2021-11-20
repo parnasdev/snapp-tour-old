@@ -18,6 +18,7 @@ export class SelectHotelComponent implements OnInit,OnChanges {
   @Input() callHotel: boolean =  false;
   @Input() inCommingHotel : any
   @Input() isAdmin = false
+  @Input() type = true
   isLoading = false;
   constructor(
     public hotelApi: HotelApiService,
@@ -47,7 +48,7 @@ export class SelectHotelComponent implements OnInit,OnChanges {
       map(value => this._filter(value)),
     );
     if (this.inCommingHotel) {
-      this.hotelFC.setValue(this.inCommingHotel.name)
+      this.hotelFC.setValue(this.type ? this.inCommingHotel.name : this.inCommingHotel.nameEn)
     }
 
     if (this.callHotel) {
