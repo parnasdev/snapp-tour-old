@@ -1,8 +1,11 @@
-<div class="box-info-package">
+<div class="box-info-package h-100">
   <div class="info-tour-header">
-    <div class="right">
       <h2>اطلاعات نوع اتاق</h2>
-    </div>
+    <a (click)="addRow()" class="btn-add-tour-fix">
+      <i class="icon-plus-squared-alt"></i>
+      <span>اضافه</span>
+    </a>
+
   </div>
   <div class="info-tour-body p-0">
     <!--            local tour-->
@@ -13,7 +16,7 @@
       <div></div>
     </div>
     <form [formGroup]="form"  action="" class="example-list">
-      <div formArrayName="rooms">
+      <div class="body-fix" formArrayName="rooms">
         <div class="body-box example-box" *ngFor="let room of RoomForm.controls; let i = index"
              [formGroupName]="i">
           <div class="package-item id-package">
@@ -39,15 +42,11 @@
       </div>
     </form>
     <div class="package-item">
-      <a (click)="addRow()" class="btn-add-tour-fix">
-        <i class="icon-plus-squared-alt"></i>
-        <span>اضافه</span>
-      </a>
     </div>
   </div>
 
   <div>
-    <button class="w-100" (click)="submit()">ثبت اطلاعات اتاق</button>
+    <button class="w-100 btn-submit-fix" (click)="submit()">ثبت اطلاعات اتاق</button>
   </div>
 
 </div>
