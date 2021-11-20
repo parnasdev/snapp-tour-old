@@ -150,7 +150,7 @@ export interface PricesDTO {
   tripleRate: string;
   ADLRate: number;
   age: string;
-  roomType: RoomTypePriceDTO;
+  roomType: RoomTypePriceDTO[];
 }
 
 export interface TourTransferDTO {

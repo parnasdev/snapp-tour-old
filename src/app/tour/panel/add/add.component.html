@@ -319,7 +319,7 @@
           <div class="item-info-services">
             <div class="box-services w-100">
               <label for="">نرخ پرواز کودک(تومان)</label>
-              <input (keyup)="updatePackagePrices()" formControlName="CHDFlightRate" type="text" mask="separator"
+              <input (keyup)="setCnbRate($event)" formControlName="CHDFlightRate" type="text" mask="separator"
                      thousandSeparator=",">
               <div *ngIf="errorService.hasError('CHDFlightRate')">
                 <span class="text-danger">{{errorService.getError('CHDFlightRate')}}</span>
