@@ -1,3 +1,5 @@
+<prs-loading *ngIf="infoLoading"></prs-loading>
+
 <div class="add-tour">
   <form [formGroup]="form">
     <div class="box-info-tour">
@@ -6,29 +8,30 @@
           <label for="">{{ tourType ? 'تور داخلی' : 'تور خارجی'}}</label>
           <h2>اطلاعات تور</h2>
         </div>
-        <div class="left">
-          <div class="selectdiv">
-            <label>
-              <select formControlName="status">
-                <option value="Show">انتشار</option>
-                <option value="Draft" selected>پیش نویس</option>
-                <option value="Accepted">تایید شده</option>
-                <option value="NotAccepted">عدم تایید</option>
-                <option value="Pending">در انتظار تایید</option>
-                <option value="Suspended">معلق شده/منقضی شده</option>
-                <option value="Completion">تکمیل شده</option>
-              </select>
-            </label>
-          </div>
-          <span class="required f-10" *ngIf="form.get('status')?.touched && form.get('status')?.invalid">
+
+        <div class="left d-flex align-items-center">
+          <div>
+            <div class="selectdiv">
+              <label>
+                <select formControlName="status">
+                  <option value="Show">انتشار</option>
+                  <option value="Draft" selected>پیش نویس</option>
+                  <option value="Accepted">تایید شده</option>
+                  <option value="NotAccepted">عدم تایید</option>
+                  <option value="Pending">در انتظار تایید</option>
+                  <option value="Suspended">معلق شده/منقضی شده</option>
+                  <option value="Completion">تکمیل شده</option>
+                </select>
+              </label>
+            </div>
+            <span class="required f-10" *ngIf="form.get('status')?.touched && form.get('status')?.invalid">
             این فیلد الزامی است
           </span>
-          <div *ngIf="errorService.hasError('status')">
-            <span class="text-danger">{{errorService.getError('status')}}</span>
+            <div *ngIf="errorService.hasError('status')">
+              <span class="text-danger">{{errorService.getError('status')}}</span>
+            </div>
           </div>
-        </div>
-        <div class="left">
-          <div class="selectdiv">
+          <div class="selectdiv me-2">
             <label>
               <select formControlName="defineTour" (change)="disableFields()">
                 <option [value]="false">یکجا</option>
@@ -55,7 +58,7 @@
 
               <label for="">شهر مبدا</label>
 
-              <prs-select-city [hasHotel]="true" [inCommingCity]="cities[0]" [cities]="cities"
+              <prs-select-city [hasHotel]="true" [inCommingCity]="info.stCity" [cities]="cities"
                                (citySelected)="getStCity($event)"></prs-select-city>
 
             </div>
@@ -65,7 +68,7 @@
             <div class="select-info">
               <label for="">شهر مقصد</label>
 
-              <prs-select-city [hasHotel]="true" [inCommingCity]="cities[1]" [cities]="cities"
+              <prs-select-city [hasHotel]="true" [inCommingCity]="info.endCity" [cities]="cities"
                                (citySelected)="getEndCity($event)"></prs-select-city>
               <div *ngIf="errorService.hasError('endCity_id')">
                 <span class="text-danger">{{errorService.getError('endCity_id')}}</span>
@@ -106,6 +109,7 @@
           </div>
         </div>
         <div class="bottom">
+
           <div class="item-info">
             <label for="">تاریخ ورود به هتل</label>
             <mat-form-field class="example-full-width" appearance="fill">
@@ -139,7 +143,12 @@
               <span class="text-danger">{{errorService.getError('expireDate')}}</span>
             </div>
           </div>
+          <div class="item-info">
+            <label for="">تور ویژه</label>
+            <input formControlName="offered" type="checkbox">
+          </div>
         </div>
+
       </div>
     </div>
     <div class="box-info-fly">
@@ -449,9 +458,9 @@
               <div class="package-item">
                 <input formControlName="offered" class="offer-checkbox" type="checkbox">
               </div>
-              <div class="package-item">
+              <div style="flex-direction: row !important;" class="package-item">
                 <i class="icon-trash text-danger" (click)="removePackage(i)"></i>
-                <span  (click)="openRoomPopup(i)">؟</span>
+                <img src="assets/img/FAQ.svg" width="18" class="ms-2"  (click)="openRoomPopup(i)">
               </div>
             </ng-template>
             <!--            foreign tour-->
@@ -490,9 +499,9 @@
               <div class="package-item">
                 <input formControlName="offered" class="offer-checkbox" type="checkbox">
               </div>
-              <div class="package-item">
+              <div style="flex-direction: row !important;" class="package-item">
                 <i class="icon-trash text-danger" (click)="removePackage(i)"></i>
-                <span (click)="openRoomPopup(i)">؟</span>
+                <img src="assets/img/FAQ.svg" width="18" class="ms-2"  (click)="openRoomPopup(i)">
               </div>
             </ng-template>
 
