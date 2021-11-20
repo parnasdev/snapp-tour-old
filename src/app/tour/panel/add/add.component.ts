@@ -654,5 +654,10 @@ export class AddComponent implements OnInit {
     }
   }
 
+  hotelChange(event: any , index: number) {
+    //@ts-ignore
+    this.ToursForm.controls[index].controls.hotel_id.setValue(event.id);
+  }
+
 }
 
