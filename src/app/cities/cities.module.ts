@@ -13,6 +13,7 @@ import {InfoComponent} from './info/info.component';
 import {StoreModule} from "../store/store.module";
 import {LightboxModule} from "ng-gallery/lightbox";
 import {GalleryModule} from "ng-gallery";
+import {BlogModule} from "../blog/blog.module";
 
 
 @NgModule({
@@ -21,19 +22,20 @@ import {GalleryModule} from "ng-gallery";
     SetComponent,
     InfoComponent
   ],
-  imports: [
-    CommonModule,
-    CitiesRoutingModule,
-    CommonProjectModule,
-    ReactiveFormsModule,
-    FormsModule,
-    LightboxModule,
-    GalleryModule,
-    MatButtonToggleModule,
-    MatDialogModule,
-    ToolsModule,
-    StoreModule
-  ]
+    imports: [
+        CommonModule,
+        CitiesRoutingModule,
+        CommonProjectModule,
+        ReactiveFormsModule,
+        FormsModule,
+        LightboxModule,
+        GalleryModule,
+        MatButtonToggleModule,
+        MatDialogModule,
+        ToolsModule,
+        StoreModule,
+        BlogModule
+    ]
 })
 export class CitiesModule {
 }

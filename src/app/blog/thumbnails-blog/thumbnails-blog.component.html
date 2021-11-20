@@ -1,0 +1,49 @@
+<section class="blog">
+  <div class="box-blog-parent">
+    <div class="right-blog" routerLink="/blog/{{blogs[0].slug}}"
+         [style.background-image]="'url(' + blogs[0].thumbnail + ')'">
+      <div class="info-blog">
+        <h6>{{blogs[0].title}}</h6>
+        <div class="date-info">
+          <img src="assets/img/Watch.svg" width="20" alt="">
+          <small>انتشار شده در {{calenderServices.convertDate(blogs[0].createdAt, 'fa')}}</small>
+        </div>
+      </div>
+    </div>
+    <div class="left-blog">
+      <div class="top" routerLink="/blog/{{blogs[1].slug}}"
+           [style.background-image]="'url(' + blogs[1].thumbnail + ')'">
+        <div class="info-blog">
+          <h6>{{blogs[1].title}}</h6>
+          <div class="date-info">
+            <img src="assets/img/Watch.svg" width="20" alt="">
+            <small>انتشار شده در {{calenderServices.convertDate(blogs[1].createdAt, 'fa')}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="bottom">
+        <div class="bottom-left-blog" routerLink="/blog/{{blogs[2].slug}}"
+             [style.background-image]="'url(' + blogs[2].thumbnail + ')'">
+          <div class="info-blog">
+            <h6>{{blogs[2].title}}</h6>
+            <div class="date-info">
+              <img src="assets/img/Watch.svg" width="20" alt="">
+              <small>انتشار شده در {{calenderServices.convertDate(blogs[2].createdAt, 'fa')}}</small>
+            </div>
+          </div>
+        </div>
+        <div class="bottom-right-blog" routerLink="/blog/{{blogs[3].slug}}"
+             [style.background-image]="'url(' + blogs[3].thumbnail + ')'">
+          <div class="info-blog">
+            <h6>{{blogs[3].title}}</h6>
+            <div class="date-info">
+              <img src="assets/img/Watch.svg" width="20" alt="">
+              <small>انتشار شده در {{calenderServices.convertDate(blogs[3].createdAt, 'fa')}}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

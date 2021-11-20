@@ -7,15 +7,18 @@ import {ListComponent} from './list/list.component';
 import {SwiperModule} from "swiper/angular";
 import {StoreModule} from "../store/store.module";
 import {PipesModule} from "../common-project/pipes/pipes.module";
+import { ThumbnailsBlogComponent } from './thumbnails-blog/thumbnails-blog.component';
 
 
 @NgModule({
   declarations: [
     InfoComponent,
     ListComponent,
+    ThumbnailsBlogComponent,
   ],
-  exports: [
-  ],
+    exports: [
+        ThumbnailsBlogComponent
+    ],
     imports: [
         CommonModule,
         BlogRoutingModule,
