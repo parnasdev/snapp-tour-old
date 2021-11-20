@@ -1,4 +1,3 @@
-
 <div class="add-tour">
   <form [formGroup]="form">
     <div class="box-info-tour">
@@ -56,7 +55,8 @@
 
               <label for="">شهر مبدا</label>
 
-              <prs-select-city [hasHotel]="true" [inCommingCity]="cities[0]" [cities]="cities" (citySelected)="getStCity($event)"></prs-select-city>
+              <prs-select-city [hasHotel]="true" [inCommingCity]="cities[0]" [cities]="cities"
+                               (citySelected)="getStCity($event)"></prs-select-city>
 
             </div>
             <div *ngIf="errorService.hasError('stCity_id')">
@@ -65,7 +65,8 @@
             <div class="select-info">
               <label for="">شهر مقصد</label>
 
-              <prs-select-city [hasHotel]="true" [inCommingCity]="cities[1]" [cities]="cities" (citySelected)="getEndCity($event)"></prs-select-city>
+              <prs-select-city [hasHotel]="true" [inCommingCity]="cities[1]" [cities]="cities"
+                               (citySelected)="getEndCity($event)"></prs-select-city>
               <div *ngIf="errorService.hasError('endCity_id')">
                 <span class="text-danger">{{errorService.getError('endCity_id')}}</span>
               </div>
@@ -315,7 +316,7 @@
           <div class="item-info-services">
             <div class="box-services w-100">
               <label for="">نرخ پرواز کودک(تومان)</label>
-              <input (keyup)="updatePackagePrices()" formControlName="CHDFlightRate" type="text" mask="separator"
+              <input (keyup)="setCnbRate($event)" formControlName="CHDFlightRate" type="text" mask="separator"
                      thousandSeparator=",">
               <div *ngIf="errorService.hasError('CHDFlightRate')">
                 <span class="text-danger">{{errorService.getError('CHDFlightRate')}}</span>
@@ -386,11 +387,9 @@
               </div>
             </div>
             <div class="package-item">
-<!--              <select name="" id="" formControlName="hotel_id" (change)="hotelChanged(i)">-->
-<!--                <option *ngFor="let hotel of hotels"-->
-<!--                        [value]="hotel.id">{{tourType ? hotel.name : hotel.nameEn}}</option>-->
-<!--              </select>-->
-              <prs-select-hotel [hotels]="hotels" [type]="tourType" [inCommingHotel]="info.packages[i]?.hotel" [callHotel]="false" [isAdmin]="true" (hotelSelected)="hotelChange($event,i)"></prs-select-hotel>
+              <prs-select-hotel [hotels]="hotels" [type]="tourType" [inCommingHotel]="info.packages[i]?.hotel"
+                                [callHotel]="false" [isAdmin]="true"
+                                (hotelSelected)="hotelChange($event,i)"></prs-select-hotel>
               <div class="parent-icon under-package d-flex align-items-center">
                 <i class="icon-star text-warning" *ngFor="let star of getStars(i)"></i>
               </div>
@@ -450,7 +449,10 @@
               <div class="package-item">
                 <input formControlName="offered" class="offer-checkbox" type="checkbox">
               </div>
-              <div class="package-item"><i class="icon-trash text-danger" (click)="removePackage(i)"></i></div>
+              <div class="package-item">
+                <i class="icon-trash text-danger" (click)="removePackage(i)"></i>
+                <span  (click)="openRoomPopup(i)">؟</span>
+              </div>
             </ng-template>
             <!--            foreign tour-->
             <ng-template class="body-foreign" [ngIf]="!tourType">
@@ -488,7 +490,10 @@
               <div class="package-item">
                 <input formControlName="offered" class="offer-checkbox" type="checkbox">
               </div>
-              <div class="package-item"><i class="icon-trash text-danger" (click)="removePackage(i)"></i></div>
+              <div class="package-item">
+                <i class="icon-trash text-danger" (click)="removePackage(i)"></i>
+                <span (click)="openRoomPopup(i)">؟</span>
+              </div>
             </ng-template>
 
           </div>

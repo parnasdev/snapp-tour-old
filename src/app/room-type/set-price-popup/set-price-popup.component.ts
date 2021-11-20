@@ -31,13 +31,15 @@ export class SetPricePopupComponent implements OnInit {
   });
 
   ngOnInit(): void {
+    debugger
     this.getRoomTypes();
-    if (this.data.length > 0) {
-      this.setFormArray()
+    if (this.data && this.data.length > 0) {
+      this.setFormArray();
     }
   }
 
   setFormArray(): void {
+    debugger
     this.RoomForm.clear();
     this.data.forEach(x => {
       this.addRow(x);

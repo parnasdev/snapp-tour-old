@@ -428,7 +428,6 @@ export class AddComponent implements OnInit {
     })
   }
 
-
   getOriginTime(event: any): void {
     if (event) {
       this.originTime = event.hour + ':' + event.minute;
@@ -673,6 +672,7 @@ export class AddComponent implements OnInit {
   }
 
   openRoomPopup(index: number) {
+    debugger
     // @ts-ignore
     const data = this.ToursForm.controls[index].controls.roomType.value
     const dialog = this.dialog.open(SetPricePopupComponent, {
@@ -680,8 +680,10 @@ export class AddComponent implements OnInit {
       data: data
     });
     dialog.afterClosed().subscribe((result: RoomTypeSetDTO[]) => {
-      // @ts-ignore
-      this.ToursForm.controls[index].controls.roomType.setValue(result);
+      if (result) {
+        // @ts-ignore
+        this.ToursForm.controls[index].controls.roomType.setValue(result);
+      }
     })
   }
 

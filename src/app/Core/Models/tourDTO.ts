@@ -1,5 +1,5 @@
 import {CityDTO} from "./cityDTO";
-import {RoomTypePriceDTO} from "./roomTypeDTO";
+import {RoomTypePriceDTO, RoomTypeSetDTO} from "./roomTypeDTO";
 
 export interface TourListRequestDTO {
   perPage: number;
@@ -112,6 +112,7 @@ export interface TourPackageDTO {
   };
   hotel: HotelDTO;
   rate: { id: number, name: string };
+  roomType: RoomTypePriceDTO[];
   discounts: DiscountsDTO;
   prices: PricesDTO;
   status: string;

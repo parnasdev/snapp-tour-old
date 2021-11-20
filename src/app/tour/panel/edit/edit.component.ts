@@ -54,7 +54,8 @@ export class EditComponent extends AddComponent implements OnInit {
         tripleRate: [packageItem.prices.tripleRate],
         ADLRate: [packageItem.prices.ADLRate],
         age: [packageItem.prices.age],
-        status: [packageItem.status]
+        status: [packageItem.status],
+        roomType: [packageItem.prices.roomType]
       })
       this.ToursForm.push(Tours);
     } else {
@@ -77,7 +78,8 @@ export class EditComponent extends AddComponent implements OnInit {
         triple: [null],
         ADLRate: [null],
         age: [null],
-        status: [null]
+        status: [null],
+        roomType: [[]]
       });
       this.ToursForm.push(Tours);
     }
@@ -135,6 +137,7 @@ export class EditComponent extends AddComponent implements OnInit {
       if (res.isDone) {
         this.hotels = res.data;
         this.setValue();
+        debugger
         this.setFormArray(this.info.packages);
         this.disableFields();
       }
@@ -174,11 +177,12 @@ export class EditComponent extends AddComponent implements OnInit {
     this.destTimeFC.setValue(this.info.transfers[1].dateTime.split(' ')[1]);
     this.originTransferFC.setValue(+this.info.transfers[0].transfer_id);
     this.destTransferFC.setValue(+this.info.transfers[1].transfer_id);
-    this.originTime = this.info.transfers[0].dateTime.split(' ')[1]
-    this.destTime = this.info.transfers[1].dateTime.split(' ')[1]
+    this.originTime = this.info.transfers[0].dateTime.split(' ')[1];
+    this.destTime = this.info.transfers[1].dateTime.split(' ')[1];
   }
 
   setFormArray(packages: TourPackageDTO[]): void {
+    debugger
     this.ToursForm.clear();
     packages.forEach(x => {
       this.addOldRow(x);
