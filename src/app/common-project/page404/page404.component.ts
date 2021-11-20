@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {RedirectorApiService} from "../../Core/Https/redirector-api.service";
+import {MessageService} from "../../Core/Services/message.service";
 
 @Component({
   selector: 'prs-page404',
@@ -8,21 +10,23 @@ import {Router} from "@angular/router";
 })
 export class Page404Component implements OnInit {
 
-  constructor() {
+  constructor(public api: RedirectorApiService,
+              public router: Router,
+              public message: MessageService) {
   }
 
   ngOnInit(): void {
-    // this.redirect()
+    this.redirect()
   }
-  //
-  // redirect(): void {
-  //   this.api.redirector(window.location.pathname).subscribe((res: any) => {
-  //     if (res.isDone) {
-  //       if (res.data) {
-  //         this.router.navigateByUrl(res.data);
-  //       }
-  //     }
-  //   })
-  // }
+
+  redirect(): void {
+    this.api.findOldUrl(window.location.pathname).subscribe((res: any) => {
+      if (res.isDone) {
+        if (res.data) {
+          this.router.navigateByUrl(res.data);
+        }
+      }
+    })
+  }
 
 }

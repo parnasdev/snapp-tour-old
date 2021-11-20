@@ -10,21 +10,26 @@ import {MatDialog} from "@angular/material/dialog";
 })
 export class ThumbnailTourTwoComponent implements OnInit {
 
-  @Input() packages: TourPackageDTO[] = [];
+  @Input() tourInfo!: TourInfoDTO;
   @Input() tourType = false;
   @Input() defineTour = false;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
   }
 
-  getStars(count: string): number[]{
+  getStars(count: string): number[] {
     return Array.from(Array(+count).keys());
   }
 
+  getStarterPrice(): number {
+    return this.tourInfo.defineTour ? this.tourInfo.packages[0].prices.single : this.tourInfo.packages[0].prices.twin;
+  }
 
-  reserve(id: number):void {
+
+  reserve(id: number): void {
     const dialog = this.dialog.open(ReservePopupComponent, {
       data: id
     })

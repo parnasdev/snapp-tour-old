@@ -30,6 +30,9 @@ const routes: Routes = [
       {
         path: 'user',
         loadChildren: () => import('../user/user.module').then(m => m.UserModule)
+      }, {
+        path: 'redirector',
+        loadChildren: () => import('../redirector/redirector.module').then(m => m.RedirectorModule)
       },
       {
         path: 'blog',
