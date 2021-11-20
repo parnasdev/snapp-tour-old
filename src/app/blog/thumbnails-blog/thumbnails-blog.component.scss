@@ -1,0 +1,99 @@
+//blog
+.box-blog-parent {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.box-blog-parent .right-blog {
+  width: 49%;
+  height: 420px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.box-blog-parent .left-blog {
+  width: 49%;
+  height: 420px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.box-blog-parent .left-blog .top {
+  height: 48%;
+  width: 100%;
+
+  overflow: hidden;
+  position: relative;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.box-blog-parent .left-blog .bottom {
+  width: 100%;
+  height: 48%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.box-blog-parent .left-blog .bottom .bottom-left-blog {
+
+  overflow: hidden;
+  position: relative;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  width: 48%;
+  height: 100%;
+}
+
+.box-blog-parent .left-blog .bottom .bottom-right-blog {
+
+  overflow: hidden;
+  position: relative;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  width: 48%;
+  height: 100%;
+}
+
+.info-blog {
+  background-color: #3e3e3e78;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  color: var(--white) !important;
+  padding: 0 10px 1rem 10px;
+}
+
+.info-blog .date-info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.info-blog .date-info small {
+  margin-right: 10px;
+  font-size: 12px !important;
+}
+
+//end
+h6{
+  font-size: 15px !important;
+}
