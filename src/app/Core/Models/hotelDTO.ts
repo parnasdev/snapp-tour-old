@@ -104,11 +104,13 @@ export interface HotelListResponseDTO {
   name: string
   nameEn: string
   slug: string
+  keyword:string
   slugEn: string
   stars: string
   thumbnail: string
   city: string
   location: string
+
 }
 
 export interface ServiceDTO {

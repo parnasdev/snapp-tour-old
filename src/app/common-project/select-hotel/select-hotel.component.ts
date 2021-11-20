@@ -34,7 +34,7 @@ export class SelectHotelComponent implements OnInit,OnChanges {
   private _filter(value: string): HotelListResponseDTO[] {
     const filterValue = value.toLowerCase();
 
-    return this.hotels.filter(hotel => hotel.name.toLowerCase().includes(filterValue));
+    return this.hotels.filter(hotel => hotel.keyword.toLowerCase().includes(filterValue));
   }
 
   changed(item: any):void {
