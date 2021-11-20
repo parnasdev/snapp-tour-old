@@ -139,7 +139,7 @@
             </div>
           </div>
           <div class="item-info">
-            <label for="">تور ویژ</label>
+            <label for="">تور ویژه</label>
             <input formControlName="offered" type="checkbox">
           </div>
         </div>
@@ -454,9 +454,9 @@
               <div class="package-item">
                 <input formControlName="offered" class="offer-checkbox" type="checkbox">
               </div>
-              <div class="package-item">
+              <div style="flex-direction: row !important;" class="package-item">
                 <i class="icon-trash text-danger" (click)="removePackage(i)"></i>
-                <span  (click)="openRoomPopup(i)">؟</span>
+                <img src="assets/img/FAQ.svg" width="18" class="ms-2"  (click)="openRoomPopup(i)">
               </div>
             </ng-template>
             <!--            foreign tour-->
@@ -495,9 +495,9 @@
               <div class="package-item">
                 <input formControlName="offered" class="offer-checkbox" type="checkbox">
               </div>
-              <div class="package-item">
+              <div style="flex-direction: row !important;" class="package-item">
                 <i class="icon-trash text-danger" (click)="removePackage(i)"></i>
-                <span (click)="openRoomPopup(i)">تعیین اتاق</span>
+                <img src="assets/img/FAQ.svg" width="18" (click)="openRoomPopup(i)">
               </div>
             </ng-template>
 

@@ -32,6 +32,7 @@ export class InfoComponent implements OnInit {
   loading = false;
   tourSlug = '';
   tourInfo!: TourInfoDTO;
+  printContent = '';
 
   constructor(public tourApiService: TourApiService,
               public route: ActivatedRoute,
@@ -87,31 +88,36 @@ export class InfoComponent implements OnInit {
   }
 
   print() {
-    let contents, popupWin;
+    let popupWin;
     // @ts-ignore
-    contents = document.getElementById('output').innerHTML;
-    const stylesHtml = this.getTagsHtml('style');
-    const linksHtml = this.getTagsHtml('link');
-    const scriptsHtml = this.getTagsHtml('script');
+    // contents = document.getElementById('output').innerHTML;
+    // const stylesHtml = this.getTagsHtml('style');
+    // const linksHtml = this.getTagsHtml('link');
+    // const scriptsHtml = this.getTagsHtml('script');
     popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
     // @ts-ignore
     popupWin.document.open();
     // @ts-ignore
-    popupWin.document.write(`
-      <html dir="rtl">
-        <head>
-            ${linksHtml}
-            ${stylesHtml}
-          <title>پکیج ها</title>
-        </head>
-        <body onload="window.print()">
-            ${contents}
-            ${scriptsHtml}
-        </body>
-      </html>`
-    );
+    popupWin.document.write(this.printContent);
     // @ts-ignore
     popupWin.document.close();
+  }
+
+  exportTour() {
+    this.loading = true;
+    this.tourApiService.exportTour(this.tourSlug).subscribe((res: any) => {
+      if (res.isDone) {
+        this.printContent = res.data
+        this.print();
+      } else {
+        this.message.custom(res.message);
+      }
+      this.loading = false;
+    }, (error: any) => {
+      this.loading = false;
+      this.message.error();
+      this.checkErrorService.check(error);
+    });
   }
 
 }

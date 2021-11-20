@@ -5,5 +5,17 @@
 }
 
 .example-full-width {
-  width: 100%;
+  width: 95%;
+}
+
+
+:host::ng-deep .mat-input-element{
+  height: 30px !important;
+  font-family: 'IRANSans' !important;
+  text-align: right !important;
+  padding: 0 8px !important;
+  font-size: 13px !important;
+}
+::ng-deep .mat-option{
+  font-size: 13px !important;
 }

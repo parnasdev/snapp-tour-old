@@ -538,3 +538,11 @@
   align-items: center;
   justify-content: space-between;
 }
+
+prs-select-hotel{
+  width: 100% !important;
+}
+:host::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0 !important;
+  margin-top: 5px !important;
+}
