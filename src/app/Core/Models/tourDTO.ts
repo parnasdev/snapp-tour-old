@@ -98,6 +98,7 @@ export interface TourInfoDTO {
   }
   visaPriceType: number;
   visaRate: number;
+  tours: TourListResDTO[];
 }
 
 export interface TourPackageDTO {

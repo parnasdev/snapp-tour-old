@@ -188,7 +188,8 @@
             </button>
           </div>
 
-          <prs-thumbnail-tour-two [tourInfo]="tourInfo" [defineTour]="tourInfo.defineTour" class="w-100"></prs-thumbnail-tour-two>
+          <prs-thumbnail-tour-two [tourInfo]="tourInfo" [defineTour]="tourInfo.defineTour"
+                                  class="w-100"></prs-thumbnail-tour-two>
         </div>
       </div>
     </div>
@@ -241,11 +242,7 @@
               <h2>تور های مشابه</h2>
             </div>
           </div>
-          <prs-thumbnails-tour></prs-thumbnails-tour>
-          <prs-thumbnails-tour></prs-thumbnails-tour>
-          <prs-thumbnails-tour></prs-thumbnails-tour>
-          <prs-thumbnails-tour></prs-thumbnails-tour>
-          <prs-thumbnails-tour></prs-thumbnails-tour>
+          <prs-thumbnails-tour [tours]="tourInfo.tours"></prs-thumbnails-tour>
         </div>
       </div>
     </div>
