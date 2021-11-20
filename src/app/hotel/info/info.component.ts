@@ -23,8 +23,7 @@ export class InfoComponent implements OnInit {
   hotelInfo!: hotelInfoDTO;
   hotelName = '';
   public lightbox!: Lightbox
-  allServices: ServiceDTO[] = []
-  hotelServices: ServiceDTO[] = []
+
 
   constructor(public hotelApi: HotelApiService,
               public route: ActivatedRoute,
@@ -51,7 +50,6 @@ export class InfoComponent implements OnInit {
       if (res.isDone) {
         this.hotelInfo = res.data;
         this.fillAlbum(this.hotelInfo.images)
-        this.getServices();
       } else {
         this.message.custom(res.message)
       }
@@ -63,28 +61,7 @@ export class InfoComponent implements OnInit {
   }
 
 
-  getServices(): void {
-    this.hotelApi.getServices().subscribe((res: any) => {
-      if (res.isDone) {
-        this.allServices = res.data;
-        this.fillServices()
-      } else {
-        this.message.custom(res.message)
-      }
-    }, (error: any) => {
-      this.message.error()
-    })
-  }
 
-  fillServices(): void {
-    this.allServices.forEach(x => {
-      this.hotelInfo.services[0].ids.forEach(y => {
-        if (x.id === +y) {
-          this.hotelServices.push(x)
-        }
-      })
-    })
-  }
 
   fillAlbum(images: string[]): void {
     this.items = images.map(item => new ImageItem({src: item, thumb: item}));

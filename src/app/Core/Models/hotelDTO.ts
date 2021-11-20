@@ -120,4 +120,5 @@ export interface ServiceDTO {
 export interface ServicesDTO {
   name: string;
   ids: string[]
+  services: ServiceDTO[]
 }

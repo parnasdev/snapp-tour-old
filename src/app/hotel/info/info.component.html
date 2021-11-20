@@ -93,7 +93,7 @@
               <div class="option">
                 <h2>امکانات هتل ، اتاق ها و خدمات دیگر در یک نگاه</h2>
                 <div class="parent-item-option" *ngIf="hotelInfo.services.length > 0">
-                  <div class="item" *ngFor="let service of hotelServices">
+                  <div class="item" *ngFor="let service of hotelInfo.services[0].services">
 <!--                    <img src="assets/img/Modem.svg" width="20" alt="">-->
                     <span>{{service.name}}</span>
                   </div>
