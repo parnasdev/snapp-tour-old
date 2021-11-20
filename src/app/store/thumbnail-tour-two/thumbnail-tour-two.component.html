@@ -55,7 +55,7 @@
       <div class="text">تومان</div>
     </div>
     <div class="price-box" *ngIf="!tourType">
-      <div class="number">{{ package.prices.cnb ? (package.prices.cnb | number) : 0 }}</div>
+      <div class="number">{{ package.prices.cnb ? (+(package.prices.cnb.toString().split(',').join('')) | number) : 0 }}</div>
       <div class="text">تومان</div>
     </div>
     <div class="price-box">
@@ -104,7 +104,7 @@
   </div>
   <div class="collapse" id="{{ i }}">
     <div class="info-hotel-under">
-      <div class="item" >
+      <div class="item">
         <span class="title">دو تخته</span>
         <span
           class="text">تومان {{ defineTour ? (package.prices.twinRate | number) : (package.prices.twin | number) }}</span>
@@ -131,7 +131,7 @@
       </div>
       <div class="item" *ngIf="!tourType">
         <span class="title">کودک بدون تخت</span>
-        <span class="text">تومان {{ package.prices.cnb ? (package.prices.cnb | number) : 0 }}</span>
+        <span class="text">تومان {{ package.prices.cnb ? (+(package.prices.cnb.toString().split(',').join('')) | number) : 0 }}</span>
       </div>
       <div class="item-one">
         <span class="title">سن کودک با تخت</span>
@@ -155,7 +155,7 @@
     <span class="item" *ngIf="!tourType">کودک بدون تخت</span>
     <span>سن کودک با تخت</span>
   </div>
-  <div class="p-body-box-hotel" *ngFor="let package of packages">
+  <div class="p-body-box-hotel" *ngFor="let package of tourInfo.packages">
     <div class="info-hotel-body">
       <img class="img-hotel" [src]="package.hotel.thumbnail" alt="">
       <div class="info-info-hotel">
@@ -181,26 +181,26 @@
     </div>
     <div class="price-box" *ngIf="tourType">
       <div
-        class="number">{{ package.prices.tripleRate ? (package.prices.tripleRate| number) : (package.prices.triple| number) }}</div>
+        class="number">{{ defineTour ? (package.prices.tripleRate| number) : (package.prices.triple| number) }}</div>
       <div class="text">تومان</div>
     </div>
     <div class="price-box" *ngIf="tourType">
       <div
-        class="number">{{ package.prices.quadRate ? (package.prices.twinRate| number) : (package.prices.quad| number) }}</div>
+        class="number">{{ defineTour ? (package.prices.quadRate| number) : (package.prices.quad| number) }}</div>
       <div class="text">تومان</div>
     </div>
     <div class="price-box" *ngIf="!tourType">
       <div
-        class="number">{{ package.prices.singleRate ? (package.prices.twinRate| number) : (package.prices.single| number) }}</div>
+        class="number">{{ defineTour ? (package.prices.singleRate| number) : (package.prices.single| number) }}</div>
       <div class="text">تومان</div>
     </div>
     <div class="price-box" *ngIf="!tourType">
       <div
-        class="number">{{ package.prices.cwbRate ? (package.prices.cwbRate| number) : (package.prices.cwb| number) }}</div>
+        class="number">{{ defineTour ? (package.prices.cwbRate| number) : (package.prices.cwb| number) }}</div>
       <div class="text">تومان</div>
     </div>
     <div class="price-box" *ngIf="!tourType">
-      <div class="number">{{ package.prices.cnb | number }}</div>
+      <div class="number">{{ package.prices.cnb ? (+(package.prices.cnb.toString().split(',').join('')) | number) : 0 }}</div>
       <div class="text">تومان</div>
     </div>
     <div class="price-box">

@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {TourInfoDTO, TourPackageDTO} from "../../Core/Models/tourDTO";
 import {ReservePopupComponent} from "../../tour/reserve-popup/reserve-popup.component";
 import {MatDialog} from "@angular/material/dialog";
+import {ResponsiveService} from "../../Core/Services/responsive.service";
 
 @Component({
   selector: 'prs-thumbnail-tour-two',
@@ -14,7 +15,8 @@ export class ThumbnailTourTwoComponent implements OnInit {
   @Input() tourType = false;
   @Input() defineTour = false;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog,
+              public responsive: ResponsiveService) {
   }
 
   ngOnInit(): void {
