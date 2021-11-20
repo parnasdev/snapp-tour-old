@@ -9,6 +9,7 @@ import {NgxPaginationModule} from "ngx-pagination";
 import { ReservePopupComponent } from './reserve-popup/reserve-popup.component';
 import {ToolsModule} from "../tools/tools/tools.module";
 import {ReactiveFormsModule} from "@angular/forms";
+import { ExpireTourComponent } from './expire-tour/expire-tour.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     InfoComponent,
     ListComponent,
     ReservePopupComponent,
+    ExpireTourComponent,
 
   ],
   exports: [
