@@ -44,6 +44,11 @@ export class TourApiService {
     return this.http.get<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
   }
 
+  exportTour(title: string): any {
+    const strUrl = this.serverControllerName + `export/${title}`;
+    return this.http.get<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
+  }
+
   getLogs(id: number): any {
     const strUrl = environment.BACK_END_IP + `log/tours/${id}`;
     return this.http.get<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
