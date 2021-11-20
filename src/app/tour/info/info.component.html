@@ -1,5 +1,5 @@
 <prs-loading *ngIf="loading"></prs-loading>
-
+<prs-expire-tour *ngIf="!loading && tourInfo.status === 'Suspended'"></prs-expire-tour>
 <prs-address-bar [path]="'تور'" [path2]="tourInfo.title ? tourInfo.title : ''"></prs-address-bar>
 <!--s1-->
 <section class="tour-s1">
@@ -89,7 +89,7 @@
                   <div class="one"></div>
                 </div>
                 <div class="login-date-fly">
-                  <img src="assets/img/Up-Down-4.svg" width="20" alt="">
+                  <img src="assets/img/Up-Down-3.svg" width="20" alt="">
                   <div class="text">
                     <div class="right">
                       <span>{{ this.tourInfo.stCity.name  }}</span>
@@ -109,9 +109,9 @@
                     <span class="text-base-color">تاریخ ورود به هتل :</span>
                     <div>
                       <span
-                        class="text-base-color me-2">{{ this.calService.convertDate1(tourInfo.stDate, 'fa').split(' ')[0]  }}</span>
+                        class="text-base-color me-2">{{ this.calService.convertDate(tourInfo.stDate, 'fa').split(' ')[0]  }}</span>
                       <span
-                        class="text-base-color">{{ this.calService.convertDate1(tourInfo.stDate, 'fa').split(' ')[1]  }}</span>
+                        class="text-base-color">{{ this.calService.convertDate(tourInfo.stDate, 'fa').split(' ')[1]  }}</span>
                     </div>
                   </div>
                 </div>
@@ -135,7 +135,7 @@
                   <div class="one"></div>
                 </div>
                 <div class="exit-date-fly">
-                  <img src="../../../assets/img/Up-Down-4.svg" width="20" alt="">
+                  <img src="../../../assets/img/Up-Down-3.svg" width="20" alt="">
                   <div class="text">
                     <div class="right">
                       <span>{{ this.tourInfo.endCity.name  }}</span>
@@ -155,9 +155,9 @@
                     <span class="text-base-color">تاریخ خروج از هتل  :</span>
                     <div>
                       <span
-                        class="text-base-color me-2">{{ this.calService.convertDate1(tourInfo.enDate, 'fa').split(' ')[0]  }}</span>
+                        class="text-base-color me-2">{{ this.calService.convertDate(tourInfo.enDate, 'fa').split(' ')[0]  }}</span>
                       <span
-                        class="text-base-color">{{ this.calService.convertDate1(tourInfo.enDate, 'fa').split(' ')[1]  }}</span>
+                        class="text-base-color">{{ this.calService.convertDate(tourInfo.enDate, 'fa').split(' ')[1]  }}</span>
                     </div>
                   </div>
                 </div>

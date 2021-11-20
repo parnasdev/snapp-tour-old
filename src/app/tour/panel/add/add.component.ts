@@ -123,7 +123,7 @@ export class AddComponent implements OnInit {
     this.getTransfer()
     this.disableFields();
     this.getService();
-    this.getHotels();
+    // this.getHotels();
   }
 
   isEmpty(obj: any) {

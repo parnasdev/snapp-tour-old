@@ -4,7 +4,7 @@ import {RoomTypePriceDTO, RoomTypeSetDTO} from "./roomTypeDTO";
 export interface TourListRequestDTO {
   perPage: number;
   paginate: boolean;
-  search: string;
+  search: string | null;
   isAdmin?: boolean | null;
   city: string | null;
   type: number | null;

@@ -13,7 +13,8 @@
               <div class="new-tour">
                 <img src="assets/img/Bookmark.svg" width="17" alt="">
                 <div class="text">
-                  <h3>لیست تور های شهر {{ this.city }}</h3>
+                  <h3 *ngIf="city">لیست تور های شهر {{ this.city }}</h3>
+                  <h3 *ngIf="!city">لیست همه تورها</h3>
                   <span>مشاهده مناسب ترین تور های لحظه آخری برای شما</span>
                 </div>
               </div>
