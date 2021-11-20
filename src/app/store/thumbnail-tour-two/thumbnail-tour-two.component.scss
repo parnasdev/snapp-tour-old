@@ -158,15 +158,18 @@
   font-size: 15px;
   margin-top: 6px;
 }
-.location i{
+
+.location i {
   color: var(--base-color);
 }
-.location span{
+
+.location span {
   margin-right: 4px;
   color: var(--gray-color-dark);
   font-size: 13px !important;
   font-weight: 500;
 }
+
 .thumbnail-mobile {
   display: none;
 }
@@ -180,14 +183,14 @@
     flex-direction: column;
     border: 1px solid #eee;
     box-shadow: var(--box-shadow);
-    padding:8px;
+    padding: 8px;
     height: auto;
     margin-top: 12px;
   }
   .info-hotel-body:after {
     display: none;
   }
-  .img-hotel{
+  .img-hotel {
     width: 105px;
     height: 105px;
   }
@@ -195,14 +198,14 @@
     font-size: 12px;
     line-break: anywhere;
   }
-  .title-fa{
+  .title-fa {
     font-size: 10px;
   }
   .info-bold {
     font-size: 13px;
     margin-top: 3px;
   }
-  .parent-info-more-btn{
+  .parent-info-more-btn {
     margin-top: 6px;
     border-top: 1px solid #eee;
     display: flex;
@@ -210,20 +213,20 @@
     justify-content: center;
     padding-top: 6px;
   }
-  .btn-more{
+  .btn-more {
     display: flex;
     align-items: center;
   }
-  .btn-more i{
+  .btn-more i {
     margin-right: 6px;
   }
-  .info-hotel-under{
+  .info-hotel-under {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
   }
-  .info-hotel-under .item{
+  .info-hotel-under .item {
     width: 48%;
     display: flex;
     flex-direction: column;
@@ -247,7 +250,7 @@
     padding: 8px 4px;
     border-radius: 20px;
   }
-  .info-hotel-under .item .title ,.info-hotel-under .item-one .title{
+  .info-hotel-under .item .title, .info-hotel-under .item-one .title {
     width: 100%;
     display: flex;
     align-items: center;
@@ -257,7 +260,7 @@
     border-radius: 512px;
     font-weight: 500;
   }
-  .info-hotel-under .item .text ,.info-hotel-under .item-one .text{
+  .info-hotel-under .item .text, .info-hotel-under .item-one .text {
     font-size: 13px !important;
     font-weight: 600;
     margin-top: 5px;
@@ -266,34 +269,58 @@
     justify-content: center;
     color: var(--gray-color-light);
   }
-  .btn-complete-book{
+  .btn-complete-book {
     width: 100%;
     margin-top: 12px;
   }
-  .start-price{
+  .start-price {
     display: flex;
     align-items: center;
   }
-  .start-price span{
+  .start-price span {
     font-size: 9px !important;
     color: var(--gray-color-dark);
   }
-  .start-price .price{
+  .start-price .price {
     font-weight: 600;
     margin-right: 3px;
     color: var(--red-color);
   }
 }
+
 .gap {
   margin-right: 4px;
 }
 
 
+//print
+.p-header-box {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr 1fr 1fr;
+}
 
-@media print {
-  p.header-box {
-    width: 100%;
-    display: grid;
-    grid-template-columns: 4fr 1fr 1fr 1fr 1fr 1fr 0.5fr;
-  }
+.p-body-box-hotel {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr 1fr 1fr;
+  height: 135px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  margin-top: 12px;
+  padding: 0 8px;
+  box-shadow: 1px 1px 6px #eee;
+}
+
+.p-header-box span {
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  border-radius: 8px;
+  background-color: #F4F4F4;
+  color: var(--base-color-three);
+  font-size: 13px !important;
+  font-weight: 600;
 }
