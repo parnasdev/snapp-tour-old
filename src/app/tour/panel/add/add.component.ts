@@ -457,10 +457,10 @@ export class AddComponent implements OnInit {
         this.cities = res.data;
         this.cityID = this.cities[1].id;
         this.form.controls.stCity_id.setValue(this.cities[0].id.toString());
-        this.form.controls.endCity_id.setValue(this.cities[1].id.toString());
+        // this.form.controls.endCity_id.setValue(this.cities[1].id.toString());
         // @ts-ignore
-        this.tourType = this.cities.find(x => x.id === +this.form.value.endCity_id)?.type;
-        this.getHotels();
+        // this.tourType = this.cities.find(x => x.id === +this.form.value.endCity_id)?.type;
+        // this.getHotels();
       }
     }, (error: any) => {
       this.message.error()
@@ -653,6 +653,11 @@ export class AddComponent implements OnInit {
         }
       });
     }
+  }
+
+  hotelChange(event: any , index: number) {
+    //@ts-ignore
+    this.ToursForm.controls[index].controls.hotel_id.setValue(event.id);
   }
 
   openRoomPopup(index: number) {
