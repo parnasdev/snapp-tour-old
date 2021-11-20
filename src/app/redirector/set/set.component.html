@@ -1,0 +1,4 @@
+<input type="text" [formControl]="oldUrlFC" placeholder="آدرس قدیم را وارد کنید">
+<input type="text" [formControl]="newUrlFC" placeholder="آدرس جدید را وارد کنید">
+<prs-btn *ngIf="isEdit" [background]="'dark'" [label]="'ویرایش'" (click)="edit()"></prs-btn>
+<prs-btn *ngIf="!isEdit" [background]="'dark'" [label]="'افزودن'" (click)="submit()"></prs-btn>

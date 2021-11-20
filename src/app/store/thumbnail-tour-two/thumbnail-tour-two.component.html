@@ -10,7 +10,7 @@
     <span>سن کودک با تخت</span>
   </div>
 
-  <div class="body-box-hotel" *ngFor="let package of packages">
+  <div class="body-box-hotel" *ngFor="let package of tourInfo.packages">
     <div class="info-hotel-body">
       <img class="img-hotel" [src]="package.hotel.thumbnail" alt="">
       <div class="info-info-hotel">
@@ -36,26 +36,26 @@
     </div>
     <div class="price-box" *ngIf="tourType">
       <div
-        class="number">{{ package.prices.tripleRate ? (package.prices.tripleRate| number) : (package.prices.triple| number) }}</div>
+        class="number">{{ defineTour ? (package.prices.tripleRate| number) : (package.prices.triple| number) }}</div>
       <div class="text">تومان</div>
     </div>
     <div class="price-box" *ngIf="tourType">
       <div
-        class="number">{{ package.prices.quadRate ? (package.prices.twinRate| number) : (package.prices.quad| number) }}</div>
+        class="number">{{ defineTour ? (package.prices.quadRate| number) : (package.prices.quad| number) }}</div>
       <div class="text">تومان</div>
     </div>
     <div class="price-box" *ngIf="!tourType">
       <div
-        class="number">{{ package.prices.singleRate ? (package.prices.twinRate| number) : (package.prices.single| number) }}</div>
+        class="number">{{ defineTour ? (package.prices.singleRate| number) : (package.prices.single| number) }}</div>
       <div class="text">تومان</div>
     </div>
     <div class="price-box" *ngIf="!tourType">
       <div
-        class="number">{{ package.prices.cwbRate ? (package.prices.cwbRate| number) : (package.prices.cwb| number) }}</div>
+        class="number">{{ defineTour ? (package.prices.cwbRate| number) : (package.prices.cwb| number) }}</div>
       <div class="text">تومان</div>
     </div>
     <div class="price-box" *ngIf="!tourType">
-      <div class="number">{{ package.prices.cnb | number }}</div>
+      <div class="number">{{ package.prices.cnb ? (package.prices.cnb | number) : 0 }}</div>
       <div class="text">تومان</div>
     </div>
     <div class="price-box">
@@ -66,19 +66,15 @@
 
 </div>
 <!-----------------------------------------------mobile--------------------------------->
-<div class="thumbnail-mobile">
+<div class="thumbnail-mobile" *ngFor="let package of tourInfo.packages; let i = index">
   <div class="info-hotel-body">
     <div class="d-flex flex-column align-items-center">
       <img class="img-hotel" src="assets/img/1200px-Sunrise_over_Kangchenjunga.png" alt="">
       <div class="rate d-flex flex-column align-items-center">
         <div class="star-icon">
-          <i class="icon-star"></i>
-          <i class="icon-star"></i>
-          <i class="icon-star"></i>
-          <i class="icon-star"></i>
-          <i class="icon-star"></i>
+          <i class="icon-star" *ngFor="let star of getStars(package.hotel.stars)"></i>
         </div>
-        <strong class="info-bold">(B.B)</strong>
+        <strong class="info-bold">{{ package.services.name }}</strong>
       </div>
 
 
@@ -86,50 +82,63 @@
     <div class="info-info-hotel">
       <div class="start-price">
         <span>شروع قیمت : </span>
-        <span class="price"> 8000 تومان</span>
+        <span class="price"> {{ getStarterPrice() | number}} تومان</span>
       </div>
 
       <a href="">
-        <h1 class="title-en">ARAMAZD HOTEL ARMENIA</h1>
+        <h1 class="title-en">{{ package.hotel.nameEn }}</h1>
       </a>
-      <h1 class="title-fa">هتل آرامازد ارمنستان</h1>
+      <h1 class="title-fa">{{ package.hotel.name }}</h1>
       <div class="location mt-1 d-flex align-items-center">
         <img src="assets/img/Location.svg" width="15" alt="">
-        <span>تهران ، ایران</span>
+        <span>{{ package.hotel.location ? package.hotel.location : 'ثبت نشده'}}</span>
       </div>
 
     </div>
 
   </div>
   <div class="parent-info-more-btn">
-    <a data-toggle="collapse" class="btn-more" href="#one">
+    <a data-toggle="collapse" class="btn-more" href="#{{ i }}">
       اطلاعات بیشتر
       <i class="icon-down-open"></i>
     </a>
   </div>
-  <div class="collapse" id="one">
+  <div class="collapse" id="{{ i }}">
     <div class="info-hotel-under">
-      <div class="item">
+      <div class="item" >
         <span class="title">دو تخته</span>
-        <span class="text">تومان 80,000,000</span>
+        <span
+          class="text">تومان {{ defineTour ? (package.prices.twinRate | number) : (package.prices.twin | number) }}</span>
       </div>
-      <div class="item">
+      <div class="item" *ngIf="tourType">
+        <span class="title">سه تخته</span>
+        <span
+          class="text">تومان {{ defineTour ? (package.prices.tripleRate| number) : (package.prices.triple| number) }} </span>
+      </div>
+      <div class="item" *ngIf="tourType">
+        <span class="title">چهارتخته</span>
+        <span
+          class="text">تومان {{ defineTour ? (package.prices.quadRate| number) : (package.prices.quad| number) }}</span>
+      </div>
+      <div class="item" *ngIf="!tourType">
         <span class="title">سینگل</span>
-        <span class="text">تومان 80,000,000</span>
+        <span
+          class="text">تومان {{ defineTour ? (package.prices.singleRate| number) : (package.prices.single| number) }}</span>
       </div>
-      <div class="item">
+      <div class="item" *ngIf="!tourType">
         <span class="title">کودک با تخت</span>
-        <span class="text">تومان 80,000,000</span>
+        <span
+          class="text">تومان {{ defineTour ? (package.prices.cwbRate| number) : (package.prices.cwb| number) }}</span>
       </div>
-      <div class="item">
+      <div class="item" *ngIf="!tourType">
         <span class="title">کودک بدون تخت</span>
-        <span class="text">تومان 80,000,000</span>
+        <span class="text">تومان {{ package.prices.cnb ? (package.prices.cnb | number) : 0 }}</span>
       </div>
       <div class="item-one">
         <span class="title">سن کودک با تخت</span>
-        <span class="text">6-12</span>
+        <span class="text">{{ package.prices.age }}</span>
       </div>
-      <button class="btn-complete-book">در خواست رزرو</button>
+      <button class="btn-complete-book" (click)="reserve(package.id)">در خواست رزرو</button>
     </div>
 
   </div>

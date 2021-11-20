@@ -68,7 +68,7 @@ export interface TourInfoDTO {
   ADLFlightRate: string;
   TransferType: string;
   dayNum: number;
-  defineTour: number;
+  defineTour: boolean;
   description: string;
   documents: string;
   dollarRate: number;
