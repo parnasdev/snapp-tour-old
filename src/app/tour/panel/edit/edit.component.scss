@@ -313,7 +313,7 @@
 }
 
 .item-info {
-  width: 32%;
+  width: 23%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -537,4 +537,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+prs-select-hotel{
+  width: 100% !important;
+}
+:host::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0 !important;
+  margin-top: 5px !important;
 }

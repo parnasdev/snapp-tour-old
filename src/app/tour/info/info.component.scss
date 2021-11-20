@@ -336,6 +336,8 @@
   width: 150px;
   height: 40px;
   border-radius: var(--radius-btn);
+  outline: none;
+  border: none;
 }
 
 .btn-download-pdf span {
@@ -772,3 +774,19 @@
 
 
 
+.swiper-tour-top , .thumbs-gallery{
+  padding: 0 1.1rem;
+  border-radius: 15px;
+}
+:host::ng-deep .swiper-tour-top .swiper-button-prev {
+  right: -1px !important;
+  left: auto !important;
+  box-shadow: var(--box-shadow);
+  border: 1px solid #eee;
+}
+:host::ng-deep .swiper-tour-top .swiper-button-next {
+  left: -1px !important;
+  right: auto !important;
+  box-shadow: var(--box-shadow);
+  border: 1px solid #eee;
+}
