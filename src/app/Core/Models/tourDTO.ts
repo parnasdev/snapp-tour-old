@@ -8,6 +8,8 @@ export interface TourListRequestDTO {
   isAdmin?: boolean | null;
   city: string | null;
   type: number | null;
+  limit?: number;
+  offered?: boolean;
 }
 
 export interface TourListResDTO {

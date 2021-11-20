@@ -29,8 +29,9 @@ export class IndexComponent implements OnInit {
   isLoading = false;
   @ViewChild('swiper', {static: false}) swiper?: SwiperComponent;
 
-  tours: TourListResDTO[] = []
-  cities: CityResponseDTO[] = []
+  tours: TourListResDTO[] = [];
+  specialTours: TourListResDTO[] = [];
+  cities: CityResponseDTO[] = [];
   hotelCityFC = new FormControl(1);
   hotels: HotelListResponseDTO[] = [];
   blogs: PostResDTO[] = [];
@@ -74,6 +75,7 @@ export class IndexComponent implements OnInit {
 
 
     this.getTours();
+    this.getSpecialTours();
     this.getCities()
     this.getHotels()
     this.getBlog()
@@ -131,6 +133,7 @@ export class IndexComponent implements OnInit {
     const reqDTO: TourListRequestDTO = {
       city: null,
       paginate: false,
+      limit: 5,
       perPage: 10,
       search: '',
       type: null
@@ -138,6 +141,23 @@ export class IndexComponent implements OnInit {
     this.api.getTours(reqDTO, this.p).subscribe((res: any) => {
       if (res.isDone) {
         this.tours = res.data;
+      }
+    })
+  }
+
+  getSpecialTours(){
+    const reqDTO: TourListRequestDTO = {
+      city: null,
+      paginate: false,
+      limit: 7,
+      perPage: 10,
+      offered: true,
+      search: '',
+      type: null
+    }
+    this.api.getTours(reqDTO, this.p).subscribe((res: any) => {
+      if (res.isDone) {
+        this.specialTours = res.data;
       }
     })
   }
