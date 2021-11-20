@@ -17,6 +17,7 @@ import {CalenderServices} from "../../Core/Services/calender-service";
 import {ResponsiveService} from "../../Core/Services/responsive.service";
 import {MatDialog} from "@angular/material/dialog";
 import {ReservePopupComponent} from "../reserve-popup/reserve-popup.component";
+import * as moment from 'jalali-moment';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs]);
 
