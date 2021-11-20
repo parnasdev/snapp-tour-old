@@ -27,8 +27,7 @@ export class HotelApiService {
   }
 
   getHotels(req: HotelRequestDTO, page?: number): any {
-    debugger
-    const address = page ? `getHotels?=${page}` : 'getHotels'
+    const address = page ? `getHotels?page=${page}` : 'getHotels'
     const strUrl = this.serverControllerName + address;
     return this.http.post<Result<HotelListResponseDTO[]>>(strUrl, req, this.publicService.getDefaultHeaders());
   }

@@ -3,6 +3,7 @@ import {TourInfoDTO, TourPackageDTO} from "../../../Core/Models/tourDTO";
 import {AddComponent} from "../add/add.component";
 import {HotelRequestDTO} from "../../../Core/Models/hotelDTO";
 import {CityListRequestDTO} from "../../../Core/Models/cityDTO";
+
 declare var $: any;
 
 @Component({
@@ -13,7 +14,7 @@ declare var $: any;
 export class EditComponent extends AddComponent implements OnInit {
   //public Variable
   slug: string | null = ''
-
+  infoLoading = false;
   addResponse: any;
   info!: TourInfoDTO
   originTime = '00:00'
@@ -83,8 +84,10 @@ export class EditComponent extends AddComponent implements OnInit {
   }
 
   getInfo(): void {
+    this.infoLoading = true;
     if (this.slug) {
       this.tourApi.getTour(this.slug).subscribe((res: any) => {
+        this.infoLoading = false;
         if (res.isDone) {
           this.info = res.data;
           this.getCities();
@@ -92,6 +95,7 @@ export class EditComponent extends AddComponent implements OnInit {
           this.getService();
         }
       }, (error: any) => {
+        this.infoLoading = false
         this.message.error()
       })
     }
@@ -209,7 +213,7 @@ export class EditComponent extends AddComponent implements OnInit {
     })
   }
 
-  hotelChanged(index: number){
+  hotelChanged(index: number) {
     this.getStars(index);
   }
 

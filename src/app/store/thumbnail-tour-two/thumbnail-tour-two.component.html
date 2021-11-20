@@ -9,7 +9,6 @@
     <span class="item" *ngIf="!tourType">کودک بدون تخت</span>
     <span>سن کودک با تخت</span>
   </div>
-
   <div class="body-box-hotel" *ngFor="let package of packages">
     <div class="info-hotel-body">
       <img class="img-hotel" [src]="package.hotel.thumbnail" alt="">
@@ -63,7 +62,6 @@
     </div>
     <button class="btn-complete-book" (click)="reserve(package.id)">در خواست رزرو</button>
   </div>
-
 </div>
 <!-----------------------------------------------mobile--------------------------------->
 <div class="thumbnail-mobile">
@@ -132,5 +130,71 @@
       <button class="btn-complete-book">در خواست رزرو</button>
     </div>
 
+  </div>
+</div>
+
+<!-----------------------------------------------print---------------------------------->
+<div class="p.thumbnail" id="output">
+  <div class="p-header-box">
+    <span class="info-hotel w-98">اطلاعات هتل</span>
+    <span class="item d-flex">   دو تخته<small class="gap"> (هرنفر) </small></span>
+    <span class="item d-flex" *ngIf="tourType">   سه تخته<small class="gap"> (هرنفر) </small></span>
+    <span class="item d-flex" *ngIf="tourType">   چهار تخته<small class="gap"> (هرنفر) </small></span>
+    <span class="item" *ngIf="!tourType">سینگل</span>
+    <span class="item" *ngIf="!tourType">کودک با تخت</span>
+    <span class="item" *ngIf="!tourType">کودک بدون تخت</span>
+    <span>سن کودک با تخت</span>
+  </div>
+  <div class="p-body-box-hotel" *ngFor="let package of packages">
+    <div class="info-hotel-body">
+      <img class="img-hotel" [src]="package.hotel.thumbnail" alt="">
+      <div class="info-info-hotel">
+        <a routerLink="/hotel/{{ package.hotel.slug }}" target="_blank">
+          <h1 class="title-en">{{ package.hotel.nameEn }}</h1>
+        </a>
+        <h1 class="title-fa">{{ package.hotel.name }}</h1>
+        <div class="star-icon">
+          <i class="icon-star" *ngFor="let star of getStars(package.hotel.stars)"></i>
+          <strong class="info-bold">{{ (package.services.name) }}</strong>
+        </div>
+        <div class="location mt-1 d-flex align-items-center">
+          <img src="assets/img/Location.svg" width="15" alt="">
+          <span>{{ package.hotel.location ? package.hotel.location : 'ثبت نشده'}}</span>
+        </div>
+      </div>
+
+    </div>
+    <div class="price-box">
+      <div
+        class="number">{{ defineTour ? (package.prices.twinRate | number) : (package.prices.twin | number) }}</div>
+      <div class="text">تومان</div>
+    </div>
+    <div class="price-box" *ngIf="tourType">
+      <div
+        class="number">{{ package.prices.tripleRate ? (package.prices.tripleRate| number) : (package.prices.triple| number) }}</div>
+      <div class="text">تومان</div>
+    </div>
+    <div class="price-box" *ngIf="tourType">
+      <div
+        class="number">{{ package.prices.quadRate ? (package.prices.twinRate| number) : (package.prices.quad| number) }}</div>
+      <div class="text">تومان</div>
+    </div>
+    <div class="price-box" *ngIf="!tourType">
+      <div
+        class="number">{{ package.prices.singleRate ? (package.prices.twinRate| number) : (package.prices.single| number) }}</div>
+      <div class="text">تومان</div>
+    </div>
+    <div class="price-box" *ngIf="!tourType">
+      <div
+        class="number">{{ package.prices.cwbRate ? (package.prices.cwbRate| number) : (package.prices.cwb| number) }}</div>
+      <div class="text">تومان</div>
+    </div>
+    <div class="price-box" *ngIf="!tourType">
+      <div class="number">{{ package.prices.cnb | number }}</div>
+      <div class="text">تومان</div>
+    </div>
+    <div class="price-box">
+      <div class="age">{{ package.prices.age }}</div>
+    </div>
   </div>
 </div>

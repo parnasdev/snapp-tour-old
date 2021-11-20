@@ -359,7 +359,6 @@ export class AddComponent implements OnInit {
       this.form.controls.ADLFlightRate.disable()
     }
     this.clearFields()
-
   }
 
   clearFields(): void {
@@ -384,21 +383,25 @@ export class AddComponent implements OnInit {
       this.form.controls.visaPriceType.setValue(1)
       this.form.controls.transferPriceType.setValue(1)
       this.form.controls.insurancePriceType.setValue(1)
-      this.ToursForm.controls.forEach(item => {
-        // @ts-ignore
-        item.controls.singleRate.reset()
-        // @ts-ignore
-        item.controls.twinRate.reset()
-        // @ts-ignore
-        item.controls.tripleRate.reset()
-        // @ts-ignore
-        item.controls.quadRate.reset()
-        // @ts-ignore
-        item.controls.cwbRate.reset()
-        // @ts-ignore
-        item.controls.rate.setValue(1)
-      })
+      this.resetPackageItems();
     }
+  }
+
+  resetPackageItems() {
+    this.ToursForm.controls.forEach(item => {
+      // @ts-ignore
+      item.controls.singleRate.reset()
+      // @ts-ignore
+      item.controls.twinRate.reset()
+      // @ts-ignore
+      item.controls.tripleRate.reset()
+      // @ts-ignore
+      item.controls.quadRate.reset()
+      // @ts-ignore
+      item.controls.cwbRate.reset()
+      // @ts-ignore
+      item.controls.rate.setValue(1)
+    })
   }
 
   getTransfer(): void {
@@ -473,7 +476,6 @@ export class AddComponent implements OnInit {
   }
 
   calculatePrice(type: string, price: any, isADL: boolean, i: number) {
-    debugger
     let finallyPrice = '';
     const ratePrice = +price.target.value.split(',').join('') * (+this.form.value.nightNum * this.getRatePrice(i));
     const insurancePrice = (this.form.value.insuranceRate ? (+this.form.value.insuranceRate) * this.checkInsuranceRatePrice() : 0);
@@ -510,11 +512,9 @@ export class AddComponent implements OnInit {
   }
 
   updatePackagePrices() {
-    debugger
     const insurancePrice = (this.form.value.insuranceRate ? (+this.form.value.insuranceRate) * this.checkInsuranceRatePrice() : 0);
     const visaPrice = (this.form.value.visaRate ? (+this.form.value.visaRate) * this.checkVisaRatePrice() : 0);
     const transferPrice = (this.form.value.transferRate ? (+this.form.value.transferRate) * this.checkTransferRatePrice() : 0);
-    let finallyPrice = '';
     this.ToursForm.controls.forEach((item, index) => {
       const ADLRate = item.value.ADLRate ? +item.value.ADLRate.split(',').join('') : 0;
       const CHDFlightRate = this.form.value.CHDFlightRate ? +this.form.value.CHDFlightRate?.split(',').join('') : 0;
@@ -619,9 +619,40 @@ export class AddComponent implements OnInit {
 
   getStCity(cityItemSelected: any): void {
     this.form.controls.stCity_id.setValue(cityItemSelected.id);
-
   }
 
+  sortPackages(sortId: any) {
+    if (+sortId.target.value === 2) {
+      this.ToursForm.controls.sort((a, b) => {
+        // @ts-ignore
+        const item1 = this.form.value.defineTour ? +a.controls.twinRate.value : +a.controls.twin.value;
+        // @ts-ignore
+        const item2 = this.form.value.defineTour ? +b.controls.twinRate.value : +b.controls.twin.value;
+        if (item1 < item2) {
+          return -1;
+          // @ts-ignore
+        } else if (item1 > item2) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+    } else if (+sortId.target.value === 1) {
+      this.ToursForm.controls.sort((a, b) => {
+        // @ts-ignore
+        const item1 = this.hotels.find(x => x.id === +a.controls.hotel_id.value).stars;
+        // @ts-ignore
+        const item2 = this.hotels.find(x => x.id === +b.controls.hotel_id.value).stars;
+        if (item1 > item2) {
+          return -1;
+        } else if (item1 < item2) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
+    }
+  }
 
 }
 
