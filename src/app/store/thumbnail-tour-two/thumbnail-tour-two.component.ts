@@ -33,7 +33,7 @@ export class ThumbnailTourTwoComponent implements OnInit {
 
   reserve(id: number): void {
     const dialog = this.dialog.open(ReservePopupComponent, {
-      data: id
+      data: id,
     })
     dialog.afterClosed().subscribe(result => {
 
