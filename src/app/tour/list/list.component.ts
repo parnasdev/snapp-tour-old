@@ -13,12 +13,12 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ListComponent implements OnInit {
   tourReq: TourListRequestDTO = {
-    city: '',
+    city: null,
     isAdmin: false,
     paginate: true,
-    search: '',
+    search: null,
     perPage: 20,
-    type: 0
+    type: null
   };
   tours: TourListResDTO[] = [];
   loading = false;
