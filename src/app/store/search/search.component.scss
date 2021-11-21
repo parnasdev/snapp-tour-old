@@ -75,7 +75,11 @@
   color: #fff;
   font-size: 13px;
 }
-
+.btn-search:hover{
+  background-color: var(--white);
+  color: var(--base-color);
+  transition: var(--btn-animtion);
+}
 .Continue-trip {
   margin-top: 3rem;
   color: var(--white);

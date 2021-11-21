@@ -31,13 +31,20 @@
 }
 
 .btn-complete-book {
-  border: none;
   width: 150px;
   height: 40px;
   border-radius: var(--radius-btn);
   color: var(--white);
   background-color: var(--base-color);
   margin: auto;
+  transition: var(--btn-animtion);
+  border: 2px solid var(--base-color);
+}
+
+.btn-complete-book:hover {
+  transition: var(--btn-animtion);
+  background-color: var(--white);
+  color: var(--base-color);
 }
 
 .thumbnail-desktop {
