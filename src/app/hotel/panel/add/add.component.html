@@ -125,15 +125,23 @@
             <textarea name="" id="address" cols="30" rows="10" placeholder="آدرس را وارد کنید"></textarea>
           </div>
         </div>
-
-
       </div>
     </div>
 
 
     <div class="btn-parent-submit">
-
       <button class="submit-tour" (click)="add()">ثبت هتل</button>
+    </div>
+
+    <div class="box-info-fly">
+      <div class="item-info">
+        <label for="">Iframe Aparat</label>
+        <input type="text" [formControl]="locationFC">
+      </div>
+      <div class="item-info">
+        <label for="">Youtube Url</label>
+        <input type="text" [formControl]="locationFC">
+      </div>
     </div>
   </form>
 

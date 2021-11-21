@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {SessionService} from "../../Core/Services/session.service";
 import {AuthApiService} from "../../Core/Https/auth-api.service";
 import {MessageService} from "../../Core/Services/message.service";
-import {ErrorsService} from "../../Core/Services/errors.service";
 import {CheckErrorService} from "../../Core/Services/check-error.service";
 
 declare let $: any;
