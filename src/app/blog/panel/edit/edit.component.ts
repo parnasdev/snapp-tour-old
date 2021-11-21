@@ -123,7 +123,7 @@ export class EditComponent implements OnInit {
     this.blogApi.getPost(this.slug).subscribe((res: any) => {
       this.isLoading = false;
       if (res.isDone) {
-        this.info = res.data
+        this.info = res.data;
         this.setValue()
       }
     }, (error: any) => {

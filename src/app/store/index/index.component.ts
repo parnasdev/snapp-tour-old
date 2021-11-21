@@ -32,6 +32,7 @@ export class IndexComponent implements OnInit {
   tours: TourListResDTO[] = [];
   specialTours: TourListResDTO[] = [];
   cities: CityResponseDTO[] = [];
+  hotelCities: CityResponseDTO[] = []
   hotelCityFC = new FormControl(1);
   hotels: HotelListResponseDTO[] = [];
   blogs: PostResDTO[] = [];
@@ -77,6 +78,7 @@ export class IndexComponent implements OnInit {
     this.getTours();
     this.getSpecialTours();
     this.getCities()
+    this.getHotelCities()
     this.getHotels()
     this.getBlog()
   }
@@ -102,6 +104,22 @@ export class IndexComponent implements OnInit {
     this.cityApi.getCities(req).subscribe((res: any) => {
       if (res.isDone) {
         this.cities = res.data;
+      }
+    }, (error: any) => {
+      this.message.error()
+    })
+  }
+  getHotelCities(): void {
+    const req: CityListRequestDTO = {
+      type: null,
+      hasHotel: true,
+      hasTour: false,
+      search: null,
+      perPage: 40
+    }
+    this.cityApi.getCities(req).subscribe((res: any) => {
+      if (res.isDone) {
+        this.hotelCities = res.data;
       }
     }, (error: any) => {
       this.message.error()
@@ -146,7 +164,7 @@ export class IndexComponent implements OnInit {
     })
   }
 
-  getSpecialTours(){
+  getSpecialTours() {
     const reqDTO: TourListRequestDTO = {
       city: null,
       paginate: false,
@@ -164,7 +182,7 @@ export class IndexComponent implements OnInit {
   }
 
   hotelCityChanged(): void {
-this.getHotels()
+    this.getHotels()
   }
 
 
@@ -178,12 +196,12 @@ this.getHotels()
       paginate: false,
       search: null,
       isAdmin: false,
-      limit: null,
+      limit: 4,
       withTrash: false,
     }
     this.blogApiService.getPosts(req).subscribe((res: any) => {
       if (res.isDone) {
-        this.blogs = res.data
+        this.blogs = res.data;
       } else {
         this.message.custom(res.message)
       }
