@@ -53,7 +53,9 @@ export class ListComponent implements OnInit {
       city: +this.cityFC.value,
       search: this.searchFC.value
     }
+    this.isLoading=true
     this.hotelApi.getHotels(this.hotelReq, this.p).subscribe((res: any) => {
+      this.isLoading=false
       if (res.isDone) {
         this.hotelList = res.data;
         this.paginate = res.paginate;
@@ -67,7 +69,7 @@ export class ListComponent implements OnInit {
       }
     }, (error: any) => {
       this.message.error()
-
+      this.isLoading=false
     })
   }
 
