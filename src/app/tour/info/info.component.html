@@ -92,14 +92,14 @@
                   <img src="assets/img/Up-Down-3.svg" width="20" alt="">
                   <div class="text">
                     <div class="right">
-                      <span>{{ this.tourInfo.stCity.name  }}</span>
+                      <span>{{ this.tourInfo.stCity?.name  }}</span>
                       <span class="mt-2 text-red">تاریخ و ساعت پرواز رفت :</span>
                     </div>
                     <div class="left">
                       <span
-                        class="text-red me-2">{{ this.calService.convertDate1(tourInfo.stDate, 'fa').split(' ')[0]  }}</span>
+                        class="text-red me-2">{{ this.calService.convertDate1(tourInfo?.stDate, 'fa').split(' ')[0]  }}</span>
                       <span
-                        class="text-red">{{ this.calService.convertDate1(tourInfo.stDate, 'fa').split(' ')[1]  }}</span>
+                        class="text-red">{{ this.calService.convertDate1(tourInfo?.stDate, 'fa').split(' ')[1]  }}</span>
                     </div>
                   </div>
                 </div>
@@ -109,9 +109,9 @@
                     <span class="text-base-color">تاریخ ورود به هتل :</span>
                     <div>
                       <span
-                        class="text-base-color me-2">{{ this.calService.convertDate(tourInfo.stDate, 'fa').split(' ')[0]  }}</span>
+                        class="text-base-color me-2">{{ this.calService.convertDate(tourInfo?.stDate, 'fa').split(' ')[0]  }}</span>
                       <span
-                        class="text-base-color">{{ this.calService.convertDate(tourInfo.stDate, 'fa').split(' ')[1]  }}</span>
+                        class="text-base-color">{{ this.calService.convertDate(tourInfo?.stDate, 'fa').split(' ')[1]  }}</span>
                     </div>
                   </div>
                 </div>
@@ -120,9 +120,9 @@
               <div class="middle-tour-login">
                 <img src="assets/img/Moon%202.svg" width="22" alt="">
                 <div class="text">
-                  <span class="text-gray-color">مدت اقامت در {{ this.tourInfo.endCity.name  }} :</span>
+                  <span class="text-gray-color">مدت اقامت در {{ this.tourInfo.endCity?.name  }} :</span>
                   <span
-                    class="text-base-color">{{ this.tourInfo.dayNum + ' ' + 'روز و' + this.tourInfo.nightNum + ' شب' }}</span>
+                    class="text-base-color">{{ this.tourInfo?.dayNum + ' ' + 'روز و' + this.tourInfo?.nightNum + ' شب' }}</span>
                 </div>
               </div>
               <div class="border-box">
@@ -138,14 +138,14 @@
                   <img src="../../../assets/img/Up-Down-3.svg" width="20" alt="">
                   <div class="text">
                     <div class="right">
-                      <span>{{ this.tourInfo.endCity.name  }}</span>
+                      <span>{{ this.tourInfo.endCity?.name  }}</span>
                       <span class="mt-2 text-red">تاریخ و ساعت پرواز برگشت :</span>
                     </div>
                     <div class="left">
                       <span
-                        class="text-red me-2">{{ this.calService.convertDate1(tourInfo.enDate, 'fa').split(' ')[0]  }}</span>
+                        class="text-red me-2">{{ this.calService.convertDate1(tourInfo?.enDate, 'fa').split(' ')[0]  }}</span>
                       <span
-                        class="text-red">{{ this.calService.convertDate1(tourInfo.enDate, 'fa').split(' ')[1]  }}</span>
+                        class="text-red">{{ this.calService.convertDate1(tourInfo?.enDate, 'fa').split(' ')[1]  }}</span>
                     </div>
                   </div>
                 </div>
@@ -155,9 +155,9 @@
                     <span class="text-base-color">تاریخ خروج از هتل  :</span>
                     <div>
                       <span
-                        class="text-base-color me-2">{{ this.calService.convertDate(tourInfo.enDate, 'fa').split(' ')[0]  }}</span>
+                        class="text-base-color me-2">{{ this.calService.convertDate(tourInfo?.enDate, 'fa').split(' ')[0]  }}</span>
                       <span
-                        class="text-base-color">{{ this.calService.convertDate(tourInfo.enDate, 'fa').split(' ')[1]  }}</span>
+                        class="text-base-color">{{ this.calService.convertDate(tourInfo?.enDate, 'fa').split(' ')[1]  }}</span>
                     </div>
                   </div>
                 </div>
@@ -208,18 +208,18 @@
           <div class="top">
             <div class="required-documents">
               <h2>مدارک لازم</h2>
-              <p>{{ this.tourInfo.documents }}</p>
+              <p>{{ this.tourInfo?.documents }}</p>
               <img class="img-fix-s3" src="assets/img/Credit-Card.svg" width="70" alt="">
             </div>
             <div class="services-agency">
               <h2>خدمات آژانس</h2>
-              <p>{{ this.tourInfo.services }}</p>
+              <p>{{ this.tourInfo?.services }}</p>
               <img class="img-fix-s3" src="assets/img/Verified.svg" width="70" alt="">
             </div>
           </div>
           <div class="complete-details">
             <h2>توضیحات</h2>
-            <p>{{ this.tourInfo.description }}</p>
+            <p>{{ this.tourInfo?.description }}</p>
             <img class="img-fix-s3" src="assets/img/Message-info-tour.svg" width="70" alt="">
           </div>
         </div>
