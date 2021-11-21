@@ -25,7 +25,7 @@ export class MultipleUploadComponent implements OnInit {
 
     form.value.gallery=(document.getElementById('gallery') as HTMLInputElement).value;
 
-    return this.http.post('http://tour-api.parnasweb.com/api/galleries', JSON.stringify(form.value), {headers: this.headers})
+    return this.http.post('https://tour-api.parnasweb.com/api/galleries', JSON.stringify(form.value), {headers: this.headers})
       .toPromise()
       .then(function (res) {
         console.log(res)
