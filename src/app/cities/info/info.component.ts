@@ -29,43 +29,16 @@ export class InfoComponent implements OnInit {
     this.city = this.router.snapshot.paramMap.get('city')
     this.getInfo()
 
-
-    $(document).ready(() => {
-
-      $(".tab-ul-list").on("click", "li", () => {
-        $("li").removeClass("active-li-city");
-        $(this).addClass("active-li-city")
-      })
-      $(".tab-ul-list li:first-child").addClass('active-li-city')
-      // ----tab-info-city
-      $(".about-tab").click(() => {
-        $("#about").show()
-        $("#tour").hide()
-        $("#question").hide()
-        $("#news").hide()
-      })
-      $(".tour-tab").click(() => {
-        $("#about").hide()
-        $("#tour").show()
-        $("#question").hide()
-        $("#news").hide()
-      })
+    $(window).ready(() => {
       $(".question-tab").click(() => {
-        $("#question").show()
-        $("#news").hide()
-        $("#tour").hide()
-        $("#about").hide()
+        $(".scrolling-area").animate({scrollTop: 1125}, 300)
       })
       $(".news-tab").click(() => {
-        $("#news").show()
-        $("#question").hide()
-        $("#tour").hide()
-        $("#about").hide()
+        $(".scrolling-area").animate({scrollTop: 1450}, 300)
       })
-      $("#question").hide()
-      $("#tour").hide()
-      $("#news").hide()
-      // end
+      $(".about-tab").click(() => {
+        $(".scrolling-area").animate({scrollTop: 280}, 300)
+      })
     })
   }
 

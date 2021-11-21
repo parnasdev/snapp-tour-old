@@ -8,7 +8,6 @@ $(document).ready(function () {
   $(".button-down-scroll").click(function () {
     $(".scrolling-area").animate({scrollTop: 400}, 300)
   })
-
 })
 $(window).scroll(function () {
   if ($(this).scrollTop() > 900) {
