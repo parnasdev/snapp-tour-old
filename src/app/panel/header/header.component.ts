@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
       this.isLoading = false;
       if (res.isDone) {
         this.session.removeUser();
-        this.router.navigateByUrl('/')
+        this.router.navigateByUrl('/auth')
 
       }
     }, (error: any) => {
