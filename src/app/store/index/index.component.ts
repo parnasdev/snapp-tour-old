@@ -113,7 +113,8 @@ export class IndexComponent implements OnInit {
     this.isLoading = true;
     const req: HotelRequestDTO = {
       isAdmin: false,
-      paginate: false,
+      paginate: true,
+      perPage: 10,
       city: this.hotelCityFC.value,
       search: null,
     }
@@ -163,7 +164,7 @@ export class IndexComponent implements OnInit {
   }
 
   hotelCityChanged(): void {
-
+this.getHotels()
   }
 
 
