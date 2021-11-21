@@ -29,6 +29,8 @@ export class AddComponent implements OnInit {
   locationFC = new FormControl('');
   addressFC = new FormControl('');
   bodyFC = new FormControl('');
+  aparatFC = new FormControl();
+  youtubeFC = new FormControl();
   currentStar = 0;
   lat = 0;
   lng = 0;
@@ -43,6 +45,7 @@ export class AddComponent implements OnInit {
     slug: '',
     slugEn: '',
     city_id: '',
+    mediaLink: [],
     stars: 3,
     location: '',
     address: '',
@@ -116,6 +119,7 @@ export class AddComponent implements OnInit {
       slugEn: this.nameEnFC.value.replace(' ', '-'),
       city_id: this.cityFC.value,
       stars: this.currentStar,
+      mediaLink: [{name: 'aparat', link: this.aparatFC.value}, {name: 'youtube', link: this.aparatFC.value}],
       location: this.locationFC.value,
       address: this.addressFC.value,
       coordinate: {
@@ -152,9 +156,10 @@ export class AddComponent implements OnInit {
     })
   }
 
-  cityTypeChange():void {
+  cityTypeChange(): void {
     this.getCities()
   }
+
   reload() {
     this.show = false;
     setTimeout(() => this.show = true);
@@ -182,7 +187,7 @@ export class AddComponent implements OnInit {
     })
   }
 
-  getDescriptionFromEditor(body:any):void {
+  getDescriptionFromEditor(body: any): void {
     this.bodyFC.setValue(body)
   }
 
@@ -215,9 +220,10 @@ export class AddComponent implements OnInit {
       this.thumbnail = result
     })
   }
+
   getImages(): void {
     const dialog = this.dialog.open(MultipleUploadComponent, {});
-    dialog.afterClosed().subscribe((result:any[]) => {
+    dialog.afterClosed().subscribe((result: any[]) => {
       console.log(result);
       result.forEach(x => {
         this.images.push(x.path);
@@ -225,7 +231,8 @@ export class AddComponent implements OnInit {
 
     })
   }
-  removeImage(index: any):void {
-    this.images.splice(index,-1);
+
+  removeImage(index: any): void {
+    this.images.splice(index, -1);
   }
 }
