@@ -24,8 +24,10 @@ export class TourApiService {
     return this.http.post<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
 
-  getTours(req: TourListRequestDTO, pageNum: number): any {
-    const strUrl = this.serverControllerName + `getTours?page=${pageNum}`;
+  getTours(req: TourListRequestDTO, pageNum?: number): any {
+    const address = pageNum ? `getTours?page=${pageNum}` : 'getTours'
+    const strUrl = this.serverControllerName + address;
+
     return this.http.post<Result<TourListResDTO>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
 

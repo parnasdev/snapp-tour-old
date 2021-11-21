@@ -17,6 +17,15 @@ $(window).scroll(function () {
   }
   // -----------------
 })
+$(window).scroll(function () {
+  if ($(this).scrollTop() > 300) {
+    $(".tab-ul-list").addClass("tab-ul-list-fix")
+  } else {
+    $(".tab-ul-list").removeClass("tab-ul-list-fix")
+  }
+  // -----------------
+})
 $(function () {
   $("#tab-info-city").tabs();
 });
+
