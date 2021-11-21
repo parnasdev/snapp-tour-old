@@ -36,13 +36,17 @@ export class ListComponent implements OnInit {
       limit: null,
       withTrash: false,
     }
+    this.isLoading=true
     this.blogApiService.getPosts(req).subscribe((res: any) => {
+      this.isLoading=false
+
       if (res.isDone) {
         this.blogs = res.data
       } else {
         this.message.custom(res.message)
       }
     }, (error: any) => {
+      this.isLoading=false
       this.message.error()
 
     })
