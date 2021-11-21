@@ -29,9 +29,9 @@
             <div class="title-hotel">
               <div class="name-city-country">
                 <img src="assets/img/Location.svg" width="20" alt="">
-                <span class="title-small-fa">شهر و منطقه:</span>
-                <span class="title-en">{{ hotelInfo.city.name }}, </span>
-                <span class="title-en">{{ hotelInfo.location }}</span>
+                <span class="title-small-fa">شهر و منطقه :</span>
+                <span class="title-fa mr-2">{{ hotelInfo.city.name }}, </span>
+                <span class="title-fa mr-2">{{ hotelInfo.location }}</span>
               </div>
               <div class="rate-star">
                 <span class="title-small-fa">درجه هتل :</span>
@@ -50,7 +50,7 @@
               <div class="left-gallery" [style.background-image]="'url(' + hotelInfo.thumbnail + ')'">
                 <div class="parent-view-all-photo">
                   <a href="" class="btn-photos ml-2">
-                    <img src="assets/img/video-camera.png" width="20" alt="">
+                    <img src="assets/img/video-camera.png" width="25" alt="">
                     <span>مشاهده ویدیو</span>
                   </a>
                   <a class="btn-photos" [lightbox]="0" [gallery]="galleryId">
