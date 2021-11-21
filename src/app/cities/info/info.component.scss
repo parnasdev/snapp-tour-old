@@ -52,6 +52,11 @@
   color: #fff;
   font-size: 13px;
 }
+.btn-search:hover{
+  background-color: var(--white);
+  color: var(--base-color);
+  transition: var(--btn-animtion);
+}
 .search{
   display: flex;
   align-items: center;
