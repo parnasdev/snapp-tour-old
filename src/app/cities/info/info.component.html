@@ -29,10 +29,11 @@
           </div>
           <div id="tab-info-city" class="">
             <ul class="tab-ul-list">
-              <li><a class="about-tab">درباره تور {{info.name}}</a></li>
-              <li><a class="tour-tab">تور های {{info.name}}</a></li>
-              <li><a class="question-tab">سوالات متداول</a></li>
-              <li><a class="news-tab">اخبار گردشگری {{info.name}}</a></li>
+              <li><a class="about-tab" [ngClass]="{'about-tab' : tabClicked !== 'about' , 'li-active-fix':tabClicked === 'about'}">درباره تور {{info.name}}</a></li>
+              <li><a class="question-tab" [ngClass]="{'question-tab' : tabClicked !== 'question' , 'li-active-fix':tabClicked === 'question'}">سوالات متداول</a></li>
+              <li><a class="news-tab" [ngClass]="{'news-tab' : tabClicked !== 'news' , 'li-active-fix':tabClicked === 'news'}">اخبار گردشگری {{info.name}}</a></li>
+              <li><a class="tour-tab" [ngClass]="{'tour-tab' : tabClicked !== 'tour' , 'li-active-fix':tabClicked === 'tour'}">تور های {{info.name}}</a></li>
+
             </ul>
             <div id="about">
               <div class="about-city">
@@ -47,7 +48,7 @@
                   <gallery class="w-100" [lightbox]="0" [gallery]="galleryId" [items]="items"></gallery>
                   <p>{{info.description}}</p>
                 </div>
-                <!--                <prs-thumbnails-tour [tours]="info.tour"></prs-thumbnails-tour>-->
+
                 <div class="faq">
                   <div class="title-faq">
                     <img src="assets/img/Document-align-2.svg" width="35" alt="">
@@ -110,12 +111,21 @@
                     <img src="assets/img/Bookmark.svg" width="20" alt="">
                     <h1>اخبار گردشگری آنتالیا</h1>
                   </div>
+
+
                   <prs-thumbnails-blog></prs-thumbnails-blog>
                 </div>
 
               </div>
             </div>
           </div>
+          <div  class="title-s2">
+            <div class="text">
+              <img  src="assets/img/Notification%202.svg" width="35" alt="">
+              <h2 >تور های مشابه</h2>
+            </div>
+          </div>
+          <prs-thumbnails-tour [tours]="tours"></prs-thumbnails-tour>
         </div>
       </div>
     </div>

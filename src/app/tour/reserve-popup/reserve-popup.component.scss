@@ -1,15 +1,56 @@
-.parent-reserve{
+.parent-reserve {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  padding-top: 2rem;
 }
-.parent-reserve .inp-form{
+
+.parent-reserve h2 {
+  font-size: 18px;
+  color: var(--base-color);
+  margin-bottom: 7px;
+}
+
+.parent-reserve p {
+  text-align: center;
+  margin: 8px 0;
+  font-size: 13px !important;
+}
+
+.parent-reserve .inp-form {
   margin-top: 15px !important;
 }
-prs-btn{
+
+prs-btn {
   margin-top: 15px !important;
   width: 100% !important;
 }
-:host::ng-deep .btn-dark{
+
+:host::ng-deep .btn-dark {
   width: 100% !important;
+}
+
+label {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 8px;
+}
+
+.icon-cancel-1 {
+  width: 27px;
+  height: 27px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border: 2px solid var(--red-color);
+  color: var(--red-color);
+  font-size: 13px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  cursor: pointer;
 }
