@@ -30,7 +30,7 @@
   </div>
   <div class="type">
     <img src="assets/img/Up%20Down%202.svg" width="17" alt="">
-    <span>{{tour.transfers[0].transfer}}</span>
+    <span>{{tour.transfers.length > 0 ? tour.transfers[0].transfer : '---'}}</span>
   </div>
   <a class="ino-tour-btn" routerLink="/tour/{{ tour.slug }}" target="_parent">
     <span class="text-mobi-btn">جزییات</span>

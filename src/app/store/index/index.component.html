@@ -269,7 +269,7 @@
             </div>
           </div>
           <div class="box-blog-parent">
-            <div class="right-blog" routerLink="/blog/{{blogs[0].slug}}"
+            <div class="right-blog" *ngIf="blogs.length > 0" routerLink="/blog/{{blogs[0].slug}}"
                  [style.background-image]="'url(' + blogs[0].thumbnail + ')'">
               <div class="info-blog">
                 <h6>{{blogs[0].title}}</h6>
@@ -280,7 +280,7 @@
               </div>
             </div>
             <div class="left-blog">
-              <div class="top" routerLink="/blog/{{blogs[1].slug}}"
+              <div class="top" *ngIf="blogs.length > 1" routerLink="/blog/{{blogs[1].slug}}"
                    [style.background-image]="'url(' + blogs[1].thumbnail + ')'">
                 <div class="info-blog">
                   <h6>{{blogs[1].title}}</h6>
@@ -291,7 +291,7 @@
                 </div>
               </div>
               <div class="bottom">
-                <div class="bottom-left-blog" routerLink="/blog/{{blogs[2].slug}}"
+                <div class="bottom-left-blog" *ngIf="blogs.length > 2" routerLink="/blog/{{blogs[2].slug}}"
                      [style.background-image]="'url(' + blogs[2].thumbnail + ')'">
                   <div class="info-blog">
                     <h6>{{blogs[2].title}}</h6>
@@ -301,7 +301,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="bottom-right-blog" routerLink="/blog/{{blogs[3].slug}}"
+                <div class="bottom-right-blog" *ngIf="blogs.length > 3" routerLink="/blog/{{blogs[3].slug}}"
                      [style.background-image]="'url(' + blogs[3].thumbnail + ')'">
                   <div class="info-blog">
                     <h6>{{blogs[3].title}}</h6>
