@@ -28,3 +28,4 @@ $(window).scroll(function () {
 $(function () {
   $("#tab-info-city").tabs();
 });
+

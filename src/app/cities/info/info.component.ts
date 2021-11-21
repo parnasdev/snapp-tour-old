@@ -39,12 +39,12 @@ export class InfoComponent implements OnInit {
     $(window).ready(() => {
       $(".question-tab").click(() => {
         this.tabClicked='question'
-        $("html").animate({scrollTop: 1045}, 300)
+        $("html").animate({scrollTop: 970}, 300)
       })
       $(".news-tab").click(() => {
         this.tabClicked='news'
         console.log(this.tabClicked)
-        $("html").animate({scrollTop: 1350}, 300)
+        $("html").animate({scrollTop: 1310}, 300)
       })
       $(".about-tab").click(() => {
         this.tabClicked='about'
@@ -52,8 +52,15 @@ export class InfoComponent implements OnInit {
       })
       $(".tour-tab").click(() => {
         this.tabClicked='tour'
-        $("html").animate({scrollTop: 1900}, 300)
+        $("html").animate({scrollTop: 1830}, 300)
       })
+    })
+    $(window).scroll( () => {
+      if ($(this).scrollTop() > 970) {
+        $(".question-tab").addClass("tab-ul-list-fix")
+      } else {
+        $(".question-tab").removeClass("tab-ul-list-fix")
+      }
     })
   }
   getTours(): void {
