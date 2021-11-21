@@ -95,7 +95,7 @@ export class IndexComponent implements OnInit {
     const req: CityListRequestDTO = {
       type: null,
       hasHotel: true,
-      hasTour: false,
+      hasTour: true,
       search: null,
       perPage: 20
     }

@@ -19,6 +19,8 @@ import {AlertDialogComponent} from "./alert-dialog/alert-dialog.component";
 import {MatDialogModule} from "@angular/material/dialog";
 import {ChipsComponent} from './chips/chips.component';
 import {Page404Component} from "./page404/page404.component";
+import { PopupVideoComponent } from './popup-video/popup-video.component';
+import {PipesModule} from "./pipes/pipes.module";
 
 
 @NgModule({
@@ -35,7 +37,8 @@ import {Page404Component} from "./page404/page404.component";
     SelectCityComponent,
     SelectHotelComponent,
     ChipsComponent,
-    Page404Component
+    Page404Component,
+    PopupVideoComponent
   ],
   exports: [
     UploadFileComponent,
@@ -47,17 +50,18 @@ import {Page404Component} from "./page404/page404.component";
     SelectCityComponent,
     ChipsComponent
   ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    FormsModule,
-    MatAutocompleteModule,
-    MatInputModule,
-    MatDialogModule,
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        FormsModule,
+        MatAutocompleteModule,
+        MatInputModule,
+        MatDialogModule,
 
-    ToolsModule,
-  ], entryComponents: [UploadSingleComponent, AlertDialogComponent]
+        ToolsModule,
+        PipesModule,
+    ], entryComponents: [UploadSingleComponent, AlertDialogComponent]
 })
 export class CommonProjectModule {
 }

@@ -21,7 +21,7 @@
                 </a>
                 <img class="img-fix" [src]="item.thumbnail" alt="">
               </div>
-              <h3 class="title-box-blog" routerLink="/blog/{{item.slug}}">{{item.title}}</h3>
+              <h3 class="title-box-blog" routerLink="/blog/{{item.slug}}">{{item.title.length>30?item.title.substring(0,33)+' ...':item.title}}</h3>
               <div class="date">
                 <img src="assets/img/Watch-blog.svg" width="18" alt="">
                 <span>انتشار شده در {{calenderServices.convertDate(item.createdAt,'fa')}}</span>

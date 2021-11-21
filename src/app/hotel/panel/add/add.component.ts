@@ -119,7 +119,7 @@ export class AddComponent implements OnInit {
       slugEn: this.nameEnFC.value.replace(' ', '-'),
       city_id: this.cityFC.value,
       stars: this.currentStar,
-      mediaLink: [{name: 'aparat', link: this.aparatFC.value}, {name: 'youtube', link: this.aparatFC.value}],
+      mediaLink: [{name: 'aparat', link: this.aparatFC.value}, {name: 'youtube', link: this.youtubeFC.value}],
       location: this.locationFC.value,
       address: this.addressFC.value,
       coordinate: {

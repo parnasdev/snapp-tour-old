@@ -50,6 +50,7 @@ export class ListComponent implements OnInit {
     this.hotelReq = {
       isAdmin: false,
       paginate: true,
+      perPage: 16,
       city: +this.cityFC.value,
       search: this.searchFC.value
     }

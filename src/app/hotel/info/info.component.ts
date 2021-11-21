@@ -8,6 +8,8 @@ import {hotelInfoDTO, ServiceDTO} from "../../Core/Models/hotelDTO";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Lightbox} from "ng-gallery/lightbox";
 import {Gallery, GalleryItem, ImageItem} from 'ng-gallery';
+import {MatDialog} from "@angular/material/dialog";
+import {PopupVideoComponent} from "../../common-project/popup-video/popup-video.component";
 
 @Component({
   selector: 'prs-info',
@@ -28,6 +30,7 @@ export class InfoComponent implements OnInit {
   constructor(public hotelApi: HotelApiService,
               public route: ActivatedRoute,
               public router: Router,
+              public dialog: MatDialog,
               public gallery: Gallery,
               public message: MessageService,
               public cityApiService: CityApiService,
@@ -60,8 +63,14 @@ export class InfoComponent implements OnInit {
     })
   }
 
-
-
+  openMedia(data: any): void {
+    const dialog = this.dialog.open(PopupVideoComponent, {
+      data: {
+        list:data,
+        name:this.hotelInfo.name
+      }
+    })
+  }
 
   fillAlbum(images: string[]): void {
     this.items = images.map(item => new ImageItem({src: item, thumb: item}));
