@@ -7,6 +7,7 @@ export interface HotelSetRequestDTO {
   slug: string;
   slugEn: string;
   city_id: string;
+  mediaLink: MediaLink[]
   stars: number;
   location: string;
   address: string;
@@ -26,6 +27,11 @@ export interface HotelSetRequestDTO {
   status: string
 }
 
+export interface MediaLink {
+  name: string;
+  link: string;
+}
+
 export interface hotelInfoDTO {
   name: string;
   city: CityResponseDTO;
@@ -35,6 +41,8 @@ export interface hotelInfoDTO {
   address: string;
   coordinate: { lat: number, lng: number }
   images: string[];
+  mediaLink: MediaLink[]
+
   thumbnail: string;
   body: string;
   services: ServicesDTO[];
@@ -104,7 +112,7 @@ export interface HotelListResponseDTO {
   name: string
   nameEn: string
   slug: string
-  keyword:string
+  keyword: string
   slugEn: string
   stars: string
   thumbnail: string

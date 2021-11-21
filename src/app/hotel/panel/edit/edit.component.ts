@@ -52,6 +52,7 @@ export class EditComponent implements OnInit {
     slugEn: '',
     city_id: '',
     stars: 3,
+    mediaLink: [],
     location: '',
     address: '',
     coordinate: {
@@ -73,7 +74,8 @@ export class EditComponent implements OnInit {
   thumbnail = ''
   services: any[] = []
   isLoading = false;
-
+  aparatFC = new FormControl();
+  youtubeFC = new FormControl();
   constructor(private route: ActivatedRoute,
               private router: Router,
               public hotelApi: HotelApiService,
@@ -126,6 +128,8 @@ export class EditComponent implements OnInit {
       slugEn: this.nameEnFC.value.replace(' ', '-'),
       city_id: this.cityFC.value,
       stars: this.starFC.value,
+      mediaLink: [{name: 'aparat', link: this.aparatFC.value}, {name: 'youtube', link: this.aparatFC.value}],
+
       location: this.locationFC.value,
       address: this.addressFC.value,
       coordinate: {
@@ -248,6 +252,8 @@ export class EditComponent implements OnInit {
     this.locationFC.setValue(this.hotelInfo.location)
     this.addressFC.setValue(this.hotelInfo.address)
     this.bodyFC.setValue(this.hotelInfo.body)
+    this.aparatFC.setValue(this.hotelInfo.mediaLink[0].link)
+    this.youtubeFC.setValue(this.hotelInfo.mediaLink[1].link)
     this.images = this.hotelInfo.images
     this.thumbnail = this.hotelInfo.thumbnail
     this.lat = this.hotelInfo.coordinate.lat
