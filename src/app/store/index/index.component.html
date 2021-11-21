@@ -166,13 +166,13 @@
           <swiper #swiper class="swiper-hotel"
                   [slidesPerView]=" this.isMobile? 1 :(isTablet ? 2:4)"
                   [spaceBetween]="30">
-            <ng-template swiperSlide *ngFor="let hotel of hotels">
+            <ng-template swiperSlide *ngFor="let hotel of hotels" >
               <div [style.background-image]="'url(' + hotel.thumbnail + ')'"
                    class="box-hotel">
                 <div class="opacity-bg-parent">
                   <div class="info-img"><img src="assets/img/Information.svg" width="22" alt=""></div>
                   <div class="info-hotel">
-                    <h1> {{hotel.name}}</h1>
+                    <h1 routerLink="/hotel/{{hotel.slug}}"> {{hotel.name}}</h1>
                     <div class="footer-hotel-info">
                       <div class="location-hotel">
                         <img src="assets/img/Location-white.svg" width="17" alt="">
