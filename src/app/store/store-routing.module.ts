@@ -32,10 +32,11 @@ const routes: Routes = [
       },{
         path: 'city',
         loadChildren: () => import('../cities/cities.module').then(m => m.CitiesModule)
-      },{
-        path: ':city',
-        component: InfoComponent
-      }
+      },
+      // {
+      //   path: ':city',
+      //   component: InfoComponent
+      // }
     ]
   }
 ];
