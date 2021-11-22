@@ -36,7 +36,15 @@ const routes: Routes = [
       {
         path: ':city',
         component: InfoComponent
-      }
+      },
+      {
+        path: 'contact-us',
+        component: ContactUsComponent
+      },
+      {
+        path: 'about-us',
+        component: AboutUsComponent
+      },
     ]
   }
 ];
