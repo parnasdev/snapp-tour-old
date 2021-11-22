@@ -115,7 +115,7 @@ export class SidebarComponent implements OnInit {
       this.isLoading = false;
       if (res.isDone) {
         this.session.removeUser();
-        this.router.navigateByUrl('/auth')
+        this.router.navigateByUrl('/prs-admin')
 
       }
     }, (error: any) => {

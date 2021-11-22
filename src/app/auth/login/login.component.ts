@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
     this.isLoading = true
     this.api.login(this.req).subscribe((res: any) => {
       this.isLoading = false;
+      debugger
       if (res.isDone) {
         this.session.setUserToSession(res.data);
         this.router.navigateByUrl('/panel')

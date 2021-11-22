@@ -15,7 +15,7 @@ export class PanelGuardService implements CanActivate  {
     if (this.session.isLoggedIn() && (this.role === 'Admin' || this.role === 'Staff')) {
       return true;
     } else {
-      this.router.navigate(['/auth']);
+      this.router.navigate(['/prs-admin']);
     }
   }
 
