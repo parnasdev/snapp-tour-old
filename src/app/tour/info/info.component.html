@@ -12,7 +12,7 @@
               <img src="assets/img/Ticket-index.svg" width="30" alt="">
               <div class="text">
                 <h2>{{ tourInfo?.title }}</h2>
-                <span> شروع قیمت از : {{ getStarterPrice() | number}} تومان </span>
+                <span> شروع قیمت از : {{ tourInfo.minPrice | number}} تومان </span>
               </div>
             </div>
             <div class="left">
