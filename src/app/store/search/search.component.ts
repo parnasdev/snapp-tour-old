@@ -60,7 +60,7 @@ export class SearchComponent implements OnInit {
   }
 
   search() {
-    this.router.navigate(['tour/list/' + this.cityFC.value]);
+    this.router.navigate(['tours/' + this.cityFC.value]);
   }
 
 }

@@ -4,6 +4,7 @@ import {IndexComponent} from "./index/index.component";
 import {StoreComponent} from "./store.component";
 import {AboutUsComponent} from "./about-us/about-us.component";
 import {ContactUsComponent} from "./contact-us/contact-us.component";
+import {InfoComponent} from "../cities/info/info.component";
 
 const routes: Routes = [
   {
@@ -23,14 +24,17 @@ const routes: Routes = [
         path: 'blog',
         loadChildren: () => import('../blog/blog.module').then(m => m.BlogModule)
       },{
-        path: 'tour',
+        path: 'tours',
         loadChildren: () => import('../tour/tour.module').then(m => m.TourModule)
       },{
-        path: 'hotel',
+        path: 'hotels',
         loadChildren: () => import('../hotel/hotel.module').then(m => m.HotelModule)
       },{
         path: 'city',
         loadChildren: () => import('../cities/cities.module').then(m => m.CitiesModule)
+      },{
+        path: ':city',
+        component: InfoComponent
       }
     ]
   }

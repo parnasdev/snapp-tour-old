@@ -24,6 +24,8 @@ import {PipesModule} from "../common-project/pipes/pipes.module";
 
 import {LoadingComponent} from './loading/loading.component';
 import {TourModule} from "../tour/tour.module";
+import {LightboxModule} from "ng-gallery/lightbox";
+import {GalleryModule} from "ng-gallery";
 
 @NgModule({
   declarations: [
@@ -49,20 +51,23 @@ import {TourModule} from "../tour/tour.module";
     ThumbnailTourInfoComponent,
     ThumbnailTourTwoComponent,
     LoadingComponent,
+    SearchComponent,
   ],
-    imports: [
-        CommonModule,
-        StoreRoutingModule,
-        ReactiveFormsModule,
-        ToolsModule,
-        SwiperModule,
-        MatDatepickerModule,
-        MatFormFieldModule,
-        MatNativeDateModule,
-        MatInputModule,
-        MaterialModule,
-        PipesModule,
-    ]
+  imports: [
+    CommonModule,
+    StoreRoutingModule,
+    ReactiveFormsModule,
+    ToolsModule,
+    SwiperModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MaterialModule,
+    PipesModule,
+    LightboxModule,
+    GalleryModule,
+  ]
 })
 export class StoreModule {
 }
