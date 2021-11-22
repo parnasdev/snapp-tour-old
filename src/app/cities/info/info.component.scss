@@ -362,4 +362,60 @@ gallery{
   .btn-search {
     margin: 1rem auto;
   }
+  .parent-gallery {
+    flex-direction: column-reverse;
+  }
+  .left-gallery{
+    width: 100%;
+    border-radius: 25px 25px 0 0;
+    height: 250px;
+  }
+  .right-gallery{
+    width: 100%;
+  }
+  .right-gallery img {
+    height: 125px;
+  }
+  .right-gallery img:nth-child(1){
+    border-radius: unset;
+  }
+  .right-gallery img:nth-child(3){
+    border-radius: 0 0 25px 0;
+  }
+  .right-gallery img:nth-child(4){
+    border-radius: 0 0  0 25px;
+  }
+  .about-hotel {
+    flex-direction: column-reverse;
+  }
+  .about-hotel .info-about-hotel {
+    width: 100%;
+  }
+  .about-hotel .map {
+    width: 100%;
+    margin-top: 1rem;
+    height: auto;
+  }
+  .details {
+    flex-direction: column;
+  }
+  .details .right-box, .details .left-box {
+    width: 100%;
+    margin-top: 12px;
+  }
+  p{
+    font-size: 13px !important;
+  }
+  h2{
+    font-size: 15px !important;
+  }
+  .parent-item-option{
+    grid-template-columns: 1fr 1fr;
+  }
+  .tab-ul-list {
+    display: none !important;
+  }
+  .tab-ul-list-fix{
+    display: none !important;
+  }
 }

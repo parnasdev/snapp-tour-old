@@ -145,7 +145,7 @@
                 <div class="text">
                   <h3>هتل های برگزیده شهر</h3>
                   <select [formControl]="hotelCityFC" name="" id="" (change)="hotelCityChanged()">
-                    <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
+                    <option *ngFor="let city of hotelCities" [value]="city.id">{{city.name}}</option>
 
                   </select>
                 </div>
@@ -259,7 +259,7 @@
                 <div class="text">
                   <h3>وبلاگ گردشگری همنواز</h3>
 
-                  <span>هتل ها، مکان های دیدنی، پارک های آبی همه و همه در اینجا</span>
+                  <span>هتل ها، مکان های دیدنی، پارک های آبی، همه و همه در اینجا</span>
                 </div>
               </div>
               <a class="view-all-tour" routerLink="/blog">مشاهده همه وبلاگ ها</a>
@@ -271,9 +271,11 @@
           </div>
           <div class="box-blog-parent">
             <div class="right-blog" *ngIf="blogs.length > 0" routerLink="/blog/{{blogs[0].slug}}"
-                 [style.background-image]="'url(' + blogs[0].thumbnail + ')'">
+                 [style.background]="'url(' + blogs[0].thumbnail.replace(' ' , '%20') + ')'">
               <div class="info-blog">
-                <h6>{{blogs[0].title}}</h6>
+                <h6>
+                  <a>{{blogs[0].title}}</a>
+                </h6>
                 <div class="date-info">
                   <img src="assets/img/Watch.svg" width="20" alt="">
                   <small>انتشار شده در {{calenderServices.convertDate(blogs[0].createdAt, 'fa')}}</small>
@@ -282,9 +284,13 @@
             </div>
             <div class="left-blog">
               <div class="top" *ngIf="blogs.length > 1" routerLink="/blog/{{blogs[1].slug}}"
-                   [style.background-image]="'url(' + blogs[1].thumbnail + ')'">
+                   [style.background-image]="'url(' + blogs[1].thumbnail.replace(' ' , '%20') + ')'">
                 <div class="info-blog">
-                  <h6>{{blogs[1].title}}</h6>
+                  <h6>
+                    <a>
+                      {{blogs[1].title}}
+                    </a>
+                  </h6>
                   <div class="date-info">
                     <img src="assets/img/Watch.svg" width="20" alt="">
                     <small>انتشار شده در {{calenderServices.convertDate(blogs[1].createdAt, 'fa')}}</small>
@@ -293,9 +299,9 @@
               </div>
               <div class="bottom">
                 <div class="bottom-left-blog" *ngIf="blogs.length > 2" routerLink="/blog/{{blogs[2].slug}}"
-                     [style.background-image]="'url(' + blogs[2].thumbnail + ')'">
+                     [style.background-image]="'url(' + blogs[2].thumbnail.replace(' ' , '%20') + ')'">
                   <div class="info-blog">
-                    <h6>{{blogs[2].title}}</h6>
+                    <h6><a>{{blogs[2].title}}</a></h6>
                     <div class="date-info">
                       <img src="assets/img/Watch.svg" width="20" alt="">
                       <small>انتشار شده در {{calenderServices.convertDate(blogs[2].createdAt, 'fa')}}</small>
@@ -303,9 +309,9 @@
                   </div>
                 </div>
                 <div class="bottom-right-blog" *ngIf="blogs.length > 3" routerLink="/blog/{{blogs[3].slug}}"
-                     [style.background-image]="'url(' + blogs[3].thumbnail + ')'">
+                     [style.background-image]="'url(' + blogs[3].thumbnail.replace(' ' , '%20') + ')'">
                   <div class="info-blog">
-                    <h6>{{blogs[3].title}}</h6>
+                    <h6><a>{{blogs[3].title}}</a></h6>
                     <div class="date-info">
                       <img src="assets/img/Watch.svg" width="20" alt="">
                       <small>انتشار شده در {{calenderServices.convertDate(blogs[3].createdAt, 'fa')}}</small>

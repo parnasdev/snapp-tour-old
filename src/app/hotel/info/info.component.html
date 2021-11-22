@@ -49,7 +49,7 @@
               </div>
               <div class="left-gallery" [style.background-image]="'url(' + hotelInfo.thumbnail + ')'">
                 <div class="parent-view-all-photo">
-                  <a class="btn-photos ml-2" *ngIf="hotelInfo.mediaLink[0].link && hotelInfo.mediaLink[1].link" (click)="openMedia(hotelInfo.mediaLink)">
+                  <a class="btn-photos ml-2" *ngIf="hotelInfo.mediaLink && (hotelInfo.mediaLink[0].link && hotelInfo.mediaLink[1].link)" (click)="openMedia(hotelInfo.mediaLink)">
                     <img src="assets/img/video-camera.png" width="25" alt="">
                     <span>مشاهده ویدیو</span>
                   </a>
