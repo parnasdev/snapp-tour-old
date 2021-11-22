@@ -297,3 +297,45 @@ select::-ms-expand {
   color: var(--base-color);
   border: 2px solid red;
 }
+
+
+
+//pagintion
+//pagintion
+.ngx-pagination {
+  display: flex !important;
+  justify-content: center !important;
+  margin-top: 1rem !important;
+}
+
+.ngx-pagination .current {
+  background: var(--base-color-second) !important;
+  width: 30px !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+
+.ngx-pagination li {
+  border-radius: var(--radius-btn) !important;
+  overflow: hidden;
+}
+
+.ngx-pagination .pagination-next a::after, .ngx-pagination .pagination-next.disabled::after {
+  content: '»';
+  font-size: 20px !important;
+}
+
+.ngx-pagination .pagination-previous a::before, .ngx-pagination .pagination-previous.disabled::before {
+  content: '«';
+  font-size: 20px !important;
+}
+//select-apple-safari
+@media not all and (min-resolution: .001dpcm) {
+  @supports (-webkit-appearance:none) {
+    select {
+      background: unset !important;
+      outline: none !important;
+      border: none !important;
+    }
+  }
+}

@@ -33,6 +33,14 @@ const routes: Routes = [
         path: 'city',
         loadChildren: () => import('../cities/cities.module').then(m => m.CitiesModule)
       },
+      {
+        path: 'contact-us',
+        component: ContactUsComponent
+      },
+      {
+        path: 'about-us',
+        component: AboutUsComponent
+      },
       // {
       //   path: ':city',
       //   component: InfoComponent
