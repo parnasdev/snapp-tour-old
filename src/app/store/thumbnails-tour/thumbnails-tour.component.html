@@ -33,7 +33,7 @@
     <img src="assets/img/Up%20Down%202.svg" width="17" alt="">
     <span>{{tour.transfers.length > 0 ? tour.transfers[0].transfer : '---'}}</span>
   </div>
-  <a class="ino-tour-btn" routerLink="/tours/{{ city }}/{{ tour.slug }}" target="_parent">
+  <a class="ino-tour-btn" routerLink="/tours/{{ tour.endCity.slugEn }}/{{ tour.slug }}" target="_parent">
     <span class="text-mobi-btn">جزییات</span>
     <img src="assets/img/Right%20Arrow%202.svg" width="30" alt="">
   </a>

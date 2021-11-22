@@ -5,7 +5,11 @@
       <div class="row">
         <div class="col-md-10 m-auto parent-header">
           <div class="right">
-            <div class="logo"><img src="assets/img/hamnavaz-logo.png" width="170" alt=""></div>
+            <div class="logo">
+              <a href="/">
+                <img src="assets/img/hamnavaz-logo.png" width="170" alt="">
+              </a>
+            </div>
             <ul class="ul-menu">
               <li class="li-menu">
                 <a class="menu-item" routerLink="/">
@@ -43,7 +47,10 @@
               <img src="assets/img/Calling-header.svg" width="25" alt="">
               <div class="text-support">
                 <small>پشتیبانی</small>
-                <span>021-84278</span>
+                <a [href]="'tel:'+'02184278'">
+                  <span>021-84278</span>
+                </a>
+
               </div>
             </div>
 <!--            <a class="btn-login-register" routerLink="/auth" *ngIf="!session.isLoggedIn()">-->

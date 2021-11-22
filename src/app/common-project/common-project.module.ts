@@ -21,6 +21,7 @@ import {ChipsComponent} from './chips/chips.component';
 import {Page404Component} from "./page404/page404.component";
 import { PopupVideoComponent } from './popup-video/popup-video.component';
 import {PipesModule} from "./pipes/pipes.module";
+import { ShowLocationComponent } from './show-location/show-location.component';
 
 
 @NgModule({
@@ -38,18 +39,20 @@ import {PipesModule} from "./pipes/pipes.module";
     SelectHotelComponent,
     ChipsComponent,
     Page404Component,
-    PopupVideoComponent
+    PopupVideoComponent,
+    ShowLocationComponent
   ],
-  exports: [
-    UploadFileComponent,
-    GetLocationComponent,
-    TimePickerComponent,
-    UploadSingleComponent,
-    EditorComponent,
-    SelectHotelComponent,
-    SelectCityComponent,
-    ChipsComponent
-  ],
+    exports: [
+        UploadFileComponent,
+        GetLocationComponent,
+        TimePickerComponent,
+        UploadSingleComponent,
+        EditorComponent,
+        SelectHotelComponent,
+        SelectCityComponent,
+        ChipsComponent,
+        ShowLocationComponent
+    ],
     imports: [
         CommonModule,
         ReactiveFormsModule,

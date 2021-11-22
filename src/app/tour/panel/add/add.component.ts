@@ -210,7 +210,8 @@ export class AddComponent implements OnInit {
   submit() {
     this.convertTour();
     this.fillObj();
-    this.call();
+    console.log(this.tourReqDTO)
+    // this.call();
   }
 
   call(): void {

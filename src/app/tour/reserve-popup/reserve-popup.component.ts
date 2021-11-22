@@ -13,7 +13,7 @@ import {MessageService} from "../../Core/Services/message.service";
 })
 export class ReservePopupComponent implements OnInit {
   req!: ReserveReqDTO
-  countFC = new FormControl();
+  countFC = new FormControl('1');
   phoneFC = new FormControl()
 
   constructor(public dialogRef: MatDialogRef<ReservePopupComponent>,

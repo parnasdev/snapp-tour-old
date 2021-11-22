@@ -1,141 +1,142 @@
-<prs-address-bar [path]="'هتل'" [path2]="info.name ? info.name : ''"></prs-address-bar>
-<section class="info-hotel">
-  <div class="prs-responsive">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-10 m-auto parent-info-city">
-          <div class="search">
-            <div class="box-search">
-              <div class="inp-form">
-                <select name="">
-                  <option value="">شهر خود را انتخاب کنید *</option>
-                  <option>آنتالیا</option>
-                </select>
-                <span class="text-danger"></span>
+<ng-template [ngIf]="show">
+  <prs-loading *ngIf="isLoading"></prs-loading>
+  <prs-address-bar [path]="'هتل'" [path2]="info.name ? info.name : ''"></prs-address-bar>
+  <section class="info-hotel">
+    <div class="prs-responsive">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-10 m-auto parent-info-city">
+            <div class="search">
+              <div class="box-search">
+                <div class="inp-form">
+                  <select name="">
+                    <option value="">شهر خود را انتخاب کنید *</option>
+                    <option>آنتالیا</option>
+                  </select>
+                  <span class="text-danger"></span>
+                </div>
+                <button class="btn-search">جستجو کن !</button>
               </div>
-              <button class="btn-search">جستجو کن !</button>
+              <div class="share">
+                <a class="Navigation" href=""><img src="assets/img/Navigation.svg" width="25" alt=""></a>
+                <a href=""><img src="assets/img/Heart.svg" width="25" alt=""></a>
+              </div>
             </div>
-            <div class="share">
-              <a class="Navigation" href=""><img src="assets/img/Navigation.svg" width="25" alt=""></a>
-              <a href=""><img src="assets/img/Heart.svg" width="25" alt=""></a>
-            </div>
-          </div>
-          <div id="tab-info-city" class="">
-            <ul class="tab-ul-list">
-              <li><a class="about-tab" [ngClass]="{'about-tab' : tabClicked !== 'about' , 'li-active-fix':tabClicked === 'about'}">درباره تور {{info.name}}</a></li>
-              <li><a class="question-tab" [ngClass]="{'question-tab' : tabClicked !== 'question' , 'li-active-fix':tabClicked === 'question'}">سوالات متداول</a></li>
-              <li><a class="news-tab" [ngClass]="{'news-tab' : tabClicked !== 'news' , 'li-active-fix':tabClicked === 'news'}">اخبار گردشگری {{info.name}}</a></li>
-              <li><a class="tour-tab" [ngClass]="{'tour-tab' : tabClicked !== 'tour' , 'li-active-fix':tabClicked === 'tour'}">تور های {{info.name}}</a></li>
+            <div id="tab-info-city" class="">
+              <ul class="tab-ul-list">
+                <li><a class="about-tab" [ngClass]="{'about-tab' : tabClicked !== 'about' , 'li-active-fix':tabClicked === 'about'}">درباره تور {{info.name}}</a></li>
+                <li><a class="question-tab" [ngClass]="{'question-tab' : tabClicked !== 'question' , 'li-active-fix':tabClicked === 'question'}">سوالات متداول</a></li>
+                <li><a class="news-tab" [ngClass]="{'news-tab' : tabClicked !== 'news' , 'li-active-fix':tabClicked === 'news'}">اخبار گردشگری {{info.name}}</a></li>
+                <li><a class="tour-tab" [ngClass]="{'tour-tab' : tabClicked !== 'tour' , 'li-active-fix':tabClicked === 'tour'}">تور های {{info.name}}</a></li>
 
-            </ul>
-            <div id="about">
-              <div class="about-city">
-                <div class="title-about-city">
-                  <img src="assets/img/Document-align-2.svg" width="35" alt="">
-                  <div class="text">
-                    <h1>شهر {{info.name}} </h1>
-                    <span>ارزان ترین و با کیفیت ترین ها </span>
-                  </div>
-                </div>
-                <div class="details-text">
-                  <div class="parent-gallery">
-                    <div class="right-gallery">
-                      <img class="top-right" [lightbox]="0" [gallery]="galleryId" [src]="info.images[0]" alt="">
-                      <img class="left-right" [lightbox]="1" [gallery]="galleryId" [src]="info.images[1]" alt="">
-                      <img class="bottom-right" [lightbox]="2" [gallery]="galleryId" [src]="info.images[2]" alt="">
-                      <img class="bottom-left" [lightbox]="3" [gallery]="galleryId" [src]="info.images[3]" alt="">
-                    </div>
-                    <div class="left-gallery" [style.background-image]="'url(' + info.images[0] + ')'">
-                      <div class="parent-view-all-photo">
-                      </div>
-                    </div>
-                  </div>
-                  <p>{{info.description}}</p>
-                </div>
-
-                <div class="faq">
-                  <div class="title-faq">
+              </ul>
+              <div id="about">
+                <div class="about-city">
+                  <div class="title-about-city">
                     <img src="assets/img/Document-align-2.svg" width="35" alt="">
                     <div class="text">
-                      <h1> پرسش های شما</h1>
+                      <h1>شهر {{info.name}} </h1>
+                      <span>ارزان ترین و با کیفیت ترین ها </span>
                     </div>
                   </div>
-                  <div class="box-faq">
-                    <a data-toggle="collapse" href="#one" class="question">
-                      <div class="right">
-                        <img src="assets/img/FAQ.svg" width="20" alt="">
-                        <span>آیا تور خارجی هم دارید ؟</span>
+                  <div class="details-text">
+                    <div class="parent-gallery">
+                      <div class="right-gallery">
+                        <img class="top-right" [lightbox]="0" [gallery]="galleryId" [src]="info.images[0]" alt="">
+                        <img class="left-right" [lightbox]="1" [gallery]="galleryId" [src]="info.images[1]" alt="">
+                        <img class="bottom-right" [lightbox]="2" [gallery]="galleryId" [src]="info.images[2]" alt="">
+                        <img class="bottom-left" [lightbox]="3" [gallery]="galleryId" [src]="info.images[3]" alt="">
                       </div>
-                      <i class="icon-down-open"></i>
-                    </a>
-                    <div id="one" class="collapse">
-                      <div class="answer"><span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</span></div>
+                      <div class="left-gallery" [style.background-image]="'url(' + info.images[0] + ')'">
+                        <div class="parent-view-all-photo">
+                        </div>
+                      </div>
                     </div>
+                    <p>{{info.description}}</p>
                   </div>
-                  <div class="box-faq">
-                    <a data-toggle="collapse" href="#two" class="question">
-                      <div class="right">
-                        <img src="assets/img/FAQ.svg" width="20" alt="">
-                        <span>آیا تور خارجی هم دارید ؟</span>
+
+                  <div class="faq">
+                    <div class="title-faq">
+                      <img src="assets/img/Document-align-2.svg" width="35" alt="">
+                      <div class="text">
+                        <h1> پرسش های شما</h1>
                       </div>
-                      <i class="icon-down-open"></i>
-                    </a>
-                    <div id="two" class="collapse">
-                      <div class="answer"><span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</span></div>
                     </div>
+                    <div class="box-faq">
+                      <a data-toggle="collapse" href="#one" class="question">
+                        <div class="right">
+                          <img src="assets/img/FAQ.svg" width="20" alt="">
+                          <span>آیا تور خارجی هم دارید ؟</span>
+                        </div>
+                        <i class="icon-down-open"></i>
+                      </a>
+                      <div id="one" class="collapse">
+                        <div class="answer"><span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</span></div>
+                      </div>
+                    </div>
+                    <div class="box-faq">
+                      <a data-toggle="collapse" href="#two" class="question">
+                        <div class="right">
+                          <img src="assets/img/FAQ.svg" width="20" alt="">
+                          <span>آیا تور خارجی هم دارید ؟</span>
+                        </div>
+                        <i class="icon-down-open"></i>
+                      </a>
+                      <div id="two" class="collapse">
+                        <div class="answer"><span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</span></div>
+                      </div>
+                    </div>
+                    <div class="box-faq">
+                      <a data-toggle="collapse" href="#three" class="question">
+                        <div class="right">
+                          <img src="assets/img/FAQ.svg" width="20" alt="">
+                          <span>آیا تور خارجی هم دارید ؟</span>
+                        </div>
+                        <i class="icon-down-open"></i>
+                      </a>
+                      <div id="three" class="collapse">
+                        <div class="answer"><span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</span></div>
+                      </div>
+                    </div>
+                    <div class="box-faq">
+                      <a data-toggle="collapse" href="#four" class="question">
+                        <div class="right">
+                          <img src="assets/img/FAQ.svg" width="20" alt="">
+                          <span>آیا تور خارجی هم دارید ؟</span>
+                        </div>
+                        <i class="icon-down-open"></i>
+                      </a>
+                      <div id="four" class="collapse">
+                        <div class="answer"><span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</span></div>
+                      </div>
+                    </div>
+
                   </div>
-                  <div class="box-faq">
-                    <a data-toggle="collapse" href="#three" class="question">
-                      <div class="right">
-                        <img src="assets/img/FAQ.svg" width="20" alt="">
-                        <span>آیا تور خارجی هم دارید ؟</span>
-                      </div>
-                      <i class="icon-down-open"></i>
-                    </a>
-                    <div id="three" class="collapse">
-                      <div class="answer"><span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</span></div>
+                  <div class="blog">
+                    <div class="title">
+                      <img src="assets/img/Bookmark.svg" width="20" alt="">
+                      <h1>اخبار گردشگری آنتالیا</h1>
                     </div>
-                  </div>
-                  <div class="box-faq">
-                    <a data-toggle="collapse" href="#four" class="question">
-                      <div class="right">
-                        <img src="assets/img/FAQ.svg" width="20" alt="">
-                        <span>آیا تور خارجی هم دارید ؟</span>
-                      </div>
-                      <i class="icon-down-open"></i>
-                    </a>
-                    <div id="four" class="collapse">
-                      <div class="answer"><span>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</span></div>
-                    </div>
+
+
+                    <prs-thumbnails-blog></prs-thumbnails-blog>
                   </div>
 
                 </div>
-                <div class="blog">
-                  <div class="title">
-                    <img src="assets/img/Bookmark.svg" width="20" alt="">
-                    <h1>اخبار گردشگری آنتالیا</h1>
-                  </div>
-
-
-                  <prs-thumbnails-blog></prs-thumbnails-blog>
-                </div>
-
               </div>
             </div>
-          </div>
-          <div  class="title-s2">
-            <div class="text">
-              <img  src="assets/img/Notification%202.svg" width="35" alt="">
-              <h2 >تور های مشابه</h2>
+            <div  class="title-s2">
+              <div class="text">
+                <img  src="assets/img/Notification%202.svg" width="35" alt="">
+                <h2 >تور های مشابه</h2>
+              </div>
             </div>
-          </div>
 
-          <prs-thumbnails-tour [tours]="tours"></prs-thumbnails-tour>
+            <prs-thumbnails-tour [tours]="tours"></prs-thumbnails-tour>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-</section>
-
-
+  </section>
+</ng-template>

@@ -3,7 +3,13 @@ import {HttpClient} from "@angular/common/http";
 import {PublicService} from "../Services/public.service";
 import {environment} from "../../../environments/environment";
 import {Result} from "../Models/result";
-import {ReserveReqDTO, TourListRequestDTO, TourListResDTO, TourSetRequestDTO} from "../Models/tourDTO";
+import {
+  ReserveListReqDTO, ReserveListResDTO,
+  ReserveReqDTO,
+  TourListRequestDTO,
+  TourListResDTO,
+  TourSetRequestDTO
+} from "../Models/tourDTO";
 
 @Injectable({
   providedIn: 'root'
@@ -59,5 +65,10 @@ export class TourApiService {
   reserve(req: ReserveReqDTO): any {
     const strUrl = environment.BACK_END_IP + `reserve/createReserve`;
     return this.http.post<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
+  }
+
+  getReserves(req: ReserveListReqDTO): any {
+    const strUrl = environment.BACK_END_IP + `reserve/getReserves/${req.id}`;
+    return this.http.post<Result<ReserveListResDTO>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
 }

@@ -97,9 +97,9 @@
                     </div>
                     <div class="left">
                       <span
-                        class="text-green me-2">{{ this.calService.convertDate1(tourInfo?.stDate, 'fa').split(' ')[0]  }}</span>
+                        class="text-green me-2">{{ calService.convertDate(tourInfo.transfers[0].dateTime.split(' ')[0], 'fa') }}</span>
                       <span
-                        class="text-green">{{ this.calService.convertDate1(tourInfo?.stDate, 'fa').split(' ')[1]  }}</span>
+                        class="text-green">{{ tourInfo.transfers[0].dateTime.split(' ')[1]}}</span>
                     </div>
                   </div>
                 </div>
@@ -143,9 +143,9 @@
                     </div>
                     <div class="left">
                       <span
-                        class="text-red me-2">{{ this.calService.convertDate1(tourInfo?.enDate, 'fa').split(' ')[0]  }}</span>
+                        class="text-red me-2">{{ this.calService.convertDate(tourInfo.transfers[1].dateTime.split(' ')[0], 'fa') }}</span>
                       <span
-                        class="text-red">{{ this.calService.convertDate1(tourInfo?.enDate, 'fa').split(' ')[1]  }}</span>
+                        class="text-red">{{ tourInfo.transfers[1].dateTime.split(' ')[1] }}</span>
                     </div>
                   </div>
                 </div>

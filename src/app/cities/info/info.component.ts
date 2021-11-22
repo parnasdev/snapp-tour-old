@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {CityApiService} from "../../Core/Https/city-api.service";
 import {MessageService} from "../../Core/Services/message.service";
 import {Gallery, GalleryItem, ImageItem} from "ng-gallery";
@@ -21,8 +21,11 @@ export class InfoComponent implements OnInit {
   items: GalleryItem[] = [];
   tabClicked = 'about'
   tours: TourListResDTO[] = [];
+  show = false;
+  isLoading = false;
 
-  constructor(public router: ActivatedRoute,
+  constructor(public route: ActivatedRoute,
+              public router: Router,
               public message: MessageService,
               public tourApi: TourApiService,
               public gallery: Gallery,
@@ -31,9 +34,9 @@ export class InfoComponent implements OnInit {
 
   ngOnInit(): void {
     // @ts-ignore
-    this.city = this.router.snapshot.paramMap.get('city')?.split('-')[1]
-    this.getInfo()
-    this.getTours()
+    this.city = this.route.snapshot.paramMap.get('city')
+    this.checkCityInfoExist()
+
 
     $(window).ready(() => {
       $(".question-tab").click(() => {
@@ -54,13 +57,25 @@ export class InfoComponent implements OnInit {
         $("html").animate({scrollTop: 1830}, 300)
       })
     })
-    $(window).scroll( () => {
+    $(window).scroll(() => {
       if ($(this).scrollTop() > 970) {
         $(".question-tab").addClass("tab-ul-list-fix")
       } else {
         $(".question-tab").removeClass("tab-ul-list-fix")
       }
     })
+  }
+
+  checkCityInfoExist(): void {
+    if (this.city.indexOf('تور-') !== -1) {
+      // @ts-ignore
+      this.city = this.city.split('-')[1]
+      this.show = true;
+      this.getInfo()
+      this.getTours()
+    } else {
+      this.router.navigateByUrl('not-found')
+    }
   }
 
   getTours(): void {
@@ -80,7 +95,9 @@ export class InfoComponent implements OnInit {
   }
 
   getInfo(): void {
+    this.isLoading = true
     this.api.getCity(this.city).subscribe((res: any) => {
+      this.isLoading = false;
       if (res.isDone) {
         this.info = res.data
         this.fillAlbum(this.info.images);
@@ -88,6 +105,7 @@ export class InfoComponent implements OnInit {
         this.message.custom(res.messsage)
       }
     }, (error: any) => {
+      this.isLoading = false;
       this.message.error()
     })
   }

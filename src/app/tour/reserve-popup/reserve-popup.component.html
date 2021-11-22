@@ -1,5 +1,5 @@
 <div class="parent-reserve">
-  <i class="icon-cancel-1"  aria-label="Close"></i>
+  <i class="icon-cancel-1"  aria-label="Close" (click)="dialogRef.close()"></i>
   <h2>با تشکر از انتخاب شما</h2>
   <p>لطفا جهت رزرو تور با شماره تلفن
     021-84278
@@ -19,7 +19,18 @@
   </div>
   <label for="">تعداد مسافر :</label>
   <div class="inp-form">
-    <input type="text" [formControl]="countFC" placeholder="لطفا تعداد خود را وارد کنید">
+    <select name="" id="" [formControl]="countFC">
+      <option value="1">1 نفر</option>
+      <option value="2">2 نفر</option>
+      <option value="3">3 نفر</option>
+      <option value="4">4 نفر</option>
+      <option value="5">5 نفر</option>
+      <option value="6">6 نفر</option>
+      <option value="7">7 نفر</option>
+      <option value="8">8 نفر</option>
+      <option value="9">9 نفر</option>
+      <option value="10">10 نفر</option>
+    </select>
   </div>
   <prs-btn [label]="'رزرو'" (click)="reserve()" [background]="'dark'" ></prs-btn>
 

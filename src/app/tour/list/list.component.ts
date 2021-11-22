@@ -27,7 +27,16 @@ export class ListComponent implements OnInit {
   city: string | null = '';
   p = 1
   cities: CityResponseDTO[] = []
-  cityInfo!: CityInfoResDTO;
+  cityInfo: CityInfoResDTO = {
+    description: '',
+    id: 0,
+    images: [],
+    slugEn: '',
+    name: '',
+    nameEn: '',
+    slug: '',
+    type: false,
+  };
 
   constructor(public tourApiService: TourApiService,
               public route: ActivatedRoute,
@@ -51,8 +60,13 @@ export class ListComponent implements OnInit {
 
   getData(): void {
     this.city = this.route.snapshot.paramMap.get('city') ? this.route.snapshot.paramMap.get('city') : null;
-    this.getCity();
     this.getCities()
+    if (this.city) {
+      this.getCity();
+    }else {
+      this.getTours()
+    }
+
   }
 
   getCities(): void {
@@ -88,7 +102,7 @@ export class ListComponent implements OnInit {
   getTours(): void {
     this.loading = true;
     this.tourReq = {
-      city: this.cityInfo.name,
+      city: this.cityInfo.name=== '' ? null : this.cityInfo.name,
       isAdmin: false,
       paginate: true,
       search: null,

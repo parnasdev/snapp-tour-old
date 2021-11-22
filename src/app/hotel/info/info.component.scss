@@ -7,13 +7,16 @@
 .title-en {
   font-size: 14px;
 }
-.ml-2{
+
+.ml-2 {
   margin-left: 8px;
 }
+
 //for lightbox image gallery
 ::ng-deep .g-items-container {
-  direction: ltr!important;
+  direction: ltr !important;
 }
+
 //for lightbox image gallery
 
 .title-info-hotel {
@@ -184,7 +187,7 @@
   padding: 12px;
 }
 
-.about-hotel .map iframe {
+.about-hotel .map prs-show-location {
   border-radius: 10px;
   box-shadow: var(--box-shadow);
   border: 1px solid #eee;
@@ -490,6 +493,12 @@
   margin-bottom: 0;
 }
 
+prs-show-location {
+  height: 220px;
+  width: 100%;
+  z-index: -1;
+}
+
 
 //-------------------end-desktop
 
@@ -506,7 +515,7 @@
   .title-info-hotel {
     flex-direction: column;
   }
-  .title-hotel{
+  .title-hotel {
     display: flex;
     flex-direction: column;
   }
@@ -516,25 +525,25 @@
   .parent-gallery {
     flex-direction: column-reverse;
   }
-  .left-gallery{
+  .left-gallery {
     width: 100%;
     border-radius: 25px 25px 0 0;
     height: 250px;
   }
-  .right-gallery{
+  .right-gallery {
     width: 100%;
   }
   .right-gallery img {
     height: 125px;
   }
-  .right-gallery img:nth-child(1){
+  .right-gallery img:nth-child(1) {
     border-radius: unset;
   }
-  .right-gallery img:nth-child(3){
+  .right-gallery img:nth-child(3) {
     border-radius: 0 0 25px 0;
   }
-  .right-gallery img:nth-child(4){
-    border-radius: 0 0  0 25px;
+  .right-gallery img:nth-child(4) {
+    border-radius: 0 0 0 25px;
   }
   .about-hotel {
     flex-direction: column-reverse;
@@ -554,13 +563,13 @@
     width: 100%;
     margin-top: 12px;
   }
-  p{
+  p {
     font-size: 13px !important;
   }
-  h2{
+  h2 {
     font-size: 15px !important;
   }
-  .parent-item-option{
+  .parent-item-option {
     grid-template-columns: 1fr 1fr;
   }
 }
@@ -581,25 +590,25 @@
   .parent-gallery {
     flex-direction: column-reverse;
   }
-  .left-gallery{
+  .left-gallery {
     width: 100%;
     border-radius: 25px 25px 0 0;
     height: 280px;
   }
-  .right-gallery{
+  .right-gallery {
     width: 100%;
   }
   .right-gallery img {
     height: 140px;
   }
-  .right-gallery img:nth-child(1){
+  .right-gallery img:nth-child(1) {
     border-radius: unset;
   }
-  .right-gallery img:nth-child(3){
+  .right-gallery img:nth-child(3) {
     border-radius: 0 0 25px 0;
   }
-  .right-gallery img:nth-child(4){
-    border-radius: 0 0  0 25px;
+  .right-gallery img:nth-child(4) {
+    border-radius: 0 0 0 25px;
   }
   .about-hotel {
     flex-direction: column-reverse;
@@ -619,7 +628,7 @@
     width: 100%;
     margin-top: 12px;
   }
-  .parent-item-option{
+  .parent-item-option {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }

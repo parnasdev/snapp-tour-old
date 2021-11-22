@@ -8,6 +8,7 @@ import {StoreModule} from "../store/store.module";
 import {GALLERY_CONFIG, GalleryModule} from 'ng-gallery';
 import {LIGHTBOX_CONFIG, LightboxModule} from "ng-gallery/lightbox";
 import {NgxPaginationModule} from "ngx-pagination";
+import {CommonProjectModule} from "../common-project/common-project.module";
 
 
 @NgModule({
@@ -15,17 +16,18 @@ import {NgxPaginationModule} from "ngx-pagination";
     ListComponent,
     InfoComponent
   ],
-  imports: [
-    CommonModule,
-    HotelRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    LightboxModule,
-    GalleryModule,
-    StoreModule,
-    NgxPaginationModule,
+    imports: [
+        CommonModule,
+        HotelRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        LightboxModule,
+        GalleryModule,
+        StoreModule,
+        NgxPaginationModule,
+        CommonProjectModule,
 
-  ],providers:[
+    ],providers:[
     {
       provide: LIGHTBOX_CONFIG,
       useValue: {

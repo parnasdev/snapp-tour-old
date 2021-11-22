@@ -20,7 +20,7 @@ import {BlogModule} from "../blog/blog.module";
   declarations: [
     ListComponent,
     SetComponent,
-    InfoComponent
+    InfoComponent,
   ],
   imports: [
     CommonModule,

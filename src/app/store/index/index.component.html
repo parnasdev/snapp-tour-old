@@ -34,7 +34,7 @@
                   <div class="img-special-tour">
                     <div class="hover-info-img animated pulse">
                       <img class="img-hover-child" src="assets/img/Attachment%201.svg" width="30" alt="">
-                      <a routerLink="/tours/{{ tour.slug }}" class="view-details-more">مشاهده جزئیات بیشتر</a>
+                      <a routerLink="/tours/{{ tour.endCity.slugEn }}/{{tour.slug}}" class="view-details-more">مشاهده جزئیات بیشتر</a>
                     </div>
                     <img src="assets/img/Header-slider-tour90-num02.svg" alt="">
                   </div>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="location">
                       <img src="assets/img/Location-base-color.svg" width="17" alt="">
-                      <span>{{tour.stCity}} - {{tour.endCity}}</span>
+                      <span>{{tour.stCity?.name}} - {{tour.endCity?.name}}</span>
                     </div>
                   </div>
                   <div class="mid-info-tour-special">

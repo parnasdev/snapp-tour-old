@@ -40,7 +40,7 @@
   height: 40px;
   width: 100%;
   display: grid;
-  grid-template-columns: 0.5fr 0.7fr 1.5fr 0.5fr 0.5fr 1fr 1fr 0.5fr 0.7fr 3fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   background-color: var(--white);
   border-bottom: 1px solid var(--light-color-two);
 }
@@ -60,7 +60,7 @@
   height: 60px;
   width: 100%;
   display: grid;
-  grid-template-columns: 0.5fr 0.7fr 1.5fr 0.5fr 0.5fr 1fr 1fr 0.5fr 0.7fr 3fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .body-list-tour .item:not(:last-child) {
@@ -197,7 +197,7 @@
   .list-tour-box .user-id {
     width: auto;
     height: 25px;
-   border-radius: 4px;
+    border-radius: 4px;
     background-color: var(--red-color);
     color: var(--white);
     display: flex;
@@ -274,7 +274,7 @@
     padding: 0 10px;
     margin-bottom: 8px;
   }
-   .edit-btn {
+  .edit-btn {
     width: auto;
     background-color: var(--base-color-three);
     color: var(--white);
@@ -288,7 +288,7 @@
     justify-content: center;
   }
 
-   .view-btn {
+  .view-btn {
     width: auto;
     background-color: var(--base-color);
     color: var(--white);
@@ -301,7 +301,7 @@
     align-items: center;
     justify-content: center;
   }
-   .delete-btn {
+  .delete-btn {
     width: auto;
     background-color: var(--red-color);
     color: var(--white);
