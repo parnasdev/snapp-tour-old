@@ -51,9 +51,9 @@
                   <div class="mid-info-tour-special">
                     <h3 class="title-tour-special">{{tour.title}}</h3>
                     <div class="date-special">
-                      <span class="from">{{calenderServices.convertDate(tour.createdAt, 'fa')}}</span>
+                      <span class="from">{{calenderServices.convertDate(tour.transfers[0].dateTime, 'fa')}}</span>
                       <img src="assets/img/Up%20Down%201.svg" width="20" alt="">
-                      <span class="to">{{calenderServices.convertDate(tour.expireDate, 'fa')}}</span>
+                      <span class="to">{{calenderServices.convertDate(tour.transfers[2].dateTime, 'fa')}}</span>
                     </div>
                   </div>
                   <div class="bottom-info-tour-special">
@@ -169,6 +169,7 @@
                   [spaceBetween]="30">
             <ng-template swiperSlide *ngFor="let hotel of hotels">
               <div [style.background-image]="'url(' + hotel.thumbnail + ')'"
+                   routerLink="/hotels/{{hotel.slug}}"
                    class="box-hotel">
                 <div class="opacity-bg-parent">
                   <div class="info-img"><img src="assets/img/Information.svg" width="22" alt=""></div>

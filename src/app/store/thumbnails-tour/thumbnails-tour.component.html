@@ -27,8 +27,8 @@
   <div class="date-tour">
     <img src="assets/img/Up%20Down%201.svg" width="22" alt="">
     <div class="info-date">
-      <span class="from">{{calenderServices.convertDate(tour.createdAt, 'fa')}}</span>
-      <span class="to">{{calenderServices.convertDate(tour.expireDate, 'fa')}}</span>
+      <span class="from">{{calenderServices.convertDate(tour.transfers[0].dateTime, 'fa')}}</span>
+      <span class="to">{{calenderServices.convertDate(tour.transfers[1].dateTime, 'fa')}}</span>
     </div>
   </div>
   <div class="type">
