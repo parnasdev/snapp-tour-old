@@ -171,14 +171,20 @@ export class EditComponent extends AddComponent implements OnInit {
     this.form.controls.documents.setValue(this.info.documents)
     this.form.controls.description.setValue(this.info.description)
     this.form.controls.status.setValue(this.info.status)
-    this.originDateFC.setValue(this.info.transfers[0].dateTime.split(' ')[0]);
-    this.originTimeFC.setValue(this.info.transfers[0].dateTime.split(' ')[1]);
-    this.destDateFC.setValue(this.info.transfers[1].dateTime.split(' ')[0]);
-    this.destTimeFC.setValue(this.info.transfers[1].dateTime.split(' ')[1]);
-    this.originTransferFC.setValue(+this.info.transfers[0].transfer_id);
-    this.destTransferFC.setValue(+this.info.transfers[1].transfer_id);
-    this.originTime = this.info.transfers[0].dateTime.split(' ')[1];
-    this.destTime = this.info.transfers[1].dateTime.split(' ')[1];
+    if (this.info.transfers.length > 0) {
+      this.originDateFC.setValue(this.info.transfers[0].dateTime.split(' ')[0]);
+      this.originTimeFC.setValue(this.info.transfers[0].dateTime.split(' ')[1]);
+      this.originTransferFC.setValue(+this.info.transfers[0].transfer_id);
+      this.originTime = this.info.transfers[0].dateTime.split(' ')[1];
+
+    }
+    if (this.info.transfers.length > 1) {
+      this.destDateFC.setValue(this.info.transfers[1].dateTime.split(' ')[0]);
+      this.destTimeFC.setValue(this.info.transfers[1].dateTime.split(' ')[1]);
+      this.destTransferFC.setValue(+this.info.transfers[1].transfer_id);
+      this.destTime = this.info.transfers[1].dateTime.split(' ')[1];
+
+    }
 
     this.infoLoading = false;
 

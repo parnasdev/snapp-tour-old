@@ -39,7 +39,7 @@
         <span class="status">{{ getStatus(tour.status) }}</span>
         <div class="button-setting">
           <a routerLink="/panel/tour/edit/{{tour.slug}}" class="edit-btn">ویرایش</a>
-          <a routerLink="/tours/{{ tour.endCity.slugEn }}/{{tour.slug}}" class="view-btn">نمایش</a>
+          <a routerLink="/tours/{{ tour.endCity.slugEn }}/{{tour.slug}}" target="_blank" class="view-btn">نمایش</a>
           <a routerLink="/panel/tour/copy/{{ tour.slug }}" class="copy-btn">کپی</a>
           <a routerLink="/panel/tour/reserve/list/{{ tour.id }}" class="copy-btn">رزروها</a>
           <button (click)="openLogs(tour.id)" class="log-btn">لاگ ها</button>
