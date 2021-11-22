@@ -5,9 +5,8 @@ import {MessageService} from "../../Core/Services/message.service";
 import {CheckErrorService} from "../../Core/Services/check-error.service";
 import {ErrorsService} from "../../Core/Services/errors.service";
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
-import {CityListRequestDTO, CityResponseDTO} from "../../Core/Models/cityDTO";
+import {CityInfoResDTO, CityListRequestDTO, CityResponseDTO} from "../../Core/Models/cityDTO";
 import {CityApiService} from "../../Core/Https/city-api.service";
-import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'prs-list',
@@ -28,7 +27,7 @@ export class ListComponent implements OnInit {
   city: string | null = '';
   p = 1
   cities: CityResponseDTO[] = []
-  cityFC = new FormControl();
+  cityInfo!: CityInfoResDTO;
 
   constructor(public tourApiService: TourApiService,
               public route: ActivatedRoute,
@@ -40,19 +39,19 @@ export class ListComponent implements OnInit {
     this.router.events.subscribe(event => {
 
       if (event instanceof NavigationEnd) {
-        this.city = this.route.snapshot.paramMap.get('city') ? this.route.snapshot.paramMap.get('city') : null;
-        this.tourReq.city = this.city ? this.city : null;
-        this.getTours();
-
+        this.getData()
       }
     });
   }
 
   ngOnInit(): void {
     window.scrollTo(0, 0)
+    // this.getData()
+  }
+
+  getData(): void {
     this.city = this.route.snapshot.paramMap.get('city') ? this.route.snapshot.paramMap.get('city') : null;
-    this.tourReq.city = this.city ? this.city : null;
-    this.getTours();
+    this.getCity();
     this.getCities()
   }
 
@@ -73,20 +72,36 @@ export class ListComponent implements OnInit {
     })
   }
 
-  citySelected(city: any): void {
-    console.log(city)
-    this.cityFC.setValue(city);
+  citySelected(city: CityResponseDTO): void {
+    this.cityInfo = {
+      description: '',
+      id: city.id,
+      images: [],
+      slugEn: city.slugEn,
+      name: city.name,
+      nameEn: '',
+      slug: city.slug,
+      type: city.type !== 1,
+    }
   }
 
   getTours(): void {
     this.loading = true;
+    this.tourReq = {
+      city: this.cityInfo.name,
+      isAdmin: false,
+      paginate: true,
+      search: null,
+      perPage: 20,
+      type: null
+    };
     this.tourApiService.getTours(this.tourReq, this.p).subscribe((res: any) => {
+      this.loading = false
       if (res.isDone) {
         this.tours = res.data
       } else {
         this.message.custom(res.message);
       }
-      this.loading = false;
     }, (error: any) => {
       this.loading = false;
       this.message.error();
@@ -94,8 +109,23 @@ export class ListComponent implements OnInit {
     });
   }
 
+  getCity(): void {
+    if (this.city) {
+      this.cityApi.getCity(this.city).subscribe((res: any) => {
+        if (res.isDone) {
+          this.cityInfo = res.data
+          this.getTours();
+
+        } else {
+
+        }
+      }, (error: any) => {
+
+      })
+    }
+  }
+
   search(): void {
-    this.router.navigateByUrl(`/tours/${this.cityFC.value.nameEn}`).then(
-    )
+    this.router.navigateByUrl(`/tours/${this.cityInfo.slugEn}`);
   }
 }
