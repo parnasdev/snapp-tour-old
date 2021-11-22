@@ -22,20 +22,21 @@ import {BlogModule} from "../blog/blog.module";
     SetComponent,
     InfoComponent
   ],
-    imports: [
-        CommonModule,
-        CitiesRoutingModule,
-        CommonProjectModule,
-        ReactiveFormsModule,
-        FormsModule,
-        LightboxModule,
-        GalleryModule,
-        MatButtonToggleModule,
-        MatDialogModule,
-        ToolsModule,
-        StoreModule,
-        BlogModule
-    ]
+  imports: [
+    CommonModule,
+    CitiesRoutingModule,
+    CommonProjectModule,
+    ReactiveFormsModule,
+    FormsModule,
+    LightboxModule,
+    GalleryModule,
+    MatButtonToggleModule,
+    MatDialogModule,
+    ToolsModule,
+    StoreModule,
+    BlogModule,
+
+  ]
 })
 export class CitiesModule {
 }

@@ -176,6 +176,57 @@
   align-items: center;
 }
 
+.box-search {
+  display: flex;
+  align-items: center;
+  width: 70%;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.box-search .inp-form {
+  width: 39% !important;
+}
+
+.box-search .inp-form input {
+  font-family: IRANSans !important;
+
+}
+
+.box-search .inp-form select {
+  color: var(--gray-color-light);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.btn-search {
+  height: 40px;
+  width: 120px;
+  padding: 0 10px;
+  border-radius: var(--radius-btn);
+  border: 2px solid var(--base-color);
+  background-color: var(--base-color);
+  transition: var(--btn-animtion);
+  outline: none;
+  color: #fff;
+  font-size: 13px;
+  margin-right: 18px;
+}
+
+.btn-search:hover {
+  background-color: var(--white);
+  color: var(--base-color);
+  transition: var(--btn-animtion);
+}
+
+.search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 35px;
+}
+
 //end
 
 

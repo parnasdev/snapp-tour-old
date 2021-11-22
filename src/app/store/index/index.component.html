@@ -34,7 +34,7 @@
                   <div class="img-special-tour">
                     <div class="hover-info-img animated pulse">
                       <img class="img-hover-child" src="assets/img/Attachment%201.svg" width="30" alt="">
-                      <a routerLink="tour/{{ tour.slug }}" class="view-details-more" href="">مشاهده جزئیات بیشتر</a>
+                      <a routerLink="/tours/{{ tour.slug }}" class="view-details-more">مشاهده جزئیات بیشتر</a>
                     </div>
                     <img src="assets/img/Header-slider-tour90-num02.svg" alt="">
                   </div>
@@ -62,7 +62,8 @@
                       <span>شروع قیمت از :</span>
                     </div>
                     <strong class="price-tour-special" *ngIf="tour.minPrice === '0'">قیمتی ثبت نشده</strong>
-                    <strong class="price-tour-special" *ngIf="tour.minPrice !== '0'">{{tour.minPrice | sperator}} تومان </strong>
+                    <strong class="price-tour-special" *ngIf="tour.minPrice !== '0'">{{tour.minPrice | sperator}}
+                      تومان </strong>
                   </div>
                 </div>
               </ng-template>
@@ -94,7 +95,7 @@
                   <span>مشاهده مناسب ترین تور های لحظه آخری برای شما</span>
                 </div>
               </div>
-              <a class="view-all-tour" routerLink="/tour/list">مشاهده همه تور ها</a>
+              <a class="view-all-tour" routerLink="/tours/list">مشاهده همه تور ها</a>
             </div>
             <div class="bottom">
               <div class="border-right"></div>
@@ -166,13 +167,13 @@
           <swiper #swiper class="swiper-hotel"
                   [slidesPerView]=" this.isMobile? 1 :(isTablet ? 2:4)"
                   [spaceBetween]="30">
-            <ng-template swiperSlide *ngFor="let hotel of hotels" >
+            <ng-template swiperSlide *ngFor="let hotel of hotels">
               <div [style.background-image]="'url(' + hotel.thumbnail + ')'"
                    class="box-hotel">
                 <div class="opacity-bg-parent">
                   <div class="info-img"><img src="assets/img/Information.svg" width="22" alt=""></div>
                   <div class="info-hotel">
-                    <h1 routerLink="/hotel/{{hotel.slug}}"> {{hotel.name}}</h1>
+                    <h1 routerLink="/hotels/{{hotel.slug}}"> {{hotel.name}}</h1>
                     <div class="footer-hotel-info">
                       <div class="location-hotel">
                         <img src="assets/img/Location-white.svg" width="17" alt="">
@@ -218,13 +219,13 @@
               <div class="border-left"></div>
             </div>
           </div>
-          <swiper  class="swiper-sort-city"
+          <swiper class="swiper-sort-city"
                   [slidesPerView]=" this.isMobile? 2 :(isTablet ? 3:5)"
                   [navigation]="true"
                   [spaceBetween]="30">
             <ng-template swiperSlide *ngFor="let city of cities">
               <div class="box-sort-tour-city">
-                <div class="img-sort-tour-city" routerLink="/tour/list/{{city.slug}}">
+                <div class="img-sort-tour-city" routerLink="/{{ 'تور' + '-' +city.slug}}">
                   <div class="info-img-sort-tour-city animated fadeInDown">
                     <img class="img-hover-child" src="assets/img/Attachment%201.svg" width="30" alt="">
                     <a class="view-details-more">مشاهده جزئیات بیشتر</a>

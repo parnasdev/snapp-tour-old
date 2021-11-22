@@ -25,33 +25,32 @@ export class InfoComponent implements OnInit {
   constructor(public router: ActivatedRoute,
               public message: MessageService,
               public tourApi: TourApiService,
-
               public gallery: Gallery,
               public api: CityApiService) {
   }
 
   ngOnInit(): void {
     // @ts-ignore
-    this.city = this.router.snapshot.paramMap.get('city')
+    this.city = this.router.snapshot.paramMap.get('city')?.split('-')[1]
     this.getInfo()
     this.getTours()
 
     $(window).ready(() => {
       $(".question-tab").click(() => {
-        this.tabClicked='question'
+        this.tabClicked = 'question'
         $("html").animate({scrollTop: 970}, 300)
       })
       $(".news-tab").click(() => {
-        this.tabClicked='news'
+        this.tabClicked = 'news'
         console.log(this.tabClicked)
         $("html").animate({scrollTop: 1310}, 300)
       })
       $(".about-tab").click(() => {
-        this.tabClicked='about'
+        this.tabClicked = 'about'
         $("html").animate({scrollTop: 180}, 300)
       })
       $(".tour-tab").click(() => {
-        this.tabClicked='tour'
+        this.tabClicked = 'tour'
         $("html").animate({scrollTop: 1830}, 300)
       })
     })
@@ -63,6 +62,7 @@ export class InfoComponent implements OnInit {
       }
     })
   }
+
   getTours(): void {
     const reqDTO: TourListRequestDTO = {
       city: this.city,

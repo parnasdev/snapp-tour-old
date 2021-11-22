@@ -20,7 +20,6 @@ import {ErrorsService} from "../../../Core/Services/errors.service";
 import {CheckErrorService} from "../../../Core/Services/check-error.service";
 import {moveItemInArray} from '@angular/cdk/drag-drop';
 import {MatDialog} from "@angular/material/dialog";
-import {MultipleUploadComponent} from "../../../common-project/multiple-upload/multiple-upload.component";
 import {SetPricePopupComponent} from "../../../room-type/set-price-popup/set-price-popup.component";
 import {RoomTypeSetDTO} from "../../../Core/Models/roomTypeDTO";
 

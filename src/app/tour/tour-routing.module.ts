@@ -6,14 +6,14 @@ import {ListComponent} from "./list/list.component";
 const routes: Routes = [
 
   {
-    path: 'list',
+    path: '',
     component: ListComponent
   }, {
-    path: 'list/:slug',
+    path: ':city',
     component: ListComponent
   },
   {
-    path: ':slug',
+    path: ':city/:slug',
     component: InfoComponent
   },
 ];

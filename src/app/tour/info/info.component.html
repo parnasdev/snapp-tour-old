@@ -55,7 +55,7 @@
                   <ng-container>
                     <ng-template swiperSlide *ngFor="let image of tourInfo.endCity.images">
                       <div class="box-img-main">
-                        <a class="info-tour-view" routerLink="/city/{{tourInfo.endCity.slug}}">
+                        <a class="info-tour-view" routerLink="/{{ 'تور' + '-' + tourInfo.endCity.slug }}">
                           <img src="assets/img/Information.svg" width="20" alt="">
                           <span>جهت کسب اطلاعات بیشتر درباره شهر {{ tourInfo.endCity.name }} کلیک کنید !</span>
                         </a>
