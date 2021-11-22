@@ -172,7 +172,9 @@
   align-items: center;
   padding-top: 10px;
 }
-
+:host::ng-deep .mat-button-toggle-button span{
+  font-family: IRANSans !important;
+}
 
 //-----------------------------------
 @media only screen and (max-width: 868px) {
@@ -193,6 +195,7 @@
     padding: 15px;
     background-color: var(--white);
     border-radius: 8px;
+    margin-top: 12px !important;
   }
   .list-tour-box .user-id {
     width: auto;
@@ -304,6 +307,42 @@
    .delete-btn {
     width: auto;
     background-color: var(--red-color);
+    color: var(--white);
+    border: none;
+    outline: none;
+    height: 30px;
+    padding: 0 10px;
+    border-radius: 4px;
+  }
+  .title {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .title h2{
+    width: 100%;
+  }
+  .btn-add-tour{
+    margin: 1rem 0;
+  }
+  :host::ng-deep .mat-button-toggle-button span{
+    font-size: 12px !important;
+    font-family: IRANSans !important;
+  }
+  .copy-btn{
+    width: auto;
+    background-color: var(--green-color);
+    color: var(--white);
+    border: none;
+    outline: none;
+    height: 30px;
+    padding: 0 10px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+  }
+  .log-btn {
+    width: auto;
+    background-color: #0d6efd;
     color: var(--white);
     border: none;
     outline: none;

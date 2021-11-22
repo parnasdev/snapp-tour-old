@@ -45,19 +45,6 @@ body {
   padding: 0;
   margin-top: 0;
 }
-
-.scrolling-area {
-  max-width: 100%;
-  max-height: 100%;
-  overflow: auto;
-}
-
-.main-web {
-  direction: rtl !important;
-}
-
-@media only screen and (max-width: 868px) {
-}
 :root {
   --base-color: #137CB6;
   --base-color-second: #0C505F;
@@ -128,7 +115,8 @@ ul {
 .h-90 {
   height: 70%;
 }
-.mr-2{
+
+.mr-2 {
   margin-right: 8px;
 }
 
@@ -267,17 +255,6 @@ select::-ms-expand {
   word-break: normal;
   border-radius: 2px;
 }
-
-
-html, body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
 .title-en {
   color: var(--base-color);
   font-family: "Ubuntu", sans-serif !important;
@@ -303,15 +280,20 @@ body {
   padding: 1px;
   height: 20vh !important;
 }
-
 ::-webkit-scrollbar-thumb {
   background-color: #707070;
   border-radius: 20px;
-  float: right;
   width: 5px;
 }
-
 ::-webkit-scrollbar {
   width: 8px;
   background-color: #707070;
+}
+
+
+//----------------mixin
+@mixin title-style() {
+  font-size: 20px !important;
+  color: var(--base-color);
+  border: 2px solid red;
 }

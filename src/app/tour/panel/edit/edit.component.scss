@@ -546,3 +546,98 @@ prs-select-hotel{
   padding-bottom: 0 !important;
   margin-top: 5px !important;
 }
+@media only screen and (max-width: 868px) {
+  .info-tour-header {
+    height: auto;
+    flex-direction: column;
+    padding: 8px 2rem;
+    width: 100%;
+  }
+  .info-tour-header .left {
+    margin-top: 12px;
+  }
+  .info-tour-header .left select {
+    width: 100%;
+  }
+  .info-tour-body .top {
+    flex-wrap: wrap;
+  }
+  .item-info {
+    width: 100%;
+  }
+  .item-info-2 {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .select-info label {
+    margin-top: 8px;
+  }
+  .info-tour-body .bottom {
+    flex-direction: column;
+  }
+  .info-tour-body .bottom label {
+    margin-top: 8px;
+  }
+  .item-info-timer {
+    width: 100%;
+    margin-top: 12px;
+  }
+  .item-info-2 .select-info {
+    width: 100%;
+  }
+  prs-select-city {
+    width: 93%;
+  }
+  .info-tour-body .bottom .item-info input {
+    width: 93%;
+  }
+  .header-box-two {
+    width: 100%;
+  }
+  .body-box {
+    width: 100%;
+  }
+  .details-body-tour .textarea {
+    flex-direction: column;
+  }
+  .details-body-tour textarea {
+    height: 180px;
+    width: 100%;
+    margin-top: 12px;
+  }
+  .change-price-box {
+    grid-template-columns: 1fr 2fr;
+  }
+  .change-price-box span {
+    height: 40px !important;
+  }
+  .mobile-package {
+    width: 100% !important;
+    overflow-x: auto !important;
+  }
+  .header-box-two ,.header-box , .body-foreign , .body-box  {
+    width: 850px !important;
+  }
+  :host::ng-deep .example-list{
+    width: 850px !important;
+    max-width: 850px !important;
+  }
+  .body-box {
+    width: 850px !important;
+  }
+  .info-tour-body .top {
+    flex-direction: column;
+  }
+  .item-info-services {
+    width: 100%;
+  }
+  .item-info-services .box-services label , .item-info label {
+    margin-top: 12px;
+  }
+  p{
+    margin-top: 12px;
+    font-size: 13px !important;
+    color: var(--red-color);
+  }
+}

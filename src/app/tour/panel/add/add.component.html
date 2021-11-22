@@ -354,155 +354,159 @@
           <input type="text">
         </div>
         <!--            local tour-->
-        <div class="header-box" *ngIf="tourType">
-          <div class="package-item">#</div>
-          <div class="package-item">نام هتل</div>
-          <div class="package-item">خدمات</div>
-          <div class="package-item">دو تخته</div>
-          <div class="package-item">سه تخته</div>
-          <div class="package-item">چهار تخته</div>
-          <div class="package-item">سن کودک</div>
-          <div class="package-item" *ngIf="form.value.defineTour == 'true'">نرخ بزرگسال</div>
-          <div class="package-item">آفر ویژه</div>
-          <div></div>
-        </div>
-        <!--            foreign tour-->
-        <div class="header-box-two" *ngIf="!tourType">
-          <div class="package-item">#</div>
-          <div class="package-item">نام هتل</div>
-          <div class="package-item">{{ form.value.defineTour == 'true' ? 'نرخ / خدمات' : 'خدمات'}}</div>
-          <div class="package-item">دو تخته</div>
-          <div class="package-item">یه تخته</div>
-          <div class="package-item">کودک با تخت</div>
-          <div class="package-item">سن کودک</div>
-          <div class="package-item" *ngIf="form.value.defineTour == 'true'">نرخ بزرگسال</div>
-          <div class="package-item">آفر ویژه</div>
-          <div></div>
-        </div>
-        <form [formGroup]="form" class="example-list" formArrayName="packages" action="" cdkDropList
-              (cdkDropListDropped)="drop($event)">
-          <div class="body-box example-box" *ngFor="let tour of ToursForm.controls; let i = index" cdkDrag
-               [formGroupName]="i">
-            <div class="package-item id-package">
-              <div class="icon-from-to">
-                <i class="icon-up-open"></i>
-                <i class="icon-down-open"></i>
-              </div>
-            </div>
-            <div class="package-item">
-<!--              <select name="" id="" formControlName="hotel_id">-->
-<!--                <option *ngFor="let hotel of hotels"-->
-<!--                        [value]="hotel.id">{{tourType ? hotel.name : hotel.nameEn}}</option>-->
-<!--              </select>-->
-              <prs-select-hotel [hotels]="hotels" [callHotel]="false" [type]="tourType" [isAdmin]="true" (hotelSelected)="hotelChange($event,i)"></prs-select-hotel>
-              <div class="parent-icon under-package d-flex align-items-center">
-                <i class="icon-star text-warning" *ngFor="let star of getStars(i)"></i>
-              </div>
-            </div>
-            <div class="package-item">
-              <div class="d-flex align-items-center w-100 parent-box-rate">
-                <div class="package-item rate-width"
-                     *ngIf="form.value.defineTour == 'true' && !tourType">
-                  <select (change)="updatePackagePrices()" formControlName="rate">
-                    <option *ngIf="form.value.dollarRate" [value]="3">دلار</option>
-                    <option *ngIf="form.value.euroRate" [value]="2">یورو</option>
-                    <option *ngIf="form.value.AEDRate" [value]="4">درهم</option>
-                    <option [value]="1">تومان</option>
-                  </select>
-                </div>
-                <div class="package-item service-width">
-                  <select name="" id="" formControlName="services">
-                    <option *ngFor="let service of services" [value]="service.id">{{service.name}}</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <!--            local tour-->
-            <ng-template class="body-local" [ngIf]="tourType">
-              <div class="package-item">
-                <input (keyup)="calculatePrice('twin', $event, true, i)" type="text" formControlName="twin"
-                       mask="separator" thousandSeparator=",">
-                <div class="under-package-text d-flex align-items-center"
-                     *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].twin > 0">
-                  <p>{{ getData(i).twinRate.value | sperator }}</p>
-                </div>
-              </div>
-              <div class="package-item">
-                <input (keyup)="calculatePrice('triple', $event, true, i)" type="text" formControlName="triple"
-                       mask="separator" thousandSeparator=",">
-                <div class="under-package-text"
-                     *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].triple > 0">
-                  <p>{{ getData(i).tripleRate.value | sperator }}</p>
-                </div>
-              </div>
-              <div class="package-item">
-                <input (keyup)="calculatePrice('quad', $event, true, i)" type="text" formControlName="quad"
-                       mask="separator" thousandSeparator=",">
-                <div class="under-package-text"
-                     *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].quad > 0">
-                  <p>{{ getData(i).quadRate.value | sperator }}</p>
-                </div>
-              </div>
-              <div class="package-item">
-                <input type="text" formControlName="age">
-              </div>
-              <div class="package-item" *ngIf="form.value.defineTour == 'true'">
-                <input (keyup)="updatePackagePrices()" type="text" formControlName="ADLRate" mask="separator"
-                       thousandSeparator=",">
-              </div>
-              <div class="package-item">
-                <input formControlName="offered" class="offer-checkbox" type="checkbox">
-              </div>
-              <div style="flex-direction: row !important;" class="package-item">
-                <i class="icon-trash text-danger" (click)="removePackage(i)"></i>
-                <img src="assets/img/FAQ.svg" width="18" class="ms-2"  (click)="openRoomPopup(i)">
-              </div>
-            </ng-template>
-            <!--            foreign tour-->
-            <ng-template class="body-foreign" [ngIf]="!tourType">
-              <div class="package-item">
-                <input (keyup)="calculatePrice('twin', $event, true, i)" type="text" formControlName="twin"
-                       mask="separator" thousandSeparator=",">
-                <div class="under-package-text"
-                     *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].twin > 0">
-                  <p>{{ getData(i).twinRate.value | sperator }}</p>
-                </div>
-              </div>
-              <div class="package-item">
-                <input (keyup)="calculatePrice('single', $event, true, i)" type="text" formControlName="single"
-                       mask="separator" thousandSeparator=",">
-                <div class="under-package-text"
-                     *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].single > 0">
-                  <p>{{ getData(i).singleRate.value | sperator }}</p>
-                </div>
-              </div>
-              <div class="package-item">
-                <input (keyup)="calculatePrice('cwb', $event, false, i)" type="text" formControlName="cwb"
-                       mask="separator" thousandSeparator=",">
-                <div class="under-package-text"
-                     *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].cwb > 0">
-                  <p>{{ getData(i).cwbRate.value | sperator }}</p>
-                </div>
-              </div>
-              <div class="package-item">
-                <input type="text" formControlName="age">
-              </div>
-              <div class="package-item" *ngIf="form.value.defineTour == 'true'">
-                <input (keyup)="updatePackagePrices()" type="text" formControlName="ADLRate" mask="separator"
-                       thousandSeparator=",">
-              </div>
-              <div class="package-item">
-                <input formControlName="offered" class="offer-checkbox" type="checkbox">
-              </div>
-              <div style="flex-direction: row !important;" class="package-item">
-                <i class="icon-trash text-danger" (click)="removePackage(i)"></i>
-                <img src="assets/img/FAQ.svg" width="18" (click)="openRoomPopup(i)">
-              </div>
-            </ng-template>
-
+        <div class="w-100 d-flex flex-column mobile-package">
+          <div class="header-box" *ngIf="tourType">
+            <div class="package-item">#</div>
+            <div class="package-item">نام هتل</div>
+            <div class="package-item">خدمات</div>
+            <div class="package-item">دو تخته</div>
+            <div class="package-item">سه تخته</div>
+            <div class="package-item">چهار تخته</div>
+            <div class="package-item">سن کودک</div>
+            <div class="package-item" *ngIf="form.value.defineTour == 'true'">نرخ بزرگسال</div>
+            <div class="package-item">آفر ویژه</div>
+            <div></div>
           </div>
-        </form>
+          <!--            foreign tour-->
+          <div class="header-box-two" *ngIf="!tourType">
+            <div class="package-item">#</div>
+            <div class="package-item">نام هتل</div>
+            <div class="package-item">{{ form.value.defineTour == 'true' ? 'نرخ / خدمات' : 'خدمات'}}</div>
+            <div class="package-item">دو تخته</div>
+            <div class="package-item">یه تخته</div>
+            <div class="package-item">کودک با تخت</div>
+            <div class="package-item">سن کودک</div>
+            <div class="package-item" *ngIf="form.value.defineTour == 'true'">نرخ بزرگسال</div>
+            <div class="package-item">آفر ویژه</div>
+            <div></div>
+          </div>
+          <form [formGroup]="form" class="example-list" formArrayName="packages" action="" cdkDropList
+                (cdkDropListDropped)="drop($event)">
+            <div class="body-box example-box" *ngFor="let tour of ToursForm.controls; let i = index" cdkDrag
+                 [formGroupName]="i">
+              <div class="package-item id-package">
+                <div class="icon-from-to">
+                  <i class="icon-up-open"></i>
+                  <i class="icon-down-open"></i>
+                </div>
+              </div>
+              <div class="package-item">
+                <!--              <select name="" id="" formControlName="hotel_id">-->
+                <!--                <option *ngFor="let hotel of hotels"-->
+                <!--                        [value]="hotel.id">{{tourType ? hotel.name : hotel.nameEn}}</option>-->
+                <!--              </select>-->
+                <prs-select-hotel [hotels]="hotels" [callHotel]="false" [type]="tourType" [isAdmin]="true" (hotelSelected)="hotelChange($event,i)"></prs-select-hotel>
+                <div class="parent-icon under-package d-flex align-items-center">
+                  <i class="icon-star text-warning" *ngFor="let star of getStars(i)"></i>
+                </div>
+              </div>
+              <div class="package-item">
+                <div class="d-flex align-items-center w-100 parent-box-rate">
+                  <div class="package-item rate-width"
+                       *ngIf="form.value.defineTour == 'true' && !tourType">
+                    <select (change)="updatePackagePrices()" formControlName="rate">
+                      <option *ngIf="form.value.dollarRate" [value]="3">دلار</option>
+                      <option *ngIf="form.value.euroRate" [value]="2">یورو</option>
+                      <option *ngIf="form.value.AEDRate" [value]="4">درهم</option>
+                      <option [value]="1">تومان</option>
+                    </select>
+                  </div>
+                  <div class="package-item service-width">
+                    <select name="" id="" formControlName="services">
+                      <option *ngFor="let service of services" [value]="service.id">{{service.name}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!--            local tour-->
+              <ng-template class="body-local" [ngIf]="tourType">
+                <div class="package-item">
+                  <input (keyup)="calculatePrice('twin', $event, true, i)" type="text" formControlName="twin"
+                         mask="separator" thousandSeparator=",">
+                  <div class="under-package-text d-flex align-items-center"
+                       *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].twin > 0">
+                    <p>{{ getData(i).twinRate.value | sperator }}</p>
+                  </div>
+                </div>
+                <div class="package-item">
+                  <input (keyup)="calculatePrice('triple', $event, true, i)" type="text" formControlName="triple"
+                         mask="separator" thousandSeparator=",">
+                  <div class="under-package-text"
+                       *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].triple > 0">
+                    <p>{{ getData(i).tripleRate.value | sperator }}</p>
+                  </div>
+                </div>
+                <div class="package-item">
+                  <input (keyup)="calculatePrice('quad', $event, true, i)" type="text" formControlName="quad"
+                         mask="separator" thousandSeparator=",">
+                  <div class="under-package-text"
+                       *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].quad > 0">
+                    <p>{{ getData(i).quadRate.value | sperator }}</p>
+                  </div>
+                </div>
+                <div class="package-item">
+                  <input type="text" formControlName="age">
+                </div>
+                <div class="package-item" *ngIf="form.value.defineTour == 'true'">
+                  <input (keyup)="updatePackagePrices()" type="text" formControlName="ADLRate" mask="separator"
+                         thousandSeparator=",">
+                </div>
+                <div class="package-item">
+                  <input formControlName="offered" class="offer-checkbox" type="checkbox">
+                </div>
+                <div style="flex-direction: row !important;" class="package-item">
+                  <i class="icon-trash text-danger" (click)="removePackage(i)"></i>
+                  <img src="assets/img/FAQ.svg" width="18" class="ms-2"  (click)="openRoomPopup(i)">
+                </div>
+              </ng-template>
+              <!--            foreign tour-->
+              <ng-template class="body-foreign" [ngIf]="!tourType">
+                <div class="package-item">
+                  <input (keyup)="calculatePrice('twin', $event, true, i)" type="text" formControlName="twin"
+                         mask="separator" thousandSeparator=",">
+                  <div class="under-package-text"
+                       *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].twin > 0">
+                    <p>{{ getData(i).twinRate.value | sperator }}</p>
+                  </div>
+                </div>
+                <div class="package-item">
+                  <input (keyup)="calculatePrice('single', $event, true, i)" type="text" formControlName="single"
+                         mask="separator" thousandSeparator=",">
+                  <div class="under-package-text"
+                       *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].single > 0">
+                    <p>{{ getData(i).singleRate.value | sperator }}</p>
+                  </div>
+                </div>
+                <div class="package-item">
+                  <input (keyup)="calculatePrice('cwb', $event, false, i)" type="text" formControlName="cwb"
+                         mask="separator" thousandSeparator=",">
+                  <div class="under-package-text"
+                       *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].cwb > 0">
+                    <p>{{ getData(i).cwbRate.value | sperator }}</p>
+                  </div>
+                </div>
+                <div class="package-item">
+                  <input type="text" formControlName="age">
+                </div>
+                <div class="package-item" *ngIf="form.value.defineTour == 'true'">
+                  <input (keyup)="updatePackagePrices()" type="text" formControlName="ADLRate" mask="separator"
+                         thousandSeparator=",">
+                </div>
+                <div class="package-item">
+                  <input formControlName="offered" class="offer-checkbox" type="checkbox">
+                </div>
+                <div style="flex-direction: row !important;" class="package-item">
+                  <i class="icon-trash text-danger" (click)="removePackage(i)"></i>
+                  <img src="assets/img/FAQ.svg" width="18" (click)="openRoomPopup(i)">
+                </div>
+              </ng-template>
+
+            </div>
+          </form>
+        </div>
+
+
         <div class="package-item">
           <a (click)="addRow(0)" class="btn-add-tour-fix">
             <i class="icon-plus-squared-alt"></i>

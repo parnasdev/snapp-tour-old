@@ -21,7 +21,7 @@ const routes: Routes = [
         path: 'contact-us',
         component: ContactUsComponent
       },{
-        path: 'blog',
+        path: 'blogs',
         loadChildren: () => import('../blog/blog.module').then(m => m.BlogModule)
       },{
         path: 'tours',
@@ -32,10 +32,11 @@ const routes: Routes = [
       },{
         path: 'city',
         loadChildren: () => import('../cities/cities.module').then(m => m.CitiesModule)
-      },{
-        path: ':city',
-        component: InfoComponent
-      }
+      },
+      // {
+      //   path: ':city',
+      //   component: InfoComponent
+      // }
     ]
   }
 ];
