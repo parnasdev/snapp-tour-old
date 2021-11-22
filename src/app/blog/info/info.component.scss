@@ -263,6 +263,10 @@
   line-height: 25px;
   text-align: justify;
 }
+:host::ng-deep .bottom p img{
+  height: 100% !important;
+  width: 100% !important;
+}
 
 
 //-------------------------

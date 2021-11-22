@@ -12,7 +12,13 @@ import {ActivatedRoute} from "@angular/router";
 import {CheckErrorService} from "../../Core/Services/check-error.service";
 import {ErrorsService} from "../../Core/Services/errors.service";
 import {MessageService} from "../../Core/Services/message.service";
-import {TourInfoDTO, TourSetRequestDTO} from "../../Core/Models/tourDTO";
+import {
+  CityTourInfoDTO,
+  TourInfoDTO, TourListResDTO,
+  TourPackageDTO,
+  TourSetRequestDTO,
+  TourTransferDTO
+} from "../../Core/Models/tourDTO";
 import {CalenderServices} from "../../Core/Services/calender-service";
 import {ResponsiveService} from "../../Core/Services/responsive.service";
 import {MatDialog} from "@angular/material/dialog";
@@ -32,7 +38,43 @@ export class InfoComponent implements OnInit {
   thumbsSwiper: any;
   loading = false;
   tourSlug = '';
-  tourInfo!: TourInfoDTO;
+  tourInfo: TourInfoDTO = {
+    AEDRate: 0,
+    CHDFlightRate: '',
+    ADLFlightRate: '',
+    TransferType: '',
+    dayNum: 0,
+    defineTour: false,
+    description: '',
+    documents: '',
+    dollarRate: 0,
+    enDate: '',
+    endCity: {} as CityTourInfoDTO,
+    euroRate: 0,
+    expireDate: '',
+    insurancePriceType: 0,
+    insuranceRate: 0,
+    nightNum: 0,
+    offered: null,
+    packages: [],
+    services: '',
+    slug: '',
+    stCity:  {} as CityTourInfoDTO,
+    stDate: '',
+    status: '',
+    title: '',
+    transfers: [],
+    transferPriceType: 0,
+    transferRate: 0,
+    type: 0,
+    user: {
+      name: '',
+      family: '',
+    },
+    visaPriceType: 0,
+    visaRate: 0,
+    tours: [],
+  };
   printContent = '';
 
   constructor(public tourApiService: TourApiService,

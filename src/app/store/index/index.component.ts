@@ -37,6 +37,7 @@ export class IndexComponent implements OnInit {
   hotels: HotelListResponseDTO[] = [];
   blogs: PostResDTO[] = [];
   p = 1
+  rnd = 0
 
   constructor(
     public api: TourApiService,
@@ -104,11 +105,24 @@ export class IndexComponent implements OnInit {
     this.cityApi.getCities(req).subscribe((res: any) => {
       if (res.isDone) {
         this.cities = res.data;
+        this.rnd = Math.floor(Math.random() * this.cities.length);
+
       }
     }, (error: any) => {
       this.message.error()
     })
   }
+
+  getImage(city:string): string {
+    let img = ''
+    this.cities.forEach((x:any) => {
+      if (city === x.name) {
+        img = x.image
+      }
+    })
+    return img
+  }
+
   getHotelCities(): void {
     const req: CityListRequestDTO = {
       type: null,

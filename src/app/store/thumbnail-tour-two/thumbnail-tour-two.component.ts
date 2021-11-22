@@ -26,11 +26,14 @@ export class ThumbnailTourTwoComponent implements OnInit {
     return Array.from(Array(+count).keys());
   }
 
-  getStarterPrice(): number {
-    return this.tourInfo.defineTour ? this.tourInfo.packages[0].prices.single : this.tourInfo.packages[0].prices.twin;
+
+  getStarterPrice(index: number): number {
+    if (this.tourInfo.packages.length) {
+      return this.tourInfo.defineTour ? this.tourInfo.packages[index].prices.twinRate : this.tourInfo.packages[index].prices.twin;
+    } else {
+      return 0;
+    }
   }
-
-
   reserve(id: number): void {
     const dialog = this.dialog.open(ReservePopupComponent, {
       width: '30%',

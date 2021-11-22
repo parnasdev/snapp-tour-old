@@ -17,11 +17,11 @@
               <div class="img" >
                 <a class="info-img">
                   <img src="assets/img/Attachment%201.svg" width="22" alt="">
-                  <span routerLink="/blog/{{item.slug}}">مشاهده جزئیات بیشتر</span>
+                  <span routerLink="/blogs/{{item.slug}}">مشاهده جزئیات بیشتر</span>
                 </a>
                 <img class="img-fix" [src]="item.thumbnail" alt="">
               </div>
-              <h3 class="title-box-blog" routerLink="/blog/{{item.slug}}">{{item.title.length>30?item.title.substring(0,33)+' ...':item.title}}</h3>
+              <h3 class="title-box-blog" routerLink="/blogs/{{item.slug}}">{{item.title.length>30?item.title.substring(0,33)+' ...':item.title}}</h3>
               <div class="date">
                 <img src="assets/img/Watch-blog.svg" width="18" alt="">
                 <span>انتشار شده در {{calenderServices.convertDate(item.createdAt,'fa')}}</span>

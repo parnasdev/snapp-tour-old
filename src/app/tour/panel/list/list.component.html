@@ -12,8 +12,6 @@
       <mat-button-toggle value="Pending">در انتظار</mat-button-toggle>
     </mat-button-toggle-group>
     <a class="btn-add-tour" routerLink="/panel/tour/add">اضافه</a>
-
-
   </div>
   <div class="table-list-tour table-list-tour-desktop">
     <div class="header-list-tour">
@@ -30,7 +28,7 @@
     </div>
     <div class="body-list-tour" *ngIf="tours.length > 0">
       <div class="item" *ngFor="let tour of tours |tourStatusFilter : status | paginate: paginateConfig;let i = index">
-        <span class="id">{{ i + 1 }}</span>
+        <span class="id">{{  tour.id}}</span>
         <span class="username">{{ tour.user.name + ' ' + tour.user.family }}</span>
         <span class="title-tour">{{ tour.title }}</span>
         <span class="from-to">{{ tour.stCity.name + '-' + tour.endCity.name }}</span>

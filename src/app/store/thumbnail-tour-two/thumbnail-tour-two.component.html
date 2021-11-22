@@ -69,7 +69,7 @@
 <div class="thumbnail-mobile" *ngFor="let package of tourInfo.packages; let i = index">
   <div class="info-hotel-body">
     <div class="d-flex flex-column align-items-center">
-      <img class="img-hotel" src="assets/img/1200px-Sunrise_over_Kangchenjunga.png" alt="">
+      <img class="img-hotel" [src]="package.hotel.thumbnail" alt="">
       <div class="rate d-flex flex-column align-items-center">
         <div class="star-icon">
           <i class="icon-star" *ngFor="let star of getStars(package.hotel.stars)"></i>
@@ -82,7 +82,7 @@
     <div class="info-info-hotel">
       <div class="start-price">
         <span>شروع قیمت : </span>
-        <span class="price"> {{ getStarterPrice() | number}} تومان</span>
+        <span class="price"> {{ getStarterPrice(i) | number}} تومان</span>
       </div>
 
       <a href="">

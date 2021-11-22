@@ -36,7 +36,8 @@
                       <img class="img-hover-child" src="assets/img/Attachment%201.svg" width="30" alt="">
                       <a routerLink="/tours/{{ tour.endCity.slugEn }}/{{tour.slug}}" class="view-details-more">مشاهده جزئیات بیشتر</a>
                     </div>
-                    <img src="assets/img/Header-slider-tour90-num02.svg" alt="">
+                    <img *ngIf="cities.length > 0" [src]="getImage(tour.endCity.name) === '' ? 'assets/img/Header-slider-tour90-num02.svg' : getImage(tour.endCity.name)" alt="">
+
                   </div>
                   <div class="top-info-tour-special">
                     <div class="day">
@@ -53,7 +54,7 @@
                     <div class="date-special">
                       <span class="from">{{calenderServices.convertDate(tour.transfers[0].dateTime, 'fa')}}</span>
                       <img src="assets/img/Up%20Down%201.svg" width="20" alt="">
-                      <span class="to">{{calenderServices.convertDate(tour.transfers[2].dateTime, 'fa')}}</span>
+                      <span class="to">{{calenderServices.convertDate(tour.transfers[1].dateTime, 'fa')}}</span>
                     </div>
                   </div>
                   <div class="bottom-info-tour-special">
