@@ -89,13 +89,13 @@ export class EditComponent extends AddComponent implements OnInit {
     this.infoLoading = true;
     if (this.slug) {
       this.tourApi.getTour(this.slug).subscribe((res: any) => {
-        this.infoLoading = false;
         if (res.isDone) {
           this.info = res.data;
           this.getCities();
           this.getTransfer();
           this.getService();
         }
+
       }, (error: any) => {
         this.infoLoading = false
         this.message.error()
@@ -179,6 +179,9 @@ export class EditComponent extends AddComponent implements OnInit {
     this.destTransferFC.setValue(+this.info.transfers[1].transfer_id);
     this.originTime = this.info.transfers[0].dateTime.split(' ')[1];
     this.destTime = this.info.transfers[1].dateTime.split(' ')[1];
+
+    this.infoLoading = false;
+
   }
 
   setFormArray(packages: TourPackageDTO[]): void {

@@ -5,7 +5,7 @@ import {InfoComponent} from "./info/info.component";
 
 const routes: Routes = [
   {
-    path: 'list',
+    path: '',
     component: ListComponent
   },
   {

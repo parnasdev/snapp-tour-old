@@ -1,5 +1,6 @@
-import {CityDTO} from "./cityDTO";
+import {CityDTO, CityResponseDTO} from "./cityDTO";
 import {RoomTypePriceDTO, RoomTypeSetDTO} from "./roomTypeDTO";
+import {PackageDTO} from "./hotelDTO";
 
 export interface TourListRequestDTO {
   perPage: number;
@@ -17,14 +18,14 @@ export interface TourListResDTO {
   createdAt: string;
   id?: number
   dayNum: number;
-  endCity: string;
+  endCity: CityTourInfoDTO;
   expireDate: string;
   minPrice: string;
   nightNum: number;
   offered: string;
   slug: string;
   transfers: TourTransferDTO[];
-  stCity: string;
+  stCity: CityDTO;
   status: string;
   user: {
     name: string;
@@ -168,6 +169,7 @@ export interface CityTourInfoDTO {
   id: number;
   name: string;
   slug: string;
+  slugEn: string;
   images: any[];
   description: string;
   type: number
@@ -177,4 +179,37 @@ export interface ReserveReqDTO {
   package_id: number
   phone: string
   count: number
+}
+export interface ReserveListReqDTO {
+  id: number
+  perPage?: number
+  paginate: boolean
+}
+export interface ReserveListResDTO {
+  count: number
+  package: ReservePackageDTO
+  phone: string
+}
+
+
+export interface ReservePackageDTO {
+  id:         number;
+  tour:       Tour;
+  hotel:      HotelDTO;
+  services:   RateDTO;
+  rate:       RateDTO;
+  discounts:  DiscountsDTO;
+  prices:     PricesDTO;
+  status:     string;
+  order_item: number;
+  offered:    boolean;
+}
+export interface RateDTO {
+  id:   number;
+  name: any;
+}
+export interface Tour {
+  title: string;
+  slug:  string;
+  endCity: CityResponseDTO
 }

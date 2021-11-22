@@ -4,6 +4,7 @@ import {ListComponent} from "./list/list.component";
 import {AddComponent} from "./add/add.component";
 import {EditComponent} from "./edit/edit.component";
 import {CopyComponent} from "./copy/copy.component";
+import {ReserveListComponent} from "./reserve-list/reserve-list.component";
 
 const routes: Routes = [
   {
@@ -19,6 +20,9 @@ const routes: Routes = [
   },{
     path: 'copy/:slug',
     component: CopyComponent
+  },{
+    path: 'reserve/list/:id',
+    component: ReserveListComponent
   }
 ];
 

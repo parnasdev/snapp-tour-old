@@ -52,7 +52,9 @@ export class InfoComponent implements OnInit {
       this.isLoading = false;
       if (res.isDone) {
         this.hotelInfo = res.data;
-        this.fillAlbum(this.hotelInfo.images)
+        if (this.hotelInfo.images && this.hotelInfo.images.length > 0) {
+          this.fillAlbum(this.hotelInfo.images)
+        }
       } else {
         this.message.custom(res.message)
       }

@@ -40,7 +40,7 @@
   height: 40px;
   width: 100%;
   display: grid;
-  grid-template-columns: 0.5fr 0.7fr 1.5fr 0.5fr 0.5fr 1fr 1fr 0.5fr 0.7fr 3fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   background-color: var(--white);
   border-bottom: 1px solid var(--light-color-two);
 }
@@ -60,7 +60,7 @@
   height: 60px;
   width: 100%;
   display: grid;
-  grid-template-columns: 0.5fr 0.7fr 1.5fr 0.5fr 0.5fr 1fr 1fr 0.5fr 0.7fr 3fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .body-list-tour .item:not(:last-child) {
@@ -172,9 +172,7 @@
   align-items: center;
   padding-top: 10px;
 }
-:host::ng-deep .mat-button-toggle-button span{
-  font-family: IRANSans !important;
-}
+
 
 //-----------------------------------
 @media only screen and (max-width: 868px) {
@@ -195,12 +193,11 @@
     padding: 15px;
     background-color: var(--white);
     border-radius: 8px;
-    margin-top: 12px !important;
   }
   .list-tour-box .user-id {
     width: auto;
     height: 25px;
-   border-radius: 4px;
+    border-radius: 4px;
     background-color: var(--red-color);
     color: var(--white);
     display: flex;
@@ -277,7 +274,7 @@
     padding: 0 10px;
     margin-bottom: 8px;
   }
-   .edit-btn {
+  .edit-btn {
     width: auto;
     background-color: var(--base-color-three);
     color: var(--white);
@@ -291,7 +288,7 @@
     justify-content: center;
   }
 
-   .view-btn {
+  .view-btn {
     width: auto;
     background-color: var(--base-color);
     color: var(--white);
@@ -304,45 +301,9 @@
     align-items: center;
     justify-content: center;
   }
-   .delete-btn {
+  .delete-btn {
     width: auto;
     background-color: var(--red-color);
-    color: var(--white);
-    border: none;
-    outline: none;
-    height: 30px;
-    padding: 0 10px;
-    border-radius: 4px;
-  }
-  .title {
-    width: 100%;
-    flex-wrap: wrap;
-  }
-  .title h2{
-    width: 100%;
-  }
-  .btn-add-tour{
-    margin: 1rem 0;
-  }
-  :host::ng-deep .mat-button-toggle-button span{
-    font-size: 12px !important;
-    font-family: IRANSans !important;
-  }
-  .copy-btn{
-    width: auto;
-    background-color: var(--green-color);
-    color: var(--white);
-    border: none;
-    outline: none;
-    height: 30px;
-    padding: 0 10px;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-  }
-  .log-btn {
-    width: auto;
-    background-color: #0d6efd;
     color: var(--white);
     border: none;
     outline: none;

@@ -9,13 +9,16 @@ const routes: Routes = [
     path: '',
     component: AppComponent,
     children: [
-       {
+      {
         path: 'prs-admin',
         loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
       }, {
         path: 'panel',
         canActivate: [PanelGuardService],
         loadChildren: () => import('./panel/panel.module').then(m => m.PanelModule)
+      }, {
+        path: 'not-found',
+        component: Page404Component
       },
       {
         path: '',

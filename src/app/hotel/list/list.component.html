@@ -20,15 +20,16 @@
           <div class="box-hotel-parent">
             <div *ngFor="let hotel of hotelList| paginate: paginateConfig"
                  [style.background-image]="'url(' + hotel.thumbnail + ')'"
+                 routerLink="/hotels/{{ hotel.slug }}"
                  class="box-hotel">
               <div class="opacity-bg-parent">
-                <a routerLink="/hotel/{{ hotel.slug }}">
+                <a>
                   <div class="info-img">
                     <img src="assets/img/Information.svg" width="22" alt="">
                   </div>
                 </a>
                 <div class="info-hotel">
-                  <a routerLink="/hotel/{{ hotel.slug }}">
+                  <a routerLink="/hotels/{{ hotel.slug }}">
                     <h1>{{ hotel.name }}</h1>
                   </a>
                   <div class="footer-hotel-info">

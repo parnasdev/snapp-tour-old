@@ -25,6 +25,7 @@ import {CopyComponent} from './copy/copy.component';
 import {NgxPaginationModule} from "ngx-pagination";
 import {LogsComponent} from "./logs/logs.component";
 import {StoreModule} from "../../store/store.module";
+import { ReserveListComponent } from './reserve-list/reserve-list.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import {StoreModule} from "../../store/store.module";
     EditComponent,
     ListComponent,
     LogsComponent,
-    CopyComponent],
+    CopyComponent,
+    ReserveListComponent],
     imports: [
         CommonModule,
         TourPanelRoutingModule,
@@ -45,7 +47,7 @@ import {StoreModule} from "../../store/store.module";
         MatNativeDateModule,
         MatInputModule,
         MaterialModule,
-        CommonProjectModule,
+      CommonProjectModule,
         NgxMaskModule.forRoot(maskConfig),
         ToolsModule,
         PipesModule,

@@ -27,15 +27,15 @@
   <div class="date-tour">
     <img src="assets/img/Up%20Down%201.svg" width="22" alt="">
     <div class="info-date">
-      <span class="from">{{calenderServices.convertDate(tour.createdAt, 'fa')}}</span>
-      <span class="to">{{calenderServices.convertDate(tour.expireDate, 'fa')}}</span>
+      <span class="from">{{calenderServices.convertDate(tour.transfers[0].dateTime, 'fa')}}</span>
+      <span class="to">{{calenderServices.convertDate(tour.transfers[1].dateTime, 'fa')}}</span>
     </div>
   </div>
   <div class="type">
     <img src="assets/img/Up%20Down%202.svg" width="17" alt="">
     <span>{{tour.transfers.length > 0 ? tour.transfers[0].transfer : '---'}}</span>
   </div>
-  <a class="ino-tour-btn" routerLink="/tours/{{ city }}/{{ tour.slug }}" target="_parent">
+  <a class="ino-tour-btn" routerLink="/tours/{{ tour.endCity.slugEn }}/{{ tour.slug }}" target="_parent">
     <span class="text-mobi-btn">جزییات</span>
     <img src="assets/img/Right%20Arrow%202.svg" width="30" alt="">
   </a>
