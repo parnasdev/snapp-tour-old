@@ -56,6 +56,7 @@ export class InfoComponent implements OnInit {
     insuranceRate: 0,
     nightNum: 0,
     offered: null,
+    minPrice: '0',
     packages: [],
     services: '',
     slug: '',
