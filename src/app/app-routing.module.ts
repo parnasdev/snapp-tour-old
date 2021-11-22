@@ -9,17 +9,18 @@ const routes: Routes = [
     path: '',
     component: AppComponent,
     children: [
-      {
-        path: '',
-        loadChildren: () => import('./store/store.module').then(m => m.StoreModule)
-      }, {
+       {
         path: 'prs-admin',
         loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
       }, {
         path: 'panel',
         canActivate: [PanelGuardService],
         loadChildren: () => import('./panel/panel.module').then(m => m.PanelModule)
-      }
+      },
+      {
+        path: '',
+        loadChildren: () => import('./store/store.module').then(m => m.StoreModule)
+      },
     ]
   },
   {

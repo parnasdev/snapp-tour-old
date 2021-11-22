@@ -10,7 +10,7 @@
             <div class="inp-form">
               <select name="" [formControl]="cityFC" (change)="cityChanged()">
                 <option value="">شهر خود را انتخاب کنید *</option>
-                <option *ngFor="let city of cities" [value]="city.name">{{city.name}}</option>
+                <option *ngFor="let city of cities" [ngValue]="city">{{city.name}}</option>
               </select>
               <span class="text-danger">{{errorService.getError('city_id')}}</span>
             </div>

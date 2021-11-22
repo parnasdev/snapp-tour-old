@@ -20,6 +20,7 @@ export interface CityResponseDTO {
   type: number
   image: string
   slug: string
+  slugEn: string
 }
 export interface CityInfoResDTO {
   description: string
@@ -29,7 +30,7 @@ export interface CityInfoResDTO {
   nameEn: string
   slug: string
   type: boolean
-
+  slugEn: string
 }
 
 
