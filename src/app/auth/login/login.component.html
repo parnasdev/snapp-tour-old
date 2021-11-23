@@ -1,44 +1,46 @@
 <section class="login-parent">
-  <div class="responsive h-100">
-    <div class="container-fluid h-100">
-      <div class="row h-100">
-        <div class="col-md-4 m-auto-x h-100 d-flex flex-column justify-content-center posi-relative">
-          <div class="box-login">
-            <figure>
-              <img src="assets/img/hamnavaz-logo.png" width="180" alt="">
-            </figure>
-            <div class="main-login">
-              <h2 class="title-login">ورود به پنل مدیریت سایت</h2>
-              <div class="form">
-                <div class="inp-form">
-                  <input type="text" [formControl]="userNameFC" placeholder="نام کاربری">
-                </div>
-                <div class="inp-form">
-                  <input type="password" [formControl]="passwordFC" placeholder="رمز عبور">
-                </div>
-              </div>
+    <div class="responsive h-100">
+      <div class="container-fluid h-100">
+        <div class="row h-100">
+          <div class="col-md-4 m-auto-x h-100 d-flex flex-column justify-content-center posi-relative">
+            <form [formGroup]="formGroup" (ngSubmit)="login()">
+              <div class="box-login">
+                <figure>
+                  <img src="assets/img/hamnavaz-logo.png" width="180" alt="">
+                </figure>
+                <div class="main-login">
+                  <h2 class="title-login">ورود به پنل مدیریت سایت</h2>
+                  <div class="form">
+                    <div class="inp-form">
+                      <input type="text" [formControl]="userNameFC" placeholder="نام کاربری">
+                    </div>
+                    <div class="inp-form">
+                      <input type="password" [formControl]="passwordFC" placeholder="رمز عبور">
+                    </div>
+                  </div>
 
-            </div>
-            <div class="footer-login">
-              <div class="remember">
-                <input id="one" type="checkbox">
-                <label for="one">من را به خاطر بسپار !</label>
+                </div>
+                <div class="footer-login">
+                  <div class="remember">
+                    <input id="one" type="checkbox">
+                    <label for="one">من را به خاطر بسپار !</label>
+                  </div>
+                  <prs-btn [type]="'submit'" [isLoading]="isLoading" *ngIf="!session.isLoggedIn()" [background]="'blue'" (click)="login()" [label]="'ورود به سیستم'"></prs-btn>
+                  <prs-btn [isLoading]="isLoading" *ngIf="session.isLoggedIn()" [background]="'dark'" routerLink="/panel" [label]="'ورود به پنل'"></prs-btn>
+                </div>
               </div>
-              <prs-btn [isLoading]="isLoading" *ngIf="!session.isLoggedIn()" [background]="'blue'" (click)="login()" [label]="'ورود به سیستم'"></prs-btn>
-              <prs-btn [isLoading]="isLoading" *ngIf="session.isLoggedIn()" [background]="'dark'" routerLink="/panel" [label]="'ورود به پنل'"></prs-btn>
-            </div>
+            </form>
+            <a class="home-link" routerLink="/">ورود به سایت اصلی</a>
+            <!--          <div class="parnas">-->
+            <!--            <img src="assets/img/parnas-logo.png" width="64" alt="">-->
+            <!--            <div class="text">-->
+            <!--              <span>طراحی و توسعه سیستم تور و گردشگری :</span>-->
+            <!--              <a href="https://parnas.agency"> آژانس خلاقیت پارناس</a>-->
+            <!--            </div>-->
+            <!--          </div>-->
           </div>
-          <a class="home-link" routerLink="/">ورود به سایت اصلی</a>
-<!--          <div class="parnas">-->
-<!--            <img src="assets/img/parnas-logo.png" width="64" alt="">-->
-<!--            <div class="text">-->
-<!--              <span>طراحی و توسعه سیستم تور و گردشگری :</span>-->
-<!--              <a href="https://parnas.agency"> آژانس خلاقیت پارناس</a>-->
-<!--            </div>-->
-<!--          </div>-->
         </div>
       </div>
     </div>
-  </div>
 </section>
 

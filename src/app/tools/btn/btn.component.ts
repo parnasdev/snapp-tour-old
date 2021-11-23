@@ -9,6 +9,7 @@ export class BtnComponent implements OnInit, OnChanges {
   @Input() label = 'ثبت'
   @Input() background = 'blue' // dark or blue
   @Input() isLoading = false;
+  @Input() type = 'button';
   loading = false;
 
   constructor() {
