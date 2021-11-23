@@ -3,12 +3,12 @@
     <img src="assets/img/location2.svg" width="40" alt="">
     <div class="info-tour-city">
       <a target="_blank" routerLink="/tours/{{ tour.endCity.slugEn }}/{{ tour.slug }}" href="">
-        <h6 >{{tour.title}}</h6>
+        <h6>{{tour.title}}</h6>
       </a>
       <div class="text-price">
         <small class="title-price">شروع قیمت از :</small>
         <strong class="price-tour">
-          {{tour.minPrice === '0' ? 'قیمتی ثبت نشده ' : tour.minPrice | sperator}}
+          {{tour.minPrice === '0' ? 'قیمتی ثبت نشده ' : tour.minPrice |round| sperator}}
           <small>تومان </small>
         </strong>
       </div>
@@ -27,8 +27,10 @@
   <div class="date-tour">
     <img src="assets/img/Up%20Down%201.svg" width="22" alt="">
     <div class="info-date">
-      <span class="from" *ngIf="tour.transfers.length > 0">{{calenderServices.convertDate(tour.transfers[0].dateTime, 'fa')}}</span>
-      <span class="to" *ngIf="tour.transfers.length > 1">{{calenderServices.convertDate(tour.transfers[1].dateTime, 'fa')}}</span>
+      <span class="from"
+            *ngIf="tour.transfers.length > 0">{{calenderServices.convertDate(tour.transfers[0].dateTime, 'fa')}}</span>
+      <span class="to"
+            *ngIf="tour.transfers.length > 1">{{calenderServices.convertDate(tour.transfers[1].dateTime, 'fa')}}</span>
     </div>
   </div>
   <div class="type">
