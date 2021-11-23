@@ -7,9 +7,14 @@
         <mat-button-toggle [value]="true">داخلی</mat-button-toggle>
       </mat-button-toggle-group>
     </div>
-
-    <label> <input type="checkbox" [(ngModel)]="hasHotel" (ngModelChange)="getCities()">نمایش شهرهای حاوی هتل</label>
-    <label for=""><input type="checkbox" [(ngModel)]="hasTour" (ngModelChange)="getCities()">نمایش شهر های حاوی تور</label>
+    <div class="parent-view-city">
+      <input type="checkbox" [(ngModel)]="hasHotel" (ngModelChange)="getCities()">
+      <label class="label"> نمایش شهرهای حاوی هتل</label>
+    </div>
+    <div class="parent-view-city">
+      <input type="checkbox" [(ngModel)]="hasTour" (ngModelChange)="getCities()">
+      <label for="">نمایش شهر های حاوی تور</label>
+    </div>
 
   </div>
 

@@ -28,17 +28,17 @@
         </div>
       </div>
       <div>
-        <pagination-controls
-          *ngIf="!isLoading && paginate.lastPage > 1"
-          class="pagination-control"
-          (pageChange)="onPageChanged($event)"
-          previousLabel="قبلی"
-          nextLabel="بعدی"
-          screenReaderPaginationLabel="صفحه بندی"
-          screenReaderPageLabel="صفحه"
-          screenReaderCurrentLabel="شما در صفحه ی">
-        </pagination-controls>
       </div>
     </div>
   </div>
+  <pagination-controls
+    *ngIf="!isLoading && paginate.lastPage > 1"
+    class="pagination-control"
+    (pageChange)="onPageChanged($event)"
+    previousLabel="قبلی"
+    nextLabel="بعدی"
+    screenReaderPaginationLabel="صفحه بندی"
+    screenReaderPageLabel="صفحه"
+    screenReaderCurrentLabel="شما در صفحه ی">
+  </pagination-controls>
 </div>

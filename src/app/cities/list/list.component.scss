@@ -48,3 +48,33 @@
   margin-bottom: 0;
   font-size: 16px;
 }
+:host::ng-deep .mat-button-toggle {
+  height: 35px !important;
+}
+:host::ng-deep .mat-button-toggle-label-content{
+  height: 35px !important;
+  display: flex;
+  align-items: center;
+  font-family: IRANSans !important;
+}
+.parent-view-city{
+  display: flex;
+  align-items: center;
+}
+.parent-view-city label{
+  margin-right: 8px;
+}
+
+@media only screen and (max-width: 868px){
+  .list-city-header {
+    height: auto;
+    padding: 8px;
+    flex-wrap: wrap;
+  }
+  .parent-view-city {
+    margin-top: 10px;
+  }
+  :host::ng-deep button{
+    font-size: 12px !important;
+  }
+}
