@@ -6,16 +6,17 @@ import {CanActivate, Router} from "@angular/router";
   providedIn: 'root'
 })
 export class PanelGuardService implements CanActivate  {
-  role;
+  role = '';
   constructor(public session: SessionService, public router: Router) {
-    this.role = session.getRole();
+
   }
 
   canActivate(): any {
+    this.role = this.session.getRole();
     if (this.session.isLoggedIn() && (this.role === 'Admin' || this.role === 'Staff')) {
       return true;
     } else {
-      this.router.navigate(['/prs-admin']);
+      this.router.navigateByUrl('/prs-admin');
     }
   }
 
