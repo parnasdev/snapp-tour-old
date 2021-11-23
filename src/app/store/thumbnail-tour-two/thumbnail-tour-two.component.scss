@@ -31,16 +31,28 @@
 }
 
 .btn-complete-book {
-  width: 150px;
+  width: 70%;
   height: 40px;
   border-radius: var(--radius-btn);
   color: var(--white);
   background-color: var(--base-color);
-  margin: auto;
+  margin: 6px auto;
   transition: var(--btn-animtion);
   border: 2px solid var(--base-color);
 }
-
+.link-price{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px 0 0 0;
+}
+.link-price a{
+  font-size: 13px !important;
+  color: var(--red-color);
+  font-weight: 500;
+  margin: 0 6px 0 0;
+}
 .btn-complete-book:hover {
   transition: var(--btn-animtion);
   background-color: var(--white);

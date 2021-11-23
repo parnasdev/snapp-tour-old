@@ -31,50 +31,59 @@
     </div>
     <div class="price-box">
       <div
-        class="number">{{ defineTour ? (package.prices.twinRate | number) : (package.prices.twin | number) }}</div>
+        class="number">{{ defineTour ? (package.prices.twinRate   | round| sperator) : (package.prices.twin | round |sperator) }}</div>
       <div class="text">تومان</div>
     </div>
     <div class="price-box" *ngIf="tourType">
       <div
-        class="number">{{ defineTour ? (package.prices.tripleRate| number) : (package.prices.triple| number) }}</div>
+        class="number">{{ defineTour ? (package.prices.tripleRate|  round| sperator) : (package.prices.triple| round| sperator) }}</div>
       <div class="text">تومان</div>
     </div>
     <div class="price-box" *ngIf="tourType">
       <div
-        class="number">{{ defineTour ? (package.prices.quadRate| number) : (package.prices.quad| number) }}</div>
+        class="number">{{ defineTour ? (package.prices.quadRate| round| sperator) : (package.prices.quad| round| sperator) }}</div>
       <div class="text">تومان</div>
     </div>
     <div class="price-box" *ngIf="!tourType">
       <div
-        class="number">{{ defineTour ? (package.prices.singleRate| number) : (package.prices.single| number) }}</div>
+        class="number">{{ defineTour ? (package.prices.singleRate| round| sperator) : (package.prices.single| round| sperator) }}</div>
       <div class="text">تومان</div>
     </div>
     <div class="price-box" *ngIf="!tourType">
       <div
-        class="number">{{ defineTour ? (package.prices.cwbRate| number) : (package.prices.cwb| number) }}</div>
+        class="number">{{ defineTour ? (package.prices.cwbRate| round| sperator) : (package.prices.cwb| round| sperator) }}</div>
       <div class="text">تومان</div>
     </div>
     <div class="price-box" *ngIf="!tourType">
       <div
-        class="number">{{ package.prices.cnb ? (+(package.prices.cnb.toString().split(',').join('')) | number) : 0 }}</div>
+        class="number">{{ package.prices.cnb ? ((package.prices.cnb.toString().split(',').join('')) | round| sperator) : 0 }}</div>
       <div class="text">تومان</div>
     </div>
     <div class="price-box">
       <div class="age">{{ package.prices.age }}</div>
     </div>
-    <button class="btn-complete-book" (click)="reserve(package.id)">در خواست رزرو</button>
+    <div class="d-flex flex-column align-content-center w-100 h-100 justify-content-center">
+      <button class="btn-complete-book" (click)="reserve(package.id)">در خواست رزرو</button>
+      <div *ngIf="package.prices.roomType" class="d-flex link-price">
+        <img src="assets/img/FAQ.svg" width="20" alt="">
+        <a class=" text-center"  (click)="openRoom(package.prices.roomType)">قیمت اتاق های دیگر</a>
+
+      </div>
+    </div>
+
+
   </div>
 </div>
 <!-----------------------------------------------mobile--------------------------------->
 <div class="thumbnail-mobile" *ngFor="let package of tourInfo.packages; let i = index">
   <div class="info-hotel-body">
     <div class="d-flex flex-column align-items-center">
-      <img class="img-hotel" [src]="package.hotel.thumbnail" alt="">
+      <img class="img-hotel" [src]="package.hotel.thumbnail" alt="" routerLink="/hotels/{{ package.hotel.slug }}">
       <div class="rate d-flex flex-column align-items-center">
         <div class="star-icon">
           <i class="icon-star" *ngFor="let star of getStars(package.hotel.stars)"></i>
         </div>
-        <strong class="info-bold">{{ package.services.name }}</strong>
+        <strong class="info-bold" routerLink="/hotels/{{ package.hotel.slug }}">{{ package.services.name }}</strong>
       </div>
 
 
@@ -82,7 +91,7 @@
     <div class="info-info-hotel">
       <div class="start-price">
         <span>شروع قیمت : </span>
-        <span class="price"> {{ getStarterPrice(i) | number}} تومان</span>
+        <span class="price"> {{ getStarterPrice(i) | round| sperator}} تومان</span>
       </div>
 
       <a href="">
@@ -108,38 +117,39 @@
       <div class="item">
         <span class="title">دو تخته</span>
         <span
-          class="text">تومان {{ defineTour ? (package.prices.twinRate | number) : (package.prices.twin | number) }}</span>
+          class="text">تومان {{ defineTour ? (package.prices.twinRate  |round | sperator) : (package.prices.twin |round | sperator) }}</span>
       </div>
       <div class="item" *ngIf="tourType">
         <span class="title">سه تخته</span>
         <span
-          class="text">تومان {{ defineTour ? (package.prices.tripleRate| number) : (package.prices.triple| number) }} </span>
+          class="text">تومان {{ defineTour ? (package.prices.tripleRate  | round| sperator) : (package.prices.triple  | round| sperator) }} </span>
       </div>
       <div class="item" *ngIf="tourType">
         <span class="title">چهارتخته</span>
         <span
-          class="text">تومان {{ defineTour ? (package.prices.quadRate| number) : (package.prices.quad| number) }}</span>
+          class="text">تومان {{ defineTour ? (package.prices.quadRate| round| sperator) : (package.prices.quad| round| sperator) }}</span>
       </div>
       <div class="item" *ngIf="!tourType">
         <span class="title">سینگل</span>
         <span
-          class="text">تومان {{ defineTour ? (package.prices.singleRate| number) : (package.prices.single| number) }}</span>
+          class="text">تومان {{ defineTour ? (package.prices.singleRate| round| sperator) : (package.prices.single| round| sperator) }}</span>
       </div>
       <div class="item" *ngIf="!tourType">
         <span class="title">کودک با تخت</span>
         <span
-          class="text">تومان {{ defineTour ? (package.prices.cwbRate| number) : (package.prices.cwb| number) }}</span>
+          class="text">تومان {{ defineTour ? (package.prices.cwbRate| round| sperator) : (package.prices.cwb| round| sperator) }}</span>
       </div>
       <div class="item" *ngIf="!tourType">
         <span class="title">کودک بدون تخت</span>
         <span
-          class="text">تومان {{ package.prices.cnb ? (+(package.prices.cnb.toString().split(',').join('')) | number) : 0 }}</span>
+          class="text">تومان {{ package.prices.cnb ? ((package.prices.cnb.toString().split(',').join('')) | round| sperator) : 0 }}</span>
       </div>
       <div class="item-one">
         <span class="title">سن کودک با تخت</span>
         <span class="text">{{ package.prices.age }}</span>
       </div>
       <button class="btn-complete-book" (click)="reserve(package.id)">در خواست رزرو</button>
+      <p class="text-danger" (click)="openRoom(package.prices.roomType)">قیمت اتاق های دیگر</p>
     </div>
 
   </div>

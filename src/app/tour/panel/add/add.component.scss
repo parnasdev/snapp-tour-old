@@ -14,7 +14,15 @@
   border-radius: 10px !important;
   overflow: hidden;
 }
-
+.checkbox input{
+  width: 15px;
+  height: 15px;
+  margin-right: 8px;
+  margin-top: 2px;
+}
+.checkbox label{
+  margin-right: 8px;
+}
 .info-tour-header {
   height: 50px;
   display: flex;

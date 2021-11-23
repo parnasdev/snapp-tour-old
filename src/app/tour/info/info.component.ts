@@ -117,11 +117,11 @@ export class InfoComponent implements OnInit {
     });
   }
 
-  getStarterPrice(): number {
+  getStarterPrice(): string {
     if (this.tourInfo.packages.length) {
       return this.tourInfo.defineTour ? this.tourInfo.packages[0].prices.twinRate : this.tourInfo.packages[0].prices.twin;
     } else {
-      return 0;
+      return '0';
     }
   }
 

@@ -14,6 +14,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
+  rnd = 0
 
   cities: CityResponseDTO[] = [];
   cityReq!: CityListRequestDTO;
@@ -21,6 +22,23 @@ export class SearchComponent implements OnInit {
   dateFC = new FormControl(new Date());
   Loading = false;
   date = '';
+  images = [
+    './assets/img/bg/bg-hamnavaz-1.jpg',
+    './assets/img/bg/bg-hamnavaz-2.jpg',
+    './assets/img/bg/bg-hamnavaz-3.jpg',
+    './assets/img/bg/bg-hamnavaz-4.jpg',
+    './assets/img/bg/bg-hamnavaz-5.jpg',
+    './assets/img/bg/bg-hamnavaz-6.jpg',
+    './assets/img/bg/bg-hamnavaz-7.jpg',
+    './assets/img/bg/bg-hamnavaz-8.jpg',
+    './assets/img/bg/bg-hamnavaz-9.jpg',
+    './assets/img/bg/bg-hamnavaz-10.jpg',
+    './assets/img/bg/bg-hamnavaz-11.jpg',
+    './assets/img/bg/bg-hamnavaz-12.jpg',
+    './assets/img/bg/bg-hamnavaz-13.jpg',
+    './assets/img/bg/bg-hamnavaz-14.jpg',
+    './assets/img/bg/bg-hamnavaz-15.jpg',
+  ]
 
   constructor(public cityApiService: CityApiService,
               public router: Router,
@@ -31,6 +49,7 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.rnd = Math.floor(Math.random() * 15);
     this.getCities();
   }
 

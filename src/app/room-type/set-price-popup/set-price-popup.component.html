@@ -12,7 +12,7 @@
     <div class="header-box">
       <div class="package-item">#</div>
       <div class="package-item">نام اتاق</div>
-      <div class="package-item">هزینه اتاق</div>
+      <div class="package-item">قیمت اتاق</div>
       <div></div>
     </div>
     <form [formGroup]="form"  action="" class="example-list">
@@ -27,17 +27,13 @@
           <div class="package-item">
             <select name="" id="" formControlName="name">
               <option *ngFor="let room of roomTypes"
-                      [value]="room.name">{{ room.name }}</option>
+                      [value]="room.name + '-' + room.label">{{ room.name }}</option>
             </select>
           </div>
-
           <div class="package-item">
             <input type="text" formControlName="price" mask="separator" thousandSeparator=",">
-            <!--          <div class="under-package-text d-flex align-items-center"-->
-            <!--               *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].twin > 0">-->
-            <!--            <p>{{ getData(i).twinRate.value | sperator }}</p>-->
-            <!--          </div>-->
           </div>
+          <i class="icon-cancel-1 text-danger" (click)="removePackage(i)"></i>
         </div>
       </div>
     </form>

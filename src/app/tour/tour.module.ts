@@ -11,6 +11,7 @@ import {ToolsModule} from "../tools/tools/tools.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import {ExpireTourComponent} from './expire-tour/expire-tour.component';
 import {CommonProjectModule} from "../common-project/common-project.module";
+import {PipesModule} from "../common-project/pipes/pipes.module";
 
 
 @NgModule({
@@ -25,16 +26,17 @@ import {CommonProjectModule} from "../common-project/common-project.module";
     InfoComponent,
     ExpireTourComponent
   ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    TourRoutingModule,
-    StoreModule,
-    SwiperModule,
-    NgxPaginationModule,
-    ToolsModule,
-    CommonProjectModule,
-  ], entryComponents: [ReservePopupComponent]
+    imports: [
+        CommonModule,
+        ReactiveFormsModule,
+        TourRoutingModule,
+        StoreModule,
+        SwiperModule,
+        NgxPaginationModule,
+        ToolsModule,
+        CommonProjectModule,
+        PipesModule,
+    ], entryComponents: [ReservePopupComponent]
 })
 export class TourModule {
 }

@@ -1,0 +1,45 @@
+.parent-room{
+
+}
+.header-box{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.header-box span{
+  background: var(--title-header);
+  height: 40px;
+  border-radius: 8px;
+  width: 95% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.body-box{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 12px;
+  border-bottom: 1px solid var(--title-header);
+}
+.body-box span{
+  height: 30px;
+  border-radius: 8px;
+  width: 48%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+.icon-cancel-1{
+  color: var(--red-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.icon-parent{
+  margin-bottom: 1rem;
+}

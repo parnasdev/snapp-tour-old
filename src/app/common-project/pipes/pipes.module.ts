@@ -3,15 +3,17 @@ import { CommonModule } from '@angular/common';
 import {SperatorPipe} from "./sperator.pipe";
 import {SafeHtmlPipe} from "./safe-html.pipe";
 import { TourStatusFilterPipe } from './tour-status-filter.pipe';
+import { RoundPipe } from './round.pipe';
 
 
 
 @NgModule({
-  declarations: [SperatorPipe,SafeHtmlPipe, TourStatusFilterPipe],
+  declarations: [SperatorPipe,SafeHtmlPipe, TourStatusFilterPipe, RoundPipe],
     exports: [
         SperatorPipe,
         SafeHtmlPipe,
-        TourStatusFilterPipe
+        TourStatusFilterPipe,
+        RoundPipe
     ],
   imports: [
     CommonModule

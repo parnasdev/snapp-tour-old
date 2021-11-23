@@ -50,7 +50,9 @@
                     </div>
                   </div>
                   <div class="mid-info-tour-special">
-                    <h3 class="title-tour-special">{{tour.title}}</h3>
+                    <a routerLink="/tours/{{ tour.endCity.slugEn }}/{{tour.slug}}">
+                      <h3 class="title-tour-special" >{{tour.title}}</h3>
+                    </a>
                     <div class="date-special">
                       <span class="from">{{calenderServices.convertDate(tour.transfers[0].dateTime, 'fa')}}</span>
                       <img src="assets/img/Up%20Down%201.svg" width="20" alt="">

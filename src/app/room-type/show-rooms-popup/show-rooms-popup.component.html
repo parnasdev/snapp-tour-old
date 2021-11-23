@@ -1,0 +1,13 @@
+<div class="parent-room d-flex flex-column">
+  <div class="w-100 d-flex justify-content-end icon-parent">
+    <i class="icon-cancel-1" (click)="dialogRef.close()"></i>
+  </div>
+  <div class="header-box">
+    <span>نام اتاق :</span>
+    <span>قیمت :</span>
+  </div>
+  <div class="body-box" *ngFor="let room of data">
+    <span style="color: var(--base-color);font-weight: 600">{{room.name.split('-')[1]}}</span>
+    <span> {{room.price | sperator }} تومان</span>
+  </div>
+</div>

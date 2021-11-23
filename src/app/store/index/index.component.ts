@@ -28,7 +28,7 @@ export class IndexComponent implements OnInit {
   isTablet;
   isLoading = false;
   @ViewChild('swiper', {static: false}) swiper?: SwiperComponent;
-
+  cityFC = new FormControl('')
   tours: TourListResDTO[] = [];
   specialTours: TourListResDTO[] = [];
   cities: CityResponseDTO[] = [];
@@ -105,7 +105,6 @@ export class IndexComponent implements OnInit {
     this.cityApi.getCities(req).subscribe((res: any) => {
       if (res.isDone) {
         this.cities = res.data;
-        this.rnd = Math.floor(Math.random() * this.cities.length);
 
       }
     }, (error: any) => {
@@ -113,9 +112,9 @@ export class IndexComponent implements OnInit {
     })
   }
 
-  getImage(city:string): string {
+  getImage(city: string): string {
     let img = ''
-    this.cities.forEach((x:any) => {
+    this.cities.forEach((x: any) => {
       if (city === x.name) {
         img = x.image
       }

@@ -1,5 +1,5 @@
 import {CityDTO, CityResponseDTO} from "./cityDTO";
-import {RoomTypePriceDTO, RoomTypeSetDTO} from "./roomTypeDTO";
+import {RoomTypeListDTO, RoomTypePriceDTO, RoomTypeSetDTO} from "./roomTypeDTO";
 import {PackageDTO} from "./hotelDTO";
 
 export interface TourListRequestDTO {
@@ -142,19 +142,19 @@ export interface DiscountsDTO {
 }
 
 export interface PricesDTO {
-  twin: number;
-  single: number;
-  cwb: number;
-  cnb: number;
+  twin: string;
+  single: string;
+  cwb: string;
+  cnb: string;
   quad: string;
   triple: string;
-  twinRate: number;
-  singleRate: number;
-  cwbRate: number;
-  cnbRate: number;
+  twinRate: string;
+  singleRate: string;
+  cwbRate: string;
+  cnbRate: string;
   quadRate: string;
   tripleRate: string;
-  ADLRate: number;
+  ADLRate: string;
   age: string;
   roomType: RoomTypePriceDTO[];
 }

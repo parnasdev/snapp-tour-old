@@ -6,6 +6,10 @@
           <label for="">{{tourType ? 'تور داخلی' : 'تور خارجی'}}</label>
           <h2>اطلاعات تور</h2>
         </div>
+        <div class="checkbox d-flex align-content-center">
+          <input formControlName="offered" type="checkbox">
+          <label for="">تور ویژه</label>
+        </div>
         <div class="left d-flex align-items-center">
           <div>
             <div class="selectdiv">
@@ -138,10 +142,7 @@
               <span class="text-danger">{{errorService.getError('expireDate')}}</span>
             </div>
           </div>
-          <div class="item-info">
-            <label for="">تور ویژه</label>
-            <input formControlName="offered" type="checkbox">
-          </div>
+
         </div>
       </div>
     </div>

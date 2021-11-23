@@ -31,7 +31,6 @@ export class SetPricePopupComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    debugger
     this.getRoomTypes();
     if (this.data && this.data.length > 0) {
       this.setFormArray();
@@ -39,7 +38,6 @@ export class SetPricePopupComponent implements OnInit {
   }
 
   setFormArray(): void {
-    debugger
     this.RoomForm.clear();
     this.data.forEach(x => {
       this.addRow(x);
@@ -55,6 +53,7 @@ export class SetPricePopupComponent implements OnInit {
     this.RoomForm.controls.forEach((item, index) => {
       this.tourDetail.push({
         name: item.value.name,
+        label: item.value.label,
         price: item.value.price
       });
     })
@@ -65,8 +64,9 @@ export class SetPricePopupComponent implements OnInit {
     this.setReq();
     this.roomTypeApi.getRoomTypes(this.req).subscribe((res: any) => {
       if (res.isDone) {
-        this.roomTypes = res.data;
-        if(this.data.length === 0) {
+        this.roomTypes = res.data.filter((x: any) => !x.isDefault);
+
+        if (this.data.length === 0) {
           this.addRow();
         }
       } else {
@@ -88,7 +88,6 @@ export class SetPricePopupComponent implements OnInit {
   removePackage(i: any) {
     this.RoomForm.removeAt(i);
   }
-
 
   setReq(): void {
     this.req = {

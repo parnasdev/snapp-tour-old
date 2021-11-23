@@ -9,13 +9,13 @@
             <div class="search">
               <div class="box-search">
                 <div class="inp-form">
-                  <select name="">
+                  <select name="" [formControl]="cityFC">
                     <option value="">شهر خود را انتخاب کنید *</option>
-                    <option>آنتالیا</option>
+                    <option *ngFor="let city of cities" [ngValue]="city">{{city.name}}</option>
                   </select>
                   <span class="text-danger"></span>
                 </div>
-                <button class="btn-search">جستجو کن !</button>
+                <button class="btn-search" (click)="search()">جستجو کن !</button>
               </div>
               <div class="share">
                 <a class="Navigation" href=""><img src="assets/img/Navigation.svg" width="25" alt=""></a>

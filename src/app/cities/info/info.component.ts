@@ -1,11 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {CityApiService} from "../../Core/Https/city-api.service";
 import {MessageService} from "../../Core/Services/message.service";
 import {Gallery, GalleryItem, ImageItem} from "ng-gallery";
-import {CityInfoResDTO} from "../../Core/Models/cityDTO";
+import {CityInfoResDTO, CityListRequestDTO, CityResponseDTO} from "../../Core/Models/cityDTO";
 import {TourListRequestDTO, TourListResDTO} from "../../Core/Models/tourDTO";
 import {TourApiService} from "../../Core/Https/tour-api.service";
+import {endWith} from "rxjs/operators";
+import {FormControl} from "@angular/forms";
 
 declare let $: any;
 
@@ -19,17 +21,23 @@ export class InfoComponent implements OnInit {
   info!: CityInfoResDTO;
   galleryId = 'myLightbox';
   items: GalleryItem[] = [];
+  cityFC = new FormControl();
   tabClicked = 'about'
   tours: TourListResDTO[] = [];
   show = false;
   isLoading = false;
+  cities: CityResponseDTO[] = [];
+  cityReq!: CityListRequestDTO;
+  Loading = false;
 
   constructor(public route: ActivatedRoute,
               public router: Router,
               public message: MessageService,
+              public cityApiService: CityApiService,
               public tourApi: TourApiService,
               public gallery: Gallery,
               public api: CityApiService) {
+
   }
 
   ngOnInit(): void {
@@ -64,6 +72,37 @@ export class InfoComponent implements OnInit {
         $(".question-tab").removeClass("tab-ul-list-fix")
       }
     })
+    this.getCities()
+  }
+
+  getCities(): void {
+    this.cityReq = {
+      type: null,
+      perPage: 20,
+      search: null,
+      hasTour: true,
+      hasHotel: false,
+    }
+    this.cityApiService.getCities(this.cityReq).subscribe((res: any) => {
+      if (res.isDone) {
+        this.cities = res.data
+      } else {
+        this.message.custom(res.message);
+      }
+      this.Loading = false;
+    }, (error: any) => {
+      this.Loading = false;
+    });
+  }
+
+
+  search(): void {
+    this.router.navigateByUrl('تور-' + `${this.cityFC.value.slug}`).then(m => {
+        // @ts-ignore
+      this.city = this.route.snapshot.paramMap.get('city')
+        this.checkCityInfoExist()
+      }
+    )
   }
 
   checkCityInfoExist(): void {
