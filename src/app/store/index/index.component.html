@@ -65,7 +65,7 @@
                       <span>شروع قیمت از :</span>
                     </div>
                     <strong class="price-tour-special" *ngIf="tour.minPrice === '0'">قیمتی ثبت نشده</strong>
-                    <strong class="price-tour-special" *ngIf="tour.minPrice !== '0'">{{tour.minPrice | sperator}}
+                    <strong class="price-tour-special" *ngIf="tour.minPrice !== '0'">{{tour.minPrice| round | sperator }}
                       تومان </strong>
                   </div>
                 </div>

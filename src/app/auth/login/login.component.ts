@@ -28,6 +28,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.session.isLoggedIn()) {
+      this.router.navigateByUrl('/panel')
+    }
   }
 
 

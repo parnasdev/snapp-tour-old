@@ -27,7 +27,7 @@
       <span class="setting">تنظیمات</span>
     </div>
     <div class="body-list-tour" *ngIf="tours.length > 0">
-      <div class="item" *ngFor="let tour of tours |tourStatusFilter : status | paginate: paginateConfig;let i = index">
+      <div class="item" *ngFor="let tour of tours| paginate: paginateConfig |tourStatusFilter : status ;let i = index">
         <span class="id">{{  tour.id}}</span>
         <span class="username">{{ tour.user.name + ' ' + tour.user.family }}</span>
         <span class="title-tour">{{ tour.title }}</span>
