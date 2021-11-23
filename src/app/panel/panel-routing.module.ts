@@ -49,6 +49,11 @@ const routes: Routes = [
       {
         path: 'roomType',
         loadChildren: () => import('../room-type/room-type.module').then(m => m.RoomTypeModule)
+      },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'tour'
       }
     ]
   }
