@@ -492,3 +492,63 @@ prs-services {
   width: 38%;
 }
 
+@media only screen and (max-width: 868px){
+  .info-tour-body .top {
+    flex-direction: column;
+  }
+  .item-info {
+    width: 100%;
+  }
+  .city-parent {
+    flex-direction: column;
+  }
+  .city-parent .mat-button-toggle-group {
+    width: 60% !important;
+    height: 32px;
+    margin-top: 8px;
+  }
+  .city-parent .selectdiv {
+    width: 100% !important;
+  }
+  .info-tour-body .bottom {
+    flex-direction: column;
+  }
+  prs-editor{
+    width: 100%;
+  }
+  .info-tour-body-upload {
+    width: 100%;
+    flex-direction: column;
+  }
+  .info-tour-body-upload .bottom-one, .info-tour-body-upload .top-one {
+    width: 100%;
+    margin-top: 12px;
+  }
+  .address-parent {
+    flex-direction: column;
+  }
+  prs-get-location{
+    width: 100% !important;
+    height: 180px !important;
+  }
+  .address-hotel {
+    width: 100%;
+    margin-top: 12px;
+  }
+  .address-parent textarea {
+    height: 180px !important;
+  }
+  .info-tour-body {
+    padding: 1rem !important;
+    width: 100% !important;
+  }
+  .info-tour-header {
+    height: auto;
+    padding: 8px 2rem;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .info-tour-header .left{
+    width: 100%;
+  }
+}
