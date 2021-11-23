@@ -18,11 +18,13 @@ export class SessionService {
         id: obj.user.id,
         birthDay: obj.user.birthDay,
         family: obj.user.family,
+        createdAt: obj.user.createdAt,
         name: obj.user.name,
         username: obj.user.username,
         phone: obj.user.phone,
         role: obj.user.role
-      }, token: obj.token
+      },
+      token: obj.token
     }
     localStorage.setItem('prs-hmz-user', JSON.stringify(this.user));
   }

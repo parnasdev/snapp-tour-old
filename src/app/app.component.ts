@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'prs-root',
@@ -11,6 +11,5 @@ export class AppComponent implements OnInit {
 
   constructor(public route: ActivatedRoute) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

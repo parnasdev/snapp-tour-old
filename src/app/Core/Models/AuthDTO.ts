@@ -15,6 +15,7 @@ export interface UserDTO {
   role: string;
   phone: string;
   username: string;
+  createdAt?: string;
   birthDay: string;
   family: string;
   name: string;
