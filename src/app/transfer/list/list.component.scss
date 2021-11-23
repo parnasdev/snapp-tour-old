@@ -163,3 +163,11 @@
   font-size: 13px !important;
   font-weight: 500 !important;
 }
+@media only screen and (max-width: 868px){
+  .table-list-tour {
+    overflow-x: auto !important;
+  }
+  .header-list-tour, .body-list-tour {
+    width: 500px;
+  }
+}

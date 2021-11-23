@@ -405,3 +405,42 @@
 .w-47{
   width: 47%;
 }
+:host::ng-deep .mat-checkbox-label{
+  font-family: IRANSans !important;
+}
+@media only screen and (max-width: 868px){
+  .info-tour-body {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: 100%;
+  }
+  .info-tour-body .top {
+    flex-direction: column;
+    width: 100%;
+  }
+  .item-info {
+    width: 100%;
+    margin-top: 1rem;
+  }
+  .bottom{
+    flex-direction: column;
+  }
+  :host::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
+    width: 93% !important;
+  }
+  .checkbox-parent {
+    grid-template-columns: 1fr 1fr;
+  }
+  .item-info-2 {
+    width: 100%;
+    flex-direction: column;
+  }
+  .item-info-2 .select-info {
+    width: 100%;
+    margin-top: 13px;
+  }
+  :host::ng-deep .checkbox-parent {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
