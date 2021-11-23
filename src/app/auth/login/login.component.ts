@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {AuthApiService} from "../../Core/Https/auth-api.service";
 import {AuthRequestDTO} from "../../Core/Models/AuthDTO";
 import {MessageService} from "../../Core/Services/message.service";
@@ -19,9 +19,16 @@ export class LoginComponent implements OnInit {
   req!: AuthRequestDTO
   isLoading = false;
 
+
+  formGroup: FormGroup = this.fb.group({
+    username: this.userNameFC,
+    password: this.passwordFC
+  })
+
   constructor(public api: AuthApiService,
               public message: MessageService,
               public errorService: ErrorsService,
+              public fb: FormBuilder,
               public router: Router,
               public session: SessionService,
               public checkError: CheckErrorService) {
