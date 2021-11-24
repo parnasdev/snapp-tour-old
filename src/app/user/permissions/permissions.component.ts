@@ -44,6 +44,8 @@ export class PermissionsComponent implements OnInit {
         }
       });
     });
+    this.changeChecked()
+
   }
 
   getUserPermissionWithId(): void {
