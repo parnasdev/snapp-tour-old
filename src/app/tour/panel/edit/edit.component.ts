@@ -71,6 +71,7 @@ export class EditComponent extends AddComponent implements OnInit {
     this.getInfo()
   }
 
+
   addOldRow(packageItem: TourPackageDTO = {} as TourPackageDTO) {
     if (!this.isEmpty(packageItem)) {
       const Tours = this.fb.group({
@@ -188,6 +189,21 @@ export class EditComponent extends AddComponent implements OnInit {
     }, (error: any) => {
       this.message.error();
     })
+  }
+
+  removeEditPackage(i: any) {
+    if (this.ToursForm.value[i].id) {
+      this.hotelApi.deletePackage(this.ToursForm.value[i].id).subscribe((res: any) => {
+        if (res.isDone) {
+          this.getInfo();
+        }
+      }, (error: any) => {
+        this.message.error();
+      })
+
+    } else {
+      this.ToursForm.removeAt(i);
+    }
   }
 
   setValue(): void {
