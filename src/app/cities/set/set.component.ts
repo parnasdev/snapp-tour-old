@@ -38,7 +38,6 @@ export class SetComponent implements OnInit {
 
   ngOnInit(): void {
     this.city = this.route.snapshot.paramMap.get('city')
-    console.log(this.city)
     this.getInfo();
   }
 
@@ -69,7 +68,6 @@ export class SetComponent implements OnInit {
         this.isLoading = false;
       })
     }
-
   }
 
   setValue(): void {
@@ -110,11 +108,10 @@ export class SetComponent implements OnInit {
       result.forEach(x => {
         this.images.push(x.path);
       })
-
     })
   }
 
   removeImage(index: any): void {
-    this.images.splice(index, -1);
+    this.images.splice(index, 1);
   }
 }
