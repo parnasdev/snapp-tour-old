@@ -71,4 +71,12 @@ export class TourApiService {
     const strUrl = environment.BACK_END_IP + `reserve/getReserves/${req.id}`;
     return this.http.post<Result<ReserveListResDTO>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
+
+  generateSlug(title:string): any {
+    const strUrl = this.serverControllerName + `generateSlug`;
+    const entity = {
+      title
+    }
+    return this.http.post<Result<string>>(strUrl,entity, this.publicService.getDefaultHeaders());
+  }
 }

@@ -59,6 +59,8 @@ export class AddComponent implements OnInit {
   destCityTypeFC = new FormControl(true);
   tourType = false;
 
+  isSlugGenerated = false;
+
   constructor(
     public hotelApi: HotelApiService,
     public cityApi: CityApiService,
@@ -82,6 +84,7 @@ export class AddComponent implements OnInit {
 ////formGroup
   form = this.fb.group({
     title: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+    slug: new FormControl('', [Validators.required]),
     stCity_id: new FormControl('', Validators.required),
     endCity_id: new FormControl('', Validators.required),
     nightNum: new FormControl('1', Validators.required),
@@ -267,6 +270,7 @@ export class AddComponent implements OnInit {
   fillObj() {
     this.tourReqDTO = {
       title: this.form.value.title,
+      slug: this.form.value.slug,
       stCity_id: this.form.value.stCity_id,
       endCity_id: this.form.value.endCity_id,
       nightNum: this.form.value.nightNum,
@@ -686,6 +690,23 @@ export class AddComponent implements OnInit {
         this.ToursForm.controls[index].controls.roomType.setValue(result);
       }
     })
+  }
+
+  generateSlug(): void {
+    if (!this.isSlugGenerated) {
+      this.tourApi.generateSlug(this.form.value.title).subscribe((res: any) => {
+        if (res.data) {
+          this.form.controls.slug.setValue(res.data);
+          this.isSlugGenerated = true
+        } else {
+          this.message.custom(res.message)
+        }
+      }, (error: any) => {
+        this.message.error()
+      })
+    } else {
+      this.form.controls.slug.setValue(this.form.value.title.split(' ').join('-'))
+    }
   }
 
 }

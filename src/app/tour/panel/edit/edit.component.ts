@@ -193,6 +193,7 @@ export class EditComponent extends AddComponent implements OnInit {
 
   setValue(): void {
     this.form.controls.title.setValue(this.info.title)
+    this.form.controls.slug.setValue(this.info.slug)
     this.form.controls.nightNum.setValue(this.info.nightNum)
     this.form.controls.dayNum.setValue(this.info.dayNum)
     this.form.controls.offered.setValue(this.info.offered)
@@ -230,7 +231,7 @@ export class EditComponent extends AddComponent implements OnInit {
       this.destTime = this.info.transfers[1].dateTime.split(' ')[1];
 
     }
-
+    this.isSlugGenerated = true;
     this.infoLoading = false;
 
   }

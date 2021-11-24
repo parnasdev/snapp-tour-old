@@ -36,6 +36,7 @@ export interface TourListResDTO {
 
 export interface TourSetRequestDTO {
   title: string;
+  slug: string;
   stCity_id: string;
   endCity_id: string;
   nightNum: number;
