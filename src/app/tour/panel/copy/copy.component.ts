@@ -17,10 +17,13 @@ export class CopyComponent extends EditComponent implements OnInit {
   submit() {
     if (this.form.controls.title.value === this.info.title) {
       this.form.controls.title.setValue(this.info.title + '-کپی');
+      this.form.controls.slug.setValue(this.form.value.title.split(' ').join('-'))
+
       this.form.controls.status.setValue('Draft');
     }
     this.convertTour();
     this.fillObj();
     this.call();
   }
+
 }

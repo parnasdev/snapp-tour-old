@@ -48,7 +48,7 @@
         <div class="top">
           <div class="item-info">
             <label for="">عنوان تور</label>
-            <input formControlName="title" type="text">
+            <input formControlName="title"  (change)="generateSlug()" type="text">
             <span class="required f-10" *ngIf="form.get('title')?.touched && form.get('title')?.invalid">
             این فیلد الزامی است
           </span>
@@ -112,7 +112,17 @@
           </div>
         </div>
         <div class="bottom">
-
+          <div class="item-info">
+            <label for="">نامک تور</label>
+            <input *ngIf="isSlugGenerated" formControlName="slug" type="text">
+            <span *ngIf="!isSlugGenerated">{{form.value.slug}}</span>
+            <span class="required f-10" *ngIf="form.get('slug')?.touched && form.get('slug')?.invalid">
+            این فیلد الزامی است
+            </span>
+            <div *ngIf="errorService.hasError('slug')">
+              <span class="text-danger">{{errorService.getError('slug')}}</span>
+            </div>
+          </div>
           <div class="item-info">
             <label for="">تاریخ ورود به هتل</label>
             <mat-form-field class="example-full-width" appearance="fill">

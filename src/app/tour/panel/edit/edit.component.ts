@@ -182,7 +182,6 @@ export class EditComponent extends AddComponent implements OnInit {
       if (res.isDone) {
         this.hotels = res.data;
         this.setValue();
-        debugger
         this.setFormArray(this.info.packages);
         this.disableFields();
       }
@@ -222,14 +221,12 @@ export class EditComponent extends AddComponent implements OnInit {
       this.originTimeFC.setValue(this.info.transfers[0].dateTime.split(' ')[1]);
       this.originTransferFC.setValue(+this.info.transfers[0].transfer_id);
       this.originTime = this.info.transfers[0].dateTime.split(' ')[1];
-
     }
     if (this.info.transfers.length > 1) {
       this.destDateFC.setValue(this.info.transfers[1].dateTime.split(' ')[0]);
       this.destTimeFC.setValue(this.info.transfers[1].dateTime.split(' ')[1]);
       this.destTransferFC.setValue(+this.info.transfers[1].transfer_id);
       this.destTime = this.info.transfers[1].dateTime.split(' ')[1];
-
     }
     this.isSlugGenerated = true;
     this.infoLoading = false;
@@ -237,7 +234,6 @@ export class EditComponent extends AddComponent implements OnInit {
   }
 
   setFormArray(packages: TourPackageDTO[]): void {
-    debugger
     this.ToursForm.clear();
     packages.forEach(x => {
       this.addOldRow(x);
