@@ -287,13 +287,10 @@ export class EditComponent extends AddComponent implements OnInit {
     })
   }
 
-  hotelChanged(index: number) {
-    this.getStars(index);
-  }
-
-  getHotelObj(index: number){
-      const hotelID= this.ToursForm.value[index].hotel_id;
-     return this.hotels.find(x => x.id === hotelID);
+  getIncomingHotel(index: number){
+    this.getStars(index)
+    // @ts-ignore
+    return this.hotels.find(x => x.id === this.ToursForm.controls[index].controls.hotel_id.value)
   }
 
 }

@@ -607,6 +607,7 @@ export class AddComponent implements OnInit {
   }
 
   drop(event: any) {
+    this.getStars(event.previousIndex);
     moveItemInArray(this.ToursForm.controls, event.previousIndex, event.currentIndex);
   }
 
@@ -670,6 +671,7 @@ export class AddComponent implements OnInit {
   }
 
   hotelChange(event: any, index: number) {
+    this.getStars(index);
     //@ts-ignore
     this.ToursForm.controls[index].controls.hotel_id.setValue(event.id);
   }

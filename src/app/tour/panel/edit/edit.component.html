@@ -407,24 +407,10 @@
               </div>
             </div>
             <div class="package-item">
-              <mat-form-field class="example-full-width" appearance="fill">
-                <input type="text"
-                       placeholder="هتل خود را انتخاب کنید"
-                       aria-label="Number"
-                       matInput
-                       formControlName="hotel_id"
-                       [matAutocomplete]="auto">
-                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                  <mat-option *ngFor="let option of filteredOptions | async"  [value]="option.name">
-        <span>
-            {{option.name}}
-        </span>
+              <prs-select-hotel [hotels]="hotels" [type]="tourType" [inCommingHotel]="getIncomingHotel(i)"
+                                [callHotel]="false" [isAdmin]="true"
+                                (hotelSelected)="hotelChange($event,i)"></prs-select-hotel>
 
-                  </mat-option>
-                </mat-autocomplete>
-                <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>
-
-              </mat-form-field>
               <div class="parent-icon under-package d-flex align-items-center">
                 <i class="icon-star text-warning" *ngFor="let star of getStars(i)"></i>
               </div>
@@ -486,7 +472,7 @@
               </div>
               <div style="flex-direction: row !important;" class="package-item">
                 <i class="icon-trash text-danger" (click)="removeEditPackage(i)"></i>
-                <img src="assets/img/FAQ.svg" width="18" class="ms-2"  (click)="openRoomPopup(i)">
+                <img src="assets/img/FAQ.svg" width="18" class="ms-2" (click)="openRoomPopup(i)">
               </div>
             </ng-template>
             <!--            foreign tour-->
@@ -527,7 +513,7 @@
               </div>
               <div style="flex-direction: row !important;" class="package-item">
                 <i class="icon-trash text-danger" (click)="removeEditPackage(i)"></i>
-                <img src="assets/img/FAQ.svg" width="18" class="ms-2"  (click)="openRoomPopup(i)">
+                <img src="assets/img/FAQ.svg" width="18" class="ms-2" (click)="openRoomPopup(i)">
               </div>
             </ng-template>
 

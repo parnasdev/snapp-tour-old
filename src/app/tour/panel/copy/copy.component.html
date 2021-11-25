@@ -405,7 +405,7 @@
               </div>
             </div>
             <div class="package-item">
-              <prs-select-hotel [hotels]="hotels" [type]="tourType" [inCommingHotel]="info.packages[i]?.hotel"
+              <prs-select-hotel [hotels]="hotels" [type]="tourType" [inCommingHotel]="getIncomingHotel(i)"
                                 [callHotel]="false" [isAdmin]="true"
                                 (hotelSelected)="hotelChange($event,i)"></prs-select-hotel>
               <div class="parent-icon under-package d-flex align-items-center">
