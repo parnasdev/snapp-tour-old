@@ -110,6 +110,7 @@ export interface TourPackageDTO {
   parent: null;
   user_id: null;
   offered: boolean;
+  order_item: number;
   id: number;
   hotel_id: string;
   services: {

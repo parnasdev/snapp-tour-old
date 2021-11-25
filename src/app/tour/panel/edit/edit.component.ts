@@ -3,6 +3,7 @@ import {CityTourInfoDTO, TourInfoDTO, TourPackageDTO} from "../../../Core/Models
 import {AddComponent} from "../add/add.component";
 import {HotelRequestDTO} from "../../../Core/Models/hotelDTO";
 import {CityListRequestDTO} from "../../../Core/Models/cityDTO";
+import {moveItemInArray} from "@angular/cdk/drag-drop";
 
 declare var $: any;
 
@@ -76,6 +77,7 @@ export class EditComponent extends AddComponent implements OnInit {
     if (!this.isEmpty(packageItem)) {
       const Tours = this.fb.group({
         parent: packageItem.parent,
+        order_item: packageItem.order_item,
         id: packageItem.id,
         offered: [packageItem.offered],
         user_id: packageItem.user_id,
@@ -108,6 +110,7 @@ export class EditComponent extends AddComponent implements OnInit {
       const Tours = this.fb.group({
         parent: null,
         user_id: null,
+        order_item: null,
         hotel_id: [0],
         services: [null],
         rate: [1],
@@ -286,6 +289,11 @@ export class EditComponent extends AddComponent implements OnInit {
 
   hotelChanged(index: number) {
     this.getStars(index);
+  }
+
+  getHotelObj(index: number){
+      const hotelID= this.ToursForm.value[index].hotel_id;
+     return this.hotels.find(x => x.id === hotelID);
   }
 
 }

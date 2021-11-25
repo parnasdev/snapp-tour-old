@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, Validators} from "@angular/forms";
+import {AbstractControl, FormArray, FormBuilder, FormControl, Validators} from "@angular/forms";
 import {ResponsiveService} from "../../../Core/Services/responsive.service";
 import {PublicService} from "../../../Core/Services/public.service";
 import {CalenderServices} from "../../../Core/Services/calender-service";
@@ -22,6 +22,7 @@ import {moveItemInArray} from '@angular/cdk/drag-drop';
 import {MatDialog} from "@angular/material/dialog";
 import {SetPricePopupComponent} from "../../../room-type/set-price-popup/set-price-popup.component";
 import {RoomTypeSetDTO} from "../../../Core/Models/roomTypeDTO";
+import {installTempPackage} from "@angular/cli/utilities/install-package";
 
 @Component({
   selector: 'prs-add',
@@ -142,6 +143,7 @@ export class AddComponent implements OnInit {
     const Tours = this.fb.group({
       parent: null,
       user_id: null,
+      order_item: null,
       hotel_id: [hotel_id],
       services: [null],
       rate: [1],
@@ -605,8 +607,6 @@ export class AddComponent implements OnInit {
   }
 
   drop(event: any) {
-    this.getStars(event.previousIndex);
-    // @ts-ignore
     moveItemInArray(this.ToursForm.controls, event.previousIndex, event.currentIndex);
   }
 
@@ -669,18 +669,17 @@ export class AddComponent implements OnInit {
     }
   }
 
-  hotelChange(event: any , index: number) {
+  hotelChange(event: any, index: number) {
     //@ts-ignore
     this.ToursForm.controls[index].controls.hotel_id.setValue(event.id);
   }
 
   openRoomPopup(index: number) {
-    debugger
     // @ts-ignore
     const data = this.ToursForm.controls[index].controls.roomType.value
     const dialog = this.dialog.open(SetPricePopupComponent, {
-     width: '50%',
-      height:'70%',
+      width: '50%',
+      height: '70%',
       data: data
     });
     dialog.afterClosed().subscribe((result: RoomTypeSetDTO[]) => {

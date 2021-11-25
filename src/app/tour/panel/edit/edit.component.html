@@ -407,9 +407,24 @@
               </div>
             </div>
             <div class="package-item">
-              <prs-select-hotel [hotels]="hotels" [type]="tourType" [inCommingHotel]="info.packages[i]?.hotel"
-                                [callHotel]="false" [isAdmin]="true"
-                                (hotelSelected)="hotelChange($event,i)"></prs-select-hotel>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <input type="text"
+                       placeholder="هتل خود را انتخاب کنید"
+                       aria-label="Number"
+                       matInput
+                       formControlName="hotel_id"
+                       [matAutocomplete]="auto">
+                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                  <mat-option *ngFor="let option of filteredOptions | async"  [value]="option.name">
+        <span>
+            {{option.name}}
+        </span>
+
+                  </mat-option>
+                </mat-autocomplete>
+                <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>
+
+              </mat-form-field>
               <div class="parent-icon under-package d-flex align-items-center">
                 <i class="icon-star text-warning" *ngFor="let star of getStars(i)"></i>
               </div>
