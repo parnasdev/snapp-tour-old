@@ -7,6 +7,7 @@ export interface TourListRequestDTO {
   paginate: boolean;
   search: string | null;
   isAdmin?: boolean | null;
+  month?: string | null;
   city: string | null;
   type: number | null;
   sortByDate: boolean;
@@ -184,11 +185,12 @@ export interface ReserveReqDTO {
   phone: string
   count: number
 }
+
 export interface ReserveListReqDTO {
-  id: number
   perPage?: number
   paginate: boolean
 }
+
 export interface ReserveListResDTO {
   count: number
   package: ReservePackageDTO
@@ -197,23 +199,26 @@ export interface ReserveListResDTO {
 
 
 export interface ReservePackageDTO {
-  id:         number;
-  tour:       Tour;
-  hotel:      HotelDTO;
-  services:   RateDTO;
-  rate:       RateDTO;
-  discounts:  DiscountsDTO;
-  prices:     PricesDTO;
-  status:     string;
+  id: number;
+  tour: Tour;
+  hotel: HotelDTO;
+  services: RateDTO;
+  rate: RateDTO;
+  discounts: DiscountsDTO;
+  prices: PricesDTO;
+  status: string;
   order_item: number;
-  offered:    boolean;
+  offered: boolean;
 }
+
 export interface RateDTO {
-  id:   number;
+  id: number;
   name: any;
 }
+
 export interface Tour {
   title: string;
-  slug:  string;
+  slug: string;
+  status: string;
   endCity: CityResponseDTO
 }

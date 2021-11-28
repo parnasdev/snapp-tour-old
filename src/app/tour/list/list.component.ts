@@ -7,6 +7,7 @@ import {ErrorsService} from "../../Core/Services/errors.service";
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {CityInfoResDTO, CityListRequestDTO, CityResponseDTO} from "../../Core/Models/cityDTO";
 import {CityApiService} from "../../Core/Https/city-api.service";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'prs-list',
@@ -19,10 +20,12 @@ export class ListComponent implements OnInit {
     isAdmin: false,
     paginate: true,
     search: null,
+    month: null,
     sortByDate: false,
     perPage: 20,
     type: null
   };
+  monthFC = new FormControl('0')
   tours: TourListResDTO[] = [];
   loading = false;
   city: string | null = '';
@@ -109,6 +112,7 @@ export class ListComponent implements OnInit {
       sortByDate: this.sortByDate,
       paginate: true,
       search: null,
+      month: this.monthFC.value === '0' ? null : this.monthFC.value,
       perPage: 20,
       type: null
     };

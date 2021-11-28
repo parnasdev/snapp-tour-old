@@ -17,11 +17,11 @@ const routes: Routes = [
   }, {
     path: 'edit/:slug',
     component: EditComponent
-  },{
+  }, {
     path: 'copy/:slug',
     component: CopyComponent
-  },{
-    path: 'reserve/list/:id',
+  }, {
+    path: 'reserves',
     component: ReserveListComponent
   }
 ];

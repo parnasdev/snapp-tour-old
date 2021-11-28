@@ -21,7 +21,6 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     ListComponent,
     ReservePopupComponent,
     ExpireTourComponent,
-
   ],
   exports: [
     InfoComponent,
