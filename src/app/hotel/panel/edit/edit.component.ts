@@ -134,8 +134,8 @@ export class EditComponent implements OnInit {
       location: this.locationFC.value,
       address: this.addressFC.value,
       coordinate: {
-        lat: this.lat,
-        lng: this.lng
+        lat: this.lat ? this.lat : 0,
+        lng: this.lng ? this.lng : 0
       },
       thumbnail: this.thumbnail,
       images: this.images,
@@ -201,8 +201,11 @@ export class EditComponent implements OnInit {
         this.message.custom(res.message)
       }
     }, (error: any) => {
-      this.message.error()
-
+      if (error.status === 422) {
+        this.message.custom('اطلاعات ارسال شده را کامل کنید')
+      } else {
+        this.message.error()
+      }
     })
   }
 

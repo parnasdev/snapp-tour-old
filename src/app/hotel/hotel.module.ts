@@ -9,6 +9,7 @@ import {GALLERY_CONFIG, GalleryModule} from 'ng-gallery';
 import {LIGHTBOX_CONFIG, LightboxModule} from "ng-gallery/lightbox";
 import {NgxPaginationModule} from "ngx-pagination";
 import {CommonProjectModule} from "../common-project/common-project.module";
+import {PipesModule} from "../common-project/pipes/pipes.module";
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import {CommonProjectModule} from "../common-project/common-project.module";
         StoreModule,
         NgxPaginationModule,
         CommonProjectModule,
+        PipesModule,
 
     ],providers:[
     {

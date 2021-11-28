@@ -12,7 +12,7 @@
 
   <div class="body-box-hotel" *ngFor="let package of tourInfo.packages">
     <div class="info-hotel-body">
-      <img class="img-hotel" [src]="package.hotel.thumbnail" alt="">
+      <img class="img-hotel" routerLink="/hotels/{{ package.hotel.slug }}" [src]="package.hotel.thumbnail" alt="">
       <div class="info-info-hotel">
         <a routerLink="/hotels/{{ package.hotel.slug }}" target="_blank">
           <h1 class="title-en">{{ package.hotel.nameEn }}</h1>
@@ -149,7 +149,7 @@
         <span class="text">{{ package.prices.age }}</span>
       </div>
       <button class="btn-complete-book" (click)="reserve(package.id)">در خواست رزرو</button>
-      <p class="text-danger" (click)="openRoom(package.prices.roomType)">قیمت اتاق های دیگر</p>
+      <p class="text-danger"  *ngIf="package.prices.roomType && package.prices.roomType.length > 0" (click)="openRoom(package.prices.roomType)">قیمت اتاق های دیگر</p>
     </div>
 
   </div>
