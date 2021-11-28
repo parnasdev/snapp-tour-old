@@ -12,6 +12,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ExpireTourComponent} from './expire-tour/expire-tour.component';
 import {CommonProjectModule} from "../common-project/common-project.module";
 import {PipesModule} from "../common-project/pipes/pipes.module";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import {PipesModule} from "../common-project/pipes/pipes.module";
     StoreModule,
     SwiperModule,
     FormsModule,
+    MatCheckboxModule,
     NgxPaginationModule,
     ToolsModule,
     CommonProjectModule,

@@ -149,7 +149,9 @@
 .date-create {
   direction: ltr;
 }
-
+.near-date label{
+  margin-right: 12px;
+}
 .btn-add-tour {
   background-color: var(--base-color);
   color: var(--white);

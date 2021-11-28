@@ -1,5 +1,5 @@
 main{
-  //background: lightseagreen url('../../../../assets/img/not-found.jpeg')no-repeat center center;
+  background: lightseagreen url('../../../assets/img/flat-lay-tickets-camera-arrangement.jpg')no-repeat center center;
   background-size: cover;
   animation: fadein 4s;
   -webkit-filter:brightness(.9);
@@ -60,7 +60,7 @@ main{
 .not-found {
   text-align: center;
   font-size: 30px;
-  color: var(--base-color);
+  color: var(--white);
   margin-top: 350px;
   font-weight: 500 !important;
   font-family: IRANSans !important;

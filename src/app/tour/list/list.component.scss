@@ -228,9 +228,16 @@
 }
 
 //end
-
-
-
+.near-date label{margin-right: 12px}
+.near-date{
+  margin-top: 12px;
+}
+.near-date strong{
+  margin-left: 8px;
+}
+.near-date strong i{
+  font-size: 20px;
+}
 @media only screen and (max-width: 868px){
   .box-search{
     width: 100% !important;

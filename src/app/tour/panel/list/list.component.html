@@ -11,9 +11,11 @@
       <mat-button-toggle value="Suspended">معلق/منقضی شده</mat-button-toggle>
       <mat-button-toggle value="Pending">در انتظار</mat-button-toggle>
     </mat-button-toggle-group>
+<div class="near-date">
+  <mat-checkbox [(ngModel)]="sortByDate" (ngModelChange)="getTours()"></mat-checkbox>
+  <label  for="">نزدیک ترین ها</label>
+</div>
 
-    <input type="checkbox" [(ngModel)]="sortByDate" (ngModelChange)="getTours()">
-    <label for="">نزدیک ترین ها</label>
 
     <a class="btn-add-tour" routerLink="/panel/tour/add">اضافه</a>
   </div>
