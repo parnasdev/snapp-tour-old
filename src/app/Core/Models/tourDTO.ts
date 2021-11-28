@@ -7,6 +7,7 @@ export interface TourListRequestDTO {
   paginate: boolean;
   search: string | null;
   isAdmin?: boolean | null;
+  month?: string | null;
   city: string | null;
   type: number | null;
   sortByDate: boolean;
