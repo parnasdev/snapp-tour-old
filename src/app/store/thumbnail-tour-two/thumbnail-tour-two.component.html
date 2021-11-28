@@ -12,6 +12,8 @@
 
   <div class="body-box-hotel" *ngFor="let package of tourInfo.packages">
     <div class="info-hotel-body">
+
+
       <img class="img-hotel" routerLink="/hotels/{{ package.hotel.slug }}" [src]="package.hotel.thumbnail" alt="">
       <div class="info-info-hotel">
         <a routerLink="/hotels/{{ package.hotel.slug }}" target="_blank">
@@ -24,7 +26,7 @@
         </div>
         <div class="location mt-1 d-flex align-items-center">
           <img src="assets/img/Location.svg" width="15" alt="">
-          <span>{{ package.hotel.location ? package.hotel.location : 'ثبت نشده'}}</span>
+          <span >{{ package.hotel.location ? package.hotel.location : 'ثبت نشده'}}</span>
         </div>
       </div>
 

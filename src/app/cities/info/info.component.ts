@@ -3,7 +3,7 @@ import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {CityApiService} from "../../Core/Https/city-api.service";
 import {MessageService} from "../../Core/Services/message.service";
 import {Gallery, GalleryItem, ImageItem} from "ng-gallery";
-import {CityInfoResDTO, CityListRequestDTO, CityResponseDTO} from "../../Core/Models/cityDTO";
+import { CityListRequestDTO, CityResponseDTO} from "../../Core/Models/cityDTO";
 import {TourListRequestDTO, TourListResDTO} from "../../Core/Models/tourDTO";
 import {TourApiService} from "../../Core/Https/tour-api.service";
 import {endWith} from "rxjs/operators";
@@ -18,7 +18,7 @@ declare let $: any;
 })
 export class InfoComponent implements OnInit {
   city = ''
-  info!: CityInfoResDTO;
+  info!: CityResponseDTO;
   galleryId = 'myLightbox';
   items: GalleryItem[] = [];
   cityFC = new FormControl();
@@ -140,7 +140,9 @@ export class InfoComponent implements OnInit {
       this.isLoading = false;
       if (res.isDone) {
         this.info = res.data
-        this.fillAlbum(this.info.images);
+        if (this.info.images) {
+          this.fillAlbum(this.info.images);
+        }
       } else {
         this.message.custom(res.messsage)
       }

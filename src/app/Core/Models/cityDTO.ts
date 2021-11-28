@@ -17,20 +17,15 @@ export interface CitySetRequestDTO {
 export interface CityResponseDTO {
   name: string;
   id: number;
-  type: number
-  image: string
+  type: number | boolean
+  image?: string
   slug: string
   slugEn: string
-}
-export interface CityInfoResDTO {
-  description: string
-  id: number
-  images: string[]
-  name: string
-  nameEn: string
-  slug: string
-  type: boolean
-  slugEn: string
+  description?: string
+  images?: string[]
+  nameEn?: string
+
+
 }
 
 

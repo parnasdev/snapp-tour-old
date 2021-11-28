@@ -8,20 +8,17 @@
           <h1>انتخاب بهترین تور فقط با یک کلیک !</h1>
           <div class="box-search">
             <div class="inp-form">
-              <select name="" [formControl]="cityFC" (change)="cityChanged()">
-                <option value="">شهر خود را انتخاب کنید *</option>
-                <option *ngFor="let city of cities" [ngValue]="city">{{city.name}}</option>
-              </select>
+              <prs-select-city  [hasTour]="true" [inCommingCity]="cityFC.value" (citySelected)="citySelected($event)"
+                               [cities]="cities"></prs-select-city>
               <span class="text-danger">{{errorService.getError('city_id')}}</span>
             </div>
             <div class="inp-form">
 <!--              <select name="" id="">-->
 <!--                <option value="">چه ماهی می خواهید سفر کنید ؟</option>-->
 <!--              </select>-->
-              <mat-form-field class="example-full-width" appearance="fill">
-                <input matInput [matDatepicker]="picker1" [formControl]="dateFC" (click)="picker1.open()">
-                <mat-datepicker  #picker1></mat-datepicker>
-              </mat-form-field>
+              <select [formControl]="monthFC" name="">
+                <option *ngFor="let month of months" [ngValue]="month">{{month.title}}</option>
+              </select>
             </div>
             <button class="btn-search" (click)="search()">جستجو کن !</button>
           </div>

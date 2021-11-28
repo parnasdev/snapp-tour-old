@@ -5,9 +5,9 @@ import {MessageService} from "../../Core/Services/message.service";
 import {CheckErrorService} from "../../Core/Services/check-error.service";
 import {ErrorsService} from "../../Core/Services/errors.service";
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
-import {CityInfoResDTO, CityListRequestDTO, CityResponseDTO} from "../../Core/Models/cityDTO";
+import { CityListRequestDTO, CityResponseDTO} from "../../Core/Models/cityDTO";
 import {CityApiService} from "../../Core/Https/city-api.service";
-import {FormControl} from "@angular/forms";
+import {FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'prs-list',
@@ -25,13 +25,14 @@ export class ListComponent implements OnInit {
     perPage: 20,
     type: null
   };
-  monthFC = new FormControl('0')
+
   tours: TourListResDTO[] = [];
   loading = false;
-  city: string | null = '';
+  cityFC = new FormControl(null, Validators.required);
+  city = ''
   p = 1
   cities: CityResponseDTO[] = []
-  cityInfo: CityInfoResDTO = {
+  cityInfo: CityResponseDTO = {
     description: '',
     id: 0,
     images: [],
@@ -39,10 +40,26 @@ export class ListComponent implements OnInit {
     name: '',
     nameEn: '',
     slug: '',
-    type: false,
+    type: 1,
   };
   sortByDate = false;
 
+  months = [
+    {id: 0,title: 'چه ماهی می خواهید سفر کنید ؟'},
+    {id: 4,title: 'فروردین'},
+    {id: 5,title: 'اردیبهشت'},
+    {id: 6,title: 'خرداد'},
+    {id: 7,title: 'تیر'},
+    {id: 8,title: 'مرداد'},
+    {id: 9,title: 'شهریور'},
+    {id: 10,title: 'مهر'},
+    {id: 11,title: 'آبان'},
+    {id: 12,title: 'آذر'},
+    {id: 1,title: 'دی'},
+    {id: 2,title: 'بهمن'},
+    {id: 3,title: 'اسفند'},
+  ]
+  monthFC = new FormControl(this.months[0])
   constructor(public tourApiService: TourApiService,
               public route: ActivatedRoute,
               public checkErrorService: CheckErrorService,
@@ -60,18 +77,24 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     window.scrollTo(0, 0)
-    // this.getData()
+
   }
 
   getData(): void {
+    // @ts-ignore
     this.city = this.route.snapshot.paramMap.get('city') ? this.route.snapshot.paramMap.get('city') : null;
+    this.route.queryParams.subscribe(params => {
+      const month = params['month'];
+      if (month) {
+        this.monthFC.setValue(this.months.find(x => x.title === month))
+      }
+    })
     this.getCities()
     if (this.city) {
       this.getCity();
     } else {
       this.getTours()
     }
-
   }
 
   getCities(): void {
@@ -85,6 +108,7 @@ export class ListComponent implements OnInit {
     this.cityApi.getCities(req).subscribe((res: any) => {
       if (res.isDone) {
         this.cities = res.data;
+        this.cityFC.setValue(this.cities.find(x => x.slugEn === this.city))
       }
     }, (error: any) => {
       this.message.error()
@@ -92,16 +116,31 @@ export class ListComponent implements OnInit {
   }
 
   citySelected(city: CityResponseDTO): void {
-    this.cityInfo = {
-      description: '',
-      id: city.id,
-      images: [],
-      slugEn: city.slugEn,
-      name: city.name,
-      nameEn: '',
-      slug: city.slug,
-      type: city.type !== 1,
+    if (city) {
+      this.cityInfo = {
+        description: '',
+        id: city.id,
+        images: [],
+        slugEn: city.slugEn,
+        name: city.name,
+        nameEn: '',
+        slug: city.slug,
+        type: city.type !== 1,
+      }
+    }else {
+      this.cityInfo = {
+        description: '',
+        id: 0,
+        images: [],
+        slugEn: '',
+        name: '',
+        nameEn: '',
+        slug: '',
+        type: false,
+      }
     }
+
+    this.cityFC.setValue(city)
   }
 
   getTours(): void {
@@ -112,7 +151,7 @@ export class ListComponent implements OnInit {
       sortByDate: this.sortByDate,
       paginate: true,
       search: null,
-      month: this.monthFC.value === '0' ? null : this.monthFC.value,
+      month: this.monthFC.value.id === 0 ? null : this.monthFC.value.id,
       perPage: 20,
       type: null
     };
@@ -146,7 +185,18 @@ export class ListComponent implements OnInit {
     }
   }
 
-  search(): void {
-    this.router.navigateByUrl(`/tours/${this.cityInfo.slugEn}`);
+  search() {
+    if (this.monthFC.value.id === 0 && this.cityFC.invalid) {
+      this.router.navigate([`/tours`])
+    } else {
+      if (this.monthFC.value.id === 0 && this.cityFC.valid) {
+        this.router.navigate([`/tours/${this.cityFC.value.slugEn}`])
+      } else if (this.monthFC.value.id !== 0 && this.cityFC.invalid) {
+        this.router.navigate([`/tours/`], {queryParams: {month: this.monthFC.value.title}})
+      } else {
+        this.router.navigate([`/tours/${this.cityFC.value.slugEn}`], {queryParams: {month: this.monthFC.value.title}})
+      }
+    }
+
   }
 }

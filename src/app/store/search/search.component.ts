@@ -18,7 +18,7 @@ export class SearchComponent implements OnInit {
 
   cities: CityResponseDTO[] = [];
   cityReq!: CityListRequestDTO;
-  cityFC = new FormControl('', Validators.required);
+  cityFC = new FormControl(null, Validators.required);
   dateFC = new FormControl(new Date());
   Loading = false;
   date = '';
@@ -39,6 +39,22 @@ export class SearchComponent implements OnInit {
     './assets/img/bg/bg-hamnavaz-14.jpg',
     './assets/img/bg/bg-hamnavaz-15.jpg',
   ]
+  months = [
+    {id: 0, title: 'چه ماهی می خواهید سفر کنید ؟'},
+    {id: 4, title: 'فروردین'},
+    {id: 5, title: 'اردیبهشت'},
+    {id: 6, title: 'خرداد'},
+    {id: 7, title: 'تیر'},
+    {id: 8, title: 'مرداد'},
+    {id: 9, title: 'شهریور'},
+    {id: 10, title: 'مهر'},
+    {id: 11, title: 'آبان'},
+    {id: 12, title: 'آذر'},
+    {id: 1, title: 'دی'},
+    {id: 2, title: 'بهمن'},
+    {id: 3, title: 'اسفند'},
+  ]
+  monthFC = new FormControl(this.months[0])
 
   constructor(public cityApiService: CityApiService,
               public router: Router,
@@ -79,7 +95,21 @@ export class SearchComponent implements OnInit {
   }
 
   search() {
-    this.router.navigate(['tours/' + this.cityFC.value.slugEn]);
+    if (this.monthFC.value.id === 0 && this.cityFC.invalid) {
+      this.router.navigate([`/tours`])
+    } else {
+      if (this.monthFC.value.id === 0 && this.cityFC.valid) {
+        this.router.navigate([`/tours/${this.cityFC.value.slugEn}`])
+      } else if (this.monthFC.value.id !== 0 && this.cityFC.invalid) {
+        this.router.navigate([`/tours/`], {queryParams: {month: this.monthFC.value.title}})
+      } else {
+        this.router.navigate([`/tours/${this.cityFC.value.slugEn}`], {queryParams: {month: this.monthFC.value.title}})
+      }
+    }
+
+  }
+  citySelected(city: CityResponseDTO): void {
+    this.cityFC.setValue(city)
   }
 
 }

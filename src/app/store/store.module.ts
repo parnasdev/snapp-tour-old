@@ -26,6 +26,8 @@ import {LoadingComponent} from './loading/loading.component';
 import {TourModule} from "../tour/tour.module";
 import {LightboxModule} from "ng-gallery/lightbox";
 import {GalleryModule} from "ng-gallery";
+import {CommonProjectModule} from "../common-project/common-project.module";
+import {MatBadgeModule} from '@angular/material/badge';
 
 @NgModule({
   declarations: [
@@ -67,6 +69,8 @@ import {GalleryModule} from "ng-gallery";
     PipesModule,
     LightboxModule,
     GalleryModule,
+    CommonProjectModule,
+    MatBadgeModule,
   ]
 })
 export class StoreModule {

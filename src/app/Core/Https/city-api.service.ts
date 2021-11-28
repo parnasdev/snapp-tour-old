@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {PublicService} from "../Services/public.service";
 import {environment} from "../../../environments/environment";
 import {Result} from "../Models/result";
-import {CityInfoResDTO, CityListRequestDTO, CityResponseDTO, CitySetRequestDTO} from "../Models/cityDTO";
+import { CityListRequestDTO, CityResponseDTO, CitySetRequestDTO} from "../Models/cityDTO";
 
 @Injectable({
   providedIn: 'root'
@@ -45,7 +45,7 @@ export class CityApiService {
   getCity(name: string): any {
     const strUrl = this.serverControllerName + `getCity/${name}`;
 
-    return this.http.get<Result<CityInfoResDTO>>(strUrl, this.publicService.getDefaultHeaders());
+    return this.http.get<Result<CityResponseDTO>>(strUrl, this.publicService.getDefaultHeaders());
   }
 
 }

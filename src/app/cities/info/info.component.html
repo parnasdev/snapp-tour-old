@@ -42,12 +42,12 @@
                   <div class="details-text">
                     <div class="parent-gallery">
                       <div class="right-gallery">
-                        <img class="top-right" [lightbox]="0" [gallery]="galleryId" [src]="info.images[0]" alt="">
-                        <img class="left-right" [lightbox]="1" [gallery]="galleryId" [src]="info.images[1]" alt="">
-                        <img class="bottom-right" [lightbox]="2" [gallery]="galleryId" [src]="info.images[2]" alt="">
-                        <img class="bottom-left" [lightbox]="3" [gallery]="galleryId" [src]="info.images[3]" alt="">
+                        <img class="top-right" [lightbox]="0" [gallery]="galleryId" *ngIf="info.images" [src]="info.images[0]" alt="">
+                        <img class="left-right" [lightbox]="1" [gallery]="galleryId" *ngIf="info.images" [src]="info.images[1]" alt="">
+                        <img class="bottom-right" [lightbox]="2" [gallery]="galleryId" *ngIf="info.images" [src]="info.images[2]" alt="">
+                        <img class="bottom-left" [lightbox]="3" [gallery]="galleryId" *ngIf="info.images" [src]="info.images[3]" alt="">
                       </div>
-                      <div class="left-gallery" [style.background-image]="'url(' + info.images[0] + ')'">
+                      <div class="left-gallery" *ngIf="info.images" [style.background-image]="'url(' + info.images[0] + ')'">
                         <div class="parent-view-all-photo">
                         </div>
                       </div>
