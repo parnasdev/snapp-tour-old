@@ -32,11 +32,13 @@ export class ReserveListComponent implements OnInit {
   }
 
   getReserves(): void {
+    this.loading = true;
     const req: ReserveListReqDTO = {
       paginate: true,
-      perPage: 20
+      perPage: 15
     }
-    this.api.getReserves(req).subscribe((res: any) => {
+    this.api.getReserves(req, this.p).subscribe((res: any) => {
+      this.loading = false;
       if (res.isDone) {
         this.list = res.data
         this.paginate = res.paginate;
@@ -49,6 +51,7 @@ export class ReserveListComponent implements OnInit {
         this.message.custom(res.message);
       }
     }, (error: any) => {
+      this.loading = false;
       this.message.error()
     })
   }

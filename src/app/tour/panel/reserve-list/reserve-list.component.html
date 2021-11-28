@@ -2,13 +2,14 @@
 
 <div class="list-tour">
   <div class="title" *ngIf="list.length > 0">
-    <h2> لیست رزروها{{' ' + list[0].package.tour.title}}</h2>
+    <h2> لیست رزروها</h2>
   </div>
   <div class="table-list-tour table-list-tour-desktop">
     <div class="header-list-tour">
       <span class="id">#</span>
       <span class="title-tour">نام هتل</span>
       <span class="from-to">شماره همراه مسافر</span>
+      <span class="from-to">تور</span>
       <span class="day">تعداد مسافر</span>
       <span class="username">شهر مقصد</span>
 <!--      <span class="date-create">تاریخ ایجاد تور</span>-->
@@ -21,6 +22,7 @@
         <span class="id">{{ i + 1 }}</span>
         <span class="title-tour">{{ tour.package.hotel.name }}</span>
         <span class="from-to">{{ tour.phone }}</span>
+        <span class="from-to">{{ tour.package.tour.title}}</span>
         <span class="day">{{ tour.count }}</span>
         <span class="username">{{ tour.package.tour.endCity.name}}</span>
         <div class="button-setting">
