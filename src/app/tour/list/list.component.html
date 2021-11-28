@@ -54,6 +54,10 @@
           </div>
           <div class="tour-list" *ngIf="tours.length > 0">
             <div class="near-date">
+              <strong>
+                <i class="icon-filter"></i>
+                فیلترها :
+              </strong>
               <mat-checkbox [(ngModel)]="sortByDate" (ngModelChange)="getTours()"></mat-checkbox>
               <label for="">نزدیکترین</label>
 
