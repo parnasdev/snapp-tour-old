@@ -123,6 +123,7 @@ export class InfoComponent implements OnInit {
       paginate: false,
       limit: 5,
       perPage: 10,
+      sortByDate:false,
       search: '',
       type: null
     }

@@ -12,7 +12,6 @@ import {FormControl} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";
 import {AlertDialogComponent, AlertDialogDTO} from "../../../common-project/alert-dialog/alert-dialog.component";
 import {LogsComponent} from "../logs/logs.component";
-
 declare let $: any;
 
 @Component({
@@ -25,6 +24,7 @@ export class ListComponent implements OnInit {
   tourReq: TourListRequestDTO = {
     city: null,
     paginate: true,
+    sortByDate: false,
     isAdmin: true,
     search: '',
     perPage: 20,
@@ -38,8 +38,7 @@ export class ListComponent implements OnInit {
   originCities: CityResponseDTO[] = []
   originCityTypeFC = new FormControl(true);
   p = 1;
-
-
+  sortByDate = false
   constructor(public tourApiService: TourApiService,
               public cityApi: CityApiService,
               public dialog: MatDialog,
@@ -60,6 +59,15 @@ export class ListComponent implements OnInit {
 
   getTours(): void {
     this.loading = true;
+    this.tourReq = {
+      city: null,
+      paginate: true,
+      sortByDate: this.sortByDate,
+      isAdmin: true,
+      search: '',
+      perPage: 20,
+      type: null
+    };
     this.tourApiService.getTours(this.tourReq, this.p).subscribe((res: any) => {
       if (res.isDone) {
         this.tours = res.data;

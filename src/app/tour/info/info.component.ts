@@ -103,7 +103,7 @@ export class InfoComponent implements OnInit {
 
   getTourInfo(): void {
     this.loading = true;
-    this.tourApiService.getTour(this.tourSlug).subscribe((res: any) => {
+    this.tourApiService.getTour(this.tourSlug,true).subscribe((res: any) => {
       if (res.isDone) {
         this.tourInfo = res.data
       } else {

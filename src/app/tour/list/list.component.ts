@@ -19,6 +19,7 @@ export class ListComponent implements OnInit {
     isAdmin: false,
     paginate: true,
     search: null,
+    sortByDate: false,
     perPage: 20,
     type: null
   };
@@ -37,6 +38,7 @@ export class ListComponent implements OnInit {
     slug: '',
     type: false,
   };
+  sortByDate = false;
 
   constructor(public tourApiService: TourApiService,
               public route: ActivatedRoute,
@@ -63,7 +65,7 @@ export class ListComponent implements OnInit {
     this.getCities()
     if (this.city) {
       this.getCity();
-    }else {
+    } else {
       this.getTours()
     }
 
@@ -102,8 +104,9 @@ export class ListComponent implements OnInit {
   getTours(): void {
     this.loading = true;
     this.tourReq = {
-      city: this.cityInfo.name=== '' ? null : this.cityInfo.name,
+      city: this.cityInfo.name === '' ? null : this.cityInfo.name,
       isAdmin: false,
+      sortByDate: this.sortByDate,
       paginate: true,
       search: null,
       perPage: 20,

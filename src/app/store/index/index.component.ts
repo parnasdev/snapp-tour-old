@@ -167,6 +167,7 @@ export class IndexComponent implements OnInit {
       paginate: false,
       limit: 5,
       perPage: 10,
+      sortByDate: false,
       search: '',
       type: null
     }
@@ -182,6 +183,7 @@ export class IndexComponent implements OnInit {
       city: null,
       paginate: false,
       limit: 7,
+      sortByDate: false,
       perPage: 10,
       offered: true,
       search: '',
