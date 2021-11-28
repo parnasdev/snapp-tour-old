@@ -47,8 +47,13 @@ export class TourApiService {
     return this.http.delete<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
   }
 
-  getTour(title: string): any {
-    const strUrl = this.serverControllerName + `getTour/${title}`;
+  getTour(title: string, view: boolean = false): any {
+    let strUrl = ''
+    if (view) {
+      strUrl = this.serverControllerName + `getTour/${title}?view=true`;
+    } else {
+      strUrl = this.serverControllerName + `getTour/${title}`;
+    }
     return this.http.get<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
   }
 
@@ -72,11 +77,11 @@ export class TourApiService {
     return this.http.post<Result<ReserveListResDTO>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
 
-  generateSlug(title:string): any {
+  generateSlug(title: string): any {
     const strUrl = this.serverControllerName + `generateSlug`;
     const entity = {
       title
     }
-    return this.http.post<Result<string>>(strUrl,entity, this.publicService.getDefaultHeaders());
+    return this.http.post<Result<string>>(strUrl, entity, this.publicService.getDefaultHeaders());
   }
 }

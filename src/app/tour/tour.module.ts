@@ -8,7 +8,7 @@ import {ListComponent} from './list/list.component';
 import {NgxPaginationModule} from "ngx-pagination";
 import {ReservePopupComponent} from './reserve-popup/reserve-popup.component';
 import {ToolsModule} from "../tools/tools/tools.module";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ExpireTourComponent} from './expire-tour/expire-tour.component';
 import {CommonProjectModule} from "../common-project/common-project.module";
 import {PipesModule} from "../common-project/pipes/pipes.module";
@@ -26,17 +26,18 @@ import {PipesModule} from "../common-project/pipes/pipes.module";
     InfoComponent,
     ExpireTourComponent
   ],
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        TourRoutingModule,
-        StoreModule,
-        SwiperModule,
-        NgxPaginationModule,
-        ToolsModule,
-        CommonProjectModule,
-        PipesModule,
-    ], entryComponents: [ReservePopupComponent]
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    TourRoutingModule,
+    StoreModule,
+    SwiperModule,
+    FormsModule,
+    NgxPaginationModule,
+    ToolsModule,
+    CommonProjectModule,
+    PipesModule,
+  ], entryComponents: [ReservePopupComponent]
 })
 export class TourModule {
 }

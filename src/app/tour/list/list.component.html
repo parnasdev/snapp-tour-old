@@ -7,6 +7,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-10 m-auto tour-parent">
+          <input type="checkbox" [(ngModel)]="sortByDate" (ngModelChange)="getTours()">
           <div class="search">
             <div class="box-search">
               <div class="inp-form">

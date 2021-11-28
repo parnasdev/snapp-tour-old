@@ -9,6 +9,7 @@ export interface TourListRequestDTO {
   isAdmin?: boolean | null;
   city: string | null;
   type: number | null;
+  sortByDate: boolean;
   limit?: number;
   offered?: boolean;
 }
