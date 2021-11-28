@@ -14,6 +14,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {NgxPaginationModule} from "ngx-pagination";
 import {StoreModule} from "../../store/store.module";
+import {PipesModule} from "../../common-project/pipes/pipes.module";
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import {StoreModule} from "../../store/store.module";
         BarRatingModule,
         NgxPaginationModule,
         StoreModule,
+        PipesModule,
     ]
 })
 export class HotelPanelModule {

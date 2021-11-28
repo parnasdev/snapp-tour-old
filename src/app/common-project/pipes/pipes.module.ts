@@ -13,7 +13,7 @@ import { RoundPipe } from './round.pipe';
         SperatorPipe,
         SafeHtmlPipe,
         TourStatusFilterPipe,
-        RoundPipe
+        RoundPipe,
     ],
   imports: [
     CommonModule

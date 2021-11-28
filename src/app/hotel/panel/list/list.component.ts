@@ -6,7 +6,7 @@ import {CommonApiService} from "../../../Core/Https/common-api.service";
 import {SessionService} from "../../../Core/Services/session.service";
 import {HotelListRes, HotelRequestDTO} from "../../../Core/Models/hotelDTO";
 import {FormControl} from "@angular/forms";
-import {CityListRequestDTO, CityResponseDTO} from "../../../Core/Models/cityDTO";
+import {CityResponseDTO} from "../../../Core/Models/cityDTO";
 import {CityApiService} from "../../../Core/Https/city-api.service";
 import {AlertDialogComponent, AlertDialogDTO} from "../../../common-project/alert-dialog/alert-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
@@ -17,7 +17,7 @@ import {MatDialog} from "@angular/material/dialog";
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  cityFC = new FormControl(1);
+  cityFC = new FormControl('');
   hotelReq: HotelRequestDTO = {
     isAdmin: true,
     paginate: true,
@@ -27,16 +27,14 @@ export class ListComponent implements OnInit {
   citiesResponse: CityResponseDTO[] = []
   hotelList: HotelListRes[] = [];
   cityType = false;
-
+  keywordFC = new FormControl('');
   isLoading = false;
 
   paginateConfig: any;
   paginate: any;
   p = 1;
 
-  constructor(private route: ActivatedRoute,
-              private router: Router,
-              public dialog: MatDialog,
+  constructor(public dialog: MatDialog,
               public hotelApi: HotelApiService,
               public message: MessageService,
               public cityApiService: CityApiService,
@@ -55,8 +53,8 @@ export class ListComponent implements OnInit {
     this.hotelReq = {
       isAdmin: true,
       paginate: true,
-      city: +this.cityFC.value,
-      search: null
+      city: this.cityFC.value === '' ? null : this.cityFC.value,
+      search: this.keywordFC.value
     }
     this.hotelApi.getHotels(this.hotelReq, this.p).subscribe((res: any) => {
       this.isLoading = false;
@@ -93,7 +91,11 @@ export class ListComponent implements OnInit {
   }
 
   getCitySelected(item: any): void {
-    this.cityFC.setValue(item.id);
+    if (item) {
+      this.cityFC.setValue(item.id);
+    }else {
+      this.cityFC.setValue('');
+    }
     this.getList()
   }
 
