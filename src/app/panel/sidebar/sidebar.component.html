@@ -32,6 +32,7 @@
           <ul class="under-menu-ul">
             <li *ngIf="checkItemPermission('Tour.create')"><a routerLink="/panel/tour/add">اضافه کردن تور</a></li>
             <li *ngIf="checkItemPermission('Tour.read')"><a routerLink="/panel/tour">لیست تورها</a></li>
+            <li *ngIf="checkItemPermission('Tour.read')"><a routerLink="/panel/tour/reserves">لیست رزروها</a></li>
             <li *ngIf="checkItemPermission('Tour.read')"><a (click)="showMessage()">تورهای ویژه</a></li>
           </ul>
         </div>

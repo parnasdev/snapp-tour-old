@@ -25,7 +25,8 @@ import {CopyComponent} from './copy/copy.component';
 import {NgxPaginationModule} from "ngx-pagination";
 import {LogsComponent} from "./logs/logs.component";
 import {StoreModule} from "../../store/store.module";
-import { ReserveListComponent } from './reserve-list/reserve-list.component';
+import {ReserveListComponent} from './reserve-list/reserve-list.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 @NgModule({
@@ -35,25 +36,26 @@ import { ReserveListComponent } from './reserve-list/reserve-list.component';
     LogsComponent,
     CopyComponent,
     ReserveListComponent],
-    imports: [
-        CommonModule,
-        TourPanelRoutingModule,
-        FormsModule,
-        MatButtonToggleModule,
-        ReactiveFormsModule,
-        MatDatepickerModule,
-        DragDropModule,
-        MatFormFieldModule,
-        MatNativeDateModule,
-        MatInputModule,
-        MaterialModule,
-      CommonProjectModule,
-        NgxMaskModule.forRoot(maskConfig),
-        ToolsModule,
-        PipesModule,
-        NgxPaginationModule,
-        StoreModule,
-    ], entryComponents: [LogsComponent]
+  imports: [
+    CommonModule,
+    TourPanelRoutingModule,
+    FormsModule,
+    MatButtonToggleModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    DragDropModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MaterialModule,
+    MatCheckboxModule,
+    CommonProjectModule,
+    NgxMaskModule.forRoot(maskConfig),
+    ToolsModule,
+    PipesModule,
+    NgxPaginationModule,
+    StoreModule,
+  ], entryComponents: [LogsComponent]
 })
 export class TourPanelModule {
 }

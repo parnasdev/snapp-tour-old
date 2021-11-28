@@ -185,7 +185,6 @@ export interface ReserveReqDTO {
   count: number
 }
 export interface ReserveListReqDTO {
-  id: number
   perPage?: number
   paginate: boolean
 }
