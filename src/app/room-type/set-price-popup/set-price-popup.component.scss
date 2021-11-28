@@ -87,3 +87,18 @@
   outline: none;
   border: 1px solid var(--light-color-two);
 }
+
+@media only screen and (max-width: 868px){
+  .info-tour-header {
+    padding: 0 8px;
+  }
+  .info-tour-header h2 {
+    font-size: 15px;
+  }
+  .btn-add-tour-fix {
+    margin: 0;
+  }
+  .body-fix {
+    height: 260px;
+  }
+}

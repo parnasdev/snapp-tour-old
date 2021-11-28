@@ -665,4 +665,9 @@ prs-select-hotel {
     font-size: 13px !important;
     color: var(--red-color);
   }
+  ::ng-deep .cdk-overlay-pane{
+    max-width: 95vw !important;
+    width: 100% !important;
+    height: 85% !important;
+  }
 }

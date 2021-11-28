@@ -17,6 +17,10 @@
             </div>
             <button (click)="getList()" class="btn-search">جستجو کن !</button>
           </div>
+          <div class="title-hotel">
+            <img src="assets/img/header/hotel.svg" width="30" alt="">
+            <h2>هتل های شهر</h2>
+          </div>
           <div class="box-hotel-parent">
             <div *ngFor="let hotel of hotelList| paginate: paginateConfig"
                  [style.background-image]="'url(' + hotel.thumbnail + ')'"
