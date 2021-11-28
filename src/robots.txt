@@ -1,0 +1,10 @@
+User-agent: Google
+Disallow:
+
+User-agent: Bing
+Disallow:
+
+User-agent: *
+Disallow: /
+
+Sitemap: https://hamnavaz.com/sitemap.xml
