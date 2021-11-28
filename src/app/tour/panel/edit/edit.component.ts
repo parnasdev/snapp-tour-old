@@ -257,6 +257,7 @@ export class EditComponent extends AddComponent implements OnInit {
     packages.forEach(x => {
       this.addOldRow(x);
     })
+    this.updatePackagePrices();
   }
 
   submit() {
