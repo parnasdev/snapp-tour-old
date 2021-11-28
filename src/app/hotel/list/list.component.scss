@@ -114,8 +114,17 @@
   color: #FFB102;
   font-size: 13px;
 }
-
-
+.title-hotel{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 12px;
+}
+.title-hotel h2{
+  margin: 0 10px 0 0;
+  color: var(--base-color);
+  font-size: 18px;
+}
 
 
 

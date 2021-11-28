@@ -4,6 +4,12 @@ $(document).ready(function () {
     $(".menu-box-mobi").slideToggle(500)
     $(".icon-menu").toggleClass("icon-menu-active")
   })
+
+  $(".li-menu").click(function (){
+    $(".menu-box-mobi").hide()
+    $(".icon-menu").removeClass("icon-menu-active")
+
+  })
 // ------
   $(".button-down-scroll").click(function () {
     $("html").animate({scrollTop: 400}, 300)

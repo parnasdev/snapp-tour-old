@@ -159,3 +159,15 @@ iframe {
   background-color: var(--base-color);
   color: #ffffff;
 }
+
+@media only screen and (max-width: 868px){
+  .info-contact {
+    flex-direction: column;
+  }
+  p,span{
+    font-size: 12px !important;
+  }
+  iframe {
+    height: 260px !important;
+  }
+}

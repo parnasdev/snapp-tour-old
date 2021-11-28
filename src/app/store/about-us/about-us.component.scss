@@ -14,3 +14,12 @@ p{
   line-height: 28px;
   text-align: justify;
 }
+
+@media only screen and (max-width: 868px){
+  h1{
+    font-size: 16px;
+  }
+  p{
+    font-size: 12px !important;
+  }
+}
