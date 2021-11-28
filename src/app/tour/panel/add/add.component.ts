@@ -561,11 +561,11 @@ export class AddComponent implements OnInit {
   }
 
   checkInsuranceRatePrice(): number {
-    if (this.form.value.insurancePriceType === '2') {
+    if (+this.form.value.insurancePriceType === 2) {
       return +this.form.value.euroRate;
-    } else if (this.form.value.insurancePriceType === '3') {
+    } else if (+this.form.value.insurancePriceType === 3) {
       return +this.form.value.dollarRate;
-    } else if (this.form.value.insurancePriceType === '4') {
+    } else if (+this.form.value.insurancePriceType === 4) {
       return +this.form.value.AEDRate;
     } else {
       return 1
@@ -573,11 +573,11 @@ export class AddComponent implements OnInit {
   }
 
   checkVisaRatePrice(): number {
-    if (this.form.value.visaPriceType === '2') {
+    if (+this.form.value.visaPriceType === 2) {
       return +this.form.value.euroRate;
-    } else if (this.form.value.visaPriceType === '3') {
+    } else if (+this.form.value.visaPriceType === 3) {
       return +this.form.value.dollarRate;
-    } else if (this.form.value.visaPriceType === '4') {
+    } else if (+this.form.value.visaPriceType === 4) {
       return +this.form.value.AEDRate;
     } else {
       return 1;
@@ -585,11 +585,11 @@ export class AddComponent implements OnInit {
   }
 
   checkTransferRatePrice(): number {
-    if (this.form.value.transferPriceType === '2') {
+    if (+this.form.value.transferPriceType === 2) {
       return +this.form.value.euroRate
-    } else if (this.form.value.transferPriceType === '3') {
+    } else if (+this.form.value.transferPriceType === 3) {
       return +this.form.value.dollarRate
-    } else if (this.form.value.transferPriceType === '4') {
+    } else if (+this.form.value.transferPriceType === 4) {
       return +this.form.value.AEDRate
     } else {
       return 1;
