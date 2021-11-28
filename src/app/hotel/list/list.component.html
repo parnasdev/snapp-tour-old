@@ -8,7 +8,8 @@
         <div class="col-md-10 m-auto parent-list-hotel">
           <div class="box-search">
             <div class="inp-form">
-              <select [formControl]="cityFC" name="" id="">
+              <select [formControl]="cityFC">
+                <option value="0" disabled>شهر خود را انتخاب کنید</option>
                 <option *ngFor="let city of citiesResponse" [value]="city.id">{{city.name}}</option>
               </select>
             </div>

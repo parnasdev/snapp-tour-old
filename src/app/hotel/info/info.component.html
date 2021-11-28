@@ -80,7 +80,8 @@
               <div class="info-about-hotel">
                 <div class="scrollbar" id="style-1"></div>
                 <h2>درباره  {{hotelInfo.name}} بیشتر بدانید :</h2>
-                <p [innerHTML]="hotelInfo.body | safeHtml"></p>
+                <p *ngIf="hotelInfo.body" [innerHTML]="hotelInfo.body | safeHtml"></p>
+                <p *ngIf="!hotelInfo.body">توضیحاتی ثبت نشده است</p>
               </div>
             </div>
             <div class="notes-hotel">

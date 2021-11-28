@@ -7,6 +7,7 @@ import {MessageService} from "../../Core/Services/message.service";
 import {CityApiService} from "../../Core/Https/city-api.service";
 import {CommonApiService} from "../../Core/Https/common-api.service";
 import {SessionService} from "../../Core/Services/session.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'prs-list',
@@ -15,7 +16,7 @@ import {SessionService} from "../../Core/Services/session.service";
 })
 export class ListComponent implements OnInit {
 
-  cityFC = new FormControl();
+  cityFC = new FormControl('0');
   hotelReq: HotelRequestDTO = {
     isAdmin: true,
     paginate: true,
@@ -26,7 +27,6 @@ export class ListComponent implements OnInit {
   hotelList: HotelListRes[] = [];
   cityType = false;
   searchFC = new FormControl(null);
-
   paginate: any;
   paginateConfig: any;
   isLoading = false;
@@ -34,12 +34,21 @@ export class ListComponent implements OnInit {
 
   constructor(public hotelApi: HotelApiService,
               public message: MessageService,
+              public router: Router,
+              public route: ActivatedRoute,
               public cityApiService: CityApiService,
               public commonApi: CommonApiService,
               public session: SessionService,) {
   }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe((params: any) => {
+      if (params['city']) {
+        debugger
+        this.cityFC.setValue(params['city'])
+      }
+
+    });
     window.scrollTo(0, 0)
     this.getCities();
     this.getList();
@@ -51,15 +60,16 @@ export class ListComponent implements OnInit {
       isAdmin: false,
       paginate: true,
       perPage: 16,
-      city: +this.cityFC.value,
+      city: +this.cityFC.value === 0 ? null:+this.cityFC.value ,
       search: this.searchFC.value
     }
-    this.isLoading=true
+    this.isLoading = true
     this.hotelApi.getHotels(this.hotelReq, this.p).subscribe((res: any) => {
-      this.isLoading=false
+      this.isLoading = false
       if (res.isDone) {
         this.hotelList = res.data;
         this.paginate = res.paginate;
+        this.router.navigate(['/hotels'], {queryParams: {city: this.cityFC.value}});
         this.paginateConfig = {
           itemsPerPage: this.paginate.perPage,
           totalItems: this.paginate.total,
@@ -70,7 +80,7 @@ export class ListComponent implements OnInit {
       }
     }, (error: any) => {
       this.message.error()
-      this.isLoading=false
+      this.isLoading = false
     })
   }
 
@@ -86,7 +96,7 @@ export class ListComponent implements OnInit {
     this.cityApiService.getCities(req).subscribe((res: any) => {
       if (res.isDone) {
         this.citiesResponse = res.data;
-        this.cityFC.setValue(this.citiesResponse[0].id)
+        // this.cityFC.setValue(this.citiesResponse[0].id)
         this.getList()
       }
     }, (error: any) => {
