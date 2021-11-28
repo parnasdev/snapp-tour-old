@@ -21,6 +21,9 @@ const routes: Routes = [
     path: 'copy/:slug',
     component: CopyComponent
   },{
+    path: 'reserves',
+    component: ReserveListComponent
+  },{
     path: 'reserve/list/:id',
     component: ReserveListComponent
   }

@@ -20,7 +20,6 @@ import {PipesModule} from "../common-project/pipes/pipes.module";
     ListComponent,
     ReservePopupComponent,
     ExpireTourComponent,
-
   ],
   exports: [
     InfoComponent,

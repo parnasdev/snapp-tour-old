@@ -33,7 +33,6 @@ export class ReserveListComponent implements OnInit {
 
   getReserves(): void {
     const req: ReserveListReqDTO = {
-      id: +this.id,
       paginate: true,
       perPage: 20
     }

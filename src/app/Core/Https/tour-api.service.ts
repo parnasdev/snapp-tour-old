@@ -73,7 +73,7 @@ export class TourApiService {
   }
 
   getReserves(req: ReserveListReqDTO): any {
-    const strUrl = environment.BACK_END_IP + `reserve/getReserves/${req.id}`;
+    const strUrl = environment.BACK_END_IP + `reserve/getReserves`;
     return this.http.post<Result<ReserveListResDTO>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
 
