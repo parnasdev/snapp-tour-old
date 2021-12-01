@@ -148,7 +148,7 @@ export class EditComponent implements OnInit {
       body: this.postForm.value.body,
       categories: [2],
       description: this.postForm.value.description,
-      status: 'Show',
+      status: this.postForm.value.status,
       tags: this.postForm.value.tags,
       thumbnail: this.thumbnail
     }
