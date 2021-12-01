@@ -82,11 +82,10 @@ export class AddComponent implements OnInit {
 
 
   submit(): void {
-    debugger
     if (this.postForm.controls.body.value !== '') {
       this.createPost()
     } else {
-      this.message.custom('لطفا متن بلاگ خود را وارد کنید و دکمه تایید نوشته را بزنید')
+      this.message.custom('لطفا متن بلاگ خود را وارد کنید')
     }
   }
 

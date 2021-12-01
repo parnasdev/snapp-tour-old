@@ -92,7 +92,7 @@ export class EditComponent implements OnInit {
     if (this.postForm.controls.body.value !== '') {
       this.edit()
     } else {
-      this.message.custom('لطفا متن بلاگ خود را وارد کنید و دکمه تایید نوشته را بزنید')
+      this.message.custom('لطفا متن بلاگ خود را وارد کنید')
     }
   }
 
