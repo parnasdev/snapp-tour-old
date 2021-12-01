@@ -68,12 +68,12 @@ export class ListComponent implements OnInit {
       this.isLoading = false
       if (res.isDone) {
         this.hotelList = res.data;
-        this.paginate = res.paginate;
         this.router.navigate(['/hotels'], {queryParams: {city: this.cityFC.value}});
+        this.paginate = res.meta;
         this.paginateConfig = {
-          itemsPerPage: this.paginate.perPage,
+          itemsPerPage: this.paginate.per_page,
           totalItems: this.paginate.total,
-          currentPage: this.paginate.currentPage
+          currentPage: this.paginate.current_page
         }
       } else {
         this.message.custom(res.message)

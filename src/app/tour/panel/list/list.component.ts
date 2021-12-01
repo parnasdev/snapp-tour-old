@@ -71,11 +71,11 @@ export class ListComponent implements OnInit {
     this.tourApiService.getTours(this.tourReq, this.p).subscribe((res: any) => {
       if (res.isDone) {
         this.tours = res.data;
-        this.paginate = res.paginate;
+        this.paginate = res.meta;
         this.paginateConfig = {
-          itemsPerPage: this.paginate.perPage,
+          itemsPerPage: this.paginate.per_page,
           totalItems: this.paginate.total,
-          currentPage: this.paginate.currentPage
+          currentPage: this.paginate.current_page
         }
       } else {
         this.message.custom(res.message);
