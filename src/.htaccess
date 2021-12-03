@@ -1,3 +1,16 @@
+# Redirect HTTPS to HTTP
+#RewriteEngine On
+#RewriteCond %{HTTPS} off
+#RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+#
+#RewriteEngine on
+#RewriteCond %{HTTP_HOST} ^www.hamnavaz.com [NC]
+#RewriteRule ^(.*)$ https://hamnavaz.com/$1 [L,R=301,NC]
+#
+#RewriteEngine on
+#RewriteCond %{HTTP_HOST} ^mail.hamnavaz.com [NC]
+#RewriteRule ^(.*)$ https://hamnavaz.com/$1 [L,R=301,NC]
+
 <IfModule mod_rewrite.c>
     RewriteEngine on
 
