@@ -37,7 +37,7 @@
     </div>
     <div>
       <pagination-controls
-        *ngIf="!loading && paginate.lastPage > 1"
+        *ngIf="!loading && paginate.last_page > 1"
         class="pagination-control"
         (pageChange)="onPageChanged($event)"
         previousLabel="قبلی"

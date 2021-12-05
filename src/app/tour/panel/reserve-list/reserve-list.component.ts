@@ -41,11 +41,11 @@ export class ReserveListComponent implements OnInit {
       this.loading = false;
       if (res.isDone) {
         this.list = res.data
-        this.paginate = res.paginate;
+        this.paginate = res.meta;
         this.paginateConfig = {
-          itemsPerPage: this.paginate.perPage,
+          itemsPerPage: this.paginate.per_page,
           totalItems: this.paginate.total,
-          currentPage: this.paginate.currentPage
+          currentPage: this.paginate.current_page
         }
       } else {
         this.message.custom(res.message);
