@@ -11,6 +11,7 @@
   </div>
 
   <div class="body-box-hotel" *ngFor="let package of tourInfo.packages">
+    <label class="offer-tour" for="">آفر ویژه</label>
     <div class="info-hotel-body">
       <img class="img-hotel" routerLink="/hotels/{{ package.hotel.slug }}" [src]="package.hotel.thumbnail" alt="">
       <div class="info-info-hotel">
