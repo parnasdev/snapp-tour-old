@@ -14,7 +14,6 @@ export class InfoComponent implements OnInit {
   slug = '';
   info: PostResDTO = {} as any;
   isLoading = false;
-
   constructor(public route: ActivatedRoute,
               public calenderServices: CalenderServices,
               public api: BlogApiService) {
