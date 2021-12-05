@@ -11,6 +11,7 @@
               <h2>وبلاگ ها</h2>
               <span>{{blogs.length}} مقاله گردشگری و شهرگردی</span>
             </div>
+            <input [formControl]="keywordFC" type="text"> <button (click)="getBlog()">جستجو</button>
           </div>
           <div class="list">
             <div class="box-blog" *ngFor="let item of blogs">

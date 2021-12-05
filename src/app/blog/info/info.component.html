@@ -13,7 +13,7 @@
                     <img src="assets/img/Document-align-2.svg" width="30" alt="">
                     <div class="text">
                       <h2>{{info.title}}</h2>
-                      <span *ngIf="info.categories.length > 0">دسته بندی مقاله : {{info.categories[0].name}}</span>
+                      <span *ngIf="info.categories && info.categories.length > 0">دسته بندی مقاله : {{info.categories[0].name}}</span>
                     </div>
                   </div>
                   <p>
@@ -72,44 +72,13 @@
                   <h2>دسته‌بندی</h2>
                 </div>
                 <ul class="under-category">
-                  <li>
+                  <li *ngFor="let cat of info.categories">
                     <a target="_blank" href="">
                       <i class="icon-circle"></i>
-                      لورم ایپسوم متن ساختگی
-                    </a>
-                  </li> <li>
-                    <a target="_blank" href="">
-                      <i class="icon-circle"></i>
-                      لورم ایپسوم متن ساختگی
-                    </a>
-                  </li> <li>
-                    <a target="_blank" href="">
-                      <i class="icon-circle"></i>
-                      لورم ایپسوم متن ساختگی
-                    </a>
-                  </li> <li>
-                    <a target="_blank" href="">
-                      <i class="icon-circle"></i>
-                      لورم ایپسوم متن ساختگی
-                    </a>
-                  </li> <li>
-                    <a target="_blank" href="">
-                      <i class="icon-circle"></i>
-                      لورم ایپسوم متن ساختگی
-                    </a>
-                  </li> <li>
-                    <a target="_blank" href="">
-                      <i class="icon-circle"></i>
-                      لورم ایپسوم متن ساختگی
+                      {{cat.name}}
                     </a>
                   </li>
-                  <li>
-                    <a href="">
-                      <i class="icon-circle"></i>
-                      تولید سادگی نامفهوم
-                    </a>
 
-                  </li>
                 </ul>
               </div>
               <div class="box-category">
@@ -119,9 +88,9 @@
                 </div>
                 <p>کلمه‌ی کلیدی مورد نظر خود را بنویسید و بر روی دکمه جستجو کلیک کنید.</p>
                 <div class="inp-form">
-                  <input type="text">
+                  <input type="text" [formControl]="keywordFC">
                 </div>
-                <button class="btn-search">جتسجو کن</button>
+                <button class="btn-search" (click)="goToSearch()">جتسجو کن</button>
               </div>
               <div class="box-category">
                 <div class="title-category">
@@ -158,7 +127,8 @@
                   <h2>برچسب ها</h2>
                 </div>
                 <div class="label-item">
-                  <a target="_blank" href="">انتالیا،</a><a href="">انتالیا،</a><a href="">انتالیا،</a><a href="">انتالیا،</a><a href="">انتالیا،</a><a href="">انتالیا،</a><a href="">انتالیا،</a><a href="">انتالیا،</a><a href="">انتالیا،</a>
+                  <a href="" *ngFor="let tag of info.tags">{{tag}}،</a>
+
                 </div>
               </div>
             </div>

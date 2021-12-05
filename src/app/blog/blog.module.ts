@@ -7,7 +7,8 @@ import {ListComponent} from './list/list.component';
 import {SwiperModule} from "swiper/angular";
 import {StoreModule} from "../store/store.module";
 import {PipesModule} from "../common-project/pipes/pipes.module";
-import { ThumbnailsBlogComponent } from './thumbnails-blog/thumbnails-blog.component';
+import {ThumbnailsBlogComponent} from './thumbnails-blog/thumbnails-blog.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -16,16 +17,17 @@ import { ThumbnailsBlogComponent } from './thumbnails-blog/thumbnails-blog.compo
     ListComponent,
     ThumbnailsBlogComponent,
   ],
-    exports: [
-        ThumbnailsBlogComponent
-    ],
-    imports: [
-        CommonModule,
-        BlogRoutingModule,
-        SwiperModule,
-        StoreModule,
-        PipesModule,
-    ]
+  exports: [
+    ThumbnailsBlogComponent
+  ],
+  imports: [
+    CommonModule,
+    BlogRoutingModule,
+    SwiperModule,
+    ReactiveFormsModule,
+    StoreModule,
+    PipesModule,
+  ]
 })
 export class BlogModule {
 }

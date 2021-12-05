@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {BlogApiService} from "../../Core/Https/blog-api.service";
 import {PostResDTO} from "../../Core/Models/BlogDTO";
 import {CalenderServices} from "../../Core/Services/calender-service";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'prs-info',
@@ -10,11 +11,12 @@ import {CalenderServices} from "../../Core/Services/calender-service";
   styleUrls: ['./info.component.scss']
 })
 export class InfoComponent implements OnInit {
-
+keywordFC = new FormControl();
   slug = '';
   info: PostResDTO = {} as any;
   isLoading = false;
   constructor(public route: ActivatedRoute,
+              public router: Router,
               public calenderServices: CalenderServices,
               public api: BlogApiService) {
   }
@@ -42,5 +44,8 @@ export class InfoComponent implements OnInit {
 
   replaceAll(str: any, find: any, replace: any): any {
     return str.replace(new RegExp(find, 'g'), replace);
+  }
+  goToSearch() {
+    this.router.navigate(['/blogs'],{queryParams: {search:this.keywordFC.value}})
   }
 }
