@@ -348,6 +348,9 @@
     width: 100%;
     margin-top: 12px;
   }
+  .box-all{
+    position: unset;
+  }
 }
 
 
@@ -399,6 +402,9 @@
   .box-details-top , .box-details-bottom {
     width: 100%;
     margin-top: 12px;
+  }
+  .box-all{
+    position: unset;
   }
 }
 
@@ -501,4 +507,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.box-all{
+  position: sticky;
+  top: 10px;
 }
