@@ -32,32 +32,32 @@
     </div>
     <div class="price-box">
       <div
-        class="number">{{ defineTour ? (package.prices.twinRate   | round| sperator) : (package.prices.twin | round |sperator) }}</div>
+        [ngClass]="{'number-danger' : package.offered , 'number' : !package.offered}">{{ defineTour ? (package.prices.twinRate   | round| sperator) : (package.prices.twin | round |sperator) }}</div>
       <div class="text">تومان</div>
     </div>
     <div class="price-box" *ngIf="tourType">
       <div
-        class="number">{{ defineTour ? (package.prices.tripleRate|  round| sperator) : (package.prices.triple| round| sperator) }}</div>
+        [ngClass]="{'number-danger' : package.offered , 'number' : !package.offered}">{{ defineTour ? (package.prices.tripleRate|  round| sperator) : (package.prices.triple| round| sperator) }}</div>
       <div class="text">تومان</div>
     </div>
     <div class="price-box" *ngIf="tourType">
       <div
-        class="number">{{ defineTour ? (package.prices.quadRate| round| sperator) : (package.prices.quad| round| sperator) }}</div>
+        [ngClass]="{'number-danger' : package.offered , 'number' : !package.offered}">{{ defineTour ? (package.prices.quadRate| round| sperator) : (package.prices.quad| round| sperator) }}</div>
       <div class="text">تومان</div>
     </div>
     <div class="price-box" *ngIf="!tourType">
       <div
-        class="number">{{ defineTour ? (package.prices.singleRate| round| sperator) : (package.prices.single| round| sperator) }}</div>
+        [ngClass]="{'number-danger' : package.offered , 'number' : !package.offered}">{{ defineTour ? (package.prices.singleRate| round| sperator) : (package.prices.single| round| sperator) }}</div>
       <div class="text">تومان</div>
     </div>
     <div class="price-box" *ngIf="!tourType">
       <div
-        class="number">{{ defineTour ? (package.prices.cwbRate| round| sperator) : (package.prices.cwb| round| sperator) }}</div>
+        [ngClass]="{'number-danger' : package.offered , 'number' : !package.offered}">{{ defineTour ? (package.prices.cwbRate| round| sperator) : (package.prices.cwb| round| sperator) }}</div>
       <div class="text">تومان</div>
     </div>
     <div class="price-box" *ngIf="!tourType">
       <div
-        class="number">{{ package.prices.cnb ? ((package.prices.cnb.toString().split(',').join('')) | round| sperator) : 0 }}</div>
+        [ngClass]="{'number-danger' : package.offered , 'number' : !package.offered}">{{ package.prices.cnb ? ((package.prices.cnb.toString().split(',').join('')) | round| sperator) : 0 }}</div>
       <div class="text">تومان</div>
     </div>
     <div class="price-box">
