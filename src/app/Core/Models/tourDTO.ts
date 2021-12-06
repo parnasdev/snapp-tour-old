@@ -157,10 +157,10 @@ export interface PricesDTO {
   cwbRate: string;
   cnbRate: string;
   quadRate: string;
+  roomType: RoomTypePriceDTO[];
   tripleRate: string;
   ADLRate: string;
   age: string;
-  roomType: RoomTypePriceDTO[];
 }
 
 export interface TourTransferDTO {
