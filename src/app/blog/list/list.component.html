@@ -6,12 +6,20 @@
       <div class="row">
         <div class="col-md-10 m-auto blog-list-parent">
           <div class="title-blog">
-            <img src="assets/img/Document-align-2.svg" width="30" alt="">
-            <div class="text">
-              <h2>وبلاگ ها</h2>
-              <span>{{blogs.length}} مقاله گردشگری و شهرگردی</span>
+            <div class="title-blog-item">
+              <img src="assets/img/Document-align-2.svg" width="30" alt="">
+              <div class="text">
+                <h2>وبلاگ ها</h2>
+                <span>{{blogs.length}} مقاله گردشگری و شهرگردی</span>
+              </div>
             </div>
-            <input [formControl]="keywordFC" type="text"> <button (click)="getBlog()">جستجو</button>
+            <div class="search">
+              <div class="inp-form">
+                <input [formControl]="keywordFC" type="text">
+              </div>
+             <button (click)="getBlog()">جستجو</button>
+
+            </div>
           </div>
           <div class="list">
             <div class="box-blog" *ngFor="let item of blogs">
