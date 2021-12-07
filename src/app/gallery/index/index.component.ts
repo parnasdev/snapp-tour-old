@@ -8,7 +8,7 @@ import {DomSanitizer} from "@angular/platform-browser";
 })
 export class IndexComponent implements OnInit {
 
-  url = 'http://tour-api.parnasweb.com/filemanager/dialog.php?type=0';
+  url = 'https://api.hamnavaz.com/filemanager/dialog.php?type=0';
 
   constructor(private sanitizer: DomSanitizer) { }
 
