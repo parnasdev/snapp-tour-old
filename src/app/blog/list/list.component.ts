@@ -62,6 +62,6 @@ export class ListComponent implements OnInit {
 
   goToInfo(slug: string): void {
     // alert('در حال توسعه میباشد');
-    this.router.navigateByUrl(`/blog/info/${slug}`);
+    this.router.navigateByUrl(`/blogs/${slug}`);
   }
 }

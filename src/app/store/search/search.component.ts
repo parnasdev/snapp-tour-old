@@ -106,7 +106,6 @@ export class SearchComponent implements OnInit {
         this.router.navigate([`/tours/${this.cityFC.value.slugEn}`], {queryParams: {month: this.monthFC.value.title}})
       }
     }
-
   }
   citySelected(city: CityResponseDTO): void {
     this.cityFC.setValue(city)
