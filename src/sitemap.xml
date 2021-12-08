@@ -18,4 +18,13 @@
   <url>
     <loc>https://hamnavaz.com/contact-us</loc>
   </url>
+  <url>
+    <loc>https://api.hamnavaz.com/sitemap-tours.xml</loc>
+  </url>
+  <url>
+    <loc>https://api.hamnavaz.com/sitemap-blogs.xml</loc>
+  </url>
+  <url>
+    <loc>https://api.hamnavaz.com/sitemap-hotels.xml</loc>
+  </url>
 </urlset>
