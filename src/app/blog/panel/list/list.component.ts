@@ -31,6 +31,10 @@ export class ListComponent implements OnInit {
   };
   posts: PostResDTO[] = [];
   loading = false;
+  paginate: any;
+  paginateConfig: any;
+  p = 1;
+
 
   constructor(public blogApi: BlogApiService,
               public route: ActivatedRoute,
@@ -51,9 +55,15 @@ export class ListComponent implements OnInit {
 
   getPosts(): void {
     this.loading = true;
-    this.blogApi.getPosts(this.postReq).subscribe((res: any) => {
+    this.blogApi.getPosts(this.postReq, this.p).subscribe((res: any) => {
       if (res.isDone) {
         this.posts = res.data
+        this.paginate = res.meta;
+        this.paginateConfig = {
+          itemsPerPage: this.paginate.per_page,
+          totalItems: this.paginate.total,
+          currentPage: this.paginate.current_page
+        }
       } else {
         this.message.custom(res.message);
       }
@@ -64,6 +74,12 @@ export class ListComponent implements OnInit {
       this.checkErrorService.check(error);
     });
   }
+
+  onPageChanged(event: any) {
+    this.p = event;
+    this.getPosts();
+  }
+
   deleteClicked(slug: string):void {
     const obj: AlertDialogDTO = {
       description: 'حذف شود؟',

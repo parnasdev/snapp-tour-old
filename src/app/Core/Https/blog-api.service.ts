@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {PublicService} from "../Services/public.service";
 import {environment} from "../../../environments/environment";
@@ -24,12 +24,13 @@ export class BlogApiService {
     return this.http.post<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
 
-  getPosts(req: PostReqDTO): any {
-    const strUrl = this.serverControllerName + 'getPosts';
+  getPosts(req: PostReqDTO, pageNum?: number): any {
+    const address = pageNum ? `getPosts?page=${pageNum}` : 'getPosts'
+    const strUrl = this.serverControllerName + address;
     return this.http.post<Result<PostResDTO>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
 
-  editPost(req: PostSetReqDTO,tour:any): any {
+  editPost(req: PostSetReqDTO, tour: any): any {
     const strUrl = this.serverControllerName + `editPost/${tour}`;
     return this.http.patch<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
@@ -39,15 +40,16 @@ export class BlogApiService {
     return this.http.delete<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
   }
 
-  getPost(title:string): any {
+  getPost(title: string): any {
     const strUrl = this.serverControllerName + `getPost/${title}?view=true`;
     return this.http.get<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
   }
-  generateSlug(title:string): any {
+
+  generateSlug(title: string): any {
     const strUrl = this.serverControllerName + `generateSlug`;
     const entity = {
       title
     }
-    return this.http.post<Result<string>>(strUrl,entity, this.publicService.getDefaultHeaders());
+    return this.http.post<Result<string>>(strUrl, entity, this.publicService.getDefaultHeaders());
   }
 }
