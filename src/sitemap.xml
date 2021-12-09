@@ -1,21 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
     <loc>https://hamnavaz.com/</loc>
-  </url>
-  <url>
+  </sitemap>
+  <sitemap>
     <loc>https://hamnavaz.com/tours</loc>
-  </url>
-  <url>
+  </sitemap>
+  <sitemap>
     <loc>https://hamnavaz.com/hotels</loc>
-  </url>
-  <url>
+  </sitemap>
+  <sitemap>
     <loc>https://hamnavaz.com/blogs</loc>
-  </url>
-  <url>
+  </sitemap>
+  <sitemap>
     <loc>https://hamnavaz.com/about-us</loc>
-  </url>
-  <url>
+  </sitemap>
+  <sitemap>
     <loc>https://hamnavaz.com/contact-us</loc>
-  </url>
-</urlset>
+  </sitemap>
+  <sitemap>
+    <loc>https://api.hamnavaz.com/sitemap-tours.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://api.hamnavaz.com/sitemap-blogs.xml</loc>
+  </sitemap>
+  <sitemap>
+    <loc>https://api.hamnavaz.com/sitemap-hotels.xml</loc>
+  </sitemap>
+</sitemapindex>

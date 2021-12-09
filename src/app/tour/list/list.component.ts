@@ -43,6 +43,7 @@ export class ListComponent implements OnInit {
     type: 1,
   };
   sortByDate = false;
+  orderId = 0;
 
   months = [
     {id: 0,title: 'چه ماهی می خواهید سفر کنید ؟'},
@@ -197,6 +198,9 @@ export class ListComponent implements OnInit {
         this.router.navigate([`/tours/${this.cityFC.value.slugEn}`], {queryParams: {month: this.monthFC.value.title}})
       }
     }
+  }
 
+  getSortByDate() {
+    this.orderId = this.sortByDate ? this.orderId : 0;
   }
 }

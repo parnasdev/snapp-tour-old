@@ -24,8 +24,9 @@ export class BlogApiService {
     return this.http.post<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
 
-  getPosts(req: PostReqDTO): any {
-    const strUrl = this.serverControllerName + 'getPosts';
+  getPosts(req: PostReqDTO, pageNum?: number): any {
+    const address = pageNum ? `getPosts?page=${pageNum}` : 'getPosts'
+    const strUrl = this.serverControllerName + address;
     return this.http.post<Result<PostResDTO>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
 
@@ -44,6 +45,13 @@ export class BlogApiService {
     return this.http.get<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
   }
 
+  generateSlug(title: string): any {
+    const strUrl = this.serverControllerName + `generateSlug`;
+    const entity = {
+      title
+    }
+    return this.http.post<Result<string>>(strUrl, entity, this.publicService.getDefaultHeaders());
+  }
   getTags(): any {
     const strUrl = this.serverControllerName + `getTags`;
     return this.http.get<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
@@ -52,14 +60,6 @@ export class BlogApiService {
   getArchived(): any {
     const strUrl = this.serverControllerName + `getArchived`;
     return this.http.get<Result<ArchiveDTO[]>>(strUrl, this.publicService.getDefaultHeaders());
-  }
-
-  generateSlug(title: string): any {
-    const strUrl = this.serverControllerName + `generateSlug`;
-    const entity = {
-      title
-    }
-    return this.http.post<Result<string>>(strUrl, entity, this.publicService.getDefaultHeaders());
   }
 
 }

@@ -9,6 +9,7 @@ import {StoreModule} from "../store/store.module";
 import {PipesModule} from "../common-project/pipes/pipes.module";
 import {ThumbnailsBlogComponent} from './thumbnails-blog/thumbnails-blog.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     BlogRoutingModule,
     SwiperModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
     StoreModule,
     PipesModule,
   ]

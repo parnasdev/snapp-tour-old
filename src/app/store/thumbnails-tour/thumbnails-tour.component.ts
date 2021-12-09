@@ -10,6 +10,7 @@ import {CalenderServices} from "../../Core/Services/calender-service";
 export class ThumbnailsTourComponent implements OnInit {
 
   @Input() tours: TourListResDTO[] = [];
+  @Input() orderId = 0;
 
   constructor(public calenderServices: CalenderServices) { }
 
