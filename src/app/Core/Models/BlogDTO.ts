@@ -37,3 +37,9 @@ export interface PostSetReqDTO {
   status: string;
   categories: number[];
 }
+export interface ArchiveDTO {
+  month: number
+  monthName: string
+  post_count: number
+  year: number
+}
