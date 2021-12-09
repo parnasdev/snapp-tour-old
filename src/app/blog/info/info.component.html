@@ -78,8 +78,8 @@
                   <h2>دسته‌بندی</h2>
                 </div>
                 <ul class="under-category">
-                  <li *ngFor="let cat of categories">
-                    <a target="_blank" href="">
+                  <li *ngFor="let cat of categories" >
+                    <a target="_blank" (click)="goToSearch(cat.name)">
                       <i class="icon-circle"></i>
                       {{cat.name}}
                     </a>
