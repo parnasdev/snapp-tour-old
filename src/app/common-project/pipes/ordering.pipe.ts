@@ -6,11 +6,11 @@ import {TourListResDTO} from "../../Core/Models/tourDTO";
 })
 export class OrderingPipe implements PipeTransform {
 
-  transform(tours: TourListResDTO[], orderId: number): TourListResDTO[] {
+  transform(tours: TourListResDTO[], sortByDate: boolean): TourListResDTO[] {
     debugger
     let data: TourListResDTO[] = [];
 
-    if (orderId === 1) {
+    if (sortByDate) {
       data = tours.sort((a, b) =>
         <any>new Date(a.transfers[0].dateTime) - <any>new Date(b.transfers[0].dateTime));
       return data;

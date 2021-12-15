@@ -46,10 +46,10 @@
                 <i class="icon-filter"></i>
                 فیلترها :
               </strong>
-              <mat-checkbox [(ngModel)]="sortByDate" (ngModelChange)="getSortByDate()"></mat-checkbox>
+              <mat-checkbox [(ngModel)]="sortByDate"></mat-checkbox>
               <label for="">نزدیکترین</label>
             </div>
-            <prs-thumbnails-tour [tours]="tours" [orderId]="orderId"></prs-thumbnails-tour>
+            <prs-thumbnails-tour [tours]="tours" [sortByDate]="sortByDate"></prs-thumbnails-tour>
           </div>
         </div>
       </div>
