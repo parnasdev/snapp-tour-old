@@ -15,7 +15,7 @@ export class OrderingPipe implements PipeTransform {
         <any>new Date(a.transfers[0].dateTime) - <any>new Date(b.transfers[0].dateTime));
       return data;
     } else {
-      return data;
+      return tours;
     }
 
   }
