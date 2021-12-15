@@ -275,7 +275,7 @@
           </div>
           <div class="box-blog-parent">
             <div class="right-blog" *ngIf="blogs.length > 0" routerLink="/blogs/{{blogs[0].slug}}"
-                 [style.background]="'url(' + blogs[0].thumbnail.replace(' ' , '%20') + ')'">
+                 [style.background]="'url(' + blogs[0].thumbnail.split('%20').join('') + ')'">
               <div class="info-blog">
                 <h6>
                   <a>{{blogs[0].title}}</a>
