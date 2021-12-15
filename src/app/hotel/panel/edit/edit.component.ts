@@ -128,7 +128,7 @@ export class EditComponent implements OnInit {
       slug: this.nameFC.value.replace(' ', '-'),
       slugEn: this.nameEnFC.value.replace(' ', '-'),
       city_id: this.cityFC.value,
-      stars: this.starFC.value,
+      stars: this.currentStar,
       mediaLink: [{name: 'aparat', link: this.aparatFC.value}, {name: 'youtube', link: this.youtubeFC.value}],
 
       location: this.locationFC.value,
