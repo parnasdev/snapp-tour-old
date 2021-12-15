@@ -1,1 +1,147 @@
-<p>set works!</p>
+<div class="add-tour">
+  <form [formGroup]="settingForm">
+
+    <div class="box-info-tour">
+      <div class="info-tour-header">
+        <div class="right">
+          <h2>تنظیمات</h2>
+        </div>
+      </div>
+      <div class="info-tour-body">
+        <div class="top">
+
+          <!--          title-->
+          <div class="item-info">
+            <label for="">عنوان سایت</label>
+            <input formControlName="title" type="text">
+            <span class="required f-10" *ngIf="settingForm.get('title')?.touched && settingForm.get('title')?.invalid">
+            این فیلد الزامی است
+            </span>
+            <div *ngIf="errorService.hasError('title')">
+              <span class="text-danger">{{errorService.getError('title')}}</span>
+            </div>
+          </div>
+
+          <!--          description-->
+          <div class="item-info">
+            <label for="">توضیحات سایت</label>
+            <input formControlName="description" type="text">
+            <span class="required f-10"
+                  *ngIf="settingForm.get('description')?.touched && settingForm.get('description')?.invalid">
+            این فیلد الزامی است
+            </span>
+            <div *ngIf="errorService.hasError('description')">
+              <span class="text-danger">{{errorService.getError('description')}}</span>
+            </div>
+          </div>
+
+
+          <!--          <div class="item-info">-->
+          <!--            <label for="">عنوان تور</label>-->
+          <!--            <input formControlName="title" type="text">-->
+          <!--            <span class="required f-10" *ngIf="settingForm.get('title')?.touched && settingForm.get('title')?.invalid">-->
+          <!--            این فیلد الزامی است-->
+          <!--            </span>-->
+          <!--            <div *ngIf="errorService.hasError('title')">-->
+          <!--              <span class="text-danger">{{errorService.getError('title')}}</span>-->
+          <!--            </div>-->
+          <!--          </div>-->
+        </div>
+        <div class="bottom">
+          <div class="item-info">
+            <label for="">کد کنسول گوگل</label>
+            <input formControlName="consoleGoogle" type="text">
+            <span class="required f-10"
+                  *ngIf="settingForm.get('consoleGoogle')?.touched && settingForm.get('consoleGoogle')?.invalid">
+            این فیلد الزامی است
+            </span>
+            <div *ngIf="errorService.hasError('consoleGoogle')">
+              <span class="text-danger">{{errorService.getError('consoleGoogle')}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="bottom">
+
+          <div class="item-info">
+            <label for="">ایمیل</label>
+            <input formControlName="email" type="text">
+            <span class="required f-10" *ngIf="settingForm.get('email')?.touched && settingForm.get('email')?.invalid">
+            این فیلد الزامی است
+            </span>
+            <div *ngIf="errorService.hasError('email')">
+              <span class="text-danger">{{errorService.getError('email')}}</span>
+            </div>
+          </div>
+
+          <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="setSetting()" [isLoading]="isLoading"
+                   [label]="'ثبت تنظیمات'"></prs-btn>
+
+          <!--          <div class="item-info">-->
+          <!--            <label for="">نامک تور</label>-->
+          <!--            <input formControlName="slug" type="text">-->
+          <!--            <span class="required f-10" *ngIf="settingForm.get('slug')?.touched && settingForm.get('slug')?.invalid">-->
+          <!--            این فیلد الزامی است-->
+          <!--            </span>-->
+          <!--            <div *ngIf="errorService.hasError('slug')">-->
+          <!--              <span class="text-danger">{{errorService.getError('slug')}}</span>-->
+          <!--            </div>-->
+          <!--          </div>-->
+
+          <!--          <div class="item-info">-->
+          <!--            <label for="">نامک تور</label>-->
+          <!--            <input formControlName="slug" type="text">-->
+          <!--            <span class="required f-10" *ngIf="settingForm.get('slug')?.touched && settingForm.get('slug')?.invalid">-->
+          <!--            این فیلد الزامی است-->
+          <!--            </span>-->
+          <!--            <div *ngIf="errorService.hasError('slug')">-->
+          <!--              <span class="text-danger">{{errorService.getError('slug')}}</span>-->
+          <!--            </div>-->
+          <!--          </div>-->
+
+        </div>
+      </div>
+    </div>
+
+    <div class="box-info-tour">
+      <div class="info-tour-header">
+        <div class="right">
+          <h2>مدیریت متاتگ ها</h2>
+        </div>
+      </div>
+      <div class="info-tour-body">
+        <div class="top">
+          <!-- title -->
+          <div class="item-info">
+            <label for="">عنوان متا</label>
+            <select [formControl]="metaNameFC">
+              <option *ngFor="let item of metaNames" [value]="item">{{ item }}</option>
+            </select>
+            <span class="required f-10" *ngIf="metaNameFC.touched && metaNameFC.invalid">
+            این فیلد الزامی است
+            </span>
+          </div>
+          <!-- description -->
+          <div class="item-info">
+            <label for="">مقدار متا</label>
+            <input [formControl]="metaValueFC" type="text">
+            <span class="required f-10"
+                  *ngIf="metaValueFC.touched && metaValueFC.invalid">
+            این فیلد الزامی است
+            </span>
+          </div>
+
+        </div>
+        <div class="bottom">
+          <div class="item-info" *ngFor="let item of metaTags; let i = index">
+            <span>{{ item.name }}</span>
+            <i class="icon-cancel" (click)="removeMetaItem(i)"></i>
+          </div>
+        </div>
+
+        <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="addMeta()" [isLoading]="isLoading"
+                 [label]="'ثبت'"></prs-btn>
+      </div>
+    </div>
+
+  </form>
+</div>

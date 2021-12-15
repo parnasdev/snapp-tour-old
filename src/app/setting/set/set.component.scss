@@ -1,0 +1,141 @@
+.add-tour {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.box-info-tour {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 10px !important;
+  overflow: hidden;
+}
+.checkbox input{
+  width: 15px;
+  height: 15px;
+  margin-right: 8px;
+  margin-top: 2px;
+}
+.checkbox label{
+  margin-right: 8px;
+}
+.info-tour-header {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  width: 99%;
+  background-color: #d5d5d5bd;
+}
+
+.btn-add-tour-fix {
+  display: flex;
+  align-items: center;
+  background-color: var(--base-color-three);
+  height: 28px;
+  width: 100px;
+  padding: 0 10px;
+  color: var(--white);
+  margin: 1rem;
+  border-radius: 5px;
+  font-size: 14px !important;
+  cursor: pointer;
+}
+
+.btn-add-tour-fix span {
+  margin-right: 12px;
+}
+
+.info-tour-header .right {
+  display: flex;
+  align-items: center;
+}
+
+.info-tour-header .right label {
+  width: auto;
+  padding: 0 8px;
+  height: 25px;
+  border-radius: 512px;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--base-color);
+  font-size: 13px !important;
+}
+
+.info-tour-header .right h2 {
+  font-size: 18px;
+  color: var(--base-color);
+  margin-right: 10px;
+  margin-bottom: 0;
+}
+
+.info-tour-header .left select {
+  width: 200px;
+  background-color: var(--white);
+}
+
+.info-tour-body {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #eeeeee;
+  padding: 1rem 2rem;
+  width: 99%;
+}
+
+.info-tour-body .top {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin: 8px 0;
+}
+
+.info-tour-body .bottom {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin: 8px 0;
+}
+
+@media only screen and (max-width: 868px) {
+  .info-tour-header {
+    height: auto;
+    flex-direction: column;
+    padding: 8px 2rem;
+    width: 100%;
+  }
+  .info-tour-header .left {
+    margin-top: 12px;
+  }
+  .info-tour-header .left select {
+    width: 100%;
+  }
+  .info-tour-body .top {
+    flex-wrap: wrap;
+  }
+  .item-info {
+    width: 100%;
+  }
+  .item-info-2 {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .select-info label {
+    margin-top: 8px;
+  }
+  .info-tour-body .bottom {
+    flex-direction: column;
+  }
+  .info-tour-body .bottom label {
+    margin-top: 8px;
+  }
+}

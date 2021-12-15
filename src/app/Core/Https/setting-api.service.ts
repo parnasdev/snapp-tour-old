@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {PublicService} from "../Services/public.service";
 import {environment} from "../../../environments/environment";
 import {Result} from "../Models/result";
+import {SettingDTO} from "../Models/commonDTO";
 
 @Injectable({
   providedIn: 'root'
@@ -20,11 +21,11 @@ export class SettingApiService {
 
   getSetting(): any {
     const strUrl = this.serverControllerName + 'getSetting';
-    return this.http.get<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
+    return this.http.get<Result<SettingDTO>>(strUrl, this.publicService.getDefaultHeaders());
   }
 
-  changeSetting(): any {
+  changeSetting(settings: SettingDTO): any {
     const strUrl = this.serverControllerName + 'changeSetting';
-    return this.http.post<Result<any>>(strUrl, null, this.publicService.getDefaultHeaders());
+    return this.http.post<Result<any>>(strUrl, settings, this.publicService.getDefaultHeaders());
   }
 }

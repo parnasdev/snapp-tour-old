@@ -3,6 +3,7 @@ import {SessionService} from "../../Core/Services/session.service";
 import {AuthApiService} from "../../Core/Https/auth-api.service";
 import {MessageService} from "../../Core/Services/message.service";
 import {CheckErrorService} from "../../Core/Services/check-error.service";
+import {SettingService} from "../../Core/Services/setting.service";
 
 declare let $: any;
 
@@ -15,12 +16,14 @@ export class HeaderComponent implements OnInit {
   isLoading = false;
 
   constructor(public session: SessionService,
+              public settingService: SettingService,
               public api: AuthApiService,
               public message: MessageService,
               public checkError: CheckErrorService) {
   }
 
   ngOnInit(): void {
+    this.settingService.getSetting();
     $(document).ready(() => {
       $(".ul-menu").on("click", "li", () => {
       $("li").removeClass("icon-active-header-click");
