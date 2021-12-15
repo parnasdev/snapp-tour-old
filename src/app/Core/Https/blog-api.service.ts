@@ -4,7 +4,7 @@ import {PublicService} from "../Services/public.service";
 import {environment} from "../../../environments/environment";
 import {TourListRequestDTO, TourListResDTO, TourSetRequestDTO} from "../Models/tourDTO";
 import {Result} from "../Models/result";
-import {PostReqDTO, PostResDTO, PostSetReqDTO} from "../Models/BlogDTO";
+import {ArchiveDTO, PostReqDTO, PostResDTO, PostSetReqDTO} from "../Models/BlogDTO";
 
 @Injectable({
   providedIn: 'root'
@@ -52,4 +52,14 @@ export class BlogApiService {
     }
     return this.http.post<Result<string>>(strUrl, entity, this.publicService.getDefaultHeaders());
   }
+  getTags(): any {
+    const strUrl = this.serverControllerName + `getTags`;
+    return this.http.get<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
+  }
+
+  getArchived(): any {
+    const strUrl = this.serverControllerName + `getArchived`;
+    return this.http.get<Result<ArchiveDTO[]>>(strUrl, this.publicService.getDefaultHeaders());
+  }
+
 }

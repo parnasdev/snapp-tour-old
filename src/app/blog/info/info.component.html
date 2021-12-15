@@ -37,21 +37,27 @@
                     <div class="social-media">
                       <div class="wrapper">
                         <div class="icon instagram">
-                          <div class="tooltip">Instagram</div>
-                          <div class="span-margin"><i class=" icon-instagram"></i></div>
-                        </div>
-                        <div class="icon facebook">
-                          <div class="tooltip">li</div>
+                          <div class="tooltip">Telegram
+
+                            <a style="margin-right: 10px" href="https://t.me/share/url?url={{myUrl}}&text=Take a look at this awesome website:"
+                               data-text="Take a look at this awesome website:" class="wa_btn wa_btn_s link-telegram">
+                              <i class="icon-telegram"></i>
+                            </a>
+                          </div>
                           <div class="span-margin"><i class=" icon-telegram"></i></div>
                         </div>
-                        <div class="icon twitter">
-                          <div class="tooltip">Twitter</div>
-                          <div class="span-margin"><i class="icon-mail-alt"></i></div>
-                        </div>
-                        <div class="icon github">
-                          <div class="tooltip">whatsapp
+
+                        <div class="icon github" >
+                          <div class="tooltip">
+                            <a [href]="sanitize('whatsapp://send?text='+myUrl)">whatsapp</a>
+
                           </div>
-                          <div class="span-margin"><i class="icon-whatsapp"></i></div>
+
+                            <a [href]="sanitize('whatsapp://send?text='+myUrl)">
+                              <div class="span-margin"><i class="icon-whatsapp"></i>
+                              </div>
+
+                            </a>
                         </div>
                       </div>
                     </div>
@@ -72,8 +78,8 @@
                   <h2>دسته‌بندی</h2>
                 </div>
                 <ul class="under-category">
-                  <li *ngFor="let cat of info.categories">
-                    <a target="_blank" href="">
+                  <li *ngFor="let cat of categories" >
+                    <a target="_blank" (click)="goToSearch(cat.name)">
                       <i class="icon-circle"></i>
                       {{cat.name}}
                     </a>
@@ -90,7 +96,7 @@
                 <div class="inp-form">
                   <input type="text" [formControl]="keywordFC">
                 </div>
-                <button class="btn-search" (click)="goToSearch()">جتسجو کن</button>
+                <button class="btn-search" (click)="goToSearch(keywordFC.value)">جتسجو کن</button>
               </div>
               <div class="box-category">
                 <div class="title-category">
@@ -98,27 +104,14 @@
                   <h2>آرشیو</h2>
                 </div>
                 <ul class="under-category">
-                  <li>
-                    <a target="_blank" href="">
+                  <li *ngFor="let archive of archived">
+                    <a target="_blank">
                       <i class="icon-circle"></i>
-                      فروردین 1400
+                      {{archive.monthName}} {{archive.year}}
                     </a>
 
                   </li>
-                  <li>
-                    <a href="">
-                      <i class="icon-circle"></i>
-                      اردیبهشت 1400
-                    </a>
 
-                  </li>
-                  <li>
-                    <a href="">
-                      <i class="icon-circle"></i>
-                      خرداد 1400
-                    </a>
-
-                  </li>
                 </ul>
               </div>
               <div class="box-category">
@@ -127,7 +120,7 @@
                   <h2>برچسب ها</h2>
                 </div>
                 <div class="label-item">
-                  <a href="" *ngFor="let tag of info.tags">{{tag}}،</a>
+                  <a (click)="goToSearch(tag)" *ngFor="let tag of tags">{{tag}}،</a>
 
                 </div>
               </div>
