@@ -638,7 +638,7 @@ export class AddComponent implements OnInit {
   }
 
   sortPackages(sortId: any) {
-    if (+sortId.target.value === 2) {
+    if (+sortId.target.value === 1) {
       this.ToursForm.controls.sort((a, b) => {
         // @ts-ignore
         const item1 = this.form.value.defineTour ? +a.controls.twinRate.value : +a.controls.twin.value;
@@ -653,7 +653,7 @@ export class AddComponent implements OnInit {
           return 0;
         }
       });
-    } else if (+sortId.target.value === 1) {
+    } else if (+sortId.target.value === 2) {
       this.ToursForm.controls.sort((a, b) => {
         // @ts-ignore
         const item1 = this.hotels.find(x => x.id === +a.controls.hotel_id.value).stars;
