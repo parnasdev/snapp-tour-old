@@ -24,6 +24,8 @@ import {ResponsiveService} from "../../Core/Services/responsive.service";
 import {MatDialog} from "@angular/material/dialog";
 import {ReservePopupComponent} from "../reserve-popup/reserve-popup.component";
 import * as moment from 'jalali-moment';
+import {Title} from "@angular/platform-browser";
+import {SettingService} from "../../Core/Services/setting.service";
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs]);
 
@@ -60,7 +62,7 @@ export class InfoComponent implements OnInit {
     packages: [],
     services: '',
     slug: '',
-    stCity:  {} as CityTourInfoDTO,
+    stCity: {} as CityTourInfoDTO,
     stDate: '',
     status: '',
     title: '',
@@ -82,6 +84,8 @@ export class InfoComponent implements OnInit {
               public route: ActivatedRoute,
               public calService: CalenderServices,
               public dialog: MatDialog,
+              public title: Title,
+              public setting: SettingService,
               public checkErrorService: CheckErrorService,
               public errorService: ErrorsService,
               public responsiveService: ResponsiveService,
@@ -103,9 +107,11 @@ export class InfoComponent implements OnInit {
 
   getTourInfo(): void {
     this.loading = true;
-    this.tourApiService.getTour(this.tourSlug,true).subscribe((res: any) => {
+    this.tourApiService.getTour(this.tourSlug, true).subscribe((res: any) => {
       if (res.isDone) {
         this.tourInfo = res.data
+        this.title.setTitle(this.tourInfo.title + '|' + this.setting.settings.title);
+
       } else {
         this.message.custom(res.message);
       }

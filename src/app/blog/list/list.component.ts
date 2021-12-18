@@ -5,6 +5,8 @@ import {BlogApiService} from "../../Core/Https/blog-api.service";
 import {MessageService} from "../../Core/Services/message.service";
 import {CalenderServices} from "../../Core/Services/calender-service";
 import {FormControl, Validators} from "@angular/forms";
+import {SettingService} from "../../Core/Services/setting.service";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'prs-list',
@@ -13,13 +15,15 @@ import {FormControl, Validators} from "@angular/forms";
 })
 export class ListComponent implements OnInit {
   blogs: PostResDTO[] = [];
-  keywordFC = new FormControl('',Validators.required);
+  keywordFC = new FormControl('', Validators.required);
   isLoading = false;
 
   constructor(
     public blogApiService: BlogApiService,
     public message: MessageService,
     public route: ActivatedRoute,
+    public setting: SettingService,
+    public title: Title,
     public calenderServices: CalenderServices,
     public router: Router) {
   }
@@ -29,12 +33,19 @@ export class ListComponent implements OnInit {
       this.keywordFC.setValue(param['search']);
     })
     window.scrollTo(0, 0)
+
+    this.setting.Setting$.subscribe(res => {
+      if (res === 'true') {
+        this.title.setTitle('لیست بلاگ ها' + '|' + this.setting.settings.title)
+      }
+    })
+
     this.getBlog()
   }
 
   getBlog(): void {
     if (this.keywordFC.valid) {
-      this.router.navigate(['blogs'],{queryParams: {search : this.keywordFC.value}})
+      this.router.navigate(['blogs'], {queryParams: {search: this.keywordFC.value}})
     }
     const req: PostReqDTO = {
       perPage: 0,
@@ -44,9 +55,9 @@ export class ListComponent implements OnInit {
       limit: null,
       withTrash: false,
     }
-    this.isLoading=true
+    this.isLoading = true
     this.blogApiService.getPosts(req).subscribe((res: any) => {
-      this.isLoading=false
+      this.isLoading = false
 
       if (res.isDone) {
         this.blogs = res.data
@@ -54,7 +65,7 @@ export class ListComponent implements OnInit {
         this.message.custom(res.message)
       }
     }, (error: any) => {
-      this.isLoading=false
+      this.isLoading = false
       this.message.error()
 
     })

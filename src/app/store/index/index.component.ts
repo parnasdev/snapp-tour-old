@@ -15,6 +15,8 @@ import {PostReqDTO, PostResDTO} from "../../Core/Models/BlogDTO";
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 import {SwiperComponent} from "swiper/angular";
+import {SettingService} from "../../Core/Services/setting.service";
+import {Title} from "@angular/platform-browser";
 
 declare let $: any;
 
@@ -42,6 +44,8 @@ export class IndexComponent implements OnInit {
   constructor(
     public api: TourApiService,
     public calenderServices: CalenderServices,
+    public title:Title,
+    public setting: SettingService,
     public cityApi: CityApiService,
     public blogApiService: BlogApiService,
     public hotelApi: HotelApiService,
@@ -74,8 +78,11 @@ export class IndexComponent implements OnInit {
         $(".icon-6").toggleClass("icon-rotate-collapse")
       })
     })
-
-
+    this.setting.Setting$.subscribe(x => {
+      if (x === 'true') {
+        this.title.setTitle(this.setting.settings.title)
+      }
+    })
     this.getTours();
     this.getSpecialTours();
     this.getCities()

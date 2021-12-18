@@ -9,7 +9,7 @@
     <span class="item" *ngIf="!tourType">کودک بدون تخت</span>
     <span>سن کودک با تخت</span>
   </div>
-  
+
   <div class="body-box-hotel" *ngFor="let package of tourInfo.packages">
     <label class="offer-tour" for="" *ngIf="package.offered">آفر ویژه</label>
     <div class="info-hotel-body">
@@ -95,7 +95,7 @@
         <span class="price"> {{ getStarterPrice(i) | round| sperator}} تومان</span>
       </div>
 
-      <a href="">
+      <a routerLink="/hotels/{{ package.hotel.slug }}">
         <h1 class="title-en">{{ package.hotel.nameEn }}</h1>
       </a>
       <h1 class="title-fa">{{ package.hotel.name }}</h1>

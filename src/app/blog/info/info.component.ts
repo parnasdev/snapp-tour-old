@@ -6,7 +6,8 @@ import {CalenderServices} from "../../Core/Services/calender-service";
 import {FormControl} from "@angular/forms";
 import {CategoryApiService} from "../../Core/Https/category-api.service";
 import {CategoryReqDTO, CategoryResDTO} from "../../Core/Models/CategoryDTO";
-import {DomSanitizer} from "@angular/platform-browser";
+import {DomSanitizer, Title} from "@angular/platform-browser";
+import {SettingService} from "../../Core/Services/setting.service";
 
 @Component({
   selector: 'prs-info',
@@ -25,6 +26,8 @@ export class InfoComponent implements OnInit {
 
   constructor(public route: ActivatedRoute,
               public sanitizer: DomSanitizer,
+              public title: Title,
+              public setting: SettingService,
               public router: Router,
               public categoryApiService: CategoryApiService,
               public calenderServices: CalenderServices,
@@ -39,19 +42,23 @@ export class InfoComponent implements OnInit {
     this.slug = this.route.snapshot.paramMap.get('slug');
     this.getInfo();
   }
+
   sanitize(url: string) {
     return this.sanitizer.bypassSecurityTrustUrl(url);
   }
+
   getInfo(): void {
     this.isLoading = true;
     this.api.getPost(this.slug).subscribe((res: any) => {
       this.isLoading = false;
       if (res.isDone) {
         this.info = res.data;
+        this.title.setTitle(this.info.title + '|' + this.setting.settings.title)
         this.getTags();
         this.getCategories();
         this.getArchived();
         this.info.body = this.replaceAll(this.info.body, '/upload/', 'http://satrap.parnasweb.com/upload/')
+
       } else {
       }
     }, (error: any) => {
@@ -71,9 +78,11 @@ export class InfoComponent implements OnInit {
       this.isLoading = false;
     });
   }
+
   shareURLToMail(): string {
     return 'mailto:xyz@example.com?Subject=Hello&body=' + this.myUrl
   }
+
   getArchived(): void {
     this.isLoading = true;
     this.api.getArchived().subscribe((res: any) => {

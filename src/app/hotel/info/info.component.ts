@@ -10,6 +10,8 @@ import {Lightbox} from "ng-gallery/lightbox";
 import {Gallery, GalleryItem, ImageItem} from 'ng-gallery';
 import {MatDialog} from "@angular/material/dialog";
 import {PopupVideoComponent} from "../../common-project/popup-video/popup-video.component";
+import {Title} from "@angular/platform-browser";
+import {SettingService} from "../../Core/Services/setting.service";
 
 @Component({
   selector: 'prs-info',
@@ -30,6 +32,8 @@ export class InfoComponent implements OnInit {
   constructor(public hotelApi: HotelApiService,
               public route: ActivatedRoute,
               public router: Router,
+              public title: Title,
+              public setting: SettingService,
               public dialog: MatDialog,
               public gallery: Gallery,
               public message: MessageService,
@@ -52,6 +56,8 @@ export class InfoComponent implements OnInit {
       this.isLoading = false;
       if (res.isDone) {
         this.hotelInfo = res.data;
+        this.title.setTitle(this.hotelInfo.name + '|' + this.setting.settings.title)
+
         if (this.hotelInfo.images && this.hotelInfo.images.length > 0) {
           this.fillAlbum(this.hotelInfo.images)
         }

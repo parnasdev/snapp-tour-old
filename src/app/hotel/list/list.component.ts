@@ -8,6 +8,8 @@ import {CityApiService} from "../../Core/Https/city-api.service";
 import {CommonApiService} from "../../Core/Https/common-api.service";
 import {SessionService} from "../../Core/Services/session.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Title} from "@angular/platform-browser";
+import {SettingService} from "../../Core/Services/setting.service";
 
 @Component({
   selector: 'prs-list',
@@ -35,7 +37,9 @@ export class ListComponent implements OnInit {
   constructor(public hotelApi: HotelApiService,
               public message: MessageService,
               public router: Router,
+              public setting:SettingService,
               public route: ActivatedRoute,
+              public title: Title,
               public cityApiService: CityApiService,
               public commonApi: CommonApiService,
               public session: SessionService,) {
@@ -44,7 +48,6 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params: any) => {
       if (params['city']) {
-        debugger
         this.cityFC.setValue(params['city'])
       }
 
@@ -74,6 +77,11 @@ export class ListComponent implements OnInit {
           itemsPerPage: this.paginate.per_page,
           totalItems: this.paginate.total,
           currentPage: this.paginate.current_page
+        }
+        if (this.cityFC.value !== '0') {
+          this.title.setTitle(('لیست هتل های ' + this.citiesResponse.find(c => c.id === +this.cityFC.value)?.name) + '|' + this.setting.settings.title)
+        }else {
+          this.title.setTitle('لیست هتل ها' + '|' +  this.setting.settings.title)
         }
       } else {
         this.message.custom(res.message)

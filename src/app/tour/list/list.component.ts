@@ -5,9 +5,11 @@ import {MessageService} from "../../Core/Services/message.service";
 import {CheckErrorService} from "../../Core/Services/check-error.service";
 import {ErrorsService} from "../../Core/Services/errors.service";
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
-import { CityListRequestDTO, CityResponseDTO} from "../../Core/Models/cityDTO";
+import {CityListRequestDTO, CityResponseDTO} from "../../Core/Models/cityDTO";
 import {CityApiService} from "../../Core/Https/city-api.service";
 import {FormControl, Validators} from "@angular/forms";
+import {Title} from "@angular/platform-browser";
+import {SettingService} from "../../Core/Services/setting.service";
 
 @Component({
   selector: 'prs-list',
@@ -45,26 +47,29 @@ export class ListComponent implements OnInit {
   sortByDate = false;
 
   months = [
-    {id: 0,title: 'چه ماهی می خواهید سفر کنید ؟'},
-    {id: 4,title: 'فروردین'},
-    {id: 5,title: 'اردیبهشت'},
-    {id: 6,title: 'خرداد'},
-    {id: 7,title: 'تیر'},
-    {id: 8,title: 'مرداد'},
-    {id: 9,title: 'شهریور'},
-    {id: 10,title: 'مهر'},
-    {id: 11,title: 'آبان'},
-    {id: 12,title: 'آذر'},
-    {id: 1,title: 'دی'},
-    {id: 2,title: 'بهمن'},
-    {id: 3,title: 'اسفند'},
+    {id: 0, title: 'چه ماهی می خواهید سفر کنید ؟'},
+    {id: 4, title: 'فروردین'},
+    {id: 5, title: 'اردیبهشت'},
+    {id: 6, title: 'خرداد'},
+    {id: 7, title: 'تیر'},
+    {id: 8, title: 'مرداد'},
+    {id: 9, title: 'شهریور'},
+    {id: 10, title: 'مهر'},
+    {id: 11, title: 'آبان'},
+    {id: 12, title: 'آذر'},
+    {id: 1, title: 'دی'},
+    {id: 2, title: 'بهمن'},
+    {id: 3, title: 'اسفند'},
   ]
   monthFC = new FormControl(this.months[0])
+
   constructor(public tourApiService: TourApiService,
               public route: ActivatedRoute,
               public checkErrorService: CheckErrorService,
               public errorService: ErrorsService,
               public cityApi: CityApiService,
+              public setting: SettingService,
+              public title: Title,
               public router: Router,
               public message: MessageService) {
     this.router.events.subscribe(event => {
@@ -78,9 +83,17 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     window.scrollTo(0, 0)
 
+
+
+
   }
 
   getData(): void {
+    this.setting.Setting$.subscribe(x => {
+      if (x === 'true') {
+        this.title.setTitle('لیست تورها' +'|'+ this.setting.settings.title)
+      }
+    })
     // @ts-ignore
     this.city = this.route.snapshot.paramMap.get('city') ? this.route.snapshot.paramMap.get('city') : null;
     this.route.queryParams.subscribe(params => {
@@ -90,6 +103,7 @@ export class ListComponent implements OnInit {
       }
     })
     this.getCities()
+    debugger
     if (this.city) {
       this.getCity();
     } else {
@@ -108,7 +122,8 @@ export class ListComponent implements OnInit {
     this.cityApi.getCities(req).subscribe((res: any) => {
       if (res.isDone) {
         this.cities = res.data;
-        this.cityFC.setValue(this.cities.find(x => x.slugEn === this.city))
+        this.cityFC.setValue(this.cities.find(x => x.slugEn === this.city));
+
       }
     }, (error: any) => {
       this.message.error()
@@ -116,6 +131,7 @@ export class ListComponent implements OnInit {
   }
 
   citySelected(city: CityResponseDTO): void {
+    console.log(city)
     if (city) {
       this.cityInfo = {
         description: '',
@@ -127,7 +143,7 @@ export class ListComponent implements OnInit {
         slug: city.slug,
         type: city.type !== 1,
       }
-    }else {
+    } else {
       this.cityInfo = {
         description: '',
         id: 0,
@@ -174,6 +190,8 @@ export class ListComponent implements OnInit {
       this.cityApi.getCity(this.city).subscribe((res: any) => {
         if (res.isDone) {
           this.cityInfo = res.data
+          this.title.setTitle('تورهای ' + this.cityInfo.name + '|' + this.setting.settings.title)
+
           this.getTours();
 
         } else {

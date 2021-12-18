@@ -237,7 +237,7 @@
                   <img [src]="city.image" alt="">
                 </div>
                 <div class="text-sort-tour-city">
-                  <span>تور {{city.name}}</span>
+                  <span style="cursor: pointer" routerLink="/{{ 'تور' + '-' +city.slug}}">تور {{city.name}}</span>
                 </div>
               </div>
             </ng-template>

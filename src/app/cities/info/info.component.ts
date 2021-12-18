@@ -8,6 +8,8 @@ import {TourListRequestDTO, TourListResDTO} from "../../Core/Models/tourDTO";
 import {TourApiService} from "../../Core/Https/tour-api.service";
 import {endWith} from "rxjs/operators";
 import {FormControl} from "@angular/forms";
+import {Title} from "@angular/platform-browser";
+import {SettingService} from "../../Core/Services/setting.service";
 
 declare let $: any;
 
@@ -35,6 +37,8 @@ export class InfoComponent implements OnInit {
               public message: MessageService,
               public cityApiService: CityApiService,
               public tourApi: TourApiService,
+              public title: Title,
+              public setting: SettingService,
               public gallery: Gallery,
               public api: CityApiService) {
 
@@ -143,6 +147,7 @@ export class InfoComponent implements OnInit {
         if (this.info.images) {
           this.fillAlbum(this.info.images);
         }
+        this.title.setTitle('تورهای ' + this.info.name + '|' + 'معرفی شهر' + this.info.name + '|' + this.setting.settings.title)
       } else {
         this.message.custom(res.messsage)
       }

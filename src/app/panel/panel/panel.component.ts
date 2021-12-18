@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Title} from "@angular/platform-browser";
+import {SettingService} from "../../Core/Services/setting.service";
 
 @Component({
   selector: 'prs-panel',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PanelComponent implements OnInit {
 
-  constructor() { }
+  constructor(public title: Title,
+              public setting: SettingService) {
+
+  }
 
   ngOnInit(): void {
+
+    this.title.setTitle('پنل کاربری همنواز')
+
   }
 
 }

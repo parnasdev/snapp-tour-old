@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Title} from "@angular/platform-browser";
+import {SettingService} from "../../Core/Services/setting.service";
 
 @Component({
   selector: 'prs-contact-us',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactUsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public title: Title,
+              public setting: SettingService) { }
 
   ngOnInit(): void {
+    this.setting.Setting$.subscribe(x => {
+      if (x === 'true') {
+        this.title.setTitle('تماس با ما' + '|' +  this.setting.settings.title)
+      }
+    })
   }
 
 }
