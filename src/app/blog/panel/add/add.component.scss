@@ -5,7 +5,6 @@
   align-items: center;
   margin: 1rem 0;
 }
-
 .box-info-tour {
   width: 100%;
   display: flex;
@@ -22,7 +21,7 @@
   justify-content: space-between;
   padding: 0 2rem;
   width: 99%;
-  background-color: var(--white);
+  background-color: #d5d5d5bd;
 }
 
 .info-tour-header .right {
@@ -386,4 +385,42 @@
 }
 :host::ng-deep .btn-submit-tour .btn-blue{
   padding: 0 35px !important;
+}
+.btn-upload-img{
+  width: 40%;
+  height: 200px;
+  border-radius: 10px;
+  border: 2px dashed var(--base-color);
+  background: unset;
+  margin: 12px auto;
+}
+.single-img-upload-parent img{
+  object-fit: contain;
+}
+
+@media only screen and (max-width: 868px){
+  .btn-upload-img{
+    width: 90%;
+    height: 200px;
+    border-radius: 10px;
+    border: 2px dashed var(--base-color);
+    background: unset;
+    margin: 12px auto;
+  }
+  .top{
+    flex-direction: column;
+  }
+  .item-info{
+    width: 100%;
+  }
+  .info-tour-header {
+    padding: 0 6px;
+    width: 100%;
+  }
+  .info-tour-header .left select {
+    width: 150px !important;
+  }
+  .info-tour-header h2{
+    font-size: 15px !important;
+  }
 }

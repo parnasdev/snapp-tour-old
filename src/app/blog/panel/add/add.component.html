@@ -44,7 +44,7 @@
 
           <div class="item-info">
             <label for="">تگ ها</label>
-            <prs-chips (result)="getTags($event)"></prs-chips>
+            <prs-chips class="w-100" (result)="getTags($event)"></prs-chips>
             <div *ngIf="errorService.hasError('tags')">
               <span class="text-danger">{{errorService.getError('tags')}}</span>
             </div>
@@ -64,15 +64,14 @@
       </div>
     </div>
     <div class="box-info-fly">
-
       <div class="box-info-fly">
         <div class="info-tour-header">
           <div class="right">
             <h2>تصویر نمایه پست</h2>
           </div>
         </div>
-        <div class="info-tour-body-upload">
-          <div class="top-one">
+        <div class="info-tour-body-upload w-100">
+          <div class="top-one w-100">
             <div class="item-info w-100">
               <button type="button" class="btn-upload-img" (click)="getThumbnail()">تصویر خود را آپلود کنید</button>
             </div>

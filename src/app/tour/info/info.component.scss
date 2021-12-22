@@ -655,10 +655,15 @@
   }
   .title-tour-mobile .right img{
     width: 25px;
+
+    .title-tour-mobile .right .text{
+    width: 90%;
+    }
   }
   .title-tour-mobile .right h2{
     margin-bottom: 0;
     margin-right: 8px;
+    font-size: 14px !important;
   }
   .title-tour-mobile .left{
     display: flex;
