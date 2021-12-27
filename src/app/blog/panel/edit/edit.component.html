@@ -58,6 +58,10 @@
               <span class="text-danger">{{errorService.getError('description')}}</span>
             </div>
           </div>
+          <div class="item-info">
+            <prs-select-categories class="w-50" [inComingCategory]="categories" (categoryIds)="getCategories($event)"></prs-select-categories>
+
+          </div>
         </div>
         <prs-editor [inCommingBody]="info?.body? info.body : ''" (body)="getBody($event)" class="w-100"></prs-editor>
 

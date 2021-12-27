@@ -13,7 +13,11 @@
                     <img src="assets/img/Document-align-2.svg" width="30" alt="">
                     <div class="text">
                       <h2>{{info.title}}</h2>
-                      <span *ngIf="info.categories && info.categories.length > 0">دسته بندی مقاله : {{info.categories[0].name}}</span>
+                      <span *ngIf="info.categories && info.categories.length > 0">
+                        دسته بندی مقاله :
+                      <span *ngFor="let item of info.categories">{{item.name + ' , '}}</span>
+                      </span>
+
                     </div>
                   </div>
                   <p>
@@ -120,7 +124,7 @@
                   <h2>برچسب ها</h2>
                 </div>
                 <div class="label-item">
-                  <a (click)="goToSearch(tag)" *ngFor="let tag of tags">{{tag}}،</a>
+                  <a (click)="goToSearch(tag)" *ngFor="let tag of info.tags">{{tag}}،</a>
 
                 </div>
               </div>

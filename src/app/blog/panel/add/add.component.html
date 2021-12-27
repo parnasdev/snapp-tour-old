@@ -50,6 +50,7 @@
             </div>
           </div>
         </div>
+
         <div class="bottom">
           <div class="item-info">
             <label for="">توضیحات مطلب</label>
@@ -57,6 +58,11 @@
             <div *ngIf="errorService.hasError('description')">
               <span class="text-danger">{{errorService.getError('description')}}</span>
             </div>
+
+          </div>
+          <div class="item-info">
+            <prs-select-categories class="w-50" (categoryIds)="getCategories($event)"></prs-select-categories>
+
           </div>
         </div>
         <prs-editor (body)="getBody($event)" class="w-100"></prs-editor>
@@ -86,8 +92,8 @@
 
     <div class="box-details-tour">
 
-        <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="submit()" [isLoading]="isLoading"
-                 [label]="'ثبت مطلب'"></prs-btn>
+      <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="submit()" [isLoading]="isLoading"
+               [label]="'ثبت مطلب'"></prs-btn>
 
     </div>
   </form>

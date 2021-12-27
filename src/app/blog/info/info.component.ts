@@ -54,7 +54,7 @@ export class InfoComponent implements OnInit {
       if (res.isDone) {
         this.info = res.data;
         this.title.setTitle(this.info.title + '|' + this.setting.settings.title)
-        this.getTags();
+        // this.getTags();
         this.getCategories();
         this.getArchived();
         this.info.body = this.replaceAll(this.info.body, '/upload/', 'http://satrap.parnasweb.com/upload/')

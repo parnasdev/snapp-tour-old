@@ -22,6 +22,8 @@ import {Page404Component} from "./page404/page404.component";
 import { PopupVideoComponent } from './popup-video/popup-video.component';
 import {PipesModule} from "./pipes/pipes.module";
 import { ShowLocationComponent } from './show-location/show-location.component';
+import { SelectCategoriesComponent } from './select-categories/select-categories.component';
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
@@ -40,7 +42,8 @@ import { ShowLocationComponent } from './show-location/show-location.component';
     ChipsComponent,
     Page404Component,
     PopupVideoComponent,
-    ShowLocationComponent
+    ShowLocationComponent,
+    SelectCategoriesComponent
   ],
     exports: [
         UploadFileComponent,
@@ -51,7 +54,8 @@ import { ShowLocationComponent } from './show-location/show-location.component';
         SelectHotelComponent,
         SelectCityComponent,
         ChipsComponent,
-        ShowLocationComponent
+        ShowLocationComponent,
+        SelectCategoriesComponent
     ],
     imports: [
         CommonModule,
@@ -64,6 +68,7 @@ import { ShowLocationComponent } from './show-location/show-location.component';
 
         ToolsModule,
         PipesModule,
+        MatSelectModule,
     ], entryComponents: [UploadSingleComponent, AlertDialogComponent]
 })
 export class CommonProjectModule {

@@ -30,7 +30,7 @@ export class AddComponent implements OnInit {
   isSlugGenerated = false;
   selectedTags: string[] = []
   thumbnail = '';
-
+  categories: number[] = []
   postReq: PostSetReqDTO = {
     title: '',
     slug: '',
@@ -117,7 +117,7 @@ export class AddComponent implements OnInit {
       title: this.postForm.value.title,
       slug: this.postForm.value.slug,
       body: this.postForm.value.body,
-      categories: [2],
+      categories: this.categories,
       description: this.postForm.value.description,
       status: this.postForm.value.status,
       tags: this.postForm.value.tags,
@@ -134,6 +134,10 @@ export class AddComponent implements OnInit {
 
   getBody(body: any): void {
     this.postForm.controls.body.setValue(body);
+  }
+
+  getCategories(categories: any): void {
+    this.categories = categories
   }
 
   private markFormGroupTouched(formGroup: any) {
@@ -158,7 +162,8 @@ export class AddComponent implements OnInit {
       }, (error: any) => {
         this.message.error()
       })
-    } else {}
+    } else {
+    }
   }
 
   getTags(tags: string[]): void {

@@ -8,7 +8,7 @@ import {FormControl, Validators} from "@angular/forms";
 })
 export class ChipsComponent implements OnInit, OnChanges {
   textFC = new FormControl('', Validators.required);
-  list: any[] = [];
+  list: string[] = [];
   @Output() result = new EventEmitter()
   @Input() inComing: string[] = []
   @Input() placeHolder = 'کلمه خود را وارد کنید سپس دکمه Enter را بزنید'
@@ -25,6 +25,7 @@ export class ChipsComponent implements OnInit, OnChanges {
   }
 
   add(): void {
+    debugger
     if (this.textFC.valid) {
       this.list.push(this.textFC.value);
       this.textFC.reset()
@@ -33,7 +34,10 @@ export class ChipsComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.list = this.inComing;
+    if (this.inComing && this.inComing.length > 0) {
+      this.list = this.inComing;
+
+    }
   }
 
 }

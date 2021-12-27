@@ -311,6 +311,18 @@
   padding: 0 8px;
   outline: none;
 }
+.item-info prs-select-categories {
+  border: 1px solid var(--light-color-two);
+  height: 30px;
+  border-radius: 4px;
+  margin-top: 8px;
+  background-color: var(--white);
+  width: 100%;
+  font-size: 13px !important;
+  font-weight: 500;
+  padding: 0 8px;
+  outline: none;
+}
 
 .item-info-2 {
   display: flex;

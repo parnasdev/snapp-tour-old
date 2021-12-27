@@ -24,7 +24,7 @@
           <div class="list">
             <div class="box-blog" *ngFor="let item of blogs">
               <div class="img" >
-                <a class="info-img">
+                <a class="info-img" routerLink="/blogs/{{item.slug}}">
                   <img src="assets/img/Attachment%201.svg" width="22" alt="">
                   <span routerLink="/blogs/{{item.slug}}">مشاهده جزئیات بیشتر</span>
                 </a>

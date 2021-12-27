@@ -43,6 +43,7 @@ export class EditComponent implements OnInit {
   };
   info!: PostResDTO
   isSlugGenerated = false;
+  categories: number[] = []
 
   constructor(
     public categoryApi: CategoryApiService,
@@ -95,6 +96,9 @@ export class EditComponent implements OnInit {
       this.message.custom('لطفا متن بلاگ خود را وارد کنید')
     }
   }
+  getCategories(categories: any): void {
+    this.categories = categories
+  }
 
   edit(): void {
     this.isLoading = true;
@@ -137,6 +141,9 @@ export class EditComponent implements OnInit {
     this.postForm.controls.body.setValue(this.info.body)
     this.postForm.controls.status.setValue(this.info.status)
     this.postForm.controls.description.setValue(this.info.description)
+    this.info.categories.forEach(x => {
+      this.categories.push(x.id);
+    })
     this.thumbnail = this.info.thumbnail
     this.isSlugGenerated = true;
   }
@@ -146,7 +153,7 @@ export class EditComponent implements OnInit {
       title: this.postForm.value.title,
       slug: this.postForm.value.slug,
       body: this.postForm.value.body,
-      categories: [2],
+      categories: this.categories,
       description: this.postForm.value.description,
       status: this.postForm.value.status,
       tags: this.postForm.value.tags,
