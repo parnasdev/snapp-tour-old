@@ -143,10 +143,7 @@ export class EditComponent implements OnInit {
       services: [
         {
           name: 'GroupName',
-          ids: [
-            "2",
-            "3"
-          ]
+          ids: this.serviceIDs
         }
       ],
       status: this.statusFC.value
