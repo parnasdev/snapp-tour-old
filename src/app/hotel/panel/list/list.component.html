@@ -3,7 +3,7 @@
   <div class="title">
     <h2>لیست هتل ها</h2>
     <prs-select-city [hasHotel]="true" [callCity]="true" (citySelected)="getCitySelected($event)"></prs-select-city>
-     <div class="d-flex">
+     <div class="d-flex search-box-hotel">
        <input [formControl]="keywordFC" placeholder="جستجو بر اساس نام هتل" type="text">
        <button class="mr-2" (click)="getList()">جستجو</button>
      </div>

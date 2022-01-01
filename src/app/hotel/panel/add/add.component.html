@@ -73,8 +73,8 @@
       <div class="info-tour-body">
         <div class="top">
           <div class="item-info-second w-100">
-            <label for="">توضیحات</label>
-            <prs-editor (body)="getDescriptionFromEditor($event)"></prs-editor>
+            <label class="mb-2" for="">توضیحات</label>
+            <prs-editor style="margin: 0 auto;width: 100%" (body)="getDescriptionFromEditor($event)"></prs-editor>
           </div>
         </div>
       </div>
@@ -133,13 +133,13 @@
       </div>
     </div>
 
-    <div class="box-info-fly">
+    <div class="link-video ">
       <div class="item-info">
-        <label for="">Iframe Aparat</label>
+        <label for="">لینک آپارات</label>
         <input type="text" placeholder="لینک iframe آپارات را وارد کنید" [formControl]="aparatFC">
       </div>
       <div class="item-info">
-        <label for="">Youtube Url</label>
+        <label for="">لینک یوتیوب</label>
         <input type="text" placeholder="لینک یوتیوب را وارد کنید" [formControl]="youtubeFC">
       </div>
     </div>

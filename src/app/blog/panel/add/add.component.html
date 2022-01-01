@@ -53,15 +53,15 @@
 
         <div class="bottom">
           <div class="item-info">
+            <prs-select-categories class="w-50" (categoryIds)="getCategories($event)"></prs-select-categories>
+
+          </div>
+          <div class="item-info">
             <label for="">توضیحات مطلب</label>
             <input formControlName="description" type="text">
             <div *ngIf="errorService.hasError('description')">
               <span class="text-danger">{{errorService.getError('description')}}</span>
             </div>
-
-          </div>
-          <div class="item-info">
-            <prs-select-categories class="w-50" (categoryIds)="getCategories($event)"></prs-select-categories>
 
           </div>
         </div>

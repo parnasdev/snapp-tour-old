@@ -444,7 +444,7 @@
 .btn-parent-submit {
   margin-top: 1rem;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .btn-upload-img {
@@ -491,10 +491,19 @@ prs-services {
   flex-direction: column;
   width: 38%;
 }
-
+.link-video{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  margin-top: 1rem;
+}
 @media only screen and (max-width: 868px){
   .info-tour-body .top {
     flex-direction: column;
+  }
+  .link-video{
+    justify-content: space-between;
   }
   .item-info {
     width: 100%;
