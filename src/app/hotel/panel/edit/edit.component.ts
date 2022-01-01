@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl} from "@angular/forms";
 import {MapReverseDTO} from "../../../Core/Models/mapDTO";
 import {CityDTO, CityListRequestDTO, CityResponseDTO} from "../../../Core/Models/cityDTO";
-import {hotelInfoDTO, HotelSetRequestDTO} from "../../../Core/Models/hotelDTO";
+import {hotelInfoDTO, HotelSetRequestDTO, MediaLinkDTO, ServicesDTO} from "../../../Core/Models/hotelDTO";
 import {ActivatedRoute, Router} from "@angular/router";
 import {HotelApiService} from "../../../Core/Https/hotel-api.service";
 import {MessageService} from "../../../Core/Services/message.service";
@@ -15,6 +15,7 @@ import {CityApiService} from "../../../Core/Https/city-api.service";
 import {UploadSingleComponent} from "../../../common-project/upload-single/upload-single.component";
 import {MultipleUploadComponent} from "../../../common-project/multiple-upload/multiple-upload.component";
 import {MatDialog} from "@angular/material/dialog";
+import {TourListResDTO} from "../../../Core/Models/tourDTO";
 
 @Component({
   selector: 'prs-edit',
@@ -24,7 +25,33 @@ import {MatDialog} from "@angular/material/dialog";
 export class EditComponent implements OnInit {
 
   hotelName = '';
-  hotelInfo!: hotelInfoDTO;
+  hotelInfo: hotelInfoDTO = {
+    name: '',
+    city: {
+      name: '',
+      id: 0,
+      type: 0,
+      image: '',
+      slug: '',
+      slugEn: '',
+      description: '',
+      images: [],
+      nameEn: ''
+    },
+    nameEn: '',
+    stars: '',
+    location: '',
+    address: '',
+    coordinate: {lat: 0, lng: 0},
+    images: [],
+    mediaLink: [],
+    thumbnail: '',
+    body: '',
+    services: [],
+    status: '',
+    phone: '',
+    tours: [],
+  };
   serviceIDs: string[] = [];
   nameFC = new FormControl('');
   nameEnFC = new FormControl('');
@@ -188,6 +215,11 @@ export class EditComponent implements OnInit {
     })
   }
 
+
+  removeThumbnailImage(): void {
+    this.thumbnail = '';
+  }
+
   edit(): void {
     this.setReq()
     this.hotelApi.edit(this.req, this.hotelName).subscribe((res: any) => {
@@ -291,6 +323,6 @@ export class EditComponent implements OnInit {
   }
 
   removeImage(index: any): void {
-    this.images.splice(index, -1);
+    this.images.splice(index, 1);
   }
 }
