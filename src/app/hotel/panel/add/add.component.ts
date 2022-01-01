@@ -232,7 +232,11 @@ export class AddComponent implements OnInit {
     })
   }
 
+  removeThumbnailImage(): void {
+    this.thumbnail = '';
+  }
+
   removeImage(index: any): void {
-    this.images.splice(index, -1);
+    this.images.splice(index, 1);
   }
 }

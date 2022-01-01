@@ -92,6 +92,8 @@
           </div>
           <div class="single-img-upload-parent">
             <img [src]="thumbnail" width="100%" height="200" alt="">
+            <i class="icon-cancel-1 text-danger" (click)="removeThumbnailImage()"></i>
+
           </div>
         </div>
         <div class="bottom-one">
@@ -101,7 +103,7 @@
           <div class="multi-img-upload-parent">
             <div class="images" *ngFor="let img of images;let i = index">
               <img [src]="img" alt="">
-              <i class="icon-cancel-1" (click)="removeImage(i)"></i>
+              <i class="icon-cancel-1 text-danger" (click)="removeImage(i)"></i>
             </div>
 
           </div>
