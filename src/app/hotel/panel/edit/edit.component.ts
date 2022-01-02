@@ -225,7 +225,7 @@ export class EditComponent implements OnInit {
     this.hotelApi.edit(this.req, this.hotelName).subscribe((res: any) => {
       if (res.isDone) {
         this.message.custom(res.message);
-        this.router.navigateByUrl('/panel/hotel/list')
+        // this.router.navigateByUrl('/panel/hotel/list')
       } else {
         this.message.custom(res.message)
       }

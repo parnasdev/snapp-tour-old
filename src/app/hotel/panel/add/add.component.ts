@@ -196,7 +196,7 @@ export class AddComponent implements OnInit {
     this.hotelApi.add(this.req).subscribe((res: any) => {
       if (res.isDone) {
         this.message.showMessageBig(res.message);
-        this.router.navigateByUrl('panel/hotel/list')
+        // this.router.navigateByUrl('panel/hotel/list')
       } else {
         this.message.custom(res.message)
       }
