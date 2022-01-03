@@ -172,7 +172,7 @@ export class IndexComponent implements OnInit {
     const reqDTO: TourListRequestDTO = {
       city: null,
       paginate: false,
-      limit: 5,
+      limit: 10,
       perPage: 10,
       sortByDate: false,
       search: '',
