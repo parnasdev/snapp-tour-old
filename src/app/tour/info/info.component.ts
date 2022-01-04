@@ -69,7 +69,7 @@ export class InfoComponent implements OnInit {
     transfers: [],
     transferPriceType: 0,
     transferRate: 0,
-    type: 0,
+    type: false,
     user: {
       name: '',
       family: '',

@@ -98,7 +98,7 @@ export interface TourInfoDTO {
   transfers: TourTransferDTO[];
   transferPriceType: number;
   transferRate: number;
-  type: number;
+  type: boolean;
   user: {
     name: string;
     family: string;
@@ -177,7 +177,7 @@ export interface CityTourInfoDTO {
   slugEn: string;
   images: any[];
   description: string;
-  type: number
+  type: boolean
 }
 
 export interface ReserveReqDTO {

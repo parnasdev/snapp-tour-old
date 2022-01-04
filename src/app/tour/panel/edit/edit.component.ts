@@ -46,7 +46,7 @@ export class EditComponent extends AddComponent implements OnInit {
       description: '',
       images: [],
       slugEn: '',
-      type: 1
+      type: false
     },
     stDate: '',
     status: '',
@@ -54,7 +54,7 @@ export class EditComponent extends AddComponent implements OnInit {
     transfers: [],
     transferPriceType: 0,
     transferRate: 0,
-    type: 0,
+    type: false,
     user: {
       name: '',
       family: '',
