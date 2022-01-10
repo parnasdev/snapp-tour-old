@@ -62,15 +62,15 @@
                         <h1> پرسش های شما</h1>
                       </div>
                     </div>
-                    <div class="box-faq" *ngFor="let faq of info.faq">
-                      <a data-toggle="collapse" href="#one" class="question">
+                    <div class="box-faq" *ngFor="let faq of info.faq;let i = index">
+                      <a data-toggle="collapse" [href]="'#one'+i" class="question">
                         <div class="right">
                           <img src="assets/img/FAQ.svg" width="20" alt="">
                           <span>{{faq.question}}</span>
                         </div>
                         <i class="icon-down-open"></i>
                       </a>
-                      <div id="one" class="collapse">
+                      <div [id]="'one' + i" class="collapse">
                         <div class="answer"><span>{{faq.answer}}</span></div>
                       </div>
                     </div>
@@ -80,7 +80,7 @@
                   <div class="blog">
                     <div class="title">
                       <img src="assets/img/Bookmark.svg" width="20" alt="">
-                      <h1>اخبار گردشگری آنتالیا</h1>
+                      <h1>مقالات گردشگری {{info.name}}</h1>
                     </div>
 
 

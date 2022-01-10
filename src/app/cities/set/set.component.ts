@@ -60,7 +60,7 @@ export class SetComponent implements OnInit {
   addItems(item: FaqDTO | null = null) {
     return this.fb.group({
       question: [item ? item.question : ''],
-      answer: [item ? item.question : '']
+      answer: [item ? item.answer : '']
     });
   }
 
