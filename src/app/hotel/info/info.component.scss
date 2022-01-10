@@ -65,6 +65,13 @@
   color: var(--base-color);
 }
 
+.no-map {
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--light-color-one);
+}
 
 //---------------
 .title-hotel {
