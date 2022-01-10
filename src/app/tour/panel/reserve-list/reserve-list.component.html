@@ -21,14 +21,14 @@
     <div class="body-list-tour" *ngIf="list.length > 0">
       <div class="item" *ngFor="let tour of list | paginate: paginateConfig;let i = index">
         <span class="id">{{ i + 1 }}</span>
-        <span class="title-tour">{{ tour.package.hotel.name }}</span>
+        <span class="title-tour">{{ tour.package.hotel?.name }}</span>
         <span class="from-to">{{ tour.phone }}</span>
-        <span class="from-to">{{ tour.package.tour.title}}</span>
+        <span class="from-to">{{ tour.package.tour?.title}}</span>
         <span class="day">{{ tour.count }}</span>
-        <span class="username">{{ tour.package.tour.endCity.name}}</span>
+        <span class="username">{{ tour.package.tour?.endCity?.name}}</span>
         <span class="username">{{ getStatus(tour.package.tour.status)}}</span>
         <div class="button-setting">
-          <a routerLink="/tours/{{tour.package.tour.endCity.slugEn}}/{{tour.package.tour.slug}}" target="_blank" class="view-btn">نمایش</a>
+          <a routerLink="/tours/{{tour.package.tour?.endCity?.slugEn}}/{{tour.package.tour.slug}}" target="_blank" class="view-btn">نمایش</a>
         </div>
 <!--        <span class="date-create">{{'-&#45;&#45;'}}</span>-->
 <!--        <span class="view">{{'-&#45;&#45;'}}</span>-->

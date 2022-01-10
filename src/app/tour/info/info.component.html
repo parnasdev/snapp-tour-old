@@ -16,13 +16,23 @@
               </div>
             </div>
             <div class="left">
-              <strong>ایرلاین رفت و برگشت</strong>
-<!--              <a class="share">-->
-<!--                <img src="assets/img/Navigation.svg" width="20" alt="">-->
-<!--              </a>-->
-<!--              <a class="favorite">-->
-<!--                <img src="assets/img/Heart.svg" width="20" alt="">-->
-<!--              </a>-->
+              <div class="d-flex flex-column">
+                <div class="d-flex airline">
+                  <strong class="airline-title">ایرلاین رفت : </strong>
+                  <strong class="airline-value">{{tourInfo.transfers[0].transfer}}</strong>
+                </div>
+                <div class="d-flex airline">
+                  <strong class="airline-title"> ایرلاین برگشت : </strong>
+                  <strong class="airline-value"> {{tourInfo.transfers[1].transfer}}</strong>
+
+                </div>
+              </div>
+              <!--              <a class="share">-->
+              <!--                <img src="assets/img/Navigation.svg" width="20" alt="">-->
+              <!--              </a>-->
+              <!--              <a class="favorite">-->
+              <!--                <img src="assets/img/Heart.svg" width="20" alt="">-->
+              <!--              </a>-->
             </div>
           </div>
           <div class="title-tour-mobile">
@@ -189,7 +199,8 @@
             </button>
           </div>
 
-          <prs-thumbnail-tour-two [tourInfo]="tourInfo" [tourType]="tourInfo.endCity.type" [defineTour]="tourInfo.defineTour"
+          <prs-thumbnail-tour-two [tourInfo]="tourInfo" [tourType]="tourInfo.endCity.type"
+                                  [defineTour]="tourInfo.defineTour"
                                   class="w-100"></prs-thumbnail-tour-two>
         </div>
       </div>
