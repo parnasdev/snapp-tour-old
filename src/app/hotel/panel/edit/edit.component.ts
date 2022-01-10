@@ -32,6 +32,7 @@ export class EditComponent implements OnInit {
       id: 0,
       type: 0,
       image: '',
+      faq: [],
       slug: '',
       slugEn: '',
       description: '',

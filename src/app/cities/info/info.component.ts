@@ -3,7 +3,7 @@ import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {CityApiService} from "../../Core/Https/city-api.service";
 import {MessageService} from "../../Core/Services/message.service";
 import {Gallery, GalleryItem, ImageItem} from "ng-gallery";
-import { CityListRequestDTO, CityResponseDTO} from "../../Core/Models/cityDTO";
+import {CityListRequestDTO, CityResponseDTO, FaqDTO} from "../../Core/Models/cityDTO";
 import {TourListRequestDTO, TourListResDTO} from "../../Core/Models/tourDTO";
 import {TourApiService} from "../../Core/Https/tour-api.service";
 import {endWith} from "rxjs/operators";
@@ -20,7 +20,18 @@ declare let $: any;
 })
 export class InfoComponent implements OnInit {
   city = ''
-  info!: CityResponseDTO;
+  info: CityResponseDTO = {
+    name: '',
+    id: 0,
+    type: 0,
+    image: '',
+    slug: '',
+    slugEn: '',
+    faq: [],
+    description: '',
+    images: [],
+    nameEn: '',
+  }
   galleryId = 'myLightbox';
   items: GalleryItem[] = [];
   cityFC = new FormControl();
