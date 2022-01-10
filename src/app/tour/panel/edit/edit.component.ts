@@ -249,7 +249,6 @@ export class EditComponent extends AddComponent implements OnInit {
     }
     this.isSlugGenerated = true;
     this.infoLoading = false;
-
   }
 
   setFormArray(packages: TourPackageDTO[]): void {

@@ -28,8 +28,6 @@ export class ServicesComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.inComing);
-    console.log(this.services)
     if (this.services.length > 0) {
       this.services.forEach(x => {
         this.inComing.ids.forEach(y => {
@@ -39,7 +37,7 @@ export class ServicesComponent implements OnInit, OnChanges {
         })
       })
     }
-
+    this.changeChecked()
 
   }
 }
