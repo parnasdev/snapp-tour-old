@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormArray, FormBuilder, FormControl, Validators} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, Validators} from "@angular/forms";
 import {ResponsiveService} from "../../../Core/Services/responsive.service";
 import {PublicService} from "../../../Core/Services/public.service";
 import {CalenderServices} from "../../../Core/Services/calender-service";
@@ -293,7 +293,7 @@ export class AddComponent implements OnInit {
       ADLFlightRate: this.form.value.ADLFlightRate,
       defineTour: this.form.value.defineTour === 'true',
       euroRate: this.form.value.euroRate,
-      type: this.destCityTypeFC.value,
+      type: this.tourType,
       dollarRate: this.form.value.dollarRate,
       AEDRate: this.form.value.AEDRate,
       visaRate: this.form.value.visaRate,

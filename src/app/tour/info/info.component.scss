@@ -168,7 +168,6 @@
   margin-bottom: 10px;
   position: relative;
 }
-
 .border-fix {
   position: absolute;
   display: flex;
@@ -417,6 +416,18 @@
 }
 
 //end
+
+.airline-title {
+  color: var(--base-color);
+  margin: 0 0 0 6px;
+}
+.airline-value {
+  color: var(--gray-color-light);
+}
+
+.airline {
+  margin: 4px 0;
+}
 
 
 //s3

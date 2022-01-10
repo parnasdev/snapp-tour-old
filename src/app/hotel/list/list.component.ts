@@ -17,7 +17,6 @@ import {SettingService} from "../../Core/Services/setting.service";
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-
   cityFC = new FormControl('0');
   hotelReq: HotelRequestDTO = {
     isAdmin: true,
