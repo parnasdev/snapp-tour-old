@@ -6,6 +6,7 @@ import {SettingService} from "../../Core/Services/setting.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ErrorsService} from "../../Core/Services/errors.service";
 import {JSDocComment} from "@angular/compiler";
+import {FaqDTO} from "../../Core/Models/cityDTO";
 
 
 export interface metaTagsDTO {
@@ -24,7 +25,7 @@ export class SetComponent implements OnInit {
   isLoading = false;
   settings!: SettingDTO;
   settingReq!: SettingDTO;
-
+  faqList: FaqDTO[] = []
   metaTags: metaTagsDTO[] = [];
 
   metaNames = [
@@ -69,7 +70,6 @@ export class SetComponent implements OnInit {
     this.settingApi.getSetting().subscribe((res: any) => {
       if (res.isDone) {
         this.settings = res.data
-        console.log(this.settings);
         this.setFormData();
         this.getMeta();
       } else {
@@ -78,6 +78,11 @@ export class SetComponent implements OnInit {
     }, (error: any) => {
       this.message.error()
     })
+  }
+
+  getFaqResult(faq: any): void {
+    // console.log(faq);
+    this.faqList = faq;
   }
 
   setFormData() {
@@ -119,6 +124,7 @@ export class SetComponent implements OnInit {
       location: '',
       logo: '',
       logoFooter: '',
+      faq: JSON.stringify(this.faqList),
       namads: '',
       socialLinks: '',
       tel: '',

@@ -1,11 +1,11 @@
 <div class="parent-set">
   <div class="item-inp">
-    <div  class="item-info">
-      <label  for="en-fa">نام شهر را وارد کنید</label>
-      <input id="en-fa"  type="text" [formControl]="nameFC" class="ng-untouched ng-pristine ng-valid">
+    <div class="item-info">
+      <label for="en-fa">نام شهر را وارد کنید</label>
+      <input id="en-fa" type="text" [formControl]="nameFC" class="ng-untouched ng-pristine ng-valid">
     </div>
-    <div  class="item-info">
-      <label   for="en-name">نام انگلیسی شهر را وارد کنید</label>
+    <div class="item-info">
+      <label for="en-name">نام انگلیسی شهر را وارد کنید</label>
       <input id="en-name" type="text" [formControl]="nameEnFC" placeholder="">
     </div>
     <div class="item-info-mat">
@@ -21,13 +21,40 @@
   </div>
   <div class="upload-box">
     <prs-btn [background]="'dark'" (click)="getImages()" [label]="'تصاویر خود را آپلود کنید'"></prs-btn>
-<!--    <prs-upload-file (fileDTO)="getFile($event)"></prs-upload-file>-->
+    <!--    <prs-upload-file (fileDTO)="getFile($event)"></prs-upload-file>-->
     <div class="multi-img-upload-parent" *ngIf="images.length > 0">
       <div class="images" *ngFor="let img of images;let i = index">
         <img [src]="img" alt="">
         <i class="icon-cancel-1" (click)="removeImage(i)"></i>
       </div>
 
+    </div>
+  </div>
+  <div [formGroup]="form">
+    <div class="information-passenger" formArrayName="faq">
+      <div class="title">
+        <h2>سوالات متداول</h2>
+      </div>
+      <div class="header-top">
+        <span>سوال</span>
+        <span>جواب</span>
+
+
+        <button (click)="add()">اضافه</button>
+      </div>
+      <div class="body-top" *ngFor="let item of Faq.controls; let i = index">
+        <form [formGroupName]="i">
+          <div class="input-parent">
+            <input type="text" placeholder="سوال" formControlName="question">
+          </div>
+          <div class="input-parent">
+            <textarea type="text" placeholder="جواب" formControlName="answer"></textarea>
+          </div>
+          <div class="input-parent">
+            <i class="icon-cancel" (click)="removeFaq(i)"></i>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
   <prs-btn class="mt-2" [label]="'ثبت'" (click)="submit()" [background]="'blue'" [isLoading]="isLoading"></prs-btn>

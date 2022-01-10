@@ -72,7 +72,7 @@
               <span class="text-danger">{{errorService.getError('email')}}</span>
             </div>
           </div>
-
+          <prs-faq [inComingFaq]="settings.faq" (result)="getFaqResult($event)"></prs-faq>
           <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="setSetting()" [isLoading]="isLoading"
                    [label]="'ثبت تنظیمات'"></prs-btn>
 
@@ -137,6 +137,8 @@
             <i class="icon-cancel" (click)="removeMetaItem(i)"></i>
           </div>
         </div>
+
+
 
         <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="addMeta()" [isLoading]="isLoading"
                  [label]="'ثبت'"></prs-btn>

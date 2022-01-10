@@ -1,3 +1,5 @@
+import {FaqDTO} from "./cityDTO";
+
 export interface GetServiceRequestDTO {
   id: number
   name: string
@@ -12,6 +14,7 @@ export interface SettingDTO {
   favicon: string;
   location: string;
   logo: string;
+  faq: any
   logoFooter: string;
   metaTags: string;
   namads: string;

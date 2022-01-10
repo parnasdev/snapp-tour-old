@@ -24,6 +24,7 @@ import {PipesModule} from "./pipes/pipes.module";
 import { ShowLocationComponent } from './show-location/show-location.component';
 import { SelectCategoriesComponent } from './select-categories/select-categories.component';
 import {MatSelectModule} from "@angular/material/select";
+import { FaqComponent } from './faq/faq.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import {MatSelectModule} from "@angular/material/select";
     Page404Component,
     PopupVideoComponent,
     ShowLocationComponent,
-    SelectCategoriesComponent
+    SelectCategoriesComponent,
+    FaqComponent
   ],
     exports: [
         UploadFileComponent,
@@ -55,7 +57,8 @@ import {MatSelectModule} from "@angular/material/select";
         SelectCityComponent,
         ChipsComponent,
         ShowLocationComponent,
-        SelectCategoriesComponent
+        SelectCategoriesComponent,
+        FaqComponent
     ],
     imports: [
         CommonModule,
