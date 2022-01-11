@@ -64,12 +64,11 @@ export class InfoComponent implements OnInit {
     $(window).ready(() => {
       $(".question-tab").click(() => {
         this.tabClicked = 'question'
-        $("html").animate({scrollTop: 970}, 300)
+        $("html").animate({scrollTop: 1570}, 300)
       })
       $(".news-tab").click(() => {
         this.tabClicked = 'news'
-        console.log(this.tabClicked)
-        $("html").animate({scrollTop: 1310}, 300)
+        $("html").animate({scrollTop: 1060}, 300)
       })
       $(".about-tab").click(() => {
         this.tabClicked = 'about'

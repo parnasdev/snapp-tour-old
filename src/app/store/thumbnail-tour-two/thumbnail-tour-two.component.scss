@@ -5,6 +5,7 @@
   font-family: 'Ubuntu', sans-serif !important;
   margin-bottom: 2px;
   line-height: 23px;
+  white-space: break-spaces;
 }
 
 .title-fa {
@@ -131,7 +132,7 @@
 .info-info-hotel {
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 65%;
   padding-right: 10px;
   justify-content: center;
   align-items: flex-start;

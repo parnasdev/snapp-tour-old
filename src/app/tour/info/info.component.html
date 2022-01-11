@@ -16,7 +16,7 @@
               </div>
             </div>
             <div class="left">
-              <div class="d-flex flex-column">
+              <div class="d-flex flex-column ">
                 <div class="d-flex airline">
                   <strong class="airline-title">ایرلاین رفت : </strong>
                   <strong class="airline-value">{{tourInfo.transfers[0].transfer}}</strong>
@@ -42,15 +42,18 @@
                 <h2>{{ tourInfo?.title }}</h2>
               </div>
             </div>
-            <div class="left">
+            <div class="left left-mobile">
               <span> شروع قیمت از :{{ getStarterPrice() | round | sperator}} تومان </span>
-              <div class="d-flex">
-                <a class="share">
-                  <img src="assets/img/Navigation.svg" width="20" alt="">
-                </a>
-                <a class="favorite">
-                  <img src="assets/img/Heart.svg" width="20" alt="">
-                </a>
+              <div class="d-flex flex-column">
+                <div class="d-flex airline">
+                  <strong class="airline-title">ایرلاین رفت : </strong>
+                  <strong class="airline-value">{{tourInfo.transfers[0].transfer}}</strong>
+                </div>
+                <div class="d-flex airline">
+                  <strong class="airline-title"> ایرلاین برگشت : </strong>
+                  <strong class="airline-value"> {{tourInfo.transfers[1].transfer}}</strong>
+
+                </div>
               </div>
 
             </div>
