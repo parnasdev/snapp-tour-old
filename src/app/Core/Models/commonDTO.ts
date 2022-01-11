@@ -22,6 +22,6 @@ export interface SettingDTO {
   tel: string;
   title: string;
   whatsapp: string;
-  banners?: string;
-  thumbnail?: string;
+  // banners?: string;
+  // thumbnail?: string;
 }

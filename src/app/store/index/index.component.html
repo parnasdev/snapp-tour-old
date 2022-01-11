@@ -389,69 +389,14 @@
             </div>
             <div class="left">
               <div class="box-collapse">
-                <div class="item">
-                  <a class="parent-collapse collapse-1" data-toggle="collapse" href="#collapseExample">
-                    <span>آیا تور خارجی هم دارید ؟</span>
+                <div class="item" *ngFor="let item of faqList;let i = index">
+                  <a class="parent-collapse collapse-{{ i }}" data-toggle="collapse" href="#collapse{{i}}">
+                    <span>{{ item.question }}</span>
                     <i class="icon-down-open icon-1"></i>
                   </a>
-                  <div class="collapse" id="collapseExample">
+                  <div class="collapse" id="collapse{{i}}">
                     <div class="child-collapse">
-                      لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <a class="parent-collapse collapse-2" data-toggle="collapse" href="#collapseExample2">
-                    <span>مدارک لازم جهت رزرو تور چیست ؟</span>
-                    <i class="icon-down-open icon-2"></i>
-                  </a>
-                  <div class="collapse" id="collapseExample2">
-                    <div class="child-collapse">
-                      لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <a class="parent-collapse collapse-3" data-toggle="collapse" href="#collapseExample3">
-                    <span>شرایط تست PCR چیست و کارت واکسن نیاز است ؟</span>
-                    <i class="icon-down-open icon-3"></i>
-                  </a>
-                  <div class="collapse" id="collapseExample3">
-                    <div class="child-collapse">
-                      لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <a class="parent-collapse collapse-4" data-toggle="collapse" href="#collapseExample4">
-                    <span> ترمینال های مسافرتی ؟</span>
-                    <i class="icon-down-open icon-4"></i>
-                  </a>
-                  <div class="collapse" id="collapseExample4">
-                    <div class="child-collapse">
-                      لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <a class="parent-collapse collapse-5" data-toggle="collapse" href="#collapseExample5">
-                    <span>زمان حضور در فرودگاه ؟</span>
-                    <i class="icon-down-open icon-5"></i>
-                  </a>
-                  <div class="collapse" id="collapseExample5">
-                    <div class="child-collapse">
-                      لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <a class="parent-collapse collapse-6" data-toggle="collapse" href="#collapseExample6">
-                    <span>اول هفته مناسب است یا آخر هفته برای سفر ؟</span>
-                    <i class="icon-down-open icon-6"></i>
-                  </a>
-                  <div class="collapse" id="collapseExample6">
-                    <div class="child-collapse">
-                      لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                      {{ item.answer }}
                     </div>
                   </div>
                 </div>

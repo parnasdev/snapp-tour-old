@@ -12,7 +12,24 @@ import {BehaviorSubject} from "rxjs";
 export class SettingService {
 
   isLoading = false;
-  settings!: SettingDTO;
+  settings: SettingDTO = {
+    address: '',
+    consoleGoogle: '',
+    description: '',
+    descriptionFooter: '',
+    email: '',
+    favicon: '',
+    location: '',
+    logo: '',
+    faq: '',
+    logoFooter: '',
+    metaTags: '',
+    namads: '',
+    socialLinks: '',
+    tel: '',
+    title: '',
+    whatsapp: ''
+  };
   // @ts-ignore
   favIcon: HTMLLinkElement = document.querySelector('#favIcon');
 
@@ -35,7 +52,6 @@ export class SettingService {
         this.settings = res.data
         this.setSiteSettings();
         this.settingSub.next('true');
-
       } else {
         this.message.custom(res.message);
       }

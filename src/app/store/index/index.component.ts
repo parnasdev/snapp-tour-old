@@ -4,7 +4,7 @@ import {ResponsiveService} from "../../Core/Services/responsive.service";
 import {TourApiService} from "../../Core/Https/tour-api.service";
 import {TourListRequestDTO, TourListResDTO} from "../../Core/Models/tourDTO";
 import {CalenderServices} from "../../Core/Services/calender-service";
-import {CityListRequestDTO, CityResponseDTO} from "../../Core/Models/cityDTO";
+import {CityListRequestDTO, CityResponseDTO, FaqDTO} from "../../Core/Models/cityDTO";
 import {FormControl} from "@angular/forms";
 import {CityApiService} from "../../Core/Https/city-api.service";
 import {MessageService} from "../../Core/Services/message.service";
@@ -38,13 +38,14 @@ export class IndexComponent implements OnInit {
   hotelCityFC = new FormControl(1);
   hotels: HotelListResponseDTO[] = [];
   blogs: PostResDTO[] = [];
+  faqList: FaqDTO[] = []
   p = 1
   rnd = 0
 
   constructor(
     public api: TourApiService,
     public calenderServices: CalenderServices,
-    public title:Title,
+    public title: Title,
     public setting: SettingService,
     public cityApi: CityApiService,
     public blogApiService: BlogApiService,
@@ -80,7 +81,8 @@ export class IndexComponent implements OnInit {
     })
     this.setting.Setting$.subscribe(x => {
       if (x === 'true') {
-        this.title.setTitle(this.setting.settings.title)
+        this.title.setTitle(this.setting.settings.title);
+        this.getFaq();
       }
     })
     this.getTours();
@@ -229,7 +231,10 @@ export class IndexComponent implements OnInit {
       }
     }, (error: any) => {
       this.message.error()
-
     })
+  }
+
+  getFaq() {
+    this.faqList = this.setting.settings.faq !== '' ? JSON.parse(this.setting.settings.faq) : [];
   }
 }

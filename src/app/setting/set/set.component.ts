@@ -25,7 +25,7 @@ export class SetComponent implements OnInit {
   isLoading = false;
   settings!: SettingDTO;
   settingReq!: SettingDTO;
-  faqList: FaqDTO[] = []
+  faqList: FaqDTO[] = [];
   metaTags: metaTagsDTO[] = [];
 
   metaNames = [
@@ -60,6 +60,7 @@ export class SetComponent implements OnInit {
     socialLinks: new FormControl('', [Validators.required]),
     tel: new FormControl('', [Validators.required]),
     whatsapp: new FormControl('', [Validators.required]),
+    faq: new FormControl('', [Validators.required]),
   })
 
   ngOnInit(): void {
@@ -69,7 +70,7 @@ export class SetComponent implements OnInit {
   getSetting(): void {
     this.settingApi.getSetting().subscribe((res: any) => {
       if (res.isDone) {
-        this.settings = res.data
+        this.settings = res.data;
         this.setFormData();
         this.getMeta();
       } else {
@@ -118,7 +119,7 @@ export class SetComponent implements OnInit {
       address: '',
       consoleGoogle: '',
       description: this.settingForm.value.description,
-      descriptionFooter: '',
+      descriptionFooter: this.settingForm.value.descriptionFooter,
       email: this.settingForm.value.email,
       favicon: '',
       location: '',
@@ -137,7 +138,7 @@ export class SetComponent implements OnInit {
     this.setSettingReq();
     this.settingApi.changeSetting(this.settingReq).subscribe((res: any) => {
       if (res.isDone) {
-        console.log(res.data);
+        this.message.custom(res.message)
       }
       this.isLoading = false;
     }, (error: any) => {
