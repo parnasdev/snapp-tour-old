@@ -39,7 +39,6 @@
               </div>
             </div>
 
-
             <div class="parent-gallery" *ngIf="hotelInfo.images && hotelInfo.images.length > 0">
               <div class="right-gallery">
                 <img class="top-right" [lightbox]="0" [gallery]="galleryId" [src]="hotelInfo.images[0]" alt="">
@@ -60,6 +59,7 @@
                 </div>
               </div>
             </div>
+
             <div class="about-hotel">
               <div class="map">
                 <div class="no-map" *ngIf="hotelInfo.coordinate.lat === 0 && hotelInfo.coordinate.lng === 0" >
@@ -87,7 +87,8 @@
                 <p *ngIf="!hotelInfo.body">توضیحاتی ثبت نشده است</p>
               </div>
             </div>
-<!--            <div class="notes-hotel">-->
+
+            <div class="notes-hotel">
 <!--              <h2>نکات برجسته هتل {{hotelInfo.name}}</h2>-->
 <!--              <div class="details">-->
 <!--                <div class="right-box">-->
@@ -100,22 +101,23 @@
 <!--                  <p>-&#45;&#45;</p>-->
 <!--                </div>-->
 <!--              </div>-->
-<!--              <div class="option">-->
-<!--                <h2>امکانات هتل ، اتاق ها و خدمات دیگر در یک نگاه</h2>-->
-<!--                <div class="parent-item-option" *ngIf="hotelInfo.services.length > 0">-->
-<!--                  <div class="item" *ngFor="let service of hotelInfo.services[0].services">-->
-<!--&lt;!&ndash;                    <img src="assets/img/Modem.svg" width="20" alt="">&ndash;&gt;-->
-<!--                    <span>{{service.name}}</span>-->
-<!--                  </div>-->
+              <div class="option">
+                <h2>امکانات هتل ، اتاق ها و خدمات دیگر در یک نگاه</h2>
+                <div class="parent-item-option" *ngIf="hotelInfo.services.length > 0">
+                  <div class="item" *ngFor="let service of hotelInfo.services[0].services">
+<!--                    <img src="assets/img/Modem.svg" width="20" alt="">-->
+                    <span>{{service.name}}</span>
+                  </div>
+                </div>
+                <div class="parent-item-option" *ngIf="hotelInfo.services.length === 0">
+                  امکاناتی برای این هتل وجود ندارد.
+                </div>
+<!--                <div class="parent-view-option">-->
+<!--                  <a class="btn-option" href="">مشاهده تمامی امکانات</a>-->
 <!--                </div>-->
-<!--                <div class="parent-item-option" *ngIf="hotelInfo.services.length === 0">-->
-<!--                  امکاناتی برای این هتل وجود ندارد.-->
-<!--                </div>-->
-<!--&lt;!&ndash;                <div class="parent-view-option">&ndash;&gt;-->
-<!--&lt;!&ndash;                  <a class="btn-option" href="">مشاهده تمامی امکانات</a>&ndash;&gt;-->
-<!--&lt;!&ndash;                </div>&ndash;&gt;-->
-<!--              </div>-->
-<!--            </div>-->
+              </div>
+            </div>
+
             <div class="Similar-tour" *ngIf="hotelInfo.tours.length > 0">
               <div class="title-s2">
                 <div class="text">
