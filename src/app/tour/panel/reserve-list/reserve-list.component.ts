@@ -21,7 +21,7 @@ export class ReserveListComponent implements OnInit {
 
   constructor(public api: TourApiService,
               public route: ActivatedRoute,
-              public calenderServices: CalenderServices,
+              public calendar: CalenderServices,
               public message: MessageService) {
   }
 
@@ -56,7 +56,7 @@ export class ReserveListComponent implements OnInit {
     })
   }
 
-  getStatus(statusEn: string): string {
+  getStatus(statusEn: string | null): string {
     switch (statusEn) {
       case 'Show':
         return 'نمایش'
@@ -67,7 +67,7 @@ export class ReserveListComponent implements OnInit {
       case 'Pending':
         return 'در انتظار'
       default:
-        return ''
+        return '-'
     }
   }
 

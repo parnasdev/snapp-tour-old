@@ -194,9 +194,14 @@ export interface ReserveListReqDTO {
 }
 
 export interface ReserveListResDTO {
-  count: number
-  package: ReservePackageDTO
-  phone: string
+  count: number;
+  package: ReservePackageDTO;
+  phone: string;
+  city: string;
+  createdAt: string;
+  month: string;
+  name: string;
+  reserveStatus: string | null;
 }
 
 

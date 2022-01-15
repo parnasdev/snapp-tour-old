@@ -8,12 +8,13 @@
     <div class="header-list-tour">
       <span class="id">#</span>
       <span class="title-tour">نام هتل</span>
-      <span class="from-to">شماره همراه مسافر</span>
-      <span class="from-to">تور</span>
+      <span class="phoneNumber">شماره همراه مسافر</span>
+      <span class="from-to">عنوان تور</span>
       <span class="day">تعداد مسافر</span>
-      <span class="username">شهر مقصد</span>
-      <span class="username"> وضعیت تور</span>
-<!--      <span class="date-create">تاریخ ایجاد تور</span>-->
+      <span class="end-city">شهر مقصد</span>
+      <span class="tour-status">وضعیت تور</span>
+      <span class="reserve-date">وضعیت رزرو</span>
+      <span class="date-create">تاریخ درخواست رزرو</span>
 <!--      <span class="date-create">تاریخ انقضا تور</span>-->
 <!--      <span class="view">بازدید</span>-->
       <span class="status">تنظیمات</span>
@@ -26,7 +27,9 @@
         <span class="from-to">{{ tour.package.tour?.title}}</span>
         <span class="day">{{ tour.count }}</span>
         <span class="username">{{ tour.package.tour?.endCity?.name}}</span>
-        <span class="username">{{ getStatus(tour.package.tour.status)}}</span>
+        <span class="status">{{ getStatus(tour.package.tour.status)}}</span>
+        <span class="status">{{ getStatus(tour.reserveStatus)}}</span>
+        <span class="reserve-date">{{ calendar.convertDateAndTime(tour.createdAt, 'fa')}}</span>
         <div class="button-setting">
           <a routerLink="/tours/{{tour.package.tour?.endCity?.slugEn}}/{{tour.package.tour.slug}}" target="_blank" class="view-btn">نمایش</a>
         </div>
