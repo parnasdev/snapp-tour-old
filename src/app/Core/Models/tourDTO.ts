@@ -181,9 +181,11 @@ export interface CityTourInfoDTO {
 }
 
 export interface ReserveReqDTO {
-  package_id: number
-  phone: string
-  count: number
+  package_id: number | null;
+  phone: string;
+  count: number;
+  month?: string;
+  city?: string;
 }
 
 export interface ReserveListReqDTO {
