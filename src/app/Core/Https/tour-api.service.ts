@@ -72,9 +72,27 @@ export class TourApiService {
     return this.http.post<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
 
+  getReserveLogs(id: number): any {
+    const strUrl = environment.BACK_END_IP + `log/reserves/${id}`;
+    return this.http.get<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
+  }
+
+  addLogMessage(id: number, message: string): any {
+    const strUrl = environment.BACK_END_IP + `reserve/addMessage/${id}`;
+    return this.http.post<Result<any>>(strUrl,
+      {message: message},
+      this.publicService.getDefaultHeaders());
+  }
+
+  editReserve(status: string | null, id: number): any {
+    const strUrl = environment.BACK_END_IP + `reserve/editReserve/${id}`;
+    return this.http.post<Result<any>>(strUrl, {
+      status: status
+    }, this.publicService.getDefaultHeaders());
+  }
+
   getReserves(req: ReserveListReqDTO, pageNum: number): any {
     const address = pageNum ? `reserve/getReserves?page=${pageNum}` : 'reserve/getReserves'
-
     const strUrl = environment.BACK_END_IP + address;
     return this.http.post<Result<ReserveListResDTO>>(strUrl, req, this.publicService.getDefaultHeaders());
   }

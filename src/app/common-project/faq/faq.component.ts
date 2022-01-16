@@ -8,7 +8,8 @@ import {FaqDTO} from "../../Core/Models/cityDTO";
   styleUrls: ['./faq.component.scss']
 })
 export class FaqComponent implements OnInit, OnChanges {
-  @Input() inComingFaq = [];
+  @Input() inComingFaq = '';
+  faqList = [];
   @Output() result = new EventEmitter();
   form = new FormGroup({
     faq: new FormArray([])
@@ -36,7 +37,7 @@ export class FaqComponent implements OnInit, OnChanges {
   addItems(item: FaqDTO | null = null) {
     return this.fb.group({
       question: [item ? item.question : ''],
-      answer: [item ? item.question : '']
+      answer: [item ? item.answer : '']
     });
   }
 
@@ -45,7 +46,8 @@ export class FaqComponent implements OnInit, OnChanges {
   }
 
   setValue(): void {
-    this.inComingFaq.forEach(x => {
+    this.faqList = this.inComingFaq !== '' ? JSON.parse(this.inComingFaq) : [];
+    this.faqList.forEach(x => {
       this.Faq.push(this.addItems(x))
     })
   }

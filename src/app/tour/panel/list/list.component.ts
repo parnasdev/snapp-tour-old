@@ -12,6 +12,7 @@ import {FormControl} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";
 import {AlertDialogComponent, AlertDialogDTO} from "../../../common-project/alert-dialog/alert-dialog.component";
 import {LogsComponent} from "../logs/logs.component";
+
 declare let $: any;
 
 @Component({
@@ -39,6 +40,7 @@ export class ListComponent implements OnInit {
   originCityTypeFC = new FormControl(true);
   p = 1;
   sortByDate = false
+
   constructor(public tourApiService: TourApiService,
               public cityApi: CityApiService,
               public dialog: MatDialog,
@@ -172,11 +174,9 @@ export class ListComponent implements OnInit {
   openLogs(id: any): void {
     const dialog = this.dialog.open(LogsComponent, {
       width: '30%',
-      data: id
+      data: {id: id, type: 'tour'}
     });
     dialog.afterClosed().subscribe(result => {
-      if (result) {
-      }
     });
   }
 }

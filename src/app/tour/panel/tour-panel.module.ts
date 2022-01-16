@@ -35,7 +35,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     ListComponent,
     LogsComponent,
     CopyComponent,
-    ReserveListComponent],
+    ReserveListComponent,
+  ],
   imports: [
     CommonModule,
     TourPanelRoutingModule,

@@ -13,6 +13,7 @@ import {ExpireTourComponent} from './expire-tour/expire-tour.component';
 import {CommonProjectModule} from "../common-project/common-project.module";
 import {PipesModule} from "../common-project/pipes/pipes.module";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { ReserveBoxComponent } from './reserve-box/reserve-box.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     ListComponent,
     ReservePopupComponent,
     ExpireTourComponent,
+    ReserveBoxComponent,
   ],
   exports: [
     InfoComponent,

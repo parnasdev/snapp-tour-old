@@ -8,31 +8,48 @@
     <div class="header-list-tour">
       <span class="id">#</span>
       <span class="title-tour">نام هتل</span>
-      <span class="from-to">شماره همراه مسافر</span>
-      <span class="from-to">تور</span>
+      <span class="from-to">عنوان تور</span>
+      <span class="phoneNumber">شماره همراه مسافر</span>
       <span class="day">تعداد مسافر</span>
-      <span class="username">شهر مقصد</span>
-      <span class="username"> وضعیت تور</span>
-<!--      <span class="date-create">تاریخ ایجاد تور</span>-->
-<!--      <span class="date-create">تاریخ انقضا تور</span>-->
-<!--      <span class="view">بازدید</span>-->
+      <span class="end-city">شهر مقصد</span>
+      <span class="tour-status">وضعیت تور</span>
+      <span class="reserve-date">وضعیت رزرو</span>
+      <span class="date-create">تاریخ درخواست رزرو</span>
+      <!--      <span class="date-create">تاریخ انقضا تور</span>-->
+      <!--      <span class="view">بازدید</span>-->
       <span class="status">تنظیمات</span>
     </div>
     <div class="body-list-tour" *ngIf="list.length > 0">
       <div class="item" *ngFor="let tour of list | paginate: paginateConfig;let i = index">
         <span class="id">{{ i + 1 }}</span>
-        <span class="title-tour">{{ tour.package.hotel?.name }}</span>
+        <span class="title-tour">{{ tour.package ? tour.package.hotel?.name : 'بدون پکیج' }}</span>
+        <span
+          class="from-to">{{ tour.package ? tour.package.tour?.title : (tour.month ? tour.city?.name + '-' + tour.month : 'بدون پکیج')}}</span>
         <span class="from-to">{{ tour.phone }}</span>
-        <span class="from-to">{{ tour.package.tour?.title}}</span>
         <span class="day">{{ tour.count }}</span>
-        <span class="username">{{ tour.package.tour?.endCity?.name}}</span>
-        <span class="username">{{ getStatus(tour.package.tour.status)}}</span>
-        <div class="button-setting">
-          <a routerLink="/tours/{{tour.package.tour?.endCity?.slugEn}}/{{tour.package.tour.slug}}" target="_blank" class="view-btn">نمایش</a>
+        <span
+          class="username">{{ tour.package ? tour.package.tour?.endCity?.name : (tour.city ? tour.city?.name : 'بدون پکیج')}}</span>
+        <span class="status">{{ tour.package ? getStatus(tour.package.tour.status) : 'بدون پکیج'}}</span>
+        <span class="status">
+<!--          {{ getStatus(tour.status)}}-->
+          <div class="selectdiv">
+          <label>
+            <select [(ngModel)]="tour.status" (change)="changeStatus(tour.status, tour.id)">
+              <option value="Accepted">تایید شده</option>
+              <option value="Pendding">در انتظار تایید</option>
+            </select>
+          </label>
         </div>
-<!--        <span class="date-create">{{'-&#45;&#45;'}}</span>-->
-<!--        <span class="view">{{'-&#45;&#45;'}}</span>-->
-<!--        <span class="status">{{'-&#45;&#45;'}}</span>-->
+        </span>
+        <span class="reserve-date">{{ calendar.convertDateAndTime(tour.createdAt, 'fa')}}</span>
+        <div class="button-setting">
+          <a *ngIf="tour.package" routerLink="/tours/{{tour.package.tour?.endCity?.slugEn}}/{{tour.package.tour.slug}}"
+             target="_blank" class="view-btn">نمایش</a>
+          <a (click)="openLogs(tour.id)" class="view-btn">لاگ ها</a>
+        </div>
+        <!--        <span class="date-create">{{'-&#45;&#45;'}}</span>-->
+        <!--        <span class="view">{{'-&#45;&#45;'}}</span>-->
+        <!--        <span class="status">{{'-&#45;&#45;'}}</span>-->
       </div>
     </div>
     <div>
@@ -49,73 +66,73 @@
     </div>
   </div>
 
-<!--  <div class="table-list-tour-mobile" *ngIf="tours.length > 0">-->
-<!--    <div class="list-tour-box"-->
-<!--         *ngFor="let tour of tours | tourStatusFilter : status | paginate: paginateConfig; let i = index">-->
-<!--      <label class="user-id" for="">شماره شناسه : {{ i + 1 }}</label>-->
-<!--      <div class="item-list-tour mt-3">-->
-<!--        <div class="item-tour">-->
-<!--          <span class="title">نام کاربری :</span>-->
-<!--          <span class="text">{{ tour.user.name + ' ' + tour.user.family }}</span>-->
-<!--        </div>-->
-<!--        <div class="item-tour">-->
-<!--          <span class="title">عنوان تور :</span>-->
-<!--          <span class="text">{{ tour.title }}</span>-->
-<!--        </div>-->
-<!--        <div class="item-tour">-->
-<!--          <span class="title">مبدا-مقصد :</span>-->
-<!--          <span class="text">{{ tour.stCity + '-' + tour.endCity }}</span>-->
-<!--        </div>-->
-<!--        <div class="item-tour">-->
-<!--          <span class="title">تاریخ ایجاد :</span>-->
-<!--          <span class="text">{{this.calenderServices.convertDate1(tour.createdAt, 'fa') }}</span>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <a data-toggle="collapse" class="btn-details-more" href="#{{ i + 1 }}">جزییات بیشتر-->
-<!--        <i class="icon-down-open"></i>-->
-<!--      </a>-->
-<!--      <div id="{{ i + 1 }}" class="box-details-more collapse">-->
-<!--        <div class="item-list-tour">-->
-<!--          <div class="item-tour">-->
-<!--            <span class="title">شب و روز :</span>-->
-<!--            <span class="text">{{ tour.nightNum + '-' + tour.dayNum }}</span>-->
-<!--          </div>-->
-<!--          <div class="item-tour">-->
-<!--            <span class="title">تاریخ انقضا :</span>-->
-<!--            <span class="text">{{ this.calenderServices.convertDate(tour.expireDate, 'fa') }}</span>-->
-<!--          </div>-->
-<!--          <div class="item-tour">-->
-<!--            <span class="title">بازدید :</span>-->
-<!--            <span class="text">{{ tour.viewCount }}</span>-->
-<!--          </div>-->
-<!--          <div class="item-tour">-->
-<!--            <span class="title">وضعیت :</span>-->
-<!--            <span class="text text-danger">{{ getStatus(tour.status) }}</span>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="operation">-->
-<!--          <a routerLink="/panel/tour/edit/{{tour.slug}}" class="edit-btn">ویرایش</a>-->
-<!--          <a routerLink="/tour/{{ tour.slug }}" class="view-btn">نمایش</a>-->
-<!--          <a routerLink="/panel/tour/copy/{{ tour.slug }}" class="copy-btn">کپی</a>-->
-<!--          <button (click)="openLogs(tour.id)" class="log-btn">لاگ ها</button>-->
-<!--          <button (click)="deleteClicked(tour.slug)" class="delete-btn">حذف</button>-->
-<!--        </div>-->
+  <!--  <div class="table-list-tour-mobile" *ngIf="tours.length > 0">-->
+  <!--    <div class="list-tour-box"-->
+  <!--         *ngFor="let tour of tours | tourStatusFilter : status | paginate: paginateConfig; let i = index">-->
+  <!--      <label class="user-id" for="">شماره شناسه : {{ i + 1 }}</label>-->
+  <!--      <div class="item-list-tour mt-3">-->
+  <!--        <div class="item-tour">-->
+  <!--          <span class="title">نام کاربری :</span>-->
+  <!--          <span class="text">{{ tour.user.name + ' ' + tour.user.family }}</span>-->
+  <!--        </div>-->
+  <!--        <div class="item-tour">-->
+  <!--          <span class="title">عنوان تور :</span>-->
+  <!--          <span class="text">{{ tour.title }}</span>-->
+  <!--        </div>-->
+  <!--        <div class="item-tour">-->
+  <!--          <span class="title">مبدا-مقصد :</span>-->
+  <!--          <span class="text">{{ tour.stCity + '-' + tour.endCity }}</span>-->
+  <!--        </div>-->
+  <!--        <div class="item-tour">-->
+  <!--          <span class="title">تاریخ ایجاد :</span>-->
+  <!--          <span class="text">{{this.calenderServices.convertDate1(tour.createdAt, 'fa') }}</span>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--      <a data-toggle="collapse" class="btn-details-more" href="#{{ i + 1 }}">جزییات بیشتر-->
+  <!--        <i class="icon-down-open"></i>-->
+  <!--      </a>-->
+  <!--      <div id="{{ i + 1 }}" class="box-details-more collapse">-->
+  <!--        <div class="item-list-tour">-->
+  <!--          <div class="item-tour">-->
+  <!--            <span class="title">شب و روز :</span>-->
+  <!--            <span class="text">{{ tour.nightNum + '-' + tour.dayNum }}</span>-->
+  <!--          </div>-->
+  <!--          <div class="item-tour">-->
+  <!--            <span class="title">تاریخ انقضا :</span>-->
+  <!--            <span class="text">{{ this.calenderServices.convertDate(tour.expireDate, 'fa') }}</span>-->
+  <!--          </div>-->
+  <!--          <div class="item-tour">-->
+  <!--            <span class="title">بازدید :</span>-->
+  <!--            <span class="text">{{ tour.viewCount }}</span>-->
+  <!--          </div>-->
+  <!--          <div class="item-tour">-->
+  <!--            <span class="title">وضعیت :</span>-->
+  <!--            <span class="text text-danger">{{ getStatus(tour.status) }}</span>-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--        <div class="operation">-->
+  <!--          <a routerLink="/panel/tour/edit/{{tour.slug}}" class="edit-btn">ویرایش</a>-->
+  <!--          <a routerLink="/tour/{{ tour.slug }}" class="view-btn">نمایش</a>-->
+  <!--          <a routerLink="/panel/tour/copy/{{ tour.slug }}" class="copy-btn">کپی</a>-->
+  <!--          <button (click)="openLogs(tour.id)" class="log-btn">لاگ ها</button>-->
+  <!--          <button (click)="deleteClicked(tour.slug)" class="delete-btn">حذف</button>-->
+  <!--        </div>-->
 
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div>-->
-<!--      <pagination-controls-->
-<!--        *ngIf="!loading && paginate.lastPage > 1"-->
-<!--        class="pagination-control"-->
-<!--        (pageChange)="onPageChanged($event)"-->
-<!--        previousLabel="قبلی"-->
-<!--        nextLabel="بعدی"-->
-<!--        screenReaderPaginationLabel="صفحه بندی"-->
-<!--        screenReaderPageLabel="صفحه"-->
-<!--        screenReaderCurrentLabel="شما در صفحه ی">-->
-<!--      </pagination-controls>-->
-<!--    </div>-->
-<!--  </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--    <div>-->
+  <!--      <pagination-controls-->
+  <!--        *ngIf="!loading && paginate.lastPage > 1"-->
+  <!--        class="pagination-control"-->
+  <!--        (pageChange)="onPageChanged($event)"-->
+  <!--        previousLabel="قبلی"-->
+  <!--        nextLabel="بعدی"-->
+  <!--        screenReaderPaginationLabel="صفحه بندی"-->
+  <!--        screenReaderPageLabel="صفحه"-->
+  <!--        screenReaderCurrentLabel="شما در صفحه ی">-->
+  <!--      </pagination-controls>-->
+  <!--    </div>-->
+  <!--  </div>-->
 
 </div>
 

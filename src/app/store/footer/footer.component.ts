@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SettingService} from "../../Core/Services/setting.service";
 declare let $: any;
 @Component({
   selector: 'prs-footer',
@@ -7,7 +8,7 @@ declare let $: any;
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(public setting: SettingService) { }
 
   ngOnInit(): void {
     const btn = $('#button');

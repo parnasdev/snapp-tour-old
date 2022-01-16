@@ -27,9 +27,10 @@ export class ReservePopupComponent implements OnInit {
 
   reserve(): void {
     this.req = {
-      count: this.countFC.value,
+      count: +this.countFC.value,
       package_id: this.data,
-      phone: this.phoneFC.value
+      phone: this.phoneFC.value,
+      noPackage: false
     }
     this.api.reserve(this.req).subscribe((res: any) => {
       if (res.isDone) {

@@ -276,7 +276,7 @@
           </div>
           <div class="box-blog-parent">
             <div class="right-blog" *ngIf="blogs.length > 0" routerLink="/blogs/{{blogs[0].slug}}"
-                 [style.background-image]="'url(' + blogs[0].thumbnail.split('%20').join('') + ')'">
+                 [style.background-image]="'url(' + blogs[0].thumbnail.split(' ').join('%20') + ')'">
               <div class="info-blog">
                 <h6>
                   <a>{{blogs[0].title}}</a>
@@ -289,7 +289,7 @@
             </div>
             <div class="left-blog">
               <div class="top" *ngIf="blogs.length > 1" routerLink="/blogs/{{blogs[1].slug}}"
-                   [style.background-image]="'url(' + blogs[1].thumbnail.split('%20').join('') + ')'">
+                   [style.background-image]="'url(' + blogs[1].thumbnail.split(' ').join('%20') + ')'">
                 <div class="info-blog">
                   <h6>
                     <a>
@@ -304,7 +304,7 @@
               </div>
               <div class="bottom">
                 <div class="bottom-left-blog" *ngIf="blogs.length > 2" routerLink="/blogs/{{blogs[2].slug}}"
-                     [style.background-image]="'url(' + blogs[2].thumbnail.split('%20').join('') + ')'">
+                     [style.background-image]="'url(' + blogs[2].thumbnail.split(' ').join('%20') + ')'">
                   <div class="info-blog">
                     <h6><a>{{blogs[2].title}}</a></h6>
                     <div class="date-info">
@@ -314,7 +314,7 @@
                   </div>
                 </div>
                 <div class="bottom-right-blog" *ngIf="blogs.length > 3" routerLink="/blogs/{{blogs[3].slug}}"
-                     [style.background-image]="'url(' + blogs[3].thumbnail.split('%20').join('') + ')'">
+                     [style.background-image]="'url(' + blogs[3].thumbnail.split(' ').join('%20') + ')'">
                   <div class="info-blog">
                     <h6><a>{{blogs[3].title}}</a></h6>
                     <div class="date-info">
@@ -379,7 +379,7 @@
                 </div>
                 <div class="box">
                   <img src="assets/img/Add%20Menu.svg" width="50" alt="">
-                  <span>اپلیکیشن همراه</span>
+                  <span>خدمات ویژ سفر</span>
                 </div>
                 <div class="box">
                   <img src="assets/img/Headphone.svg" width="50" alt="">
@@ -389,69 +389,14 @@
             </div>
             <div class="left">
               <div class="box-collapse">
-                <div class="item">
-                  <a class="parent-collapse collapse-1" data-toggle="collapse" href="#collapseExample">
-                    <span>آیا تور خارجی هم دارید ؟</span>
+                <div class="item" *ngFor="let item of faqList;let i = index">
+                  <a class="parent-collapse collapse-{{ i }}" data-toggle="collapse" href="#collapse{{i}}">
+                    <span>{{ item.question }}</span>
                     <i class="icon-down-open icon-1"></i>
                   </a>
-                  <div class="collapse" id="collapseExample">
+                  <div class="collapse" id="collapse{{i}}">
                     <div class="child-collapse">
-                      لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <a class="parent-collapse collapse-2" data-toggle="collapse" href="#collapseExample2">
-                    <span>مدارک لازم جهت رزرو تور چیست ؟</span>
-                    <i class="icon-down-open icon-2"></i>
-                  </a>
-                  <div class="collapse" id="collapseExample2">
-                    <div class="child-collapse">
-                      لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <a class="parent-collapse collapse-3" data-toggle="collapse" href="#collapseExample3">
-                    <span>شرایط تست PCR چیست و کارت واکسن نیاز است ؟</span>
-                    <i class="icon-down-open icon-3"></i>
-                  </a>
-                  <div class="collapse" id="collapseExample3">
-                    <div class="child-collapse">
-                      لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <a class="parent-collapse collapse-4" data-toggle="collapse" href="#collapseExample4">
-                    <span> ترمینال های مسافرتی ؟</span>
-                    <i class="icon-down-open icon-4"></i>
-                  </a>
-                  <div class="collapse" id="collapseExample4">
-                    <div class="child-collapse">
-                      لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <a class="parent-collapse collapse-5" data-toggle="collapse" href="#collapseExample5">
-                    <span>زمان حضور در فرودگاه ؟</span>
-                    <i class="icon-down-open icon-5"></i>
-                  </a>
-                  <div class="collapse" id="collapseExample5">
-                    <div class="child-collapse">
-                      لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <a class="parent-collapse collapse-6" data-toggle="collapse" href="#collapseExample6">
-                    <span>اول هفته مناسب است یا آخر هفته برای سفر ؟</span>
-                    <i class="icon-down-open icon-6"></i>
-                  </a>
-                  <div class="collapse" id="collapseExample6">
-                    <div class="child-collapse">
-                      لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.
+                      {{ item.answer }}
                     </div>
                   </div>
                 </div>
