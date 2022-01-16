@@ -1,7 +1,7 @@
 <h1>لاگ ها</h1>
-<hr>
+<hr *ngIf="data.type === 'reserve'">
 
-<div class="d-flex flex-column">
+<div class="d-flex flex-column" *ngIf="data.type === 'reserve'">
   <h2>اضافه کردن پیام جدید</h2>
   <textarea [formControl]="messageFC"></textarea>
   <a class="view-button" (click)="addMessage()">ثبت پیام</a>

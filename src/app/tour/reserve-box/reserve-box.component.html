@@ -1,6 +1,8 @@
 <div class="parent-reserve">
   <h2>با تشکر از انتخاب شما</h2>
-  <p>لطفا جهت رزرو تور با شماره تلفن
+  <p> لطفا جهت رزرو تور
+    <span style="display: inline-flex">{{ city.name + '-' + month}}</span>
+    با شماره تلفن
     <span style="display: inline-flex">021-84278</span>
     تماس حاصل فرمایید
   </p>
@@ -31,6 +33,6 @@
       <option value="10">10 نفر</option>
     </select>
   </div>
-  <prs-btn [label]="'رزرو'" (click)="reserve()" [background]="'dark'" ></prs-btn>
+  <prs-btn [label]="'رزرو'" (click)="reserve()" [background]="'dark'"></prs-btn>
 </div>
 
