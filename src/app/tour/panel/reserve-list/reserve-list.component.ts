@@ -87,10 +87,6 @@ export class ReserveListComponent implements OnInit {
     });
   }
 
-  openMessages(){
-
-  }
-
   changeStatus(status: string | null, id: number) {
     this.api.editReserve(status, id).subscribe((res: any) => {
       this.loading = false;

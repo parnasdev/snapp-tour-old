@@ -1,6 +1,12 @@
 <h1>لاگ ها</h1>
 <hr>
 
+<div class="d-flex flex-column">
+  <h2>اضافه کردن پیام جدید</h2>
+  <textarea [formControl]="messageFC"></textarea>
+  <a class="view-button" (click)="addMessage()">ثبت پیام</a>
+</div>
+<hr>
 <div *ngIf="!isLoading && logs.length > 0">
   <div *ngFor="let item of logs">
     <span>{{item.user.name + ' ' + item.user.family + ' / ' + item.message }}</span>
