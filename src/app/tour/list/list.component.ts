@@ -83,10 +83,6 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     window.scrollTo(0, 0)
-
-
-
-
   }
 
   getData(): void {
@@ -132,7 +128,6 @@ export class ListComponent implements OnInit {
   }
 
   citySelected(city: CityResponseDTO): void {
-    console.log(city)
     if (city) {
       this.cityInfo = {
         description: '',
@@ -194,9 +189,7 @@ export class ListComponent implements OnInit {
         if (res.isDone) {
           this.cityInfo = res.data
           this.title.setTitle('تورهای ' + this.cityInfo.name + '|' + this.setting.settings.title)
-
           this.getTours();
-
         } else {
 
         }

@@ -15,7 +15,7 @@ export class ReserveBoxComponent implements OnInit {
   req!: ReserveReqDTO
   countFC = new FormControl('1');
   phoneFC = new FormControl();
-  @Input() cityName = '';
+  @Input() city = '';
   @Input() month = '';
 
   constructor(public message: MessageService,
@@ -27,10 +27,11 @@ export class ReserveBoxComponent implements OnInit {
 
   reserve(): void {
     this.req = {
-      count: this.countFC.value,
+      count: +this.countFC.value,
       package_id: null,
+      noPackage: true,
       phone: this.phoneFC.value,
-      city: this.cityName,
+      city_id: this.city,
       month: this.month
     }
     this.api.reserve(this.req).subscribe((res: any) => {

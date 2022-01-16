@@ -52,7 +52,7 @@
             <prs-thumbnails-tour [tours]="tours" [sortByDate]="sortByDate"></prs-thumbnails-tour>
           </div>
           <div style="display: flex; flex-direction: row-reverse" class="w-75" *ngIf="tours.length === 0">
-            <prs-reserve-box [cityName]="cityInfo.name" [month]="monthFC.value.title"></prs-reserve-box>
+            <prs-reserve-box [city]="cityInfo.id.toString()" [month]="monthFC.value.title"></prs-reserve-box>
           </div>
         </div>
       </div>

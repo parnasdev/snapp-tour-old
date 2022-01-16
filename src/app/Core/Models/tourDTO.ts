@@ -185,7 +185,8 @@ export interface ReserveReqDTO {
   phone: string;
   count: number;
   month?: string;
-  city?: string;
+  city_id?: string;
+  noPackage: boolean;
 }
 
 export interface ReserveListReqDTO {
@@ -194,14 +195,15 @@ export interface ReserveListReqDTO {
 }
 
 export interface ReserveListResDTO {
+  id: number;
   count: number;
   package: ReservePackageDTO;
   phone: string;
-  city: string;
+  city: CityResponseDTO;
   createdAt: string;
   month: string;
   name: string;
-  reserveStatus: string | null;
+  status: string | null;
 }
 
 

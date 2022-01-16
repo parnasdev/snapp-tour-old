@@ -20,27 +20,54 @@ export interface LogsDTO {
 })
 export class LogsComponent implements OnInit {
   logs: LogsDTO[] = []
+  isLoading = false;
 
   constructor(public api: TourApiService,
               public calenderServices: CalenderServices,
               public dialogRef: MatDialogRef<LogsComponent>,
               public message: MessageService,
-              @Inject(MAT_DIALOG_DATA) public data: number,) {
+              @Inject(MAT_DIALOG_DATA) public data: { id: number, type: string }) {
   }
 
   ngOnInit(): void {
-    this.getLogs()
+    if (this.data.type === 'tour') {
+      this.getLogs();
+    } else {
+      this.getReserveLogs();
+    }
   }
 
   getLogs(): void {
-    this.api.getLogs(this.data).subscribe((res: any) => {
+    this.isLoading = true;
+    this.api.getLogs(this.data.id).subscribe((res: any) => {
       if (res.isDone) {
         this.logs = res.data
+        this.isLoading = false;
       } else {
+        this.isLoading = false;
         this.message.custom(res.message);
         this.dialogRef.close();
       }
     }, (error: any) => {
+      this.isLoading = false;
+      this.message.error()
+      this.dialogRef.close()
+    })
+  }
+
+  getReserveLogs(): void {
+    this.isLoading = true;
+    this.api.getReserveLogs(this.data.id).subscribe((res: any) => {
+      if (res.isDone) {
+        this.logs = res.data
+        this.isLoading = false;
+      } else {
+        this.isLoading = false;
+        this.message.custom(res.message);
+        this.dialogRef.close();
+      }
+    }, (error: any) => {
+      this.isLoading = false;
       this.message.error()
       this.dialogRef.close()
     })

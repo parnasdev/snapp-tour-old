@@ -1,10 +1,22 @@
-  <h1>لاگ ها</h1>
-  <hr>
+<h1>لاگ ها</h1>
+<hr>
 
-
-<div *ngFor="let item of logs">
-    <span>{{item.user.name + ' ' +item.user.family + ' / ' + item.message + ' / '+calenderServices.convertDateAndTime(item.createdAt,'fa')}}</span>
+<div *ngIf="!isLoading && logs.length > 0">
+  <div *ngFor="let item of logs">
+    <span>{{item.user.name + ' ' + item.user.family + ' / ' + item.message }}</span>
+    <br/>
+    <span
+      style="display: flex; flex-direction: row-reverse">{{calenderServices.convertDateAndTime(item.createdAt, 'fa')}}</span>
     <hr>
   </div>
+</div>
+<div *ngIf="!isLoading && logs.length === 0">
+  <span>هیچ موردی برای نمایش یافت نشد</span>
+</div>
+
+<div *ngIf="isLoading">
+  <span>در حال لود اطلاعات</span>
+</div>
+
 
 <prs-btn [label]="'بستن'" (click)="dialogRef.close()"></prs-btn>
