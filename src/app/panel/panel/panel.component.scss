@@ -59,8 +59,11 @@
 :host::ng-deep h2 {
   font-size: 16px !important;
 }
-:host::ng-deep #box-widget-icon {
+:host::ng-deep #box-widget-icon svg{
   display: none!important;
+}
+.none{
+  display: none;
 }
 @media only screen and (max-width: 900px) {
   .sidebar {

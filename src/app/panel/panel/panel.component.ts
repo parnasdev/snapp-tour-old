@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import {SettingService} from "../../Core/Services/setting.service";
 
+declare let $: any;
+
 @Component({
   selector: 'prs-panel',
   templateUrl: './panel.component.html',
@@ -15,9 +17,13 @@ export class PanelComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    $('.btn-sidebar').click(() => {
+      $('.sidebar').animate({
+        width: ['toggle', 'swing']
+      })
+      $('.main-page').toggleClass('main-full').animate(1500)
+    })
     this.title.setTitle('پنل کاربری همنواز')
-
   }
 
 }
