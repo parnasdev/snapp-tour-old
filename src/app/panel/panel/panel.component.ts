@@ -13,13 +13,13 @@ export class PanelComponent implements OnInit {
 
   constructor(public title: Title,
               public setting: SettingService) {
-
   }
 
   ngOnInit(): void {
     $('.btn-sidebar').click(() => {
       $('.sidebar').animate({
-        width: ['toggle', 'swing']
+        width: ['toggle', 'swing'],
+        opacity: ['toggle', 'swing'],
       })
       $('.main-page').toggleClass('main-full').animate(1500)
     })
