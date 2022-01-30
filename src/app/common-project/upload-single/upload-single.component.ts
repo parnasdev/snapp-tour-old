@@ -10,7 +10,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
   styleUrls: ['./upload-single.component.scss']
 })
 export class UploadSingleComponent implements OnInit {
-
+  time = new Date().getTime();
   loadAPI:Promise<any>;
   constructor(public dialogRef: MatDialogRef<UploadSingleComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,

@@ -10,6 +10,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 })
 export class MultipleUploadComponent implements OnInit {
   loadAPI:Promise<any>;
+  time = new Date().getTime();
   constructor(public dialogRef: MatDialogRef<MultipleUploadComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,private http: HttpClient,private router: Router){
     this.loadAPI=new Promise((resoleve)=>{
