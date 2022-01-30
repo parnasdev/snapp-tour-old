@@ -101,9 +101,16 @@ header {
   color: #A9B0A6;
   font-size: 13px !important;
 }
-
+::ng-deep .main-full{
+  width: 100% !important;
+}
+.menu-panel{
+margin-left: 1rem;
+}
 /*end*/
-
+.btn-sidebar{
+  cursor: pointer;
+}
 @media only screen and (max-width: 868px){
   header{
     display: none;
