@@ -49,7 +49,6 @@ export class SelectCityComponent implements OnInit, OnChanges {
       startWith(''),
       map(value => this._filter(value)),
     );
-    console.log(changes)
     if (changes.inCommingCity && changes.inCommingCity.currentValue) {
       this.cityFC.setValue(this.inCommingCity.name)
     }
