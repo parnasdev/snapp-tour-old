@@ -82,11 +82,12 @@ export class AddComponent implements OnInit {
 
 
   submit(): void {
-    if (this.postForm.controls.body.value !== '') {
-      this.createPost()
-    } else {
-      this.message.custom('لطفا متن بلاگ خود را وارد کنید')
-    }
+    // if (this.postForm.controls.body.value !== '') {
+    //   this.createPost()
+    // } else {
+    //   this.message.custom('لطفا متن بلاگ خود را وارد کنید')
+    // }
+    this.createPost()
   }
 
   createPost(): void {
@@ -97,7 +98,7 @@ export class AddComponent implements OnInit {
       if (res.isDone) {
         this.message.showMessageBig(res.message);
         this.postForm.reset();
-        this.router.navigateByUrl('/panel/blog/list')
+        this.router.navigateByUrl('/blog/list')
       }
     }, (error: any) => {
       this.isLoading = false;

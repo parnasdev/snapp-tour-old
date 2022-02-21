@@ -109,7 +109,7 @@ export class AddComponent implements OnInit {
       if (res.isDone) {
         this.message.custom(res.message);
         this.userForm.reset();
-        this.router.navigate(['/panel/user/list']);
+        this.router.navigate(['/user/list']);
       } else {
         this.message.custom(res.message);
       }

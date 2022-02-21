@@ -13,17 +13,17 @@ const routes: Routes = [
         path: 'prs-admin',
         loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
       }, {
-        path: 'panel',
+        path: '',
         canActivate: [PanelGuardService],
         loadChildren: () => import('./panel/panel.module').then(m => m.PanelModule)
       }, {
         path: 'not-found',
         component: Page404Component
       },
-      {
-        path: '',
-        loadChildren: () => import('./store/store.module').then(m => m.StoreModule)
-      },
+      // {
+      //   path: '',
+      //   loadChildren: () => import('./store/store.module').then(m => m.StoreModule)
+      // },
     ]
   },
   {

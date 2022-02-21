@@ -10,6 +10,7 @@ import {CityApiService} from "../../Core/Https/city-api.service";
 import {FormControl, Validators} from "@angular/forms";
 import {Title} from "@angular/platform-browser";
 import {SettingService} from "../../Core/Services/setting.service";
+import {PublicService} from "../../Core/Services/public.service";
 
 @Component({
   selector: 'prs-list',
@@ -88,7 +89,7 @@ export class ListComponent implements OnInit {
   getData(): void {
     this.setting.Setting$.subscribe(x => {
       if (x === 'true') {
-        this.title.setTitle('لیست تورها' +'|'+ this.setting.settings.title)
+        this.title.setTitle('لیست تورها' + '|' + this.setting.settings.title)
       }
     })
     // @ts-ignore
@@ -134,7 +135,7 @@ export class ListComponent implements OnInit {
         id: city.id,
         images: [],
         slugEn: city.slugEn,
-        faq :[],
+        faq: [],
         name: city.name,
         nameEn: '',
         slug: city.slug,

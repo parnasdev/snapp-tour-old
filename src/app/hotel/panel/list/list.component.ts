@@ -10,6 +10,7 @@ import {CityResponseDTO} from "../../../Core/Models/cityDTO";
 import {CityApiService} from "../../../Core/Https/city-api.service";
 import {AlertDialogComponent, AlertDialogDTO} from "../../../common-project/alert-dialog/alert-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import {PublicService} from "../../../Core/Services/public.service";
 
 @Component({
   selector: 'prs-list',
@@ -40,6 +41,7 @@ export class ListComponent implements OnInit {
               public cityApiService: CityApiService,
               public commonApi: CommonApiService,
               public session: SessionService,
+              public publicService: PublicService,
   ) {
   }
 

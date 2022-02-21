@@ -15,8 +15,6 @@
       <span class="tour-status">وضعیت تور</span>
       <span class="reserve-date">وضعیت رزرو</span>
       <span class="date-create">تاریخ درخواست رزرو</span>
-      <!--      <span class="date-create">تاریخ انقضا تور</span>-->
-      <!--      <span class="view">بازدید</span>-->
       <span class="status">تنظیمات</span>
     </div>
     <div class="body-list-tour" *ngIf="list.length > 0">
@@ -43,13 +41,11 @@
         </span>
         <span class="reserve-date">{{ calendar.convertDateAndTime(tour.createdAt, 'fa')}}</span>
         <div class="button-setting">
-          <a *ngIf="tour.package" routerLink="/tours/{{tour.package.tour?.endCity?.slugEn}}/{{tour.package.tour.slug}}"
-             target="_blank" class="view-btn">نمایش</a>
+          <a *ngIf="tour.package"
+             (click)="publicService.openPage('tours/' + tour.package.tour?.endCity?.slugEn + '/' + tour.package.tour.slug)"
+             class="view-btn">نمایش</a>
           <a (click)="openLogs(tour.id)" class="view-btn">لاگ ها</a>
         </div>
-        <!--        <span class="date-create">{{'-&#45;&#45;'}}</span>-->
-        <!--        <span class="view">{{'-&#45;&#45;'}}</span>-->
-        <!--        <span class="status">{{'-&#45;&#45;'}}</span>-->
       </div>
     </div>
     <div>

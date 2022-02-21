@@ -1,7 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {CityListRequestDTO} from "../../../Core/Models/cityDTO";
-import {TourApiService} from "../../../Core/Https/tour-api.service";
-import {CityApiService} from "../../../Core/Https/city-api.service";
 import {ActivatedRoute} from "@angular/router";
 import {CheckErrorService} from "../../../Core/Services/check-error.service";
 import {CalenderServices} from "../../../Core/Services/calender-service";
@@ -11,6 +8,7 @@ import {PostReqDTO, PostResDTO} from "../../../Core/Models/BlogDTO";
 import {BlogApiService} from "../../../Core/Https/blog-api.service";
 import {AlertDialogComponent, AlertDialogDTO} from "../../../common-project/alert-dialog/alert-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import {PublicService} from "../../../Core/Services/public.service";
 
 declare var $: any;
 
@@ -42,6 +40,7 @@ export class ListComponent implements OnInit {
               public checkErrorService: CheckErrorService,
               public calService: CalenderServices,
               public errorService: ErrorsService,
+              public publicService: PublicService,
               public message: MessageService) {
   }
 
@@ -80,7 +79,7 @@ export class ListComponent implements OnInit {
     this.getPosts();
   }
 
-  deleteClicked(slug: string):void {
+  deleteClicked(slug: string): void {
     const obj: AlertDialogDTO = {
       description: 'حذف شود؟',
       icon: 'null',
@@ -113,6 +112,7 @@ export class ListComponent implements OnInit {
       this.checkErrorService.check(error);
     });
   }
+
   getStatus(statusEn: string): string {
     switch (statusEn) {
       case 'Show':

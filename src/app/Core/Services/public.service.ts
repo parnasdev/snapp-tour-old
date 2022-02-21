@@ -45,4 +45,9 @@ export class PublicService {
     return 'https://hamnavaz.com/panel/' + image;
   }
 
+  openPage(address: string) {
+    const url = 'https://hamnavaz.com/' + address
+    window.open(url, "_blank");
+  }
+
 }

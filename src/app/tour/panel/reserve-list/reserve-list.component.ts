@@ -7,6 +7,7 @@ import {ReserveListReqDTO, ReserveListResDTO} from "../../../Core/Models/tourDTO
 import {FormControl} from "@angular/forms";
 import {LogsComponent} from "../logs/logs.component";
 import {MatDialog} from "@angular/material/dialog";
+import {PublicService} from "../../../Core/Services/public.service";
 
 @Component({
   selector: 'prs-reserve-list',
@@ -26,6 +27,7 @@ export class ReserveListComponent implements OnInit {
   constructor(public api: TourApiService,
               public route: ActivatedRoute,
               public dialog: MatDialog,
+              public publicService: PublicService,
               public calendar: CalenderServices,
               public message: MessageService) {
   }

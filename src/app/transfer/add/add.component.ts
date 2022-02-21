@@ -37,7 +37,7 @@ export class AddComponent implements OnInit {
     this.setReq()
     this.api.add(this.req).subscribe((res: any) => {
       if (res.isDone) {
-        this.router.navigateByUrl('/panel/transfer');
+        this.router.navigateByUrl('/transfer');
       }else {
         this.message.custom(res.message);
       }

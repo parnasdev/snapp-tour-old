@@ -216,7 +216,6 @@ export class AddComponent implements OnInit {
   getThumbnail(): void {
     const dialog = this.dialog.open(UploadSingleComponent, {});
     dialog.afterClosed().subscribe(result => {
-      console.log(result);
       this.thumbnail = result
     })
   }
@@ -224,7 +223,6 @@ export class AddComponent implements OnInit {
   getImages(): void {
     const dialog = this.dialog.open(MultipleUploadComponent, {});
     dialog.afterClosed().subscribe((result: any[]) => {
-      console.log(result);
       result.forEach(x => {
         this.images.push(x.path);
       })

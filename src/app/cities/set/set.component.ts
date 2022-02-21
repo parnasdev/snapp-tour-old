@@ -84,7 +84,7 @@ export class SetComponent implements OnInit {
         this.isLoading = false;
         if (res.isDone) {
           this.message.custom(res.message);
-          this.router.navigateByUrl('/panel/cities')
+          this.router.navigateByUrl('/cities')
         }
       }, (error: any) => {
         this.isLoading = false;

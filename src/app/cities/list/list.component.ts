@@ -66,6 +66,6 @@ export class ListComponent implements OnInit {
   }
 
   edit(name: string): void {
-    this.router.navigateByUrl(`/panel/cities/set/${name}`)
+    this.router.navigateByUrl(`/cities/set/${name}`)
   }
 }

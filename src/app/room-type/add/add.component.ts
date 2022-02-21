@@ -59,7 +59,7 @@ export class AddComponent implements OnInit {
     this.setReq();
     this.roomTypeApi.add(this.req).subscribe((res: any) => {
       if (res.isDone) {
-        this.router.navigateByUrl('/panel/roomType');
+        this.router.navigateByUrl('/roomType');
       } else {
         this.message.custom(res.message);
       }
@@ -72,7 +72,7 @@ export class AddComponent implements OnInit {
     this.setReq();
     this.roomTypeApi.edit(this.req, this.roomId).subscribe((res: any) => {
       if (res.isDone) {
-        this.router.navigateByUrl('/panel/roomType');
+        this.router.navigateByUrl('/roomType');
       } else {
         this.message.custom(res.message);
       }

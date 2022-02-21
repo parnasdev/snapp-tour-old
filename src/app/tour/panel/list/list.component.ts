@@ -12,6 +12,7 @@ import {FormControl} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";
 import {AlertDialogComponent, AlertDialogDTO} from "../../../common-project/alert-dialog/alert-dialog.component";
 import {LogsComponent} from "../logs/logs.component";
+import {PublicService} from "../../../Core/Services/public.service";
 
 declare let $: any;
 
@@ -48,6 +49,7 @@ export class ListComponent implements OnInit {
               public checkErrorService: CheckErrorService,
               public calService: CalenderServices,
               public errorService: ErrorsService,
+              public publicService: PublicService,
               public message: MessageService) {
   }
 

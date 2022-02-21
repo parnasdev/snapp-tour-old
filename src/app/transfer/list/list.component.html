@@ -1,8 +1,7 @@
-
 <div class="list-tour">
   <div class="title">
     <h2>لیست هتل ها</h2>
-    <a class="btn-add-tour" routerLink="/panel/transfer/add">اضافه</a>
+    <a class="btn-add-tour" routerLink="/transfer/add">اضافه</a>
   </div>
   <div class="table-list-tour">
     <div class="header-list-tour">
@@ -15,15 +14,10 @@
     <div class="body-list-tour" *ngIf="transfers.length > 0">
       <div class="item" *ngFor="let transfer of transfers;let i = index">
         <span class="id">{{ i + 1 }}</span>
-        <!--    <img [src]="hotel.thumbnail" alt="">-->
         <span class="title-tour">{{ transfer.name }}</span>
         <span class="title-tour">{{ transfer?.type?.name }}</span>
-        <!--        <span class="date-create">{{this.calService.convertDate1(tour.createdAt, 'fa') }}</span>-->
-        <!--        <span class="status">{{ hotel.status }}</span>-->
         <div class="button-setting">
-          <a routerLink="/panel/transfer/edit/{{ transfer.id }}" class="edit-btn">ویرایش</a>
-<!--          <a routerLink="/transfer/info" class="view-btn">نمایش</a>-->
-          <!--          <button class="copy-btn">کپی</button>-->
+          <a routerLink="/transfer/edit/{{ transfer.id }}" class="edit-btn">ویرایش</a>
           <button (click)="deleteTransfer(transfer.id)" class="delete-btn">حذف</button>
         </div>
       </div>

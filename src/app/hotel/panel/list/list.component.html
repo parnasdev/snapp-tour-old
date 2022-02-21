@@ -7,7 +7,7 @@
        <input [formControl]="keywordFC" placeholder="جستجو بر اساس نام هتل" type="text">
        <button class="mr-2" (click)="getList()">جستجو</button>
      </div>
-      <a class="btn-add-tour" routerLink="/panel/hotel/add">اضافه</a>
+      <a class="btn-add-tour" routerLink="/hotel/add">اضافه</a>
   </div>
   <div class="table-list-tour">
     <div class="header-list-tour">
@@ -21,12 +21,9 @@
         <span class="id">{{ i + 1 }}</span>
         <span class="title-tour">{{ hotel.name }}</span>
         <span class="title-tour">{{ hotel.nameEn }}</span>
-<!--        <span class="date-create">{{this.calService.convertDate1(tour.createdAt, 'fa') }}</span>-->
-<!--        <span class="status">{{ hotel.status }}</span>-->
         <div class="button-setting">
-          <a routerLink="/panel/hotel/edit/{{ hotel.slug }}" class="edit-btn">ویرایش</a>
-          <a routerLink="/hotels/{{hotel.slug}}" target="_blank" class="view-btn">نمایش</a>
-          <!--          <button class="copy-btn">کپی</button>-->
+          <a routerLink="/hotel/edit/{{ hotel.slug }}" class="edit-btn">ویرایش</a>
+          <a (click)="publicService.openPage('hotels/' + hotel.slug)" class="view-btn">نمایش</a>
           <button (click)="deleteClicked(hotel.slug)" class="delete-btn">حذف</button>
         </div>
       </div>

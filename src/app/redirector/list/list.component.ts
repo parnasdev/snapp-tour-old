@@ -34,7 +34,7 @@ export class ListComponent implements OnInit {
     })
   }
 
-  add(): void {
+    add(): void {
     const dialog = this.dialog.open(SetComponent);
     dialog.afterClosed().subscribe((res: any) => {
       if (res) {

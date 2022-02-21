@@ -272,7 +272,7 @@ export class EditComponent extends AddComponent implements OnInit {
       if (res.isDone) {
         this.message.showMessageBig(res.message);
         this.errorService.clear();
-        this.router.navigateByUrl('/panel/tour');
+        this.router.navigateByUrl('/tour');
       }
     }, (error: any) => {
       this.isLoading = false;
@@ -287,7 +287,7 @@ export class EditComponent extends AddComponent implements OnInit {
     })
   }
 
-  getIncomingHotel(index: number){
+  getIncomingHotel(index: number) {
     this.getStars(index)
     // @ts-ignore
     return this.hotels.find(x => x.id === this.ToursForm.controls[index].controls.hotel_id.value)
