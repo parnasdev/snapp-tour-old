@@ -6,6 +6,10 @@
         <div class="right">
           <h2>تنظیمات</h2>
         </div>
+        <div class="left">
+          <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="setSetting()" [isLoading]="isLoading"
+                   [label]="'ثبت تنظیمات'"></prs-btn>
+        </div>
       </div>
       <div class="info-tour-body">
         <div class="top">
@@ -22,30 +26,16 @@
             </div>
           </div>
 
-          <!--          description-->
           <div class="item-info">
-            <label for="">توضیحات سایت</label>
-            <input formControlName="description" type="text">
-            <span class="required f-10"
-                  *ngIf="settingForm.get('description')?.touched && settingForm.get('description')?.invalid">
+            <label for="">ایمیل</label>
+            <input formControlName="email" type="text">
+            <span class="required f-10" *ngIf="settingForm.get('email')?.touched && settingForm.get('email')?.invalid">
             این فیلد الزامی است
             </span>
-            <div *ngIf="errorService.hasError('description')">
-              <span class="text-danger">{{errorService.getError('description')}}</span>
+            <div *ngIf="errorService.hasError('email')">
+              <span class="text-danger">{{errorService.getError('email')}}</span>
             </div>
           </div>
-
-
-          <!--          <div class="item-info">-->
-          <!--            <label for="">عنوان تور</label>-->
-          <!--            <input formControlName="title" type="text">-->
-          <!--            <span class="required f-10" *ngIf="settingForm.get('title')?.touched && settingForm.get('title')?.invalid">-->
-          <!--            این فیلد الزامی است-->
-          <!--            </span>-->
-          <!--            <div *ngIf="errorService.hasError('title')">-->
-          <!--              <span class="text-danger">{{errorService.getError('title')}}</span>-->
-          <!--            </div>-->
-          <!--          </div>-->
         </div>
         <div class="bottom">
           <div class="item-info">
@@ -60,44 +50,18 @@
             </div>
           </div>
         </div>
-        <div class="bottom">
+      </div>
+    </div>
 
-          <div class="item-info">
-            <label for="">ایمیل</label>
-            <input formControlName="email" type="text">
-            <span class="required f-10" *ngIf="settingForm.get('email')?.touched && settingForm.get('email')?.invalid">
-            این فیلد الزامی است
-            </span>
-            <div *ngIf="errorService.hasError('email')">
-              <span class="text-danger">{{errorService.getError('email')}}</span>
-            </div>
-          </div>
-          <prs-faq [inComingFaq]="settingForm.value.faq" (result)="getFaqResult($event)"></prs-faq>
-          <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="setSetting()" [isLoading]="isLoading"
-                   [label]="'ثبت تنظیمات'"></prs-btn>
-
-                    <div class="item-info">
-                      <label for="">توضیحات فوتر</label>
-                      <input formControlName="descriptionFooter" type="text">
-                      <span class="required f-10" *ngIf="settingForm.get('descriptionFooter')?.touched && settingForm.get('descriptionFooter')?.invalid">
-                      این فیلد الزامی است
-                      </span>
-                      <div *ngIf="errorService.hasError('descriptionFooter')">
-                        <span class="text-danger">{{errorService.getError('descriptionFooter')}}</span>
-                      </div>
-                    </div>
-
-          <!--          <div class="item-info">-->
-          <!--            <label for="">نامک تور</label>-->
-          <!--            <input formControlName="slug" type="text">-->
-          <!--            <span class="required f-10" *ngIf="settingForm.get('slug')?.touched && settingForm.get('slug')?.invalid">-->
-          <!--            این فیلد الزامی است-->
-          <!--            </span>-->
-          <!--            <div *ngIf="errorService.hasError('slug')">-->
-          <!--              <span class="text-danger">{{errorService.getError('slug')}}</span>-->
-          <!--            </div>-->
-          <!--          </div>-->
-
+    <div class="box-info-tour">
+      <div class="info-tour-header">
+        <div class="right">
+          <h2>مدیریت سوالات متداول</h2>
+        </div>
+      </div>
+      <div class="info-tour-body">
+        <div class="top">
+          <prs-faq style="width:100%" [inComingFaq]="settingForm.value.faq" (result)="getFaqResult($event)"></prs-faq>
         </div>
       </div>
     </div>
@@ -139,11 +103,64 @@
         </div>
 
 
-
         <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="addMeta()" [isLoading]="isLoading"
                  [label]="'ثبت'"></prs-btn>
       </div>
     </div>
+
+    <div class="box-info-tour">
+      <div class="info-tour-header">
+        <div class="right">
+          <h2>مدیریت فوتر</h2>
+        </div>
+      </div>
+      <div class="info-tour-body">
+
+        <div class="top">
+
+          <editor apiKey="0vfc016on7f2xre1903tf40tayspe9cz66smd4qilzs0oc0z" formControlName="descriptionFooter"
+                  [init]="editorConfig"></editor>
+
+        </div>
+
+        <!--        <div class="bottom">-->
+
+        <!--          <div class="item-info">-->
+        <!--            <label for="">نماد 1</label>-->
+        <!--            <input [formControl]="namad1FC" type="text">-->
+        <!--          </div>-->
+
+        <!--          <div class="item-info">-->
+        <!--            <label for="">نماد 2</label>-->
+        <!--            <input [formControl]="namad2FC" type="text">-->
+        <!--          </div>-->
+
+        <!--          <div class="item-info">-->
+        <!--            <label for="">نماد 3</label>-->
+        <!--            <input [formControl]="namad3FC" type="text">-->
+        <!--          </div>-->
+
+        <!--          <div class="item-info">-->
+        <!--            <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="setNamads()" [isLoading]="isLoading"-->
+        <!--                     [label]="'ثبت نماد ها'"></prs-btn>-->
+        <!--          </div>-->
+        <!--        </div>-->
+      </div>
+    </div>
+
+    <!--    <div class="box-info-tour">-->
+    <!--      <div class="info-tour-header">-->
+    <!--        <div class="right">-->
+    <!--          <h2>مدیریت لینک ها</h2>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--      <div class="info-tour-body">-->
+    <!--        <div class="top">-->
+    <!--          <prs-footer-links [incomingLinks]="settingForm.value.footerLinks"-->
+    <!--                            (result)="getLinksResult($event)"></prs-footer-links>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
 
   </form>
 </div>

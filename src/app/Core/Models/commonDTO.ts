@@ -17,11 +17,22 @@ export interface SettingDTO {
   faq: any
   logoFooter: string;
   metaTags: string;
-  namads: string;
+  namads: string[];
   socialLinks: string;
   tel: string;
   title: string;
   whatsapp: string;
-  // banners?: string;
+  footerLinks: FooterLinks[];
   // thumbnail?: string;
+}
+
+export interface FooterLinks {
+  title: string;
+  slug: string;
+  type: string;
+}
+
+export interface metaTagsDTO {
+  name: string;
+  value: string;
 }

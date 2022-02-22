@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
 import {FaqDTO} from "../../Core/Models/cityDTO";
+import {MessageService} from "../../Core/Services/message.service";
 
 @Component({
   selector: 'prs-faq',
@@ -15,12 +16,13 @@ export class FaqComponent implements OnInit, OnChanges {
     faq: new FormArray([])
   });
 
-  constructor(public fb: FormBuilder) {
+  constructor(public fb: FormBuilder,
+              public message: MessageService) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.setValue()
-    }
+  }
 
   ngOnInit(): void {
   }
@@ -54,6 +56,7 @@ export class FaqComponent implements OnInit, OnChanges {
 
   submit(): void {
     this.result.emit(this.form.value.faq)
+    this.message.custom('سوالات با موفقیت ثبت شد. لطفا روی ثبت تنظیمات کلیک کنید')
   }
 
 }

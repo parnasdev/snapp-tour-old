@@ -1,8 +1,7 @@
-.title {
+title {
   height: 50px;
   display: flex;
   align-items: center;
-  flex-direction: row;
   justify-content: space-between;
   padding: 0 2rem;
   width: 99%;
@@ -10,22 +9,13 @@
   margin-top: 1rem;
 }
 
-.title .left {
-  width: 10%;
-}
-
-.title .left button {
-  width: 100%;
-  height: 30px;
-}
-
-.title .right h2 {
+.title h2 {
   margin-bottom: 0;
 }
 
 .header-top {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   background-color: var(--light-color-two);
   margin-top: 12px;
   height: 40px;
@@ -38,8 +28,8 @@
 
 .body-top form {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  height: 100px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  height: 50px;
   border-bottom: 1px solid #eee;
 }
 

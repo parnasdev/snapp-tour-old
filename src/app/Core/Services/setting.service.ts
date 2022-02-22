@@ -24,11 +24,12 @@ export class SettingService {
     faq: '',
     logoFooter: '',
     metaTags: '',
-    namads: '',
+    namads: [],
     socialLinks: '',
     tel: '',
     title: '',
-    whatsapp: ''
+    whatsapp: '',
+    footerLinks: [],
   };
   // @ts-ignore
   favIcon: HTMLLinkElement = document.querySelector('#favIcon');

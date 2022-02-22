@@ -19,12 +19,14 @@ import {AlertDialogComponent} from "./alert-dialog/alert-dialog.component";
 import {MatDialogModule} from "@angular/material/dialog";
 import {ChipsComponent} from './chips/chips.component';
 import {Page404Component} from "./page404/page404.component";
-import { PopupVideoComponent } from './popup-video/popup-video.component';
+import {PopupVideoComponent} from './popup-video/popup-video.component';
 import {PipesModule} from "./pipes/pipes.module";
-import { ShowLocationComponent } from './show-location/show-location.component';
-import { SelectCategoriesComponent } from './select-categories/select-categories.component';
+import {ShowLocationComponent} from './show-location/show-location.component';
+import {SelectCategoriesComponent} from './select-categories/select-categories.component';
 import {MatSelectModule} from "@angular/material/select";
-import { FaqComponent } from './faq/faq.component';
+import {FaqComponent} from './faq/faq.component';
+import {FooterLinksComponent} from "./footer-links/footer-links.component";
+import {EditorModule} from "@tinymce/tinymce-angular";
 
 
 @NgModule({
@@ -45,34 +47,36 @@ import { FaqComponent } from './faq/faq.component';
     PopupVideoComponent,
     ShowLocationComponent,
     SelectCategoriesComponent,
-    FaqComponent
+    FaqComponent,
+    FooterLinksComponent,
   ],
-    exports: [
-        UploadFileComponent,
-        GetLocationComponent,
-        TimePickerComponent,
-        UploadSingleComponent,
-        EditorComponent,
-        SelectHotelComponent,
-        SelectCityComponent,
-        ChipsComponent,
-        ShowLocationComponent,
-        SelectCategoriesComponent,
-        FaqComponent
-    ],
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        FormsModule,
-        MatAutocompleteModule,
-        MatInputModule,
-        MatDialogModule,
-
-        ToolsModule,
-        PipesModule,
-        MatSelectModule,
-    ], entryComponents: [UploadSingleComponent, AlertDialogComponent]
+  exports: [
+    UploadFileComponent,
+    GetLocationComponent,
+    TimePickerComponent,
+    UploadSingleComponent,
+    EditorComponent,
+    SelectHotelComponent,
+    SelectCityComponent,
+    ChipsComponent,
+    ShowLocationComponent,
+    SelectCategoriesComponent,
+    FaqComponent,
+    FooterLinksComponent,
+  ],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    MatDialogModule,
+    EditorModule,
+    ToolsModule,
+    PipesModule,
+    MatSelectModule,
+  ], entryComponents: [UploadSingleComponent, AlertDialogComponent]
 })
 export class CommonProjectModule {
 }
