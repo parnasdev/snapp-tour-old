@@ -82,7 +82,7 @@ export class EditComponent extends AddComponent implements OnInit {
         offered: [packageItem.offered],
         user_id: packageItem.user_id,
         hotel_id: [packageItem.hotel.id],
-        services: [packageItem.services.id],
+        services: [packageItem.services ? packageItem.services.id : ''],
         rate: [packageItem.rate.id],
         discountsTwin: [packageItem.discounts.twin],
         discountsSingle: [packageItem.discounts.single],
