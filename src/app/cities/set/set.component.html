@@ -17,7 +17,9 @@
   </div>
   <div class="item-textarea">
     <label for="textarea">توضیحات</label>
-    <textarea [formControl]="desFC" name="" id="textarea" cols="30" rows="10"></textarea>
+    <editor apiKey="0vfc016on7f2xre1903tf40tayspe9cz66smd4qilzs0oc0z" [formControl]="desFC"
+            [init]="editorConfig"></editor>
+<!--    <textarea [formControl]="desFC" name="" id="textarea" cols="30" rows="10"></textarea>-->
   </div>
   <div class="upload-box">
     <prs-btn [background]="'dark'" (click)="getImages()" [label]="'تصاویر خود را آپلود کنید'"></prs-btn>
@@ -30,32 +32,7 @@
 
     </div>
   </div>
-  <div [formGroup]="form">
-    <div class="information-passenger" formArrayName="faq">
-      <div class="title">
-        <h2>سوالات متداول</h2>
-      </div>
-      <div class="header-top">
-        <span>سوال</span>
-        <span>جواب</span>
+  <prs-faq style="width:100%" [inComingFaq]="incomingFaq" (result)="getFaqResult($event)"></prs-faq>
 
-
-        <button (click)="add()">اضافه</button>
-      </div>
-      <div class="body-top" *ngFor="let item of Faq.controls; let i = index">
-        <form [formGroupName]="i">
-          <div class="input-parent">
-            <input type="text" placeholder="سوال" formControlName="question">
-          </div>
-          <div class="input-parent">
-            <textarea type="text" placeholder="جواب" formControlName="answer"></textarea>
-          </div>
-          <div class="input-parent">
-            <i class="icon-cancel" (click)="removeFaq(i)"></i>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
   <prs-btn class="mt-2" [label]="'ثبت'" (click)="submit()" [background]="'blue'" [isLoading]="isLoading"></prs-btn>
 </div>

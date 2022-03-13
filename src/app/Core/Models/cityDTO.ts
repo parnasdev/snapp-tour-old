@@ -9,7 +9,7 @@ export interface CityListRequestDTO {
 export interface CitySetRequestDTO {
   name?: string;
   nameEn: string;
-  faq: FaqDTO[]
+  faq: FaqDTO[];
   images: any[];
   description: string;
   type?: boolean;

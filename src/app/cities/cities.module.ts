@@ -14,6 +14,7 @@ import {StoreModule} from "../store/store.module";
 import {LightboxModule} from "ng-gallery/lightbox";
 import {GalleryModule} from "ng-gallery";
 import {BlogModule} from "../blog/blog.module";
+import {EditorModule} from "@tinymce/tinymce-angular";
 
 
 @NgModule({
@@ -22,21 +23,22 @@ import {BlogModule} from "../blog/blog.module";
     SetComponent,
     InfoComponent,
   ],
-  imports: [
-    CommonModule,
-    CitiesRoutingModule,
-    CommonProjectModule,
-    ReactiveFormsModule,
-    FormsModule,
-    LightboxModule,
-    GalleryModule,
-    MatButtonToggleModule,
-    MatDialogModule,
-    ToolsModule,
-    StoreModule,
-    BlogModule,
+    imports: [
+        CommonModule,
+        CitiesRoutingModule,
+        CommonProjectModule,
+        ReactiveFormsModule,
+        FormsModule,
+        LightboxModule,
+        GalleryModule,
+        MatButtonToggleModule,
+        MatDialogModule,
+        ToolsModule,
+        StoreModule,
+        BlogModule,
+        EditorModule,
 
-  ]
+    ]
 })
 export class CitiesModule {
 }

@@ -6,6 +6,7 @@ import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";
 import {MultipleUploadComponent} from "../../common-project/multiple-upload/multiple-upload.component";
 import {ActivatedRoute, Router} from "@angular/router";
+import {environment} from "../../../environments/environment.prod";
 
 @Component({
   selector: 'prs-set',
@@ -29,11 +30,33 @@ export class SetComponent implements OnInit {
   typeFC = new FormControl(true);
   city: string | null = '';
   info!: CitySetRequestDTO;
+  faqList: FaqDTO[] = [];
+  incomingFaq = '';
 
-  form = new FormGroup({
-    faq: new FormArray([])
-  });
-
+  fileManagerAddress = environment.fileManagerAddress;
+  editorConfig = {
+    selector: '.editor',
+    width: '100%',
+    height: 500,
+    theme: 'silver',
+    menubar: true,
+    branding: false,
+    skin: 'oxide',
+    toolbar1: 'undo redo | formatSelect | bold italic blockquote strikethrough underline forecolor backcolor | numlist bullist | alignright aligncenter alignleft alignjustify | rtl ltr | link unlink | removeformat',
+    toolbar2: 'fontselect | fontsizeselect | indent outdent | cut copy paste pastetext | charmap image media responsivefilemanager table emoticons hr | searchreplace preview code fullscreen help editormode',
+    plugins: 'lists,advlist,directionality,link,paste,charmap,table,emoticons,codesample,preview,code,fullscreen,help,hr,nonbreaking,searchreplace,visualblocks,visualchars,autolink,image,media,responsivefilemanager',
+    advlist_bullet_styles: 'square,circle,disc',
+    advlist_number_styles: 'lower-alpha,lower-roman,upper-alpha,upper-roman',
+    help_tabs: ['shortcuts'],
+    fontsize_formats: "6pt 7pt 8pt 9pt 10pt 11pt 12pt 13pt 14pt 15pt 16pt 17pt 18pt 19pt 20pt 21pt 22pt 23pt 24pt 25pt 26pt 27pt 28pt 29pt 30pt 32pt 34pt 36pt 40pt",
+    lineheight_formats: "1pt 2pt 3pt 4pt 5pt 6pt 7pt 8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 20pt 22pt 24pt 26pt 36pt 38pt 40pt 42pt 44pt 46pt 48pt 50pt 60pt 70pt 80pt 100pt",
+    // directionality :'rtl',
+    language: 'fa_IR',
+    external_filemanager_path: `${this.fileManagerAddress}/filemanager/`,
+    filemanager_title: "مدیریت فایل ها",
+    external_plugins: {"filemanager": `${this.fileManagerAddress}/filemanager/plugin.min.js`},
+    filemanager_crossdomain: true,
+  }
 
   constructor(public api: CityApiService,
               public dialog: MatDialog,
@@ -49,20 +72,6 @@ export class SetComponent implements OnInit {
   }
 
   /*############### Add Dynamic Elements ###############*/
-  get Faq() {
-    return this.form.get('faq') as FormArray
-  }
-
-  add(): void {
-    this.Faq.push(this.addItems())
-  }
-
-  addItems(item: FaqDTO | null = null) {
-    return this.fb.group({
-      question: [item ? item.question : ''],
-      answer: [item ? item.answer : '']
-    });
-  }
 
   submit(): void {
     if (this.city) {
@@ -72,7 +81,7 @@ export class SetComponent implements OnInit {
         this.isLoading = false;
         if (res.isDone) {
           this.message.custom(res.message);
-          this.router.navigateByUrl('/panel/cities')
+          this.router.navigateByUrl('/cities')
         }
       }, (error: any) => {
         this.isLoading = false;
@@ -98,9 +107,7 @@ export class SetComponent implements OnInit {
     this.desFC.setValue(this.info.description)
     this.images = this.info.images
     this.typeFC.setValue(this.info.type);
-    this.info.faq.forEach(x => {
-      this.Faq.push(this.addItems(x))
-    })
+    this.incomingFaq = JSON.stringify(this.info.faq);
   }
 
   setReq(): void {
@@ -109,7 +116,7 @@ export class SetComponent implements OnInit {
       images: this.images,
       name: this.nameFC.value,
       nameEn: this.nameEnFC.value,
-      faq: this.form.value.faq,
+      faq: this.faqList,
       type: this.typeFC.value
     }
   }
@@ -126,9 +133,6 @@ export class SetComponent implements OnInit {
       })
     }
   }
-  removeFaq(i: any) {
-    this.Faq.removeAt(i);
-  }
 
   getImages(): void {
     const dialog = this.dialog.open(MultipleUploadComponent, {});
@@ -141,5 +145,9 @@ export class SetComponent implements OnInit {
 
   removeImage(index: any): void {
     this.images.splice(index, 1);
+  }
+
+  getFaqResult(faq: any): void {
+    this.faqList = faq;
   }
 }
