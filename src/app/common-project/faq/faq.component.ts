@@ -56,7 +56,7 @@ export class FaqComponent implements OnInit, OnChanges {
 
   submit(): void {
     this.result.emit(this.form.value.faq)
-    this.message.custom('سوالات با موفقیت ثبت شد. لطفا روی ثبت تنظیمات کلیک کنید')
+    this.message.custom('سوالات با موفقیت ثبت شد. لطفا روی ثبت نهایی کلیک کنید')
   }
 
 }
