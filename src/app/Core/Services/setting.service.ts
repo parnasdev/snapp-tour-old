@@ -29,7 +29,7 @@ export class SettingService {
     tel: '',
     title: '',
     whatsapp: '',
-    footerLinks: [],
+    // footerLinks: [],
   };
   // @ts-ignore
   favIcon: HTMLLinkElement = document.querySelector('#favIcon');

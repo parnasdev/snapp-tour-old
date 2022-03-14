@@ -35,7 +35,6 @@ export class SetComponent implements OnInit {
     tel: '',
     title: '',
     whatsapp: '',
-    footerLinks: []
   };
   settingReq: SettingDTO = {
     address: '',
@@ -54,7 +53,6 @@ export class SetComponent implements OnInit {
     tel: '',
     title: '',
     whatsapp: '',
-    footerLinks: []
   };
   faqList: FaqDTO[] = [];
   metaTags: metaTagsDTO[] = [];
@@ -72,7 +70,7 @@ export class SetComponent implements OnInit {
   images: any[] = [];
   banners: any[] = [];
 
-  footerLinks: FooterLinks[] = [];
+  // footerLinks: FooterLinks[] = [];
 
   namad1FC = new FormControl('');
   namad2FC = new FormControl('');
@@ -152,12 +150,12 @@ export class SetComponent implements OnInit {
   }
 
   getFaqResult(faq: any): void {
-    // console.log(faq);
+    console.log(faq);
     this.faqList = faq;
   }
 
   getLinksResult(links: any): void {
-    this.footerLinks = links;
+    // this.footerLinks = links;
   }
 
   setFormData() {
@@ -207,7 +205,7 @@ export class SetComponent implements OnInit {
       location: '',
       logo: '',
       logoFooter: '',
-      footerLinks: this.footerLinks,
+      // footerLinks: this.footerLinks,
       faq: JSON.stringify(this.faqList),
       namads: this.settingForm.value.namads,
       socialLinks: '',

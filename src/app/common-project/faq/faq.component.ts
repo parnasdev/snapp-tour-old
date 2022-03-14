@@ -52,6 +52,7 @@ export class FaqComponent implements OnInit, OnChanges {
     this.faqList.forEach(x => {
       this.Faq.push(this.addItems(x))
     })
+    this.result.emit(this.form.value.faq)
   }
 
   submit(): void {

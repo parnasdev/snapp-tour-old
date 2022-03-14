@@ -22,7 +22,7 @@ export interface SettingDTO {
   tel: string;
   title: string;
   whatsapp: string;
-  footerLinks: FooterLinks[];
+  // footerLinks: FooterLinks[];
   // thumbnail?: string;
 }
 
