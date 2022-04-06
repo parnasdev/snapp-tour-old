@@ -213,6 +213,7 @@ export class AddComponent implements OnInit {
   }
 
   submit() {
+    this.sortOnPrice();
     this.convertTour();
     this.fillObj();
     this.call();
@@ -638,22 +639,9 @@ export class AddComponent implements OnInit {
   }
 
   sortPackages(sortId: any) {
-    if (+sortId.target.value === 1) {
-      this.ToursForm.controls.sort((a, b) => {
-        // @ts-ignore
-        const item1 = this.form.value.defineTour ? +a.controls.twinRate.value : +a.controls.twin.value;
-        // @ts-ignore
-        const item2 = this.form.value.defineTour ? +b.controls.twinRate.value : +b.controls.twin.value;
-        if (item1 < item2) {
-          return -1;
-          // @ts-ignore
-        } else if (item1 > item2) {
-          return 1;
-        } else {
-          return 0;
-        }
-      });
-    } else if (+sortId.target.value === 2) {
+    if (+sortId.target.value || +sortId === 1) {
+      this.sortOnPrice();
+    } else if (+sortId.target.value || +sortId === 2) {
       this.ToursForm.controls.sort((a, b) => {
         // @ts-ignore
         const item1 = this.hotels.find(x => x.id === +a.controls.hotel_id.value).stars;
@@ -668,6 +656,23 @@ export class AddComponent implements OnInit {
         }
       });
     }
+  }
+
+  sortOnPrice(){
+    this.ToursForm.controls.sort((a, b) => {
+      // @ts-ignore
+      const item1 = this.form.value.defineTour ? +a.controls.twinRate.value : +a.controls.twin.value;
+      // @ts-ignore
+      const item2 = this.form.value.defineTour ? +b.controls.twinRate.value : +b.controls.twin.value;
+      if (item1 < item2) {
+        return -1;
+        // @ts-ignore
+      } else if (item1 > item2) {
+        return 1;
+      } else {
+        return 0;
+      }
+    });
   }
 
   hotelChange(event: any, index: number) {
