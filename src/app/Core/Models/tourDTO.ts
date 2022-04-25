@@ -161,6 +161,7 @@ export interface PricesDTO {
   tripleRate: string;
   ADLRate: string;
   age: string;
+  pool: boolean;
 }
 
 export interface TourTransferDTO {

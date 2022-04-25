@@ -102,6 +102,7 @@ export class EditComponent extends AddComponent implements OnInit {
         tripleRate: [packageItem.prices.tripleRate],
         ADLRate: [packageItem.prices.ADLRate],
         age: [packageItem.prices.age],
+        pool: [packageItem.prices.pool],
         status: [packageItem.status],
         roomType: [packageItem.prices.roomType]
       })
@@ -127,6 +128,7 @@ export class EditComponent extends AddComponent implements OnInit {
         triple: [null],
         ADLRate: [null],
         age: [null],
+        pool: [null],
         status: [null],
         roomType: [[]]
       });

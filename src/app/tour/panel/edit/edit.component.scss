@@ -143,7 +143,7 @@
 .header-box {
   display: grid;
   padding: 0 2px;
-  grid-template-columns: 0.1fr 1.9fr 1.3fr 1fr 1fr 1fr 0.7fr 0.7fr 0.3fr 0.5fr;
+  grid-template-columns: 0.1fr 1.9fr 1.3fr 1fr 1fr 1fr 0.5fr 0.7fr 0.5fr 0.5fr;
   border-bottom: 1px solid #eee;
   height: 40px;
   width: 100%;
@@ -157,7 +157,7 @@
 }
 .header-box-two {
   display: grid;
-  grid-template-columns: 0.1fr 1.9fr 1.3fr 1fr 1fr 1fr 0.7fr 0.7fr 0.3fr 0.5fr;
+  grid-template-columns: 0.1fr 1.9fr 1.3fr 1fr 1fr 1fr 0.5fr 0.7fr 0.5fr 0.5fr;
   border-bottom: 1px solid #eee;
   height: 40px;
   width: 100%;
@@ -190,7 +190,7 @@
 }
 .body-foreign {
   display: grid;
-  grid-template-columns: 0.1fr 1.9fr 1.3fr 1fr 1fr 1fr 0.7fr 0.7fr 0.3fr 0.5fr;
+  grid-template-columns: 0.1fr 1.9fr 1.3fr 1fr 1fr 1fr 0.5fr 0.7fr 0.5fr 0.5fr;
   width: 100%;
 }
 
@@ -207,7 +207,7 @@
 
 .body-box {
   display: grid;
-  grid-template-columns: 0.1fr 1.9fr 1.3fr 1fr 1fr 1fr 0.7fr 0.7fr 0.3fr 0.5fr;
+  grid-template-columns: 0.1fr 1.9fr 1.3fr 1fr 1fr 1fr 0.5fr 0.7fr 0.5fr 0.5fr;
   border-bottom: 1px solid var(--light-color-two);
   height: 80px;
   width: 100%;

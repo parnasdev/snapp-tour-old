@@ -393,7 +393,7 @@
           <div class="package-item">کودک با تخت</div>
           <div class="package-item">سن کودک</div>
           <div class="package-item" *ngIf="form.value.defineTour == 'true'">نرخ بزرگسال</div>
-          <div class="package-item">آفر ویژه</div>
+          <div class="package-item">آفر/استخر</div>
           <div></div>
         </div>
         <form [formGroup]="form" class="example-list" formArrayName="packages" action="" cdkDropList
@@ -467,8 +467,9 @@
                 <input (keyup)="updatePackagePrices()" type="text" formControlName="ADLRate" mask="separator"
                        thousandSeparator=",">
               </div>
-              <div class="package-item">
+              <div class="package-item d-flex flex-row">
                 <input formControlName="offered" class="offer-checkbox" type="checkbox">
+                <input formControlName="pool" class="offer-checkbox" type="checkbox">
               </div>
               <div style="flex-direction: row !important;" class="package-item">
                 <i class="icon-trash text-danger" (click)="removeEditPackage(i)"></i>
@@ -508,8 +509,9 @@
                 <input (keyup)="updatePackagePrices()" type="text" formControlName="ADLRate" mask="separator"
                        thousandSeparator=",">
               </div>
-              <div class="package-item">
+              <div class="package-item d-flex flex-row">
                 <input formControlName="offered" class="offer-checkbox" type="checkbox">
+                <input formControlName="pool" class="offer-checkbox" type="checkbox">
               </div>
               <div style="flex-direction: row !important;" class="package-item">
                 <i class="icon-trash text-danger" (click)="removeEditPackage(i)"></i>

@@ -165,6 +165,7 @@ export class AddComponent implements OnInit {
       tripleRate: [null],
       ADLRate: [this.form.value.ADLFlightRate ? this.form.value.ADLFlightRate : null],
       age: [null],
+      pool: [null],
       offered: false,
       status: [null],
       roomType: [[]]
@@ -205,6 +206,7 @@ export class AddComponent implements OnInit {
           cnbRate: item.value.cnbRate,
           ADLRate: item.value.ADLRate,
           age: item.value.age,
+          pool: item.value.pool,
           roomType: item.value.roomType
         },),
         status: 'Show'
