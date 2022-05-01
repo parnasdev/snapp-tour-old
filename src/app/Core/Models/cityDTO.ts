@@ -12,6 +12,7 @@ export interface CitySetRequestDTO {
   faq: FaqDTO[];
   images: any[];
   description: string;
+  meta_description: string;
   type?: boolean;
 }
 

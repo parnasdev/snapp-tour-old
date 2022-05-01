@@ -16,6 +16,7 @@ import {environment} from "../../../environments/environment.prod";
 export class SetComponent implements OnInit {
   req: CitySetRequestDTO = {
     description: '',
+    meta_description: '',
     images: [],
     name: '',
     faq: [],
@@ -25,6 +26,7 @@ export class SetComponent implements OnInit {
   nameFC = new FormControl();
   nameEnFC = new FormControl();
   desFC = new FormControl();
+  metaDescriptionFC = new FormControl();
   isLoading = false;
   images: any[] = [];
   typeFC = new FormControl(true);
@@ -105,7 +107,8 @@ export class SetComponent implements OnInit {
     this.nameFC.setValue(this.info.name)
     this.nameEnFC.setValue(this.info.nameEn)
     this.desFC.setValue(this.info.description)
-    this.images = this.info.images
+    this.metaDescriptionFC.setValue(this.info.meta_description)
+    this.images = this.info.images;
     this.typeFC.setValue(this.info.type);
     this.incomingFaq = JSON.stringify(this.info.faq);
   }
@@ -113,6 +116,7 @@ export class SetComponent implements OnInit {
   setReq(): void {
     this.req = {
       description: this.desFC.value,
+      meta_description: this.metaDescriptionFC.value,
       images: this.images,
       name: this.nameFC.value,
       nameEn: this.nameEnFC.value,

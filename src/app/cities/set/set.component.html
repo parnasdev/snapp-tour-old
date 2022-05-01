@@ -19,7 +19,7 @@
     <label for="textarea">توضیحات</label>
     <editor apiKey="0vfc016on7f2xre1903tf40tayspe9cz66smd4qilzs0oc0z" [formControl]="desFC"
             [init]="editorConfig"></editor>
-<!--    <textarea [formControl]="desFC" name="" id="textarea" cols="30" rows="10"></textarea>-->
+    <!--    <textarea [formControl]="desFC" name="" id="textarea" cols="30" rows="10"></textarea>-->
   </div>
   <div class="upload-box">
     <prs-btn [background]="'dark'" (click)="getImages()" [label]="'تصاویر خود را آپلود کنید'"></prs-btn>
@@ -32,6 +32,12 @@
 
     </div>
   </div>
+
+  <div class="item-textarea">
+    <label for="textarea">توضیحات متا</label>
+    <textarea [formControl]="metaDescriptionFC" name="" id="textarea" cols="30" rows="10"></textarea>
+  </div>
+
   <prs-faq style="width:100%" [inComingFaq]="incomingFaq" (result)="getFaqResult($event)"></prs-faq>
 
   <prs-btn class="mt-2" [label]="'ثبت'" (click)="submit()" [background]="'blue'" [isLoading]="isLoading"></prs-btn>
