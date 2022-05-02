@@ -13,6 +13,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {AlertDialogComponent, AlertDialogDTO} from "../../../common-project/alert-dialog/alert-dialog.component";
 import {LogsComponent} from "../logs/logs.component";
 import {PublicService} from "../../../Core/Services/public.service";
+import {SettingService} from "../../../Core/Services/setting.service";
 
 declare let $: any;
 
@@ -43,6 +44,7 @@ export class ListComponent implements OnInit {
   sortByDate = false
 
   constructor(public tourApiService: TourApiService,
+              public setting: SettingService,
               public cityApi: CityApiService,
               public dialog: MatDialog,
               public route: ActivatedRoute,
@@ -59,6 +61,7 @@ export class ListComponent implements OnInit {
       $(".item:odd").css('background', '#f4f7fa')
     })
     this.getTours();
+    this.setting.getUserPermission();
   }
 
   getTours(): void {
