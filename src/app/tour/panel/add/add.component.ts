@@ -660,12 +660,12 @@ export class AddComponent implements OnInit {
     }
   }
 
-  sortOnPrice(){
+  sortOnPrice() {
     this.ToursForm.controls.sort((a, b) => {
       // @ts-ignore
-      const item1 = this.form.value.defineTour ? +a.controls.twinRate.value : +a.controls.twin.value;
+      const item1 = JSON.parse(this.form.value.defineTour) ? +a.controls.twinRate.value : +a.controls.twin.value;
       // @ts-ignore
-      const item2 = this.form.value.defineTour ? +b.controls.twinRate.value : +b.controls.twin.value;
+      const item2 = JSON.parse(this.form.value.defineTour) ? +b.controls.twinRate.value : +b.controls.twin.value;
       if (item1 < item2) {
         return -1;
         // @ts-ignore
