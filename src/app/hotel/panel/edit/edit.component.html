@@ -1,7 +1,9 @@
 <prs-loading *ngIf="isLoading"></prs-loading>
+
 <div class="add-tour">
 
-  <form>
+  <form class="w-100" [formGroup]="hotelForm">
+
     <div class="box-info-tour">
       <div class="info-tour-header">
         <div class="right">
@@ -11,7 +13,7 @@
         <div class="left">
           <div class="selectdiv">
             <label>
-              <select [formControl]="statusFC">
+              <select formControlName="status">
                 <option value="Show">انتشار</option>
                 <option value="Draft" selected>پیش نویس</option>
                 <option value="Accepted">تایید شده</option>
@@ -24,15 +26,22 @@
           </div>
         </div>
       </div>
+
       <div class="info-tour-body">
         <div class="top">
           <div class="item-info">
             <label for="">عنوان هتل</label>
-            <input [formControl]="nameFC" type="text">
+            <input formControlName="name" type="text">
+            <div *ngIf="errorService.hasError('name')">
+              <span class="text-danger">{{errorService.getError('name')}}</span>
+            </div>
           </div>
           <div class="item-info">
             <label for="">عنوان انگلیسی هتل</label>
-            <input [formControl]="nameEnFC" type="text">
+            <input formControlName="nameEn" type="text">
+            <div *ngIf="errorService.hasError('nameEn')">
+              <span class="text-danger">{{errorService.getError('nameEn')}}</span>
+            </div>
           </div>
           <div class="item-info">
             <label for="">شهر</label>
@@ -42,10 +51,13 @@
               <mat-button-toggle [value]="false">خارجی</mat-button-toggle>
             </mat-button-toggle-group>
             <div class="selectdiv">
-              <select [formControl]="cityFC" name="" id="">
+              <select formControlName="city" name="" id="">
                 <option *ngFor="let city of citiesResponse" [value]="city.id">{{city.name}}</option>
 
               </select>
+            </div>
+            <div *ngIf="errorService.hasError('city_id')">
+              <span class="text-danger">{{errorService.getError('city_id')}}</span>
             </div>
           </div>
         </div>
@@ -57,11 +69,7 @@
           </div>
           <div class="item-info">
             <label for="">موقعیت هتل</label>
-            <input type="text" [formControl]="locationFC">
-          </div>
-          <div class="item-info">
-            <label for="">آدرس</label>
-            <input type="text" [formControl]="addressFC">
+            <input type="text" formControlName="location">
           </div>
 
         </div>
@@ -76,13 +84,15 @@
       </div>
       <div class="info-tour-body">
         <div class="top">
-          <div class="item-info w-100">
-            <label for="">توضیحات</label>
-            <prs-editor [inCommingBody]="hotelInfo.body" (body)="getDescriptionFromEditor($event)" ></prs-editor>
+          <div class="item-info-second w-100">
+            <label class="mb-2" for="">توضیحات</label>
+            <prs-editor [inCommingBody]="hotelInfo.body ? hotelInfo.body : ''"
+                        (body)="getDescriptionFromEditor($event)"></prs-editor>
           </div>
         </div>
       </div>
     </div>
+
     <div class="box-info-fly">
       <div class="info-tour-header">
         <div class="right">
@@ -94,7 +104,7 @@
           <div class="item-info w-100">
             <button class="btn-upload-img" (click)="getThumbnail()">تصویر خود را آپلود کنید</button>
           </div>
-          <div class="single-img-upload-parent" *ngIf="thumbnail && thumbnail !== ''" >
+          <div class="single-img-upload-parent" *ngIf="thumbnail && thumbnail !== ''">
             <img [src]="thumbnail" width="100%" height="200" alt="">
             <i class="icon-cancel-1 text-danger" (click)="removeThumbnailImage()"></i>
 
@@ -114,9 +124,12 @@
         </div>
       </div>
     </div>
+
     <div class="box-info-fly">
-      <prs-services *ngIf="showServices"   [services]="services" [inComing]="hotelInfo.services[0]"  (result)="getServicesResult($event)"></prs-services>
+      <prs-services *ngIf="showServices" [services]="services" [inComing]="hotelInfo.services[0]"
+                    (result)="getServicesResult($event)"></prs-services>
     </div>
+
     <div class="box-info-fly">
       <div class="info-tour-header">
         <div class="right">
@@ -124,30 +137,40 @@
         </div>
       </div>
       <div class="info-tour-body">
-        <prs-get-location style="width: 100%;
-             height: 325px;border-radius: 10px"
-                          *ngIf="show"
-                          [inCommingLatLng]="[lat,lng]"
-                          (result)="getLatLng($event)">
-        </prs-get-location>
+        <div class="address-parent">
+          <prs-get-location style="width: 60%;
+             height: 286px;border-radius: 10px"
+                            *ngIf="show"
+                            [inCommingLatLng]="[lat,lng]"
+                            (result)="getLatLng($event)">
+          </prs-get-location>
+
+          <div class="address-hotel">
+            <label for="address">آدرس </label>
+            <textarea formControlName="address" name="" id="address" cols="30" rows="10"
+                      placeholder="آدرس را وارد کنید"></textarea>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="box-info-fly">
+    <div class="link-video">
       <div class="item-info">
-        <label for="">Iframe Aparat</label>
-        <input type="text" [formControl]="aparatFC">
+        <label for="">لینک آپارات</label>
+        <input type="text" placeholder="لینک iframe آپارات را وارد کنید" [formControl]="aparatFC">
       </div>
       <div class="item-info">
-        <label for="">Youtube Url</label>
-        <input type="text" [formControl]="youtubeFC">
+        <label for="">لینک یوتیوب</label>
+        <input type="text" placeholder="لینک یوتیوب را وارد کنید" [formControl]="youtubeFC">
       </div>
     </div>
 
-    <div class="box-details-tour">
-
-      <button class="submit-tour" (click)="edit()">ثبت هتل</button>
+    <div class="btn-parent-submit">
+      <button class="submit-tour" (click)="edit()">ویرایش هتل</button>
     </div>
+
   </form>
 
 </div>
+
+

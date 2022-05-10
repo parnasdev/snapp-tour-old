@@ -6,7 +6,7 @@ import {CommonApiService} from "../../../Core/Https/common-api.service";
 import {SessionService} from "../../../Core/Services/session.service";
 import {CalenderServices} from "../../../Core/Services/calender-service";
 import {PublicService} from "../../../Core/Services/public.service";
-import {FormBuilder, FormControl} from "@angular/forms";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {MapApiService} from "../../../Core/Https/map-api.service";
 import {MapReverseDTO} from "../../../Core/Models/mapDTO";
 import {CityDTO, CityListRequestDTO, CityResponseDTO} from "../../../Core/Models/cityDTO";
@@ -15,6 +15,8 @@ import {CityApiService} from "../../../Core/Https/city-api.service";
 import {MatDialog} from "@angular/material/dialog";
 import {UploadSingleComponent} from "../../../common-project/upload-single/upload-single.component";
 import {MultipleUploadComponent} from "../../../common-project/multiple-upload/multiple-upload.component";
+import {ErrorsService} from "../../../Core/Services/errors.service";
+import {CheckErrorService} from "../../../Core/Services/check-error.service";
 
 @Component({
   selector: 'prs-add',
@@ -22,15 +24,9 @@ import {MultipleUploadComponent} from "../../../common-project/multiple-upload/m
   styleUrls: ['./add.component.scss']
 })
 export class AddComponent implements OnInit {
-  nameFC = new FormControl('');
-  nameEnFC = new FormControl('');
-  cityFC = new FormControl('');
-  statusFC = new FormControl('Show');
-  locationFC = new FormControl('');
-  addressFC = new FormControl('');
-  bodyFC = new FormControl('');
-  aparatFC = new FormControl();
-  youtubeFC = new FormControl();
+
+  aparatFC = new FormControl('');
+  youtubeFC = new FormControl('');
   currentStar = 0;
   lat = 0;
   lng = 0;
@@ -68,9 +64,12 @@ export class AddComponent implements OnInit {
   thumbnail = ''
   services: ServiceDTO[] = []
   serviceIDs: string[] = [];
+  isLoading = false;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
+              public checkError: CheckErrorService,
+              public errorService: ErrorsService,
               public cityApiService: CityApiService,
               public hotelApi: HotelApiService,
               public message: MessageService,
@@ -83,8 +82,21 @@ export class AddComponent implements OnInit {
               public fb: FormBuilder) {
   }
 
+  //formGroup
+  hotelForm = this.fb.group({
+    name: new FormControl('', [Validators.required]),
+    nameEn: new FormControl('', [Validators.required]),
+    city: new FormControl('', Validators.required),
+    status: new FormControl('Show', Validators.required),
+    location: new FormControl(''),
+    address: new FormControl(''),
+    body: new FormControl(''),
+    stars: new FormControl(''),
+  });
+
 
   ngOnInit(): void {
+    this.errorService.clear();
     this.getServices();
     this.getCities()
   }
@@ -100,9 +112,9 @@ export class AddComponent implements OnInit {
     this.mapApi.reverse(this.lat, this.lng, token).subscribe((res: any) => {
       if (res) {
         this.reverseAddressData = res
-        this.addressFC.setValue(res.address_compact)
+        this.hotelForm.value.address.setValue(res.address_compact)
       } else {
-        this.addressFC.setValue('')
+        this.hotelForm.value.address.setValue('')
         this.lat = this.cities[0].coordinates[1];
         this.lng = this.cities[0].coordinates[0];
         this.message.showMessageBig('این استان پشتیبانی نمیشود')
@@ -113,29 +125,30 @@ export class AddComponent implements OnInit {
 
   setReq(): void {
     this.req = {
-      name: this.nameFC.value,
-      nameEn: this.nameEnFC.value,
-      slug: this.nameFC.value.replace(' ', '-'),
-      slugEn: this.nameEnFC.value.replace(' ', '-'),
-      city_id: this.cityFC.value,
+      name: this.hotelForm.value.name,
+      nameEn: this.hotelForm.value.nameEn,
+      slug: this.hotelForm.value.name.replace(' ', '-'),
+      slugEn: this.hotelForm.value.nameEn.replace(' ', '-'),
+      city_id: this.hotelForm.value.city,
       stars: this.currentStar,
-      mediaLink: [{name: 'aparat', link: this.aparatFC.value}, {name: 'youtube', link: this.youtubeFC.value}],
-      location: this.locationFC.value,
-      address: this.addressFC.value,
+      mediaLink: [{name: 'aparat', link: this.aparatFC.value},
+        {name: 'youtube', link: this.youtubeFC.value}],
+      location: this.hotelForm.value.location,
+      address: this.hotelForm.value.address,
       coordinate: {
         lat: this.lat,
         lng: this.lng
       },
       thumbnail: this.thumbnail,
       images: this.images,
-      body: this.bodyFC.value,
+      body: this.hotelForm.value.body,
       services: [
         {
           name: 'GroupName',
           ids: this.serviceIDs
         }
       ],
-      status: this.statusFC.value
+      status: this.hotelForm.value.status,
     }
   }
 
@@ -188,7 +201,17 @@ export class AddComponent implements OnInit {
   }
 
   getDescriptionFromEditor(body: any): void {
-    this.bodyFC.setValue(body)
+    this.hotelForm.controls['body'].setValue(body);
+  }
+
+  markFormGroupTouched(formGroup: any) {
+    (<any>Object).values(formGroup.controls).forEach((control: any) => {
+      control.markAsTouched();
+
+      if (control.controls) {
+        this.markFormGroupTouched(control);
+      }
+    });
   }
 
   add(): void {
@@ -201,8 +224,14 @@ export class AddComponent implements OnInit {
         this.message.custom(res.message)
       }
     }, (error: any) => {
-      this.message.error()
-
+      if (error.status == 422) {
+        this.errorService.recordError(error.error.data);
+        this.markFormGroupTouched(this.hotelForm);
+        this.message.showMessageBig('اطلاعات ارسال شده را مجددا بررسی کنید')
+      } else {
+        this.message.showMessageBig('مشکلی رخ داده است لطفا مجددا تلاش کنید')
+      }
+      this.checkError.check(error);
     })
   }
 

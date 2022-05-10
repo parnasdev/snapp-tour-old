@@ -1,6 +1,6 @@
 <div class="add-tour">
 
-  <form class="w-100">
+  <form class="w-100" [formGroup]="hotelForm">
     <div class="box-info-tour">
       <div class="info-tour-header">
         <div class="right">
@@ -10,7 +10,7 @@
         <div class="left">
           <div class="selectdiv">
             <label>
-              <select [formControl]="statusFC">
+              <select formControlName="status">
                 <option value="Show">انتشار</option>
                 <option value="Draft" selected>پیش نویس</option>
                 <option value="Accepted">تایید شده</option>
@@ -27,11 +27,17 @@
         <div class="top">
           <div class="item-info">
             <label for="">عنوان هتل</label>
-            <input [formControl]="nameFC" type="text">
+            <input formControlName="name" type="text">
+            <div *ngIf="errorService.hasError('name')">
+              <span class="text-danger">{{errorService.getError('name')}}</span>
+            </div>
           </div>
           <div class="item-info">
             <label for="">عنوان انگلیسی هتل</label>
-            <input [formControl]="nameEnFC" type="text">
+            <input formControlName="nameEn" type="text">
+            <div *ngIf="errorService.hasError('nameEn')">
+              <span class="text-danger">{{errorService.getError('nameEn')}}</span>
+            </div>
           </div>
           <div class="item-info">
             <label for="">شهر</label>
@@ -42,10 +48,13 @@
                 <mat-button-toggle [value]="false">خارجی</mat-button-toggle>
               </mat-button-toggle-group>
               <div class="selectdiv">
-                <select [formControl]="cityFC" name="" id="">
+                <select formControlName="city" name="" id="">
                   <option *ngFor="let city of citiesResponse" [value]="city.id">{{city.name}}</option>
                 </select>
               </div>
+            </div>
+            <div *ngIf="errorService.hasError('city_id')">
+              <span class="text-danger">{{errorService.getError('city_id')}}</span>
             </div>
 
           </div>
@@ -57,7 +66,7 @@
           </div>
           <div class="item-info">
             <label for="">موقعیت هتل</label>
-            <input type="text" [formControl]="locationFC">
+            <input type="text" formControlName="location">
           </div>
 
         </div>
@@ -129,13 +138,14 @@
 
           <div class="address-hotel">
             <label for="address">آدرس </label>
-            <textarea name="" id="address" cols="30" rows="10" placeholder="آدرس را وارد کنید"></textarea>
+            <textarea formControlName="address" name="" id="address" cols="30" rows="10"
+                      placeholder="آدرس را وارد کنید"></textarea>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="link-video ">
+    <div class="link-video">
       <div class="item-info">
         <label for="">لینک آپارات</label>
         <input type="text" placeholder="لینک iframe آپارات را وارد کنید" [formControl]="aparatFC">

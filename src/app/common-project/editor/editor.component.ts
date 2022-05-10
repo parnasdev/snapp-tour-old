@@ -1,6 +1,8 @@
 import {Component, OnInit, EventEmitter, Output, Input, OnChanges, SimpleChanges} from '@angular/core';
-declare let $ : any;
-declare let tinymce : any;
+
+declare let $: any;
+declare let tinymce: any;
+
 @Component({
   selector: 'prs-editor',
   templateUrl: './editor.component.html',
@@ -10,7 +12,8 @@ export class EditorComponent implements OnInit, OnChanges {
   loadAPI: Promise<any>;
   @Output() body = new EventEmitter();
   @Input() inCommingBody = '';
-  editor:any;
+  editor: any;
+
   constructor() {
     this.loadAPI = new Promise((resoleve) => {
       this.loadScript();
@@ -19,7 +22,7 @@ export class EditorComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    (document.getElementById('context') as HTMLInputElement).value=this.inCommingBody;
+    (document.getElementById('context') as HTMLInputElement).value = this.inCommingBody;
     tinymce.activeEditor.setContent(this.inCommingBody);
 
   }
@@ -30,7 +33,7 @@ export class EditorComponent implements OnInit, OnChanges {
       selector: '.editor',
       width: '100%',
       height: 500,
-      theme:'silver',
+      theme: 'silver',
       menubar: true,
       branding: false,
       skin: 'oxide',
@@ -42,13 +45,13 @@ export class EditorComponent implements OnInit, OnChanges {
       help_tabs: ['shortcuts'],
       fontsize_formats: "6pt 7pt 8pt 9pt 10pt 11pt 12pt 13pt 14pt 15pt 16pt 17pt 18pt 19pt 20pt 21pt 22pt 23pt 24pt 25pt 26pt 27pt 28pt 29pt 30pt 32pt 34pt 36pt 40pt",
       lineheight_formats: "1pt 2pt 3pt 4pt 5pt 6pt 7pt 8pt 9pt 10pt 11pt 12pt 14pt 16pt 18pt 20pt 22pt 24pt 26pt 36pt 38pt 40pt 42pt 44pt 46pt 48pt 50pt 60pt 70pt 80pt 100pt",
-      directionality :'rtl',
+      directionality: 'rtl',
       language: 'fa_IR',
-      external_filemanager_path:"https://api.hamnavaz.com/filemanager/",
-      filemanager_title:"مدیریت فایل ها" ,
-      external_plugins: { "filemanager" : "https://api.hamnavaz.com/filemanager/plugin.min.js"},
-      filemanager_crossdomain:true,
-      setup: function(editor :any) {
+      external_filemanager_path: "https://api.hamnavaz.com/filemanager/",
+      filemanager_title: "مدیریت فایل ها",
+      external_plugins: {"filemanager": "https://api.hamnavaz.com/filemanager/plugin.min.js"},
+      filemanager_crossdomain: true,
+      setup: function (editor: any) {
         editor.on('change', (e: any) => {
           $('#context').attr('value', editor.getContent());
         });
