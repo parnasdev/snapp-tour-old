@@ -11,6 +11,7 @@ export interface CitySetRequestDTO {
   nameEn: string;
   faq: FaqDTO[];
   images: any[];
+  sliderImage: any;
   description: string;
   meta_description: string;
   type?: boolean;

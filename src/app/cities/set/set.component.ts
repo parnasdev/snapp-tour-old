@@ -7,6 +7,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {MultipleUploadComponent} from "../../common-project/multiple-upload/multiple-upload.component";
 import {ActivatedRoute, Router} from "@angular/router";
 import {environment} from "../../../environments/environment.prod";
+import {UploadSingleComponent} from "../../common-project/upload-single/upload-single.component";
 
 @Component({
   selector: 'prs-set',
@@ -18,6 +19,7 @@ export class SetComponent implements OnInit {
     description: '',
     meta_description: '',
     images: [],
+    sliderImage: '',
     name: '',
     faq: [],
     nameEn: '',
@@ -29,6 +31,7 @@ export class SetComponent implements OnInit {
   metaDescriptionFC = new FormControl();
   isLoading = false;
   images: any[] = [];
+  sliderImage = '';
   typeFC = new FormControl(true);
   city: string | null = '';
   info!: CitySetRequestDTO;
@@ -118,6 +121,7 @@ export class SetComponent implements OnInit {
       description: this.desFC.value,
       meta_description: this.metaDescriptionFC.value,
       images: this.images,
+      sliderImage: this.sliderImage,
       name: this.nameFC.value,
       nameEn: this.nameEnFC.value,
       faq: this.faqList,
@@ -145,6 +149,17 @@ export class SetComponent implements OnInit {
         this.images.push(x.path);
       })
     })
+  }
+
+  getSliderImage(): void {
+    const dialog = this.dialog.open(UploadSingleComponent, {});
+    dialog.afterClosed().subscribe((result: any) => {
+      this.sliderImage = result;
+    })
+  }
+
+  removeThumbnailImage(): void {
+    this.sliderImage = '';
   }
 
   removeImage(index: any): void {
