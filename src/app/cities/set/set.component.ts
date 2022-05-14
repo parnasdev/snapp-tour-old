@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CityApiService} from "../../Core/Https/city-api.service";
 import {MessageService} from "../../Core/Services/message.service";
 import {CitySetRequestDTO, FaqDTO} from "../../Core/Models/cityDTO";
-import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";
 import {MultipleUploadComponent} from "../../common-project/multiple-upload/multiple-upload.component";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -19,7 +19,7 @@ export class SetComponent implements OnInit {
     description: '',
     meta_description: '',
     images: [],
-    sliderImage: '',
+    imageSlider: '',
     name: '',
     faq: [],
     nameEn: '',
@@ -31,7 +31,7 @@ export class SetComponent implements OnInit {
   metaDescriptionFC = new FormControl();
   isLoading = false;
   images: any[] = [];
-  sliderImage = '';
+  imageSlider = '';
   typeFC = new FormControl(true);
   city: string | null = '';
   info!: CitySetRequestDTO;
@@ -112,6 +112,7 @@ export class SetComponent implements OnInit {
     this.desFC.setValue(this.info.description)
     this.metaDescriptionFC.setValue(this.info.meta_description)
     this.images = this.info.images;
+    this.imageSlider = this.info.imageSlider;
     this.typeFC.setValue(this.info.type);
     this.incomingFaq = JSON.stringify(this.info.faq);
   }
@@ -121,7 +122,7 @@ export class SetComponent implements OnInit {
       description: this.desFC.value,
       meta_description: this.metaDescriptionFC.value,
       images: this.images,
-      sliderImage: this.sliderImage,
+      imageSlider: this.imageSlider,
       name: this.nameFC.value,
       nameEn: this.nameEnFC.value,
       faq: this.faqList,
@@ -154,12 +155,12 @@ export class SetComponent implements OnInit {
   getSliderImage(): void {
     const dialog = this.dialog.open(UploadSingleComponent, {});
     dialog.afterClosed().subscribe((result: any) => {
-      this.sliderImage = result;
+      this.imageSlider = result;
     })
   }
 
   removeThumbnailImage(): void {
-    this.sliderImage = '';
+    this.imageSlider = '';
   }
 
   removeImage(index: any): void {
