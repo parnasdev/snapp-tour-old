@@ -21,6 +21,7 @@ export class SetComponent implements OnInit {
     images: [],
     imageSlider: '',
     name: '',
+    country: '',
     faq: [],
     nameEn: '',
     type: false
@@ -28,6 +29,7 @@ export class SetComponent implements OnInit {
   nameFC = new FormControl();
   nameEnFC = new FormControl();
   desFC = new FormControl();
+  countryFC = new FormControl();
   metaDescriptionFC = new FormControl();
   isLoading = false;
   images: any[] = [];
@@ -109,6 +111,7 @@ export class SetComponent implements OnInit {
   setValue(): void {
     this.nameFC.setValue(this.info.name)
     this.nameEnFC.setValue(this.info.nameEn)
+    this.countryFC.setValue(this.info.country)
     this.desFC.setValue(this.info.description)
     this.metaDescriptionFC.setValue(this.info.meta_description)
     this.images = this.info.images;
@@ -125,6 +128,7 @@ export class SetComponent implements OnInit {
       imageSlider: this.imageSlider,
       name: this.nameFC.value,
       nameEn: this.nameEnFC.value,
+      country: this.countryFC.value,
       faq: this.faqList,
       type: this.typeFC.value
     }

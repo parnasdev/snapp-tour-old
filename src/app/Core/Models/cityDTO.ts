@@ -9,6 +9,7 @@ export interface CityListRequestDTO {
 export interface CitySetRequestDTO {
   name?: string;
   nameEn: string;
+  country: string;
   faq: FaqDTO[];
   images: any[];
   imageSlider: any;
@@ -33,8 +34,6 @@ export interface CityResponseDTO {
   description?: string
   images?: string[]
   nameEn?: string
-
-
 }
 
 
