@@ -16,6 +16,7 @@ export class CheckErrorService {
     check(errorCode: any): void {
         switch (errorCode.status) {
             case 403 : {
+                this.message.custom('شما دسترسی ندارید');
                 break;
             }
             case 401: {
