@@ -203,7 +203,7 @@ export class EditComponent extends AddComponent implements OnInit {
           this.getInfo();
         }
       }, (error: any) => {
-        this.message.error();
+        this.checkError.check(error);
       })
 
     } else {
