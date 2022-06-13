@@ -170,6 +170,8 @@ export class AddComponent implements OnInit {
   }
 
   cityTypeChange(): void {
+    this.lat = 0;
+    this.lng = 0;
     this.getCities()
   }
 

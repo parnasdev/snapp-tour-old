@@ -130,7 +130,7 @@
       </div>
       <div class="info-tour-body">
         <div class="address-parent">
-          <prs-get-location style="width: 60%;
+          <prs-get-location *ngIf="cityTypeFC.value" style="width: 60%;
              height: 286px;border-radius: 10px"
                             [inCommingLatLng]="[lat,lng]"
                             (result)="getLatLng($event)">
