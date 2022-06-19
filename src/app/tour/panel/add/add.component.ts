@@ -608,6 +608,7 @@ export class AddComponent implements OnInit {
     this.ToursForm.controls.find(x => x.get('cnb')?.setValue(event.target.value))
     this.updatePackagePrices();
   }
+  
 
   drop(event: any) {
     this.getStars(event.previousIndex);

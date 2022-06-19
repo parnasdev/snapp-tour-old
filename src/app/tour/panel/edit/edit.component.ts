@@ -200,7 +200,7 @@ export class EditComponent extends AddComponent implements OnInit {
     if (this.ToursForm.value[i].id) {
       this.hotelApi.deletePackage(this.ToursForm.value[i].id).subscribe((res: any) => {
         if (res.isDone) {
-          this.getInfo();
+          this.ToursForm.removeAt(i);
         }
       }, (error: any) => {
         this.checkError.check(error);
