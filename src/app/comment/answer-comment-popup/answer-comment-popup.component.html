@@ -1,0 +1,17 @@
+<div class="answer-comment">
+    <h2>پاسخ نظر</h2>
+    <label for="">متن پیام</label>
+    <textarea [formControl]="bodyFC"></textarea>
+    <label style="margin-top:12px;" for="">امتیاز</label>
+    <div class="form-answer-parent">
+        <select class="comment-answer-select" [formControl]="rateFC" id="">
+            <option value="1">۱ ستاره</option>
+            <option value="2">۲ ستاره</option>
+            <option value="3">۳ ستاره</option>
+            <option value="4">۴ ستاره</option>
+            <option value="5">۵ ستاره</option>
+        </select>
+        <button class="comment-answer-button" (click)="submit()">ثبت</button>
+    </div>
+
+</div>
