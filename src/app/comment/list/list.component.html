@@ -1,0 +1,63 @@
+<prs-loading *ngIf="isLoading"></prs-loading>
+
+<div class="list-tour">
+    <div class="title">
+        <h2>نظرات</h2>
+
+        <a (click)="reply()" class="btn-add-tour">اضافه</a>
+
+
+
+    </div>
+    <div class="table-list-tour table-list-tour-desktop">
+        <div class="header-list-tour">
+            <span class="id">#</span>
+            <span class="username">نام کاربر</span>
+            <span class="title-tour">ایمیل</span>
+            <span class="from-to">شماره همراه</span>
+            <span class="day">وضعیت</span>
+            <span class="day">شهر</span>
+            <span class="date-create">امتیاز</span>
+            <span class="date-create">تاریخ ایجاد نظر</span>
+            <span class="view">متن</span>
+            <span class="setting">تنظیمات</span>
+        </div>
+        <div class="body-list-tour" *ngIf="comments.length > 0">
+            <div class="item" *ngFor="let comment of comments;let i = index">
+                <span class="id">{{ i+1 }}</span>
+                <span class="username">{{ comment.name ? comment.name : 'ثبت نشده' }}</span>
+                <span class="title-tour">{{ comment.email ? comment.email : 'ثبت نشده' }}</span>
+                <span class="from-to">{{ comment.user ? comment.user.phone : 'ثبت نشده' }}</span>
+                <span class="day">{{ comment.approved? 'تایید شده' : 'تایید نشده'}}</span>
+                <span class="date-create">{{ comment.commentTable }}</span>
+                <span class="date-create">{{ comment.rate }}</span>
+                <span class="date-create">{{ calenderServices.convertDateAndTime(comment.createdAt,'fa') }}</span>
+                <span class="view">{{ comment.body.length > 40 ? comment.body.substring(0,40)+ '...' : comment.body }}</span>
+                <div class="button-setting">
+                    <a class="edit-btn" (click)="reply(comment.id)">پاسخ</a>
+                    <a class="log-btn" *ngIf="comment.children.length > 0" (click)="showChildren(comment)">پیام ها</a>
+                    <button *ngIf="!comment.approved" (click)="changeStatus(comment.id , 1)" class="green-btn">قبول</button>
+                    <button *ngIf="comment.approved" (click)="changeStatus(comment.id , 0)" class="delete-btn">رد</button>
+
+                    <i class="icon-trash text-danger" style="font-size: 18px;cursor: pointer;" (click)="deleteClicked(comment.id)"></i>
+                    <!-- <button  class="delete-btn">حذف</button> -->
+                </div>
+            </div>
+        </div>
+        <!-- <div> -->
+        <!-- <pagination-controls
+        *ngIf="!loading && paginate.last_page > 1"
+        class="pagination-control"
+        (pageChange)="onPageChanged($event)"
+        previousLabel="قبلی"
+        nextLabel="بعدی"
+        screenReaderPaginationLabel="صفحه بندی"
+        screenReaderPageLabel="صفحه"
+        screenReaderCurrentLabel="شما در صفحه ی">
+      </pagination-controls> -->
+        <!-- </div> -->
+    </div>
+
+
+
+</div>

@@ -1,0 +1,52 @@
+.answer-comment {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h2 {
+        font-size: 16px;
+        width: 100%;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 13px;
+    }
+
+    label {
+        margin-bottom: 2px;
+        text-align: right;
+        display: flex;
+        width: 100%;
+    }
+
+    textarea {
+        border: 2px solid #ddd;
+        border-radius: 4px;
+        height: 100px;
+        width: 100%;
+        margin-top: 1rem;
+        outline-color: #555;
+    }
+
+
+    .form-answer-parent {
+        margin-top: 1rem;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        padding: 0 12px;
+
+        .comment-answer-button {
+            background-color: rgb(129, 136, 208) !important;
+            width: 120px !important;
+            border-radius: 5px !important;
+            height: 40px !important;
+            color: white !important;
+        }
+
+        .comment-answer-select {
+            border: 2px solid #ddd;
+            width: 120px;
+            height: 40px;
+        }
+    }
+}

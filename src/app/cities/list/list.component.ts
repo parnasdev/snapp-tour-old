@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {CityApiService} from "../../Core/Https/city-api.service";
-import {MessageService} from "../../Core/Services/message.service";
-import {CityListRequestDTO, CityResponseDTO} from "../../Core/Models/cityDTO";
-import {CheckErrorService} from "../../Core/Services/check-error.service";
-import {Router} from "@angular/router";
-import {FormControl} from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
+import { CityApiService } from "../../Core/Https/city-api.service";
+import { MessageService } from "../../Core/Services/message.service";
+import { CityListRequestDTO, CityResponseDTO } from "../../Core/Models/cityDTO";
+import { CheckErrorService } from "../../Core/Services/check-error.service";
+import { Router } from "@angular/router";
+import { FormControl } from "@angular/forms";
 
 @Component({
   selector: 'prs-list',
@@ -20,9 +20,9 @@ export class ListComponent implements OnInit {
   hasTour = false
 
   constructor(public api: CityApiService,
-              public router: Router,
-              public checkErrorService: CheckErrorService,
-              public message: MessageService) {
+    public router: Router,
+    public checkErrorService: CheckErrorService,
+    public message: MessageService) {
   }
 
   ngOnInit(): void {
@@ -67,5 +67,9 @@ export class ListComponent implements OnInit {
 
   edit(name: string): void {
     this.router.navigateByUrl(`/cities/set/${name}`)
+  }
+
+  comment(city: number) {
+    this.router.navigateByUrl(`/comment/${city}`)
   }
 }
