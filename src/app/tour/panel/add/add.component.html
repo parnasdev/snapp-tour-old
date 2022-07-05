@@ -349,6 +349,24 @@
       <div class="info-tour-header">
         <div class="right">
           <h2>اطلاعات پکیج</h2>
+          <div class="package-item rate-width" *ngIf="!form.value.defineTour && !tourType">
+            <select (change)="changeRateForPackages($event)">
+              <option [value]="3">دلار</option>
+              <option [value]="2">یورو</option>
+              <option [value]="4">درهم</option>
+              <option [value]="1">تومان</option>
+            </select>
+          </div>
+          <div class="item-info-services" *ngIf="!form.value.defineTour && !tourType && checkPackageRate()">
+            <div class="box-services w-100">
+              <label for="">نرخ پرواز</label>
+              <input (keyup)="setADLRate($event)" formControlName="ADLFlightRate" type="text" mask="separator"
+                     thousandSeparator=",">
+              <div *ngIf="errorService.hasError('ADLFlightRate')">
+                <span class="text-danger">{{errorService.getError('ADLFlightRate')}}</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="left">
           <div class="selectdiv me-2">

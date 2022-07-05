@@ -45,7 +45,6 @@ export class SelectHotelComponent implements OnInit,OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.inCommingHotel)
     this.filteredOptions = this.hotelFC.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value)),

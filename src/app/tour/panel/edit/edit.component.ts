@@ -107,6 +107,10 @@ export class EditComponent extends AddComponent implements OnInit {
         roomType: [packageItem.prices.roomType]
       })
       this.ToursForm.push(Tours);
+      if(this.form.value.defineTour == 'false' && !this.tourType){
+        // @ts-ignore
+        this.ratePricesFC.setValue(this.ToursForm.controls[0].controls.rate.value);
+      }
     } else {
       const Tours = this.fb.group({
         parent: null,
@@ -205,7 +209,6 @@ export class EditComponent extends AddComponent implements OnInit {
       }, (error: any) => {
         this.checkError.check(error);
       })
-
     } else {
       this.ToursForm.removeAt(i);
     }
@@ -268,6 +271,7 @@ export class EditComponent extends AddComponent implements OnInit {
   }
 
   editTour(): void {
+    debugger
     this.isLoading = true
     this.tourApi.editTour(this.tourReqDTO, this.slug).subscribe((res: any) => {
       this.isLoading = false;
