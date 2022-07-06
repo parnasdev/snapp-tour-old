@@ -59,6 +59,7 @@ export class AddComponent implements OnInit {
   destTransferFC = new FormControl();
   destCityTypeFC = new FormControl(true);
   tourType = false;
+
   ratePricesFC = new FormControl('1');
 
   isSlugGenerated = false;
@@ -98,7 +99,7 @@ export class AddComponent implements OnInit {
     expireDate: new FormControl('', Validators.required),
     CHDFlightRate: new FormControl(''),
     ADLFlightRate: new FormControl(''),
-    defineTour: new FormControl(false, Validators.required),
+    defineTour: new FormControl('false', Validators.required),
     euroRate: new FormControl(''),
     dollarRate: new FormControl(''),
     AEDRate: new FormControl(''),
@@ -155,7 +156,7 @@ export class AddComponent implements OnInit {
       twin: [null],
       single: [null],
       cwb: [null],
-      cnb: [null],
+      cnb: [this.form.value.CHDFlightRate ? this.form.value.CHDFlightRate : null],
       quad: [null],
       triple: [null],
       twinRate: [null],
@@ -177,6 +178,7 @@ export class AddComponent implements OnInit {
   convertTour() {
     this.tourDetail = [];
     this.ToursForm.controls.forEach((item, index) => {
+      debugger
       this.tourDetail.push({
         parent: null,
         order_item: index,
@@ -372,7 +374,7 @@ export class AddComponent implements OnInit {
       this.form.controls.insurancePriceType.disable()
       this.form.controls.transferRate.disable()
       this.form.controls.insuranceRate.disable()
-      this.form.controls.CHDFlightRate.disable()
+      // this.form.controls.CHDFlightRate.disable()
       // this.form.controls.ADLFlightRate.disable()
     }
     this.clearFields()
@@ -718,14 +720,22 @@ export class AddComponent implements OnInit {
     }
   }
 
-  setFlightRatePrice(event: any) {
+  setADLRatePrice(event: any) {
     this.ToursForm.controls.find(x => x.get('ADLRate')?.setValue(event.target.value))
   }
 
+  setCnbRatePrice(event: any) {
+    this.ToursForm.controls.find(x => x.get('cnb')?.setValue(event.target.value))
+  }
+
   changeRateForPackages(event: any) {
+    debugger
     this.ToursForm.controls.find(x => x.get('rate')?.setValue(event.target.value))
     if (+this.ratePricesFC.value === 1) {
       this.ToursForm.controls.find(x => x.get('ADLRate')?.setValue(0))
+      this.ToursForm.controls.find(x => x.get('cnb')?.setValue(0))
+      this.form.controls.CHDFlightRate.setValue(0)
+      this.form.controls.ADLFlightRate.setValue(0)
     }
   }
 
