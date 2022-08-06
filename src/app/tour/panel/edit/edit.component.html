@@ -352,6 +352,24 @@
       <div class="info-tour-header">
         <div class="right">
           <h2>اطلاعات پکیج</h2>
+          <!-- <div class="package-item rate-width" *ngIf="form.value.defineTour == 'false' && !tourType">
+            <select [formControl]="ratePricesFC" (change)="changeRateForPackages($event)">
+              <option [value]="1">تومان</option>
+              <option [value]="3">دلار</option>
+              <option [value]="2">یورو</option>
+              <option [value]="4">درهم</option>
+            </select>
+          </div>
+          <div class="item-info-services" *ngIf="form.value.defineTour == 'false' && !tourType && checkPackageRate()">
+            <div class="box-services w-100">
+              <label for="">نرخ پرواز</label>
+              <input (keyup)="setADLRate($event)" formControlName="ADLFlightRate" type="text" mask="separator"
+                     thousandSeparator=",">
+              <div *ngIf="errorService.hasError('ADLFlightRate')">
+                <span class="text-danger">{{errorService.getError('ADLFlightRate')}}</span>
+              </div>
+            </div>
+          </div> -->
         </div>
         <div class="left">
           <div class="selectdiv me-2">
@@ -369,6 +387,30 @@
         <div class="change-price-box">
           <span>تغییر گروهی قیمت ها</span>
           <input type="text">
+        </div>
+        <div class="change-price-box" *ngIf="form.value.defineTour == 'false' && !tourType">
+          <span>نرخ پکیج و قیمت پرواز</span>
+          <div class="d-flex align-items-center w-100 mr-5">
+            <select [formControl]="ratePricesFC" (change)="changeRateForPackages($event)">
+              <option [value]="3">دلار</option>
+              <option [value]="2">یورو</option>
+              <option [value]="4">درهم</option>
+              <option [value]="1">تومان</option>
+            </select>
+
+            <div class="w-50" *ngIf="checkPackageRate()">
+              <input (keyup)="setADLRatePrice($event)" formControlName="ADLFlightRate" placeholder="قیمت پرواز بزرگسال به تومان" type="text" mask="separator"
+                    thousandSeparator=",">
+              <div *ngIf="errorService.hasError('ADLFlightRate')">
+                <span class="text-danger">{{errorService.getError('ADLFlightRate')}}</span>
+              </div>
+              <input (keyup)="setCnbRatePrice($event)" formControlName="CHDFlightRate" placeholder="قیمت پرواز کودک به تومان" type="text" mask="separator"
+                    thousandSeparator=",">
+              <div *ngIf="errorService.hasError('CHDFlightRate')">
+                <span class="text-danger">{{errorService.getError('CHDFlightRate')}}</span>
+              </div>
+            </div>
+          </div>
         </div>
         <!--            local tour-->
         <div class="header-box" *ngIf="tourType">
@@ -391,6 +433,7 @@
           <div class="package-item">دو تخته</div>
           <div class="package-item">یه تخته</div>
           <div class="package-item">کودک با تخت</div>
+          <!-- <div class="package-item">کودک بدون تخت</div> -->
           <div class="package-item">سن کودک</div>
           <div class="package-item" *ngIf="form.value.defineTour == 'true'">نرخ بزرگسال</div>
           <div class="package-item">آفر/استخر</div>
@@ -502,6 +545,9 @@
                   <p>{{ getData(i).cwbRate.value | sperator }}</p>
                 </div>
               </div>
+              <!-- <div class="package-item">
+                <input type="text" formControlName="cnb" mask="separator" thousandSeparator=",">
+              </div> -->
               <div class="package-item">
                 <input type="text" formControlName="age">
               </div>

@@ -145,6 +145,7 @@ export class EditComponent extends AddComponent implements OnInit {
           this.getCities();
           this.getTransfer();
           this.getService();
+
         }
 
       }, (error: any) => {
@@ -190,6 +191,7 @@ export class EditComponent extends AddComponent implements OnInit {
         this.setValue();
         this.setFormArray(this.info.packages);
         this.disableFields();
+        this.setPackageRate();
       }
     }, (error: any) => {
       this.message.error();
@@ -205,7 +207,6 @@ export class EditComponent extends AddComponent implements OnInit {
       }, (error: any) => {
         this.checkError.check(error);
       })
-
     } else {
       this.ToursForm.removeAt(i);
     }
@@ -259,6 +260,7 @@ export class EditComponent extends AddComponent implements OnInit {
       this.addOldRow(x);
     })
     this.updatePackagePrices();
+
   }
 
   submit() {
@@ -268,6 +270,7 @@ export class EditComponent extends AddComponent implements OnInit {
   }
 
   editTour(): void {
+    debugger
     this.isLoading = true
     this.tourApi.editTour(this.tourReqDTO, this.slug).subscribe((res: any) => {
       this.isLoading = false;
@@ -293,6 +296,17 @@ export class EditComponent extends AddComponent implements OnInit {
     this.getStars(index)
     // @ts-ignore
     return this.hotels.find(x => x.id === this.ToursForm.controls[index].controls.hotel_id.value)
+  }
+
+  setPackageRate(){
+    // @ts-ignore
+    this.ratePricesFC.setValue(this.info.packages[0].rate.id.toString());
+    this.ToursForm.controls.find(x => x.get('rate')?.setValue(this.info.packages[0].rate.id.toString()))
+    if (+this.ratePricesFC.value === 1) {
+      this.ToursForm.controls.find(x => x.get('ADLRate')?.setValue(0))
+    }
+    this.form.controls.CHDFlightRate.setValue(this.info.CHDFlightRate)
+    this.form.controls.ADLFlightRate.setValue(this.info.ADLFlightRate ? this.info.ADLFlightRate : 0)
   }
 
 }

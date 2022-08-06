@@ -18,6 +18,7 @@ export class SidebarComponent implements OnInit {
 
   isLoading = false
   userPermissions: PermissionDTO[] = [];
+  userId = 0;
 
   constructor(public session: SessionService,
               public userApi: UserApiService,
@@ -49,6 +50,7 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userId = this.session.getId();
     this.toggleMenu()
     this.getUserPermission();
   }

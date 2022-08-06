@@ -60,6 +60,8 @@ export class AddComponent implements OnInit {
   destCityTypeFC = new FormControl(true);
   tourType = false;
 
+  ratePricesFC = new FormControl('1');
+
   isSlugGenerated = false;
 
   constructor(
@@ -97,7 +99,7 @@ export class AddComponent implements OnInit {
     expireDate: new FormControl('', Validators.required),
     CHDFlightRate: new FormControl(''),
     ADLFlightRate: new FormControl(''),
-    defineTour: new FormControl(false, Validators.required),
+    defineTour: new FormControl('false', Validators.required),
     euroRate: new FormControl(''),
     dollarRate: new FormControl(''),
     AEDRate: new FormControl(''),
@@ -154,7 +156,7 @@ export class AddComponent implements OnInit {
       twin: [null],
       single: [null],
       cwb: [null],
-      cnb: [null],
+      cnb: [this.form.value.CHDFlightRate ? this.form.value.CHDFlightRate : null],
       quad: [null],
       triple: [null],
       twinRate: [null],
@@ -176,6 +178,7 @@ export class AddComponent implements OnInit {
   convertTour() {
     this.tourDetail = [];
     this.ToursForm.controls.forEach((item, index) => {
+      debugger
       this.tourDetail.push({
         parent: null,
         order_item: index,
@@ -371,8 +374,8 @@ export class AddComponent implements OnInit {
       this.form.controls.insurancePriceType.disable()
       this.form.controls.transferRate.disable()
       this.form.controls.insuranceRate.disable()
-      this.form.controls.CHDFlightRate.disable()
-      this.form.controls.ADLFlightRate.disable()
+      // this.form.controls.CHDFlightRate.disable()
+      // this.form.controls.ADLFlightRate.disable()
     }
     this.clearFields()
   }
@@ -608,7 +611,7 @@ export class AddComponent implements OnInit {
     this.ToursForm.controls.find(x => x.get('cnb')?.setValue(event.target.value))
     this.updatePackagePrices();
   }
-  
+
 
   drop(event: any) {
     this.getStars(event.previousIndex);
@@ -714,6 +717,34 @@ export class AddComponent implements OnInit {
       })
     } else {
       this.form.controls.slug.setValue(this.form.value.title.split(' ').join('-'))
+    }
+  }
+
+  setADLRatePrice(event: any) {
+    this.ToursForm.controls.find(x => x.get('ADLRate')?.setValue(event.target.value))
+  }
+
+  setCnbRatePrice(event: any) {
+    this.ToursForm.controls.find(x => x.get('cnb')?.setValue(event.target.value))
+  }
+
+  changeRateForPackages(event: any) {
+    debugger
+    this.ToursForm.controls.find(x => x.get('rate')?.setValue(event.target.value))
+    if (+this.ratePricesFC.value === 1) {
+      this.ToursForm.controls.find(x => x.get('ADLRate')?.setValue(0))
+      this.ToursForm.controls.find(x => x.get('cnb')?.setValue(0))
+      this.form.controls.CHDFlightRate.setValue(0)
+      this.form.controls.ADLFlightRate.setValue(0)
+    }
+  }
+
+  checkPackageRate() {
+    if(this.form.value.endCity_id !== ''){
+      // @ts-ignore
+      return +this.ratePricesFC.value > 1
+    } else {
+      return false;
     }
   }
 
