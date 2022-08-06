@@ -48,6 +48,9 @@
           <a (click)="publicService.openPage('tours/' + tour.endCity.slugEn + '/' + tour.slug )"
              class="view-btn">نمایش</a>
           <a routerLink="/tour/copy/{{ tour.slug }}" class="copy-btn">کپی</a>
+          <button class="view-btn" (click)="exportTour(tour.slug)">
+            PDF
+          </button>
           <button (click)="openLogs(tour.id)" class="log-btn">لاگ ها</button>
           <button *ngIf="setting.checkItemPermission('Tour.delete')" (click)="deleteClicked(tour.slug)" class="delete-btn">حذف</button>
         </div>

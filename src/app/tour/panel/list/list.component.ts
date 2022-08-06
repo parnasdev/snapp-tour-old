@@ -42,6 +42,7 @@ export class ListComponent implements OnInit {
   originCityTypeFC = new FormControl(true);
   p = 1;
   sortByDate = false
+  printContent = '';
 
   constructor(public tourApiService: TourApiService,
               public setting: SettingService,
@@ -182,6 +183,50 @@ export class ListComponent implements OnInit {
       data: {id: id, type: 'tour'}
     });
     dialog.afterClosed().subscribe(result => {
+    });
+  }
+
+
+  getTagsHtml(tagName: keyof HTMLElementTagNameMap): string {
+    const htmlStr: string[] = [];
+    const elements = document.getElementsByTagName(tagName);
+    for (let idx = 0; idx < elements.length; idx++) {
+      htmlStr.push(elements[idx].outerHTML);
+    }
+
+    return htmlStr.join('\r\n');
+  }
+
+  print() {
+    let popupWin;
+    // @ts-ignore
+    // contents = document.getElementById('output').innerHTML;
+    // const stylesHtml = this.getTagsHtml('style');
+    // const linksHtml = this.getTagsHtml('link');
+    // const scriptsHtml = this.getTagsHtml('script');
+    popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+    // @ts-ignore
+    popupWin.document.open();
+    // @ts-ignore
+    popupWin.document.write(this.printContent);
+    // @ts-ignore
+    popupWin.document.close();
+  }
+
+  exportTour(slug:string) {
+    this.loading = true;
+    this.tourApiService.exportTour(slug).subscribe((res: any) => {
+      if (res.isDone) {
+        this.printContent = res.data
+        this.print();
+      } else {
+        this.message.custom(res.message);
+      }
+      this.loading = false;
+    }, (error: any) => {
+      this.loading = false;
+      this.message.error();
+      this.checkErrorService.check(error);
     });
   }
 }

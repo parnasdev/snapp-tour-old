@@ -161,7 +161,6 @@ export class SetComponent implements OnInit {
 
   setFormData() {
     this.settingForm.controls['title'].setValue(this.settings.title)
-
     this.settingForm.controls['metaTags'].setValue(this.settings.metaTags)
     this.settingForm.controls['logo'].setValue(this.settings.logo)
     this.settingForm.controls['consoleGoogle'].setValue(this.settings.consoleGoogle)
