@@ -1,14 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {SettingApiService} from "../../Core/Https/setting-api.service";
-import {MessageService} from "../../Core/Services/message.service";
-import {FooterLinks, metaTagsDTO, SettingDTO} from "../../Core/Models/commonDTO";
-import {SettingService} from "../../Core/Services/setting.service";
-import {FormBuilder, FormControl, Validators} from "@angular/forms";
-import {ErrorsService} from "../../Core/Services/errors.service";
-import {FaqDTO} from "../../Core/Models/cityDTO";
-import {environment} from "../../../environments/environment.prod";
-import {MatDialog} from "@angular/material/dialog";
-import {MultipleUploadComponent} from "../../common-project/multiple-upload/multiple-upload.component";
+import { Component, OnInit } from '@angular/core';
+import { SettingApiService } from "../../Core/Https/setting-api.service";
+import { MessageService } from "../../Core/Services/message.service";
+import { metaTagsDTO, SettingDTO } from "../../Core/Models/commonDTO";
+import { SettingService } from "../../Core/Services/setting.service";
+import { FormBuilder, FormControl, Validators } from "@angular/forms";
+import { ErrorsService } from "../../Core/Services/errors.service";
+import { FaqDTO } from "../../Core/Models/cityDTO";
+import { environment } from "../../../environments/environment.prod";
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
   selector: 'prs-set',
@@ -16,7 +15,6 @@ import {MultipleUploadComponent} from "../../common-project/multiple-upload/mult
   styleUrls: ['./set.component.scss']
 })
 export class SetComponent implements OnInit {
-
   isLoading = false;
   settings: SettingDTO = {
     address: '',
@@ -28,6 +26,7 @@ export class SetComponent implements OnInit {
     location: '',
     logo: '',
     faq: [],
+    isClose: false,
     logoFooter: '',
     metaTags: '',
     namads: [],
@@ -42,6 +41,7 @@ export class SetComponent implements OnInit {
     description: '',
     descriptionFooter: '',
     email: '',
+    isClose: false,
     favicon: '',
     location: '',
     logo: '',
@@ -97,16 +97,16 @@ export class SetComponent implements OnInit {
     language: 'fa_IR',
     external_filemanager_path: `${this.fileManagerAddress}/filemanager/`,
     filemanager_title: "مدیریت فایل ها",
-    external_plugins: {"filemanager": `${this.fileManagerAddress}/filemanager/plugin.min.js`},
+    external_plugins: { "filemanager": `${this.fileManagerAddress}/filemanager/plugin.min.js` },
     filemanager_crossdomain: true,
   }
 
   constructor(public settingApi: SettingApiService,
-              public dialog: MatDialog,
-              public errorService: ErrorsService,
-              public settingService: SettingService,
-              public fb: FormBuilder,
-              public message: MessageService) {
+    public dialog: MatDialog,
+    public errorService: ErrorsService,
+    public settingService: SettingService,
+    public fb: FormBuilder,
+    public message: MessageService) {
   }
 
   settingForm = this.fb.group({
@@ -117,6 +117,7 @@ export class SetComponent implements OnInit {
     description: new FormControl('', [Validators.required]),
     favicon: new FormControl('', [Validators.required]),
     faq: new FormControl('', [Validators.required]),
+    isClose: new FormControl(false),
     // footer settings
     location: new FormControl('', [Validators.required]),
     socialLinks: new FormControl('', [Validators.required]),
@@ -159,7 +160,27 @@ export class SetComponent implements OnInit {
   }
 
   setFormData() {
-    this.settingForm.setValue(this.settings);
+    this.settingForm.controls['title'].setValue(this.settings.title)
+
+    this.settingForm.controls['metaTags'].setValue(this.settings.metaTags)
+    this.settingForm.controls['logo'].setValue(this.settings.logo)
+    this.settingForm.controls['consoleGoogle'].setValue(this.settings.consoleGoogle)
+    this.settingForm.controls['description'].setValue(this.settings.description)
+    this.settingForm.controls['favicon'].setValue(this.settings.favicon)
+    this.settingForm.controls['faq'].setValue(this.settings.faq)
+    this.settingForm.controls['isClose'].setValue((this.settings.isClose === true || this.settings.isClose === '1' )? true : false)
+    this.settingForm.controls['location'].setValue(this.settings.location)
+
+    this.settingForm.controls['socialLinks'].setValue(this.settings.socialLinks)
+    this.settingForm.controls['descriptionFooter'].setValue(this.settings.descriptionFooter)
+    this.settingForm.controls['logoFooter'].setValue(this.settings.logoFooter)
+    this.settingForm.controls['namads'].setValue(this.settings.namads)
+
+    this.settingForm.controls['tel'].setValue(this.settings.tel)
+    this.settingForm.controls['whatsapp'].setValue(this.settings.whatsapp)
+    this.settingForm.controls['address'].setValue(this.settings.address)
+    this.settingForm.controls['email'].setValue(this.settings.email)
+
   }
 
   getMeta() {
@@ -203,6 +224,7 @@ export class SetComponent implements OnInit {
       email: this.settingForm.value.email,
       favicon: '',
       location: '',
+      isClose: this.settingForm.value.isClose,
       logo: '',
       logoFooter: '',
       // footerLinks: this.footerLinks,

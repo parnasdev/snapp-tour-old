@@ -25,6 +25,7 @@ export class SettingService {
     location: '',
     logo: '',
     faq: '',
+    isClose: false,
     logoFooter: '',
     metaTags: '',
     namads: [],

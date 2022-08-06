@@ -8,18 +8,19 @@
         </div>
         <div class="left">
           <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="setSetting()" [isLoading]="isLoading"
-                   [label]="'ثبت تنظیمات'"></prs-btn>
+            [label]="'ثبت تنظیمات'"></prs-btn>
+          <label for="isClose">همنواز بسته است</label>
+          <mat-checkbox id="isClose" formControlName="isClose"></mat-checkbox>
         </div>
       </div>
       <div class="info-tour-body">
         <div class="top">
-
           <!--          title-->
           <div class="item-info">
             <label for="">عنوان سایت</label>
             <input formControlName="title" type="text">
             <span class="required f-10" *ngIf="settingForm.get('title')?.touched && settingForm.get('title')?.invalid">
-            این فیلد الزامی است
+              این فیلد الزامی است
             </span>
             <div *ngIf="errorService.hasError('title')">
               <span class="text-danger">{{errorService.getError('title')}}</span>
@@ -30,7 +31,7 @@
             <label for="">ایمیل</label>
             <input formControlName="email" type="text">
             <span class="required f-10" *ngIf="settingForm.get('email')?.touched && settingForm.get('email')?.invalid">
-            این فیلد الزامی است
+              این فیلد الزامی است
             </span>
             <div *ngIf="errorService.hasError('email')">
               <span class="text-danger">{{errorService.getError('email')}}</span>
@@ -42,8 +43,8 @@
             <label for="">کد کنسول گوگل</label>
             <input formControlName="consoleGoogle" type="text">
             <span class="required f-10"
-                  *ngIf="settingForm.get('consoleGoogle')?.touched && settingForm.get('consoleGoogle')?.invalid">
-            این فیلد الزامی است
+              *ngIf="settingForm.get('consoleGoogle')?.touched && settingForm.get('consoleGoogle')?.invalid">
+              این فیلد الزامی است
             </span>
             <div *ngIf="errorService.hasError('consoleGoogle')">
               <span class="text-danger">{{errorService.getError('consoleGoogle')}}</span>
@@ -81,16 +82,15 @@
               <option *ngFor="let item of metaNames" [value]="item">{{ item }}</option>
             </select>
             <span class="required f-10" *ngIf="metaNameFC.touched && metaNameFC.invalid">
-            این فیلد الزامی است
+              این فیلد الزامی است
             </span>
           </div>
           <!-- description -->
           <div class="item-info">
             <label for="">مقدار متا</label>
             <input [formControl]="metaValueFC" type="text">
-            <span class="required f-10"
-                  *ngIf="metaValueFC.touched && metaValueFC.invalid">
-            این فیلد الزامی است
+            <span class="required f-10" *ngIf="metaValueFC.touched && metaValueFC.invalid">
+              این فیلد الزامی است
             </span>
           </div>
 
@@ -104,7 +104,7 @@
 
 
         <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="addMeta()" [isLoading]="isLoading"
-                 [label]="'ثبت'"></prs-btn>
+          [label]="'ثبت'"></prs-btn>
       </div>
     </div>
 
@@ -119,7 +119,7 @@
         <div class="top">
 
           <editor apiKey="0vfc016on7f2xre1903tf40tayspe9cz66smd4qilzs0oc0z" formControlName="descriptionFooter"
-                  [init]="editorConfig"></editor>
+            [init]="editorConfig"></editor>
 
         </div>
 

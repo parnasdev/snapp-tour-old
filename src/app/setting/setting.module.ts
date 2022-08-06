@@ -7,6 +7,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToolsModule} from "../tools/tools/tools.module";
 import {CommonProjectModule} from "../common-project/common-project.module";
 import {EditorModule} from "@tinymce/tinymce-angular";
+import { MatCheckbox, MatCheckboxModule } from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {EditorModule} from "@tinymce/tinymce-angular";
         ReactiveFormsModule,
         ToolsModule,
         CommonProjectModule,
+        MatCheckboxModule,
         EditorModule
     ]
 })

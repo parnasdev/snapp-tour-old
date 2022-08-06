@@ -16,6 +16,7 @@ export interface SettingDTO {
   logo: string;
   faq: any
   logoFooter: string;
+  isClose: boolean | string;
   metaTags: string;
   namads: string[];
   socialLinks: string;
