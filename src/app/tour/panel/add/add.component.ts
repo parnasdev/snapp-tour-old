@@ -178,7 +178,6 @@ export class AddComponent implements OnInit {
   convertTour() {
     this.tourDetail = [];
     this.ToursForm.controls.forEach((item, index) => {
-      debugger
       this.tourDetail.push({
         parent: null,
         order_item: index,
@@ -533,6 +532,7 @@ export class AddComponent implements OnInit {
     const insurancePrice = (this.form.value.insuranceRate ? (+this.form.value.insuranceRate) * this.checkInsuranceRatePrice() : 0);
     const visaPrice = (this.form.value.visaRate ? (+this.form.value.visaRate) * this.checkVisaRatePrice() : 0);
     const transferPrice = (this.form.value.transferRate ? (+this.form.value.transferRate) * this.checkTransferRatePrice() : 0);
+
     this.ToursForm.controls.forEach((item, index) => {
       const ADLRate = item.value.ADLRate ? +item.value.ADLRate.split(',').join('') : 0;
       const CHDFlightRate = this.form.value.CHDFlightRate ? +this.form.value.CHDFlightRate?.split(',').join('') : 0;
@@ -729,7 +729,6 @@ export class AddComponent implements OnInit {
   }
 
   changeRateForPackages(event: any) {
-    debugger
     this.ToursForm.controls.find(x => x.get('rate')?.setValue(event.target.value))
     if (+this.ratePricesFC.value === 1) {
       this.ToursForm.controls.find(x => x.get('ADLRate')?.setValue(0))

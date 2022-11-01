@@ -191,7 +191,9 @@ export class EditComponent extends AddComponent implements OnInit {
         this.setValue();
         this.setFormArray(this.info.packages);
         this.disableFields();
-        this.setPackageRate();
+        if(this.form.controls.defineTour.value === 'false'){
+          this.setPackageRate();
+        }
       }
     }, (error: any) => {
       this.message.error();
@@ -270,7 +272,6 @@ export class EditComponent extends AddComponent implements OnInit {
   }
 
   editTour(): void {
-    debugger
     this.isLoading = true
     this.tourApi.editTour(this.tourReqDTO, this.slug).subscribe((res: any) => {
       this.isLoading = false;
