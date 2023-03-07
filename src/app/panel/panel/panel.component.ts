@@ -23,7 +23,7 @@ export class PanelComponent implements OnInit {
       })
       $('.main-page').toggleClass('main-full').animate(1500)
     })
-    this.title.setTitle('پنل کاربری همنواز')
+    this.title.setTitle('پنل کاربری اسنپ تریپ')
   }
 
 }

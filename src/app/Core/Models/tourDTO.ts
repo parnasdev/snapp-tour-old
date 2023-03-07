@@ -44,7 +44,7 @@ export interface TourSetRequestDTO {
   nightNum: number;
   dayNum: number;
   offered: boolean;
-  TransferType: number;
+  transferType: number;
   transfers: TourTransferDTO[];
   enDate: string;
   stDate: string
@@ -152,6 +152,11 @@ export interface PricesDTO {
   cnb: string;
   quad: string;
   triple: string;
+  twinCapacity: string;
+  singleCapacity: string;
+  cwbCapacity: string;
+  quadCapacity: string;
+  tripleCapacity: string;
   twinRate: string;
   singleRate: string;
   cwbRate: string;

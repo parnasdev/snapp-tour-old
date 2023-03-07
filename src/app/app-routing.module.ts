@@ -10,11 +10,6 @@ const routes: Routes = [
     component: AppComponent,
     children: [
       {
-        path: '',
-        loadChildren: () => import('./store/store.module').then(m => m.StoreModule)
-
-      },
-      {
         path: 'prs-admin',
         loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
       }, {
@@ -24,6 +19,11 @@ const routes: Routes = [
       }, {
         path: 'not-found',
         component: Page404Component
+      },
+      {
+        path: '',
+        loadChildren: () => import('./store/store.module').then(m => m.StoreModule)
+
       },
       // {
       //   path: '',

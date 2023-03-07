@@ -159,6 +159,11 @@ export class AddComponent implements OnInit {
       cnb: [this.form.value.CHDFlightRate ? this.form.value.CHDFlightRate : null],
       quad: [null],
       triple: [null],
+      twinCapacity: [null],
+      singleCapacity: [null],
+      cwbCapacity: [null],
+      quadCapacity: [null],
+      tripleCapacity: [null],
       twinRate: [null],
       singleRate: [null],
       cwbRate: [null],
@@ -200,6 +205,11 @@ export class AddComponent implements OnInit {
           triple: item.value.triple,
           quad: item.value.quad,
           cnb: item.value.cnb,
+          twinCapacity: item.value.twinCapacity,
+          singleCapacity: item.value.singleCapacity,
+          cwbCapacity: item.value.cwbCapacity,
+          quadCapacity: item.value.quadCapacity,
+          tripleCapacity: item.value.tripleCapacity,
           twinRate: item.value.twinRate,
           singleRate: item.value.singleRate,
           cwbRate: item.value.cwbRate,
@@ -313,7 +323,7 @@ export class AddComponent implements OnInit {
       description: this.form.value.description,
       status: this.form.value.status,
       packages: this.tourDetail,
-      TransferType: 1,
+      transferType: 1,
     }
   }
 

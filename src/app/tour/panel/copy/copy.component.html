@@ -38,7 +38,7 @@
             <label>
               <select formControlName="defineTour" (change)="disableFields()">
                 <option [value]="false">یکجا</option>
-                <option [value]="true">باجزییات</option>
+                <!-- <option [value]="true">باجزییات</option> -->
               </select>
             </label>
           </div>
@@ -391,7 +391,7 @@
           <div class="package-item">کودک با تخت</div>
           <div class="package-item">سن کودک</div>
           <div class="package-item" *ngIf="form.value.defineTour == 'true'">نرخ بزرگسال</div>
-          <div class="package-item">آفر/استخر</div>
+          <div class="package-item">آفر ویژه</div>
           <div></div>
         </div>
         <form [formGroup]="form" class="example-list" formArrayName="packages" action="" cdkDropList
@@ -436,6 +436,8 @@
               <div class="package-item">
                 <input (keyup)="calculatePrice('twin', $event, true, i)" type="text" formControlName="twin"
                        mask="separator" thousandSeparator=",">
+                       <input type="text" formControlName="twinCapacity"
+                       mask="separator" thousandSeparator=",">
                 <div class="under-package-text d-flex align-items-center"
                      *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].twin > 0">
                   <p>{{ getData(i).twinRate.value | sperator }}</p>
@@ -444,6 +446,8 @@
               <div class="package-item">
                 <input (keyup)="calculatePrice('triple', $event, true, i)" type="text" formControlName="triple"
                        mask="separator" thousandSeparator=",">
+                       <input type="text" formControlName="tripleCapacity"
+                       mask="separator" thousandSeparator=",">
                 <div class="under-package-text"
                      *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].triple > 0">
                   <p>{{ getData(i).tripleRate.value | sperator }}</p>
@@ -451,6 +455,8 @@
               </div>
               <div class="package-item">
                 <input (keyup)="calculatePrice('quad', $event, true, i)" type="text" formControlName="quad"
+                       mask="separator" thousandSeparator=",">
+                       <input type="text" formControlName="quadCapacity"
                        mask="separator" thousandSeparator=",">
                 <div class="under-package-text"
                      *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].quad > 0">
@@ -466,7 +472,7 @@
               </div>
               <div class="package-item d-flex flex-row">
                 <input formControlName="offered" class="offer-checkbox" type="checkbox">
-                <input formControlName="pool" class="offer-checkbox" type="checkbox">
+                <!-- <input formControlName="pool" class="offer-checkbox" type="checkbox"> -->
               </div>
               <div style="flex-direction: row !important;" class="package-item">
                 <i class="icon-trash text-danger" (click)="removePackage(i)"></i>
@@ -478,6 +484,8 @@
               <div class="package-item">
                 <input (keyup)="calculatePrice('twin', $event, true, i)" type="text" formControlName="twin"
                        mask="separator" thousandSeparator=",">
+                <input type="text" formControlName="twinCapacity"
+                       mask="separator" thousandSeparator=",">
                 <div class="under-package-text"
                      *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].twin > 0">
                   <p>{{ getData(i).twinRate.value | sperator }}</p>
@@ -486,6 +494,8 @@
               <div class="package-item">
                 <input (keyup)="calculatePrice('single', $event, true, i)" type="text" formControlName="single"
                        mask="separator" thousandSeparator=",">
+                       <input type="text" formControlName="singleCapacity"
+                       mask="separator" thousandSeparator=",">
                 <div class="under-package-text"
                      *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].single > 0">
                   <p>{{ getData(i).singleRate.value | sperator }}</p>
@@ -493,6 +503,8 @@
               </div>
               <div class="package-item">
                 <input (keyup)="calculatePrice('cwb', $event, false, i)" type="text" formControlName="cwb"
+                       mask="separator" thousandSeparator=",">
+                       <input type="text" formControlName="cwbCapacity"
                        mask="separator" thousandSeparator=",">
                 <div class="under-package-text"
                      *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].cwb > 0">
@@ -508,7 +520,7 @@
               </div>
               <div class="package-item d-flex flex-row">
                 <input formControlName="offered" class="offer-checkbox" type="checkbox">
-                <input formControlName="pool" class="offer-checkbox" type="checkbox">
+                <!-- <input formControlName="pool" class="offer-checkbox" type="checkbox"> -->
               </div>
               <div style="flex-direction: row !important;" class="package-item">
                 <i class="icon-trash text-danger" (click)="removePackage(i)"></i>

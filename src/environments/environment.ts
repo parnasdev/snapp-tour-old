@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  BACK_END_IP: 'https://api.hamnavaz.com/api/v1/',
+  BACK_END_IP: 'https://snapptour-api.iran.liara.run/api/v1/',
   VERSION: '0.1'
 };
 /*

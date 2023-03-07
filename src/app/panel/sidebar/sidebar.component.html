@@ -2,12 +2,8 @@
   <div class="sidebar">
     <div class="parnas-title">
       <div class="logo-parnas">
-        <img src="assets/img/logo-parnas.agencyFinail%20(1).png" routerLink="/" width="55" alt=""></div>
+        <img src="assets/img/snapptrip-logo.svg" routerLink="/panel" width="55" alt=""></div>
       <div class="info-title-sidebar">
-        <h3>ساتراپ تراول</h3>
-        <div class="info-bottom-sidebar">
-          <span>آژانس خلاقیت پارناس</span>
-        </div>
       </div>
     </div>
     <div class="space-item-sidebar d-flex justify-content-center align-items-center">
@@ -15,7 +11,7 @@
     </div>
     <ul class="ul-parent-list-sidebar">
       <li class="li-list">
-        <a class="menu-main" href="/">
+        <a class="menu-main" href="/panel">
           <img src="assets/img/Home.svg" width="20" alt="">
           داشبورد
         </a>
@@ -29,9 +25,9 @@
         </a>
         <div class="collapse" id="collapseExample1">
           <ul class="under-menu-ul">
-            <li *ngIf="checkItemPermission('Tour.create')"><a routerLink="/tour/add">اضافه کردن تور</a></li>
-            <li *ngIf="checkItemPermission('Tour.read')"><a routerLink="/tour">لیست تورها</a></li>
-            <li *ngIf="checkItemPermission('Reserve.read')"><a routerLink="/tour/reserves">لیست رزروها</a></li>
+            <li *ngIf="checkItemPermission('Tour.create')"><a routerLink="/panel/tour/add">اضافه کردن تور</a></li>
+            <li *ngIf="checkItemPermission('Tour.read')"><a routerLink="/panel/tour">لیست تورها</a></li>
+            <li *ngIf="checkItemPermission('Reserve.read')"><a routerLink="/panel/tour/reserves">لیست رزروها</a></li>
             <!-- <li *ngIf="checkItemPermission('Tour.read')"><a (click)="showMessage()">تورهای ویژه</a></li> -->
           </ul>
         </div>
@@ -45,11 +41,11 @@
         </a>
         <div class="collapse" id="collapseExample2">
           <ul class="under-menu-ul">
-            <li *ngIf="checkItemPermission('Hotel.create')"><a routerLink="/hotel/add">اضافه کردن هتل</a></li>
-            <li *ngIf="checkItemPermission('Hotel.read')"><a routerLink="/hotel/list">لیست هتل ها</a></li>
+            <li *ngIf="checkItemPermission('Hotel.create')"><a routerLink="/panel/hotel/add">اضافه کردن هتل</a></li>
+            <li *ngIf="checkItemPermission('Hotel.read')"><a routerLink="/panel/hotel/list">لیست هتل ها</a></li>
             <!--            <li *ngIf="checkItemPermission('Hotel.read')"><a (click)="showMessage()">هتل های ویژه</a></li>-->
-            <li *ngIf="checkItemPermission('City.read')"><a routerLink="/cities">لیست شهر ها</a></li>
-            <li *ngIf="checkItemPermission('City.create')"><a routerLink="/cities/set">اضافه کردن شهر</a></li>
+            <li *ngIf="checkItemPermission('City.read')"><a routerLink="/panel/cities">لیست شهر ها</a></li>
+            <li *ngIf="checkItemPermission('City.create')"><a routerLink="/panel/cities/set">اضافه کردن شهر</a></li>
           </ul>
         </div>
       </li>
@@ -62,8 +58,8 @@
         </a>
         <div class="collapse" id="collapseExample12">
           <ul class="under-menu-ul">
-            <li *ngIf="checkItemPermission('RoomType.read')"><a routerLink="/roomType">لیست اتاق ها</a></li>
-            <li *ngIf="checkItemPermission('RoomType.create')"><a routerLink="/roomType/add">اضافه کردن</a></li>
+            <li *ngIf="checkItemPermission('RoomType.read')"><a routerLink="/panel/roomType">لیست اتاق ها</a></li>
+            <li *ngIf="checkItemPermission('RoomType.create')"><a routerLink="/panel/roomType/add">اضافه کردن</a></li>
           </ul>
         </div>
       </li>
@@ -76,8 +72,8 @@
         </a>
         <div class="collapse" id="collapseExample3">
           <ul class="under-menu-ul">
-            <li *ngIf="checkItemPermission('Transfer.read')"><a routerLink="/transfer">لیست ایرلاین ها</a></li>
-            <li *ngIf="checkItemPermission('Transfer.create')"><a routerLink="/transfer/add">اضافه کردن</a></li>
+            <li *ngIf="checkItemPermission('Transfer.read')"><a routerLink="/panel/transfer">لیست ایرلاین ها</a></li>
+            <li *ngIf="checkItemPermission('Transfer.create')"><a routerLink="/panel/transfer/add">اضافه کردن</a></li>
           </ul>
         </div>
       </li>
@@ -90,8 +86,8 @@
         </a>
         <div class="collapse" id="collapseExample4">
           <ul class="under-menu-ul">
-            <li *ngIf="checkItemPermission('Post.read')"><a routerLink="blog/list">لیست مطالب</a></li>
-            <li *ngIf="checkItemPermission('Post.create')"><a routerLink="blog/add">اضافه کردن مطلب </a></li>
+            <li *ngIf="checkItemPermission('Post.read')"><a routerLink="/panelblog/list">لیست مطالب</a></li>
+            <li *ngIf="checkItemPermission('Post.create')"><a routerLink="/panelblog/add">اضافه کردن مطلب </a></li>
           </ul>
         </div>
       </li>
@@ -104,8 +100,8 @@
         </a>
         <div class="collapse" id="collapseExample5">
           <ul class="under-menu-ul">
-            <li *ngIf="checkItemPermission('User.read')"><a routerLink="user/list">لیست کاربران</a></li>
-            <li *ngIf="checkItemPermission('User.create')"><a routerLink="user/add">اضافه کردن کاربر جدید</a></li>
+            <li *ngIf="checkItemPermission('User.read')"><a routerLink="/paneluser/list">لیست کاربران</a></li>
+            <li *ngIf="checkItemPermission('User.create')"><a routerLink="/paneluser/add">اضافه کردن کاربر جدید</a></li>
           </ul>
         </div>
       </li>
@@ -123,7 +119,7 @@
         </div>
       </li>
       <li class="li-list" *ngIf="checkItemPermission('Setting.change')">
-        <a class="menu-main menu-main-7" data-toggle="collapse"  routerLink="gallery" href="#collapseExample6"
+        <a class="menu-main menu-main-7" data-toggle="collapse"  routerLink="/panelgallery" href="#collapseExample6"
            role="button"
            aria-expanded="false" aria-controls="collapseExample">
           <img src="assets/img/User%20Accepted.svg" width="20" alt="">
@@ -131,7 +127,7 @@
         </a>
       </li>
       <li class="li-list" *ngIf="checkItemPermission('Setting.change')">
-        <a class="menu-main menu-main-7" data-toggle="collapse" routerLink="/redirector" href="#collapseExample7"
+        <a class="menu-main menu-main-7" data-toggle="collapse" routerLink="/panel/redirector" href="#collapseExample7"
            role="button"
            aria-expanded="false" aria-controls="collapseExample">
           <img src="assets/img/User%20Accepted.svg" width="20" alt="">
@@ -139,7 +135,7 @@
         </a>
       </li>
       <li class="li-list" *ngIf="checkItemPermission('Setting.change')">
-        <a class="menu-main menu-main-7" data-toggle="collapse" routerLink="/setting" href="#collapseExample8"
+        <a class="menu-main menu-main-7" data-toggle="collapse" routerLink="/panel/setting" href="#collapseExample8"
            role="button"
            aria-expanded="false" aria-controls="collapseExample">
           <img src="assets/img/User%20Accepted.svg" width="20" alt="">
