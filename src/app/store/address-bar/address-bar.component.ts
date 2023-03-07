@@ -6,7 +6,7 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./address-bar.component.scss']
 })
 export class AddressBarComponent implements OnInit {
-  @Input() path = 'همنواز آسمان آبی';
+  @Input() path = 'اسنپ تریپ';
   @Input() path2 = ''
 
   constructor() {
