@@ -1,142 +1,175 @@
-<!--desktop-->
-<header class="desktop-header">
+<header class="s-header">
   <div class="prs-responsive">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-10 m-auto parent-header">
-          <div class="right">
-            <div class="logo">
-              <a href="/">
-                <img src="assets/img/snapptrip-logo.svg" width="70" alt="">
-              </a>
-            </div>
-            <ul class="ul-menu">
-              <li class="li-menu">
-                <a class="menu-item" routerLink="/">
-                  <img src="assets/img/header/home.svg" width="25" alt="">
-                  صفحه اصلی
-                  <i class="icon-circle icon-active-header"></i>
-                </a>
-              </li>
-              <li class="li-menu">
-                <a class="menu-item" routerLink="/tours">
-                  <img src="assets/img/header/placeholder.svg" width="27" alt="">
-                  تور ها
-                  <i class="icon-circle icon-active-header"></i>
-                </a>
-              </li>
-              <li class="li-menu">
-                <a class="menu-item" routerLink="/hotels">
-                  <img src="assets/img/header/hotel.svg" width="25" alt="">
-                  هتل
-                  <i class="icon-circle icon-active-header"></i>
-                </a>
-              </li>
-              <li class="li-menu">
-                <a class="menu-item" routerLink="/blogs">
-                  <img src="assets/img/header/writing.svg" width="27" alt="">
-                  وبلاگ
-                  <i class="icon-circle icon-active-header"></i>
-                </a>
-              </li>
-            </ul>
+        <div class="col-md-11 m-auto p-header d-flex align-items-center justify-content-between">
+          <div class="menu">
+            <a class="link-header" href="">هتل داخلی</a>
+            <a class="link-header" href="">بلیط هواپیما</a>
+            <a class="link-header" href="">اتوبوس</a>
+            <a class="link-header" href="">شرکت‌ها و آژانس‌ها</a>
           </div>
-          <div class="left">
-            <div class="support">
-              <img src="assets/img/Calling-header.svg" width="25" alt="">
-              <div class="text-support">
-                <small>پشتیبانی</small>
-                <a [href]="'tel:'+'02184278'">
-                  <span>021-84278</span>
-                </a>
-
-              </div>
+          <div class="options-header">
+            <div class="menu-l d-flex align-items-center">
+              <a href="" class="link">دانلود اپلیکیشن</a>
+              <a href="" class="link">پیگیری خرید</a>
             </div>
-<!--            <a class="btn-login-register" routerLink="/auth" *ngIf="!session.isLoggedIn()">-->
-<!--              <img src="assets/img/User-header.svg" width="18" alt="">-->
-<!--              <span>عضویت و ورود</span>-->
-<!--            </a>-->
-            <!--            <a class="btn-login-register" (click)="logOut()" *ngIf="session.isLoggedIn()">-->
-            <!--              <img src="assets/img/User-header.svg" width="18" alt="">-->
-            <!--              <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>-->
-            <!--              <span>خوش آمدید / خروج</span>-->
-            <!--            </a>-->
+            <button class="btn-auth">ورود | ثبت نام</button>
+            <a class="p-tel-header" href="tel:+982175132000">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px" viewBox="0 0 32 32" fill="currentColor"
+                   focusable="false" class="chakra-icon css-10ofrh5">
+                <path
+                  d="M9.959 2.667a3.653 3.653 0 013.652 3.145c.143 1.077.407 2.136.787 3.152a3.64 3.64 0 01-.827 3.849l-.877.875a18.272 18.272 0 005.599 5.589l.883-.881a3.655 3.655 0 013.848-.821c1.02.38 2.08.644 3.171.787 1.835.259 3.185 1.849 3.14 3.668v3.648c.004 1.025-.425 2.004-1.183 2.697s-1.772 1.036-2.817.941a25.34 25.34 0 01-11.037-3.917 24.94 24.94 0 01-7.68-7.664A25.278 25.278 0 012.686 6.636c-.095-1.016.247-2.027.937-2.783s1.668-1.185 2.693-1.187H9.96zm.012 2.421H6.316a1.225 1.225 0 00-1.221 1.315 22.847 22.847 0 003.56 10.028 22.575 22.575 0 006.949 6.935 22.904 22.904 0 009.968 3.545 1.227 1.227 0 001.336-1.224v-3.685a1.22 1.22 0 00-1.043-1.24 16.88 16.88 0 01-3.693-.919 1.225 1.225 0 00-1.288.271l-1.548 1.545a1.214 1.214 0 01-1.456.196 20.698 20.698 0 01-7.768-7.755 1.21 1.21 0 01.196-1.455l1.543-1.54c.336-.34.444-.844.275-1.293a16.817 16.817 0 01-.917-3.673 1.226 1.226 0 00-1.237-1.051zm8.524 2.795a7.097 7.097 0 015.612 5.603 1.01 1.01 0 01-1.984.386 5.08 5.08 0 00-4.016-4.009 1.01 1.01 0 01-.799-1.183c.109-.547.64-.903 1.187-.796zm-.082-4.88a11.97 11.97 0 0110.583 10.551 1.01 1.01 0 01-2.008.226 9.95 9.95 0 00-8.797-8.771c-.555-.061-.955-.56-.892-1.113s.56-.953 1.115-.892z"></path>
+              </svg>
+            </a>
+            <a href="https://www.snapptrip.com" class="logo-website"><img width="76" height="48" alt="اسنپ تریپ" src="https://cdnsnapptrip.com/images/B2C/Uploads/logo/snapptrip-logo.svg" class="chakra-image css-1ryhtp0"></a>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </header>
-<!--end-->
+
+<!--&lt;!&ndash;desktop&ndash;&gt;-->
+<!--<header class="desktop-header">-->
+<!--  <div class="prs-responsive">-->
+<!--    <div class="container-fluid">-->
+<!--      <div class="row">-->
+<!--        <div class="col-md-10 m-auto parent-header">-->
+<!--          <div class="right">-->
+<!--            <div class="logo">-->
+<!--              <a href="/">-->
+<!--                <img src="assets/img/snapptrip-logo.svg" width="70" alt="">-->
+<!--              </a>-->
+<!--            </div>-->
+<!--            <ul class="ul-menu">-->
+<!--              <li class="li-menu">-->
+<!--                <a class="menu-item" routerLink="/">-->
+<!--                  <img src="assets/img/header/home.svg" width="25" alt="">-->
+<!--                  صفحه اصلی-->
+<!--                  <i class="icon-circle icon-active-header"></i>-->
+<!--                </a>-->
+<!--              </li>-->
+<!--              <li class="li-menu">-->
+<!--                <a class="menu-item" routerLink="/tours">-->
+<!--                  <img src="assets/img/header/placeholder.svg" width="27" alt="">-->
+<!--                  تور ها-->
+<!--                  <i class="icon-circle icon-active-header"></i>-->
+<!--                </a>-->
+<!--              </li>-->
+<!--              <li class="li-menu">-->
+<!--                <a class="menu-item" routerLink="/hotels">-->
+<!--                  <img src="assets/img/header/hotel.svg" width="25" alt="">-->
+<!--                  هتل-->
+<!--                  <i class="icon-circle icon-active-header"></i>-->
+<!--                </a>-->
+<!--              </li>-->
+<!--              <li class="li-menu">-->
+<!--                <a class="menu-item" routerLink="/blogs">-->
+<!--                  <img src="assets/img/header/writing.svg" width="27" alt="">-->
+<!--                  وبلاگ-->
+<!--                  <i class="icon-circle icon-active-header"></i>-->
+<!--                </a>-->
+<!--              </li>-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--          <div class="left">-->
+<!--            <div class="support">-->
+<!--              <img src="assets/img/Calling-header.svg" width="25" alt="">-->
+<!--              <div class="text-support">-->
+<!--                <small>پشتیبانی</small>-->
+<!--                <a [href]="'tel:'+'02184278'">-->
+<!--                  <span>021-84278</span>-->
+<!--                </a>-->
+
+<!--              </div>-->
+<!--            </div>-->
+<!--&lt;!&ndash;            <a class="btn-login-register" routerLink="/auth" *ngIf="!session.isLoggedIn()">&ndash;&gt;-->
+<!--&lt;!&ndash;              <img src="assets/img/User-header.svg" width="18" alt="">&ndash;&gt;-->
+<!--&lt;!&ndash;              <span>عضویت و ورود</span>&ndash;&gt;-->
+<!--&lt;!&ndash;            </a>&ndash;&gt;-->
+<!--            &lt;!&ndash;            <a class="btn-login-register" (click)="logOut()" *ngIf="session.isLoggedIn()">&ndash;&gt;-->
+<!--            &lt;!&ndash;              <img src="assets/img/User-header.svg" width="18" alt="">&ndash;&gt;-->
+<!--            &lt;!&ndash;              <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>&ndash;&gt;-->
+<!--            &lt;!&ndash;              <span>خوش آمدید / خروج</span>&ndash;&gt;-->
+<!--            &lt;!&ndash;            </a>&ndash;&gt;-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</header>-->
+<!--&lt;!&ndash;end&ndash;&gt;-->
 
 
-<!--mobile-header-->
-<header class="mobi-header">
-  <div class="nav-mobi">
-    <div class="top">
-      <div class="menu">
-        <i class="icon-align-right icon-menu"></i>
-      </div>
-      <div class="logo-web-mobi">
-        <a href="/">
-          <img src="assets/img/snapptour-logo.png" width="130" alt="">
-        </a>
-      </div>
-      <!--        <a class="btn-login-register" routerLink="/auth" *ngIf="!session.isLoggedIn()">-->
-      <!--          <span>عضویت و ورود</span>-->
-      <!--        </a>-->
-      <!--        <a class="btn-login-register" (click)="logOut()" *ngIf="session.isLoggedIn()">-->
-      <!--          <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>-->
-      <!--          <span>-->
-      <!--          <i class="icon-user"></i>-->
-      <!--            /-->
-      <!--            خروج-->
-      <!--          </span>-->
-      <!--        </a>-->
-    </div>
-  </div>
-</header>
-<div class="menu-box-mobi">
-  <ul class="ul-menu-mobile">
-<!--    <li class="btn-parent-mobile">-->
-<!--      <a class="btn-register" routerLink="/auth" *ngIf="!session.isLoggedIn()">-->
-<!--        <i class="icon-user"></i>-->
-<!--        <span>ورود و عضویت</span>-->
-<!--      </a>-->
-<!--      <a class="btn-exit" (click)="logOut()" *ngIf="session.isLoggedIn()">-->
-<!--        <i class="icon-logout"></i>-->
-<!--        <span> خروج</span>-->
+<!--&lt;!&ndash;mobile-header&ndash;&gt;-->
+<!--<header class="mobi-header">-->
+<!--  <div class="nav-mobi">-->
+<!--    <div class="top">-->
+<!--      <div class="menu">-->
+<!--        <i class="icon-align-right icon-menu"></i>-->
+<!--      </div>-->
+<!--      <div class="logo-web-mobi">-->
+<!--        <a href="/">-->
+<!--          <img src="assets/img/snapptour-logo.png" width="130" alt="">-->
+<!--        </a>-->
+<!--      </div>-->
+<!--      &lt;!&ndash;        <a class="btn-login-register" routerLink="/auth" *ngIf="!session.isLoggedIn()">&ndash;&gt;-->
+<!--      &lt;!&ndash;          <span>عضویت و ورود</span>&ndash;&gt;-->
+<!--      &lt;!&ndash;        </a>&ndash;&gt;-->
+<!--      &lt;!&ndash;        <a class="btn-login-register" (click)="logOut()" *ngIf="session.isLoggedIn()">&ndash;&gt;-->
+<!--      &lt;!&ndash;          <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>&ndash;&gt;-->
+<!--      &lt;!&ndash;          <span>&ndash;&gt;-->
+<!--      &lt;!&ndash;          <i class="icon-user"></i>&ndash;&gt;-->
+<!--      &lt;!&ndash;            /&ndash;&gt;-->
+<!--      &lt;!&ndash;            خروج&ndash;&gt;-->
+<!--      &lt;!&ndash;          </span>&ndash;&gt;-->
+<!--      &lt;!&ndash;        </a>&ndash;&gt;-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</header>-->
+<!--<div class="menu-box-mobi">-->
+<!--  <ul class="ul-menu-mobile">-->
+<!--&lt;!&ndash;    <li class="btn-parent-mobile">&ndash;&gt;-->
+<!--&lt;!&ndash;      <a class="btn-register" routerLink="/auth" *ngIf="!session.isLoggedIn()">&ndash;&gt;-->
+<!--&lt;!&ndash;        <i class="icon-user"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;        <span>ورود و عضویت</span>&ndash;&gt;-->
+<!--&lt;!&ndash;      </a>&ndash;&gt;-->
+<!--&lt;!&ndash;      <a class="btn-exit" (click)="logOut()" *ngIf="session.isLoggedIn()">&ndash;&gt;-->
+<!--&lt;!&ndash;        <i class="icon-logout"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;        <span> خروج</span>&ndash;&gt;-->
+<!--&lt;!&ndash;      </a>&ndash;&gt;-->
+<!--&lt;!&ndash;    </li>&ndash;&gt;-->
+<!--    <li class="li-menu">-->
+<!--      <a class="menu-item-mobile" href="/">-->
+<!--        <img src="assets/img/header/home.svg" width="17" alt="">-->
+<!--        صفحه اصلی-->
+<!--        <i class="icon-circle icon-active-header"></i>-->
 <!--      </a>-->
 <!--    </li>-->
-    <li class="li-menu">
-      <a class="menu-item-mobile" href="/">
-        <img src="assets/img/header/home.svg" width="17" alt="">
-        صفحه اصلی
-        <i class="icon-circle icon-active-header"></i>
-      </a>
-    </li>
-    <li class="li-menu">
-      <a class="menu-item-mobile" routerLink="/tours">
-        <img src="assets/img/header/placeholder.svg" width="17" alt="">
-        تور ها
-        <i class="icon-circle icon-active-header"></i>
+<!--    <li class="li-menu">-->
+<!--      <a class="menu-item-mobile" routerLink="/tours">-->
+<!--        <img src="assets/img/header/placeholder.svg" width="17" alt="">-->
+<!--        تور ها-->
+<!--        <i class="icon-circle icon-active-header"></i>-->
 
-      </a>
-    </li>
-    <li class="li-menu">
-      <a class="menu-item-mobile" routerLink="/hotels">
-        <img src="assets/img/header/hotel.svg" width="17" alt="">
-        هتل
-        <i class="icon-circle icon-active-header"></i>
-      </a>
-    </li>
-    <li class="li-menu">
-      <a class="menu-item-mobile" routerLink="/blogs">
-        <img src="assets/img/header/writing.svg" width="17" alt="">
-        وبلاگ
-        <i class="icon-circle icon-active-header"></i>
-      </a>
-    </li>
-  </ul>
-</div>
-<!--end-->
+<!--      </a>-->
+<!--    </li>-->
+<!--    <li class="li-menu">-->
+<!--      <a class="menu-item-mobile" routerLink="/hotels">-->
+<!--        <img src="assets/img/header/hotel.svg" width="17" alt="">-->
+<!--        هتل-->
+<!--        <i class="icon-circle icon-active-header"></i>-->
+<!--      </a>-->
+<!--    </li>-->
+<!--    <li class="li-menu">-->
+<!--      <a class="menu-item-mobile" routerLink="/blogs">-->
+<!--        <img src="assets/img/header/writing.svg" width="17" alt="">-->
+<!--        وبلاگ-->
+<!--        <i class="icon-circle icon-active-header"></i>-->
+<!--      </a>-->
+<!--    </li>-->
+<!--  </ul>-->
+<!--</div>-->
+<!--&lt;!&ndash;end&ndash;&gt;-->
