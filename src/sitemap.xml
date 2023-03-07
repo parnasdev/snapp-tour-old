@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
-    <loc>https://hamnavaz.com/</loc>
+    <loc>https://snapptour.com/</loc>
   </sitemap>
   <sitemap>
-    <loc>https://hamnavaz.com/tours</loc>
+    <loc>https://snapptour.com/tours</loc>
   </sitemap>
   <sitemap>
-    <loc>https://hamnavaz.com/hotels</loc>
+    <loc>https://snapptour.com/hotels</loc>
   </sitemap>
   <sitemap>
-    <loc>https://hamnavaz.com/blogs</loc>
+    <loc>https://snapptour.com/blogs</loc>
   </sitemap>
   <sitemap>
-    <loc>https://hamnavaz.com/about-us</loc>
+    <loc>https://snapptour.com/about-us</loc>
   </sitemap>
   <sitemap>
-    <loc>https://hamnavaz.com/contact-us</loc>
+    <loc>https://snapptour.com/contact-us</loc>
   </sitemap>
   <sitemap>
-    <loc>https://api.hamnavaz.com/sitemap-tours.xml</loc>
+    <loc>https://api.snapptour.com/sitemap-tours.xml</loc>
   </sitemap>
   <sitemap>
-    <loc>https://api.hamnavaz.com/sitemap-blogs.xml</loc>
+    <loc>https://api.snapptour.com/sitemap-blogs.xml</loc>
   </sitemap>
   <sitemap>
-    <loc>https://api.hamnavaz.com/sitemap-hotels.xml</loc>
+    <loc>https://api.snapptour.com/sitemap-hotels.xml</loc>
   </sitemap>
 </sitemapindex>

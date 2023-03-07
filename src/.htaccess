@@ -4,12 +4,12 @@
 #RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 #
 #RewriteEngine on
-#RewriteCond %{HTTP_HOST} ^www.hamnavaz.com [NC]
-#RewriteRule ^(.*)$ https://hamnavaz.com/$1 [L,R=301,NC]
+#RewriteCond %{HTTP_HOST} ^www.snapptour.com [NC]
+#RewriteRule ^(.*)$ https://snapptour.com/$1 [L,R=301,NC]
 #
 #RewriteEngine on
-#RewriteCond %{HTTP_HOST} ^mail.hamnavaz.com [NC]
-#RewriteRule ^(.*)$ https://hamnavaz.com/$1 [L,R=301,NC]
+#RewriteCond %{HTTP_HOST} ^mail.snapptour.com [NC]
+#RewriteRule ^(.*)$ https://snapptour.com/$1 [L,R=301,NC]
 
 <IfModule mod_headers.c>
     RequestHeader set X-Prerender-Token "J8FSYwYKxxfdUslbhd9W"

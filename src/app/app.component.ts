@@ -7,7 +7,7 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'hamnavaz';
+  title = 'snapptour';
 
   constructor(public route: ActivatedRoute) {}
 

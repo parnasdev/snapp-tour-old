@@ -10,4 +10,4 @@ Allow: /
 User-agent: *
 Disallow: /
 
-Sitemap: https://hamnavaz.com/sitemap.xml
+Sitemap: https://snapptour.com/sitemap.xml

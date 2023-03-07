@@ -42,11 +42,11 @@ export class PublicService {
   }
 
   setPrefix(image: string): string {
-    return 'https://hamnavaz.com/panel/' + image;
+    return 'https://snapptour.com/panel/' + image;
   }
 
   openPage(address: string) {
-    const url = 'https://hamnavaz.com/' + address
+    const url = 'https://snapptour.com/' + address
     window.open(url, "_blank");
   }
 
