@@ -44,6 +44,7 @@ body {
   padding: 0;
   margin-top: 0;
 }
+
 :root {
   --base-color: #ff4241;
   --base-color-second: #0C505F;
@@ -54,7 +55,7 @@ body {
   --gray-color-dark: #3E3E3E;
   --box-shadow: 1px 1px 6px #eee;;
   --btn-animtion: 0.3s all;
-  --text-color:#404040;
+  --text-color: #404040;
   --white: #fff;
   --dark: #000;
   --radius-btn: 15px 15px 1px 15px;
@@ -123,15 +124,44 @@ ul {
 /*input*/
 .inp-form {
   width: 100%;
-  background-color: #f4f4f4;
+  background-color: var(--white);
   border-radius: 10px;
-  height: 40px;
+  border: 1px solid #e2e8f0;
+  height: 58px;
   padding: 0 8px;
   position: relative;
   display: flex;
   align-items: center;
-}
 
+
+  select{
+    font-weight: 600;
+    font-size: 15px;
+    color: #b8b2b2;
+  }
+  input{
+    font-weight: 600;
+    font-size: 15px !important;
+    color: #b8b2b2;
+    &::placeholder {
+      font-weight: 600;
+    }
+  }
+}
+.btn-search{
+  background: var(--base-color);
+  color: var(--white);
+  height: 58px;
+  border-radius: 10px;
+  border: 2px solid var(--base-color);
+  font-weight: 500;
+  &:hover{
+    opacity: 0.7;
+  }
+}
+.font-16{
+  font-size: 16px !important;
+}
 .inp-form input {
   all: unset;
   width: 100%;
@@ -146,15 +176,6 @@ ul {
   font-size: 14px;
 }
 
-.inp-form:after {
-  position: absolute;
-  top: 4px;
-  content: '';
-  left: 0;
-  width: 4px;
-  height: 30px;
-  background-color: var(--base-color);
-}
 
 .inp-form mat-form-field {
   width: 100% !important;
@@ -255,6 +276,7 @@ select::-ms-expand {
   word-break: normal;
   border-radius: 2px;
 }
+
 .title-en {
   color: var(--base-color);
   font-family: "Ubuntu", sans-serif !important;
@@ -280,11 +302,13 @@ select::-ms-expand {
   padding: 1px;
   height: 20vh !important;
 }
+
 ::-webkit-scrollbar-thumb {
   background-color: #707070;
   border-radius: 20px;
   width: 5px;
 }
+
 ::-webkit-scrollbar {
   width: 8px;
   background-color: #707070;
@@ -297,7 +321,6 @@ select::-ms-expand {
   color: var(--base-color);
   border: 2px solid red;
 }
-
 
 
 //pagintion
@@ -329,6 +352,7 @@ select::-ms-expand {
   content: '«';
   font-size: 20px !important;
 }
+
 //select-apple-safari
 @media not all and (min-resolution: .001dpcm) {
   @supports (-webkit-appearance:none) {

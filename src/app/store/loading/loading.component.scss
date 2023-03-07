@@ -12,14 +12,15 @@
 }
 //flight loading
 .parent-loading{
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   background-color: #ffffff;
   z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  flex-direction: column;
+  border-radius: 50px;
   border: 5px solid var(--base-color);
 }
 .flight-preloader {
@@ -53,5 +54,5 @@
   top: 50px;
   color: var(--base-color);
   font-weight: 600;
-  font-size: 20px;
+  font-size: 18px;
 }

@@ -1020,10 +1020,12 @@
   font-size: 14px;
   color: var(--base-color);
 }
-.info-blog h6{
+
+.info-blog h6 {
   font-size: 15px !important;
   font-weight: 500;
 }
+
 //end
 //end
 
@@ -1131,7 +1133,7 @@
     width: 100%;
     height: 200px;
   }
-  .box-blog-parent .left-blog{
+  .box-blog-parent .left-blog {
     width: 100%;
     height: auto;
     margin-top: 8px;
@@ -1144,10 +1146,11 @@
     height: 110px;
     margin-top: 8px;
   }
-  .info-blog h6{
+  .info-blog h6 {
     font-size: 14px !important;
   }
 }
+
 @media only screen and (min-width: 416px) and (max-width: 868px) {
   //baner
   .baner-parent {
@@ -1209,15 +1212,17 @@
     height: 300px;
   }
 }
+
 .btn-next {
   background: chocolate;
 }
 
-.parent-btn-slider{
+.parent-btn-slider {
   display: flex;
   align-items: center;
 }
-.btn-next-slider{
+
+.btn-next-slider {
   width: 28px;
   height: 28px;
   border: 3px solid var(--base-color);
@@ -1230,7 +1235,7 @@
   justify-content: center;
 }
 
-.btn-prev-slider{
+.btn-prev-slider {
   width: 28px;
   height: 28px;
   border: 3px solid var(--base-color);
@@ -1240,4 +1245,86 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.snapp-logo {
+  .p-snapp-logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .one {
+      &:hover {
+        opacity: 1 !important;
+        color: #00d170 !important;
+        border: none !important;
+        path {
+          border: none !important;
+        }
+      }
+    }
+    .two {
+      &:hover {
+        opacity: 1 !important;
+        color: #00d170 !important;
+        border: none !important;
+        path {
+          border: none !important;
+        }
+      }
+    }
+    .three {
+      &:hover {
+        opacity: 1 !important;
+        color: #f23da7 !important;
+        border: none !important;
+        path {
+          border: none !important;
+        }
+      }
+    }
+    .four {
+      &:hover {
+        opacity: 1 !important;
+        color: #3939e6 !important;
+        border: none !important;
+        path {
+          border: none !important;
+        }
+      }
+    }
+    .five {
+      &:hover {
+        opacity: 1 !important;
+        color: #ff4340 !important;
+        border: none !important;
+        path {
+          border: none !important;
+        }
+      }
+    }
+    .six {
+      &:hover {
+        opacity: 1 !important;
+        color: #ff5200 !important;
+        border: none !important;
+        path {
+          border: none !important;
+        }
+      }
+    }
+    .seven {
+      &:hover {
+        opacity: 1 !important;
+        color: #58c0f9 !important;
+        border: none !important;
+        path {
+          border: none !important;
+        }
+      }
+    }
+    svg {
+      opacity: 0.2;
+    }
+  }
 }
