@@ -4,7 +4,6 @@
 @import "~swiper/css/pagination";
 @import '~ngx-bar-rating/themes/br-default-theme';
 
-
 .swiper {
   width: 100%;
   height: 100%;
@@ -55,6 +54,7 @@ body {
   --gray-color-dark: #3E3E3E;
   --box-shadow: 1px 1px 6px #eee;;
   --btn-animtion: 0.3s all;
+  --text-color:#404040;
   --white: #fff;
   --dark: #000;
   --radius-btn: 15px 15px 1px 15px;
