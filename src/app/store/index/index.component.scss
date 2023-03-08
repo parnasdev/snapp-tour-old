@@ -1031,7 +1031,19 @@
 
 
 //mobile
+@media only screen and (max-width: 868px){
+  .p-snapp-logo{
+    overflow-x: scroll;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    svg{
+      margin: 0 17px !important;
+    }
+  }
+}
 @media only screen and (max-width: 415px) {
+
+
   //baner
   .baner-parent {
     flex-direction: column;

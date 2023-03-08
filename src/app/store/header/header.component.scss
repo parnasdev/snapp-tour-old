@@ -22,7 +22,8 @@
         justify-content: flex-start;
         font-weight: 500;
         font-size: 14px;
-        &:hover{
+
+        &:hover {
           color: var(--base-color);
         }
       }
@@ -47,7 +48,8 @@
           justify-content: flex-start;
           font-weight: 500;
           font-size: 14px;
-          &:hover{
+
+          &:hover {
             color: var(--base-color);
           }
         }
@@ -80,5 +82,40 @@
       }
 
     }
+  }
+}
+
+@media only screen and (max-width: 868px) {
+  .isDesktop {
+    display: none;
+  }
+  .header-mobile {
+    height: 60px;
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    justify-content: space-between;
+    .btn-menu-mobi{
+      background: unset;
+      border: none;
+      outline: none;
+
+    }
+    .logo-website{
+      margin-right: 12px;
+    }
+    .btn-auth {
+      border: 2px solid var(--base-color);
+      width: 100px;
+      height: 35px;
+      background: unset;
+      border-radius: 6px;
+      margin-right: 1.7rem;
+      color: var(--base-color);
+      font-weight: 500;
+      font-size: 13px;
+    }
+
   }
 }

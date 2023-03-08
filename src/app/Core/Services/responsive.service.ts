@@ -11,6 +11,9 @@ export class ResponsiveService {
     isTablet(): boolean {
     return window.innerWidth < 800;
     }
+    isDesktop():boolean{
+      return window.innerWidth>868;
+    }
     isTV(): boolean {
         return window.innerWidth > 3200;
     }
