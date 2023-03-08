@@ -1,0 +1,31 @@
+
+<div class="list-tour">
+  <div class="title">
+    <h2>لیست کاربران</h2>
+     <a class="btn-add-tour" (click)="set()">اضافه</a>
+  </div>
+  <div class="table-list-tour">
+    <div class="header-list-tour">
+      <span class="id">#</span>
+      <span class="username">نام </span>
+      <span class="title-tour">نام خانوادگی</span>
+      <span class="title-tour">شماره همراه </span>
+      <span class="setting">تنظیمات</span>
+    </div>
+    <div class="body-list-tour" *ngIf="list.length > 0">
+      <div class="item" *ngFor="let x of list; let i = index">
+        <span class="id">{{ i + 1 }}</span>
+        <span class="username">{{ x.name  }}</span>
+        <span class="username">{{ x.family }}</span>
+        <span class="username">{{x.phone}}</span>
+        <div class="button-setting">
+          <a (click)="set(x.id)"  class="edit-btn">ویرایش</a>
+          <a (click)="deleteClicked(x.id)"  class="edit-btn">حذف</a>
+          <!-- <button (click)="deleteClicked(x.id)" class="delete-btn">حذف</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

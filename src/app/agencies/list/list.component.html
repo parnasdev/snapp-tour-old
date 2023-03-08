@@ -1,0 +1,35 @@
+<div class="list-tour">
+  <div class="title">
+    <h2>آژانس ها</h2>
+    <!-- <a class="btn-add-tour" routerLink="/panel/user/add">اضافه</a> -->
+  </div>
+  <div class="table-list-tour">
+    <div class="header-list-tour">
+      <span class="id">#</span>
+      <span class="username">نام </span>
+      <span class="title-tour">نام مدیر</span>
+      <span class="title-tour">شماره همراه مدیر</span>
+      <span class="title-tour">وضعیت</span>
+      <span class="setting">تنظیمات</span>
+    </div>
+    <div class="body-list-tour" *ngIf="list.length > 0">
+      <div class="item" *ngFor="let x of list; let i = index">
+        <span class="id">{{ i + 1 }}</span>
+        <span class="username">{{ x.name  }}</span>
+        <span
+          class="username">{{ (x.users && x.users.length > 0) ? x.users[0].name + ' ' + x.users[0].family : 'ثبت نشده'  }}</span>
+        <span class="username">{{x.users.length > 0 ? x.users[0].phone : 'ثبت نشده' }}</span>
+        <span class="username"
+              [style]="x.verify ? 'color:' + '#008000' : 'color:' + '#FF0000'">{{ x.verify ? 'تایید شده' : 'تایید نشده'}}</span>
+        <div class="button-setting">
+          <a (click)="changeStatus(x.id,true)" *ngIf="!x.verify" class="view-btn">تایید</a>
+          <a (click)="changeStatus(x.id,false)" *ngIf="x.verify" class="delete-btn">عدم تایید</a>
+          <a (click)="openUsers(x.users,x.id)" class="edit-btn">کاربران</a>
+          <a routerLink="/panel/agency/{{x.id}}" class="edit-btn">جزییات</a>
+          <a routerLink="/panel/agency/edit/{{x.id}}" class="edit-btn">ویرایش</a>
+<!--                     <button (click)="deleteClicked(x.id)" class="delete-btn">حذف</button>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

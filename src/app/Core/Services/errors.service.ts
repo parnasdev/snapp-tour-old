@@ -1,4 +1,7 @@
 import {Injectable} from '@angular/core';
+import { Router } from '@angular/router';
+import { MessageService } from './message.service';
+import { SessionService } from './session.service';
 
 @Injectable({
     providedIn: 'root'
@@ -6,7 +9,9 @@ import {Injectable} from '@angular/core';
 export class ErrorsService {
     errors = {};
 
-    constructor() {
+    constructor(public message: MessageService,
+        public router: Router,
+        public session: SessionService) {
         this.errors = {};
     }
 
@@ -41,6 +46,42 @@ export class ErrorsService {
         this.errors = {};
 
     }
+
+    check(errorCode: any): void {
+        switch (errorCode.status) {
+          case 403 : {
+            this.message.custom(errorCode.error.message)
+            break;
+          }
+          case 401: {
+            this.session.removeUser();
+            this.router.navigateByUrl('/auth/validate');
+            break;
+          }
+          case 422: {
+            this.recordError(errorCode.error.data)
+            this.message.custom('اطلاعات ارسالی را مجددا بررسی کنید');
+            break;
+          }
+          case 500: {
+            this.message.custom(errorCode.error.message);
+            break;
+          }
+          case 0: {
+            this.message.custom('اتصال خود را بررسی کنید');
+            break;
+          }
+          case 429: {
+            this.message.error();
+            break;
+          }
+          case 400: {
+            this.message.custom(errorCode.error.message);
+            break;
+          }
+        }
+      }
+    
 }
 
 
