@@ -45,7 +45,7 @@
 
         .btn-tour {
           border-radius: 0 0 12px 12px;
-          background: rgb(255 67 64 / 10%);
+          background: #ff4340;
           border: none;
           outline: none;
           display: flex;
@@ -58,12 +58,12 @@
 
           svg {
             path {
-              fill: #a3a3a3;
+              fill: #fff;
             }
           }
 
           span {
-            color: #a3a3a3;
+            color: #fff;
             font-size: 13px;
             font-weight: 500;
             margin-top: 10px;
