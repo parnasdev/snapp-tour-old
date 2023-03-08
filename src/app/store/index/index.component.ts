@@ -90,7 +90,7 @@ export class IndexComponent implements OnInit {
     this.getCities()
     this.getHotelCities()
     this.getHotels()
-    this.getBlog()
+    // this.getBlog()
   }
 
   slideNext() {
