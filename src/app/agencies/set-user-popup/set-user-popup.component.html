@@ -1,0 +1,79 @@
+<div class="add-tour">
+  <form class="form-class" [formGroup]="form">
+    <div class="box-info-tour">
+      <div class="info-tour-header">
+        <div class="right">
+          <h2>پروفایل</h2>
+        </div>
+      </div>
+      <div class="info-tour-body">
+        <div class="top">
+          <div class="item-info">
+            <label>نام</label>
+            <input formControlName="name" type="text">
+            <div *ngIf="errorsService.hasError('name')">
+              <span class="text-danger">{{errorsService.getError('name')}}</span>
+            </div>
+          </div>
+          <div class="item-info">
+            <label>نام خانوادگی</label>
+            <input formControlName="family" type="text">
+            <div *ngIf="errorsService.hasError('family')">
+              <span class="text-danger">{{errorsService.getError('family')}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="item-info-2">
+            <div class="item-info w-100">
+              <label>شماره همراه</label>
+              <input formControlName="phone" type="text">
+              <div *ngIf="errorsService.hasError('phone')">
+                <span class="text-danger">{{errorsService.getError('phone')}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="item-info-2">
+            <div class="item-info w-100">
+              <label>رمز عبور</label>
+              <input formControlName="password" type="text">
+              <div *ngIf="errorsService.hasError('password')">
+                <span class="text-danger">{{errorsService.getError('password')}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="item-info-2">
+            <div class="item-info w-100">
+              <label>ایمیل</label>
+              <input formControlName="email" type="text">
+              <div *ngIf="errorsService.hasError('email')">
+                <span class="text-danger">{{errorsService.getError('email')}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="item-info-2">
+            <div class="item-info w-100">
+              <label>نام کاربری</label>
+              <input formControlName="username" type="text">
+              <div *ngIf="errorsService.hasError('username')">
+                <span class="text-danger">{{errorsService.getError('username')}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <prs-permissions [userId]="userId" (setPermissions)="getPermissions($event)"></prs-permissions>
+
+        <div class="button-parent">
+          <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="set()" [isLoading]="isLoading"
+                   [label]="'ثبت کاربر'"></prs-btn>
+          <button class="cancel-btn">انصراف</button>
+        </div>
+
+      </div>
+    </div>
+  </form>
+
+</div>

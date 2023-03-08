@@ -65,7 +65,7 @@ export class ValidateComponent implements OnInit {
         if (this.isForgetPassword) {
           this.forgetPassword.emit(true);
         } else {
-          this.router.navigateByUrl('/auth/register/' + phoneNumber);
+          this.router.navigate(['/auth/register/' + phoneNumber],{ queryParams: {type: '3'}});
         }
       } else {
         alert(res.message);

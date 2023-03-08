@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   registerReq!: LoginReqDTO;
   codeFC = new FormControl('');
   phone = ''
-  accountType = 3;
+  accountType:string = '3';
   constructor(public route: ActivatedRoute,
     public router: Router,
     public api: AuthApiService,
@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
   ) {
     checkError.clear();
     this.route.queryParams.subscribe(params => {
-      this.accountType = params['account'];
+      this.accountType = params['type'];
     })
   }
 
@@ -50,12 +50,13 @@ export class RegisterComponent implements OnInit {
   }
 
   getAccountTypeLabel(): string {
+    debugger
     switch (this.accountType) {
-      case 2:
+      case '2':
         return 'staff';
-      case 4:
+      case '4':
         return 'agency';
-      case 1:
+      case '1':
         return 'admin'
       default:
         return 'user'

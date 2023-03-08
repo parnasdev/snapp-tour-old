@@ -27,6 +27,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {FaqComponent} from './faq/faq.component';
 import {FooterLinksComponent} from "./footer-links/footer-links.component";
 import {EditorModule} from "@tinymce/tinymce-angular";
+import { PermissionsComponent } from './permissions/permissions.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import {EditorModule} from "@tinymce/tinymce-angular";
     SelectCategoriesComponent,
     FaqComponent,
     FooterLinksComponent,
+    PermissionsComponent,
   ],
   exports: [
     UploadFileComponent,
@@ -63,6 +65,7 @@ import {EditorModule} from "@tinymce/tinymce-angular";
     SelectCategoriesComponent,
     FaqComponent,
     FooterLinksComponent,
+    PermissionsComponent,
   ],
   imports: [
     CommonModule,

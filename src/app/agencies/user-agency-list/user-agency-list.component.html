@@ -1,0 +1,40 @@
+<div class="list-tour">
+  <div class="title">
+    <h2>کاربران</h2>
+  </div>
+  <div class="table-list-tour">
+    <div class="header-list-tour">
+      <span class="id">#</span>
+      <span class="username">نام کامل کاربر</span>
+      <span class="title-tour">تلفن همراه</span>
+      <span class="view">نقش</span>
+      <span class="setting">تنظیمات</span>
+    </div>
+    <div class="body-list-tour" *ngIf="data.users.length > 0">
+      <div class="item" *ngFor="let user of data.users; let i = index">
+        <span class="id">{{ user.id }}</span>
+        <div class="d-flex flex-column">
+                  <span
+                    class="username">{{user ? ((user.name ? user.name : '---') + ' ' + (user.family ? user.family : '---')) : 'ثبت نشده'  }}</span>
+
+
+        </div>
+
+        <span class="username">{{ user.phone ? user.phone : '-' }}</span>
+        <span class="view">{{ user.isManager ? 'مدیر' : 'کارمند'}}</span>
+
+
+        <div class="button-setting">
+          <a routerLink="/panel/user/edit/{{user.id}}" [queryParams]="{agency : data.agencyID}"
+             class="edit-btn">ویرایش</a>
+          <!--          <a routerLink="/tour/{{ user.slug }}" class="view-btn">نمایش</a>-->
+          <!--          <button class="copy-btn">کپی</button>-->
+          <!--          <button (click)="deleteClicked(user.id)" class="delete-btn">حذف</button>-->
+        </div>
+      </div>
+    </div>
+    <div>
+
+    </div>
+  </div>
+</div>
