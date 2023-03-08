@@ -10,7 +10,6 @@ export class SessionService {
 
   user = {} as LoginResponseDTO;
   outlineApi = false;
-
   checkUserSubject = new BehaviorSubject('');
   checkUser$ = this.checkUserSubject.asObservable();
   constructor(public authApi: AuthApiService) {
@@ -44,7 +43,7 @@ export class SessionService {
       },
       token: obj.token
     }
-    localStorage.setItem('prs-bkg-user', JSON.stringify(this.user));
+    localStorage.setItem('snapp-tour-user', JSON.stringify(this.user));
   }
 
   checkUser() {
@@ -67,59 +66,59 @@ export class SessionService {
   }
 
   getToken(): any {
-    const user = localStorage.getItem('prs-bkg-user');
+    const user = localStorage.getItem('snapp-tour-user');
     return user ? JSON.parse(user).token : '';
   }
 
   getId(): any {
-    const user = localStorage.getItem('prs-bkg-user');
+    const user = localStorage.getItem('snapp-tour-user');
     return user ? JSON.parse(user).user.id : '';
   }
 
 
   getName(): any {
-    const user = localStorage.getItem('prs-bkg-user');
+    const user = localStorage.getItem('snapp-tour-user');
     return user ? JSON.parse(user).user.name : '';
   }
 
   getPhone(): any {
-    const user = localStorage.getItem('prs-bkg-user');
+    const user = localStorage.getItem('snapp-tour-user');
     return user ? JSON.parse(user).user.phone : '';
   }
 
   getFamily(): any {
-    const user = localStorage.getItem('prs-bkg-user');
+    const user = localStorage.getItem('snapp-tour-user');
     return user ? JSON.parse(user).user.family : '';
   }
   getAgencyName(): any {
-    const user = localStorage.getItem('prs-bkg-user');
+    const user = localStorage.getItem('snapp-tour-user');
     return user ? JSON.parse(user).user.agency?.name : '';
   }
 
   getAgencyCommission(): any {
-    const user = localStorage.getItem('prs-bkg-user');
+    const user = localStorage.getItem('snapp-tour-user');
     return user ? (JSON.parse(user).user.agency ? JSON.parse(user).user.agency?.commission: 0) : 0;
   }
   getAgencyIsManager(): any {
-    const user = localStorage.getItem('prs-bkg-user');
+    const user = localStorage.getItem('snapp-tour-user');
     return user ? (JSON.parse(user).user.agency ? JSON.parse(user).user.agency?.isManager: false) : false;
   }
 
   getBirthday(): any {
-    const user = localStorage.getItem('prs-bkg-user');
+    const user = localStorage.getItem('snapp-tour-user');
     return user ? JSON.parse(user).user.birthDay : '';
   }
   getRole(): any {
-    const user = localStorage.getItem('prs-bkg-user');
+    const user = localStorage.getItem('snapp-tour-user');
     return user ? JSON.parse(user).user.role : '';
   }
 
   isLoggedIn(): any {
-    const user = localStorage.getItem('prs-bkg-user');
+    const user = localStorage.getItem('snapp-tour-user');
     return !!user;
   }
   removeUser(): any {
-    localStorage.removeItem('prs-bkg-user');
+    localStorage.removeItem('snapp-tour-user');
   }
 
   setOutlineApi(state: boolean): void {

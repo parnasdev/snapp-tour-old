@@ -10,6 +10,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ResendCodeComponent} from './resend-code/resend-code.component';
 import {StoreModule} from "../store/store.module";
 import {RouterModule} from "@angular/router";
+import { AgencyValidateComponent } from './agency-validate/agency-validate.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import {RouterModule} from "@angular/router";
     LoginComponent,
     RegisterComponent,
     ForgetComponent,
-    ResendCodeComponent
+    ResendCodeComponent,
+    AgencyValidateComponent
   ],
     exports: [
         RegisterComponent,

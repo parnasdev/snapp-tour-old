@@ -40,7 +40,8 @@ export class RegisterComponent implements OnInit {
     const inputCode = this.publicService.fixNumbers(this.codeFC.value);
     this.registerReq = {
       phone: this.phone,
-      password: inputCode
+      password: inputCode,
+      accountType: 'agency'
     };
     this.register();
   }
