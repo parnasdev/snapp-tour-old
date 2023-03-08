@@ -7,6 +7,7 @@ import {CheckErrorService} from "../../Core/Services/check-error.service";
 import {MessageService} from "../../Core/Services/message.service";
 import {CalenderServices} from "../../Core/Services/calender-service";
 import {Router} from "@angular/router";
+import { ResponsiveService } from 'src/app/Core/Services/responsive.service';
 
 @Component({
   selector: 'prs-search',
@@ -15,7 +16,7 @@ import {Router} from "@angular/router";
 })
 export class SearchComponent implements OnInit {
   rnd = 0
-
+isMobile = false;
   cities: CityResponseDTO[] = [];
   cityReq!: CityListRequestDTO;
   cityFC = new FormControl(null, Validators.required);
@@ -59,9 +60,11 @@ export class SearchComponent implements OnInit {
   constructor(public cityApiService: CityApiService,
               public router: Router,
               public checkErrorService: CheckErrorService,
+              public mobileService: ResponsiveService,
               public message: MessageService,
               public calendarService: CalenderServices,
               public errorService: ErrorsService) {
+                this.isMobile = mobileService.isMobile();
   }
 
   ngOnInit(): void {
