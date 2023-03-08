@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormControl } from "@angular/forms";
-import { LoginReqDTO } from "../../Core/Models/authDTO";
-import { AuthApiService } from "../../Core/Https/auth-api.service";
-import { PublicService } from "../../Core/Services/public.service";
-import { MessageService } from "../../Core/Services/message.service";
-import { ErrorsService } from "../../Core/Services/errors.service";
-import { SessionService } from "../../Core/Services/session.service";
+import { LoginReqDTO } from 'src/app/Core/Models/AuthDTO';
+import { AuthApiService } from 'src/app/Core/Https/auth-api.service';
+import { PublicService } from 'src/app/Core/Services/public.service';
+import { MessageService } from 'src/app/Core/Services/message.service';
+import { ErrorsService } from 'src/app/Core/Services/errors.service';
+import { SessionService } from 'src/app/Core/Services/session.service';
 
 
 @Component({

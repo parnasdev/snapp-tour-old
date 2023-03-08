@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {LoginResponseDTO} from "../Models/authDTO";
 import {BehaviorSubject} from "rxjs";
 import {AuthApiService} from "../Https/auth-api.service";
+import { LoginResponseDTO } from '../Models/AuthDTO';
 
 @Injectable({
   providedIn: 'root'

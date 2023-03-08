@@ -3,7 +3,7 @@ import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {PublicService} from "../Services/public.service";
 import {Result} from "../Models/result";
-import { ChangePasswordReqDTO, LoginReqDTO, ProfileDTO, UserDTO, ValidateResDTO } from '../Models/authDTO';
+import { ChangePasswordReqDTO, LoginReqDTO, ProfileDTO, UserDTO, ValidateResDTO } from '../Models/AuthDTO';
 
 @Injectable({
   providedIn: 'root'

@@ -1,11 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
-import { ChangePasswordReqDTO } from 'src/app/Core/Models/authDTO';
-import {AuthApiService} from "../../Core/Https/auth-api.service";
-import {ErrorsService} from "../../Core/Services/errors.service";
-import {MessageService} from "../../Core/Services/message.service";
-import {SessionService} from "../../Core/Services/session.service";
+import { AuthApiService } from 'src/app/Core/Https/auth-api.service';
+import { ChangePasswordReqDTO } from 'src/app/Core/Models/AuthDTO';
+import { ErrorsService } from 'src/app/Core/Services/errors.service';
+import { MessageService } from 'src/app/Core/Services/message.service';
+import { SessionService } from 'src/app/Core/Services/session.service';
 declare var $: any;
 
 
