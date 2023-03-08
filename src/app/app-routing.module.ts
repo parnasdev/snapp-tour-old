@@ -10,7 +10,7 @@ const routes: Routes = [
     component: AppComponent,
     children: [
       {
-        path: 'prs-admin',
+        path: 'auth',
         loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
       }, {
         path: 'panel',

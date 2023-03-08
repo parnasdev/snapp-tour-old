@@ -1,4 +1,4 @@
-import { UserDTO } from "./AuthDTO";
+import { UserDTO } from "./authDTO";
 
 export interface CommentCreateDTO {
     name?: string;

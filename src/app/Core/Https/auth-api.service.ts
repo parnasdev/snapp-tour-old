@@ -3,7 +3,7 @@ import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {PublicService} from "../Services/public.service";
 import {Result} from "../Models/result";
-import {AuthRequestDTO, LoginResponseDTO, ValidateResponseDTO} from "../Models/AuthDTO";
+import { ChangePasswordReqDTO, LoginReqDTO, ProfileDTO, UserDTO, ValidateResDTO } from '../Models/authDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -18,39 +18,67 @@ export class AuthApiService {
       environment.BACK_END_IP + this.serverControllerName;
   }
 
+  login(req: LoginReqDTO): any {
+    const url = this.serverControllerName + `login`;
+    return this.http.post<Result<UserDTO>>(
+      url,
+      req,
+      this.publicService.getDefaultHeaders());
+  }
+
+  register(req: LoginReqDTO): any {
+    const url = this.serverControllerName + `register`;
+    return this.http.post<Result<any>>(
+      url,
+      req,
+      this.publicService.getDefaultHeaders());
+  }
+
+  validate(phone: string): any {
+    const url = this.serverControllerName + 'validation';
+    const entity = {
+      phone
+    };
+    return this.http.post<Result<ValidateResDTO>>(
+      url,
+      entity,
+      this.publicService.getDefaultHeaders());
+  }
+
   logout(): any {
-    const strUrl = this.serverControllerName + 'logout';
-
-    return this.http.post<Result<boolean>>(strUrl, null, this.publicService.getDefaultHeaders());
+    const url = this.serverControllerName + 'logout';
+    return this.http.post<Result<string>>(
+      url,
+      this.publicService.getDefaultHeaders());
   }
 
-  validation(req: AuthRequestDTO): any {
-    const strUrl = this.serverControllerName + 'validation';
-    return this.http.post<Result<ValidateResponseDTO>>(strUrl, req, this.publicService.getDefaultHeaders());
+  sendSms(phone: string, tokenType: string): any {
+    const url = this.serverControllerName + 'sendSMS';
+    const entity = {
+      phone,
+      tokenType
+    };
+    return this.http.post<Result<ValidateResDTO>>(
+      url,
+      entity,
+      this.publicService.getDefaultHeaders());
   }
 
-  login(req: AuthRequestDTO): any {
-    const strUrl = this.serverControllerName + 'login';
-
-    return this.http.post<Result<LoginResponseDTO>>(strUrl, req, this.publicService.getDefaultHeaders());
+  changePassword(req: ChangePasswordReqDTO): any {
+    const url = this.serverControllerName + 'changePassword';
+    return this.http.post<Result<ValidateResDTO>>(
+      url,
+      req,
+      this.publicService.getDefaultHeaders());
   }
 
-  changePassword(req: AuthRequestDTO): any {
-    const strUrl = this.serverControllerName + 'changePassword';
-
-    return this.http.post<Result<boolean>>(strUrl, req, this.publicService.getDefaultHeaders());
+  checkUser(): any {
+    const url = this.serverControllerName + 'checkUser';
+    return this.http.post<Result<ProfileDTO>>(
+      url,
+      null,
+      this.publicService.getDefaultHeaders());
   }
 
-  sendSMS(req: AuthRequestDTO): any {
-    const strUrl = this.serverControllerName + 'sendSMS';
-
-    return this.http.post<Result<boolean>>(strUrl, req, this.publicService.getDefaultHeaders());
-  }
-
-  register(req: AuthRequestDTO): any {
-    const strUrl = this.serverControllerName + 'register';
-
-    return this.http.post<Result<boolean>>(strUrl, req, this.publicService.getDefaultHeaders());
-  }
 
 }

@@ -5,7 +5,7 @@
 .parent-form {
   background-color: var(--white);
   border: 1px solid var(--light-color-two);
-  height: 500px;
+  height: 530px;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -19,7 +19,6 @@
   width: 50%;
   align-items: center;
   justify-content: center;
-  height: 100%;
 }
 
 .box-form h2 {
@@ -68,7 +67,9 @@
   border: none;
   outline: none;
 }
-
+.logo-website{
+  margin-bottom: 3rem;
+}
 .form .text {
   width: 100%;
   display: flex;
@@ -106,26 +107,7 @@
   font-size: 13px !important;
   text-align: center;
 }
-.input-password{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 40px;
-  border-radius: 3px;
-  width: 100%;
-  border: 2px solid #e4e4e4;
-  padding: 0 8px;
-  color: var(--title-color);
-}
-.input-password .inp-pass{
-  border: none !important;
-  width: 95%;
-  height: 35px !important;
-  outline: none;
-}
-.logo-website{
-  margin-bottom: 3rem;
-}
+
 @media only screen and (max-width: 380px) {
   .box-form {
     width: 100%;
