@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {FormControl, Validators} from "@angular/forms";
-import {AuthApiService} from "../../Core/Https/auth-api.service";
-import {MessageService} from "../../Core/Services/message.service";
-import {ErrorsService} from "../../Core/Services/errors.service";
-import {SessionService} from "../../Core/Services/session.service";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
+import { FormControl, Validators } from "@angular/forms";
+import { AuthApiService } from "../../Core/Https/auth-api.service";
+import { MessageService } from "../../Core/Services/message.service";
+import { ErrorsService } from "../../Core/Services/errors.service";
+import { SessionService } from "../../Core/Services/session.service";
 import { LoginReqDTO } from 'src/app/Core/Models/authDTO';
 
 
@@ -18,19 +18,22 @@ declare var $: any;
 export class LoginComponent implements OnInit {
 
   isLoading = false;
-
+  accountType = 3;
   passwordFC = new FormControl('', Validators.required);
   registerReq!: LoginReqDTO;
   phoneNumber: string | null = '';
 
   constructor(public router: Router,
-              public route: ActivatedRoute,
-              public api: AuthApiService,
-              public errorService: ErrorsService,
-              public messageService: MessageService,
-              public session: SessionService
+    public route: ActivatedRoute,
+    public api: AuthApiService,
+    public errorService: ErrorsService,
+    public messageService: MessageService,
+    public session: SessionService
   ) {
     // errorService.clear();
+    this.route.queryParams.subscribe(params => {
+      this.accountType = params['account'];
+    })
   }
 
   ngOnInit(): void {

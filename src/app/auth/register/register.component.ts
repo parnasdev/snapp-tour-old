@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {FormControl} from "@angular/forms";
-import {LoginReqDTO} from "../../Core/Models/authDTO";
-import {AuthApiService} from "../../Core/Https/auth-api.service";
-import {PublicService} from "../../Core/Services/public.service";
-import {MessageService} from "../../Core/Services/message.service";
-import {ErrorsService} from "../../Core/Services/errors.service";
-import {SessionService} from "../../Core/Services/session.service";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
+import { FormControl } from "@angular/forms";
+import { LoginReqDTO } from "../../Core/Models/authDTO";
+import { AuthApiService } from "../../Core/Https/auth-api.service";
+import { PublicService } from "../../Core/Services/public.service";
+import { MessageService } from "../../Core/Services/message.service";
+import { ErrorsService } from "../../Core/Services/errors.service";
+import { SessionService } from "../../Core/Services/session.service";
 
 
 @Component({
@@ -19,16 +19,19 @@ export class RegisterComponent implements OnInit {
   registerReq!: LoginReqDTO;
   codeFC = new FormControl('');
   phone = ''
-
+  accountType = 3;
   constructor(public route: ActivatedRoute,
-              public router: Router,
-              public api: AuthApiService,
-              public publicService: PublicService,
-              public messageService: MessageService,
-              public checkError: ErrorsService,
-              public session: SessionService
+    public router: Router,
+    public api: AuthApiService,
+    public publicService: PublicService,
+    public messageService: MessageService,
+    public checkError: ErrorsService,
+    public session: SessionService
   ) {
     checkError.clear();
+    this.route.queryParams.subscribe(params => {
+      this.accountType = params['account'];
+    })
   }
 
   ngOnInit(): void {
@@ -41,9 +44,22 @@ export class RegisterComponent implements OnInit {
     this.registerReq = {
       phone: this.phone,
       password: inputCode,
-      accountType: 'agency'
+      accountType: this.getAccountTypeLabel()
     };
     this.register();
+  }
+
+  getAccountTypeLabel(): string {
+    switch (this.accountType) {
+      case 2:
+        return 'staff';
+      case 4:
+        return 'agency';
+      case 1:
+        return 'admin'
+      default:
+        return 'user'
+    }
   }
 
   register(): void {

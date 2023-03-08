@@ -4,11 +4,16 @@ import {ValidateComponent} from "./validate/validate.component";
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {ForgetComponent} from "./forget/forget.component";
+import { AgencyValidateComponent } from './agency-validate/agency-validate.component';
 
 const routes: Routes = [
   {
     path: '',
     component: ValidateComponent
+  },
+  {
+    path: 'partner',
+    component: AgencyValidateComponent
   },
   {
     path: 'login/:phoneNumber',
