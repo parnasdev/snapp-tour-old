@@ -4,18 +4,18 @@
       <div class="row">
         <div class="col-md-11 m-auto p-header d-flex align-items-center justify-content-between p-search">
           <div class="box-search">
-            <div class="p-tab-search">
-              <button class="btn-tour">
-                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 32 32" fill="currentColor"
-                     focusable="false" class="chakra-icon css-5audal">
-                  <path
-                    d="M25.6 28.8c.4-.4.533-1.067.533-1.6l-3.467-14.4 6.4-6.4c.933-.933.933-2.533 0-3.467s-2.533-.933-3.467 0l-6.4 6.4L4.799 6c-.533-.133-1.2 0-1.6.533-.8.8-.533 2.133.4 2.667l10.267 5.333-6.4 6.4-3.733-.533c-.267 0-.533 0-.667.267l-.667.667c-.4.4-.267 1.067.133 1.333l4.267 2.4 2.4 4.267c.267.533.933.533 1.333.133l.667-.667c.133-.133.267-.4.267-.667l-.533-3.733 6.4-6.4 5.333 10.267c.667 1.067 2 1.333 2.933.533z"></path>
-                </svg>
-                <span>تور</span>
-              </button>
-            </div>
+           <div class="p-tab-search" *ngIf="!isMobile">
+             <button class="btn-tour">
+               <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 32 32" fill="currentColor"
+                    focusable="false" class="chakra-icon css-5audal">
+                 <path
+                   d="M25.6 28.8c.4-.4.533-1.067.533-1.6l-3.467-14.4 6.4-6.4c.933-.933.933-2.533 0-3.467s-2.533-.933-3.467 0l-6.4 6.4L4.799 6c-.533-.133-1.2 0-1.6.533-.8.8-.533 2.133.4 2.667l10.267 5.333-6.4 6.4-3.733-.533c-.267 0-.533 0-.667.267l-.667.667c-.4.4-.267 1.067.133 1.333l4.267 2.4 2.4 4.267c.267.533.933.533 1.333.133l.667-.667c.133-.133.267-.4.267-.667l-.533-3.733 6.4-6.4 5.333 10.267c.667 1.067 2 1.333 2.933.533z"></path>
+               </svg>
+               <span>تور</span>
+             </button>
+           </div>
             <div class="title-search">
-              <h2>رزرو آنلاین تور</h2>
+              <h2 class="w-100 text-center">رزرو آنلاین تور</h2>
             </div>
             <div class="row-search">
               <div class="inp-form">

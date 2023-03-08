@@ -19,7 +19,6 @@
   width: 50%;
   align-items: center;
   justify-content: center;
-  height: 100%;
 }
 
 .box-form h2 {
@@ -89,39 +88,11 @@
   margin-right: 4px;
 }
 
-.forget-password {
-  margin-top: 12px;
-  display: flex;
-  justify-content: center;
-}
-
-.forget-password a {
-  color: var(--title-color);
-  font-weight: 500;
-}
-
 .footer-text-form {
   width: 85%;
   margin: 1rem auto;
   font-size: 13px !important;
   text-align: center;
-}
-.input-password{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 40px;
-  border-radius: 3px;
-  width: 100%;
-  border: 2px solid #e4e4e4;
-  padding: 0 8px;
-  color: var(--title-color);
-}
-.input-password .inp-pass{
-  border: none !important;
-  width: 95%;
-  height: 35px !important;
-  outline: none;
 }
 .logo-website{
   margin-bottom: 3rem;
@@ -153,3 +124,4 @@
     font-size: 13px;
   }
 }
+

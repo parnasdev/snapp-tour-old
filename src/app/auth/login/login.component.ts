@@ -1,12 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {AuthApiService} from "../../Core/Https/auth-api.service";
-import {AuthRequestDTO} from "../../Core/Models/AuthDTO";
-import {MessageService} from "../../Core/Services/message.service";
-import {ErrorsService} from "../../Core/Services/errors.service";
-import {CheckErrorService} from "../../Core/Services/check-error.service";
-import {SessionService} from "../../Core/Services/session.service";
-import {Router} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
+import { FormControl, Validators } from "@angular/forms";
+import { AuthApiService } from "../../Core/Https/auth-api.service";
+import { MessageService } from "../../Core/Services/message.service";
+import { ErrorsService } from "../../Core/Services/errors.service";
+import { SessionService } from "../../Core/Services/session.service";
+import { LoginReqDTO } from 'src/app/Core/Models/authDTO';
+
+
+declare var $: any;
 
 @Component({
   selector: 'prs-login',
@@ -14,54 +16,70 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  userNameFC = new FormControl();
-  passwordFC = new FormControl();
-  req!: AuthRequestDTO
+
   isLoading = false;
+  accountType = 3;
+  passwordFC = new FormControl('', Validators.required);
+  registerReq!: LoginReqDTO;
+  phoneNumber: string | null = '';
 
-
-  formGroup: FormGroup = this.fb.group({
-    username: this.userNameFC,
-    password: this.passwordFC
-  })
-
-  constructor(public api: AuthApiService,
-              public message: MessageService,
-              public errorService: ErrorsService,
-              public fb: FormBuilder,
-              public router: Router,
-              public session: SessionService,
-              public checkError: CheckErrorService) {
-  }
-
-  ngOnInit(): void {
-    if (this.session.isLoggedIn()) {
-      this.router.navigateByUrl('/panel')
-    }
-  }
-
-
-  login(): void {
-    this.setReq()
-    this.isLoading = true
-    this.api.login(this.req).subscribe((res: any) => {
-      this.isLoading = false;
-      if (res.isDone) {
-        this.session.setUserToSession(res.data);
-        this.router.navigate(['/'])
-      }
-    }, (error: any) => {
-      this.isLoading = false;
-      this.message.error();
-      this.errorService.recordError(error.error.data);
-      this.checkError.check(error);
+  constructor(public router: Router,
+    public route: ActivatedRoute,
+    public api: AuthApiService,
+    public errorService: ErrorsService,
+    public messageService: MessageService,
+    public session: SessionService
+  ) {
+    // errorService.clear();
+    this.route.queryParams.subscribe(params => {
+      this.accountType = params['account'];
     })
   }
 
-  setReq(): void {
-    this.req = {
-      phone: this.userNameFC.value,
-      password: this.passwordFC.value,
+  ngOnInit(): void {
+    this.phoneNumber = this.route.snapshot.paramMap.get('phoneNumber');
+  }
+
+  submit(): void {
+    this.registerReq = {
+      phone: this.phoneNumber,
+      password: this.passwordFC.value
+    };
+    this.login();
+  }
+
+  login(): void {
+    this.isLoading = true;
+    this.api.login(this.registerReq).subscribe((res: any) => {
+      this.isLoading = false;
+      if (res.isDone) {
+        this.session.setUserToSession(res.data);
+        if (this.session.getRole() === 'User') {
+          this.router.navigateByUrl('/dashboard');
+        } else if (this.session.getRole() === 'Admin' || this.session.getRole() === 'Staff') {
+          this.router.navigateByUrl('/panel');
+        } else {
+          this.router.navigateByUrl('/');
+
+        }
+
+      } else {
+        this.messageService.custom(res.message);
+      }
+    }, (error: any) => {
+      this.isLoading = false;
+      this.errorService.recordError(error.error.data);
+      this.errorService.check(error);
+    });
+  }
+
+  togglePassword() {
+    $(".icon-eye").toggleClass("icon-eye-off");
+    var input = $("#togglePassword")
+    if (input.attr("type") == "password") {
+      input.attr("type", "text");
+    } else {
+      input.attr("type", "password");
     }
   }
 

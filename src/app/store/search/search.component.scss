@@ -1,42 +1,49 @@
-.s-search{
+.s-search {
   background-image: url("../../../assets/img/search-bg.jpg");
   height: 450px;
   background-size: cover;
   background-position: center center;
   position: relative;
   z-index: 1;
-  .p-search{
+
+  .p-search {
     height: 450px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding-top: 2rem;
-    .box-search{
+
+    .box-search {
       width: 100%;
       height: 250px;
       background: var(--white);
       border-radius: 15px;
       padding: 0 2rem 1rem 2rem;
-      .row-search{
+
+      .row-search {
         width: 100%;
         display: grid;
         grid-template-columns: 3fr 3fr 1fr;
         column-gap: 12px;
       }
-      .title-search{
+
+      .title-search {
         margin: 1.5rem 0 1rem 0;
-        h2{
+
+        h2 {
           font-weight: 700;
           color: var(--text-color);
           font-size: 21px;
         }
       }
-      .p-tab-search{
+
+      .p-tab-search {
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
         width: 100%;
-        .btn-tour{
+
+        .btn-tour {
           border-radius: 0 0 12px 12px;
           background: rgb(255 67 64 / 10%);
           border: none;
@@ -48,12 +55,14 @@
           width: 75px;
           height: 75px;
           padding: 12px 0;
-          svg{
-            path{
+
+          svg {
+            path {
               fill: #a3a3a3;
             }
           }
-          span{
+
+          span {
             color: #a3a3a3;
             font-size: 13px;
             font-weight: 500;
@@ -65,8 +74,56 @@
   }
 }
 
+@media only screen and (max-width: 868px) {
+  .s-search {
+    height: auto !important;
+    padding: 2rem 0;
+
+    .p-search {
+      height: auto !important;
+      padding-top: 0 !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .s-search .p-search .box-search{
+    height: auto;
+    .title-search{
+      margin: 12px 0 !important;
+      h2{
+        margin-bottom: 4px;
+        font-size: 18px !important;
+      }
+    }
+    .row-search {
+      width: 100%;
+      display: flex !important;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      .inp-form{
+        width: 100% !important;
+        margin-top: 10px;
+      }
+      .btn-search{
+        width: 100% !important;
+        margin-top: 10px;
+      }
+    }
+  }
 
 
+}
+
+@media only screen and (min-width: 451px) and (max-width: 868px) {
+  .box-search{
+    padding: 0 1rem 1rem 1rem;
+  }
+  .row-search{
+    grid-template-columns: 2fr 2fr 1fr !important;
+  }
+}
 
 //.section-one {
 //  background-image: url("../../../assets/img/Header-slider-tour90-num03.png");
