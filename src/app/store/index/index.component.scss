@@ -583,7 +583,7 @@
 }
 
 .opacity-bg-parent:hover {
-  background-color: #137cb6b3;
+  background-color: #ff4241b8;
 }
 
 .opacity-bg-parent .info-img {
@@ -753,10 +753,10 @@
 
 .img-sort-tour-city {
   overflow: hidden;
-  height: 180px;
+  height: 190px;
   background-color: var(--light-color-one) !important;
-  border-radius: 100px 100px 0 0;
-  width: 100%;
+  border-radius: 50%;
+  width: 190px;
   margin-top: 1rem;
   cursor: pointer;
   position: relative;
@@ -798,6 +798,10 @@
 
 .text-sort-tour-city {
   margin-top: 8px;
+  span{
+    font-size: 14px;
+    font-weight: 500;
+  }
 }
 
 //end
