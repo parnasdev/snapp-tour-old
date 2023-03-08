@@ -352,7 +352,9 @@ select::-ms-expand {
   content: '«';
   font-size: 20px !important;
 }
-
+.w-55{
+  width: 55%;
+}
 //select-apple-safari
 @media not all and (min-resolution: .001dpcm) {
   @supports (-webkit-appearance:none) {

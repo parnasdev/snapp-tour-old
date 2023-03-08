@@ -34,8 +34,24 @@
 </header>
 
 <header *ngIf="isMobile" class="header-mobile">
-  <div class="d-flex align-items-center">
-    <button class="btn-menu-mobi">
+  <div [ngClass]="[isMenu?'under-menu':'d-none animated fadeOutRight']" class="animated fadeInRight">
+    <div class="p-exit-menu w-100 d-flex align-items-center justify-content-start p-3">
+      <button (click)="menuClose()">
+        <svg viewBox="0 0 24 24" width="19" height="19" focusable="false" class="chakra-icon css-onkibi" aria-hidden="true"><path fill="currentColor" d="M.439,21.44a1.5,1.5,0,0,0,2.122,2.121L11.823,14.3a.25.25,0,0,1,.354,0l9.262,9.263a1.5,1.5,0,1,0,2.122-2.121L14.3,12.177a.25.25,0,0,1,0-.354l9.263-9.262A1.5,1.5,0,0,0,21.439.44L12.177,9.7a.25.25,0,0,1-.354,0L2.561.44A1.5,1.5,0,0,0,.439,2.561L9.7,11.823a.25.25,0,0,1,0,.354Z"></path></svg>
+      </button>
+    </div>
+    <img width="105" height="70" alt="اسنپ تریپ"
+         src="https://cdnsnapptrip.com/images/B2C/Uploads/logo/snapptrip-logo.svg"
+         class="chakra-image my-3">
+    <div class="menu">
+      <a class="link-header" href="https://www.snapptrip.com/">هتل داخلی</a>
+      <a class="link-header" href="https://www.snapptrip.com/flights">بلیط هواپیما</a>
+      <a class="link-header" href="https://www.snapptrip.com/bus/">اتوبوس</a>
+      <a class="link-header" href="https://business.snapptrip.com/">شرکت‌ها و آژانس‌ها</a>
+    </div>
+  </div>
+  <div class="d-flex align-items-center w-55 justify-content-between">
+    <button (click)="menuOpen()" class="btn-menu-mobi">
       <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 32 32" fill="currentColor"
            focusable="false" class="chakra-icon css-13otjrl">
         <path
@@ -46,6 +62,7 @@
                                                                   src="https://cdnsnapptrip.com/images/B2C/Uploads/logo/snapptrip-logo.svg"
                                                                   class="chakra-image css-1ryhtp0"></a>
   </div>
+
   <button class="btn-auth">ورود | ثبت نام</button>
 </header>
 
