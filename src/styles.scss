@@ -173,6 +173,19 @@ ul {
   }
 }
 
+.btn-base {
+  background: var(--base-color);
+  color: var(--white);
+  height: 58px;
+  border-radius: 10px;
+  border: 2px solid var(--base-color);
+  font-weight: 500;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
 .font-16 {
   font-size: 16px !important;
 }
@@ -712,4 +725,235 @@ select::-ms-expand {
   height: 20px;
   border-radius: 50%;
   border: 2px solid var(--base-color);
+}
+
+
+//profile-dashboard
+.profile-dashboard {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title-profile {
+  padding: 12px 12px 0 0;
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  h2 {
+    font-size: 18px;
+  }
+}
+
+.box-profile-dashboard {
+  box-shadow: $box-shadow;
+  border-radius: $radius-10;
+  background: $white-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  margin-top: 2rem;
+
+  .tab-profile {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    .activeProfile {
+      color: var(--base-color) !important;
+      font-size: $size-text;
+      border-bottom: 2px solid var(--base-color) !important;
+      height: $height-tools;
+
+      svg {
+        transform: rotate(-90deg);
+
+        path {
+          stroke: var(--base-color);
+        }
+      }
+    }
+
+    .item-tab {
+      width: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid $border-color;
+      height: $height-tools;
+      color: var(--gray-color-dark);
+    }
+  }
+
+  .tab-account-profile {
+    width: 100%;
+  }
+
+  .form-dashboard {
+    flex-wrap: wrap;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    label {
+      font-size: 14px;
+      color: var(--gray-color-dark);
+    }
+
+    .inp-base {
+      margin-top: 12px;
+    }
+
+    .item-form {
+      display: flex;
+      flex-direction: column;
+      width: 37%;
+      margin-top: 18px;
+
+      label {
+      }
+
+      .inp {
+        margin-top: 12px;
+      }
+    }
+
+    .item-form-2 {
+      display: flex;
+      flex-direction: column;
+      width: 20%;
+      margin-top: 18px;
+
+      .btn-submit-change {
+        margin-top: 2.2rem;
+      }
+
+      label {
+      }
+
+      .inp {
+        margin-top: 12px;
+      }
+    }
+
+    .gender {
+      height: $height-tools;
+      display: flex;
+      align-items: flex-end;
+      margin-top: 12px;
+
+      input {
+        width: 26px;
+        height: 26px;
+      }
+
+      input[name="gender"] {
+        accent-color: var(--base-color);
+      }
+    }
+  }
+}
+
+
+.p-list-trip {
+  box-shadow: $box-shadow;
+  border-radius: $radius-10;
+  background: $white-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  margin-top: 2rem;
+
+  .header-trip {
+    height: 60px;
+    background: #f2f2f2;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+    place-items: center;
+
+    span {
+      font-weight: 600;
+      color: var(--text-color);
+    }
+  }
+
+  .body-trip {
+    height: 60px;
+    border-bottom: 2px solid #f2f2f2;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+    place-items: center;
+
+    span {
+      font-weight: 600;
+      color: var(--text-color);
+    }
+  }
+}
+
+.s-dashboard {
+  .p-info-trip {
+    box-shadow: $box-shadow;
+    border-radius: $radius-10;
+    background: $white-color;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    margin-top: 2rem;
+
+    .bg-info-trip {
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 1rem;
+      .title-profile{
+        margin-top: 0 !important;
+        padding: 0 !important;
+        display: flex;
+        align-items: center !important;
+        justify-content: flex-start;
+        i{
+          font-size: 9px;
+          color: var(--base-color);
+          margin-left: 7px !important;
+          position: relative;
+          top: -8px;
+        }
+      }
+    }
+
+    .tour-items {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      width: 100%;
+
+      .item {
+        margin-top: 12px;
+
+        .title {
+          font-weight: 500;
+          font-size: 14px;
+        }
+
+        .text {
+          font-size: 14px;
+          color: var(--gray-color-dark);
+          margin-right: 8px;
+        }
+      }
+    }
+  }
 }
