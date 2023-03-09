@@ -16,6 +16,9 @@ const routes: Routes = [
         path: 'panel',
         canActivate: [PanelGuardService],
         loadChildren: () => import('./panel/panel.module').then(m => m.PanelModule)
+      },{
+        path: 'dashboard',
+        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
       }, {
         path: 'not-found',
         component: Page404Component
