@@ -44,7 +44,8 @@ export class LoginComponent implements OnInit {
   submit(): void {
     this.registerReq = {
       phone: this.phoneNumber,
-      password: this.passwordFC.value
+      password: this.passwordFC.value,
+      temp: 0
     };
     this.login();
   }

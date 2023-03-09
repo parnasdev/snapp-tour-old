@@ -37,6 +37,7 @@ export interface ProfileReqDTO {
 export interface LoginReqDTO {
   phone: string | null;
   password: string;
+  temp?: number
   accountType?: string;
 }
 

@@ -14,7 +14,6 @@ import {CityApiService} from "../../Core/Https/city-api.service";
 export class SelectCityComponent implements OnInit, OnChanges {
   @Output() citySelected = new EventEmitter()
   @Input() cities: CityResponseDTO[] = []
-
   @Input() callCity: boolean = false;
   @Input() hasHotel: boolean = false;
   @Input() hasTour: boolean = false;
