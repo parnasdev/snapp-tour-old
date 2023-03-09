@@ -370,3 +370,7 @@ select::-ms-expand {
   display: none !important;
 }
 
+.details-text p {
+  width: 100% !important;
+  line-break: anywhere;
+}
