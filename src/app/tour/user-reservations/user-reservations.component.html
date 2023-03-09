@@ -1,0 +1,20 @@
+<div class="p-list-trip">
+    <div class="header-trip">
+      <span>عنوان تور</span>
+      <span>تاریخ رفت</span>
+      <span>تاریخ برگشت</span>
+      <span>وضعیت</span>
+      <span>کد پیگیری</span>
+      <span>عملیات</span>
+    </div>
+    <div class="body-trip" *ngFor=" let item of [1,2,3,4,5]">
+      <span> تور مارماریس</span>
+      <span>25/25/25</span>
+      <span>26/26/26</span>
+      <span>در حال انتظار</span>
+      <span>85 </span>
+      <div>
+        <a routerLink="/dashboard/tour/info/{slug}" style="height: 35px !important;" class="btn-base px-4">جزییات</a>
+      </div>
+    </div>
+</div>

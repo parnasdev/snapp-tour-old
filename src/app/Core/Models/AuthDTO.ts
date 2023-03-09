@@ -10,6 +10,11 @@ export interface LoginResponseDTO {
   token: string
 }
 
+export interface ConvertRequestDTO {
+  phone: string;
+  token: string;
+}
+
 export interface UserDTO {
   id: number;
   role: string;
@@ -56,6 +61,8 @@ export interface RegisterRequestDTO {
 export interface ValidateResDTO {
   authMode: number;
   phone: string;
+  accountType: string;
+  password: boolean;
 }
 
 export interface ChangePasswordReqDTO {

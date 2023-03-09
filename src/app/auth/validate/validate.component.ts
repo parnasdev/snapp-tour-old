@@ -6,6 +6,7 @@ import {ErrorsService} from "../../Core/Services/errors.service";
 import {PublicService} from "../../Core/Services/public.service";
 import {SessionService} from "../../Core/Services/session.service";
 import {MessageService} from "../../Core/Services/message.service";
+import { ValidateResDTO } from 'src/app/Core/Models/AuthDTO';
 
 
 declare var $: any;
@@ -48,7 +49,7 @@ export class ValidateComponent implements OnInit {
     this.api.validate(this.publicService.fixNumbers(this.phoneNumberFC.value)).subscribe((res: any) => {
       this.isLoading = false;
       if (res.isDone) {
-        this.checkAuthMode(res.data.authMode);
+        this.checkAuthMode(res.data);
       } else {
         this.message.custom(res.message);
       }
@@ -58,6 +59,22 @@ export class ValidateComponent implements OnInit {
       this.isLoading = false;
     });
   }
+
+  // convertUserToAgency(): void {
+  //   this.isLoading = true;
+  //   this.api.convertUserToAgency().subscribe((res: any) => {
+  //     this.isLoading = false;
+  //     if (res.isDone) {
+  //       this.checkAuthMode(res.data);
+  //     } else {
+  //       this.message.custom(res.message);
+  //     }
+  //   }, (error: any) => {
+  //     this.errorService.check(error);
+  //     this.errorService.recordError(error.error.data);
+  //     this.isLoading = false;
+  //   });
+  // }
 
   sendSms(phoneNumber: string, tokenType: string): void {
     this.api.sendSms(phoneNumber, tokenType).subscribe((res: any) => {
@@ -76,11 +93,13 @@ export class ValidateComponent implements OnInit {
     });
   }
 
-  checkAuthMode(authMode: number): void {
-    if (authMode === 1) {
+  checkAuthMode(validateData: ValidateResDTO): void {
+    if (validateData.authMode === 1) {
       // login
       if (this.isForgetPassword) {
         this.sendSms(this.phoneNumberFC.value, 'forget');
+      // } else if () {
+        
       } else {
         this.router.navigateByUrl('/auth/login/' + this.phoneNumberFC.value);
       }

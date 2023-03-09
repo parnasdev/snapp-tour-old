@@ -4,6 +4,7 @@ import {PublicService} from "../Services/public.service";
 import {environment} from "../../../environments/environment";
 import {Result} from "../Models/result";
 import {UserCreateReq, UserReqDTO} from "../Models/UserDTO";
+import { ProfileDTO } from '../Models/AuthDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -51,5 +52,19 @@ export class UserApiService {
   getUserPermissionWithId(userId: number): any {
     const strUrl = this.serverControllerName + `getUserPermission/${userId}`;
     return this.http.get<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
+  }
+
+  editProfile(req: ProfileDTO): any {
+    const url = this.serverControllerName + `editProfile`;
+    return this.http.post<Result<boolean>>(
+      url, req,
+      this.publicService.getDefaultHeaders());
+  }
+
+  getProfile(): any {
+    const url = this.serverControllerName + 'getProfile';
+    return this.http.get<Result<ProfileDTO>>(
+      url,
+      this.publicService.getDefaultHeaders());
   }
 }

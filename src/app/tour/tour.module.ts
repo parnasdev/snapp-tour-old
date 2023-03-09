@@ -14,6 +14,8 @@ import {CommonProjectModule} from "../common-project/common-project.module";
 import {PipesModule} from "../common-project/pipes/pipes.module";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { ReserveBoxComponent } from './reserve-box/reserve-box.component';
+import { UserReservationsComponent } from './user-reservations/user-reservations.component';
+import { UserReservationInfoComponent } from './user-reservation-info/user-reservation-info.component';
 
 
 @NgModule({
@@ -23,6 +25,8 @@ import { ReserveBoxComponent } from './reserve-box/reserve-box.component';
     ReservePopupComponent,
     ExpireTourComponent,
     ReserveBoxComponent,
+    UserReservationsComponent,
+    UserReservationInfoComponent,
   ],
   exports: [
     InfoComponent,

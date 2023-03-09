@@ -3,7 +3,7 @@ import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {PublicService} from "../Services/public.service";
 import {Result} from "../Models/result";
-import { ChangePasswordReqDTO, LoginReqDTO, ProfileDTO, UserDTO, ValidateResDTO } from '../Models/AuthDTO';
+import { ChangePasswordReqDTO, ConvertRequestDTO, LoginReqDTO, ProfileDTO, UserDTO, ValidateResDTO } from '../Models/AuthDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -80,5 +80,12 @@ export class AuthApiService {
       this.publicService.getDefaultHeaders());
   }
 
+  convertUserToAgency(convertRequestData: ConvertRequestDTO): any {
+    const url = this.serverControllerName + 'convert';
+    return this.http.post<Result<UserDTO>>(
+      url,
+      convertRequestData,
+      this.publicService.getDefaultHeaders());
+  }
 
 }

@@ -2,9 +2,18 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {InfoComponent} from "./info/info.component";
 import {ListComponent} from "./list/list.component";
+import { UserReservationInfoComponent } from './user-reservation-info/user-reservation-info.component';
+import { UserReservationsComponent } from './user-reservations/user-reservations.component';
 
 const routes: Routes = [
-
+  {
+    path: 'list',
+    component: UserReservationsComponent
+  },
+  {
+    path: 'info/:slug',
+    component: UserReservationInfoComponent
+  },
   {
     path: '',
     component: ListComponent
