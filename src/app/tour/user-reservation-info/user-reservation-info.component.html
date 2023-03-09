@@ -1,50 +1,198 @@
-<div class="p-info-trip">
-    <div class="w-100 bg-light bg-info-trip">
-      <div class="title-profile w-100">
-        <i class="icon-circle"></i>
-        <h2 class="dana-bold">اطلاعات تور</h2>
-      </div>
-      <div class="tour-items w-100">
-        <div class="item w-100 d-flex align-items-center px-2" *ngFor="let item of[1,2,3,4,5,6,7,8]">
-          <span class="title">سوال:</span>
-          <span class="text">پاسخ</span>
-        </div>
+<div *ngIf="false" class="p-info-trip">
+  <div class="w-100 bg-light bg-info-trip">
+    <div class="title-profile w-100">
+      <i class="icon-circle"></i>
+      <h2 class="dana-bold">اطلاعات تور</h2>
+    </div>
+    <div class="tour-items w-100">
+      <div class="item w-100 d-flex align-items-center px-2" *ngFor="let item of[1,2,3,4,5,6,7,8]">
+        <span class="title">سوال:</span>
+        <span class="text">پاسخ</span>
       </div>
     </div>
-    <div class="w-100 bg-light bg-info-trip">
-      <div class="title-profile w-100">
-        <i class="icon-circle"></i>
-        <h2 class="dana-bold">اطلاعات سافران</h2>
-      </div>
-      <div class="tour-items w-100">
-        <div class="item w-100 d-flex align-items-center px-2" *ngFor="let item of[1,2,3,4,5,6,7,8]">
-          <span class="title">سوال:</span>
-          <span class="text">پاسخ</span>
-        </div>
+  </div>
+  <div class="w-100 bg-light bg-info-trip">
+    <div class="title-profile w-100">
+      <i class="icon-circle"></i>
+      <h2 class="dana-bold">اطلاعات سافران</h2>
+    </div>
+    <div class="tour-items w-100">
+      <div class="item w-100 d-flex align-items-center px-2" *ngFor="let item of[1,2,3,4,5,6,7,8]">
+        <span class="title">سوال:</span>
+        <span class="text">پاسخ</span>
       </div>
     </div>
-    <div class="w-100 bg-light bg-info-trip">
-      <div class="title-profile w-100">
-        <i class="icon-circle"></i>
-        <h2 class="dana-bold">اطلاعات پرواز</h2>
-      </div>
-      <div class="tour-items w-100">
-        <div class="item w-100 d-flex align-items-center px-2" *ngFor="let item of[1,2,3,4,5,6,7,8]">
-          <span class="title">سوال:</span>
-          <span class="text">پاسخ</span>
-        </div>
+  </div>
+  <div class="w-100 bg-light bg-info-trip">
+    <div class="title-profile w-100">
+      <i class="icon-circle"></i>
+      <h2 class="dana-bold">اطلاعات پرواز</h2>
+    </div>
+    <div class="tour-items w-100">
+      <div class="item w-100 d-flex align-items-center px-2" *ngFor="let item of[1,2,3,4,5,6,7,8]">
+        <span class="title">سوال:</span>
+        <span class="text">پاسخ</span>
       </div>
     </div>
-    <div class="w-100 bg-light bg-info-trip">
-      <div class="title-profile w-100">
-        <i class="icon-circle"></i>
-        <h2 class="dana-bold">اطلاعات هتل</h2>
-      </div>
-      <div class="tour-items w-100">
-        <div class="item w-100 d-flex align-items-center px-2" *ngFor="let item of[1,2,3,4,5,6,7,8]">
-          <span class="title">سوال:</span>
-          <span class="text">پاسخ</span>
-        </div>
+  </div>
+  <div class="w-100 bg-light bg-info-trip">
+    <div class="title-profile w-100">
+      <i class="icon-circle"></i>
+      <h2 class="dana-bold">اطلاعات هتل</h2>
+    </div>
+    <div class="tour-items w-100">
+      <div class="item w-100 d-flex align-items-center px-2" *ngFor="let item of[1,2,3,4,5,6,7,8]">
+        <span class="title">سوال:</span>
+        <span class="text">پاسخ</span>
       </div>
     </div>
+  </div>
+</div>
+<h2 class="title-tour">رزرو تور آنتالیا</h2>
+<div class="set-request-tour">
+  <div class="info-from">
+    <span class="city-name">تهران</span>
+    <div class="item">
+      <span class="title">تاریخ و ساعت پرواز رفت :</span>
+      <span class="text">1402/01/0923:30</span>
+    </div>
+    <div class="item">
+      <span class="title">تاریخ ورود به هتل :</span>
+      <span class="text">1402/01/10</span>
+    </div>
+  </div>
+  <div class="info-time">
+    <span class="title">مدت اقامت:</span>
+    <span class="text">1 روزو 8 شب</span>
+  </div>
+  <div class="info-to">
+    <span class="city-name">مارماریس</span>
+    <div class="item">
+      <span class="title">تاریخ و ساعت پرواز برگشت :</span>
+      <span class="text">1402/01/0923:30</span>
+    </div>
+    <div class="item">
+      <span class="title">تاریخ خروج از هتل :</span>
+      <span class="text">1402/01/10</span>
+    </div>
+  </div>
+</div>
+<h2 class="title-tour">هتل انتخابی</h2>
+<div class="set-request-hotel">
+  <div *ngFor="let item of[1,2,3,4,5,6]" class="item-hotel">
+    <h5>دو تخته</h5>
+    <div class="price">
+      <strong>21,620,000</strong>
+      <small>تومان</small>
+    </div>
+    <div class="p-count">
+      <button class="btn-plus">+</button>
+      <span>0</span>
+      <button class="btn-minus">-</button>
+    </div>
+  </div>
+</div>
+<h2 class="title-tour">اطلاعات سرپرست</h2>
+<div class="set-info-supervisor">
+  <div class="item-form">
+    <label class="dana-bold" for="">نام و نام خانوادگی</label>
+    <div class="inp-form mt-2">
+      <input type="text" placeholder="اینجا بنویسید …">
+    </div>
+  </div>
+  <div class="item-form">
+    <label class="dana-bold" for="">
+      کد ملی
+    </label>
+    <div class="inp-form mt-2">
+      <input type="text" placeholder="اینجا بنویسید …">
+    </div>
+  </div>
+  <div class="item-form">
+    <label class="dana-bold" for="">
+      شهر
+    </label>
+    <div class="inp-form mt-2">
+      <select name="" id="">
+        <option value="">تهران</option>
+        <option value="">شیراز</option>
+        <option value="">اصفهان</option>
+      </select>
+    </div>
+
+  </div>
+  <div class="item-form">
+    <label class="dana-bold" for="">
+      شماره همراه
+    </label>
+    <div class="inp-form mt-2">
+      <input type="text" placeholder="اینجا بنویسید …">
+    </div>
+  </div>
+</div>
+<h2 class="title-tour">اطلاعات مسافرین</h2>
+<div class="set-info-passengers">
+  <div class="item-form">
+    <label class="dana-bold" for="">نام و نام خانوادگی</label>
+    <div class="inp-form mt-2">
+      <input type="text" placeholder="اینجا بنویسید …">
+    </div>
+  </div>
+  <div class="item-form">
+    <label class="dana-bold" for="">
+      کد ملی
+    </label>
+    <div class="inp-form mt-2">
+      <input type="text" placeholder="اینجا بنویسید …">
+    </div>
+  </div>
+  <div class="item-form">
+    <label class="dana-bold" for="">
+      شهر
+    </label>
+    <div class="inp-form mt-2">
+      <select name="" id="">
+        <option value="">تهران</option>
+        <option value="">شیراز</option>
+        <option value="">اصفهان</option>
+      </select>
+    </div>
+
+  </div>
+  <div class="item-form">
+    <label class="dana-bold" for="">
+      شماره همراه
+    </label>
+    <div class="inp-form mt-2">
+      <input type="text" placeholder="اینجا بنویسید …">
+    </div>
+  </div>
+  <div class="item-form">
+    <label class="dana-bold" for="">
+      ملیت
+    </label>
+    <div class="inp-form mt-2">
+      <select name="" id="">
+        <option value="">تهران</option>
+        <option value="">شیراز</option>
+        <option value="">اصفهان</option>
+      </select>
+    </div>
+
+  </div>
+  <div class="item-form">
+    <label class="dana-bold" for="">
+      پاسپورت
+    </label>
+    <div class="inp-form mt-2">
+      <input type="text" placeholder="اینجا بنویسید …">
+    </div>
+  </div>
+</div>
+<div class="rules">
+  <input type="checkbox">
+  <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه</p>
+</div>
+<div class="p-submit w-100 d-flex justify-content-center mt-4">
+  <button class="btn-base px-4">ثبت درخواست</button>
 </div>

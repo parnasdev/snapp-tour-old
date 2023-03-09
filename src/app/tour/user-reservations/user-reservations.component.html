@@ -1,4 +1,4 @@
-<div class="p-list-trip">
+<div *ngIf="isDesktop" class="p-list-trip">
     <div class="header-trip">
       <span>عنوان تور</span>
       <span>تاریخ رفت</span>
@@ -17,4 +17,7 @@
         <a routerLink="/dashboard/tour/info/{slug}" style="height: 35px !important;" class="btn-base px-4">جزییات</a>
       </div>
     </div>
+</div>
+<div *ngIf="isTablet">
+  <h1>milad</h1>
 </div>
