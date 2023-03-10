@@ -4,7 +4,7 @@
       <div class="info-tour-header">
         <div class="right">
           <label for="">{{tourType ? 'تور داخلی' : 'تور خارجی'}}</label>
-          <h2>اطلاعات تور</h2>
+          <h2 class="text-dark">اطلاعات تور</h2>
         </div>
         <div class="checkbox d-flex align-content-center">
           <input formControlName="offered" type="checkbox">
@@ -66,6 +66,8 @@
             <div *ngIf="errorService.hasError('stCity_id')">
               <span class="text-danger">{{errorService.getError('stCity_id')}}</span>
             </div>
+          </div>
+          <div class="item-info">
             <div class="select-info">
               <label for="">شهر مقصد</label>
 
@@ -75,7 +77,6 @@
                 <span class="text-danger">{{errorService.getError('endCity_id')}}</span>
               </div>
             </div>
-
           </div>
           <div class="item-info-2">
             <div class="select-info">
@@ -95,6 +96,8 @@
                 <span class="text-danger">{{errorService.getError('nightNum')}}</span>
               </div>
             </div>
+          </div>
+          <div class="item-info">
             <div class="select-info">
               <label for="">تعداد روز</label>
               <!--              <select formControlName="dayNum" name="" id="">-->
@@ -105,11 +108,7 @@
                 <span class="text-danger">{{errorService.getError('dayNum')}}</span>
               </div>
             </div>
-
           </div>
-        </div>
-        <div class="bottom">
-
           <div class="item-info">
             <label for="">نامک تور</label>
             <input *ngIf="isSlugGenerated" formControlName="slug" type="text">
@@ -121,7 +120,6 @@
               <span class="text-danger">{{errorService.getError('slug')}}</span>
             </div>
           </div>
-
           <div class="item-info">
             <label for="">تاریخ ورود به هتل</label>
             <mat-form-field class="example-full-width" appearance="fill">
@@ -155,7 +153,6 @@
               <span class="text-danger">{{errorService.getError('expireDate')}}</span>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -163,7 +160,7 @@
 
       <div class="info-tour-header">
         <div class="right">
-          <h2>اطلاعات پرواز</h2>
+          <h2 class="text-dark">اطلاعات پرواز</h2>
         </div>
       </div>
 
@@ -192,8 +189,6 @@
             </div>
 
           </div>
-        </div>
-        <div class="bottom">
           <div class="item-info">
             <label for="">تاریخ پرواز برگشت</label>
             <mat-form-field class="example-full-width" appearance="fill">
@@ -202,7 +197,7 @@
               <mat-datepicker #picker7></mat-datepicker>
             </mat-form-field>
           </div>
-          <div class="item-info-timer">
+          <div style="width: 32%;display: flex;justify-content: center" class="item-info-timer">
             <label for="">ساعت پرواز برگشت</label>
             <prs-time-picker (result)="getDestTime($event)"></prs-time-picker>
           </div>
@@ -215,8 +210,8 @@
             </div>
 
           </div>
-
         </div>
+
       </div>
 
     </div>
@@ -348,7 +343,7 @@
     <div class="box-info-package">
       <div class="info-tour-header">
         <div class="right">
-          <h2>اطلاعات پکیج</h2>
+          <h2 class="text-dark">اطلاعات پکیج</h2>
         </div>
         <div class="left">
           <div class="selectdiv me-2">
@@ -369,7 +364,7 @@
         </div> -->
         <div class="change-price-box" *ngIf="form.value.defineTour == 'false' && !tourType">
           <span>نرخ پکیج و قیمت پرواز</span>
-          <div class="d-flex align-items-center w-100 mr-5">
+          <div style="margin-right: 16px" class="d-flex align-items-center w-100 mr-5">
             <select [formControl]="ratePricesFC" (change)="changeRateForPackages($event)">
               <option [value]="3">دلار</option>
               <option [value]="2">یورو</option>
@@ -576,7 +571,7 @@
     <div class="box-details-tour">
       <div class="info-tour-header">
         <div class="right">
-          <h2>جزییات تور</h2>
+          <h2 class="text-dark">جزییات تور</h2>
         </div>
       </div>
       <div class="details-body-tour">
@@ -596,7 +591,7 @@
             <span class="text-danger">{{errorService.getError('description')}}</span>
           </div>
         </div>
-        <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="submit()" [isLoading]="isLoading"
+        <prs-btn  style="width: 15% !important;" class="btn-submit-tour " [background]="'blue'" (click)="submit()" [isLoading]="isLoading"
                  [label]="'ثبت تور'"></prs-btn>
       </div>
     </div>
