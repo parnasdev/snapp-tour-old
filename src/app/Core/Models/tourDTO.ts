@@ -236,14 +236,40 @@ export interface RateDTO {
 }
 
 export interface Tour {
-  title: string;
-  slug: string;
-  status: string;
+  dayNum:  number | string
+  enDate: string
   endCity: CityResponseDTO
+  nightNum: number
+  slug: string
+  stCity: CityResponseDTO
+  stDate : string
+  status: string
+   title : string
+  transfers : TourTransferDTO[]
 }
+
 
 export interface DatesResDTO {
   date: string;
   nights: number[];
 }
-  
+
+
+
+export interface ReserveInfoDTO {
+  id:         number;
+  package:    ReservePackageDTO;
+  user:       null;
+  name:       null;
+  month:      null;
+  city:       null;
+  phone:      string;
+  count:      number;
+  status:     string;
+  passengers: null;
+  bill:       null;
+  createdAt:  Date;
+  cache:      null;
+}
+
+

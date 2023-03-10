@@ -1,4 +1,3 @@
-
 <div class="profile-dashboard">
   <div class="box-profile-dashboard">
     <div class="title-profile w-100">
@@ -11,7 +10,7 @@
             نام
           </label>
           <div class="inp-form mt-2">
-            <input type="text" placeholder="اینجا بنویسید …">
+            <input [formControl]="nameFC" type="text" placeholder="اینجا بنویسید …">
           </div>
         </div>
         <div class="item-form">
@@ -19,7 +18,7 @@
             نام خانوادگی
           </label>
           <div class="inp-form mt-2">
-            <input type="text" placeholder="اینجا بنویسید …">
+            <input [formControl]="familyFC" type="text" placeholder="اینجا بنویسید …">
           </div>
         </div>
         <div class="item-form-2">
@@ -28,11 +27,11 @@
           </label>
           <div class="inp-radio d-flex align-items-center">
             <div class="d-flex gender align-items-center">
-              <input name="gender" value="2" type="radio">
+              <input value="0" [formControl]="genderFC" name="gender" type="radio">
               <label style="margin-right: 10px">مرد</label>
             </div>
             <div class="d-flex gender ms-4 align-items-center">
-              <input style="margin-right: 1rem" name="gender" value="1" type="radio">
+              <input value="1" [formControl]="genderFC" style="margin-right: 1rem" name="gender" type="radio">
               <label style="margin-right: 10px">زن</label>
             </div>
 
@@ -43,7 +42,7 @@
             ایمیل
           </label>
           <div class="inp-form mt-2">
-            <input type="text" placeholder="اینجا بنویسید …">
+            <input [formControl]="emailFC" type="text" placeholder="اینجا بنویسید …">
           </div>
         </div>
         <div class="item-form">
@@ -51,11 +50,15 @@
             شماره همراه
           </label>
           <div class="inp-form mt-2">
-            <input type="text" placeholder="اینجا بنویسید …">
+            <input type="text" [formControl]="phoneFC" placeholder="اینجا بنویسید …">
           </div>
         </div>
         <div class="item-form-2">
-          <button class="btn-base">
+          <prs-select-city [callCity]="true" (citySelected)="onCitySelected($event)"></prs-select-city>
+        </div>
+
+        <div class="item-form-2">
+          <button class="btn-base" (click)="submit()">
             ثبت تغییرات
           </button>
         </div>
@@ -68,7 +71,7 @@
             رمزعبور
           </label>
           <div class="inp-form mt-2">
-            <input type="text" placeholder="اینجا بنویسید …">
+            <input [formControl]="passwordFC" type="text" placeholder="اینجا بنویسید …">
           </div>
         </div>
         <div class="item-form">
@@ -76,11 +79,11 @@
             تکرار رمز عبور
           </label>
           <div class="inp-form mt-2">
-            <input type="text" placeholder="اینجا بنویسید …">
+            <input [formControl]="retypePasswordFC" type="text" placeholder="اینجا بنویسید …">
           </div>
         </div>
         <div class="item-form-2">
-          <button class="btn-submit-change btn-base">
+          <button (click)="changePassword()" class="btn-submit-change btn-base">
             ثبت رمز عبور
           </button>
         </div>
@@ -89,4 +92,3 @@
 
   </div>
 </div>
-

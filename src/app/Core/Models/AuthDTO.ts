@@ -72,16 +72,17 @@ export interface ChangePasswordReqDTO {
 }
 
 export interface ProfileDTO {
+  justEditProfile?: boolean;
   username: string;
   family: string;
   name: string;
   phone: string;
+  email: string;
   gender: number;
   city: number;
   agency: {
     name: string;
     logo: string | null;
-    commission?: number;
     isManager?: boolean | null
     LicenseFileA: string | null;
     id?: number;
@@ -90,7 +91,6 @@ export interface ProfileDTO {
     address: string;
     tell: string;
     site: string;
-    crewCount: number;
     necessaryPhone: string;
   }
   birthDay?: string;

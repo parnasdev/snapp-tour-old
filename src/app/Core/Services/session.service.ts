@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from "rxjs";
 import { AuthApiService } from "../Https/auth-api.service";
 import { UserApiService } from '../Https/user-api.service';
-import { LoginResponseDTO } from '../Models/AuthDTO';
+import { LoginResponseDTO, ProfileDTO } from '../Models/AuthDTO';
 import { PermissionDTO } from '../Models/UserDTO';
-import { CheckErrorService } from './check-error.service';
 import { MessageService } from './message.service';
 
 @Injectable({
@@ -29,11 +28,11 @@ export class SessionService {
         birthDay: obj.user?.birthDay,
         family: obj.user?.family,
         city: obj.user?.city,
+        email: obj.user?.email,
         gender: obj.user?.gender,
         agency: {
           name: obj.user.agency?.name,
           logo: obj.user.agency?.logo,
-          commission: obj.user.agency?.commission,
           isManager: obj.user.agency?.isManager,
           LicenseFileA: obj.user.agency?.LicenseFileA,
           id: obj.user.agency?.id,
@@ -42,7 +41,6 @@ export class SessionService {
           address: obj.user.agency?.address,
           tell: obj.user.agency?.tell,
           site: obj.user.agency?.site,
-          crewCount: obj.user.agency?.crewCount,
           necessaryPhone: obj.user.agency?.necessaryPhone
         },
         createdAt: obj.user.createdAt,
@@ -55,6 +53,8 @@ export class SessionService {
     }
     localStorage.setItem('snapp-tour-user', JSON.stringify(this.user));
   }
+
+
 
   getUserPermission(): void {
     this.userApi.getUserPermission().subscribe((res: any) => {

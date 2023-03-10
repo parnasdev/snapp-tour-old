@@ -221,15 +221,15 @@ export class EditComponent implements OnInit {
 
 
   citySelected(city: CityResponseDTO): void {
-    this.cityFC.setValue(city.slugEn)
+    this.cityFC.setValue(city.id)
 
   }
   setValue(): void {
-    this.nameFC.setValue(this.info.user.name)
-    this.emailFC.setValue(this.info.user.email)
-    this.familyFC.setValue(this.info.user.family)
-    this.idCodeFC.setValue(this.info.user.idCode)
-    this.cityFC.setValue(this.info.user.city)
+    this.nameFC.setValue(this.info.name)
+    this.emailFC.setValue(this.info.email)
+    this.familyFC.setValue(this.info.family)
+    this.idCodeFC.setValue(this.info.idCode)
+    this.cityFC.setValue(this.info.city)
 
 
     this.LicenseFileB = { url: this.req.agency.LicenseFileA, path: '' }

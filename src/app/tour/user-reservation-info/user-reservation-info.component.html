@@ -48,32 +48,32 @@
     </div>
   </div>
 </div>
-<h2 class="title-tour">رزرو تور آنتالیا</h2>
+<h2 class="title-tour">{{ data?.package?.tour?.title }}</h2>
 <div class="set-request-tour">
   <div class="info-from">
-    <span class="city-name">تهران</span>
+    <span class="city-name">{{ data?.package?.tour?.stCity?.name }}</span>
     <div class="item">
       <span class="title">تاریخ و ساعت پرواز رفت :</span>
-      <span class="text">1402/01/0923:30</span>
+      <span class="text">{{ stDate }}</span>
     </div>
     <div class="item">
       <span class="title">تاریخ ورود به هتل :</span>
-      <span class="text">1402/01/10</span>
+      <span class="text">{{ calService.convertDateAndTime(data?.package?.tour?.stDate, 'fa') }}</span>
     </div>
   </div>
   <div class="info-time">
     <span class="title">مدت اقامت:</span>
-    <span class="text">1 روزو 8 شب</span>
+    <span class="text">{{ data?.package?.tour?.dayNum }} روز و {{ data?.package?.tour?.nightNum }} شب</span>
   </div>
   <div class="info-to">
-    <span class="city-name">مارماریس</span>
+    <span class="city-name">{{ data?.package?.tour?.endCity?.name }}</span>
     <div class="item">
       <span class="title">تاریخ و ساعت پرواز برگشت :</span>
-      <span class="text">1402/01/0923:30</span>
+      <span class="text">{{enDate }}</span>
     </div>
     <div class="item">
       <span class="title">تاریخ خروج از هتل :</span>
-      <span class="text">1402/01/10</span>
+      <span class="text">{{ calService.convertDateAndTime(data?.package?.tour?.enDate, 'fa') }}</span>
     </div>
   </div>
 </div>
@@ -96,9 +96,15 @@
 <h2 class="title-tour">اطلاعات سرپرست</h2>
 <div class="set-info-supervisor">
   <div class="item-form">
-    <label class="dana-bold" for="">نام و نام خانوادگی</label>
+    <label class="dana-bold" for="">نام</label>
     <div class="inp-form mt-2">
-      <input type="text" placeholder="اینجا بنویسید …">
+      <input type="text" [formControl]="nameFC" placeholder="اینجا بنویسید …">
+    </div>
+  </div>
+  <div class="item-form">
+    <label class="dana-bold" for=""> نام خانوادگی</label>
+    <div class="inp-form mt-2">
+      <input type="text" [formControl]="familyFC" placeholder="اینجا بنویسید …">
     </div>
   </div>
   <div class="item-form">
@@ -106,7 +112,7 @@
       کد ملی
     </label>
     <div class="inp-form mt-2">
-      <input type="text" placeholder="اینجا بنویسید …">
+      <input type="text" [formControl]="idCodeFC" placeholder="اینجا بنویسید …">
     </div>
   </div>
   <div class="item-form">
@@ -114,11 +120,7 @@
       شهر
     </label>
     <div class="inp-form mt-2">
-      <select name="" id="">
-        <option value="">تهران</option>
-        <option value="">شیراز</option>
-        <option value="">اصفهان</option>
-      </select>
+      <prs-select-city [callCity]="true"></prs-select-city>
     </div>
 
   </div>
@@ -127,7 +129,7 @@
       شماره همراه
     </label>
     <div class="inp-form mt-2">
-      <input type="text" placeholder="اینجا بنویسید …">
+      <input [formControl]="phoneFC" type="text" placeholder="اینجا بنویسید …">
     </div>
   </div>
 </div>

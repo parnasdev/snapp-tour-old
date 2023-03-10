@@ -88,7 +88,7 @@ export class ThumbnailTourTwoComponent implements OnInit {
     this.tourApi.reserve(req).subscribe((res: any) => {
       if (res.isDone) {
         this.message.custom(res.message);
-        this.router.navigate(['/dashboard/tour/info/' + packageId]);
+        this.router.navigate(['/dashboard/tour/info/' + res.data.reserve_id]);
       } else {
         this.message.custom(res.message);
       }

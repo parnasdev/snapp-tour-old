@@ -11,7 +11,7 @@ const routes: Routes = [
     component: UserReservationsComponent
   },
   {
-    path: 'info/:slug',
+    path: 'info/:reserveid',
     component: UserReservationInfoComponent
   },
   {
