@@ -1,5 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {ResponsiveService} from "../../Core/Services/responsive.service";
+import { TourApiService } from 'src/app/Core/Https/tour-api.service';
+import { ReserveListResDTO, ReserveListReqDTO } from 'src/app/Core/Models/tourDTO';
+import { CalenderServices } from 'src/app/Core/Services/calender-service';
+import { ErrorsService } from 'src/app/Core/Services/errors.service';
+import { MessageService } from 'src/app/Core/Services/message.service';
+import { ResponsiveService } from 'src/app/Core/Services/responsive.service';
+import { SessionService } from 'src/app/Core/Services/session.service';
 
 @Component({
   selector: 'prs-user-reservations',
@@ -12,15 +18,40 @@ export class UserReservationsComponent implements OnInit {
   isTablet = false;
   slug: string = 'dsfsf';
 
-  constructor(
-    public mobileService: ResponsiveService,
-  ) {
+  reserves: ReserveListResDTO[] = [];
+  reserveReq: ReserveListReqDTO = {
+    paginate: true,
+  }
+
+  pageNum = 1
+
+  constructor(public mobileService: ResponsiveService,
+              public session: SessionService,
+              public calService: CalenderServices,
+              public api: TourApiService,
+              public messageService: MessageService,
+              public errorService: ErrorsService
+    ) {
     this.isMobile = mobileService.isTablet()
     this.isDesktop = mobileService.isDesktop()
     this.isTablet = mobileService.isTablet()
   }
 
   ngOnInit(): void {
+    this.getReserveList();
+  }
+
+  getReserveList(): void {
+    this.api.getReserves(this.reserveReq,this.pageNum).subscribe((res: any) => {
+      if (res.isDone) {
+        console.log(res.data);
+        this.reserves = res.data;
+      } else {
+        this.messageService.custom('مشکلی در نمایش اطلاعات به وجود آمده است')
+      }
+    }, (error: any) => {
+      this.errorService.check(error);
+    })
   }
 
 }
