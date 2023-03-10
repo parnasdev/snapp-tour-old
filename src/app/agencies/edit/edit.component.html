@@ -8,9 +8,7 @@
         </div>
       </div>
       <div class="info-tour-body">
-
-
-
+        <h2 class="title">اطلاعات کاربر</h2>
         <div class="top">
           <div class="item-info-2">
             <div class="item-info w-100">
@@ -22,9 +20,6 @@
             </div>
 
           </div>
-
-        </div>
-        <div class="bottom">
           <div class="item-info-2">
             <div class="item-info w-100">
               <label>نام خانوادگی</label>
@@ -34,9 +29,6 @@
               </div>
             </div>
           </div>
-
-        </div>
-        <div class="bottom">
           <div class="item-info-2">
             <div class="item-info w-100">
               <label>جنسیت</label>
@@ -51,8 +43,12 @@
             </div>
 
           </div>
-          <prs-select-city [inCommingCity]="cityFC.value" [hasOriginTour]="false" [hasDestTour]="false" 
-            (citySelected)="citySelected($event)" [type]="1" [callCity]="true"></prs-select-city>
+          <div style="width: 32% !important;">
+            <label style="position: relative;top: 14px">شهر</label>
+            <prs-select-city [inCommingCity]="cityFC.value" [hasOriginTour]="false" [hasDestTour]="false"
+                             (citySelected)="citySelected($event)" [type]="1" [callCity]="true"></prs-select-city>
+          </div>
+
           <div class="item-info-2">
             <div class="item-info w-100">
               <label>ایمیل</label>
@@ -74,24 +70,7 @@
 
           </div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <h2 style="margin: 2rem 0 0 0 !important;" class="title">اطلاعات آژانس</h2>
         <div class="top">
           <div class="item-info-2">
             <div class="item-info w-100">
@@ -103,9 +82,6 @@
             </div>
 
           </div>
-
-        </div>
-        <div class="bottom">
           <div class="item-info-2">
             <div class="item-info w-100">
               <label>سایت</label>
@@ -115,9 +91,6 @@
               </div>
             </div>
           </div>
-
-        </div>
-        <div class="bottom">
           <div class="item-info-2">
             <div class="item-info w-100">
               <label>ایمیل شرکت</label>
@@ -138,8 +111,6 @@
             </div>
 
           </div>
-        </div>
-        <div class="bottom">
           <div class="item-info-2">
             <div class="item-info w-100">
               <label>تلفن آژانس</label>
@@ -149,24 +120,15 @@
               </div>
             </div>
           </div>
-          <!--          <div class="item-info-2">-->
-          <!--            <div class="item-info w-100">-->
-          <!--              <label>شماره همراه</label>-->
-          <!--              <input [formControl]="phoneFC" type="text">-->
-          <!--              <div *ngIf="errorsService.hasError('phone')">-->
-          <!--                <span class="text-danger">{{errorsService.getError('phone')}}</span>-->
-          <!--              </div>-->
-          <!--            </div>-->
-          <!--          </div>-->
-        </div>
-        <div class="address w-100">
-          <div style="width: 100% !important;" class="item-info-2">
-            <div class="item-info w-100">
-              <label>آدرس آژانس</label>
-              <textarea style="height: 70px;margin-top: 12px;width: 100%" [formControl]="addressFC"
-                type="text"></textarea>
-              <div *ngIf="errorsService.hasError('agency.address')">
-                <span class="text-danger">{{errorsService.getError('agency.address')}}</span>
+          <div class="address w-100">
+            <div style="width: 100% !important;" class="item-info-2">
+              <div class="item-info w-100">
+                <label>آدرس آژانس</label>
+                <textarea style="height: 70px;margin-top: 12px;width: 100%" [formControl]="addressFC"
+                          type="text"></textarea>
+                <div *ngIf="errorsService.hasError('agency.address')">
+                  <span class="text-danger">{{errorsService.getError('agency.address')}}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -181,7 +143,7 @@
                   <span>لوگو</span>
 
                   <input class="file-input-upload" type="file" id="file" placeholder="لوگو را آپلود کنید"
-                    (change)="getLogo($event)">
+                         (change)="getLogo($event)">
                 </div>
                 <div class="single-img-upload-parent" *ngIf="logo?.url !== ''">
                   <img [src]="logo ? logo.url : ''" width="100%" height="200" alt="">
@@ -199,7 +161,7 @@
                 <div class="item-info w-100">
                   <span>مجوز بند الف</span>
                   <input class="file-input-upload" type="file" id="file" placeholder="مجوز بند الف را آپلود کنید"
-                    (change)="getLicenseA($event)">
+                         (change)="getLicenseA($event)">
                 </div>
                 <div class="single-img-upload-parent" *ngIf="LicenseFileA?.url !== ''">
                   <img [src]="LicenseFileA ? LicenseFileA.url : ''" width="100%" height="200" alt="">
@@ -215,7 +177,7 @@
                   <span>مجوز بند ب</span>
 
                   <input class="file-input-upload" type="file" id="file" placeholder="مجوز بند ب را آپلود کنید"
-                    (change)="getLicenseB($event)">
+                         (change)="getLicenseB($event)">
                 </div>
                 <div class="single-img-upload-parent" *ngIf="LicenseFileB?.url !==''">
                   <img [src]="LicenseFileB ? LicenseFileB.url : ''" width="100%" height="200" alt="">
@@ -228,11 +190,10 @@
           </div>
         </div>
         <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="submit()" [isLoading]="isLoading"
-          [label]="'ثبت پروفایل'"></prs-btn>
+                 [label]="'ثبت پروفایل'"></prs-btn>
       </div>
     </div>
   </form>
-
 
 
 </div>
