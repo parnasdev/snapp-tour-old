@@ -96,7 +96,8 @@ export class ListComponent implements OnInit {
     const req: CityListRequestDTO = {
       type: null,
       hasHotel: true,
-      hasTour: false,
+      hasDestTour: false,
+      hasOriginTour: false,
       search: null,
       perPage: 20
     }

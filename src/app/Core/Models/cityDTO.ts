@@ -1,8 +1,9 @@
 export interface CityListRequestDTO {
-  type: boolean | null;
+  type: number | null;
   perPage: number;
   search: string | null;
-  hasTour: boolean;
+  hasOriginTour:boolean
+  hasDestTour:boolean
   hasHotel: boolean;
 }
 

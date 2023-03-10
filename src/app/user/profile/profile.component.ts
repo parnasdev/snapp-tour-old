@@ -56,6 +56,11 @@ export class ProfileComponent implements OnInit {
   req: ProfileDTO = {
     name: '',
     username: '',
+    city: 0,
+     gender: 0,
+     birthDay: '',
+     createdAt: '',
+     role: '',
     family: '',
     phone: '',
     agency: {
@@ -95,6 +100,11 @@ export class ProfileComponent implements OnInit {
       name: this.nameFC.value,
       username: this.usernameFC.value,
       family: this.familyFC.value,
+      city: 0,
+      gender :0,
+      birthDay: '',
+      createdAt:'',
+      role: '',
       phone: this.phoneFC.value,
       agency: {
         name: this.agencyFC?.value,

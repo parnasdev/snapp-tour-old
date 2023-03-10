@@ -146,13 +146,13 @@ ul {
   select {
     font-weight: 600;
     font-size: 15px;
-    color: #b8b2b2;
+    color: #676767;
   }
 
   input {
     font-weight: 600;
     font-size: 15px !important;
-    color: #b8b2b2;
+    color: #4d4b4b;
 
     &::placeholder {
       font-weight: 600;
@@ -957,7 +957,12 @@ select::-ms-expand {
     }
   }
 }
-
+.mat-form-field-infix{
+  input{
+    font-family: 'IRANSans', 'sans-serif' !important;
+    text-align: right !important;
+  }
+}
 
 //mobile&tablet
 @media only screen and (max-width: 868px){

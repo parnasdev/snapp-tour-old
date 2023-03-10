@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {AppComponent} from "./app.component";
 import {PanelGuardService} from "./Core/guards/panel-guard.service";
 import {Page404Component} from "./common-project/page404/page404.component";
+import { DashboardGuardService } from './Core/guards/dashboard-guard.service';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
         loadChildren: () => import('./panel/panel.module').then(m => m.PanelModule)
       },{
         path: 'dashboard',
+        canActivate: [DashboardGuardService],
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
       }, {
         path: 'not-found',

@@ -17,7 +17,6 @@ declare let $: any;
 export class SidebarComponent implements OnInit {
 
   isLoading = false
-  userPermissions: PermissionDTO[] = [];
   userId = 0;
 
   constructor(public session: SessionService,
@@ -52,7 +51,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
     this.userId = this.session.getId();
     this.toggleMenu()
-    this.getUserPermission();
+    this.session.getUserPermission();
   }
 
   toggleMenu(): void {
@@ -89,26 +88,13 @@ export class SidebarComponent implements OnInit {
     this.message.custom('این گزینه در حال بروزرسانی می باشد')
   }
 
-  getUserPermission(): void {
-    this.userApi.getUserPermission().subscribe((res: any) => {
-      if (res.isDone) {
-        this.userPermissions = res.data;
-      } else {
-        this.message.custom(res.message);
-      }
-    }, (error: any) => {
-      this.message.error();
-      this.checkError.check(error);
-    });
-
-  }
 
   checkPermission(item: string) {
-    return !!this.userPermissions.find(x => x.name.split('.')[0] === item)
+    return !!this.session.userPermissions.find(x => x.name.split('.')[0] === item)
   }
 
   checkItemPermission(item: string) {
-    return !!this.userPermissions.find(x => x.name === item)
+    return !!this.session.userPermissions.find(x => x.name === item)
   }
 
   logOut(): void {

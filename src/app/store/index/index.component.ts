@@ -1,22 +1,22 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import SwiperCore, {Navigation, Pagination, Scrollbar, A11y} from 'swiper';
-import {ResponsiveService} from "../../Core/Services/responsive.service";
-import {TourApiService} from "../../Core/Https/tour-api.service";
-import {TourListRequestDTO, TourListResDTO} from "../../Core/Models/tourDTO";
-import {CalenderServices} from "../../Core/Services/calender-service";
-import {CityListRequestDTO, CityResponseDTO, FaqDTO} from "../../Core/Models/cityDTO";
-import {FormControl} from "@angular/forms";
-import {CityApiService} from "../../Core/Https/city-api.service";
-import {MessageService} from "../../Core/Services/message.service";
-import {HotelApiService} from "../../Core/Https/hotel-api.service";
-import {HotelListResponseDTO, HotelRequestDTO} from "../../Core/Models/hotelDTO";
-import {BlogApiService} from "../../Core/Https/blog-api.service";
-import {PostReqDTO, PostResDTO} from "../../Core/Models/BlogDTO";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { ResponsiveService } from "../../Core/Services/responsive.service";
+import { TourApiService } from "../../Core/Https/tour-api.service";
+import { TourListRequestDTO, TourListResDTO } from "../../Core/Models/tourDTO";
+import { CalenderServices } from "../../Core/Services/calender-service";
+import { CityListRequestDTO, CityResponseDTO, FaqDTO } from "../../Core/Models/cityDTO";
+import { FormControl } from "@angular/forms";
+import { CityApiService } from "../../Core/Https/city-api.service";
+import { MessageService } from "../../Core/Services/message.service";
+import { HotelApiService } from "../../Core/Https/hotel-api.service";
+import { HotelListResponseDTO, HotelRequestDTO } from "../../Core/Models/hotelDTO";
+import { BlogApiService } from "../../Core/Https/blog-api.service";
+import { PostReqDTO, PostResDTO } from "../../Core/Models/BlogDTO";
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
-import {SwiperComponent} from "swiper/angular";
-import {SettingService} from "../../Core/Services/setting.service";
-import {Title} from "@angular/platform-browser";
+import { SwiperComponent } from "swiper/angular";
+import { SettingService } from "../../Core/Services/setting.service";
+import { Title } from "@angular/platform-browser";
 
 declare let $: any;
 
@@ -29,7 +29,7 @@ export class IndexComponent implements OnInit {
   isMobile;
   isTablet;
   isLoading = false;
-  @ViewChild('swiper', {static: false}) swiper?: SwiperComponent;
+  @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
   cityFC = new FormControl('')
   tours: TourListResDTO[] = [];
   specialTours: TourListResDTO[] = [];
@@ -107,7 +107,8 @@ export class IndexComponent implements OnInit {
     const req: CityListRequestDTO = {
       type: null,
       hasHotel: true,
-      hasTour: true,
+      hasDestTour: true,
+      hasOriginTour: false,
       search: null,
       perPage: 20
     }
@@ -135,7 +136,8 @@ export class IndexComponent implements OnInit {
     const req: CityListRequestDTO = {
       type: null,
       hasHotel: true,
-      hasTour: false,
+      hasDestTour: false,
+      hasOriginTour: false,
       search: null,
       perPage: 40
     }
@@ -172,7 +174,11 @@ export class IndexComponent implements OnInit {
 
   getTours(): void {
     const reqDTO: TourListRequestDTO = {
-      city: null,
+      origin: null,
+      dest: null,
+      stDate: null,
+      night: null,
+      status: null,
       paginate: false,
       limit: 10,
       perPage: 10,
@@ -189,7 +195,11 @@ export class IndexComponent implements OnInit {
 
   getSpecialTours() {
     const reqDTO: TourListRequestDTO = {
-      city: null,
+      origin: null,
+      dest: null,
+      stDate: null,
+      night: null,
+      status: null,
       paginate: false,
       limit: 7,
       sortByDate: false,

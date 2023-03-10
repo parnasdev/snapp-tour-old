@@ -4,7 +4,6 @@ import {ListComponent} from "./list/list.component";
 import {AddComponent} from "./add/add.component";
 import {EditComponent} from "./edit/edit.component";
 import { ProfileComponent } from './profile/profile.component';
-import { DashboardComponent } from '../dashboard/dashboard/dashboard.component';
 
 const routes: Routes = [
     {
@@ -23,6 +22,10 @@ const routes: Routes = [
       path: 'edit/:userId',
       component: EditComponent,
     },
+  {
+    path:'',
+    component:ProfileComponent,
+  }
 ];
 
 @NgModule({

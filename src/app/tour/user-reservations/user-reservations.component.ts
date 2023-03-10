@@ -17,6 +17,7 @@ export class UserReservationsComponent implements OnInit {
   ) {
     this.isMobile = mobileService.isTablet()
     this.isDesktop = mobileService.isDesktop()
+    this.isTablet = mobileService.isTablet()
   }
 
   ngOnInit(): void {

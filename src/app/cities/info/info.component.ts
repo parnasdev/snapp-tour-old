@@ -94,7 +94,8 @@ export class InfoComponent implements OnInit {
       type: null,
       perPage: 20,
       search: null,
-      hasTour: true,
+      hasDestTour: true,
+      hasOriginTour: false,
       hasHotel: false,
     }
     this.cityApiService.getCities(this.cityReq).subscribe((res: any) => {
@@ -133,7 +134,11 @@ export class InfoComponent implements OnInit {
 
   getTours(): void {
     const reqDTO: TourListRequestDTO = {
-      city: this.city,
+      origin: '',
+      dest: '',
+      stDate: '',
+      night: 0,
+      status: '',
       paginate: false,
       limit: 5,
       perPage: 10,

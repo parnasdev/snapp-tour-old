@@ -22,7 +22,6 @@ export class InfoComponent implements OnInit {
     id: 0,
     name: '',
     site: '',
-    commissions: [],
     LicenseFileA: null,
     user: {name: '',family: ''},
     users: [],

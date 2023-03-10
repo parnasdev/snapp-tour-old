@@ -36,9 +36,9 @@ export class AgencyApiService {
       null,
       this.publicService.getDefaultHeaders());
   }
-  editAgency(req: AgencyEditDTO,id: number): any {
-    const url = this.serverControllerName + `editAgency/${id}`;
-    return this.http.patch<Result<any>>(
+  editAgency(req: AgencyEditDTO): any {
+    const url = environment.BACK_END_IP + `user/editProfile`;
+    return this.http.post<Result<any>>(
       url,
       req,
       this.publicService.getDefaultHeaders());

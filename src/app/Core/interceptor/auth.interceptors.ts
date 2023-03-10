@@ -13,7 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): any {
-    if (req.url.startsWith(environment.BACK_END_IP)) {
+    if (req.url.startsWith(environment.BACK_END_IP) || req.url.startsWith(environment.BACK_END_UPLOAD)) {
       let token = this.session.getToken();
 
       let headers = new HttpHeaders();

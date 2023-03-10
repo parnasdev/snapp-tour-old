@@ -1,0 +1,21 @@
+
+
+
+@media only screen and (max-width: 450px) {
+  .item-form {
+    width: 100% !important;
+  }
+  .item-form-2 {
+    width: 100% !important;
+  }
+}
+
+@media only screen and (min-width: 451px) and (max-width: 868px) {
+  .item-form {
+    width: 48% !important;
+  }
+  .item-form-2 {
+    width: 48% !important;
+  }
+}
+

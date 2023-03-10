@@ -11,12 +11,13 @@ import {ThumbnailsTourComponent} from './thumbnails-tour/thumbnails-tour.compone
 import {StoreComponent} from './store.component';
 import {AboutUsComponent} from './about-us/about-us.component';
 import {ContactUsComponent} from './contact-us/contact-us.component';
-import {SearchComponent} from './search/search.component';
+import {SearchSectionComponent} from './search-section/search-section.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatNativeDateModule} from '@angular/material/core';
 import {MatInputModule} from '@angular/material/input';
+
+import {MatNativeDateModule} from '@angular/material/core';
 import {MaterialModule} from "../common-project/persianDatePickerAdapter/material.module";
 import {ThumbnailTourInfoComponent} from './thumbnail-tour-info/thumbnail-tour-info.component';
 import {ThumbnailTourTwoComponent} from './thumbnail-tour-two/thumbnail-tour-two.component';
@@ -28,6 +29,7 @@ import {LightboxModule} from "ng-gallery/lightbox";
 import {GalleryModule} from "ng-gallery";
 import {CommonProjectModule} from "../common-project/common-project.module";
 import {MatBadgeModule} from '@angular/material/badge';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -39,10 +41,11 @@ import {MatBadgeModule} from '@angular/material/badge';
     StoreComponent,
     AboutUsComponent,
     ContactUsComponent,
-    SearchComponent,
+    SearchSectionComponent,
     ThumbnailTourInfoComponent,
     ThumbnailTourTwoComponent,
-    LoadingComponent
+    LoadingComponent,
+    SearchComponent
   ],
   exports: [
     IndexComponent,
@@ -53,7 +56,8 @@ import {MatBadgeModule} from '@angular/material/badge';
     ThumbnailTourInfoComponent,
     ThumbnailTourTwoComponent,
     LoadingComponent,
-    SearchComponent,
+    SearchSectionComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
@@ -61,16 +65,16 @@ import {MatBadgeModule} from '@angular/material/badge';
     ReactiveFormsModule,
     ToolsModule,
     SwiperModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
     MatNativeDateModule,
-    MatInputModule,
     MaterialModule,
     PipesModule,
     LightboxModule,
     GalleryModule,
     CommonProjectModule,
     MatBadgeModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
   ]
 })
 export class StoreModule {

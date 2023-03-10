@@ -8,28 +8,15 @@
       <div class="row">
         <div class="col-md-11 m-auto tour-parent">
           <div class="search">
-            <div class="box-search">
-              <div class="inp-form">
-                <prs-select-city [hasTour]="true" [inCommingCity]="cityFC.value" (citySelected)="citySelected($event)"
-                                 [cities]="cities"></prs-select-city>
-                <span class="text-danger"></span>
-              </div>
-              <div class="inp-form">
-                <select [formControl]="monthFC" name="">
-                  <option *ngFor="let month of months" [ngValue]="month">{{month.title}}</option>
-                </select>
+      <prs-search [inCommingSearchObject]="searchObject" (onSubmit)="search($event)"></prs-search>
 
-              </div>
-              <button class="btn-search" (click)="search()">جستجو کن !</button>
-            </div>
           </div>
           <div class="title-tour-parent">
             <div class="top">
               <div class="new-tour">
                 <img src="assets/img/Bookmark.svg" width="17" alt="">
                 <div class="text">
-                  <h3 *ngIf="city">لیست تور های شهر {{ this.cityInfo.name }}</h3>
-                  <h3 *ngIf="!city">لیست همه تورها</h3>
+                  <h3>لیست تور ها </h3>
                   <span>مشاهده مناسب ترین تور های لحظه آخری برای شما</span>
                 </div>
               </div>
@@ -52,11 +39,12 @@
             <prs-thumbnails-tour [tours]="tours" [sortByDate]="sortByDate"></prs-thumbnails-tour>
           </div>
           <div style="display: flex; flex-direction: row-reverse" class="w-75" *ngIf="tours.length === 0">
-            <prs-reserve-box [city]="cityInfo" [month]="monthFC.value.title"></prs-reserve-box>
+            <!-- <prs-reserve-box [city]="cityInfo" [month]="nights.title"></prs-reserve-box> -->
           </div>
         </div>
       </div>
     </div>
   </div>
+
 </section>
 <!--end-->

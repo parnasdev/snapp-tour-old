@@ -251,3 +251,9 @@
     margin-top: 15px !important;
   }
 }
+.row-search {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;;
+  column-gap: 12px;
+}

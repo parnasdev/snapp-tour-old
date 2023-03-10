@@ -1,23 +1,42 @@
 <div *ngIf="isDesktop" class="p-list-trip">
-    <div class="header-trip">
-      <span>عنوان تور</span>
-      <span>تاریخ رفت</span>
-      <span>تاریخ برگشت</span>
-      <span>وضعیت</span>
-      <span>کد پیگیری</span>
-      <span>عملیات</span>
+  <div class="header-trip">
+    <span>عنوان تور</span>
+    <span>تاریخ رفت</span>
+    <span>تاریخ برگشت</span>
+    <span>وضعیت</span>
+    <span>کد پیگیری</span>
+    <span>عملیات</span>
+  </div>
+  <div class="body-trip" *ngFor=" let item of [1,2,3,4,5]">
+    <span> تور مارماریس</span>
+    <span>25/25/25</span>
+    <span>26/26/26</span>
+    <span>در حال انتظار</span>
+    <span>85 </span>
+    <div>
+      <a routerLink="/dashboard/tour/info/{slug}" style="height: 35px !important;" class="btn-base px-4">جزییات</a>
     </div>
-    <div class="body-trip" *ngFor=" let item of [1,2,3,4,5]">
-      <span> تور مارماریس</span>
-      <span>25/25/25</span>
-      <span>26/26/26</span>
-      <span>در حال انتظار</span>
-      <span>85 </span>
-      <div>
-        <a routerLink="/dashboard/tour/info/{slug}" style="height: 35px !important;" class="btn-base px-4">جزییات</a>
-      </div>
-    </div>
+  </div>
 </div>
-<div *ngIf="isTablet">
-  <h1>milad</h1>
+<div class="p-list-trip-mobi" *ngIf="isTablet">
+  <div *ngFor="let item of[1,2,3,4,5,6]" class="item-mobi-trip">
+    <h2 class="title"><a href="">تور مارماریس تستی</a></h2>
+    <div class="item w-100 d-flex align-items-center justify-content-between">
+      <span class="r">تاریخ رفت</span>
+      <span class="l">25/25/25</span>
+    </div>
+    <div class="item w-100 d-flex align-items-center justify-content-between">
+      <span class="r">تاریخ برگشت</span>
+      <span class="l">25/25/25</span>
+    </div>
+    <div class="item w-100 d-flex align-items-center justify-content-between">
+      <span class="r">وضعیت</span>
+      <span class="l">در حال انتظار</span>
+    </div>
+    <div class="item w-100 d-flex align-items-center justify-content-between">
+      <span class="r">کد پیگیری</span>
+      <span class="l">25</span>
+    </div>
+    <a routerLink="/dashboard/tour/info/{slug}" class="btn-base">جزییات</a>
+  </div>
 </div>

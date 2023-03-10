@@ -8,46 +8,80 @@
         </div>
       </div>
       <div class="info-tour-body">
-<!--        <div class="top">-->
-<!--          <div class="item-info">-->
-<!--            <label>نام</label>-->
-<!--            <input [formControl]="nameFC" type="text">-->
-<!--            <div *ngIf="errorsService.hasError('name')">-->
-<!--              <span class="text-danger">{{errorsService.getError('name')}}</span>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <div class="item-info">-->
-<!--            <label>نام خانوادگی</label>-->
-<!--            <input [formControl]="familyFC" type="text">-->
-<!--            <div *ngIf="errorsService.hasError('family')">-->
-<!--              <span class="text-danger">{{errorsService.getError('family')}}</span>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
+        <h2 class="title">اطلاعات کاربر</h2>
         <div class="top">
-<!--          <div class="item-info-2">-->
-<!--            <div class="item-info w-100">-->
-<!--              <label>نام کاربری</label>-->
-<!--              <input [formControl]="usernameFC" type="text">-->
-<!--              <div *ngIf="errorsService.hasError('username')">-->
-<!--                <span class="text-danger">{{errorsService.getError('username')}}</span>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
+          <div class="item-info-2">
+            <div class="item-info w-100">
+              <label>نام </label>
+              <input [formControl]="nameFC" type="text">
+              <div *ngIf="errorsService.hasError('name')">
+                <span class="text-danger">{{errorsService.getError('name')}}</span>
+              </div>
+            </div>
+
+          </div>
+          <div class="item-info-2">
+            <div class="item-info w-100">
+              <label>نام خانوادگی</label>
+              <input [formControl]="familyFC" type="text">
+              <div *ngIf="errorsService.hasError('family')">
+                <span class="text-danger">{{errorsService.getError('family')}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="item-info-2">
+            <div class="item-info w-100">
+              <label>جنسیت</label>
+              <select name="" id="" [formControl]="genderFC">
+                <option value="0">مرد</option>
+                <option value="1">زن</option>
+
+              </select>
+              <div *ngIf="errorsService.hasError('gender')">
+                <span class="text-danger">{{errorsService.getError('gender')}}</span>
+              </div>
+            </div>
+
+          </div>
+          <div style="width: 32% !important;">
+            <label style="position: relative;top: 14px">شهر</label>
+            <prs-select-city [inCommingCity]="cityFC.value" [hasOriginTour]="false" [hasDestTour]="false"
+                             (citySelected)="citySelected($event)" [type]="1" [callCity]="true"></prs-select-city>
+          </div>
 
           <div class="item-info-2">
             <div class="item-info w-100">
+              <label>ایمیل</label>
+              <input [formControl]="emailFC" type="text">
+              <div *ngIf="errorsService.hasError('email')">
+                <span class="text-danger">{{errorsService.getError('email')}}</span>
+              </div>
+            </div>
+
+          </div>
+          <div class="item-info-2">
+            <div class="item-info w-100">
+              <label>کدملی</label>
+              <input [formControl]="idCodeFC" type="text">
+              <div *ngIf="errorsService.hasError('id_code')">
+                <span class="text-danger">{{errorsService.getError('id_code')}}</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <h2 style="margin: 2rem 0 0 0 !important;" class="title">اطلاعات آژانس</h2>
+        <div class="top">
+          <div class="item-info-2">
+            <div class="item-info w-100">
               <label>نام آژانس</label>
-              <input [formControl]="agencyFC" type="text">
+              <input [formControl]="agencyNameFC" type="text">
               <div *ngIf="errorsService.hasError('agency.name')">
                 <span class="text-danger">{{errorsService.getError('agency.name')}}</span>
               </div>
             </div>
 
           </div>
-
-        </div>
-        <div class="bottom">
           <div class="item-info-2">
             <div class="item-info w-100">
               <label>سایت</label>
@@ -59,18 +93,7 @@
           </div>
           <div class="item-info-2">
             <div class="item-info w-100">
-              <label>تعداد کارمندان</label>
-              <input [formControl]="crewCountFC" type="text">
-              <div *ngIf="errorsService.hasError('agency.crewCount')">
-                <span class="text-danger">{{errorsService.getError('agency.crewCount')}}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="bottom">
-          <div class="item-info-2">
-            <div class="item-info w-100">
-              <label>ایمیل</label>
+              <label>ایمیل شرکت</label>
               <input [formControl]="emailFC" type="text">
               <div *ngIf="errorsService.hasError('agency.email')">
                 <span class="text-danger">{{errorsService.getError('agency.email')}}</span>
@@ -88,8 +111,6 @@
             </div>
 
           </div>
-        </div>
-        <div class="bottom">
           <div class="item-info-2">
             <div class="item-info w-100">
               <label>تلفن آژانس</label>
@@ -99,102 +120,73 @@
               </div>
             </div>
           </div>
-<!--          <div class="item-info-2">-->
-<!--            <div class="item-info w-100">-->
-<!--              <label>شماره همراه</label>-->
-<!--              <input [formControl]="phoneFC" type="text">-->
-<!--              <div *ngIf="errorsService.hasError('phone')">-->
-<!--                <span class="text-danger">{{errorsService.getError('phone')}}</span>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-        </div>
-        <div class="address w-100">
-          <div style="width: 100% !important;" class="item-info-2">
-            <div class="item-info w-100">
-              <label>آدرس</label>
-              <textarea style="height: 70px;margin-top: 12px;width: 100%" [formControl]="addressFC" type="text"></textarea>
-              <div *ngIf="errorsService.hasError('agency.address')">
-                <span class="text-danger">{{errorsService.getError('agency.address')}}</span>
+          <div class="address w-100">
+            <div style="width: 100% !important;" class="item-info-2">
+              <div class="item-info w-100">
+                <label>آدرس آژانس</label>
+                <textarea style="height: 70px;margin-top: 12px;width: 100%" [formControl]="addressFC"
+                          type="text"></textarea>
+                <div *ngIf="errorsService.hasError('agency.address')">
+                  <span class="text-danger">{{errorsService.getError('agency.address')}}</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div class="bottom">
-          <div class="item-info-2">
-            <select name="" id="" [formControl]="commissionTypeFC" (change)="changeCommission()">
-              <option [value]="1">درصدی</option>
-              <option [value]="0">واحدی</option>
-            </select>
+
+          <div class="item-info-upload">
             <div class="item-info w-100">
-              <label>کمیسیون</label>
-              <input [formControl]="commissionFC" type="number" *ngIf="commissionTypeFC.value === 0 || commissionTypeFC.value === '0'" >
-              <input [formControl]="commissionFC" type="text" *ngIf="commissionTypeFC.value === 1  || commissionTypeFC.value === '1'">
-              <div *ngIf="errorsService.hasError('commission')">
-                <span class="text-danger">{{errorsService.getError('commission')}}</span>
+              <div class="top-one">
+                <div class="item-info w-100">
+
+                  <span>لوگو</span>
+
+                  <input class="file-input-upload" type="file" id="file" placeholder="لوگو را آپلود کنید"
+                         (change)="getLogo($event)">
+                </div>
+                <div class="single-img-upload-parent" *ngIf="logo?.url !== ''">
+                  <img [src]="logo ? logo.url : ''" width="100%" height="200" alt="">
+                </div>
+              </div>
+              <div *ngIf="errorsService.hasError('agency.logo')">
+                <span class="text-danger">{{errorsService.getError('agency.logo')}}</span>
               </div>
             </div>
+
           </div>
-          <!--          <div class="item-info-upload">-->
-          <!--            <div class="item-info w-100">-->
-          <!--              <div class="top-one">-->
-          <!--                <div class="item-info w-100">-->
-          <!--&lt;!&ndash;                  <button class="btn-upload-img" (click)="getLogo()">لوگو خود را آپلود کنید</button>&ndash;&gt;-->
-          <!--                  <span>لوگو</span>-->
-
-          <!--                  <input class="file-input-upload" type="file"-->
-          <!--                         id="file"-->
-          <!--                         placeholder="لوگو را آپلود کنید"-->
-
-          <!--                         (change)="getLogo($event)">-->
-          <!--                </div>-->
-          <!--                <div class="single-img-upload-parent" *ngIf="logo !== ''" >-->
-          <!--                  <img [src]="publicService.setPrefix(logo)" width="100%" height="200" alt="">-->
-          <!--                </div>-->
-          <!--              </div>-->
-          <!--              <div *ngIf="errorsService.hasError('agency.logo')">-->
-          <!--                <span class="text-danger">{{errorsService.getError('agency.logo')}}</span>-->
-          <!--              </div>-->
-          <!--            </div>-->
-
-          <!--          </div>-->
           <div class="item-info-upload">
-            <!--            <div class="item-info w-100">-->
-            <!--              <div class="top-one">-->
-            <!--                <div class="item-info w-100">-->
-            <!--<span>مجوز بند الف</span>-->
-            <!--                  <input class="file-input-upload" type="file"-->
-            <!--                         id="file"-->
-            <!--                         placeholder="مجوز بند الف را آپلود کنید"-->
+            <div class="item-info w-100">
+              <div class="top-one">
+                <div class="item-info w-100">
+                  <span>مجوز بند الف</span>
+                  <input class="file-input-upload" type="file" id="file" placeholder="مجوز بند الف را آپلود کنید"
+                         (change)="getLicenseA($event)">
+                </div>
+                <div class="single-img-upload-parent" *ngIf="LicenseFileA?.url !== ''">
+                  <img [src]="LicenseFileA ? LicenseFileA.url : ''" width="100%" height="200" alt="">
+                </div>
+              </div>
+              <div *ngIf="errorsService.hasError('agency.LicenseFileA')">
+                <span class="text-danger">{{errorsService.getError('agency.LicenseFileA')}}</span>
+              </div>
+            </div>
+            <div style="margin-right: 15px" class="item-info w-100">
+              <div class="top-one">
+                <div class="item-info w-100">
+                  <span>مجوز بند ب</span>
 
-            <!--                         (change)="getLicenseA($event)">-->
-            <!--                </div>-->
-            <!--                <div class="single-img-upload-parent" *ngIf="LicenseFileA !== ''" >-->
-            <!--                  <img [src]="publicService.setPrefix(LicenseFileA)" width="100%" height="200" alt="">-->
-            <!--                </div>-->
-            <!--              </div>-->
-            <!--              <div *ngIf="errorsService.hasError('agency.LicenseFileA')">-->
-            <!--                <span class="text-danger">{{errorsService.getError('agency.LicenseFileA')}}</span>-->
-            <!--              </div>-->
-            <!--            </div>-->
-            <!--            <div style="margin-right: 15px" class="item-info w-100">-->
-            <!--              <div class="top-one">-->
-            <!--                <div class="item-info w-100">-->
-            <!--                  <span>مجوز بند ب</span>-->
-
-            <!--                  <input class="file-input-upload" type="file"-->
-            <!--                         id="file"-->
-            <!--                         placeholder="مجوز بند ب را آپلود کنید"-->
-            <!--                         (change)="getLicenseB($event)">-->
-            <!--                </div>-->
-            <!--                <div class="single-img-upload-parent" *ngIf="LicenseFileB !== ''" >-->
-            <!--                  <img [src]="publicService.setPrefix(LicenseFileB)" width="100%" height="200" alt="">-->
-            <!--                </div>-->
-            <!--              </div>-->
-            <!--              <div *ngIf="errorsService.hasError('agency.LicenseFileB')">-->
-            <!--                <span class="text-danger">{{errorsService.getError('agency.LicenseFileB')}}</span>-->
-            <!--              </div>-->
-            <!--            </div>-->
+                  <input class="file-input-upload" type="file" id="file" placeholder="مجوز بند ب را آپلود کنید"
+                         (change)="getLicenseB($event)">
+                </div>
+                <div class="single-img-upload-parent" *ngIf="LicenseFileB?.url !==''">
+                  <img [src]="LicenseFileB ? LicenseFileB.url : ''" width="100%" height="200" alt="">
+                </div>
+              </div>
+              <div *ngIf="errorsService.hasError('agency.LicenseFileB')">
+                <span class="text-danger">{{errorsService.getError('agency.LicenseFileB')}}</span>
+              </div>
+            </div>
           </div>
         </div>
         <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="submit()" [isLoading]="isLoading"
@@ -204,6 +196,4 @@
   </form>
 
 
-
 </div>
-

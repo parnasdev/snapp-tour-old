@@ -1,3 +1,5 @@
+import { UploadResDTO } from "src/app/agencies/edit/edit.component"
+
 export interface AgencyDTO {
   id: number
   name: string
@@ -11,8 +13,7 @@ export interface AgencyDTO {
   logo: string
   necessaryPhone: string
   tell: string;
-  commissions: number[]
-  commission?: number
+
   site: string
   user?: {name: string, family: string}
 
@@ -39,16 +40,28 @@ export interface AgencyUserDTO {
   password: string
 }
 export interface AgencyEditDTO {
-  name: string
-  logo: string | null
-  LicenseFileA: string | null
-  id: number
-  commission: number;
-  LicenseFileB: string | null
-  email: string
-  address: string
-  tell: string
-  site: string
-  crewCount: number
-  necessaryPhone: string
+    username: string;
+    family: string;
+    name: string;
+    phone: string;
+    city: number;
+    id_code: string;
+    gender: string;
+    email:string;
+    agency: {
+      name: string;
+      logo: string;
+      isManager: null;
+      LicenseFileA: string;
+      id: number;
+      LicenseFileB: string;
+      email: string;
+      address: string;
+      tell: string;
+      site: string;
+      necessaryPhone: string;
+    };
+    birthDay: string;
+    createdAt: string;
+    role: string;
 }

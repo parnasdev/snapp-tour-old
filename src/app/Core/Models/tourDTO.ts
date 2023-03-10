@@ -1,14 +1,18 @@
-import {CityDTO, CityResponseDTO} from "./cityDTO";
-import {RoomTypeListDTO, RoomTypePriceDTO, RoomTypeSetDTO} from "./roomTypeDTO";
-import {PackageDTO} from "./hotelDTO";
+import { CityDTO, CityResponseDTO } from "./cityDTO";
+import { RoomTypePriceDTO } from "./roomTypeDTO";
+
 
 export interface TourListRequestDTO {
+  origin: string | null;
+  dest: string| null;
+  stDate: string | null;
+  night: number | null;
+  status: string | null;
   perPage: number;
   paginate: boolean;
   search: string | null;
   isAdmin?: boolean | null;
   month?: string | null;
-  city: string | null;
   type: number | null;
   sortByDate: boolean;
   limit?: number;
@@ -237,3 +241,9 @@ export interface Tour {
   status: string;
   endCity: CityResponseDTO
 }
+
+export interface DatesResDTO {
+  date: string;
+  nights: number[];
+}
+  

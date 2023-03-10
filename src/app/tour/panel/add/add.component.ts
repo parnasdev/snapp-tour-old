@@ -240,7 +240,7 @@ export class AddComponent implements OnInit {
       if (res.isDone) {
         this.message.showMessageBig(res.message);
         this.errorService.clear();
-        this.router.navigateByUrl('/tour');
+        this.router.navigateByUrl('/panel/tour');
       }
     }, (error: any) => {
       this.isLoading = false;
@@ -474,8 +474,9 @@ export class AddComponent implements OnInit {
     const req: CityListRequestDTO = {
       type: null,
       hasHotel: true,
-      hasTour: false,
+      hasOriginTour: false,
       search: null,
+      hasDestTour: false,
       perPage: 20
     }
     this.cityApi.getCities(req).subscribe((res: any) => {
