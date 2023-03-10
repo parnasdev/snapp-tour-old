@@ -4,12 +4,13 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-11 m-auto parent-form">
-            <form class="box-form" (ngSubmit)="validate()">
+            <form *ngIf="!showBox" class="box-form" (ngSubmit)="validate()">
               <a routerLink="/">
                 <img class="logo-website" src="assets/img/logo-header.png" width="200" alt="">
               </a>
+
               <div class="box-form">
-                <h2 *ngIf="!isForgetPassword">ورود / ثبت نام آژانس</h2>
+                <h2 *ngIf="!isForgetPassword">ورود / ثبت  آژانس</h2>
                 <h2 *ngIf="isForgetPassword">فراموشی رمز عبور</h2>
                 <div class="form">
                   <div class="item">
@@ -34,6 +35,13 @@
                 </div>
               </div>
             </form>
+
+            <div *ngIf="showBox" style="background: white;padding: 14px;height: auto;width: 100%;display: grid;place-items:center;border:1px solid #c6c6c6;border-radius: 8px;">
+              <span>کاربر گرامی شما در سیستم اسنپ تور کاربر عادی هستید. آیا تمایل  به تبدیل شدن به آژانس را دارید؟</span>
+              <span>در نظر داشته باشید که تمامی امکانات کاربر برای شما فعال باقی خواهد ماند</span>
+              <button (click)="checkSubmit(true)">تایید</button>
+              <button (click)="checkSubmit(false)">عدم تایید</button>
+            </div>
   
           </div>
         </div>

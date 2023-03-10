@@ -188,11 +188,11 @@ export interface CityTourInfoDTO {
 
 export interface ReserveReqDTO {
   package_id: number | null;
-  phone: string;
-  count: number;
+  phone?: string;
+  count?: number;
   month?: string;
   city_id?: string;
-  noPackage: boolean;
+  noPackage?: boolean;
 }
 
 export interface ReserveListReqDTO {

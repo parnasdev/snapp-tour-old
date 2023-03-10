@@ -21,6 +21,7 @@ export class ValidateComponent implements OnInit {
   @Input() isForgetPassword = false;
   @Output() forgetPassword = new EventEmitter();
   @Input() phone = '';
+  showBox = false;
   phoneNumberFC = new FormControl('', Validators.required);
   isLoading = false;
 
@@ -60,22 +61,6 @@ export class ValidateComponent implements OnInit {
     });
   }
 
-  // convertUserToAgency(): void {
-  //   this.isLoading = true;
-  //   this.api.convertUserToAgency().subscribe((res: any) => {
-  //     this.isLoading = false;
-  //     if (res.isDone) {
-  //       this.checkAuthMode(res.data);
-  //     } else {
-  //       this.message.custom(res.message);
-  //     }
-  //   }, (error: any) => {
-  //     this.errorService.check(error);
-  //     this.errorService.recordError(error.error.data);
-  //     this.isLoading = false;
-  //   });
-  // }
-
   sendSms(phoneNumber: string, tokenType: string): void {
     this.api.sendSms(phoneNumber, tokenType).subscribe((res: any) => {
       if (res.isDone) {
@@ -94,12 +79,16 @@ export class ValidateComponent implements OnInit {
   }
 
   checkAuthMode(validateData: ValidateResDTO): void {
+    
     if (validateData.authMode === 1) {
+      if(validateData.accountType == 'user') {
+        this.showBox = true;
+      } else {
+        
+      }
       // login
       if (this.isForgetPassword) {
         this.sendSms(this.phoneNumberFC.value, 'forget');
-      // } else if () {
-        
       } else {
         this.router.navigateByUrl('/auth/login/' + this.phoneNumberFC.value);
       }

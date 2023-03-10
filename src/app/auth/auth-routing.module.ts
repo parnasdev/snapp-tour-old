@@ -5,6 +5,7 @@ import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {ForgetComponent} from "./forget/forget.component";
 import { AgencyValidateComponent } from './agency-validate/agency-validate.component';
+import { AgencyLoginComponent } from './agency-login/agency-login.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
   {
     path: 'partner',
     component: AgencyValidateComponent
+  },
+  {
+    path: 'partner/login/:phoneNumber',
+    component: AgencyLoginComponent
   },
   {
     path: 'login/:phoneNumber',

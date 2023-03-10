@@ -11,6 +11,8 @@ import {ResendCodeComponent} from './resend-code/resend-code.component';
 import {StoreModule} from "../store/store.module";
 import {RouterModule} from "@angular/router";
 import { AgencyValidateComponent } from './agency-validate/agency-validate.component';
+import { AgencyLoginComponent } from './agency-login/agency-login.component';
+import { AuthPopupComponent } from './auth-popup/auth-popup.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { AgencyValidateComponent } from './agency-validate/agency-validate.compo
     RegisterComponent,
     ForgetComponent,
     ResendCodeComponent,
-    AgencyValidateComponent
+    AgencyValidateComponent,
+    AgencyLoginComponent,
+    AuthPopupComponent
   ],
     exports: [
         RegisterComponent,

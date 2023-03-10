@@ -1,4 +1,5 @@
 import {Component, Input, OnInit, Output, EventEmitter, SimpleChanges} from '@angular/core';
+import { ConvertRequestDTO, ValidateResDTO } from 'src/app/Core/Models/AuthDTO';
 
 import { ValidateComponent } from '../validate/validate.component';
 declare var $: any;
@@ -7,7 +8,7 @@ declare var $: any;
   templateUrl: './agency-validate.component.html',
   styleUrls: ['./agency-validate.component.scss']
 })
-export class AgencyValidateComponent extends ValidateComponent  implements OnInit {
+export class AgencyValidateComponent extends ValidateComponent implements OnInit {
 
   sendSms(phoneNumber: string, tokenType: string): void {
     this.api.sendSms(phoneNumber, tokenType).subscribe((res: any) => {
@@ -15,6 +16,7 @@ export class AgencyValidateComponent extends ValidateComponent  implements OnIni
         if (this.isForgetPassword) {
           this.forgetPassword.emit(true);
         } else {
+          
           this.router.navigate(['/auth/register/' + phoneNumber],{ queryParams: {type: '4'}});
         }
       } else {
@@ -24,5 +26,13 @@ export class AgencyValidateComponent extends ValidateComponent  implements OnIni
       this.errorService.check(error)
       // alert('مشکلی در سرور رخ داده است');
     });
+  }
+
+  checkSubmit(flag: boolean) {
+    if (flag) {
+      this.router.navigateByUrl('/auth/partner/login/' + this.phoneNumberFC.value);
+    } else {
+      this.showBox = false;
+    }
   }
 }

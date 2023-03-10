@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Route } from '@angular/router';
 
 @Component({
   selector: 'prs-user-reservation-info',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserReservationInfoComponent implements OnInit {
 
-  constructor() { }
+  tourId = '';
+
+  constructor(public route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    // @ts-ignore
+    this.tourId = this.route.snapshot.paramMap.get('userId');
   }
 
 }
