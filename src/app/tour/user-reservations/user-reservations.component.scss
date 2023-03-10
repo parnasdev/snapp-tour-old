@@ -1,0 +1,102 @@
+@media only screen and (max-width: 450px){
+  .p-list-trip-mobi{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+    .item-mobi-trip{
+      width: 100%;
+      background: var(--white);
+      border-radius: 8px;
+      height: auto;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 1rem;
+      .title{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        a{
+          color: var(--text-color);
+          font-size: 15px;
+          font-weight: 700;
+        }
+      }
+      .item{
+        border-bottom: 1px solid #C6C6C6;
+        height: 50px;
+        .r{
+          font-weight: 500;
+          color: var(--base-color);
+          font-size: 14px;
+        }
+        .l{
+          font-weight: 500;
+          color: var(--text-color);
+          font-size: 14px;
+        }
+      }
+      .btn-base{
+        width: 100% !important;
+        margin-top: 12px;
+        display: grid;
+        place-items: center;
+      }
+    }
+  }
+}
+
+
+@media only screen and (min-width: 451px)and (max-width: 868px){
+  .p-list-trip-mobi{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
+    .item-mobi-trip{
+      width: 49%;
+      background: var(--white);
+      border-radius: 8px;
+      height: auto;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 1rem;
+      .title{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        a{
+          color: var(--text-color);
+          font-size: 15px;
+          font-weight: 700;
+        }
+      }
+      .item{
+        border-bottom: 1px solid #C6C6C6;
+        height: 50px;
+        .r{
+          font-weight: 500;
+          color: var(--base-color);
+          font-size: 14px;
+        }
+        .l{
+          font-weight: 500;
+          color: var(--text-color);
+          font-size: 14px;
+        }
+      }
+      .btn-base{
+        width: 100% !important;
+        margin-top: 12px;
+        display: grid;
+        place-items: center;
+      }
+    }
+  }
+}
