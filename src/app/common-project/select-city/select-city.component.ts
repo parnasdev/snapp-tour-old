@@ -17,6 +17,7 @@ export class SelectCityComponent implements OnInit, OnChanges {
   @Input() callCity: boolean = false;
   @Input() hasHotel: boolean = false;
   @Input() hasOriginTour: boolean = false;
+  @Input() type: number | null = null;
   @Input() hasDestTour: boolean = false;
   @Input() inCommingCity: any
   isLoading = false
@@ -63,7 +64,7 @@ export class SelectCityComponent implements OnInit, OnChanges {
 
     this.isLoading = true
     const req: CityListRequestDTO = {
-      type: null,
+      type: this.type,
       hasHotel: this.hasHotel,
       hasOriginTour: this.hasOriginTour,
       hasDestTour: this.hasDestTour,

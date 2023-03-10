@@ -40,17 +40,19 @@
           <div class="item-info-2">
             <div class="item-info w-100">
               <label>جنسیت</label>
-                <select name="" id="" [formControl]="genderFC">
-                  <option value="0">مرد</option>
-                  <option value="1">زن</option>
+              <select name="" id="" [formControl]="genderFC">
+                <option value="0">مرد</option>
+                <option value="1">زن</option>
 
-                </select>
+              </select>
               <div *ngIf="errorsService.hasError('gender')">
                 <span class="text-danger">{{errorsService.getError('gender')}}</span>
               </div>
             </div>
 
           </div>
+          <prs-select-city [inCommingCity]="cityFC.value" [hasOriginTour]="false" [hasDestTour]="false" 
+            (citySelected)="citySelected($event)" [type]="1" [callCity]="true"></prs-select-city>
           <div class="item-info-2">
             <div class="item-info w-100">
               <label>ایمیل</label>
@@ -170,12 +172,12 @@
           </div>
         </div>
         <div class="bottom">
-          
+
           <div class="item-info-upload">
             <div class="item-info w-100">
               <div class="top-one">
                 <div class="item-info w-100">
-        
+
                   <span>لوگو</span>
 
                   <input class="file-input-upload" type="file" id="file" placeholder="لوگو را آپلود کنید"

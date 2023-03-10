@@ -15,7 +15,7 @@ import { catchError, map } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { HttpErrorResponse, HttpEventType, HttpResponse } from '@angular/common/http';
 import { UserApiService } from 'src/app/Core/Https/user-api.service';
-import { LoginResponseDTO } from 'src/app/Core/Models/AuthDTO';
+import { CityResponseDTO } from 'src/app/Core/Models/cityDTO';
 
 export interface UploadResDTO {
   path: string;
@@ -220,7 +220,10 @@ export class EditComponent implements OnInit {
   }
 
 
+  citySelected(city: CityResponseDTO): void {
+    this.cityFC.setValue(city.slugEn)
 
+  }
   setValue(): void {
     this.nameFC.setValue(this.info.user.name)
     this.emailFC.setValue(this.info.user.email)
