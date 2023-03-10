@@ -1,9 +1,10 @@
-import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {PublicService} from "../Services/public.service";
-import {environment} from "../../../environments/environment";
-import {Result} from "../Models/result";
+import { Injectable } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
+import { PublicService } from "../Services/public.service";
+import { environment } from "../../../environments/environment";
+import { Result } from "../Models/result";
 import {
+  DatesResDTO,
   ReserveListReqDTO, ReserveListResDTO,
   ReserveReqDTO,
   TourListRequestDTO,
@@ -20,7 +21,7 @@ export class TourApiService {
   private serverControllerName = 'tour/';
 
   constructor(public http: HttpClient,
-              public publicService: PublicService) {
+    public publicService: PublicService) {
     this.serverControllerName =
       environment.BACK_END_IP + this.serverControllerName;
   }
@@ -80,7 +81,7 @@ export class TourApiService {
   addLogMessage(id: number, message: string): any {
     const strUrl = environment.BACK_END_IP + `reserve/addMessage/${id}`;
     return this.http.post<Result<any>>(strUrl,
-      {message: message},
+      { message: message },
       this.publicService.getDefaultHeaders());
   }
 
@@ -103,5 +104,9 @@ export class TourApiService {
       title
     }
     return this.http.post<Result<string>>(strUrl, entity, this.publicService.getDefaultHeaders());
+  }
+  getDates(originEn: string, destEn: string): any {
+    const strUrl = this.serverControllerName + `getDates/${originEn}/${destEn}`;
+    return this.http.get<Result<DatesResDTO[]>>(strUrl, this.publicService.getDefaultHeaders());
   }
 }

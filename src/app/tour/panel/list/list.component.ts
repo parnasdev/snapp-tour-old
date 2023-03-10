@@ -1,19 +1,19 @@
-import {Component, OnInit} from '@angular/core';
-import {TourListRequestDTO, TourListResDTO} from "../../../Core/Models/tourDTO";
-import {TourApiService} from "../../../Core/Https/tour-api.service";
-import {ActivatedRoute} from "@angular/router";
-import {CheckErrorService} from "../../../Core/Services/check-error.service";
-import {ErrorsService} from "../../../Core/Services/errors.service";
-import {MessageService} from "../../../Core/Services/message.service";
-import {CalenderServices} from "../../../Core/Services/calender-service";
-import {CityListRequestDTO, CityResponseDTO} from "../../../Core/Models/cityDTO";
-import {CityApiService} from "../../../Core/Https/city-api.service";
-import {FormControl} from "@angular/forms";
-import {MatDialog} from "@angular/material/dialog";
-import {AlertDialogComponent, AlertDialogDTO} from "../../../common-project/alert-dialog/alert-dialog.component";
-import {LogsComponent} from "../logs/logs.component";
-import {PublicService} from "../../../Core/Services/public.service";
-import {SettingService} from "../../../Core/Services/setting.service";
+import { Component, OnInit } from '@angular/core';
+import { TourListRequestDTO, TourListResDTO } from "../../../Core/Models/tourDTO";
+import { TourApiService } from "../../../Core/Https/tour-api.service";
+import { ActivatedRoute } from "@angular/router";
+import { CheckErrorService } from "../../../Core/Services/check-error.service";
+import { ErrorsService } from "../../../Core/Services/errors.service";
+import { MessageService } from "../../../Core/Services/message.service";
+import { CalenderServices } from "../../../Core/Services/calender-service";
+import { CityListRequestDTO, CityResponseDTO } from "../../../Core/Models/cityDTO";
+import { CityApiService } from "../../../Core/Https/city-api.service";
+import { FormControl } from "@angular/forms";
+import { MatDialog } from "@angular/material/dialog";
+import { AlertDialogComponent, AlertDialogDTO } from "../../../common-project/alert-dialog/alert-dialog.component";
+import { LogsComponent } from "../logs/logs.component";
+import { PublicService } from "../../../Core/Services/public.service";
+import { SettingService } from "../../../Core/Services/setting.service";
 
 declare let $: any;
 
@@ -25,7 +25,11 @@ declare let $: any;
 export class ListComponent implements OnInit {
   status = 'All'
   tourReq: TourListRequestDTO = {
-    city: null,
+    origin: null,
+    dest: null,
+    night: null,
+    status: null,
+    stDate: null,
     paginate: true,
     sortByDate: false,
     isAdmin: true,
@@ -45,15 +49,15 @@ export class ListComponent implements OnInit {
   printContent = '';
 
   constructor(public tourApiService: TourApiService,
-              public setting: SettingService,
-              public cityApi: CityApiService,
-              public dialog: MatDialog,
-              public route: ActivatedRoute,
-              public checkErrorService: CheckErrorService,
-              public calService: CalenderServices,
-              public errorService: ErrorsService,
-              public publicService: PublicService,
-              public message: MessageService) {
+    public setting: SettingService,
+    public cityApi: CityApiService,
+    public dialog: MatDialog,
+    public route: ActivatedRoute,
+    public checkErrorService: CheckErrorService,
+    public calService: CalenderServices,
+    public errorService: ErrorsService,
+    public publicService: PublicService,
+    public message: MessageService) {
   }
 
   ngOnInit(): void {
@@ -68,7 +72,11 @@ export class ListComponent implements OnInit {
   getTours(): void {
     this.loading = true;
     this.tourReq = {
-      city: null,
+      origin: null,
+      dest: null,
+      night: null,
+      status: null,
+      stDate: null,
       paginate: true,
       sortByDate: this.sortByDate,
       isAdmin: true,
@@ -100,14 +108,15 @@ export class ListComponent implements OnInit {
     const req: CityListRequestDTO = {
       type: this.originCityTypeFC.value,
       hasHotel: false,
-      hasTour: false,
+      hasDestTour: false,
+      hasOriginTour: false,
       search: null,
       perPage: 10
     }
     this.cityApi.getCities(req).subscribe((res: any) => {
       if (res.isDone) {
         this.originCities = res.data;
-        this.tourReq.city = this.originCities[0].id.toString();
+        this.tourReq.origin = this.originCities[0].id.toString();
         this.getTours();
       }
     }, (error: any) => {
@@ -180,7 +189,7 @@ export class ListComponent implements OnInit {
   openLogs(id: any): void {
     const dialog = this.dialog.open(LogsComponent, {
       width: '30%',
-      data: {id: id, type: 'tour'}
+      data: { id: id, type: 'tour' }
     });
     dialog.afterClosed().subscribe(result => {
     });
@@ -213,7 +222,7 @@ export class ListComponent implements OnInit {
     popupWin.document.close();
   }
 
-  exportTour(slug:string) {
+  exportTour(slug: string) {
     this.loading = true;
     this.tourApiService.exportTour(slug).subscribe((res: any) => {
       if (res.isDone) {

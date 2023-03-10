@@ -50,7 +50,8 @@ export class ListComponent implements OnInit {
       perPage: 20,
       search: null,
       type: this.typeFC.value,
-      hasTour: this.hasTour,
+      hasDestTour: false,
+      hasOriginTour: false,
       hasHotel: this.hasHotel
     }
   }
