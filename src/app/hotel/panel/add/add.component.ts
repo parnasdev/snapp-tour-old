@@ -156,7 +156,8 @@ export class AddComponent implements OnInit {
     const req: CityListRequestDTO = {
       type: this.cityTypeFC.value,
       hasHotel: false,
-      hasTour: false,
+      hasDestTour: false,
+      hasOriginTour: false,
       search: null,
       perPage: 20
     }

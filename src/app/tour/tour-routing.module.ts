@@ -17,9 +17,6 @@ const routes: Routes = [
   {
     path: '',
     component: ListComponent
-  }, {
-    path: ':city',
-    component: ListComponent
   },
   {
     path: ':city/:slug',

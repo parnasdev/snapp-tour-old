@@ -1,65 +1,29 @@
-<section class="s-search">
-  <div class="prs-responsive">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-11 m-auto p-header d-flex align-items-center justify-content-between p-search">
-          <div class="box-search">
-            <div class="p-tab-search" *ngIf="!isMobile">
-              <button class="btn-tour">
-                <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 32 32" fill="currentColor"
-                  focusable="false" class="chakra-icon css-5audal">
-                  <path
-                    d="M25.6 28.8c.4-.4.533-1.067.533-1.6l-3.467-14.4 6.4-6.4c.933-.933.933-2.533 0-3.467s-2.533-.933-3.467 0l-6.4 6.4L4.799 6c-.533-.133-1.2 0-1.6.533-.8.8-.533 2.133.4 2.667l10.267 5.333-6.4 6.4-3.733-.533c-.267 0-.533 0-.667.267l-.667.667c-.4.4-.267 1.067.133 1.333l4.267 2.4 2.4 4.267c.267.533.933.533 1.333.133l.667-.667c.133-.133.267-.4.267-.667l-.533-3.733 6.4-6.4 5.333 10.267c.667 1.067 2 1.333 2.933.533z">
-                  </path>
-                </svg>
-                <span>تور</span>
-              </button>
-            </div>
-            <div class="title-search">
-              <h2 class="w-100">رزرو آنلاین تور</h2>
-            </div>
-            <div class="row-search">
-              <div class="inp-form">
-                <prs-select-city [hasTour]="true" [inCommingCity]="cityFC.value" (citySelected)="citySelected($event)"
-                  [cities]="cities"></prs-select-city>
-
-                <prs-select-city [hasTour]="true" [inCommingCity]="cityFC.value" (citySelected)="citySelected($event)"
-                  [cities]="cities"></prs-select-city>
-                <span class="text-danger">{{errorService.getError('city_id')}}</span>
-              </div>
-              <div class="inp-form">
-
-                <select [formControl]="monthFC" name="">
-                  <option *ngFor="let month of months" [ngValue]="month">{{month.title}}</option>
-                </select>
-              </div>
-              <button class="btn-search font-16" (click)="search()">جست و جو</button>
-            </div>
-          </div>
-        </div>
-      </div>
+<div class="row-search">
+    <div class="inp-form">
+      <prs-select-city [inCommingCity]="originFC.value"
+      [hasOriginTour]="true"
+        (citySelected)="originSelected($event)" [callCity]="true"></prs-select-city>
     </div>
+  <div class="inp-form">
+    <prs-select-city [hasDestTour]="true" [callCity]="true" [inCommingCity]="destFC.value"
+    (citySelected)="destSelected($event)"></prs-select-city>
   </div>
-</section>
+    <div class="inp-form">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <input class="input-parent"
+               matInput [formControl]="stDateFC"
+               placeholder="تاریخ ورود به هتل"
+               [matDatepickerFilter]="myFilter"
+               [matDatepicker]="picker3"
+               (click)="picker3.open()">
+        <mat-datepicker #picker3></mat-datepicker>
+      </mat-form-field>
+    </div>
 
-
-<!--<section class="section-one" [style.background-image]="'url(' + images[rnd] + ')'">-->
-<!--  <div class="bg-section-one"></div>-->
-<!--  <div class="prs-responsive">-->
-<!--    <div class="container-fluid">-->
-<!--      <div class="row">-->
-<!--        <div class="col-md-10 m-auto parent-box-search">-->
-<!--          <h6>#بفرمائید ـ سفر</h6>-->
-<!--          <h1>انتخاب بهترین تور فقط با یک کلیک !</h1>-->
-<!--          <div class="box-search">-->
-<!--         -->
-<!--          </div>-->
-<!--          <span class="Continue-trip">سفر ادامه دارد (اسکرول کنید)</span>-->
-<!--          <a class="button-down-scroll">-->
-<!--            <i class="icon-scroll-down icon-down-open"></i>-->
-<!--          </a>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</section>-->
+    <div class="inp-form">
+      <select [formControl]="nightFC" name="">
+        <option *ngFor="let x of nights" [value]="x">{{x + 'شب '}}</option>
+      </select>
+    </div>
+    <button class="btn-search font-16" (click)="search()">جست و جو</button>
+  </div>

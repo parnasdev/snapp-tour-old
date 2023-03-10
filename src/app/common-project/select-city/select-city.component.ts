@@ -1,10 +1,10 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import {MessageService} from "../../Core/Services/message.service";
-import {FormControl} from "@angular/forms";
-import {Observable} from "rxjs";
-import {map, startWith} from "rxjs/operators";
-import {CityListRequestDTO, CityResponseDTO} from "../../Core/Models/cityDTO";
-import {CityApiService} from "../../Core/Https/city-api.service";
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { MessageService } from "../../Core/Services/message.service";
+import { FormControl } from "@angular/forms";
+import { Observable } from "rxjs";
+import { map, startWith } from "rxjs/operators";
+import { CityListRequestDTO, CityResponseDTO } from "../../Core/Models/cityDTO";
+import { CityApiService } from "../../Core/Https/city-api.service";
 
 @Component({
   selector: 'prs-select-city',
@@ -16,7 +16,8 @@ export class SelectCityComponent implements OnInit, OnChanges {
   @Input() cities: CityResponseDTO[] = []
   @Input() callCity: boolean = false;
   @Input() hasHotel: boolean = false;
-  @Input() hasTour: boolean = false;
+  @Input() hasOriginTour: boolean = false;
+  @Input() hasDestTour: boolean = false;
   @Input() inCommingCity: any
   isLoading = false
 
@@ -29,7 +30,6 @@ export class SelectCityComponent implements OnInit, OnChanges {
   filteredOptions!: Observable<CityResponseDTO[]>;
 
   ngOnInit() {
-
   }
 
   private _filter(value: string): CityResponseDTO[] {
@@ -40,7 +40,6 @@ export class SelectCityComponent implements OnInit, OnChanges {
 
   changed(item: any): void {
     this.citySelected.emit(item)
-
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -48,21 +47,26 @@ export class SelectCityComponent implements OnInit, OnChanges {
       startWith(''),
       map(value => this._filter(value)),
     );
-    if (changes.inCommingCity && changes.inCommingCity.currentValue) {
-      this.cityFC.setValue(this.inCommingCity.name)
+    if (this.inCommingCity) {
+      if (this.cities.length == 0) {
+        this.getCities()
+      } else {
+        this.cityFC.setValue(this.cities.filter(c => c.slugEn === this.inCommingCity)[0].name)
+      }
+    }else {
+      this.getCities();
     }
 
-    if (this.callCity) {
-      this.getCities()
-    }
   }
 
   getCities(): void {
+
     this.isLoading = true
     const req: CityListRequestDTO = {
       type: null,
       hasHotel: this.hasHotel,
-      hasTour: this.hasTour,
+      hasOriginTour: this.hasOriginTour,
+      hasDestTour: this.hasDestTour,
       search: null,
       perPage: 20
     }
@@ -70,6 +74,11 @@ export class SelectCityComponent implements OnInit, OnChanges {
       this.isLoading = false
       if (res.isDone) {
         this.cities = res.data;
+        if(this.inCommingCity) {
+          this.cityFC.setValue(this.cities.filter(c => c.slugEn === this.inCommingCity)[0].name)
+        }
+
+
         this.filteredOptions = this.cityFC.valueChanges.pipe(
           startWith(''),
           map(value => this._filter(value)),
@@ -80,5 +89,6 @@ export class SelectCityComponent implements OnInit, OnChanges {
       this.message.error()
     })
   }
+
 
 }

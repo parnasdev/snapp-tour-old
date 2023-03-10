@@ -1,16 +1,21 @@
-import {Component, OnInit} from '@angular/core';
-import {TourApiService} from "../../Core/Https/tour-api.service";
-import {TourListRequestDTO, TourListResDTO} from "../../Core/Models/tourDTO";
-import {MessageService} from "../../Core/Services/message.service";
-import {CheckErrorService} from "../../Core/Services/check-error.service";
-import {ErrorsService} from "../../Core/Services/errors.service";
-import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
-import {CityListRequestDTO, CityResponseDTO} from "../../Core/Models/cityDTO";
-import {CityApiService} from "../../Core/Https/city-api.service";
-import {FormControl, Validators} from "@angular/forms";
-import {Title} from "@angular/platform-browser";
-import {SettingService} from "../../Core/Services/setting.service";
-import {PublicService} from "../../Core/Services/public.service";
+import { Component, OnInit } from '@angular/core';
+import { TourApiService } from "../../Core/Https/tour-api.service";
+import { TourListRequestDTO, TourListResDTO } from "../../Core/Models/tourDTO";
+import { MessageService } from "../../Core/Services/message.service";
+import { CheckErrorService } from "../../Core/Services/check-error.service";
+import { ErrorsService } from "../../Core/Services/errors.service";
+import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
+import { CityApiService } from "../../Core/Https/city-api.service";
+import { Title } from "@angular/platform-browser";
+import { SettingService } from "../../Core/Services/setting.service";
+import { CalenderServices } from 'src/app/Core/Services/calender-service';
+
+export interface SearchObjectDTO {
+  origin: string;
+  dest: string;
+  stDate: string;
+  night: number;
+}
 
 @Component({
   selector: 'prs-list',
@@ -19,61 +24,46 @@ import {PublicService} from "../../Core/Services/public.service";
 })
 export class ListComponent implements OnInit {
   tourReq: TourListRequestDTO = {
-    city: null,
+    origin: '',
+    dest: '',
     isAdmin: false,
+    stDate: '',
+    night: 0,
     paginate: true,
     search: null,
     month: null,
     sortByDate: false,
     perPage: 20,
-    type: null
+    type: null,
+    status: '',
   };
 
   tours: TourListResDTO[] = [];
   loading = false;
-  cityFC = new FormControl(null, Validators.required);
-  city = ''
+
   p = 1
-  cities: CityResponseDTO[] = []
-  cityInfo: CityResponseDTO = {
-    description: '',
-    id: 0,
-    images: [],
-    slugEn: '',
-    name: '',
-    faq: [],
-    nameEn: '',
-    slug: '',
-    type: 1,
-  };
+
   sortByDate = false;
 
-  months = [
-    {id: 0, title: 'چه ماهی می خواهید سفر کنید ؟'},
-    {id: 4, title: 'فروردین'},
-    {id: 5, title: 'اردیبهشت'},
-    {id: 6, title: 'خرداد'},
-    {id: 7, title: 'تیر'},
-    {id: 8, title: 'مرداد'},
-    {id: 9, title: 'شهریور'},
-    {id: 10, title: 'مهر'},
-    {id: 11, title: 'آبان'},
-    {id: 12, title: 'آذر'},
-    {id: 1, title: 'دی'},
-    {id: 2, title: 'بهمن'},
-    {id: 3, title: 'اسفند'},
-  ]
-  monthFC = new FormControl(this.months[0])
+  searchObject: SearchObjectDTO = {
+    origin: '',
+    dest: '',
+    stDate: '',
+    night: 0
+  }
+
+
 
   constructor(public tourApiService: TourApiService,
-              public route: ActivatedRoute,
-              public checkErrorService: CheckErrorService,
-              public errorService: ErrorsService,
-              public cityApi: CityApiService,
-              public setting: SettingService,
-              public title: Title,
-              public router: Router,
-              public message: MessageService) {
+    public route: ActivatedRoute,
+    public checkErrorService: CheckErrorService,
+    public errorService: ErrorsService,
+    public cityApi: CityApiService,
+    public calendarService: CalenderServices,
+    public setting: SettingService,
+    public title: Title,
+    public router: Router,
+    public message: MessageService) {
     this.router.events.subscribe(event => {
 
       if (event instanceof NavigationEnd) {
@@ -95,80 +85,39 @@ export class ListComponent implements OnInit {
     // @ts-ignore
     this.city = this.route.snapshot.paramMap.get('city') ? this.route.snapshot.paramMap.get('city') : null;
     this.route.queryParams.subscribe(params => {
-      const month = params['month'];
-      if (month) {
-        this.monthFC.setValue(this.months.find(x => x.title === month))
-      }
-    })
-    this.getCities()
-    debugger
-    if (this.city) {
-      this.getCity();
-    } else {
+      this.setData(params)
       this.getTours()
-    }
-  }
-
-  getCities(): void {
-    const req: CityListRequestDTO = {
-      type: null,
-      hasHotel: false,
-      hasTour: true,
-      search: null,
-      perPage: 20
-    }
-    this.cityApi.getCities(req).subscribe((res: any) => {
-      if (res.isDone) {
-        this.cities = res.data;
-        this.cityFC.setValue(this.cities.find(x => x.slugEn === this.city));
-
-      }
-    }, (error: any) => {
-      this.message.error()
     })
+
+
+
   }
 
-  citySelected(city: CityResponseDTO): void {
-    if (city) {
-      this.cityInfo = {
-        description: '',
-        id: city.id,
-        images: [],
-        slugEn: city.slugEn,
-        faq: [],
-        name: city.name,
-        nameEn: '',
-        slug: city.slug,
-        type: city.type !== 1,
-      }
-    } else {
-      this.cityInfo = {
-        description: '',
-        id: 0,
-        images: [],
-        slugEn: '',
-        faq: [],
-        name: '',
-        nameEn: '',
-        slug: '',
-        type: false,
-      }
-    }
-
-    this.cityFC.setValue(city)
+  setData(params: any): void {
+    this.searchObject.origin = params['origin']
+    this.searchObject.dest = params['dest'];
+    this.searchObject.night = params['night'];
+    this.searchObject.stDate = params['stDate'];
   }
+
+
+
 
   getTours(): void {
     this.loading = true;
     this.tourReq = {
-      city: this.cityInfo.name === '' ? null : this.cityInfo.name,
+      origin: this.searchObject.origin,
+      dest: this.searchObject.dest,
       isAdmin: false,
-      sortByDate: this.sortByDate,
+      stDate: this.calendarService.convertDate(this.searchObject.stDate, 'en', 'yyyy-MM-DD'),
+      night: this.searchObject.night,
       paginate: true,
       search: null,
-      month: this.monthFC.value.id === 0 ? null : this.monthFC.value.id,
+      month: null,
+      sortByDate: this.sortByDate,
       perPage: 20,
-      type: null
+      type: null,
+      status: null,
     };
     this.tourApiService.getTours(this.tourReq, this.p).subscribe((res: any) => {
       this.loading = false
@@ -184,34 +133,12 @@ export class ListComponent implements OnInit {
     });
   }
 
-  getCity(): void {
-    if (this.city) {
-      this.cityApi.getCity(this.city).subscribe((res: any) => {
-        if (res.isDone) {
-          this.cityInfo = res.data
-          this.title.setTitle('تورهای ' + this.cityInfo.name + '|' + this.setting.settings.title)
-          this.getTours();
-        } else {
 
-        }
-      }, (error: any) => {
+  search(event: SearchObjectDTO) {
+    this.searchObject = event;
+    this.getTours();
 
-      })
-    }
-  }
 
-  search() {
-    if (this.monthFC.value.id === 0 && this.cityFC.invalid) {
-      this.router.navigate([`/tours`])
-    } else {
-      if (this.monthFC.value.id === 0 && this.cityFC.valid) {
-        this.router.navigate([`/tours/${this.cityFC.value.slugEn}`])
-      } else if (this.monthFC.value.id !== 0 && this.cityFC.invalid) {
-        this.router.navigate([`/tours/`], {queryParams: {month: this.monthFC.value.title}})
-      } else {
-        this.router.navigate([`/tours/${this.cityFC.value.slugEn}`], {queryParams: {month: this.monthFC.value.title}})
-      }
-    }
   }
 
 }

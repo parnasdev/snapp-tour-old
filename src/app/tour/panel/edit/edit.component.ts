@@ -164,7 +164,8 @@ export class EditComponent extends AddComponent implements OnInit {
     const req: CityListRequestDTO = {
       type: null,
       hasHotel: true,
-      hasTour: false,
+      hasOriginTour: false,
+      hasDestTour: false,
       search: null,
       perPage: 20
     }
@@ -283,7 +284,7 @@ export class EditComponent extends AddComponent implements OnInit {
       if (res.isDone) {
         this.message.showMessageBig(res.message);
         this.errorService.clear();
-        this.router.navigateByUrl('/tour');
+        this.router.navigateByUrl('/panel/tour');
       }
     }, (error: any) => {
       this.isLoading = false;

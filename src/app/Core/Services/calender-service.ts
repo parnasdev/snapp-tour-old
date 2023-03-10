@@ -13,13 +13,13 @@ export class CalenderServices {
         return val.slice(0, 5);
     }
 
-    convertDate(date: any, convertType: string): any {
+    convertDate(date: any, convertType: string,formatEn = "YYYY/MM/DD"): any {
         /* convertType : fa - en */
         // debugger;
         if (convertType === 'fa') {
             return moment(date).format('jYYYY/jMM/jDD');
         } else if (convertType === 'en') {
-            return moment(date).locale('en').format('YYYY/MM/DD');
+            return moment(date).locale('en').format(formatEn);
         }
     }
     convertDateSpecial(date: any, convertType: string): any {
