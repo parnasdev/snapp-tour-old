@@ -16,6 +16,7 @@ import {CommonProjectModule} from "../common-project/common-project.module";
 import {ToolsModule} from "../tools/tools/tools.module";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { PermissionsComponent } from './permissions/permissions.component';
+import {ProfileComponent} from "./profile/profile.component";
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { PermissionsComponent } from './permissions/permissions.component';
     ListComponent,
     EditComponent,
     PermissionsComponent,
+    ProfileComponent
   ],
     imports: [
         CommonModule,

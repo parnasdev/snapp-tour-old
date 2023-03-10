@@ -34,8 +34,14 @@
     </div>
   </div>
   <div class="type">
-    <img src="assets/img/Up%20Down%202.svg" width="17" alt="">
-    <span>{{tour.transfers.length > 0 ? tour.transfers[0].transfer : '---'}}</span>
+    <div class="d-flex align-items-center">
+      <img src="assets/img/Up%20Down%202.svg" width="17" alt="">
+      <span>{{tour.transfers.length > 0 ? tour.transfers[0].transfer : '---'}}</span>
+    </div>
+    <div class="d-flex align-items-center mt-2">
+      <img src="assets/img/Up%20Down%202.svg" width="17" alt="">
+      <span>{{tour.transfers.length > 0 ? tour.transfers[0].transfer : '---'}}</span>
+    </div>
   </div>
   <a class="ino-tour-btn" routerLink="/tours/{{ tour.endCity.slugEn }}/{{ tour.slug }}" target="_parent">
     <span class="text-mobi-btn">جزییات</span>

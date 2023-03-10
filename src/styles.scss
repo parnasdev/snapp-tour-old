@@ -957,7 +957,12 @@ select::-ms-expand {
     }
   }
 }
-
+.mat-form-field-infix{
+  input{
+    font-family: 'IRANSans', 'sans-serif' !important;
+    text-align: right !important;
+  }
+}
 
 //mobile&tablet
 @media only screen and (max-width: 868px){
