@@ -22,14 +22,14 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
   logOut(): void {
     this.isLoading = true
     this.api.logout().subscribe((res: any) => {
       this.isLoading = false;
       if (res.isDone) {
         this.session.removeUser();
-        this.router.navigateByUrl('/prs-admin')
-
+        this.router.navigateByUrl('/')
       }
     }, (error: any) => {
       this.isLoading = false;
