@@ -1,7 +1,11 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject} from "rxjs";
-import {AuthApiService} from "../Https/auth-api.service";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from "rxjs";
+import { AuthApiService } from "../Https/auth-api.service";
+import { UserApiService } from '../Https/user-api.service';
 import { LoginResponseDTO } from '../Models/AuthDTO';
+import { PermissionDTO } from '../Models/UserDTO';
+import { CheckErrorService } from './check-error.service';
+import { MessageService } from './message.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +14,13 @@ export class SessionService {
 
   user = {} as LoginResponseDTO;
   outlineApi = false;
+  userPermissions: PermissionDTO[] = [];
+
   checkUserSubject = new BehaviorSubject('');
   checkUser$ = this.checkUserSubject.asObservable();
-  constructor(public authApi: AuthApiService) {
+  constructor(public authApi: AuthApiService,
+    public message: MessageService,
+    public userApi: UserApiService) {
   }
 
   setUserToSession(obj: LoginResponseDTO): void {
@@ -20,6 +28,8 @@ export class SessionService {
       user: {
         birthDay: obj.user?.birthDay,
         family: obj.user?.family,
+        city: obj.user?.city,
+        gender: obj.user?.gender,
         agency: {
           name: obj.user.agency?.name,
           logo: obj.user.agency?.logo,
@@ -46,10 +56,23 @@ export class SessionService {
     localStorage.setItem('snapp-tour-user', JSON.stringify(this.user));
   }
 
+  getUserPermission(): void {
+    this.userApi.getUserPermission().subscribe((res: any) => {
+      if (res.isDone) {
+        this.userPermissions = res.data;
+      } else {
+        this.message.custom(res.message);
+      }
+    }, (error: any) => {
+      this.message.error();
+    });
+
+  }
+
   checkUser() {
     this.authApi.checkUser().subscribe((res: any) => {
       if (res.isDone) {
-        this.setUserToSession({token: this.getToken(), user: res.data});
+        this.setUserToSession({ token: this.getToken(), user: res.data });
         this.checkUserSubject.next('true');
       } else {
         // this.message.error();
@@ -81,6 +104,12 @@ export class SessionService {
     return user ? JSON.parse(user).user.name : '';
   }
 
+  getUsername(): any {
+    const user = localStorage.getItem('snapp-tour-user');
+    return user ? JSON.parse(user).user.username : '';
+  }
+
+
   getPhone(): any {
     const user = localStorage.getItem('snapp-tour-user');
     return user ? JSON.parse(user).user.phone : '';
@@ -97,11 +126,11 @@ export class SessionService {
 
   getAgencyCommission(): any {
     const user = localStorage.getItem('snapp-tour-user');
-    return user ? (JSON.parse(user).user.agency ? JSON.parse(user).user.agency?.commission: 0) : 0;
+    return user ? (JSON.parse(user).user.agency ? JSON.parse(user).user.agency?.commission : 0) : 0;
   }
   getAgencyIsManager(): any {
     const user = localStorage.getItem('snapp-tour-user');
-    return user ? (JSON.parse(user).user.agency ? JSON.parse(user).user.agency?.isManager: false) : false;
+    return user ? (JSON.parse(user).user.agency ? JSON.parse(user).user.agency?.isManager : false) : false;
   }
 
   getBirthday(): any {

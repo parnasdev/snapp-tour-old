@@ -41,7 +41,7 @@ export class PublicService {
     return str;
   }
 
-  setPrefix(image: string): string {
+  setPrefix(image: string | null): string {
     return 'https://snapptour.com/panel/' + image;
   }
 
@@ -49,5 +49,4 @@ export class PublicService {
     const url = 'https://snapptour.com/' + address
     window.open(url, "_blank");
   }
-
 }

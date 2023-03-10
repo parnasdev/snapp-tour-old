@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   BACK_END_IP: 'https://snapptour-api.iran.liara.run/api/v1/',
+  BACK_END_UPLOAD: 'https://snapptour-api.iran.liara.run/api/',
   VERSION: '0.1'
 };
 /*

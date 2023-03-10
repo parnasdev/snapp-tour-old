@@ -1,27 +1,24 @@
 import { Injectable } from '@angular/core';
-import {SessionService} from "../Services/session.service";
-import {CanActivate, Router} from "@angular/router";
+import { Router } from '@angular/router';
 import { MessageService } from '../Services/message.service';
+import { SessionService } from '../Services/session.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PanelGuardService implements CanActivate  {
+export class DashboardGuardService {
   role = '';
   constructor(public session: SessionService,
     public message: MessageService,
     public router: Router) {
-
   }
-
   canActivate(): any {
     this.role = this.session.getRole();
-    if (this.session.isLoggedIn() && (this.role === 'Admin' || this.role === 'Staff' || this.role === 'Agency')) {
+    if (this.session.isLoggedIn()) {
       return true;
     } else {
       this.message.custom('شما به این مسیر دسترسی ندارید')
       this.router.navigateByUrl('/');
     }
   }
-
 }

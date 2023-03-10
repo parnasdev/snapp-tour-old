@@ -1,6 +1,9 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {PanelComponent} from "./panel/panel.component";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { EditComponent } from '../agencies/edit/edit.component';
+import { InfoComponent } from '../agencies/info/info.component';
+import { PanelItemGuardService } from '../Core/guards/panel-item-guard.service';
+import { PanelComponent } from "./panel/panel.component";
 
 const routes: Routes = [
   {
@@ -9,22 +12,36 @@ const routes: Routes = [
     children: [
       {
         path: 'tour',
+        canActivate: [PanelItemGuardService],
+        data: {permitions: ['Tour']},
         loadChildren: () => import('../tour/panel/tour-panel.module').then(m => m.TourPanelModule)
       },
       {
         path: 'transfer',
+        canActivate: [PanelItemGuardService],
+        data: {permitions: ['Transfer']},
         loadChildren: () => import('../transfer/transfer.module').then(m => m.TransferModule)
       },
       {
         path: 'agency',
+        canActivate: [PanelItemGuardService],
+        data: {permitions: ['Agency']},
         loadChildren: () => import('../agencies/agencies.module').then(m => m.AgenciesModule)
       },
       {
+        path: 'profile',
+        component: EditComponent
+      },
+      {
         path: 'cities',
+        canActivate: [PanelItemGuardService],
+        data: {permitions: ['Cities']},
         loadChildren: () => import('../cities/cities.module').then(m => m.CitiesModule)
       },
       {
         path: 'hotel',
+        canActivate: [PanelItemGuardService],
+        data: {permitions: ['Hotel']},
         loadChildren: () => import('../hotel/panel/hotel-panel.module').then(m => m.HotelPanelModule)
       },
       {
@@ -33,6 +50,8 @@ const routes: Routes = [
       },
       {
         path: 'user',
+        data: {permitions: ['User']},
+        canActivate: [PanelItemGuardService],
         loadChildren: () => import('../user/user.module').then(m => m.UserModule)
       }, {
         path: 'redirector',
@@ -40,10 +59,15 @@ const routes: Routes = [
       },
       {
         path: 'blog',
+        canActivate: [PanelItemGuardService],
+        data: {permitions: ['Post']},
+
         loadChildren: () => import('../blog/panel/blog-panel.module').then(m => m.BlogPanelModule)
       },
       {
         path: 'setting',
+        canActivate: [PanelItemGuardService],
+        data: {permitions: ['Setting.change']},
         loadChildren: () => import('../setting/setting.module').then(m => m.SettingModule)
       },
       {
@@ -52,6 +76,8 @@ const routes: Routes = [
       },
       {
         path: 'roomType',
+        canActivate: [PanelItemGuardService],
+        data: {permitions: ['RoomType']},
         loadChildren: () => import('../room-type/room-type.module').then(m => m.RoomTypeModule)
       },
       {

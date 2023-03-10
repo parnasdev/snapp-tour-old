@@ -17,7 +17,9 @@ import { UserAgencyListComponent } from './user-agency-list/user-agency-list.com
 @NgModule({
     declarations: [ListComponent, ManageUserComponent, SetUserPopupComponent, InfoComponent, EditComponent, UserAgencyListComponent],
     exports: [
-        ManageUserComponent
+        ManageUserComponent,
+        InfoComponent,
+        EditComponent
     ],
     imports: [
         CommonModule,

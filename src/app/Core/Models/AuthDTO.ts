@@ -76,6 +76,8 @@ export interface ProfileDTO {
   family: string;
   name: string;
   phone: string;
+  gender: number;
+  city: number;
   agency: {
     name: string;
     logo: string | null;

@@ -4,7 +4,7 @@ import {PublicService} from "../Services/public.service";
 import {environment} from "../../../environments/environment";
 import {Result} from "../Models/result";
 import {UserCreateReq, UserReqDTO} from "../Models/UserDTO";
-import { ProfileDTO } from '../Models/AuthDTO';
+import { LoginResponseDTO, ProfileDTO } from '../Models/AuthDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -63,7 +63,7 @@ export class UserApiService {
 
   getProfile(): any {
     const url = this.serverControllerName + 'getProfile';
-    return this.http.get<Result<ProfileDTO>>(
+    return this.http.get<Result<LoginResponseDTO>>(
       url,
       this.publicService.getDefaultHeaders());
   }
