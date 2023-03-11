@@ -55,4 +55,13 @@ export class UserReservationsComponent implements OnInit {
     })
   }
 
+  checkStatus(statusEn: string) {
+    switch (statusEn) {
+      case 'NewReserve':
+        return 'درخواست جدید';
+      default:
+        return ''
+    }
+  }
+
 }
