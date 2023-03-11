@@ -11,7 +11,6 @@
 
               <div class="box-form">
                 <h2 *ngIf="!isForgetPassword">ورود / ثبت  آژانس</h2>
-                <h2 *ngIf="isForgetPassword">فراموشی رمز عبور</h2>
                 <div class="form">
                   <div class="item">
                     <label for="">شماره موبایل خود را وارد کنید:</label>
@@ -29,16 +28,13 @@
                   <p *ngIf="!isForgetPassword" class="footer-text-form">با ورود و یا ثبت نام در اسنپ تریپ شما شرایط و
                     قوانین استفاده از سرویس های سایت اسنپ تریپ
                     و قوانین حریم خصوصی آن را می‌پذیرید.</p>
-                  <p *ngIf="isForgetPassword" class="footer-text-form">
-                    جهت تغییر رمز عبور شماره همراه یا ایمیل خود را در کادر بالا وارد نمایید و منتظر ارسال کد تایید باشید.
-                  </p>
                 </div>
               </div>
             </form>
 
             <div *ngIf="showBox" style="background: white;padding: 14px;height: auto;width: 100%;display: grid;place-items:center;border:1px solid #c6c6c6;border-radius: 8px;">
               <span>کاربر گرامی شما در سیستم اسنپ تور کاربر عادی هستید. آیا تمایل  به تبدیل شدن به آژانس را دارید؟</span>
-              <span>در نظر داشته باشید که تمامی امکانات کاربر برای شما فعال باقی خواهد ماند</span>
+              <span>در نظر داشته باشید که تمامی امکانات کاربری برای شما فعال باقی خواهد ماند</span>
               <button (click)="checkSubmit(true)">تایید</button>
               <button (click)="checkSubmit(false)">عدم تایید</button>
             </div>

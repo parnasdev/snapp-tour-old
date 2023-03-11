@@ -10,14 +10,19 @@ declare var $: any;
 })
 export class AgencyValidateComponent extends ValidateComponent implements OnInit {
 
+  accountType = 'user'
+
   sendSms(phoneNumber: string, tokenType: string): void {
     this.api.sendSms(phoneNumber, tokenType).subscribe((res: any) => {
       if (res.isDone) {
         if (this.isForgetPassword) {
           this.forgetPassword.emit(true);
         } else {
-          
-          this.router.navigate(['/auth/register/' + phoneNumber],{ queryParams: {type: '4'}});
+          if(tokenType == 'activation'){
+            this.router.navigate(['/auth/register/' + phoneNumber],{ queryParams: {type: '4'}});
+          } else {
+            this.router.navigate(['auth/partner/login/' + this.phoneNumberFC.value],{ queryParams: {temp: '1', type: this.accountType}});
+          }
         }
       } else {
         alert(res.message);
@@ -30,24 +35,24 @@ export class AgencyValidateComponent extends ValidateComponent implements OnInit
 
   checkSubmit(flag: boolean) {
     if (flag) {
-      this.router.navigateByUrl('/auth/partner/login/' + this.phoneNumberFC.value);
+      this.sendSms(this.phoneNumberFC.value, 'login');
     } else {
       this.showBox = false;
     }
   }
 
   checkAuthMode(validateData: ValidateResDTO): void {
+    this.accountType = validateData.accountType;
     if (validateData.authMode === 1) {
-      if(validateData.accountType == 'user') {
-        this.showBox = true;
-      } else {
-        
-      }
       // login
       if (this.isForgetPassword) {
         this.sendSms(this.phoneNumberFC.value, 'forget');
       } else {
-        this.router.navigateByUrl('/auth/login/' + this.phoneNumberFC.value);
+        if(validateData.accountType == 'user') {
+          this.showBox = true;
+        } else {
+          this.sendSms(this.phoneNumberFC.value, 'login');
+        }
       }
     } else {
       // register
