@@ -17,6 +17,9 @@
       <a routerLink="/dashboard/tour/info/{{ item.ref_code }}" style="height: 35px !important;" class="btn-base px-4">جزییات</a>
     </div>
   </div>
+  <div *ngIf="reserves.length==0" class="empty-box">
+    <h3>سفری یافت نشد</h3>
+  </div>
 </div>
 <div class="p-list-trip-mobi" *ngIf="isTablet">
   <div *ngFor="let item of reserves" class="item-mobi-trip">
