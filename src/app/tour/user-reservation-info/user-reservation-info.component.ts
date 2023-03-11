@@ -21,8 +21,6 @@ export class UserReservationInfoComponent implements OnInit {
   stDate = '';
   enDate = '';
 
-
-
   nameFC = new FormControl(this.session.getName(), Validators.required);
   familyFC = new FormControl(this.session.getFamily(), Validators.required);
   cityFC = new FormControl(1, Validators.required);

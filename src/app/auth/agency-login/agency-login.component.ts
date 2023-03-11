@@ -69,7 +69,6 @@ export class AgencyLoginComponent implements OnInit {
     this.api.convertUserToAgency(this.convertData).subscribe((res: any) => {
       this.isLoading = false;
       if (res.isDone) {
-        console.log(res.data);
         this.session.setUserToSession(res.data);
           this.router.navigateByUrl('/panel/profile');
         } else {
