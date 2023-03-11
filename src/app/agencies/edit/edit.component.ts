@@ -156,7 +156,13 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     // @ts-ignore
     this.id = this.route.snapshot.paramMap.get('id')
-    this.getInfo();
+
+    if (this.session.getRole() === 'Admin') {
+      this.getAgency();
+    }else {
+      this.getInfo();
+    }
+
   }
 
 
@@ -212,6 +218,19 @@ export class EditComponent implements OnInit {
   getInfo(): void {
     this.infoLoading = true;
     this.userApi.getProfile().subscribe((res: any) => {
+      this.infoLoading = false;
+      if (res.isDone) {
+        this.info = res.data
+        this.setValue()
+      }
+    }, (error: any) => {
+      this.infoLoading = false;
+      this.errorsService.check(error);
+    })
+  }
+  getAgency(): void {
+    this.infoLoading = true;
+    this.api.getAgency(+this.id).subscribe((res: any) => {
       this.infoLoading = false;
       if (res.isDone) {
         this.info = res.data

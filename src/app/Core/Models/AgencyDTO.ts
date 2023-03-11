@@ -72,18 +72,18 @@ export interface AgencyEditDTO {
   family: string;
   name: string;
   phone: string;
-  city: number;
+  city: any;
   id_code: string;
   gender: string;
   email:string;
   agency: {
     name: string;
-    logo: string;
+    logo: UploadResDTO;
     isManager: null;
     extra: string;
-    LicenseFileA: UploadResDTO | string;
+    LicenseFileA: UploadResDTO ;
     id: number;
-    LicenseFileB: UploadResDTO | string;
+    LicenseFileB: UploadResDTO;
     email: string;
     address: string;
     tell: string;

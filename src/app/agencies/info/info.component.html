@@ -1,65 +1,80 @@
+<prs-loading *ngIf="infoLoading"></prs-loading>
 <div class="add-tour">
   <form>
     <div class="box-info-tour">
       <div class="info-tour-header">
         <div class="right">
-          <h2>جزییات آژانس</h2>
+          <h2>پروفایل</h2>
         </div>
       </div>
       <div class="info-tour-body">
+        <h2 class="title">اطلاعات کاربر</h2>
         <div class="top">
-          <div class="item-info">
-            <label>نام</label>
-            <span class="span-inp"  type="">{{info.name ? info.name : 'ثبت نشده'}}</span>
-
-          </div>
-          <div class="item-info">
-            <label>نام و نام خانوادگی مدیر</label>
-            <span class="span-inp"  type="text">{{info.user ? info.user.name + ' ' + info.user.family : 'ثبت نشده'}}</span>
-
-          </div>
-        </div>
-        <div class="bottom">
           <div class="item-info-2">
             <div class="item-info w-100">
-              <label>---</label>
-              <span class="span-inp"   type="text">---</span>
-
-            </div>
-          </div>
-
-          <div class="item-info-2">
-            <div class="item-info w-100">
-              <label>نام آژانس</label>
-              <span class="span-inp"  type="text">{{info.name?info.name : 'ثبت نشده'}}</span>
-
+              <label>نام </label>
+              <span>{{ info.name }}</span>
             </div>
 
           </div>
-
-        </div>
-        <div class="bottom">
           <div class="item-info-2">
             <div class="item-info w-100">
-              <label>سایت</label>
-              <span class="span-inp"  type="text">{{info.site? info.site : 'ثبت نشده'}}</span>
+              <label>نام خانوادگی</label>
+              <span>{{ info.family }}</span>
 
             </div>
           </div>
           <div class="item-info-2">
             <div class="item-info w-100">
-              <label>آدرس</label>
-              <span class="span-inp"  type="text">{{info.address? info.address : 'ثبت نشده'}}</span>
+              <label>جنسیت</label>
+              <span>{{ info.gender == '0' ? 'مرد' : 'زن' }}</span>
 
             </div>
+
+          </div>
+          <div style="width: 32% !important;">
+            <label style="position: relative;top: 14px">شهر</label>
+            <span>{{ info.city?.name }}</span>
           </div>
 
-        </div>
-        <div class="bottom">
           <div class="item-info-2">
             <div class="item-info w-100">
               <label>ایمیل</label>
-              <span class="span-inp"  type="text">{{info.email? info.email : 'ثبت نشده'}}</span>
+              <span>{{ info.email }}</span>
+
+            </div>
+
+          </div>
+          <div class="item-info-2">
+            <div class="item-info w-100">
+              <label>کدملی</label>
+              <span>{{ info.id_code }}</span>
+            </div>
+
+          </div>
+        </div>
+        <h2 style="margin: 2rem 0 0 0 !important;" class="title">اطلاعات آژانس</h2>
+        <div class="top">
+          <div class="item-info-2">
+            <div class="item-info w-100">
+              <label>نام آژانس</label>
+              <span>{{ info.agency.name }}</span>
+
+            </div>
+
+          </div>
+          <div class="item-info-2">
+            <div class="item-info w-100">
+              <label>سایت</label>
+              <span>{{ info.agency.site }}</span>
+
+            </div>
+          </div>
+          <div class="item-info-2">
+            <div class="item-info w-100">
+              <label>ایمیل شرکت</label>
+              <span>{{ info.agency.email }}</span>
+
 
             </div>
 
@@ -67,41 +82,40 @@
           <div class="item-info-2">
             <div class="item-info w-100">
               <label>تلفن اضطراری</label>
-              <span class="span-inp"  type="text">{{info.necessaryPhone ? info.necessaryPhone : 'ثبت نشده'}}</span>
+
+              <span>{{ info.agency.necessaryPhone }}</span>
 
             </div>
 
           </div>
-        </div>
-        <div class="bottom">
           <div class="item-info-2">
             <div class="item-info w-100">
               <label>تلفن آژانس</label>
-              <span class="span-inp"  type="text">{{info.tell ? info.tell : 'ثبت نشده'}}</span>
-
+              <span>{{ info.agency.tell }}</span>
             </div>
           </div>
-   
-        </div>
-        <div class="numbers">
-          <div class="item-info w-40">
-            <label>تعداد کارمندان</label>
-            <span class="span-inp w-50" type="text">{{info.crewCount ? info.crewCount : 'ثبت نشده'}}</span>
+          <div class="address w-100">
+            <div style="width: 100% !important;" class="item-info-2">
+              <div class="item-info w-100">
+                <label>آدرس آژانس</label>
+                <span>{{ info.agency.address }}</span>
 
+
+              </div>
+            </div>
           </div>
         </div>
-        <div class="bottom uploads-parent">
+        <div class="bottom">
+
           <div class="item-info-upload">
             <div class="item-info w-100">
               <div class="top-one">
                 <div class="item-info w-100">
+
                   <span>لوگو</span>
-
-                                </div>
-                <span *ngIf="!info.logo">ثبت نشده</span>
-
-                <div class="single-img-upload-parent" *ngIf="info.logo" >
-                  <img [src]="publicService.setPrefix(info.logo)" width="100%" height="200" alt="">
+                </div>
+                <div class="single-img-upload-parent" *ngIf="info.agency.logo?.url !== ''">
+                  <img [src]="info.agency.logo ? info.agency.logo.url : ''" width="100%" height="200" alt="">
                 </div>
               </div>
 
@@ -109,29 +123,26 @@
 
           </div>
           <div class="item-info-upload">
-<!--            <div class="item-info">-->
-<!--              <div class="top-one">-->
-<!--                <div class="item-info">-->
-<!--                  <span>مجوز بند الف</span>-->
+            <div class="item-info w-100">
+              <div class="top-one">
+                <div class="item-info w-100">
+                  <span>مجوز بند الف</span>
+                </div>
+                <div class="single-img-upload-parent" *ngIf="info.agency.LicenseFileA?.url !== ''">
+                  <img [src]="info.agency.LicenseFileA ? info.agency.LicenseFileA.url : ''" width="100%" height="200" alt="">
+                </div>
+              </div>
 
-<!--                </div>-->
-<!--                <span *ngIf="!info.LicenseFileA">ثبت نشده</span>-->
-
-<!--                <div class="single-img-upload-parent" *ngIf="info.LicenseFileA" >-->
-<!--                  <img [src]="publicService.setPrefix(info.LicenseFileA)" width="100%" height="200" alt="">-->
-<!--                </div>-->
-<!--              </div>-->
-
-<!--            </div>-->
-            <div style="margin-right: 15px" class="item-info">
+            </div>
+            <div style="margin-right: 15px" class="item-info w-100">
               <div class="top-one">
                 <div class="item-info w-100">
                   <span>مجوز بند ب</span>
 
+
                 </div>
-                <span *ngIf="!info.LicenseFileB">ثبت نشده</span>
-                <div class="single-img-upload-parent" *ngIf="info.LicenseFileB" >
-                  <img [src]="publicService.setPrefix(info.LicenseFileB)" width="100%" height="200" alt="">
+                <div class="single-img-upload-parent" *ngIf="info.agency.LicenseFileB?.url !==''">
+                  <img [src]="info.agency.LicenseFileB ? info.agency.LicenseFileB.url : ''" width="100%" height="200" alt="">
                 </div>
               </div>
 
@@ -142,5 +153,6 @@
       </div>
     </div>
   </form>
+
 
 </div>

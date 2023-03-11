@@ -122,7 +122,6 @@
   border: 1px solid var(--light-color-two);
   margin: auto 10px;
   padding: 0 10px;
-  cursor: not-allowed !important;
 }
 
 .header-box {
@@ -132,23 +131,28 @@
   height: 40px;
   width: 100%;
 }
-.header-box-two{
+
+.header-box-two {
   display: grid;
   grid-template-columns: 0.5fr 1.7fr 1fr 1.2fr 1.2fr 1.2fr 1.2fr 1.2fr 0.5fr 0.5fr;
 }
-.header-box-two .package-item{
+
+.header-box-two .package-item {
   margin: auto;
   font-weight: 500;
   font-size: 12px !important;
 }
+
 .body-box .package-item {
   margin: auto;
 }
-.body-foreign{
+
+.body-foreign {
   display: grid;
   grid-template-columns: 0.5fr 1.7fr 1fr 1.2fr 1.2fr 1.2fr 1.2fr 1.2fr 0.5fr 1fr;
   width: 100%;
 }
+
 .header-box .package-item {
   height: 100%;
   display: flex;
@@ -224,12 +228,14 @@
   padding: 1rem 2rem;
   width: 99%;
 }
-.details-body-tour .textarea{
+
+.details-body-tour .textarea {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 .details-body-tour textarea {
   height: 200px;
   width: 32%;
@@ -244,7 +250,8 @@
 .details-body-tour textarea::placeholder {
   color: var(--gray-color-light);
 }
-.submit-tour{
+
+.submit-tour {
   border: none;
   outline: none;
   margin-top: 12px;
@@ -261,22 +268,26 @@
   flex-direction: column;
   align-items: flex-start;
 }
-.item-info-services{
+
+.item-info-services {
   display: flex;
   align-items: flex-end;
   width: 24.5%;
 }
-.item-info-services:not(:last-child){
+
+.item-info-services:not(:last-child) {
   padding-left: 18px;
 }
-.item-info-services .box-services{
+
+.item-info-services .box-services {
   width: 70%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 
 }
-.item-info-services .box-services input{
+
+.item-info-services .box-services input {
   border: 1px solid var(--light-color-two);
   height: 30px;
   border-radius: px;
@@ -288,24 +299,23 @@
   padding: 0 8px;
   outline: none;
 }
-.item-info-services .box-services label{
+
+.item-info-services .box-services label {
   font-size: 13px !important;
   font-weight: 500;
 }
-.item-info-services .selectdiv{
+
+.item-info-services .selectdiv {
   width: 30%;
   padding-right: 4px;
 }
+
 .item-info label {
   font-size: 13px !important;
   font-weight: 500;
 }
-input[type="text"]:disabled {
-  background-color: #eee;
-  border: 1px solid #aaa;
-}
 
-.span-inp {
+.item-info input {
   border: 1px solid var(--light-color-two);
   height: 30px;
   border-radius: 4px;
@@ -316,7 +326,6 @@ input[type="text"]:disabled {
   font-weight: 500;
   padding: 0 8px;
   outline: none;
-  cursor: not-allowed;
 }
 
 .item-info-2 {
@@ -348,108 +357,256 @@ input[type="text"]:disabled {
   font-size: 13px !important;
   font-weight: 500;
 }
+
 :host::ng-deep .mat-form-field {
   width: 100%;
 }
+
 :host::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
   background-color: unset !important;
   padding: 0 !important;
 }
+
 :host::ng-deep .mat-form-field-underline {
   display: none;
 }
+
 :host::ng-deep .mat-form-field-appearance-fill .mat-form-field-infix {
   padding: 0 !important;
   border: none !important;
 }
-.item-info-timer{
+
+.item-info-timer {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-:host::ng-deep .mat-button-toggle{
+
+:host::ng-deep .mat-button-toggle {
   height: 30px !important;
   display: flex !important;
   align-items: center !important;
 }
-:host::ng-deep .mat-button-toggle button{
+
+:host::ng-deep .mat-button-toggle button {
   height: 100% !important;
   padding-bottom: 0 !important;
   outline: none;
 }
+
 :host::ng-deep.mat-button-toggle-label-content {
   line-height: 30px !important;
   font-family: IRANSans !important;
   font-size: 13px !important;
   font-weight: 500 !important;
 }
+
 :host::ng-deep .mat-button-toggle-group-appearance-standard {
   margin-top: 8px !important;
 }
 
-.btn-submit-tour{
+.btn-submit-tour {
   margin-top: 1rem;
 }
-:host::ng-deep .btn-submit-tour .btn-blue{
+
+:host::ng-deep .btn-submit-tour .btn-blue {
   padding: 0 35px !important;
 }
+
 .permission {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.checkbox-parent{
+
+.checkbox-parent {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
-.checkbox-parent mat-checkbox{
+
+.checkbox-parent mat-checkbox {
   margin-top: 12px;
 }
-:host::ng-deep .mat-checkbox-label{
+
+:host::ng-deep .mat-checkbox-label {
   margin-right: 10px !important;
 }
-.w-47{
+
+.w-47 {
   width: 47%;
 }
-:host::ng-deep .mat-checkbox-label{
+
+:host::ng-deep .mat-checkbox-label {
   font-family: IRANSans !important;
 }
-.item-info-upload{
+
+.item-info-upload {
   display: flex;
   align-items: center;
-  width: 50%;
-  justify-content: space-around;
+  justify-content: center;
 }
-.w-40{
-  width: 40%;
-}
-.single-img-upload-parent{
+
+.single-img-upload-parent {
   margin-top: 15px;
 }
-:host::ng-deep .file-input-upload{
+
+:host::ng-deep .file-input-upload {
   height: 120px !important;
   border: 2px dashed var(--base-color) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: space-evenly !important;
-  margin-top: 15px;
 }
-@media only screen and (max-width: 868px){
+
+//forget password
+.form-auth {
+  margin: 4rem 0;
+}
+
+.parent-form {
+  background-color: var(--white);
+  border: 1px solid var(--light-color-two);
+  height: 530px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 2rem;
+  background-image: url("../../../assets/img/pattern-fly.png");
+}
+
+.box-form {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-items: center;
+  justify-content: center;
+}
+
+.box-form h2 {
+  font-weight: 600 !important;
+  font-size: 20px;
+  margin-bottom: 2px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.form .item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 1rem;
+}
+
+.form .item label {
+  color: var(--title-color);
+  font-weight: 500;
+  margin-bottom: 7px;
+}
+
+.form .item input {
+  height: 40px;
+  border-radius: 3px;
+  width: 100%;
+  border: 2px solid #e4e4e4;
+  padding: 0 8px;
+  color: var(--title-color);
+}
+
+.btn-form-auth {
+  height: 40px;
+  width: 100%;
+  margin-top: 1.5rem;
+  border-radius: 3px;
+  background-color: var(--base-color-second);
+  color: var(--title-color);
+  border: none;
+  outline: none;
+}
+
+.logo-website {
+  margin-bottom: 3rem;
+}
+
+.form .text {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 13px;
+  align-items: center;
+}
+
+.form .text span {
+  font-size: 13px !important;
+  color: var(--title-color);
+}
+
+.form .text a {
+  font-size: 13px !important;
+  color: var(--red-color);
+  font-weight: 500;
+  margin-right: 4px;
+}
+
+.forget-password {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.forget-password a {
+  color: var(--title-color);
+  font-weight: 500;
+}
+
+.footer-text-form {
+  width: 85%;
+  margin: 1rem auto;
+  font-size: 13px !important;
+  text-align: center;
+}
+
+@media only screen and (max-width: 380px) {
+  .box-form {
+    width: 100%;
+  }
+  .parent-form {
+    width: 95%;
+    height: auto !important;
+    padding: 2rem 1rem;
+  }
+  .form .item label {
+    font-size: 13px;
+  }
+}
+
+@media only screen and (min-width: 381px) and (max-width: 868px) {
+  .box-form {
+    width: 80%;
+  }
+  .parent-form {
+    width: 95%;
+    height: auto !important;
+    padding: 2rem 1rem;
+  }
+  .form .item label {
+    font-size: 13px;
+  }
+}
+
+//forget password end
+@media only screen and (max-width: 868px) {
   .info-tour-body {
     display: flex;
     flex-direction: column;
     padding: 1rem;
     width: 100%;
   }
-  .uploads-parent{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .uploads-parent .item-info{
-    margin-right: 0 !important;
-  }
-
   .info-tour-body .top {
     flex-direction: column;
     width: 100%;
@@ -458,7 +615,7 @@ input[type="text"]:disabled {
     width: 100%;
     margin-top: 1rem;
   }
-  .bottom{
+  .bottom {
     flex-direction: column;
   }
   :host::ng-deep .cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
@@ -477,5 +634,39 @@ input[type="text"]:disabled {
   }
   :host::ng-deep .checkbox-parent {
     grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+
+.top {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  .item-info-2 {
+    width: 32%;
+    margin-top: 14px !important;
+
+    input {
+      height: 40px !important;
+    }
+
+    select {
+      height: 40px !important;
+      width: 100%;
+      border-radius: 4px;
+      margin-top: 8px !important;
+    }
+  }
+
+  prs-select-city {
+    width: 100% !important;
+    position: relative !important;
+    top: 14px !important;
+    :host::ng-deep input{
+      height: 40px !important;
+    }
   }
 }

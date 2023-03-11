@@ -23,7 +23,7 @@ const routes: Routes = [
         loadChildren: () => import('../transfer/transfer.module').then(m => m.TransferModule)
       },
       {
-        path: 'agency',
+        path: 'agencies',
         // canActivate: [PanelItemGuardService],
         // data: {permitions: ['Agency']},
         loadChildren: () => import('../agencies/agencies.module').then(m => m.AgenciesModule)
