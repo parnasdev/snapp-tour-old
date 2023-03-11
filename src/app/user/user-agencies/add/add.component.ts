@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl} from "@angular/forms";
 import { ActivatedRoute, Router } from '@angular/router';
+import { AgencyUserApiService } from 'src/app/Core/Https/agency-user-api.service copy';
 import { CommonApiService } from 'src/app/Core/Https/common-api.service';
 import { UserApiService } from 'src/app/Core/Https/user-api.service';
 import { PermissionDTO, UserCreateReq, UserRolesDTO } from 'src/app/Core/Models/UserDTO';
@@ -37,7 +38,7 @@ export class AddComponent implements OnInit {
   setPermissions: string[] = [];
 
   constructor(public fb: FormBuilder,
-              public userApi: UserApiService,
+              public userApi: AgencyUserApiService,
               public route: ActivatedRoute,
               public checkErrorService: CheckErrorService,
               public calService: CalenderServices,

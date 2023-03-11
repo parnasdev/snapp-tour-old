@@ -29,7 +29,9 @@ export class CheckErrorService {
                 break;
             }
             case 500: {
-                this.message.custom(errorCode.error.message);
+                // this.message.custom(errorCode.error.message);
+                this.message.custom('مشکلی در سرور رخ داده است');
+
                 break;
             }
             case 0: {

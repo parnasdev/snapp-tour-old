@@ -14,7 +14,7 @@ export interface LoginResponseDTO {
 
 export interface ConvertRequestDTO {
   phone: string;
-  token: string;
+  password: string;
 }
 
 export interface UserDTO {
