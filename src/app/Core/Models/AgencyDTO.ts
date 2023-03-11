@@ -39,7 +39,7 @@ export interface AgencyUserDTO {
   phone: string
   password: string
 }
-export interface AgencyEditDTO {
+export interface AgencyEditReqDTO {
     username: string;
     family: string;
     name: string;
@@ -54,7 +54,7 @@ export interface AgencyEditDTO {
       isManager: null;
       LicenseFileA: string;
       id: number;
-      LicenseFileB: string;
+      LicenseFileB:  string;
       email: string;
       address: string;
       tell: string;
@@ -64,4 +64,31 @@ export interface AgencyEditDTO {
     birthDay: string;
     createdAt: string;
     role: string;
+}
+
+export interface AgencyEditDTO {
+  username: string;
+  family: string;
+  name: string;
+  phone: string;
+  city: number;
+  id_code: string;
+  gender: string;
+  email:string;
+  agency: {
+    name: string;
+    logo: string;
+    isManager: null;
+    LicenseFileA: UploadResDTO | string;
+    id: number;
+    LicenseFileB: UploadResDTO | string;
+    email: string;
+    address: string;
+    tell: string;
+    site: string;
+    necessaryPhone: string;
+  };
+  birthDay: string;
+  createdAt: string;
+  role: string;
 }
