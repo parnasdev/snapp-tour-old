@@ -136,6 +136,9 @@ export class ListComponent implements OnInit {
 
   search(event: SearchObjectDTO) {
     this.searchObject = event;
+    this.router.navigate([`/tours/`], {
+      queryParams: event
+    })
     this.getTours();
 
 

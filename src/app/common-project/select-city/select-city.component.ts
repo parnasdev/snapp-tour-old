@@ -69,7 +69,7 @@ export class SelectCityComponent implements OnInit, OnChanges {
         if (this.inCommingCity && this.inCommingCity !== '') {
           if(this.cities.filter(c => c.slugEn === this.inCommingCity).length > 0) {
             this.cityFC.setValue(this.cities.filter(c => c.slugEn === this.inCommingCity)[0].name)
-            this.citySelected.emit(this.cities.filter(c => c.slugEn === this.inCommingCity)[0])
+            // this.citySelected.emit(this.cities.filter(c => c.slugEn === this.inCommingCity)[0])
 
           }
         }

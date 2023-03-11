@@ -36,7 +36,7 @@ export class SessionService {
           isManager: obj.user.agency?.isManager,
           LicenseFileA: obj.user.agency?.LicenseFileA,
           id: obj.user.agency?.id,
-          extra: obj.user.agency.extra,
+          extra: obj.user?.agency?.extra,
           LicenseFileB: obj.user.agency?.LicenseFileB,
           email: obj.user.agency?.email,
           address: obj.user.agency?.address,

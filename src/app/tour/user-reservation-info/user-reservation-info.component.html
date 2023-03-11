@@ -83,7 +83,8 @@
   <div class="item-hotel">
     <h5>دو تخته</h5>
     <div class="price">
-      <strong>21,620,000</strong>
+      <strong>{{ data.package.tour.defineTour ? (data.package.prices?.twinRate | sperator) : data.package.prices?.twin
+        }}</strong>
       <small>تومان</small>
     </div>
     <div class="p-count">
@@ -97,7 +98,8 @@
   <div class="item-hotel">
     <h5>یک تخته</h5>
     <div class="price">
-      <strong>21,620,000</strong>
+      <strong>{{ data.package.tour.defineTour ? (data.package.prices?.singleRate | sperator) :
+        data.package.prices?.single }}</strong>
       <small>تومان</small>
     </div>
     <div class="p-count">
@@ -111,7 +113,8 @@
   <div class="item-hotel">
     <h5>سه تخته</h5>
     <div class="price">
-      <strong>21,620,000</strong>
+      <strong>{{ data.package.tour.defineTour ? (data.package.prices?.tripleRate | sperator) :
+        data.package.prices?.triple }}</strong>
       <small>تومان</small>
     </div>
     <div class="p-count">
@@ -125,7 +128,8 @@
   <div class="item-hotel">
     <h5>چهار تخته</h5>
     <div class="price">
-      <strong>21,620,000</strong>
+      <strong>{{ data.package.tour.defineTour ? (data.package.prices?.quad | sperator) : data.package.prices?.quad
+        }}</strong>
       <small>تومان</small>
     </div>
     <div class="p-count">
@@ -139,7 +143,8 @@
   <div class="item-hotel">
     <h5>کودک با تخت</h5>
     <div class="price">
-      <strong>21,620,000</strong>
+      <strong>{{ data.package.tour.defineTour ? (data.package.prices?.cwbRate | sperator) : data.package.prices?.cwb
+        }}</strong>
       <small>تومان</small>
     </div>
     <div class="p-count">
@@ -153,7 +158,7 @@
   <div class="item-hotel">
     <h5>کودک بدون تخت</h5>
     <div class="price">
-      <strong>21,620,000</strong>
+      <strong>{{ data.package.prices.cnb ? (data.package.prices.cnb | sperator) : 0 }}</strong>
       <small>تومان</small>
     </div>
     <div class="p-count">
@@ -191,7 +196,7 @@
       شهر
     </label>
     <div class="inp-form mt-2">
-      <prs-select-city ></prs-select-city>
+      <prs-select-city></prs-select-city>
     </div>
 
   </div>
@@ -204,65 +209,66 @@
     </div>
   </div>
 </div>
+
+<button (click)="addRow()">اضافه کردن</button>
 <h2 class="title-tour">اطلاعات مسافرین</h2>
-<div class="set-info-passengers">
-  <div class="item-form">
-    <label class="dana-bold" for="">نام و نام خانوادگی</label>
-    <div class="inp-form mt-2">
-      <input type="text" placeholder="اینجا بنویسید …">
-    </div>
-  </div>
-  <div class="item-form">
-    <label class="dana-bold" for="">
-      کد ملی
-    </label>
-    <div class="inp-form mt-2">
-      <input type="text" placeholder="اینجا بنویسید …">
-    </div>
-  </div>
-  <div class="item-form">
-    <label class="dana-bold" for="">
-      شهر
-    </label>
-    <div class="inp-form mt-2">
-      <select name="" id="">
-        <option value="">تهران</option>
-        <option value="">شیراز</option>
-        <option value="">اصفهان</option>
-      </select>
-    </div>
-
-  </div>
-  <div class="item-form">
-    <label class="dana-bold" for="">
-      شماره همراه
-    </label>
-    <div class="inp-form mt-2">
-      <input type="text" placeholder="اینجا بنویسید …">
-    </div>
-  </div>
-  <div class="item-form">
-    <label class="dana-bold" for="">
-      ملیت
-    </label>
-    <div class="inp-form mt-2">
-      <select name="" id="">
-        <option value="">تهران</option>
-        <option value="">شیراز</option>
-        <option value="">اصفهان</option>
-      </select>
-    </div>
-
-  </div>
-  <div class="item-form">
-    <label class="dana-bold" for="">
-      پاسپورت
-    </label>
-    <div class="inp-form mt-2">
-      <input type="text" placeholder="اینجا بنویسید …">
-    </div>
-  </div>
-</div>
+<form [formGroup]="ReserveForm"  formArrayName="passengers">
+    <div class="set-info-passengers" *ngFor="let item of PassengerForm.controls; let i = index" [formGroupName]="i">
+        <div class="item-form">
+          <label class="dana-bold" for="">نام و نام خانوادگی</label>
+          <div class="inp-form mt-2">
+            <input type="text" formControlName="name" placeholder="اینجا بنویسید …" formControlName="fullName">
+          </div>
+        </div>
+        <div class="item-form">
+          <label class="dana-bold" for="">
+            کد ملی
+          </label>
+          <div class="inp-form mt-2">
+            <input type="text" formControlName="id_code" placeholder="اینجا بنویسید …" formControlName="id_code">
+          </div>
+        </div>
+        <div class="item-form">
+          <label class="dana-bold" for="">
+            شهر
+          </label>
+          <div class="inp-form mt-2">
+            <select name="" id="" formControlName="city">
+              <option value="">تهران</option>
+              <option value="">شیراز</option>
+              <option value="">اصفهان</option>
+            </select>
+          </div>
+        </div>
+        <div class="item-form">
+          <label class="dana-bold" for="">
+            شماره همراه
+          </label>
+          <div class="inp-form mt-2">
+            <input type="text" formControlName="phoneNumber" placeholder="اینجا بنویسید …">
+          </div>
+        </div>
+        <div class="item-form">
+          <label class="dana-bold" for="">
+            ملیت
+          </label>
+          <div class="inp-form mt-2">
+            <select formControlName="nationality" name="" id="">
+              <option value="">ایرانی</option>
+              <option value="">خارجی</option>
+            </select>
+          </div>  
+        </div>
+        <div class="item-form">
+          <label class="dana-bold" for="">
+            پاسپورت
+          </label>
+          <div class="inp-form mt-2">
+            <input type="text" placeholder="اینجا بنویسید …" formControlName="passport_code">
+          </div>
+        </div>
+      </div>
+</form>
 <div class="promo-code my-3">
   <div class="item-form w-25">
     <label class="dana-bold" for="">کد تخفیف</label>

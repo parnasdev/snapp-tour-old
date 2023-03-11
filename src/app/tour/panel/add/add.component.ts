@@ -22,7 +22,6 @@ import {moveItemInArray} from '@angular/cdk/drag-drop';
 import {MatDialog} from "@angular/material/dialog";
 import {SetPricePopupComponent} from "../../../room-type/set-price-popup/set-price-popup.component";
 import {RoomTypeSetDTO} from "../../../Core/Models/roomTypeDTO";
-import {installTempPackage} from "@angular/cli/utilities/install-package";
 
 @Component({
   selector: 'prs-add',
@@ -61,7 +60,6 @@ export class AddComponent implements OnInit {
   tourType = false;
 
   ratePricesFC = new FormControl('1');
-
   isSlugGenerated = false;
 
   constructor(
@@ -652,6 +650,7 @@ export class AddComponent implements OnInit {
   }
 
   getStCity(cityItemSelected: any): void {
+    console.log(cityItemSelected);
     this.form.controls.stCity_id.setValue(cityItemSelected.id);
   }
 
