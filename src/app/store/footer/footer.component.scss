@@ -531,6 +531,12 @@ footer {
 }
 
 @media only screen and (max-width: 868px) {
+  .bottom-footer{
+    .right{
+      padding-top: 1.5rem !important;
+
+    }
+  }
   .parent-kala {
     width: 100%;
   }

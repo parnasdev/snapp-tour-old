@@ -670,3 +670,37 @@
     }
   }
 }
+.box-accept{
+  border: 2px dashed #c6c6c6;
+  width: 98%;
+  height: auto;
+  padding: 2.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 12px 0;
+  span{
+    font-size: 14px !important;
+    color: green;
+    font-weight: 800 !important;
+    margin-right: 12px !important;
+  }
+}
+
+
+.box-accept-2{
+  border: 2px dashed #c6c6c6;
+  width: 98%;
+  height: auto;
+  padding: 2.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 12px 0;
+  span{
+    font-size: 14px !important;
+    color: var(--base-color-second);
+    font-weight: 800 !important;
+    margin-right: 12px !important;
+  }
+}
