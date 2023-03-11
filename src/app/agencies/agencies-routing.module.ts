@@ -4,21 +4,29 @@ import { EditComponent } from './edit/edit.component';
 import { InfoComponent } from './info/info.component';
 import { ListComponent } from './list/list.component';
 import { ManageUserComponent } from './manage-user/manage-user.component';
+import { UserAgencyListComponent } from './user-agency-list/user-agency-list.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: ListComponent
-  } ,{
     path: 'manage-user',
     component: ManageUserComponent
-  },{
+  },
+  {
     path: 'edit/:id',
     component: EditComponent
-  },{
+  },
+  {
+    path: 'list',
+    component: UserAgencyListComponent
+  },
+  {
     path: ':id',
     component: InfoComponent
-  }
+  },
+  {
+    path: '',
+    component: ListComponent
+  },
 ];
 
 @NgModule({

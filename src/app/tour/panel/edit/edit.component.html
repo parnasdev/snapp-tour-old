@@ -13,7 +13,7 @@
           <label for="">تور ویژه</label>
         </div>
         <div class="left d-flex align-items-center">
-          <div>
+          <div *ngIf="session.checkPermission('Status')">
             <div class="selectdiv">
               <label>
                 <select formControlName="status">

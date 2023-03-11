@@ -1,6 +1,6 @@
 <div class="list-tour">
   <div class="title">
-    <h2>لیست هتل ها</h2>
+    <h2>لیست ایرلاین ها</h2>
     <a class="btn-add-tour" routerLink="/panel/transfer/add">اضافه</a>
   </div>
   <div class="table-list-tour">
@@ -17,8 +17,8 @@
         <span class="title-tour">{{ transfer.name }}</span>
         <span class="title-tour">{{ transfer?.type?.name }}</span>
         <div class="button-setting">
-          <a routerLink="/panel/transfer/edit/{{ transfer.id }}" class="edit-btn">ویرایش</a>
-          <button (click)="deleteTransfer(transfer.id)" class="delete-btn">حذف</button>
+          <a *ngIf="session.checkPermission('Transfer.edit')" routerLink="/panel/transfer/edit/{{ transfer.id }}" class="edit-btn">ویرایش</a>
+          <button *ngIf="session.checkPermission('Transfer.delete')" (click)="deleteTransfer(transfer.id)" class="delete-btn">حذف</button>
         </div>
       </div>
     </div>

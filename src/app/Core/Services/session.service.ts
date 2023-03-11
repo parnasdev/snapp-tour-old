@@ -70,6 +70,10 @@ export class SessionService {
 
   }
 
+  checkPermission(item: string) {
+    return !!this.userPermissions.find(x => x.name.split('.')[0] === item)
+  }
+
   checkUser() {
     this.authApi.checkUser().subscribe((res: any) => {
       if (res.isDone) {

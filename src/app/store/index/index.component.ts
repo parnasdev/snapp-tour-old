@@ -82,7 +82,7 @@ export class IndexComponent implements OnInit {
     this.setting.Setting$.subscribe(x => {
       if (x === 'true') {
         this.title.setTitle(this.setting.settings.title);
-        this.getFaq();
+        // this.getFaq();
       }
     })
     this.getTours();
@@ -244,7 +244,7 @@ export class IndexComponent implements OnInit {
     })
   }
 
-  getFaq() {
-    this.faqList = this.setting.settings.faq !== '' ? JSON.parse(this.setting.settings.faq) : [];
-  }
+  // getFaq(): void {
+  //   this.faqList = this.setting.settings.faq !== '' ? JSON.parse(this.setting.settings.faq) : [];
+  // }
 }

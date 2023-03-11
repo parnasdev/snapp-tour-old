@@ -14,6 +14,7 @@ import { AlertDialogComponent, AlertDialogDTO } from "../../../common-project/al
 import { LogsComponent } from "../logs/logs.component";
 import { PublicService } from "../../../Core/Services/public.service";
 import { SettingService } from "../../../Core/Services/setting.service";
+import { SessionService } from 'src/app/Core/Services/session.service';
 
 declare let $: any;
 
@@ -51,6 +52,7 @@ export class ListComponent implements OnInit {
   constructor(public tourApiService: TourApiService,
     public setting: SettingService,
     public cityApi: CityApiService,
+    public session: SessionService,
     public dialog: MatDialog,
     public route: ActivatedRoute,
     public checkErrorService: CheckErrorService,

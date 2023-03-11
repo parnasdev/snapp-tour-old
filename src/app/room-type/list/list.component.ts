@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MessageService} from "../../Core/Services/message.service";
 import {RoomTypeListDTO, RoomTypeReqDTO} from "../../Core/Models/roomTypeDTO";
 import {RoomTypeApiService} from "../../Core/Https/room-type-api.service";
+import { SessionService } from 'src/app/Core/Services/session.service';
 
 @Component({
   selector: 'prs-list',
@@ -14,6 +15,7 @@ export class ListComponent implements OnInit {
   roomTypes: RoomTypeListDTO[] = [];
 
   constructor(public roomTypeApi: RoomTypeApiService,
+    public session: SessionService,
               public message: MessageService) {
   }
 

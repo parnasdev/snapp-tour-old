@@ -8,6 +8,7 @@ import {UserApiService} from "../../Core/Https/user-api.service";
 import {UserReqDTO, UserResDTO} from "../../Core/Models/UserDTO";
 import {AlertDialogComponent, AlertDialogDTO} from "../../common-project/alert-dialog/alert-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import { SessionService } from 'src/app/Core/Services/session.service';
 
 declare var $: any;
 
@@ -31,6 +32,7 @@ export class ListComponent implements OnInit {
               public checkErrorService: CheckErrorService,
               public calService: CalenderServices,
               public dialog: MatDialog,
+              public session: SessionService,
               public errorService: ErrorsService,
               public message: MessageService) {
   }
