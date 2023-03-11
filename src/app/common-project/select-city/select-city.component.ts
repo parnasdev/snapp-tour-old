@@ -14,7 +14,6 @@ import { CityApiService } from "../../Core/Https/city-api.service";
 export class SelectCityComponent implements OnInit, OnChanges {
   @Output() citySelected = new EventEmitter()
   @Input() cities: CityResponseDTO[] = []
-  @Input() callCity: boolean = false;
   @Input() hasHotel: boolean = false;
   @Input() hasOriginTour: boolean = false;
   @Input() type: number | null = null;
@@ -31,6 +30,7 @@ export class SelectCityComponent implements OnInit, OnChanges {
   filteredOptions!: Observable<CityResponseDTO[]>;
 
   ngOnInit() {
+    this.getCities();
   }
 
   private _filter(value: string): CityResponseDTO[] {
@@ -48,20 +48,11 @@ export class SelectCityComponent implements OnInit, OnChanges {
       startWith(''),
       map(value => this._filter(value)),
     );
-    if (this.inCommingCity) {
-      if (this.cities.length == 0) {
-        this.getCities()
-      } else {
-        this.cityFC.setValue(this.cities.filter(c => c.slugEn === this.inCommingCity)[0].name)
-      }
-    }else {
-      this.getCities();
-    }
+
 
   }
 
   getCities(): void {
-
     this.isLoading = true
     const req: CityListRequestDTO = {
       type: this.type,
@@ -75,11 +66,12 @@ export class SelectCityComponent implements OnInit, OnChanges {
       this.isLoading = false
       if (res.isDone) {
         this.cities = res.data;
-        if(this.inCommingCity) {
-          this.cityFC.setValue(this.cities.filter(c => c.slugEn === this.inCommingCity)[0].name)
+        if (this.inCommingCity && this.inCommingCity !== '') {
+          console.log(this.inCommingCity)
+          if(this.cities.filter(c => c.slugEn === this.inCommingCity).length > 0) {
+            this.cityFC.setValue(this.cities.filter(c => c.slugEn === this.inCommingCity)[0].name)
+          }
         }
-
-
         this.filteredOptions = this.cityFC.valueChanges.pipe(
           startWith(''),
           map(value => this._filter(value)),

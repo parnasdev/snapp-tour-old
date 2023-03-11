@@ -12,7 +12,6 @@ export class PanelItemGuardService implements CanActivate {
   constructor(public session: SessionService,
     public message: MessageService,
     public router: Router) {
-
   }
 
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | Promise<boolean> | boolean {

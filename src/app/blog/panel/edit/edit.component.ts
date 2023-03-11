@@ -108,7 +108,7 @@ export class EditComponent implements OnInit {
       if (res.isDone) {
         this.message.showMessageBig(res.message);
         this.postForm.reset();
-        this.router.navigateByUrl('/blog/list')
+        this.router.navigateByUrl('/panel/blog/list')
       }
     }, (error: any) => {
       this.isLoading = false;

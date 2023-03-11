@@ -2,10 +2,10 @@
     <div class="inp-form">
       <prs-select-city [inCommingCity]="originFC.value"
       [hasOriginTour]="true"
-        (citySelected)="originSelected($event)" [callCity]="true"></prs-select-city>
+        (citySelected)="originSelected($event)" ></prs-select-city>
     </div>
   <div class="inp-form">
-    <prs-select-city [hasDestTour]="true" [callCity]="true" [inCommingCity]="destFC.value"
+    <prs-select-city [hasDestTour]="true"  [inCommingCity]="destFC.value"
     (citySelected)="destSelected($event)"></prs-select-city>
   </div>
     <div class="inp-form">

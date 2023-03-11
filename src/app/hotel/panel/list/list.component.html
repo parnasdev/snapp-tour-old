@@ -2,12 +2,12 @@
 <div class="list-tour">
   <div class="title">
     <h2>لیست هتل ها</h2>
-    <prs-select-city [hasHotel]="true" [callCity]="true" (citySelected)="getCitySelected($event)"></prs-select-city>
+    <prs-select-city [hasHotel]="true"  (citySelected)="getCitySelected($event)"></prs-select-city>
      <div class="d-flex search-box-hotel">
        <input [formControl]="keywordFC" placeholder="جستجو بر اساس نام هتل" type="text">
        <button class="mr-2" (click)="getList()">جستجو</button>
      </div>
-      <a class="btn-add-tour" routerLink="/hotel/add">اضافه</a>
+      <a class="btn-add-tour" routerLink="/panel/hotel/add">اضافه</a>
   </div>
   <div class="table-list-tour">
     <div class="header-list-tour">
@@ -22,7 +22,7 @@
         <span class="title-tour">{{ hotel.name }}</span>
         <span class="title-tour">{{ hotel.nameEn }}</span>
         <div class="button-setting">
-          <a routerLink="/hotel/edit/{{ hotel.slug }}" class="edit-btn">ویرایش</a>
+          <a routerLink="/panel/hotel/edit/{{ hotel.slug }}" class="edit-btn">ویرایش</a>
           <a (click)="publicService.openPage('hotels/' + hotel.slug)" class="view-btn">نمایش</a>
           <button (click)="deleteClicked(hotel.slug)" class="delete-btn">حذف</button>
         </div>

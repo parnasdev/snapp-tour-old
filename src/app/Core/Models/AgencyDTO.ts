@@ -51,6 +51,7 @@ export interface AgencyEditReqDTO {
     agency: {
       name: string;
       logo: string;
+      extra: string;
       isManager: null;
       LicenseFileA: string;
       id: number;
@@ -79,6 +80,7 @@ export interface AgencyEditDTO {
     name: string;
     logo: string;
     isManager: null;
+    extra: string;
     LicenseFileA: UploadResDTO | string;
     id: number;
     LicenseFileB: UploadResDTO | string;

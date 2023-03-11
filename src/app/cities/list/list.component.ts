@@ -67,10 +67,10 @@ export class ListComponent implements OnInit {
   }
 
   edit(name: string): void {
-    this.router.navigateByUrl(`/cities/set/${name}`)
+    this.router.navigateByUrl(`/panel/cities/set/${name}`)
   }
 
   comment(city: number) {
-    this.router.navigateByUrl(`/comment/${city}`)
+    this.router.navigateByUrl(`/panel/comment/${city}`)
   }
 }

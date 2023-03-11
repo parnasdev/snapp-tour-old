@@ -85,6 +85,7 @@ export interface ProfileDTO {
     logo: string | null;
     isManager?: boolean | null
     LicenseFileA: string | null;
+    extra: '',
     id?: number;
     LicenseFileB: string | null;
     email: string;

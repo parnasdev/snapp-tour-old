@@ -200,11 +200,28 @@
   top: 40px;
   font-size: 12px !important;
 }
-
+.package-item{
+  input , select{
+    margin: 3px 0 !important;
+  }
+}
 .under-package-text {
-  position: absolute;
-  top: 37px;
+  position: relative;
   font-size: 12px !important;
+  width: 90%;
+  background: var(--white);
+  color: var(--base-color);
+  border: 2px solid var(--base-color);
+  padding: 4px 0 !important;
+  font-weight: 500;
+  border-radius: 4px;
+  height: auto !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  p{
+    margin: 0 !important;
+  }
 }
 
 .body-foreign {
@@ -228,7 +245,7 @@
   display: grid;
   grid-template-columns: 0.1fr 1.9fr 1.3fr 1fr 1fr 1fr 0.7fr 0.7fr 0.3fr 0.5fr;
   border-bottom: 1px solid var(--light-color-two);
-  height: 80px;
+  height: auto;
   width: 100%;
 }
 
@@ -744,4 +761,14 @@ prs-select-hotel {
   input {
     height: 37px !important;
   }
+}
+
+.number-day-text{
+  height: 39px;
+  border: 1px solid #C6C6C6;
+  border-radius: 5px;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  margin-top: 7px;
 }

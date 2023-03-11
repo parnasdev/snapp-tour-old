@@ -8,7 +8,7 @@ import { AuthApiService } from "../../Core/Https/auth-api.service";
 import { CommonApiService } from "../../Core/Https/common-api.service";
 import { PublicService } from "../../Core/Services/public.service";
 import { SessionService } from "../../Core/Services/session.service";
-import { AgencyDTO, AgencyEditDTO, AgencyEditReqDTO } from "../../Core/Models/AgencyDTO";
+import { AgencyEditReqDTO } from "../../Core/Models/AgencyDTO";
 import { AgencyApiService } from "../../Core/Https/agency-api.service";
 import { ActivatedRoute } from "@angular/router";
 import { catchError, map } from 'rxjs/operators';
@@ -28,6 +28,8 @@ export interface UploadResDTO {
 })
 export class EditComponent implements OnInit {
   id = ''
+  public show = true;
+
   nameFC = new FormControl('')
   familyFC = new FormControl('')
   cityFC = new FormControl('');
@@ -97,6 +99,7 @@ export class EditComponent implements OnInit {
       LicenseFileA: '',
       id: 0,
       LicenseFileB: '',
+      extra: '',
       email: '',
       address: '',
       tell: '',
@@ -173,6 +176,7 @@ export class EditComponent implements OnInit {
         isManager: null,
         LicenseFileA: this.LicenseFileA ? this.LicenseFileA.path : '',
         id: 0,
+        extra: '',
         LicenseFileB: this.LicenseFileB ? this.LicenseFileB.path : '',
         email: this.emailFC.value,
         address: this.addressFC.value,
@@ -222,15 +226,14 @@ export class EditComponent implements OnInit {
 
   citySelected(city: CityResponseDTO): void {
     this.cityFC.setValue(city.id)
-
   }
   setValue(): void {
     this.nameFC.setValue(this.info.name)
     this.emailFC.setValue(this.info.email)
     this.familyFC.setValue(this.info.family)
     this.idCodeFC.setValue(this.info.idCode)
-    this.cityFC.setValue(this.info.city)
-
+    this.cityFC.setValue(this.info.city.slugEn);
+    this.reload();
 
     this.LicenseFileA = this.info.agency.LicenseFileA
     this.LicenseFileB = this.info.agency.LicenseFileB
@@ -282,6 +285,11 @@ export class EditComponent implements OnInit {
       }
     }
 
+  }
+
+  reload() {
+    this.show = false;
+    setTimeout(() => this.show = true);
   }
 
   getLicenseA(files: any): void {

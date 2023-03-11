@@ -12,20 +12,20 @@ const routes: Routes = [
     children: [
       {
         path: 'tour',
-        canActivate: [PanelItemGuardService],
-        data: {permitions: ['Tour']},
+        // canActivate: [PanelItemGuardService],
+        // data: {permitions: ['Tour']},
         loadChildren: () => import('../tour/panel/tour-panel.module').then(m => m.TourPanelModule)
       },
       {
         path: 'transfer',
-        canActivate: [PanelItemGuardService],
-        data: {permitions: ['Transfer']},
+        // canActivate: [PanelItemGuardService],
+        // data: {permitions: ['Transfer']},
         loadChildren: () => import('../transfer/transfer.module').then(m => m.TransferModule)
       },
       {
         path: 'agency',
-        canActivate: [PanelItemGuardService],
-        data: {permitions: ['Agency']},
+        // canActivate: [PanelItemGuardService],
+        // data: {permitions: ['Agency']},
         loadChildren: () => import('../agencies/agencies.module').then(m => m.AgenciesModule)
       },
       {
@@ -34,14 +34,14 @@ const routes: Routes = [
       },
       {
         path: 'cities',
-        canActivate: [PanelItemGuardService],
-        data: {permitions: ['Cities']},
+        // canActivate: [PanelItemGuardService],
+        // data: {permitions: ['Cities']},
         loadChildren: () => import('../cities/cities.module').then(m => m.CitiesModule)
       },
       {
         path: 'hotel',
-        canActivate: [PanelItemGuardService],
-        data: {permitions: ['Hotel']},
+        // canActivate: [PanelItemGuardService],
+        // data: {permitions: ['Hotel']},
         loadChildren: () => import('../hotel/panel/hotel-panel.module').then(m => m.HotelPanelModule)
       },
       {
@@ -50,34 +50,34 @@ const routes: Routes = [
       },
       {
         path: 'user',
-        data: {permitions: ['User']},
-        canActivate: [PanelItemGuardService],
+        // data: {permitions: ['User','User.list']},
+        // canActivate: [PanelItemGuardService],
         loadChildren: () => import('../user/user.module').then(m => m.UserModule)
       }, {
         path: 'redirector',
         loadChildren: () => import('../redirector/redirector.module').then(m => m.RedirectorModule)
       },
-      {
-        path: 'blog',
-        canActivate: [PanelItemGuardService],
-        data: {permitions: ['Post']},
+      // {
+      //   path: 'blog',
+      //   // canActivate: [PanelItemGuardService],
+      //   // data: {permitions: ['Post']},
 
-        loadChildren: () => import('../blog/panel/blog-panel.module').then(m => m.BlogPanelModule)
-      },
+      //   loadChildren: () => import('../blog/panel/blog-panel.module').then(m => m.BlogPanelModule)
+      // },
       {
         path: 'setting',
-        canActivate: [PanelItemGuardService],
-        data: {permitions: ['Setting.change']},
+        // canActivate: [PanelItemGuardService],
+        // data: {permitions: ['Setting.change']},
         loadChildren: () => import('../setting/setting.module').then(m => m.SettingModule)
       },
-      {
-        path: 'gallery',
-        loadChildren: () => import('../gallery/gallery.module').then(m => m.GalleryModule)
-      },
+      // {
+      //   path: 'gallery',
+      //   loadChildren: () => import('../gallery/gallery.module').then(m => m.GalleryModule)
+      // },
       {
         path: 'roomType',
-        canActivate: [PanelItemGuardService],
-        data: {permitions: ['RoomType']},
+        // canActivate: [PanelItemGuardService],
+        // data: {permitions: ['RoomType']},
         loadChildren: () => import('../room-type/room-type.module').then(m => m.RoomTypeModule)
       },
       {
