@@ -78,3 +78,12 @@
     font-size: 12px !important;
   }
 }
+:host::ng-deep .edit{
+  .btn-base{
+    background: #0A246A !important;
+    border: 2px solid #0A246A !important;
+  }
+}
+:host::ng-deep .btn-base{
+  height: 45px !important;
+}

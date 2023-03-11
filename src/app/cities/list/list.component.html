@@ -22,8 +22,8 @@
     <li class="list-group-item" *ngFor="let city of cities">{{city.name}}
       <div class="parent-btn">
         <!-- <prs-btn class="delete " [label]="'نظرات'" [background]="'blue'" (click)="comment(city.id)"></prs-btn> -->
-        <prs-btn *ngIf="session.checkItemPermission('City.edit')" class="edit mr-2" [label]="'ویرایش'" [background]="'blue'" (click)="edit(city.slug)"></prs-btn>
-        <prs-btn *ngIf="session.checkItemPermission('Hotel.delete')" class="delete" [label]="'حذف'" [background]="'dark'" (click)="remove(city.slug)"></prs-btn>
+        <prs-btn  style="width: 120px;" *ngIf="session.checkItemPermission('City.edit')" class="edit mr-2" [label]="'ویرایش'" [background]="'blue'" (click)="edit(city.slug)"></prs-btn>
+        <prs-btn style="width: 120px;" *ngIf="session.checkItemPermission('Hotel.delete')" class="delete" [label]="'حذف'" [background]="'dark'" (click)="remove(city.slug)"></prs-btn>
 
       </div>
 
