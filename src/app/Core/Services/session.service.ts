@@ -97,9 +97,28 @@ export class SessionService {
     });
   }
 
+  isCompletedAgencyProfile() {
+    return this.isEmpty(this.getAgency())
+  }
+
+  isEmpty(obj: any): any {
+    for (var prop in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, prop)) {
+        return false;
+      }
+    }
+
+    return JSON.stringify(obj) === JSON.stringify({});
+  }
+
   getToken(): any {
     const user = localStorage.getItem('snapp-tour-user');
     return user ? JSON.parse(user).token : '';
+  }
+
+  getAgency(): any {
+    const user = localStorage.getItem('snapp-tour-user');
+    return user ? JSON.parse(user).user.agency : '';
   }
 
   getId(): any {

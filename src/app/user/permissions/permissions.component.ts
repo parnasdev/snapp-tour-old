@@ -16,7 +16,6 @@ export class PermissionsComponent implements OnInit {
   @Input() userId: string = '';
   @Output() setPermissions = new EventEmitter<string[]>();
 
-
   constructor(public userApi: UserApiService,
               public message: MessageService,
               public checkError: CheckErrorService) {

@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {Router} from '@angular/router';
-import {MessageService} from './message.service';
-import {SessionService} from './session.service';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { MessageService } from './message.service';
+import { SessionService } from './session.service';
 
 @Injectable({
     providedIn: 'root'
@@ -9,14 +9,16 @@ import {SessionService} from './session.service';
 export class CheckErrorService {
 
     constructor(public router: Router,
-                public message: MessageService,
-                public session: SessionService) {}
+        public message: MessageService,
+        public session: SessionService) { }
 
 
     check(errorCode: any): void {
         switch (errorCode.status) {
-            case 403 : {
-                this.message.custom('شما دسترسی ندارید');
+            case 403: {
+                this.message.custom(errorCode.error.message);
+
+                // this.message.custom('شما دسترسی ندارید');
                 break;
             }
             case 401: {

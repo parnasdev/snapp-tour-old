@@ -112,7 +112,7 @@
           </ul>
         </div>
       </li>
-      <li class="li-list">
+      <li class="li-list" *ngIf="!session.isCompletedAgencyProfile()">
         <a class="menu-main menu-main-5" data-toggle="collapse" href="#collapseExample5" role="button"
            aria-expanded="false" aria-controls="collapseExample">
           <img src="assets/img/User%20Accepted.svg" width="20" alt="">
@@ -121,8 +121,8 @@
         </a>
         <div class="collapse" id="collapseExample5">
           <ul class="under-menu-ul">
-            <li *ngIf="checkItemPermission('User.read')"><a routerLink="/panel/user-agency/list">لیست کاربران</a></li>
-            <li *ngIf="checkItemPermission('User.create')"><a routerLink="/panel/user-agency/add">اضافه کردن کاربر جدید</a></li>
+            <li><a routerLink="/panel/user-agency/list">لیست کاربران</a></li>
+            <li><a routerLink="/panel/user-agency/add">اضافه کردن کاربر جدید</a></li>
           </ul>
         </div>
       </li>
