@@ -37,4 +37,8 @@ export class SidebarComponent implements OnInit {
       this.checkError.check(error);
     })
   }
+
+  supportClicked(): void {
+    this.message.custom('این گزینه در حال توسعه است')
+  }
 }

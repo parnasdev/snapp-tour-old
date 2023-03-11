@@ -13,6 +13,7 @@
         <input class="input-parent"
                matInput [formControl]="stDateFC"
                placeholder="تاریخ ورود به هتل"
+               autocomplete="off"
                [matDatepickerFilter]="myFilter"
                [matDatepicker]="picker3"
                (click)="picker3.open()">

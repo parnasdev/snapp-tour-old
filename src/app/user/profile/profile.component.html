@@ -54,7 +54,8 @@
           </div>
         </div>
         <div class="item-form-2">
-          <prs-select-city [type]="1" *ngIf="show" [inCommingCity]="req.city.slugEn" (citySelected)="onCitySelected($event)"></prs-select-city>
+          <prs-select-city [type]="1" *ngIf="show" [inCommingCity]="req.city.slugEn"
+            (citySelected)="onCitySelected($event)"></prs-select-city>
         </div>
 
         <div class="item-form-2">
@@ -62,31 +63,8 @@
             ثبت تغییرات
           </button>
         </div>
-        <div class="title-profile w-100">
-          <h2 class="dana-bold">رمز عبور</h2>
-        </div>
-
-        <div class="item-form">
-          <label for="">
-            رمزعبور
-          </label>
-          <div class="inp-form mt-2">
-            <input [formControl]="passwordFC" type="text" placeholder="اینجا بنویسید …">
-          </div>
-        </div>
-        <div class="item-form">
-          <label for="">
-            تکرار رمز عبور
-          </label>
-          <div class="inp-form mt-2">
-            <input [formControl]="retypePasswordFC" type="text" placeholder="اینجا بنویسید …">
-          </div>
-        </div>
-        <div class="item-form-2">
-          <button (click)="changePassword()" class="btn-submit-change btn-base">
-            ثبت رمز عبور
-          </button>
-        </div>
+  
+       
       </form>
     </div>
 
