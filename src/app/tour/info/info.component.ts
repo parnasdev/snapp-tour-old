@@ -73,6 +73,7 @@ export class InfoComponent implements OnInit {
     user: {
       name: '',
       family: '',
+      agency: '',
     },
     visaPriceType: 0,
     visaRate: 0,
