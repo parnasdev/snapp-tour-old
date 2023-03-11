@@ -21,7 +21,8 @@ export class AgencyLoginComponent implements OnInit {
   registerReq!: LoginReqDTO;
   codeFC = new FormControl('');
   phone = ''
-  accountType:string = '3';
+  accountType:string = 'user';
+  temp = 0;
   constructor(public route: ActivatedRoute,
     public router: Router,
     public api: AuthApiService,
@@ -33,6 +34,7 @@ export class AgencyLoginComponent implements OnInit {
     checkError.clear();
     this.route.queryParams.subscribe(params => {
       this.accountType = params['type'];
+      this.temp = params['temp'];
     })
   }
 
@@ -69,14 +71,8 @@ export class AgencyLoginComponent implements OnInit {
       if (res.isDone) {
         console.log(res.data);
         this.session.setUserToSession(res.data);
-        if (this.session.getRole() === 'User') {
-          this.router.navigateByUrl('/dashboard');
-        } else if (this.session.getRole() === 'Admin' || this.session.getRole() === 'Staff' || this.session.getRole()) {
-          this.router.navigateByUrl('/panel');
+          this.router.navigateByUrl('/panel/profile');
         } else {
-          this.router.navigateByUrl('/');
-        }
-      } else {
         this.messageService.custom(res.message);
       }
     }, (error: any) => {
@@ -86,14 +82,36 @@ export class AgencyLoginComponent implements OnInit {
     });
   }
 
+  login(): void {
+    this.isLoading = true;
+    this.api.login(this.registerReq).subscribe((res: any) => {
+      this.isLoading = false;
+      if (res.isDone) {
+        this.session.setUserToSession(res.data);
+        this.router.navigateByUrl('/panel');
+      } else {
+        this.messageService.custom(res.message);
+      }
+    }, (error: any) => {
+      this.isLoading = false;
+      this.checkError.recordError(error.error.data);
+      this.checkError.check(error);
+    });
+  }
+
   getCodeValues(): void {
     const inputCode = this.publicService.fixNumbers(this.codeFC.value);
-    this.registerReq = {
-      phone: this.phone,
-      password: inputCode,
-      accountType: this.getAccountTypeLabel()
-    };
-    this.convertUserToAgency();
+    if (this.accountType === 'user') {
+      this.convertUserToAgency();
+    } else {
+      this.registerReq = {
+        phone: this.phone,
+        password: inputCode,
+        accountType: this.accountType,
+        temp: this.temp
+      };
+      this.login();
+    }
   }
 
 }

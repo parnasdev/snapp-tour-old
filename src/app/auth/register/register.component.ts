@@ -50,7 +50,6 @@ export class RegisterComponent implements OnInit {
   }
 
   getAccountTypeLabel(): string {
-    debugger
     switch (this.accountType) {
       case '2':
         return 'staff';
@@ -69,7 +68,11 @@ export class RegisterComponent implements OnInit {
       this.isLoading = false;
       if (res.isDone) {
         this.session.setUserToSession(res.data);
-        this.router.navigateByUrl('/dashboard/user/profile');
+        if (this.accountType === '4'){
+          this.router.navigateByUrl('/panel/profile');
+        } else {
+          this.router.navigateByUrl('/dashboard/user/profile');
+        }
       } else {
         this.messageService.custom(res.message);
       }

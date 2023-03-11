@@ -18,7 +18,7 @@ export class ResendCodeComponent implements OnInit {
   buttonSelected = true;
   interval: any;
   seconds = 0;
-  minutes = 1;
+  minutes = 2;
 
   constructor(public api: AuthApiService,
               public errorService: ErrorsService,
@@ -43,7 +43,7 @@ export class ResendCodeComponent implements OnInit {
       } else {
         this.buttonSelected = false;
         clearInterval(this.interval);
-        this.minutes = 1;
+        this.minutes = 2;
       }
     }, 1000);
   }
