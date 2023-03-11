@@ -35,4 +35,23 @@ export class AgencyValidateComponent extends ValidateComponent implements OnInit
       this.showBox = false;
     }
   }
+
+  checkAuthMode(validateData: ValidateResDTO): void {
+    if (validateData.authMode === 1) {
+      if(validateData.accountType == 'user') {
+        this.showBox = true;
+      } else {
+        
+      }
+      // login
+      if (this.isForgetPassword) {
+        this.sendSms(this.phoneNumberFC.value, 'forget');
+      } else {
+        this.router.navigateByUrl('/auth/login/' + this.phoneNumberFC.value);
+      }
+    } else {
+      // register
+      this.sendSms(this.phoneNumberFC.value, 'activation');
+    }
+  }
 }

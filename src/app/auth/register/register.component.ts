@@ -50,7 +50,6 @@ export class RegisterComponent implements OnInit {
   }
 
   getAccountTypeLabel(): string {
-    debugger
     switch (this.accountType) {
       case '2':
         return 'staff';

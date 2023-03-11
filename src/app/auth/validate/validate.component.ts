@@ -67,7 +67,11 @@ export class ValidateComponent implements OnInit {
         if (this.isForgetPassword) {
           this.forgetPassword.emit(true);
         } else {
-          this.router.navigate(['/auth/register/' + phoneNumber],{ queryParams: {type: '3'}});
+          if(tokenType == 'login') {
+            this.router.navigate(['/auth/login/' + phoneNumber],{ queryParams: {temp: '1'}});
+          } else {
+            this.router.navigate(['/auth/register/' + phoneNumber],{ queryParams: {type: '3'}});
+          }
         }
       } else {
         alert(res.message);
@@ -78,19 +82,17 @@ export class ValidateComponent implements OnInit {
     });
   }
 
-  checkAuthMode(validateData: ValidateResDTO): void {
-    
+  checkAuthMode(validateData: ValidateResDTO): void {  
     if (validateData.authMode === 1) {
-      if(validateData.accountType == 'user') {
-        this.showBox = true;
-      } else {
-        
-      }
       // login
       if (this.isForgetPassword) {
         this.sendSms(this.phoneNumberFC.value, 'forget');
       } else {
-        this.router.navigateByUrl('/auth/login/' + this.phoneNumberFC.value);
+        if (validateData.password){
+          this.router.navigateByUrl('/auth/login/' + this.phoneNumberFC.value);
+        }else {
+          this.sendSms(this.phoneNumberFC.value, 'login');
+        }
       }
     } else {
       // register

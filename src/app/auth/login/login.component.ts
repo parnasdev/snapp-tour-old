@@ -24,6 +24,8 @@ export class LoginComponent implements OnInit {
   registerReq!: LoginReqDTO;
   phoneNumber: string | null = '';
 
+  temp = 0;
+
   constructor(public router: Router,
     public route: ActivatedRoute,
     public api: AuthApiService,
@@ -34,6 +36,7 @@ export class LoginComponent implements OnInit {
     // errorService.clear();
     this.route.queryParams.subscribe(params => {
       this.accountType = params['account'];
+      this.temp = +params['temp'];
     })
   }
 
@@ -45,7 +48,7 @@ export class LoginComponent implements OnInit {
     this.registerReq = {
       phone: this.phoneNumber,
       password: this.passwordFC.value,
-      temp: 0
+      temp: this.temp
     };
     this.login();
   }
@@ -62,7 +65,6 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('/panel');
         } else {
           this.router.navigateByUrl('/');
-
         }
 
       } else {
