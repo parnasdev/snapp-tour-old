@@ -45,8 +45,8 @@
           </div>
           <div style="width: 32% !important;">
             <label style="position: relative;top: 14px">شهر</label>
-            <prs-select-city [inCommingCity]="cityFC.value" [hasOriginTour]="false" [hasDestTour]="false"
-                             (citySelected)="citySelected($event)" [type]="1" [callCity]="true"></prs-select-city>
+            <prs-select-city *ngIf="show" [inCommingCity]="info.city ? info.city?.slugEn : null " [hasOriginTour]="false" [hasDestTour]="false"
+                             (citySelected)="citySelected($event)" [type]="1" ></prs-select-city>
           </div>
 
           <div class="item-info-2">

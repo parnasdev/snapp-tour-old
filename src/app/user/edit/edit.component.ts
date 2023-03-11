@@ -55,7 +55,7 @@ export class EditComponent extends AddComponent implements OnInit {
     this.userApi.editUser(this.userReq, this.userId).subscribe((res: any) => {
       if (res.isDone) {
         this.message.custom(res.message);
-        this.router.navigate(['/user/list']);
+        this.router.navigate(['/panel/user/list']);
       } else {
         this.message.custom(res.message);
       }

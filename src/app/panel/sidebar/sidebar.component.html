@@ -90,7 +90,7 @@
           </ul>
         </div>
       </li>
-      <li class="li-list" *ngIf="checkPermission('Post')">
+      <!-- <li class="li-list" *ngIf="checkPermission('Post')">
         <a class="menu-main menu-main-4" data-toggle="collapse" href="#collapseExample4" role="button"
            aria-expanded="false" aria-controls="collapseExample">
           <img src="assets/img/Pen.svg" width="20" alt="">
@@ -99,11 +99,11 @@
         </a>
         <div class="collapse" id="collapseExample4">
           <ul class="under-menu-ul">
-            <li *ngIf="checkItemPermission('Post.read')"><a routerLink="/panelblog/list">لیست مطالب</a></li>
-            <li *ngIf="checkItemPermission('Post.create')"><a routerLink="/panelblog/add">اضافه کردن مطلب </a></li>
+            <li *ngIf="checkItemPermission('Post.read')"><a routerLink="/panel/blog/list">لیست مطالب</a></li>
+            <li *ngIf="checkItemPermission('Post.create')"><a routerLink="/panel/blog/add">اضافه کردن مطلب </a></li>
           </ul>
         </div>
-      </li>
+      </li> -->
       <li class="li-list" *ngIf="checkPermission('User')">
         <a class="menu-main menu-main-5" data-toggle="collapse" href="#collapseExample5" role="button"
            aria-expanded="false" aria-controls="collapseExample">
@@ -113,8 +113,8 @@
         </a>
         <div class="collapse" id="collapseExample5">
           <ul class="under-menu-ul">
-            <li *ngIf="checkItemPermission('User.read')"><a routerLink="/paneluser/list">لیست کاربران</a></li>
-            <li *ngIf="checkItemPermission('User.create')"><a routerLink="/paneluser/add">اضافه کردن کاربر جدید</a></li>
+            <li *ngIf="checkItemPermission('User.read')"><a routerLink="/panel/user/list">لیست کاربران</a></li>
+            <li *ngIf="checkItemPermission('User.create')"><a routerLink="/panel/user/add">اضافه کردن کاربر جدید</a></li>
           </ul>
         </div>
       </li>
@@ -131,14 +131,14 @@
           </ul>
         </div>
       </li>
-      <li class="li-list" *ngIf="checkItemPermission('Setting.change')">
-        <a class="menu-main menu-main-7" data-toggle="collapse"  routerLink="/panelgallery" href="#collapseExample6"
+      <!-- <li class="li-list" *ngIf="checkItemPermission('Setting.change')">
+        <a class="menu-main menu-main-7" data-toggle="collapse"  routerLink="/panel/gallery" href="#collapseExample6"
            role="button"
            aria-expanded="false" aria-controls="collapseExample">
           <img src="assets/img/User%20Accepted.svg" width="20" alt="">
           گالری
         </a>
-      </li>
+      </li> -->
       <li class="li-list" *ngIf="checkItemPermission('Setting.change')">
         <a class="menu-main menu-main-7" data-toggle="collapse" routerLink="/panel/redirector" href="#collapseExample7"
            role="button"

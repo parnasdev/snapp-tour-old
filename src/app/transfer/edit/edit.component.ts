@@ -45,7 +45,7 @@ export class EditComponent implements OnInit {
     this.api.edit(this.req, this.slug).subscribe((res: any) => {
       if (res.isDone) {
         this.message.custom(res.message)
-        this.router.navigateByUrl('/transfer');
+        this.router.navigateByUrl('/panel/transfer');
       } else {
         this.message.custom(res.message);
       }
