@@ -32,17 +32,17 @@
               </div>
             </form>
 
-            <div *ngIf="showBox" style="background: white;padding: 14px;height: auto;width: 100%;display: grid;place-items:center;border:1px solid #c6c6c6;border-radius: 8px;">
+            <div *ngIf="showBox" class="p-text">
               <span>کاربر گرامی شما در سیستم اسنپ تور کاربر عادی هستید. آیا تمایل  به تبدیل شدن به آژانس را دارید؟</span>
               <span>در نظر داشته باشید که تمامی امکانات کاربری برای شما فعال باقی خواهد ماند</span>
-              <button (click)="checkSubmit(true)">تایید</button>
-              <button (click)="checkSubmit(false)">عدم تایید</button>
+              <div class="p-btn">
+                <button class="accept btn-base" (click)="checkSubmit(true)">تایید</button>
+                <button class="unAccept btn-base" (click)="checkSubmit(false)">عدم تایید</button>
+              </div>
             </div>
-  
           </div>
         </div>
       </div>
     </div>
-  
+
   </section>
-  
