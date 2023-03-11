@@ -5,6 +5,7 @@ import { CityListRequestDTO, CityResponseDTO } from "../../Core/Models/cityDTO";
 import { CheckErrorService } from "../../Core/Services/check-error.service";
 import { Router } from "@angular/router";
 import { FormControl } from "@angular/forms";
+import { SessionService } from 'src/app/Core/Services/session.service';
 
 @Component({
   selector: 'prs-list',
@@ -21,6 +22,7 @@ export class ListComponent implements OnInit {
 
   constructor(public api: CityApiService,
     public router: Router,
+    public session: SessionService,
     public checkErrorService: CheckErrorService,
     public message: MessageService) {
   }

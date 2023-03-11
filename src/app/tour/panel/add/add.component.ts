@@ -126,6 +126,7 @@ export class AddComponent implements OnInit {
     this.getTransfer()
     this.disableFields();
     this.getService();
+    console.log(this.session.checkPermission('Status'))
     // this.getHotels();
   }
 

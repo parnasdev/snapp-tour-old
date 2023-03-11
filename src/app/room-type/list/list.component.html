@@ -16,8 +16,8 @@
         <span class="title-tour">{{ room?.name }}</span>
         <span class="title-tour">{{ room?.label }}</span>
         <div class="button-setting">
-          <a routerLink="/panel/roomType/edit/{{ room.id }}" class="edit-btn">ویرایش</a>
-          <button (click)="deleteRoom(room.id)" class="delete-btn">حذف</button>
+          <a *ngIf="session.checkPermission('RoomType.edit')" routerLink="/panel/roomType/edit/{{ room.id }}" class="edit-btn">ویرایش</a>
+          <button *ngIf="session.checkPermission('RoomType.delete')" (click)="deleteRoom(room.id)" class="delete-btn">حذف</button>
         </div>
       </div>
     </div>

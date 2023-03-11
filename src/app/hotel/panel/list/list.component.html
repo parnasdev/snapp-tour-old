@@ -2,12 +2,12 @@
 <div class="list-tour">
   <div class="title">
     <h2>لیست هتل ها</h2>
-    <prs-select-city [hasHotel]="true"  (citySelected)="getCitySelected($event)"></prs-select-city>
-     <div class="d-flex search-box-hotel">
-       <input [formControl]="keywordFC" placeholder="جستجو بر اساس نام هتل" type="text">
-       <button class="mr-2" (click)="getList()">جستجو</button>
-     </div>
-      <a class="btn-add-tour" routerLink="/panel/hotel/add">اضافه</a>
+    <prs-select-city [hasHotel]="true" (citySelected)="getCitySelected($event)"></prs-select-city>
+    <div class="d-flex search-box-hotel">
+      <input [formControl]="keywordFC" placeholder="جستجو بر اساس نام هتل" type="text">
+      <button class="mr-2" (click)="getList()">جستجو</button>
+    </div>
+    <a class="btn-add-tour" routerLink="/panel/hotel/add">اضافه</a>
   </div>
   <div class="table-list-tour">
     <div class="header-list-tour">
@@ -22,23 +22,19 @@
         <span class="title-tour">{{ hotel.name }}</span>
         <span class="title-tour">{{ hotel.nameEn }}</span>
         <div class="button-setting">
-          <a routerLink="/panel/hotel/edit/{{ hotel.slug }}" class="edit-btn">ویرایش</a>
+          <a *ngIf="session.checkPermission('Hotel.edit')" routerLink="/panel/hotel/edit/{{ hotel.slug }}"
+            class="edit-btn">ویرایش</a>
           <a (click)="publicService.openPage('hotels/' + hotel.slug)" class="view-btn">نمایش</a>
-          <button (click)="deleteClicked(hotel.slug)" class="delete-btn">حذف</button>
+          <button *ngIf="session.checkPermission('Hotel.delete')" (click)="deleteClicked(hotel.slug)"
+            class="delete-btn">حذف</button>
         </div>
       </div>
       <div>
       </div>
     </div>
   </div>
-  <pagination-controls
-    *ngIf="!isLoading && paginate.last_page > 1"
-    class="pagination-control"
-    (pageChange)="onPageChanged($event)"
-    previousLabel="قبلی"
-    nextLabel="بعدی"
-    screenReaderPaginationLabel="صفحه بندی"
-    screenReaderPageLabel="صفحه"
-    screenReaderCurrentLabel="شما در صفحه ی">
+  <pagination-controls *ngIf="!isLoading && paginate.last_page > 1" class="pagination-control"
+    (pageChange)="onPageChanged($event)" previousLabel="قبلی" nextLabel="بعدی" screenReaderPaginationLabel="صفحه بندی"
+    screenReaderPageLabel="صفحه" screenReaderCurrentLabel="شما در صفحه ی">
   </pagination-controls>
 </div>

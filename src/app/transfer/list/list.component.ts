@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {TransferAPIService} from "../../Core/Https/transfer-api.service";
 import {MessageService} from "../../Core/Services/message.service";
 import {TransferListDTO, TransferListRequestDTO} from "../../Core/Models/transferDTO";
+import { SessionService } from 'src/app/Core/Services/session.service';
 
 @Component({
   selector: 'prs-list',
@@ -13,6 +14,7 @@ export class ListComponent implements OnInit {
   transfers: TransferListDTO[] = [];
 
   constructor(public api: TransferAPIService,
+    public session: SessionService,
               public message: MessageService) {
   }
 
