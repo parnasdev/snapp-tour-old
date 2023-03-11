@@ -54,7 +54,7 @@
           </div>
         </div>
         <div class="item-form-2">
-          <prs-select-city  (citySelected)="onCitySelected($event)"></prs-select-city>
+          <prs-select-city [type]="1" *ngIf="show" [inCommingCity]="req.city.slugEn" (citySelected)="onCitySelected($event)"></prs-select-city>
         </div>
 
         <div class="item-form-2">
