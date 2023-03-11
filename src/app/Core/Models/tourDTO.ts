@@ -260,6 +260,7 @@ export interface Tour {
   status: string
   title : string
   transfers : TourTransferDTO[]
+  defineTour: boolean
 }
 
 
@@ -273,17 +274,16 @@ export interface DatesResDTO {
 export interface ReserveInfoDTO {
   id:         number;
   package:    ReservePackageDTO;
-  user:       null;
-  name:       null;
-  month:      null;
-  city:       null;
+  user:       string;
+  name:       string;
+  month:      string;
+  city:       string;
   phone:      string;
   count:      number;
   status:     string;
-  passengers: null;
-  bill:       null;
-  createdAt:  Date;
-  cache:      null;
+  passengers: Passengers[];
+  bill:       BillDTO;
+  createdAt:  string;
 }
 
 export interface BillDTO {
