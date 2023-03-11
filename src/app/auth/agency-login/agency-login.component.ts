@@ -59,7 +59,7 @@ export class AgencyLoginComponent implements OnInit {
   setConvertData(){
     this.convertData = {
       phone: this.phone,
-      token: this.codeFC.value
+      password: this.codeFC.value
     }
   }
 

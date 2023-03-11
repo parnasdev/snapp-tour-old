@@ -9,7 +9,6 @@ import {UserReqDTO, UserResDTO} from "../../Core/Models/UserDTO";
 import {AlertDialogComponent, AlertDialogDTO} from "../../common-project/alert-dialog/alert-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import { SessionService } from 'src/app/Core/Services/session.service';
-
 declare var $: any;
 
 @Component({

@@ -9,6 +9,7 @@ import { ErrorsService } from 'src/app/Core/Services/errors.service';
 import { MessageService } from 'src/app/Core/Services/message.service';
 import { UserReqDTO, UserResDTO } from 'src/app/Core/Models/UserDTO';
 import { AlertDialogComponent, AlertDialogDTO } from 'src/app/common-project/alert-dialog/alert-dialog.component';
+import { AgencyUserApiService } from 'src/app/Core/Https/agency-user-api.service copy';
 
 declare var $: any;
 @Component({
@@ -17,7 +18,6 @@ declare var $: any;
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-
   userReq: UserReqDTO = {
     paginate: true,
     perPage: 20,
@@ -26,7 +26,7 @@ export class ListComponent implements OnInit {
   loading = false;
   city = '';
 
-  constructor(public userApi: UserApiService,
+  constructor(public userApi: AgencyUserApiService,
               public route: ActivatedRoute,
               public checkErrorService: CheckErrorService,
               public calService: CalenderServices,

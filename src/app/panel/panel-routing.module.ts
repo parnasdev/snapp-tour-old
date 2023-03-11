@@ -49,6 +49,10 @@ const routes: Routes = [
         loadChildren: () => import('../file-manager/file-manager.module').then(m => m.FileManagerModule)
       },
       {
+        path: 'user-agency',
+        loadChildren: () => import('../user/user-agencies/user-agencies.module').then(m => m.UserAgenciesModule)
+      },
+      {
         path: 'user',
         // data: {permitions: ['User','User.list']},
         // canActivate: [PanelItemGuardService],
