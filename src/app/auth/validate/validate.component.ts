@@ -82,21 +82,22 @@ export class ValidateComponent implements OnInit {
     });
   }
 
-  checkAuthMode(validateData: ValidateResDTO): void {  
+  checkAuthMode(validateData: ValidateResDTO): void { 
+    const phoneNumber = this.publicService.fixNumbers(this.phoneNumberFC.value) 
     if (validateData.authMode === 1) {
       // login
       if (this.isForgetPassword) {
-        this.sendSms(this.phoneNumberFC.value, 'forget');
+        this.sendSms(phoneNumber, 'forget');
       } else {
         if (validateData.password){
-          this.router.navigateByUrl('/auth/login/' + this.phoneNumberFC.value);
+          this.router.navigateByUrl('/auth/login/' + phoneNumber);
         }else {
-          this.sendSms(this.phoneNumberFC.value, 'login');
+          this.sendSms(phoneNumber, 'login');
         }
       }
     } else {
       // register
-      this.sendSms(this.phoneNumberFC.value, 'activation');
+      this.sendSms(phoneNumber, 'activation');
     }
   }
 
