@@ -14,7 +14,7 @@
     <span>{{ checkStatus(item.status) }}</span>
     <span>{{ item.ref_code }}</span>
     <div>
-      <a routerLink="/dashboard/tour/info/{{ item.id }}" style="height: 35px !important;" class="btn-base px-4">جزییات</a>
+      <a routerLink="/dashboard/tour/info/{{ item.ref_code }}" style="height: 35px !important;" class="btn-base px-4">جزییات</a>
     </div>
   </div>
 </div>
@@ -37,6 +37,6 @@
       <span class="r">کد پیگیری</span>
       <span class="l">{{ item.ref_code }}</span>
     </div>
-    <a routerLink="/dashboard/tour/info/{{ item.id }}" class="btn-base">جزییات</a>
+    <a routerLink="/dashboard/tour/info/{{ item.ref_code }}" class="btn-base">جزییات</a>
   </div>
 </div>
