@@ -9,6 +9,7 @@ import { PublicService } from 'src/app/Core/Services/public.service';
 import { SessionService } from 'src/app/Core/Services/session.service';
 import { MessageService } from 'src/app/Core/Services/message.service';
 import { ErrorsService } from 'src/app/Core/Services/errors.service';
+import { CityResponseDTO } from 'src/app/Core/Models/cityDTO';
 
 
 @Component({
@@ -17,6 +18,8 @@ import { ErrorsService } from 'src/app/Core/Services/errors.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+show = true
+
   nameFC = new FormControl('')
   familyFC = new FormControl('')
   usernameFC = new FormControl('')
@@ -43,7 +46,7 @@ export class ProfileComponent implements OnInit {
   req: ProfileDTO = {
     name: '',
     username: '',
-    city: 0,
+    city: {} as CityResponseDTO,
     gender: 0,
     birthDay: '',
     createdAt: '',
@@ -82,7 +85,10 @@ export class ProfileComponent implements OnInit {
     this.getInfo();
   }
 
-
+  reload() {
+    this.show = false;
+    setTimeout(() => this.show = true);
+  } 
   setReq(): void {
     this.req = {
       name: this.nameFC.value,
@@ -150,12 +156,12 @@ export class ProfileComponent implements OnInit {
     this.familyFC.setValue(this.req.family)
     this.phoneFC.setValue(this.req.phone)
     this.emailFC.setValue(this.req.agency.email)
-
+    this.genderFC.setValue(this.req.gender.toString())
+    this.reload()
   }
 
-  onCitySelected(city:any):void {
-    console.log(city);
-    
+  onCitySelected(city: any): void {
+
     this.cityFC.setValue(city.id)
 
   }

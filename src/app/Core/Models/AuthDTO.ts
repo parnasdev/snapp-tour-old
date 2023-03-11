@@ -1,3 +1,5 @@
+import { CityResponseDTO } from "./cityDTO";
+
 export interface AuthRequestDTO {
   password?: string;
   code?: string;
@@ -79,7 +81,7 @@ export interface ProfileDTO {
   phone: string;
   email: string;
   gender: number;
-  city: number;
+  city: CityResponseDTO;
   agency: {
     name: string;
     logo: string | null;

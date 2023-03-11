@@ -7,7 +7,7 @@ export interface TourListRequestDTO {
   origin: string | null;
   dest: string| null;
   stDate: string | null;
-  night: number | null;
+  night: number | string | null;
   status: string | null;
   perPage: number;
   paginate: boolean;

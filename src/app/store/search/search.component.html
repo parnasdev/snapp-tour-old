@@ -22,6 +22,7 @@
 
     <div class="inp-form">
       <select [formControl]="nightFC" name="">
+        <option value="0">تعداد شب</option>
         <option *ngFor="let x of nights" [value]="x">{{x + 'شب '}}</option>
       </select>
     </div>
