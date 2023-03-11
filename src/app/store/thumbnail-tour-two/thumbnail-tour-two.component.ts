@@ -5,11 +5,11 @@ import {MatDialog} from "@angular/material/dialog";
 import {ResponsiveService} from "../../Core/Services/responsive.service";
 import {ShowRoomsPopupComponent} from "../../room-type/show-rooms-popup/show-rooms-popup.component";
 import {RoomTypeListDTO, RoomTypePriceDTO} from "../../Core/Models/roomTypeDTO";
-import { AuthPopupComponent } from 'src/app/auth/auth-popup/auth-popup.component';
-import { MessageService } from 'src/app/Core/Services/message.service';
-import { TourApiService } from 'src/app/Core/Https/tour-api.service';
-import { SessionService } from 'src/app/Core/Services/session.service';
-import { Router } from '@angular/router';
+import {AuthPopupComponent} from 'src/app/auth/auth-popup/auth-popup.component';
+import {MessageService} from 'src/app/Core/Services/message.service';
+import {TourApiService} from 'src/app/Core/Https/tour-api.service';
+import {SessionService} from 'src/app/Core/Services/session.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'prs-thumbnail-tour-two',
@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./thumbnail-tour-two.component.scss']
 })
 export class ThumbnailTourTwoComponent implements OnInit {
-
+  isMobile = false;
   @Input() tourInfo!: TourInfoDTO;
   @Input() tourType = false;
   @Input() defineTour = false;
@@ -28,6 +28,7 @@ export class ThumbnailTourTwoComponent implements OnInit {
               public session: SessionService,
               public router: Router,
               public responsive: ResponsiveService) {
+    this.isMobile = responsive.isMobile()
   }
 
   ngOnInit(): void {
@@ -46,13 +47,13 @@ export class ThumbnailTourTwoComponent implements OnInit {
     }
   }
 
-  checkReserve(packageId: number){
+  checkReserve(packageId: number) {
     this.session.isLoggedIn() ? this.getReserve(packageId) : this.loginPopup(packageId)
   }
 
   loginPopup(id: number): void {
     const dialog = this.dialog.open(AuthPopupComponent, {
-      width: '70%',
+      width: this.isMobile?'80%':'30%',
       data: id,
     })
     dialog.afterClosed().subscribe(result => {
