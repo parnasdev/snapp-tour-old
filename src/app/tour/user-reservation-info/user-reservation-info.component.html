@@ -48,7 +48,14 @@
     </div>
   </div>
 </div>
-<h2 class="title-tour">{{ data?.package?.tour?.title }}</h2>
+<div class="d-flex align-items-center justify-content-between w-100">
+  <div class="d-flex align-items-center mt-4">
+    <h2 class="title-tour">{{ data?.package?.tour?.title }}</h2>
+  </div>
+  <div class="code">
+    <span>کد رفرنس:25</span>
+  </div>
+</div>
 <div class="set-request-tour">
   <div class="info-from">
     <span class="city-name">{{ data?.package?.tour?.stCity?.name }}</span>
@@ -210,64 +217,64 @@
   </div>
 </div>
 
-<button (click)="addRow()">اضافه کردن</button>
+<button class="btn-base px-4" style="height: 40px !important;" (click)="addRow()">اضافه کردن</button>
 <h2 class="title-tour">اطلاعات مسافرین</h2>
-<form [formGroup]="ReserveForm"  formArrayName="passengers">
-    <div class="set-info-passengers" *ngFor="let item of PassengerForm.controls; let i = index" [formGroupName]="i">
-        <div class="item-form">
-          <label class="dana-bold" for="">نام و نام خانوادگی</label>
-          <div class="inp-form mt-2">
-            <input type="text" formControlName="name" placeholder="اینجا بنویسید …" formControlName="fullName">
-          </div>
-        </div>
-        <div class="item-form">
-          <label class="dana-bold" for="">
-            کد ملی
-          </label>
-          <div class="inp-form mt-2">
-            <input type="text" formControlName="id_code" placeholder="اینجا بنویسید …" formControlName="id_code">
-          </div>
-        </div>
-        <div class="item-form">
-          <label class="dana-bold" for="">
-            شهر
-          </label>
-          <div class="inp-form mt-2">
-            <select name="" id="" formControlName="city">
-              <option value="">تهران</option>
-              <option value="">شیراز</option>
-              <option value="">اصفهان</option>
-            </select>
-          </div>
-        </div>
-        <div class="item-form">
-          <label class="dana-bold" for="">
-            شماره همراه
-          </label>
-          <div class="inp-form mt-2">
-            <input type="text" formControlName="phoneNumber" placeholder="اینجا بنویسید …">
-          </div>
-        </div>
-        <div class="item-form">
-          <label class="dana-bold" for="">
-            ملیت
-          </label>
-          <div class="inp-form mt-2">
-            <select formControlName="nationality" name="" id="">
-              <option value="">ایرانی</option>
-              <option value="">خارجی</option>
-            </select>
-          </div>  
-        </div>
-        <div class="item-form">
-          <label class="dana-bold" for="">
-            پاسپورت
-          </label>
-          <div class="inp-form mt-2">
-            <input type="text" placeholder="اینجا بنویسید …" formControlName="passport_code">
-          </div>
-        </div>
+<form [formGroup]="ReserveForm" formArrayName="passengers">
+  <div class="set-info-passengers" *ngFor="let item of PassengerForm.controls; let i = index" [formGroupName]="i">
+    <div class="item-form">
+      <label class="dana-bold" for="">نام و نام خانوادگی</label>
+      <div class="inp-form mt-2">
+        <input type="text" formControlName="name" placeholder="اینجا بنویسید …" formControlName="fullName">
       </div>
+    </div>
+    <div class="item-form">
+      <label class="dana-bold" for="">
+        کد ملی
+      </label>
+      <div class="inp-form mt-2">
+        <input type="text" formControlName="id_code" placeholder="اینجا بنویسید …" formControlName="id_code">
+      </div>
+    </div>
+    <div class="item-form">
+      <label class="dana-bold" for="">
+        شهر
+      </label>
+      <div class="inp-form mt-2">
+        <select name="" id="" formControlName="city">
+          <option value="">تهران</option>
+          <option value="">شیراز</option>
+          <option value="">اصفهان</option>
+        </select>
+      </div>
+    </div>
+    <div class="item-form">
+      <label class="dana-bold" for="">
+        شماره همراه
+      </label>
+      <div class="inp-form mt-2">
+        <input type="text" formControlName="phoneNumber" placeholder="اینجا بنویسید …">
+      </div>
+    </div>
+    <div class="item-form">
+      <label class="dana-bold" for="">
+        ملیت
+      </label>
+      <div class="inp-form mt-2">
+        <select formControlName="nationality" name="" id="">
+          <option value="">ایرانی</option>
+          <option value="">خارجی</option>
+        </select>
+      </div>
+    </div>
+    <div class="item-form">
+      <label class="dana-bold" for="">
+        پاسپورت
+      </label>
+      <div class="inp-form mt-2">
+        <input type="text" placeholder="اینجا بنویسید …" formControlName="passport_code">
+      </div>
+    </div>
+  </div>
 </form>
 <div class="promo-code my-3">
   <div class="item-form w-25">
