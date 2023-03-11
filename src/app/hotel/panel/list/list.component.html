@@ -7,7 +7,7 @@
       <input [formControl]="keywordFC" placeholder="جستجو بر اساس نام هتل" type="text">
       <button class="mr-2" (click)="getList()">جستجو</button>
     </div>
-    <a class="btn-add-tour" routerLink="/panel/hotel/add">اضافه</a>
+    <a *ngIf="session.checkItemPermission('Hotel.create')" class="btn-add-tour" routerLink="/panel/hotel/add">اضافه</a>
   </div>
   <div class="table-list-tour">
     <div class="header-list-tour">
@@ -24,7 +24,7 @@
         <div class="button-setting">
           <a *ngIf="session.checkItemPermission('Hotel.edit')" routerLink="/panel/hotel/edit/{{ hotel.slug }}"
             class="edit-btn">ویرایش</a>
-          <a (click)="publicService.openPage('hotels/' + hotel.slug)" class="view-btn">نمایش</a>
+          <a (click)="publicService.openPage('/panel/hotels/' + hotel.slug)" class="view-btn">نمایش</a>
           <button *ngIf="session.checkItemPermission('Hotel.delete')" (click)="deleteClicked(hotel.slug)"
             class="delete-btn">حذف</button>
         </div>

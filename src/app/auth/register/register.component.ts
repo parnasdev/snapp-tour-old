@@ -7,7 +7,7 @@ import { PublicService } from 'src/app/Core/Services/public.service';
 import { MessageService } from 'src/app/Core/Services/message.service';
 import { ErrorsService } from 'src/app/Core/Services/errors.service';
 import { SessionService } from 'src/app/Core/Services/session.service';
-
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'prs-register',
@@ -24,6 +24,7 @@ export class RegisterComponent implements OnInit {
     public router: Router,
     public api: AuthApiService,
     public publicService: PublicService,
+    private _location: Location,
     public messageService: MessageService,
     public checkError: ErrorsService,
     public session: SessionService
@@ -81,6 +82,10 @@ export class RegisterComponent implements OnInit {
       this.checkError.recordError(error.error.data);
       this.checkError.check(error);
     });
+  }
+
+  backClicked() {
+    this._location.back();
   }
 
 }

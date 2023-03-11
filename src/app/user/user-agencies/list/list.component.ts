@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-
 import {MatDialog} from "@angular/material/dialog";
 import { SessionService } from 'src/app/Core/Services/session.service';
 import { UserApiService } from 'src/app/Core/Https/user-api.service';
@@ -12,7 +11,6 @@ import { UserReqDTO, UserResDTO } from 'src/app/Core/Models/UserDTO';
 import { AlertDialogComponent, AlertDialogDTO } from 'src/app/common-project/alert-dialog/alert-dialog.component';
 
 declare var $: any;
-
 @Component({
   selector: 'prs-list',
   templateUrl: './list.component.html',
