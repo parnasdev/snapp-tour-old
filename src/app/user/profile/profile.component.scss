@@ -1,5 +1,18 @@
-
-
+:host::ng-deep prs-select-city {
+  .mat-form-field-flex {
+    background: unset !important;
+    .mat-form-field-infix{
+      border-radius: 10px !important;
+      border: 1px solid #e2e8f0 !important;
+      height: 58px !important;
+      position: relative;
+      top: 20px !important;
+      svg{
+        left: 4px !important;
+      }
+    }
+  }
+}
 
 @media only screen and (max-width: 450px) {
   .item-form {
