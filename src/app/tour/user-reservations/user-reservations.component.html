@@ -7,14 +7,14 @@
     <span>کد پیگیری</span>
     <span>عملیات</span>
   </div>
-  <div class="body-trip" *ngFor=" let item of [1,2,3,4,5]">
-    <span> تور مارماریس</span>
-    <span>25/25/25</span>
-    <span>26/26/26</span>
-    <span>در حال انتظار</span>
-    <span>85 </span>
+  <div class="body-trip" *ngFor="let item of reserves">
+    <span>{{ item.package.tour.title }}</span>
+    <span>{{ item.package.tour.enDate }}</span>
+    <span>{{ item.package.tour.stDate }}</span>
+    <span>{{ item.status }}</span>
+    <span>{{ item.code }}</span>
     <div>
-      <a routerLink="/dashboard/tour/info/{slug}" style="height: 35px !important;" class="btn-base px-4">جزییات</a>
+      <a routerLink="/dashboard/tour/info/{{ item.id }}" style="height: 35px !important;" class="btn-base px-4">جزییات</a>
     </div>
   </div>
 </div>

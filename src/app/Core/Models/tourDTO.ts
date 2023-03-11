@@ -1,4 +1,5 @@
 import { CityDTO, CityResponseDTO } from "./cityDTO";
+import { ServicesDTO } from "./hotelDTO";
 import { RoomTypePriceDTO } from "./roomTypeDTO";
 
 
@@ -201,7 +202,8 @@ export interface ReserveReqDTO {
 
 export interface ReserveListReqDTO {
   perPage?: number
-  paginate: boolean
+  paginate: boolean,
+  accountType?: string
 }
 
 export interface ReserveListResDTO {
@@ -214,6 +216,23 @@ export interface ReserveListResDTO {
   month: string;
   name: string;
   status: string | null;
+}
+
+export interface UserReserveListResDTO {
+  bill: BillDTO
+  count: number
+  createdAt: string
+  id: number
+  month: null
+  name: null
+  package: ReservePackageDTO;
+  passengers: null
+  status: string
+  code: string;
+}
+
+export interface BillDTO {
+  title: string;
 }
 
 
@@ -244,7 +263,7 @@ export interface Tour {
   stCity: CityResponseDTO
   stDate : string
   status: string
-   title : string
+  title : string
   transfers : TourTransferDTO[]
 }
 

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { TourApiService } from 'src/app/Core/Https/tour-api.service';
-import { ReserveListResDTO, ReserveListReqDTO } from 'src/app/Core/Models/tourDTO';
+import { ReserveListResDTO, ReserveListReqDTO, UserReserveListResDTO } from 'src/app/Core/Models/tourDTO';
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
 import { ErrorsService } from 'src/app/Core/Services/errors.service';
 import { MessageService } from 'src/app/Core/Services/message.service';
@@ -18,9 +18,10 @@ export class UserReservationsComponent implements OnInit {
   isTablet = false;
   slug: string = 'dsfsf';
 
-  reserves: ReserveListResDTO[] = [];
+  reserves: UserReserveListResDTO[] = [];
   reserveReq: ReserveListReqDTO = {
     paginate: true,
+    accountType: 'user'
   }
 
   pageNum = 1
@@ -44,7 +45,7 @@ export class UserReservationsComponent implements OnInit {
   getReserveList(): void {
     this.api.getReserves(this.reserveReq,this.pageNum).subscribe((res: any) => {
       if (res.isDone) {
-        console.log(res.data);
+        console.log(res.data)
         this.reserves = res.data;
       } else {
         this.messageService.custom('مشکلی در نمایش اطلاعات به وجود آمده است')
