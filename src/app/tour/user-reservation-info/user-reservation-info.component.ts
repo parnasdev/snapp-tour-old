@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Route } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { TourApiService } from 'src/app/Core/Https/tour-api.service';
 import { DiscountsDTO, EditReserveReq, HotelDTO, PricesDTO, RateDTO, ReserveInfoDTO, Tour } from 'src/app/Core/Models/tourDTO';
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
@@ -120,6 +120,7 @@ export class UserReservationInfoComponent implements OnInit {
       passport_expire: [''],
     })
     this.PassengerForm.push(Passengers);
+    console.log(this.PassengerForm);
   }
 
   setReq() {
@@ -179,21 +180,5 @@ export class UserReservationInfoComponent implements OnInit {
   }
 
 
-  addItem(): void {
-    this.items = this.orderForm?.get('items') as FormArray;
-    this.items.push(this.createItem());
-  }
 
-
-  createItem(): FormGroup {
-    return this.fb.group({
-      name: '',
-      family: '',
-      id_code: '',
-      city: '',
-      phone: '',
-      nationality :'',
-      password: '',
-    });
-  }
 }
