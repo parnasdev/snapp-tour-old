@@ -75,6 +75,9 @@
 }
 
 @media only screen and (max-width: 868px) {
+  :host::ng-deep prs-select-city{
+    width: 98% !important;
+  }
   .box-search{
     height: auto !important;
   }
