@@ -45,12 +45,10 @@ export class SearchComponent implements OnInit, OnChanges {
     this.isMobile = mobileService.isMobile();
   }
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.inCommingSearchObject) {
-
-      this.originFC.setValue(this.inCommingSearchObject.origin)
-      this.destFC.setValue(this.inCommingSearchObject.dest)
+    if (changes.inCommingSearchObject.firstChange) {
+      this.originFC.setValue(changes.inCommingSearchObject.currentValue?.origin)
+      this.destFC.setValue(changes.inCommingSearchObject.currentValue?.dest)
       this.getReservedDates();
-
     }
   }
 
@@ -85,6 +83,7 @@ export class SearchComponent implements OnInit, OnChanges {
     }
   }
   destSelected(city: CityResponseDTO): void {
+
     this.destFC.setValue(city.slugEn)
     this.reservedDates = [];
     this.stDateFC.setValue(null)
@@ -106,7 +105,6 @@ export class SearchComponent implements OnInit, OnChanges {
           }
         });
         this.nightFC.setValue(this.inCommingSearchObject?.night)
-      } else {
       }
     }, (error: any) => {
       this.checkErrorService.check(error)

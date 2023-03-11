@@ -15,6 +15,7 @@ declare var $: any;
 export class EditComponent extends AddComponent implements OnInit {
   //public Variable
   slug: string | null = ''
+  public show = true
   infoLoading = false;
   addResponse: any;
   info: TourInfoDTO = {
@@ -175,6 +176,7 @@ export class EditComponent extends AddComponent implements OnInit {
         this.cityID = this.info.endCity.id;
         this.form.controls.stCity_id.setValue(this.info.stCity.id);
         this.form.controls.endCity_id.setValue(this.info.endCity.id);
+        this.reload();
         // @ts-ignore
         this.tourType = this.cities.find(x => x.id === +this.form.value.endCity_id)?.type;
         this.setHotelsData();
@@ -182,6 +184,11 @@ export class EditComponent extends AddComponent implements OnInit {
     }, (error: any) => {
       this.message.error()
     })
+  }
+
+  reload() {
+    this.show = false;
+    setTimeout(() => this.show = true);
   }
 
   setHotelsData(): void {
