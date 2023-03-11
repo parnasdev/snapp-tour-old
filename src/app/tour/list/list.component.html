@@ -27,6 +27,9 @@
               <div class="border-left"></div>
             </div>
           </div>
+          <div *ngIf="tours.length==0" class="empty-box">
+            <h3>سفری یافت نشد</h3>
+          </div>
           <div class="tour-list" *ngIf="tours.length > 0">
             <div class="near-date">
               <strong>

@@ -68,6 +68,8 @@
             <div *ngIf="errorService.hasError('stCity_id')">
               <span class="text-danger">{{errorService.getError('stCity_id')}}</span>
             </div>
+          </div>
+          <div class="item-info-2">
             <div class="select-info">
               <label for="">شهر مقصد</label>
 
@@ -79,7 +81,6 @@
             </div>
 
           </div>
-
           <div class="item-info-2">
             <div class="select-info">
               <label for="">تعداد شب</label>
@@ -98,6 +99,8 @@
                 <span class="text-danger">{{errorService.getError('nightNum')}}</span>
               </div>
             </div>
+          </div>
+          <div class="item-info-2">
             <div class="select-info">
               <label for="">تعداد روز</label>
               <!--              <select formControlName="dayNum" name="" id="">-->
@@ -110,8 +113,6 @@
             </div>
 
           </div>
-        </div>
-        <div class="bottom">
           <div class="item-info">
             <label for="">نامک تور</label>
             <input *ngIf="isSlugGenerated" formControlName="slug" type="text">
@@ -157,7 +158,6 @@
             </div>
           </div>
         </div>
-
       </div>
     </div>
     <div class="box-info-fly">
@@ -193,8 +193,6 @@
             </div>
 
           </div>
-        </div>
-        <div class="bottom">
           <div class="item-info">
             <label for="">تاریخ پرواز برگشت</label>
             <mat-form-field class="example-full-width" appearance="fill">
@@ -216,7 +214,6 @@
             </div>
 
           </div>
-
         </div>
       </div>
 
@@ -247,7 +244,7 @@
           </div>
 
           <div>
-            <p>نکته مهم: لطفا برای نمایش هر نرخ در باکس نرخ ها مقدار نرخ را وارد کنید.</p>
+            <p style="font-size: 12px !important; color: #ff0000; margin-top: 8px;">نکته مهم: لطفا برای نمایش هر نرخ در باکس نرخ ها مقدار نرخ را وارد کنید.</p>
           </div>
 
         </div>
