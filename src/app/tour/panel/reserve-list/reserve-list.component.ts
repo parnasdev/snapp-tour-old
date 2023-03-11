@@ -3,7 +3,7 @@ import {TourApiService} from "../../../Core/Https/tour-api.service";
 import {MessageService} from "../../../Core/Services/message.service";
 import {CalenderServices} from "../../../Core/Services/calender-service";
 import {ActivatedRoute} from "@angular/router";
-import {ReserveListReqDTO, ReserveListResDTO} from "../../../Core/Models/tourDTO";
+import {ReserveListReqDTO, ReserveListResDTO, UserReserveListResDTO} from "../../../Core/Models/tourDTO";
 import {FormControl} from "@angular/forms";
 import {LogsComponent} from "../logs/logs.component";
 import {MatDialog} from "@angular/material/dialog";
@@ -15,7 +15,7 @@ import {PublicService} from "../../../Core/Services/public.service";
   styleUrls: ['./reserve-list.component.scss']
 })
 export class ReserveListComponent implements OnInit {
-  list: ReserveListResDTO[] = []
+  list: UserReserveListResDTO[] = []
   loading = false;
   paginateConfig: any;
   paginate: any;
@@ -89,8 +89,8 @@ export class ReserveListComponent implements OnInit {
     });
   }
 
-  changeStatus(status: string | null, id: number) {
-    this.api.editReserve(status, id).subscribe((res: any) => {
+  changeStatus(status: string | null, reserve_id: string) {
+    this.api.changeStatus(status, reserve_id).subscribe((res: any) => {
       this.loading = false;
       if (res.isDone) {
         this.message.custom(res.message);

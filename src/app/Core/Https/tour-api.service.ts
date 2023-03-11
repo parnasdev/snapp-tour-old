@@ -5,6 +5,7 @@ import { environment } from "../../../environments/environment";
 import { Result } from "../Models/result";
 import {
   DatesResDTO,
+  EditReserveReq,
   ReserveListReqDTO, ReserveListResDTO,
   ReserveReqDTO,
   TourListRequestDTO,
@@ -72,7 +73,7 @@ export class TourApiService {
     const strUrl = environment.BACK_END_IP + `reserve/createReserve`;
     return this.http.post<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
-  getReserve(reserveID:number): any {
+  getReserve(reserveID:string): any {
     const strUrl = environment.BACK_END_IP + `reserve/getReserve/${reserveID}`;
     return this.http.get<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
   }
@@ -88,10 +89,17 @@ export class TourApiService {
       this.publicService.getDefaultHeaders());
   }
 
-  editReserve(status: string | null, id: number): any {
-    const strUrl = environment.BACK_END_IP + `reserve/editReserve/${id}`;
+  editReserve(editReserveReq: EditReserveReq, ref_code: string): any {
+    const strUrl = environment.BACK_END_IP + `reserve/editReserve/${ref_code}`;
     return this.http.post<Result<any>>(strUrl, {
-      status: status
+        editReserveReq
+    }, this.publicService.getDefaultHeaders());
+  }
+
+  changeStatus(status: string | null, ref_code: string): any {
+    const strUrl = environment.BACK_END_IP + `reserve/changeStatusReserve/${ref_code}`;
+    return this.http.post<Result<any>>(strUrl, {
+      status
     }, this.publicService.getDefaultHeaders());
   }
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Route } from '@angular/router';
 import { TourApiService } from 'src/app/Core/Https/tour-api.service';
-import { ReserveInfoDTO } from 'src/app/Core/Models/tourDTO';
+import { EditReserveReq, ReserveInfoDTO } from 'src/app/Core/Models/tourDTO';
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
 import { CheckErrorService } from 'src/app/Core/Services/check-error.service';
 import { MessageService } from 'src/app/Core/Services/message.service';
@@ -15,7 +15,7 @@ import { SessionService } from 'src/app/Core/Services/session.service';
 })
 export class UserReservationInfoComponent implements OnInit {
 
-  reserveID = '';
+  reserveCode = '';
   data?: ReserveInfoDTO;
 
   stDate = '';
@@ -26,6 +26,24 @@ export class UserReservationInfoComponent implements OnInit {
   cityFC = new FormControl(1, Validators.required);
   idCodeFC = new FormControl('', Validators.required);
   phoneFC = new FormControl(this.session.getPhone(), Validators.required);
+
+  editReserveData: EditReserveReq = {
+    city_id: 0,
+    phone: '',
+    name: '',
+    family: '',
+    id_code: 0,
+    count: 0,
+    coupon_id: '',
+    passengers: [],
+    bill: {
+      rooms: [],
+      totalPayAble: 0,
+      totalRoomPrice: 0
+    },
+    changeHotel: 0,
+    package_id: ''
+  }
 
   profileFG: FormGroup = this.fb.group({
     name: this.nameFC,
@@ -45,11 +63,46 @@ export class UserReservationInfoComponent implements OnInit {
 
   ngOnInit(): void {
     // @ts-ignore
-    this.reserveID = this.route.snapshot.paramMap.get('reserveid');
+    this.reserveCode = this.route.snapshot.paramMap.get('reserveid');
     this.getReserve();
   }
+
+  setReq() {
+    this.editReserveData = {
+      city_id: 0,
+      phone: '',
+      name: '',
+      family: '',
+      id_code: 0,
+      count: 0,
+      coupon_id: '',
+      passengers: [],
+      bill: {
+        rooms: [],
+        totalPayAble: 0,
+        totalRoomPrice: 0
+      },
+      changeHotel: 0,
+      package_id: null
+    }
+  }
+
   getReserve(): void {
-    this.api.getReserve(+this.reserveID).subscribe((res: any) => {
+    this.api.getReserve(this.reserveCode).subscribe((res: any) => {
+      if (res.isDone) {
+        this.data = res.data;
+        this.setDateAndTime();
+      } else {
+        this.messageService.custom('مشکلی در نمایش اطلاعات به وجود آمده است')
+      }
+    }, (error: any) => {
+      this.checkError.check(error);
+    })
+  }
+
+  editReserve(): void {
+    this.setReq();
+    this.api.editReserve(this.editReserveData, this.reserveCode).subscribe((res: any) => {
       if (res.isDone) {
         this.data = res.data;
         this.setDateAndTime();

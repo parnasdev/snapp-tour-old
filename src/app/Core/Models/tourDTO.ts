@@ -228,13 +228,8 @@ export interface UserReserveListResDTO {
   package: ReservePackageDTO;
   passengers: null
   status: string
-  code: string;
+  ref_code: string;
 }
-
-export interface BillDTO {
-  title: string;
-}
-
 
 export interface ReservePackageDTO {
   id: number;
@@ -289,6 +284,36 @@ export interface ReserveInfoDTO {
   bill:       null;
   createdAt:  Date;
   cache:      null;
+}
+
+export interface BillDTO {
+  rooms: RoomsDTO[];
+  totalRoomPrice: number;
+  totalPayAble: number;
+}
+
+export interface RoomsDTO {
+  room_type: ''
+  room_count: ''
+  room_price: ''
+}
+
+export interface Passengers {
+
+}
+
+export interface EditReserveReq {
+  city_id: number;
+  phone: string;
+  name: string;
+  family: string;
+  id_code: number;
+  count: number;
+  coupon_id: string;
+  passengers: Passengers[];
+  bill: BillDTO;
+  changeHotel: number; // 0 or 1
+  package_id: string | null;
 }
 
 

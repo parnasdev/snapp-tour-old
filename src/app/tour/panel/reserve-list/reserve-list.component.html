@@ -18,7 +18,7 @@
       <span class="status">تنظیمات</span>
     </div>
     <div class="body-list-tour" *ngIf="list.length > 0">
-      <div class="item" *ngFor="let tour of list | paginate: paginateConfig;let i = index">
+      <!-- <div class="item" *ngFor="let tour of list | paginate: paginateConfig;let i = index">
         <span class="id">{{ i + 1 }}</span>
         <span class="title-tour">{{ tour.package ? tour.package.hotel?.name : 'بدون پکیج' }}</span>
         <span
@@ -29,10 +29,9 @@
           class="username">{{ tour.package ? tour.package.tour?.endCity?.name : (tour.city ? tour.city?.name : 'بدون پکیج')}}</span>
         <span class="status">{{ tour.package ? getStatus(tour.package.tour.status) : 'بدون پکیج'}}</span>
         <span class="status">
-<!--          {{ getStatus(tour.status)}}-->
           <div class="selectdiv">
           <label>
-            <select [(ngModel)]="tour.status" (change)="changeStatus(tour.status, tour.id)">
+            <select [(ngModel)]="tour.status" (change)="changeStatus(tour.status, tour.ref_code)">
               <option value="Accepted">تایید شده</option>
               <option value="Pendding">در انتظار تایید</option>
             </select>
@@ -46,7 +45,7 @@
              class="view-btn">نمایش</a>
           <a (click)="openLogs(tour.id)" class="view-btn">لاگ ها</a>
         </div>
-      </div>
+      </div> -->
     </div>
     <div>
       <pagination-controls

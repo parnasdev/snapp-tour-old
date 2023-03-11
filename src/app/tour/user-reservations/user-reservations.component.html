@@ -12,7 +12,7 @@
     <span>{{ calService.convertDateAndTime(item.package.tour.stDate, 'fa') }}</span>
     <span>{{ calService.convertDateAndTime(item.package.tour.enDate, 'fa') }}</span>
     <span>{{ checkStatus(item.status) }}</span>
-    <span>{{ item.code }}</span>
+    <span>{{ item.ref_code }}</span>
     <div>
       <a routerLink="/dashboard/tour/info/{{ item.id }}" style="height: 35px !important;" class="btn-base px-4">جزییات</a>
     </div>
@@ -35,7 +35,7 @@
     </div>
     <div class="item w-100 d-flex align-items-center justify-content-between">
       <span class="r">کد پیگیری</span>
-      <span class="l">{{ item.code }}</span>
+      <span class="l">{{ item.ref_code }}</span>
     </div>
     <a routerLink="/dashboard/tour/info/{{ item.id }}" class="btn-base">جزییات</a>
   </div>
