@@ -25,8 +25,8 @@
           <a (click)="changeStatus(x.id,true)" *ngIf="!x.verify" class="view-btn">تایید</a>
           <a (click)="changeStatus(x.id,false)" *ngIf="x.verify" class="delete-btn">عدم تایید</a>
           <a (click)="openUsers(x.users,x.id)" class="edit-btn">کاربران</a>
-          <a routerLink="/panel/agency/{{x.id}}" class="edit-btn">جزییات</a>
-          <a routerLink="/panel/agency/edit/{{x.id}}" class="edit-btn">ویرایش</a>
+          <a routerLink="/panel/agencies/{{x.id}}" class="edit-btn">جزییات</a>
+          <a routerLink="/panel/agencies/edit/{{x.id}}" class="edit-btn">ویرایش</a>
 <!--                     <button (click)="deleteClicked(x.id)" class="delete-btn">حذف</button>-->
         </div>
       </div>

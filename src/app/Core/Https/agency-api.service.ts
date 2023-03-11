@@ -1,7 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {environment} from 'src/environments/environment';
-import {AgencyDTO, AgencyEditDTO, AgencyListUserDTO, AgencyUserDTO} from '../Models/AgencyDTO';
+import {AgencyDTO, AgencyEditReqDTO, AgencyListUserDTO, AgencyUserDTO} from '../Models/AgencyDTO';
 import {Result} from '../Models/result';
 import {PublicService} from '../Services/public.service';
 
@@ -36,7 +36,7 @@ export class AgencyApiService {
       null,
       this.publicService.getDefaultHeaders());
   }
-  editAgency(req: AgencyEditDTO): any {
+  editAgency(req: AgencyEditReqDTO): any {
     const url = environment.BACK_END_IP + `user/editProfile`;
     return this.http.post<Result<any>>(
       url,

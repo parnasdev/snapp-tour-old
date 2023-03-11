@@ -1,39 +1,39 @@
 .form-auth {
     margin: 4rem 0;
   }
-  
+
   .parent-form {
     background-color: var(--white);
     border: 1px solid var(--light-color-two);
-    height: 500px;
+    height: auto;
     display: flex;
     align-items: flex-start;
     justify-content: center;
     padding-top: 2rem;
     background-image: url("../../../assets/img/pattern-fly.png");
   }
-  
+
   .box-form {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 100%;
     align-items: center;
     justify-content: center;
   }
-  
+
   .box-form h2 {
     font-weight: 600 !important;
-    font-size: 20px;
+    font-size: 17px;
     margin-bottom: 2px;
   }
-  
+
   .form {
     display: flex;
     flex-direction: column;
     width: 100%;
     align-items: center;
   }
-  
+
   .form .item {
     width: 100%;
     display: flex;
@@ -41,13 +41,13 @@
     align-items: flex-start;
     margin-top: 1rem;
   }
-  
+
   .form .item label {
     color: var(--title-color);
     font-weight: 500;
     margin-bottom: 7px;
   }
-  
+
   .form .item input {
     height: 40px;
     border-radius: 3px;
@@ -56,7 +56,7 @@
     padding: 0 8px;
     color: var(--title-color);
   }
-  
+
   .btn-form-auth {
     height: 40px;
     width: 100%;
@@ -67,7 +67,7 @@
     border: none;
     outline: none;
   }
-  
+
   .form .text {
     width: 100%;
     display: flex;
@@ -75,19 +75,19 @@
     margin-top: 13px;
     align-items: center;
   }
-  
+
   .form .text span {
     font-size: 13px !important;
     color: var(--title-color);
   }
-  
+
   .form .text a {
     font-size: 13px !important;
     color: var(--red-color);
     font-weight: 500;
     margin-right: 4px;
   }
-  
+
   .footer-text-form {
     width: 85%;
     margin: 1rem auto;
@@ -110,7 +110,7 @@
       font-size: 13px;
     }
   }
-  
+
   @media only screen and (min-width: 381px) and (max-width: 868px) {
     .box-form {
       width: 80%;
@@ -128,39 +128,39 @@
 .form-auth {
     margin: 4rem 0;
   }
-  
+
   .parent-form {
     background-color: var(--white);
     border: 1px solid var(--light-color-two);
-    height: 500px;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     padding-top: 2rem;
     background-image: url("../../../assets/img/pattern-fly.png");
   }
-  
+
   .box-form {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 100%;
     align-items: center;
     justify-content: center;
   }
-  
+
   .box-form h2 {
     font-weight: 600 !important;
-    font-size: 20px;
+    font-size: 17px;
     margin-bottom: 2px;
   }
-  
+
   .form {
     display: flex;
     flex-direction: column;
     width: 100%;
     align-items: center;
   }
-  
+
   .form .item {
     width: 100%;
     display: flex;
@@ -168,13 +168,13 @@
     align-items: flex-start;
     margin-top: 1rem;
   }
-  
+
   .form .item label {
     color: var(--title-color);
     font-weight: 500;
     margin-bottom: 7px;
   }
-  
+
   .form .item input {
     height: 40px;
     border-radius: 3px;
@@ -183,7 +183,7 @@
     padding: 0 8px;
     color: var(--title-color);
   }
-  
+
   .btn-form-auth {
     height: 40px;
     width: 100%;
@@ -194,7 +194,7 @@
     border: none;
     outline: none;
   }
-  
+
   .form .text {
     width: 100%;
     display: flex;
@@ -202,30 +202,30 @@
     margin-top: 13px;
     align-items: center;
   }
-  
+
   .form .text span {
     font-size: 13px !important;
     color: var(--title-color);
   }
-  
+
   .form .text a {
     font-size: 13px !important;
     color: var(--red-color);
     font-weight: 500;
     margin-right: 4px;
   }
-  
+
   .forget-password {
     margin-top: 12px;
     display: flex;
     justify-content: center;
   }
-  
+
   .forget-password a {
     color: var(--title-color);
     font-weight: 500;
   }
-  
+
   .footer-text-form{
     width: 85%;
     margin: 1rem auto;
@@ -248,7 +248,7 @@
       font-size: 13px;
     }
   }
-  
+
   @media only screen and (min-width: 381px) and (max-width: 868px) {
     .box-form {
       width: 80%;
@@ -262,4 +262,3 @@
       font-size: 13px;
     }
   }
-  

@@ -461,7 +461,8 @@
                          mask="separator" thousandSeparator=",">
                   <div class="under-package-text d-flex align-items-center"
                        *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].twin > 0">
-                    <p>{{ getData(i).twinRate.value | sperator }}</p>
+                       <p>{{ getData(i).twinRate.value | sperator }}</p>
+
                   </div>
                   <input type="text" formControlName="twinCapacity"
                          mask="separator" thousandSeparator=",">

@@ -90,20 +90,14 @@
           </ul>
         </div>
       </li>
-      <!-- <li class="li-list" *ngIf="checkPermission('Post')">
-        <a class="menu-main menu-main-4" data-toggle="collapse" href="#collapseExample4" role="button"
-           aria-expanded="false" aria-controls="collapseExample">
+      <li class="li-list" *ngIf="checkPermission('User')">
+        <a class="menu-main menu-main-4" href="/panel/agencies" role="button">
           <img src="assets/img/Pen.svg" width="20" alt="">
-          نوشته ها و نظرات
-          <i class="icon-down-open icon-4"></i>
+          آژانس ها
+          <!-- <i class="icon-down-open icon-4"></i> -->
         </a>
-        <div class="collapse" id="collapseExample4">
-          <ul class="under-menu-ul">
-            <li *ngIf="checkItemPermission('Post.read')"><a routerLink="/panel/blog/list">لیست مطالب</a></li>
-            <li *ngIf="checkItemPermission('Post.create')"><a routerLink="/panel/blog/add">اضافه کردن مطلب </a></li>
-          </ul>
-        </div>
-      </li> -->
+ 
+      </li>
       <li class="li-list" *ngIf="checkPermission('User')">
         <a class="menu-main menu-main-5" data-toggle="collapse" href="#collapseExample5" role="button"
            aria-expanded="false" aria-controls="collapseExample">
