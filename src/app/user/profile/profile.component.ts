@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from "@angular/forms";
-import { HttpErrorResponse, HttpEventType, HttpResponse } from "@angular/common/http";
-import { catchError, map } from "rxjs/operators";
-import { of } from "rxjs";
 import { ProfileDTO } from 'src/app/Core/Models/AuthDTO';
 import { UserApiService } from 'src/app/Core/Https/user-api.service';
 import { AuthApiService } from 'src/app/Core/Https/auth-api.service';

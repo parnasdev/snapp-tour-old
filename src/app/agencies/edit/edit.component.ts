@@ -8,7 +8,7 @@ import { AuthApiService } from "../../Core/Https/auth-api.service";
 import { CommonApiService } from "../../Core/Https/common-api.service";
 import { PublicService } from "../../Core/Services/public.service";
 import { SessionService } from "../../Core/Services/session.service";
-import { AgencyDTO, AgencyEditDTO } from "../../Core/Models/AgencyDTO";
+import { AgencyDTO, AgencyEditDTO, AgencyEditReqDTO } from "../../Core/Models/AgencyDTO";
 import { AgencyApiService } from "../../Core/Https/agency-api.service";
 import { ActivatedRoute } from "@angular/router";
 import { catchError, map } from 'rxjs/operators';
@@ -81,7 +81,7 @@ export class EditComponent implements OnInit {
   fileProgress = 0;
   isUpload = false
   fileLoading = false
-  req: AgencyEditDTO = {
+  req: AgencyEditReqDTO = {
     username: '',
     family: '',
     name: '',
@@ -232,16 +232,17 @@ export class EditComponent implements OnInit {
     this.cityFC.setValue(this.info.city)
 
 
-    this.LicenseFileB = { url: this.req.agency.LicenseFileA, path: '' }
-    this.LicenseFileB = { url: this.req.agency.LicenseFileB, path: '' }
-    this.logo = { url: this.req.agency.logo, path: '' }
-    this.agencyNameFC.setValue(this.info.user.agency.name)
-    this.agencyEmailFC.setValue(this.info.user.agency.email)
-    this.addressFC.setValue(this.info.user.agency.address)
-    this.tellFC.setValue(this.info.user.agency.tell)
-    this.siteFC.setValue(this.info.user.agency.site)
-    this.crewCountFC.setValue(this.info.user.agency.crewCount)
-    this.necessaryPhoneFC.setValue(this.info.user.agency.necessaryPhone)
+    this.LicenseFileA = this.info.agency.LicenseFileA
+    this.LicenseFileB = this.info.agency.LicenseFileB
+    this.logo = this.info.agency.logo
+    this.agencyNameFC.setValue(this.info.agency.name)
+    this.agencyEmailFC.setValue(this.info.agency.email)
+    this.genderFC.setValue(this.info.gender)
+    this.addressFC.setValue(this.info.agency.address)
+    this.idCodeFC.setValue(this.info.id_code)
+    this.tellFC.setValue(this.info.agency.tell)
+    this.siteFC.setValue(this.info.agency.site)
+    this.necessaryPhoneFC.setValue(this.info.agency.necessaryPhone)
 
   }
 
