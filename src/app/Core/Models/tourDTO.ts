@@ -107,6 +107,7 @@ export interface TourInfoDTO {
   user: {
     name: string;
     family: string;
+    agency: string;
   }
   visaPriceType: number;
   visaRate: number;
