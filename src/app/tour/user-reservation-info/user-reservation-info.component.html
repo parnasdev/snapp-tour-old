@@ -217,7 +217,7 @@
   </div>
 </div>
 
-<button (click)="addRow()">اضافه کردن</button>
+<button class="btn-base px-4" style="height: 40px !important;" (click)="addRow()">اضافه کردن</button>
 <h2 class="title-tour">اطلاعات مسافرین</h2>
 <form [formGroup]="ReserveForm" formArrayName="passengers">
   <div class="set-info-passengers" *ngFor="let item of PassengerForm.controls; let i = index" [formGroupName]="i">
