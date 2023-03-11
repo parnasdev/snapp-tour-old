@@ -57,8 +57,10 @@ export class ThumbnailTourTwoComponent implements OnInit {
       data: id,
     })
     dialog.afterClosed().subscribe(result => {
-      this.message.custom('ورود شما با موفقیت انجام شد')
-      this.getReserve(id)
+      if (result) {
+        this.message.custom('ورود شما با موفقیت انجام شد')
+        this.getReserve(id)
+      }
     })
 
     // const dialog = this.dialog.open(ReservePopupComponent, {

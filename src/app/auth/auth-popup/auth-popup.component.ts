@@ -113,7 +113,7 @@ export class AuthPopupComponent implements OnInit {
       this.isLoading = false;
       if (res.isDone) {
         this.session.setUserToSession(res.data);
-        this.dialogRef.close()
+        this.dialogRef.close(true)
         // if (this.session.getRole() === 'User') {
         //   this.router.navigateByUrl('/dashboard');
         // } else if (this.session.getRole() === 'Admin' || this.session.getRole() === 'Staff') {
