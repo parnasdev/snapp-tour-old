@@ -19,12 +19,12 @@
               </div>
             </div>
             <div id="tab-info-city" class="">
-              <ul class="tab-ul-list">
-                <li><a class="about-tab" [ngClass]="{'about-tab' : tabClicked !== 'about' , 'li-active-fix':tabClicked === 'about'}">درباره تور {{info.name}}</a></li>
-                <li><a class="news-tab" [ngClass]="{'news-tab' : tabClicked !== 'news' , 'li-active-fix':tabClicked === 'news'}">اخبار گردشگری {{info.name}}</a></li>
-                <li><a class="question-tab" [ngClass]="{'question-tab' : tabClicked !== 'question' , 'li-active-fix':tabClicked === 'question'}">سوالات متداول</a></li>
-                <li><a class="tour-tab" [ngClass]="{'tour-tab' : tabClicked !== 'tour' , 'li-active-fix':tabClicked === 'tour'}">تور های {{info.name}}</a></li>
-              </ul>
+<!--              <ul class="tab-ul-list">-->
+<!--                <li><a class="about-tab" [ngClass]="{'about-tab' : tabClicked !== 'about' , 'li-active-fix':tabClicked === 'about'}">درباره تور {{info.name}}</a></li>-->
+<!--                <li><a class="news-tab" [ngClass]="{'news-tab' : tabClicked !== 'news' , 'li-active-fix':tabClicked === 'news'}">اخبار گردشگری {{info.name}}</a></li>-->
+<!--                <li><a class="question-tab" [ngClass]="{'question-tab' : tabClicked !== 'question' , 'li-active-fix':tabClicked === 'question'}">سوالات متداول</a></li>-->
+<!--                <li><a class="tour-tab" [ngClass]="{'tour-tab' : tabClicked !== 'tour' , 'li-active-fix':tabClicked === 'tour'}">تور های {{info.name}}</a></li>-->
+<!--              </ul>-->
               <div id="about">
                 <div class="about-city">
                   <div class="title-about-city">
@@ -33,6 +33,9 @@
                       <h1>شهر {{info.name}} </h1>
                       <span>ارزان ترین و با کیفیت ترین ها </span>
                     </div>
+                  </div>
+                  <div *ngIf="" class="empty-box">
+                    <h3>شهری یافت نشد</h3>
                   </div>
                   <div class="details-text">
                     <div class="parent-gallery">
@@ -50,15 +53,15 @@
                     <p style="white-space: pre-wrap;">{{info.description}}</p>
                   </div>
 
-                  <div class="blog">
-                    <div class="title">
-                      <img src="assets/img/Bookmark.svg" width="20" alt="">
-                      <h1>مقالات گردشگری </h1>
-                    </div>
+<!--                  <div class="blog">-->
+<!--                    <div class="title">-->
+<!--                      <img src="assets/img/Bookmark.svg" width="20" alt="">-->
+<!--                      <h1>مقالات گردشگری </h1>-->
+<!--                    </div>-->
 
 
-                    <prs-thumbnails-blog></prs-thumbnails-blog>
-                  </div>
+<!--                    <prs-thumbnails-blog></prs-thumbnails-blog>-->
+<!--                  </div>-->
                   <div class="faq" *ngIf="info.faq && info.faq.length > 0">
                     <div class="title-faq">
                       <img src="assets/img/Document-align-2.svg" width="35" alt="">
@@ -91,7 +94,9 @@
               </div>
             </div>
             <prs-thumbnails-tour [tours]="tours"></prs-thumbnails-tour>
-
+            <div *ngIf="tours.length==0" class="empty-box">
+              <h3>شهری یافت نشد</h3>
+            </div>
           </div>
         </div>
       </div>
