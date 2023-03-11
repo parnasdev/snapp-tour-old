@@ -11,7 +11,7 @@ import { LoginResponseDTO, ProfileDTO } from '../Models/AuthDTO';
 })
 export class AgencyUserApiService {
 
-  private serverControllerName = 'user/agancy/';
+  private serverControllerName = 'user/agency/';
 
   constructor(public http: HttpClient,
               public publicService: PublicService) {

@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EditComponent } from '../agencies/edit/edit.component';
-import { InfoComponent } from '../agencies/info/info.component';
-import { PanelItemGuardService } from '../Core/guards/panel-item-guard.service';
 import { PanelComponent } from "./panel/panel.component";
 
 const routes: Routes = [
