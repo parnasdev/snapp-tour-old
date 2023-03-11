@@ -14,7 +14,7 @@ export interface SearchObjectDTO {
   origin: string;
   dest: string;
   stDate: string;
-  night: number;
+  night: number | string;
 }
 
 @Component({
@@ -110,7 +110,7 @@ export class ListComponent implements OnInit {
       dest: this.searchObject.dest,
       isAdmin: false,
       stDate: this.calendarService.convertDate(this.searchObject.stDate, 'en', 'yyyy-MM-DD'),
-      night: this.searchObject.night,
+      night: this.searchObject.night === '0' ? null :this.searchObject.night,
       paginate: true,
       search: null,
       month: null,

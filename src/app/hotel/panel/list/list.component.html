@@ -22,10 +22,10 @@
         <span class="title-tour">{{ hotel.name }}</span>
         <span class="title-tour">{{ hotel.nameEn }}</span>
         <div class="button-setting">
-          <a *ngIf="session.checkPermission('Hotel.edit')" routerLink="/panel/hotel/edit/{{ hotel.slug }}"
+          <a *ngIf="session.checkItemPermission('Hotel.edit')" routerLink="/panel/hotel/edit/{{ hotel.slug }}"
             class="edit-btn">ویرایش</a>
           <a (click)="publicService.openPage('hotels/' + hotel.slug)" class="view-btn">نمایش</a>
-          <button *ngIf="session.checkPermission('Hotel.delete')" (click)="deleteClicked(hotel.slug)"
+          <button *ngIf="session.checkItemPermission('Hotel.delete')" (click)="deleteClicked(hotel.slug)"
             class="delete-btn">حذف</button>
         </div>
       </div>

@@ -13,6 +13,7 @@ export class CopyComponent extends EditComponent implements OnInit {
     this.slug = this.route.snapshot.paramMap.get('slug');
     this.getInfo()
   }
+  
 
   submit() {
     if (this.form.controls.title.value === this.info.title) {

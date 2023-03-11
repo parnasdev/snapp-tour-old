@@ -107,12 +107,12 @@
           </div>
         </div>
         <div class="operation">
-          <a *ngIf="session.checkPermission('Tour.edit')" routerLink="/panel/tour/edit/{{tour.slug}}" class="edit-btn">ویرایش</a>
+          <a *ngIf="session.checkItemPermission('Tour.edit')" routerLink="/panel/tour/edit/{{tour.slug}}" class="edit-btn">ویرایش</a>
           <a (click)="publicService.openPage('tours/' + tour.endCity.slugEn + '/' + tour.slug )"
             class="view-btn">نمایش</a>
           <a routerLink="/panel/tour/copy/{{ tour.slug }}" class="copy-btn">کپی</a>
           <button (click)="openLogs(tour.id)" class="log-btn">لاگ ها</button>
-          <button *ngIf="session.checkPermission('Tour.delete')" (click)="deleteClicked(tour.slug)" class="delete-btn">حذف</button>
+          <button *ngIf="session.checkItemPermission('Tour.delete')" (click)="deleteClicked(tour.slug)" class="delete-btn">حذف</button>
         </div>
 
       </div>
