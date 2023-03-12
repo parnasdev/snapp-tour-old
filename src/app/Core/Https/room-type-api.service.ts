@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {PublicService} from "../Services/public.service";
 import {environment} from "../../../environments/environment";
 import {Result} from "../Models/result";
-import {RoomTypeCapacityReqDTO, RoomTypeListDTO, RoomTypeReqDTO, RoomTypeSetDTO} from "../Models/roomTypeDTO";
+import {RoomTypeListDTO, RoomTypeReqDTO, RoomTypeSetDTO} from "../Models/roomTypeDTO";
 
 @Injectable({
   providedIn: 'root'

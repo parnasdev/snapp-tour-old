@@ -18,7 +18,7 @@ export class PassengersComponent implements OnInit,OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.RoomData.firstChange) {
       console.log(this.RoomData)
-      for(let i =0;i<= (this.RoomData?.capacityPerson ?? []);i++) {
+      for(let i =0;i < (this.RoomData?.capacityPerson ?? []);i++) {
         this.addRow();
       }
       

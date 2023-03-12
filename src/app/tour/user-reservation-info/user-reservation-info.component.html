@@ -97,7 +97,7 @@
         }}</strong>
       <small>تومان</small>
     </div>
-    <prs-counter [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.twinCapacity ? reserveObj.package.prices?.twinCapacity : '0', 'twin')"
+    <prs-counter *ngIf="isCounterShow" [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.twinCapacity ? reserveObj.package.prices?.twinCapacity : '0', 'twin')"
     (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
     <small>ظرفیت: {{ reserveObj.package?.prices?.twinCapacity ? +reserveObj.package.prices.twinCapacity : 0 }}</small>
   </div>
@@ -109,7 +109,7 @@
         (reserveObj.package.prices?.single | sperator) }}</strong>
       <small>تومان</small>
     </div>
-    <prs-counter [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.tripleCapacity ? reserveObj.package.prices?.tripleCapacity : '0', 'single')"
+    <prs-counter *ngIf="isCounterShow" [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.tripleCapacity ? reserveObj.package.prices?.tripleCapacity : '0', 'single')"
     (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
     <small>ظرفیت: {{ reserveObj.package?.prices?.singleCapacity ? +reserveObj.package.prices.singleCapacity : 0 }}</small>
   </div>
@@ -121,7 +121,7 @@
         (reserveObj.package.prices?.triple | sperator) }}</strong>
       <small>تومان</small>
     </div>
-    <prs-counter [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.tripleCapacity ? reserveObj.package.prices?.tripleCapacity : '0', 'triple')"
+    <prs-counter *ngIf="isCounterShow" [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.tripleCapacity ? reserveObj.package.prices?.tripleCapacity : '0', 'triple')"
     (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
     <small>ظرفیت: {{ reserveObj.package?.prices?.tripleCapacity ? +reserveObj.package.prices.tripleCapacity : 0 }}</small>
   </div>
@@ -133,7 +133,7 @@
         }}</strong>
       <small>تومان</small>
     </div>
-    <prs-counter [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.quadCapacity ? reserveObj.package.prices?.quadCapacity : '0', 'quad')" 
+    <prs-counter *ngIf="isCounterShow" [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.quadCapacity ? reserveObj.package.prices?.quadCapacity : '0', 'quad')" 
     (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
     <small>ظرفیت: {{ reserveObj.package?.prices?.quadCapacity ? +reserveObj.package.prices.quadCapacity : 0 }}</small>
   </div>
@@ -145,7 +145,7 @@
         }}</strong>
       <small>تومان</small>
     </div>
-    <prs-counter [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.cwbCapacity ? reserveObj.package?.prices?.cwbCapacity : '0', 'cwb')"
+    <prs-counter *ngIf="isCounterShow" [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.cwbCapacity ? reserveObj.package?.prices?.cwbCapacity : '0', 'cwb')"
     (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
     <small>ظرفیت: {{ reserveObj.package?.prices?.cwbCapacity ? +reserveObj.package.prices.cwbCapacity : 0 }}</small>
   </div>
@@ -156,7 +156,7 @@
       <strong>{{ reserveObj.package.prices.cnb ? (reserveObj.package.prices.cnb | sperator) : 0 }}</strong>
       <small>تومان</small>
     </div>
-    <prs-counter (sendReserveRoomData)="getReserveRoomData($event)" [reserveRoomData]="setReseveRoomData('0', 'cnb')"></prs-counter>
+    <prs-counter *ngIf="isCounterShow" (sendReserveRoomData)="getReserveRoomData($event)" [reserveRoomData]="setReseveRoomData('0', 'cnb')"></prs-counter>
     <small>ظرفیت: {{ 0 }}</small>
   </div>
 </div>
@@ -206,6 +206,7 @@
   </div>
 </div>
 
+<h2>اطلاعات مسافران</h2>
 <prs-passengers *ngFor="let room of roomsList" [RoomData]="room"></prs-passengers>
 
 <!-- <div class="promo-code my-3">
@@ -219,8 +220,7 @@
 </div> -->
 <div class="rules">
   <input type="checkbox">
-  <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون
-    بلکه</p>
+  <p>تمامی قوانین و مقررات مرتبط با سایت اسنپ تریپ و پکیج های این تور را می پذیرم</p>
 </div>
 <div class="p-submit w-100 d-flex justify-content-center mt-4">
   <button class="btn-base px-4">ثبت درخواست</button>

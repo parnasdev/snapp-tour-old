@@ -307,6 +307,7 @@ export interface Passengers {
 }
 
 export interface ReserveRoomDTO {
+  allCapacity: number;
   roomType: string;
   roomCount: number;
   capacityPerson:number;

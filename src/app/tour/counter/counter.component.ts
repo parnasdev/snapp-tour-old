@@ -9,6 +9,7 @@ import { ReserveRoomDTO } from 'src/app/Core/Models/tourDTO';
 export class CounterComponent implements OnInit {
 
   @Input() reserveRoomData: ReserveRoomDTO = {
+    allCapacity: 0,
     capacityPerson: 0,
     roomCount: 0,
     roomType: ''
@@ -25,7 +26,7 @@ export class CounterComponent implements OnInit {
   minus() {
     if (this.count > 0) {
       this.count -= 1;
-      this.reserveRoomData.capacityPerson = this.count;
+      this.reserveRoomData.roomCount = this.count;
       this.sendReserveRoomData.emit({
         item: this.reserveRoomData,
         operation: 'minus'
@@ -34,14 +35,14 @@ export class CounterComponent implements OnInit {
   }
 
   plus() {
-    if (this.count < this.reserveRoomData.capacityPerson) {
+    if (this.count < this.reserveRoomData.allCapacity) {
       this.count += 1;
-      this.reserveRoomData.capacityPerson = this.count;
+      this.reserveRoomData.roomCount = this.count;
       this.sendReserveRoomData.emit({
         item: this.reserveRoomData,
         operation: 'plus'
-      });    }
-    // this.sendReserveRoomData(reserveRoomData);
+      });
+    }
   }
 
 }

@@ -3,7 +3,7 @@ export interface RoomTypeReqDTO {
   paginate: boolean;
 }
 
-export interface RoomTypeCapacityReqDTO {
+export interface RoomTypeCapacitReqDTO {
   perPage: number;
   paginate: boolean;
 }

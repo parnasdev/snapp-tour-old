@@ -54,14 +54,6 @@ export class UserReservationInfoComponent implements OnInit {
   stDate = '';
   enDate = '';
 
-  reserveRoomData: ReserveRoomDTO = {
-    capacityPerson: 0,
-    roomCount: 0,
-    roomType: ''
-  }
-
-  roomsList: ReserveRoomDTO[] = []
-
   nameFC = new FormControl(this.session.getName(), Validators.required);
   familyFC = new FormControl(this.session.getFamily(), Validators.required);
   cityFC = new FormControl(1, Validators.required);
@@ -94,10 +86,20 @@ export class UserReservationInfoComponent implements OnInit {
     phone: this.phoneFC
   })
 
+  reserveRoomData: ReserveRoomDTO = {
+    allCapacity: 0,
+    capacityPerson: 0,
+    roomCount: 0,
+    roomType: ''
+  }
+
+  roomsList: ReserveRoomDTO[] = []
+
   roomsCapacityReq: string[] = [];
   roomsCapacityList: RoomTypeListDTO[] = [];
 
   tourType: any = false;
+  isCounterShow = false;
 
   constructor(public route: ActivatedRoute,
     public messageService: MessageService,
@@ -152,16 +154,14 @@ export class UserReservationInfoComponent implements OnInit {
   }
 
   setRoomsCapacityReq() {
-    let roomNames: string[] = []
     if (this.tourType) {
-      roomNames = ['twin', 'triple', 'quad']
+      this.roomsCapacityReq = ['twin', 'triple', 'quad']
     } else {
-      roomNames = ['twin', 'single', 'cwb']
+      this.roomsCapacityReq = ['twin', 'single', 'cwb']
     }
     this.reserveObj.package.prices.roomType.forEach(item => {
-      roomNames.push(item.name);
+      this.roomsCapacityReq.push(item.name);
     });
-    this.roomsCapacityReq = roomNames;
   }
 
   getRoomCapacity() {
@@ -169,6 +169,7 @@ export class UserReservationInfoComponent implements OnInit {
     this.roomApiService.getCapacityTypes(this.roomsCapacityReq).subscribe((res: any) => {
       if (res.isDone) {
         this.roomsCapacityList = res.data;
+        this.isCounterShow = true;
       } else {
         this.messageService.custom('مشکلی در نمایش اطلاعات به وجود آمده است')
       }
@@ -202,10 +203,16 @@ export class UserReservationInfoComponent implements OnInit {
 
   setReseveRoomData(capacity: string | undefined, RoomType: string){
     return this.reserveRoomData = {
-      capacityPerson: capacity ? +capacity : 0,
+      allCapacity: capacity ? +capacity : 0,
+      capacityPerson: this.getCapacity(RoomType),
       roomCount: 0,
       roomType: RoomType
     }
+  }
+
+  getCapacity(RoomType: string) {
+    const room: any = this.roomsCapacityList.filter(x=> x.name === RoomType)
+    return room[0].capacityPerson ? room[0].capacityPerson : 0;
   }
 
   getReserveRoomData(reserveRoomData: any) {
