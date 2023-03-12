@@ -235,7 +235,28 @@
   }
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 500px) {
+  .rules{
+    align-items: flex-start;
+    p {
+      width: 87% !important;
+    }
+    input{
+      top: 3px !important;
+    }
+    .set-request-hotel .item-hotel h5 {
+      font-size: 12px !important;
+    }
+    .title-tour {
+      font-size: 15px !important;
+    }
+  }
+
+
+
+  :host::ng-deep prs-select-city{
+    width: 100% !important;
+  }
   .set-info-supervisor {
     .item-form {
       width: 100% !important;
@@ -254,7 +275,7 @@
 }
 
 
-@media only screen and (min-width: 451px) and (max-width: 868px) {
+@media only screen and (min-width: 501px) and (max-width: 868px) {
   .set-info-supervisor {
     .item-form {
       width: 49% !important;
