@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {PublicService} from "../Services/public.service";
 import {environment} from "../../../environments/environment";
 import {Result} from "../Models/result";
-import {RoomTypeListDTO, RoomTypeReqDTO, RoomTypeSetDTO} from "../Models/roomTypeDTO";
+import {RoomTypeCapacityReqDTO, RoomTypeListDTO, RoomTypeReqDTO, RoomTypeSetDTO} from "../Models/roomTypeDTO";
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +21,13 @@ export class RoomTypeApiService {
   getRoomTypes(req: RoomTypeReqDTO): any {
     const strUrl = this.serverControllerName + 'getRoomTypes';
     return this.http.post<Result<RoomTypeListDTO>>(strUrl, req, this.publicService.getDefaultHeaders());
+  }
+
+  getCapacityTypes(req: string[]): any {
+    const strUrl = this.serverControllerName + 'getTypes';
+    return this.http.post<Result<RoomTypeListDTO>>(strUrl, 
+      {types: req}, 
+      this.publicService.getDefaultHeaders());
   }
 
   add(req: RoomTypeSetDTO): any {

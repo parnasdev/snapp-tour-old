@@ -1,14 +1,18 @@
-<section class="section mt-5">
+<section class="section mt-1">
   <div class="container">
-    <hr/>
-      <div class="form-group text-center" style="width: 300px">
-        <img id="photoImage" src="assets/img/no-image-all.jpg" class="img-thumbnail d-block m-auto" />
-        <input type="hidden" id="photo">
-        <a href="https://api.snapptour.com/filemanager/dialog.php?type=0&crossdomain=1&akey=key&field_id=photo&relative_url=1&multiple=0&ver={{time}}"
-           class="btn btn-primary text-white mt-3 iframe-btn d-inline-block">
-          <i class="fa fa-folder-open ml-1"></i> انتخاب تصویر </a>
-        <a href="#" id="remove-btn" class="btn btn-danger text-white mt-3 d-none mr-2"><i class="fa fa-remove ml-1"></i>حذف تصویر </a>
+    <h1 class="text-center is-bold ">
+      {{ title }}
+    </h1>
+    <hr />
+    <div class="form-group">
+      <label for="gallery">{{ title }} :</label>
+      <input class="file-input-upload" #inputFile type="file" id="file" placeholder="فایل خود را انتخاب کنید"
+        (change)="getFile($event)">
+      <div style="margin-top: 1rem;" id="drop" class="dropzone">
+        <img [src]="selectedFile ? selectedFile.url : ''" class="w-25" alt="">
       </div>
-      <button type="submit" (click)="submit()" class="btn btn-primary">ذخیره</button>
+    </div>
+
+
   </div>
 </section>

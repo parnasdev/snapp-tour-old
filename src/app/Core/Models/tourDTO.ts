@@ -179,6 +179,7 @@ export interface TourTransferDTO {
   transfer_id: string;
   dateTime: string;
   flightCode?:string;
+  jDateTime?:string;
   transfer?: string;
   type: string;
 }
