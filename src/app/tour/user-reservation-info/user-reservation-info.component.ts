@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { TourApiService } from 'src/app/Core/Https/tour-api.service';
-import { DiscountsDTO, EditReserveReq, HotelDTO, PricesDTO, RateDTO, ReserveInfoDTO, Tour } from 'src/app/Core/Models/tourDTO';
+import { DiscountsDTO, EditReserveReq, HotelDTO, PricesDTO, RateDTO, ReserveInfoDTO, ReserveRoomDTO, Tour } from 'src/app/Core/Models/tourDTO';
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
 import { CheckErrorService } from 'src/app/Core/Services/check-error.service';
 import { MessageService } from 'src/app/Core/Services/message.service';
@@ -52,6 +52,12 @@ export class UserReservationInfoComponent implements OnInit {
   stDate = '';
   enDate = '';
 
+  reserveRoomData: ReserveRoomDTO = {
+    capacityPerson: 0,
+    roomCount: 0,
+    roomType: ''
+  }
+
   nameFC = new FormControl(this.session.getName(), Validators.required);
   familyFC = new FormControl(this.session.getFamily(), Validators.required);
   cityFC = new FormControl(1, Validators.required);
@@ -84,11 +90,6 @@ export class UserReservationInfoComponent implements OnInit {
     phone: this.phoneFC
   })
 
-  ReserveForm: FormGroup = this.fb.group({
-    show: '',
-    passengers: this.fb.array([], Validators.required),
-  })
-
   constructor(public route: ActivatedRoute,
     public messageService: MessageService,
     public checkError: CheckErrorService,
@@ -103,24 +104,6 @@ export class UserReservationInfoComponent implements OnInit {
     // @ts-ignore
     this.reserveCode = this.route.snapshot.paramMap.get('reserveid');
     this.getReserve();
-  }
-
-  get PassengerForm() {
-    return this.ReserveForm.get('passengers') as FormArray;
-  }
-
-  addRow() {
-    const Passengers = this.fb.group({
-      fullName: [''],
-      id_code: [''],
-      city: [''],
-      phoneNumber: [''],
-      nationality: [''],
-      passport_number: [''],
-      passport_expire: [''],
-    })
-    this.PassengerForm.push(Passengers);
-    console.log(this.PassengerForm);
   }
 
   setReq() {
@@ -177,6 +160,14 @@ export class UserReservationInfoComponent implements OnInit {
 
     this.enDate = this.calService.convertDate(this.data?.package?.tour?.transfers[1].dateTime.split(' ')[0], 'fa') + ' ' +
       this.data?.package?.tour?.transfers[1].dateTime.split(' ')[1];
+  }
+
+  setReseveRoomData(capacity: string | undefined, RoomType: string){
+    return this.reserveRoomData = {
+      capacityPerson: capacity ? +capacity : 0,
+      roomCount: 0,
+      roomType: RoomType
+    }
   }
 
 
