@@ -189,12 +189,6 @@
             </div>
 
           </div>
-          <div class="item-info-2">
-            <div class="select-info w-100">
-              <label for="">شماره پرواز رفت</label>
-              <input type="text" [formControl]="originFlightCodeFC">
-            </div>
-          </div>
 
           <div class="item-info">
             <label for="">تاریخ پرواز برگشت</label>
@@ -208,7 +202,7 @@
             <label for="">ساعت پرواز برگشت</label>
             <prs-time-picker (result)="getDestTime($event)"></prs-time-picker>
           </div>
-          <div class="item-info-2">
+          <div class="item-info">
             <div class="select-info w-100">
               <label for="">ایرلاین برگشت</label>
               <select [formControl]="destTransferFC">
@@ -216,8 +210,13 @@
               </select>
             </div>
           </div>
-
-          <div class="item-info-2">
+          <div class="item-info">
+            <div class="select-info w-100">
+              <label for="">شماره پرواز رفت</label>
+              <input type="text" [formControl]="originFlightCodeFC">
+            </div>
+          </div>
+          <div class="item-info">
             <div class="select-info w-100">
               <label for="">شماره پرواز برگشت</label>
               <input type="text" [formControl]="destFlightCodeFC">
