@@ -141,6 +141,7 @@ export class EditComponent implements OnInit {
 
   isAccepted = false;
   isCompelete = false;
+  isAdmin = false;
 
 
 
@@ -161,6 +162,7 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     // @ts-ignore
     this.id = this.route.snapshot.paramMap.get('id')
+    this.isAdmin = this.session.getRole() === 'Admin';
     if (this.session.getRole() === 'Admin') {
       this.getAgency();
     } else {
