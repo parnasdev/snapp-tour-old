@@ -799,7 +799,8 @@
 
 .text-sort-tour-city {
   margin-top: 8px;
-  span{
+
+  span {
     font-size: 14px;
     font-weight: 500;
   }
@@ -1036,16 +1037,18 @@
 
 
 //mobile
-@media only screen and (max-width: 868px){
-  .p-snapp-logo{
+@media only screen and (max-width: 868px) {
+  .p-snapp-logo {
     overflow-x: scroll;
     display: grid !important;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    svg{
+
+    svg {
       margin: 0 17px !important;
     }
   }
 }
+
 @media only screen and (max-width: 415px) {
 
 
@@ -1275,73 +1278,118 @@
         opacity: 1 !important;
         color: #00d170 !important;
         border: none !important;
+
         path {
           border: none !important;
         }
       }
     }
+
     .two {
       &:hover {
         opacity: 1 !important;
         color: #00d170 !important;
         border: none !important;
+
         path {
           border: none !important;
         }
       }
     }
+
     .three {
       &:hover {
         opacity: 1 !important;
         color: #f23da7 !important;
         border: none !important;
+
         path {
           border: none !important;
         }
       }
     }
+
     .four {
       &:hover {
         opacity: 1 !important;
         color: #3939e6 !important;
         border: none !important;
+
         path {
           border: none !important;
         }
       }
     }
+
     .five {
       &:hover {
         opacity: 1 !important;
         color: #ff4340 !important;
         border: none !important;
+
         path {
           border: none !important;
         }
       }
     }
+
     .six {
       &:hover {
         opacity: 1 !important;
         color: #ff5200 !important;
         border: none !important;
+
         path {
           border: none !important;
         }
       }
     }
+
     .seven {
       &:hover {
         opacity: 1 !important;
         color: #58c0f9 !important;
         border: none !important;
+
         path {
           border: none !important;
         }
       }
     }
+
     svg {
       opacity: 0.2;
+    }
+  }
+}
+
+:host::ng-deep .tour-special-mobile {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding-top: 5rem;
+  padding-bottom: 2rem;
+
+  ::-webkit-scrollbar-track {
+    display: none !important;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    display: none !important;
+  }
+
+  ::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .box-special-tour {
+    margin: 0 14px;
+
+    .img-special-tour {
+      width: 280px;
     }
   }
 }

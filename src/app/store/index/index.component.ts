@@ -28,6 +28,7 @@ declare let $: any;
 export class IndexComponent implements OnInit {
   isMobile;
   isTablet;
+  isDesktop;
   isLoading = false;
   @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
   cityFC = new FormControl('')
@@ -55,6 +56,7 @@ export class IndexComponent implements OnInit {
   ) {
     this.isMobile = responsiveService.isMobile();
     this.isTablet = responsiveService.isTablet();
+    this.isDesktop = responsiveService.isDesktop();
   }
 
   ngOnInit(): void {

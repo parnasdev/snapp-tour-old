@@ -31,11 +31,14 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.settingService.getSetting();
     $(document).ready(() => {
-      $(".ul-menu").on("click", "li", () => {
-        $("li").removeClass("icon-active-header-click");
-        $(this).addClass("icon-active-header-click");
+      $(".btn-menu-mobi").click(() => {
+        $(".show-menu").addClass("under-menu")
+      })
+      $(".btn-exit-menu").click(() => {
+        $(".show-menu").removeClass("under-menu")
       })
     })
+
   }
   menuOpen(){
     this.isMenu=true
