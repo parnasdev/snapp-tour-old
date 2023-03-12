@@ -19,8 +19,13 @@ export class HomeGuardService implements CanActivate {
   canActivate(): any {
     if ((window.location.hostname === environment.SITE_URL) || (window.location.hostname === environment.LOCAL_URL)) {
       return true
-    } else {
-      this.router.navigateByUrl('not-found')
+    } else if ((window.location.hostname === environment.PANEL_URL) || (window.location.hostname === environment.LOCAL_URL)) {
+      if (this.session.isLoggedIn() && (this.role === 'Admin' || this.role === 'Staff' || this.role === 'Agency')) {
+        this.router.navigateByUrl('/panel')
+      } else {
+        this.router.navigateByUrl('/auth/partner')
+      }
+      
     }
 
   }
