@@ -53,9 +53,9 @@
                         <h3 class="title-tour-special">{{tour.title}}</h3>
                       </a>
                       <div class="date-special">
-                        <span class="from">{{calenderServices.convertDate(tour.transfers[0].dateTime, 'fa')}}</span>
+                        <span class="from">{{tour.transfers[0].jDateTime}}</span>
                         <img src="assets/img/Up%20Down%201.svg" width="20" alt="">
-                        <span class="to">{{calenderServices.convertDate(tour.transfers[1].dateTime, 'fa')}}</span>
+                        <span class="to">{{tour.transfers[1].jDateTime}}</span>
                       </div>
                     </div>
                     <div class="bottom-info-tour-special">
