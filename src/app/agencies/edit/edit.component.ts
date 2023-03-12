@@ -139,8 +139,11 @@ export class EditComponent implements OnInit {
     token: ''
   }
 
-
   isAccepted = false;
+  isCompelete = false;
+
+
+
   constructor(public fb: FormBuilder,
     public api: AgencyApiService,
     public authApi: AuthApiService,
@@ -158,7 +161,6 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     // @ts-ignore
     this.id = this.route.snapshot.paramMap.get('id')
-    this.isAccepted = this.session.getAgencyVerified();
     if (this.session.getRole() === 'Admin') {
       this.getAgency();
     } else {
@@ -267,6 +269,10 @@ export class EditComponent implements OnInit {
     this.tellFC.setValue(this.info.agency.tell)
     this.siteFC.setValue(this.info.agency.site)
     this.necessaryPhoneFC.setValue(this.info.agency.necessaryPhone)
+    this.isCompelete = this.info.agency.name !== null && this.info.agency.name !== '';
+    this.isAccepted = this.info.agency.verify;
+    console.log(this.isCompelete , this.isAccepted);
+    
 
   }
 

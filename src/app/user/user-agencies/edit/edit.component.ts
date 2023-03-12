@@ -39,23 +39,16 @@ export class EditComponent extends AddComponent implements OnInit {
     this.userForm.controls.phone.setValue(this.userInfo.phone);
     this.userForm.controls.birthDate.setValue(this.userInfo.birthDay);
     this.userForm.controls.username.setValue(this.userInfo.username);
-    this.setRoleId()
   }
 
-  setRoleId(): void {
-    this.roles.forEach(item => {
-      if (this.userInfo.role === item.name) {
-        this.userForm.controls.role_id.setValue(item.id);
-      }
-    })
-  }
+
 
   submit() {
     this.setReq();
     this.userApi.editUser(this.userReq, this.userId).subscribe((res: any) => {
       if (res.isDone) {
         this.message.custom(res.message);
-        this.router.navigate(['/panel/user/list']);
+        this.router.navigate(['/panel/user-agency/list']);
       } else {
         this.message.custom(res.message);
       }

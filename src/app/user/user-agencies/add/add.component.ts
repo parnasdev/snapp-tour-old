@@ -33,7 +33,7 @@ export class AddComponent implements OnInit {
     birthDay: '',
     password: '',
     permissions: [],
-    role_id: 1
+    role_id: 4
   }
   setPermissions: string[] = [];
 
@@ -62,7 +62,6 @@ export class AddComponent implements OnInit {
     username: new FormControl(''),
     phone: new FormControl(''),
     password: new FormControl(''),
-    role_id: new FormControl(2)
   });
 
   ngOnInit(): void {
@@ -101,7 +100,7 @@ export class AddComponent implements OnInit {
       password: this.userForm.value.password,
       username: this.userForm.value.username,
       permissions: this.setPermissions,
-      role_id: this.userForm.value.role_id,
+      role_id: 4
     };
   }
 
@@ -111,7 +110,7 @@ export class AddComponent implements OnInit {
       if (res.isDone) {
         this.message.custom(res.message);
         this.userForm.reset();
-        this.router.navigate(['/panel/user/list']);
+        this.router.navigate(['/panel/user-agency/list']);
       } else {
         this.message.custom(res.message);
       }
