@@ -16,8 +16,8 @@ declare let $: any;
 export class HeaderComponent implements OnInit {
   isLoading = false;
   isMobile = false;
-  isDesktop=false;
-  isMenu=false;
+  isDesktop = false;
+  isMenu = false;
 
   constructor(public session: SessionService,
               public settingService: SettingService,
@@ -40,12 +40,15 @@ export class HeaderComponent implements OnInit {
     })
 
   }
-  menuOpen(){
-    this.isMenu=true
+
+  menuOpen() {
+    this.isMenu = true
   }
-  menuClose(){
-    this.isMenu=false
+
+  menuClose() {
+    this.isMenu = false
   }
+
   logOut(): void {
     this.isLoading = true
     this.api.logout().subscribe((res: any) => {
