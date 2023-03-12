@@ -104,12 +104,13 @@ export class ListComponent implements OnInit {
 
 
   getTours(): void {
+    console.log(this.searchObject.stDate);
     this.loading = true;
     this.tourReq = {
       origin: this.searchObject.origin,
       dest: this.searchObject.dest,
       isAdmin: false,
-      stDate: this.calendarService.convertDate(this.searchObject.stDate, 'en', 'yyyy-MM-DD'),
+      stDate:this.searchObject.stDate ?  this.calendarService.convertDate(this.searchObject.stDate, 'en', 'yyyy-MM-DD') : null,
       night: this.searchObject.night === '0' ? null :this.searchObject.night,
       paginate: true,
       search: null,
