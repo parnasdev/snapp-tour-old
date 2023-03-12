@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {hotelInfoDTO} from "../../../Core/Models/hotelDTO";
-import {AddComponent} from "../add/add.component";
+import { Component, OnInit } from '@angular/core';
+import { UploadResDTO } from 'src/app/agencies/edit/edit.component';
+import { hotelInfoDTO } from "../../../Core/Models/hotelDTO";
+import { AddComponent } from "../add/add.component";
 
 @Component({
   selector: 'prs-edit',
@@ -28,7 +29,7 @@ export class EditComponent extends AddComponent implements OnInit {
     stars: '',
     location: '',
     address: '',
-    coordinate: {lat: 0, lng: 0},
+    coordinate: { lat: 0, lng: 0 },
     images: [],
     mediaLink: [],
     thumbnail: '',
@@ -40,6 +41,7 @@ export class EditComponent extends AddComponent implements OnInit {
   };
   public show = true;
   showServices = false;
+  convertedImages:UploadResDTO[] = [];
 
   ngOnInit(): void {
     this.errorService.clear();
@@ -116,6 +118,7 @@ export class EditComponent extends AddComponent implements OnInit {
     this.hotelForm.controls['address'].setValue(this.hotelInfo.address);
     this.hotelForm.controls['body'].setValue(this.hotelInfo.body);
     this.hotelForm.controls['stars'].setValue(this.hotelInfo.stars);
+    this.convertImagesToListObjects()
     if (this.hotelInfo.mediaLink) {
       if (this.hotelInfo.mediaLink.length > 0) {
         this.aparatFC.setValue(this.hotelInfo.mediaLink[0].link)
@@ -127,5 +130,16 @@ export class EditComponent extends AddComponent implements OnInit {
     this.lat = this.hotelInfo.coordinate.lat
     this.lng = this.hotelInfo.coordinate.lng
     this.reload()
+  }
+
+  convertImagesToListObjects() {
+    this.convertedImages = [];
+    this.hotelInfo.images.forEach(x => {
+      let item: UploadResDTO = {
+        path: '',
+        url: x
+      }
+      this.convertedImages.push(item)
+    })
   }
 }

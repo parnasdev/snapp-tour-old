@@ -55,6 +55,7 @@ import {EditorModule} from "@tinymce/tinymce-angular";
     GetLocationComponent,
     TimePickerComponent,
     UploadSingleComponent,
+    MultipleUploadComponent,
     EditorComponent,
     SelectHotelComponent,
     SelectCityComponent,

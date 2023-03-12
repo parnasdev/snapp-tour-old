@@ -4,8 +4,8 @@ import {FormControl} from "@angular/forms";
 import {TransferAPIService} from "../../Core/Https/transfer-api.service";
 import {TransferSetRequestDTO} from "../../Core/Models/transferDTO";
 import {Router} from "@angular/router";
-import {UploadSingleComponent} from "../../common-project/upload-single/upload-single.component";
 import {MatDialog} from "@angular/material/dialog";
+import { UploadResDTO } from 'src/app/agencies/edit/edit.component';
 
 @Component({
   selector: 'prs-add',
@@ -16,7 +16,10 @@ export class AddComponent implements OnInit {
   nameFC = new FormControl();
   statusFC = new FormControl();
   req!: TransferSetRequestDTO
-  logo: string = '';
+  logo: UploadResDTO = {
+    path: '',
+    url: ''
+  };
 
   constructor(public message: MessageService,
               public router: Router,
@@ -25,13 +28,13 @@ export class AddComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  getFile(res: any): void {
-    console.log(res)
+  getLogo(res: any): void {
     if (res) {
       this.message.showMessageBig('فایل شما با موفقیت آپلود شد.');
       this.logo = res
     }
   }
+
 
   submit(): void {
     this.setReq()
@@ -46,17 +49,12 @@ export class AddComponent implements OnInit {
     })
   }
 
-  getThumbnail(): void {
-    const dialog = this.dialog.open(UploadSingleComponent, {});
-    dialog.afterClosed().subscribe(result => {
-      this.logo = result
-    })
-  }
+
 
 
   setReq(): void {
     this.req = {
-      logo: this.logo,
+      logo: this.logo.path,
       name: this.nameFC.value,
       type: 1
     }

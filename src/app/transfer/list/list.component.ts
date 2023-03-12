@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {TransferAPIService} from "../../Core/Https/transfer-api.service";
-import {MessageService} from "../../Core/Services/message.service";
-import {TransferListDTO, TransferListRequestDTO} from "../../Core/Models/transferDTO";
+import { Component, OnInit } from '@angular/core';
+import { TransferAPIService } from "../../Core/Https/transfer-api.service";
+import { MessageService } from "../../Core/Services/message.service";
+import { TransferListDTO, TransferListRequestDTO } from "../../Core/Models/transferDTO";
 import { SessionService } from 'src/app/Core/Services/session.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class ListComponent implements OnInit {
 
   constructor(public api: TransferAPIService,
     public session: SessionService,
-              public message: MessageService) {
+    public message: MessageService) {
   }
 
   ngOnInit(): void {
@@ -44,8 +44,17 @@ export class ListComponent implements OnInit {
     }
   }
 
-  deleteTransfer(id: number){
-
+  deleteTransfer(id: number) {
+    this.api.delete(id).subscribe((res: any) => {
+      if (res.isDone) {
+        this.message.custom(res.message);
+        this.getTransfers()
+      } else {
+        this.message.custom(res.message);
+      }
+    }, (error: any) => {
+      this.message.error()
+    })
   }
 
   checkItemPermission(item: string) {

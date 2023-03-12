@@ -42,8 +42,8 @@
           <div class="item-info">
             <label for="">شهر</label>
             <div class="d-flex align-items-center w-100 city-parent">
-              <mat-button-toggle-group name="fontStyle" [formControl]="cityTypeFC"
-                                       (change)="cityTypeChange()" aria-label="Font Style">
+              <mat-button-toggle-group name="fontStyle" [formControl]="cityTypeFC" (change)="cityTypeChange()"
+                aria-label="Font Style">
                 <mat-button-toggle [value]="true">داخلی</mat-button-toggle>
                 <mat-button-toggle [value]="false">خارجی</mat-button-toggle>
               </mat-button-toggle-group>
@@ -96,25 +96,10 @@
       </div>
       <div class="info-tour-body-upload">
         <div class="top-one">
-          <div class="item-info w-100">
-            <button class="btn-upload-img" (click)="getThumbnail()">تصویر خود را آپلود کنید</button>
-          </div>
-          <div class="single-img-upload-parent">
-            <img [src]="thumbnail" width="100%" height="200" alt="">
-            <i class="icon-cancel-1 text-danger" (click)="removeThumbnailImage()"></i>
-          </div>
+          <prs-upload-single (result)="getThumbnail($event)"></prs-upload-single>
         </div>
         <div class="bottom-one">
-          <div class="item-info w-100">
-            <button class="btn-upload-img" (click)="getImages()">تصاویر خود را آپلود کنید</button>
-          </div>
-          <div class="multi-img-upload-parent">
-            <div class="images" *ngFor="let img of images;let i = index">
-              <img [src]="img" alt="">
-              <i class="icon-cancel-1 text-danger" (click)="removeImage(i)"></i>
-            </div>
-
-          </div>
+          <prs-multiple-upload (result)="getFiles($event)"></prs-multiple-upload>
         </div>
       </div>
     </div>
@@ -130,15 +115,13 @@
       <div class="info-tour-body">
         <div class="address-parent">
           <prs-get-location *ngIf="cityTypeFC.value" style="width: 60%;
-             height: 286px;border-radius: 10px"
-                            [inCommingLatLng]="[lat,lng]"
-                            (result)="getLatLng($event)">
+             height: 286px;border-radius: 10px" [inCommingLatLng]="[lat,lng]" (result)="getLatLng($event)">
           </prs-get-location>
 
           <div class="address-hotel">
             <label for="address">آدرس </label>
             <textarea formControlName="address" name="" id="address" cols="30" rows="10"
-                      placeholder="آدرس را وارد کنید"></textarea>
+              placeholder="آدرس را وارد کنید"></textarea>
           </div>
         </div>
       </div>
@@ -161,4 +144,3 @@
   </form>
 
 </div>
-
