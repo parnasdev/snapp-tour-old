@@ -1,9 +1,11 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {AppComponent} from "./app.component";
-import {PanelGuardService} from "./Core/guards/panel-guard.service";
-import {Page404Component} from "./common-project/page404/page404.component";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AppComponent } from "./app.component";
+import { PanelGuardService } from "./Core/guards/panel-guard.service";
+import { Page404Component } from "./common-project/page404/page404.component";
 import { DashboardGuardService } from './Core/guards/dashboard-guard.service';
+import { AuthGuardService } from './Core/guards/auth-guard.service';
+import { HomeGuardService } from './Core/guards/home-guard.service';
 
 const routes: Routes = [
   {
@@ -12,12 +14,13 @@ const routes: Routes = [
     children: [
       {
         path: 'auth',
+        canActivate: [AuthGuardService],
         loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
       }, {
         path: 'panel',
         canActivate: [PanelGuardService],
         loadChildren: () => import('./panel/panel.module').then(m => m.PanelModule)
-      },{
+      }, {
         path: 'dashboard',
         canActivate: [DashboardGuardService],
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
@@ -27,6 +30,7 @@ const routes: Routes = [
       },
       {
         path: '',
+        canActivate: [HomeGuardService],
         loadChildren: () => import('./store/store.module').then(m => m.StoreModule)
 
       },
@@ -43,7 +47,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

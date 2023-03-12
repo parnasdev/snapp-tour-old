@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {SessionService} from "../Services/session.service";
 import {CanActivate, Router} from "@angular/router";
 import { MessageService } from '../Services/message.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +20,13 @@ export class PanelGuardService implements CanActivate  {
     if (this.session.isLoggedIn() && (this.role === 'Admin' || this.role === 'Staff' || this.role === 'Agency')) {
       return true;
     } else {
-      this.message.custom('شما به این مسیر دسترسی ندارید')
-      this.router.navigateByUrl('/');
+      if((window.location.hostname === environment.PANEL_URL) || (window.location.hostname === environment.LOCAL_URL)) {
+        this.router.navigateByUrl('/auth/partner')
+      }else {
+        this.router.navigateByUrl('/not-found');
+      }
+      // this.message.custom('شما به این مسیر دسترسی ندارید')
+  
     }
   }
 
