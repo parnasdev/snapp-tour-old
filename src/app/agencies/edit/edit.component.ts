@@ -230,7 +230,7 @@ export class EditComponent implements OnInit {
         isManager: null,
         LicenseFileA: this.LicenseFileA ? this.LicenseFileA.path : '',
         id: 0,
-        agencyPercent: +this.percentFC.value,
+        agencyPercent: this.percentFC.value,
         extra: '',
         LicenseFileB: this.LicenseFileB ? this.LicenseFileB.path : '',
         email: this.emailFC.value,

@@ -257,6 +257,7 @@ export class EditComponent extends AddComponent implements OnInit {
     if (this.info.transfers.length > 0) {
       this.originDateFC.setValue(this.info.transfers[0].dateTime.split(' ')[0]);
       this.originTimeFC.setValue(this.info.transfers[0].dateTime.split(' ')[1]);
+      this.originFlightCodeFC.setValue(this.info.transfers[0].flightCode);
       this.originTransferFC.setValue(+this.info.transfers[0].transfer_id);
       this.originTime = this.info.transfers[0].dateTime.split(' ')[1];
     }
@@ -264,6 +265,9 @@ export class EditComponent extends AddComponent implements OnInit {
       this.destDateFC.setValue(this.info.transfers[1].dateTime.split(' ')[0]);
       this.destTimeFC.setValue(this.info.transfers[1].dateTime.split(' ')[1]);
       this.destTransferFC.setValue(+this.info.transfers[1].transfer_id);
+      this.originFlightCodeFC.setValue(this.info.transfers[0].flightCode);
+      this.destFlightCodeFC.setValue(this.info.transfers[1].flightCode);
+
       this.destTime = this.info.transfers[1].dateTime.split(' ')[1];
     }
     this.isSlugGenerated = true;
