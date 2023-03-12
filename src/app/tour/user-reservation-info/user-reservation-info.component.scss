@@ -145,43 +145,6 @@
       }
     }
 
-    .p-count {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 12px;
-
-      span {
-        margin: 0 13px;
-        font-size: 16px;
-        color: var(--text-color);
-      }
-
-      .btn-plus {
-        background: var(--base-color);
-        border: none;
-        outline: none;
-        width: 35px;
-        height: 35px;
-        border-radius: 4px;
-        display: grid;
-        place-items: center;
-        color: var(--white);
-      }
-
-      .btn-minus {
-        background: var(--base-color);
-        border: none;
-        outline: none;
-        width: 35px;
-        height: 35px;
-        border-radius: 4px;
-        display: grid;
-        place-items: center;
-        color: var(--white);
-      }
-    }
   }
 }
 

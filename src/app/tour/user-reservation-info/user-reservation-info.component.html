@@ -94,12 +94,8 @@
         }}</strong>
       <small>تومان</small>
     </div>
-    <div class="p-count">
-      <button class="btn-plus">+</button>
-      <span>0</span>
-      <button class="btn-minus">-</button>
-    </div>
-    <small>ظرفیت: 2</small>
+    <prs-counter [capacity]="data.package?.prices?.twinCapacity ? +data.package.prices.twinCapacity : 0"></prs-counter>
+    <small>ظرفیت: {{ data.package?.prices?.twinCapacity ? +data.package.prices.twinCapacity : 0 }}</small>
   </div>
   <!-- single -->
   <div class="item-hotel">
@@ -109,12 +105,8 @@
         data.package.prices?.single }}</strong>
       <small>تومان</small>
     </div>
-    <div class="p-count">
-      <button class="btn-plus">+</button>
-      <span>0</span>
-      <button class="btn-minus">-</button>
-    </div>
-    <small>ظرفیت: 2</small>
+    <prs-counter [capacity]="data.package?.prices?.singleCapacity ? +data.package.prices.singleCapacity : 0"></prs-counter>
+    <small>ظرفیت: {{ data.package?.prices?.singleCapacity ? +data.package.prices.singleCapacity : 0 }}</small>
   </div>
   <!-- triple -->
   <div class="item-hotel">
@@ -124,12 +116,8 @@
         data.package.prices?.triple }}</strong>
       <small>تومان</small>
     </div>
-    <div class="p-count">
-      <button class="btn-plus">+</button>
-      <span>0</span>
-      <button class="btn-minus">-</button>
-    </div>
-    <small>ظرفیت: 2</small>
+    <prs-counter [capacity]="data.package?.prices?.tripleCapacity ? +data.package.prices.tripleCapacity : 0"></prs-counter>
+    <small>ظرفیت: {{ data.package?.prices?.tripleCapacity ? +data.package.prices.tripleCapacity : 0 }}</small>
   </div>
   <!-- quad -->
   <div class="item-hotel">
@@ -139,12 +127,8 @@
         }}</strong>
       <small>تومان</small>
     </div>
-    <div class="p-count">
-      <button class="btn-plus">+</button>
-      <span>0</span>
-      <button class="btn-minus">-</button>
-    </div>
-    <small>ظرفیت: 2</small>
+    <prs-counter [capacity]="data.package?.prices?.quadCapacity ? +data.package.prices.quadCapacity : 0"></prs-counter>
+    <small>ظرفیت: {{ data.package?.prices?.quadCapacity ? +data.package.prices.quadCapacity : 0 }}</small>
   </div>
   <!-- cwb -->
   <div class="item-hotel">
@@ -154,12 +138,8 @@
         }}</strong>
       <small>تومان</small>
     </div>
-    <div class="p-count">
-      <button class="btn-plus">+</button>
-      <span>0</span>
-      <button class="btn-minus">-</button>
-    </div>
-    <small>ظرفیت: 2</small>
+    <prs-counter [capacity]="data.package?.prices?.cwbCapacity ? +data.package.prices.cwbCapacity : 0"></prs-counter>
+    <small>ظرفیت: {{ data.package?.prices?.cwbCapacity ? +data.package.prices.cwbCapacity : 0 }}</small>
   </div>
   <!-- cnb -->
   <div class="item-hotel">
@@ -168,12 +148,8 @@
       <strong>{{ data.package.prices.cnb ? (data.package.prices.cnb | sperator) : 0 }}</strong>
       <small>تومان</small>
     </div>
-    <div class="p-count">
-      <button class="btn-plus">+</button>
-      <span>0</span>
-      <button class="btn-minus">-</button>
-    </div>
-    <small>ظرفیت: 2</small>
+    <prs-counter [capacity]="data.package?.prices?.cwbCapacity ? +data.package.prices.cwbCapacity : 0"></prs-counter>
+    <small>ظرفیت: {{ data.package?.prices?.cwbCapacity ? +data.package.prices.cwbCapacity : 0 }}</small>
   </div>
 </div>
 <h2 class="title-tour">اطلاعات سرپرست</h2>

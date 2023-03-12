@@ -19,6 +19,7 @@ import { UserReservationInfoComponent } from './user-reservation-info/user-reser
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from '@angular/material/input';
+import { CounterComponent } from './counter/counter.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { MatInputModule } from '@angular/material/input';
     ReserveBoxComponent,
     UserReservationsComponent,
     UserReservationInfoComponent,
+    CounterComponent,
   ],
   exports: [
     InfoComponent,
