@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReserveRoomDTO } from 'src/app/Core/Models/tourDTO';
 
 @Component({
   selector: 'prs-passengers',
@@ -7,6 +8,8 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./passengers.component.scss']
 })
 export class PassengersComponent implements OnInit {
+
+  @Input() RoomData: ReserveRoomDTO[] = [];
 
   constructor(public fb: FormBuilder,) { }
 
@@ -16,6 +19,13 @@ export class PassengersComponent implements OnInit {
   })
 
   ngOnInit(): void {
+  }
+
+  onChanges(changes: SimpleChanges) {
+    if (changes.roomData.currentValue) {
+      debugger
+      this.addRow();
+    }
   }
 
   get PassengerForm() {

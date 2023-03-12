@@ -94,7 +94,8 @@
         }}</strong>
       <small>تومان</small>
     </div>
-    <prs-counter [reserveRoomData]="setReseveRoomData(data.package?.prices?.twinCapacity ? data.package.prices?.twinCapacity : '0', 'twin')"></prs-counter>
+    <prs-counter [reserveRoomData]="setReseveRoomData(data.package?.prices?.twinCapacity ? data.package.prices?.twinCapacity : '0', 'twin')"
+    (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
     <small>ظرفیت: {{ data.package?.prices?.twinCapacity ? +data.package.prices.twinCapacity : 0 }}</small>
   </div>
   <!-- single -->
@@ -105,7 +106,8 @@
         (data.package.prices?.single | sperator) }}</strong>
       <small>تومان</small>
     </div>
-    <prs-counter [reserveRoomData]="setReseveRoomData(data.package?.prices?.tripleCapacity ? data.package.prices?.tripleCapacity : '0', 'single')"></prs-counter>
+    <prs-counter [reserveRoomData]="setReseveRoomData(data.package?.prices?.tripleCapacity ? data.package.prices?.tripleCapacity : '0', 'single')"
+    (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
     <small>ظرفیت: {{ data.package?.prices?.singleCapacity ? +data.package.prices.singleCapacity : 0 }}</small>
   </div>
   <!-- triple -->
@@ -116,7 +118,8 @@
         (data.package.prices?.triple | sperator) }}</strong>
       <small>تومان</small>
     </div>
-    <prs-counter [reserveRoomData]="setReseveRoomData(data.package?.prices?.tripleCapacity ? data.package.prices?.tripleCapacity : '0', 'triple')"></prs-counter>
+    <prs-counter [reserveRoomData]="setReseveRoomData(data.package?.prices?.tripleCapacity ? data.package.prices?.tripleCapacity : '0', 'triple')"
+    (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
     <small>ظرفیت: {{ data.package?.prices?.tripleCapacity ? +data.package.prices.tripleCapacity : 0 }}</small>
   </div>
   <!-- quad -->
@@ -127,7 +130,8 @@
         }}</strong>
       <small>تومان</small>
     </div>
-    <prs-counter [reserveRoomData]="setReseveRoomData(data.package?.prices?.quadCapacity ? data.package.prices?.quadCapacity : '0', 'quad')" ></prs-counter>
+    <prs-counter [reserveRoomData]="setReseveRoomData(data.package?.prices?.quadCapacity ? data.package.prices?.quadCapacity : '0', 'quad')" 
+    (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
     <small>ظرفیت: {{ data.package?.prices?.quadCapacity ? +data.package.prices.quadCapacity : 0 }}</small>
   </div>
   <!-- cwb -->
@@ -138,7 +142,8 @@
         }}</strong>
       <small>تومان</small>
     </div>
-    <prs-counter [reserveRoomData]="setReseveRoomData(data.package?.prices?.cwbCapacity ? data.package?.prices?.cwbCapacity : '0', 'cwb')"></prs-counter>
+    <prs-counter [reserveRoomData]="setReseveRoomData(data.package?.prices?.cwbCapacity ? data.package?.prices?.cwbCapacity : '0', 'cwb')"
+    (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
     <small>ظرفیت: {{ data.package?.prices?.cwbCapacity ? +data.package.prices.cwbCapacity : 0 }}</small>
   </div>
   <!-- cnb -->
@@ -148,7 +153,7 @@
       <strong>{{ data.package.prices.cnb ? (data.package.prices.cnb | sperator) : 0 }}</strong>
       <small>تومان</small>
     </div>
-    <prs-counter [reserveRoomData]="setReseveRoomData('0', 'cnb')"></prs-counter>
+    <prs-counter (sendReserveRoomData)="getReserveRoomData($event)" [reserveRoomData]="setReseveRoomData('0', 'cnb')"></prs-counter>
     <small>ظرفیت: {{ 0 }}</small>
   </div>
 </div>
@@ -194,7 +199,7 @@
   </div>
 </div>
 
-<prs-passengers></prs-passengers>
+<prs-passengers [RoomData]="roomsList"></prs-passengers>
 
 <!-- <div class="promo-code my-3">
   <div class="item-form w-25">

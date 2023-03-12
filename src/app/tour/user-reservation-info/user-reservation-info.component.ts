@@ -58,6 +58,8 @@ export class UserReservationInfoComponent implements OnInit {
     roomType: ''
   }
 
+  roomsList: ReserveRoomDTO[] = []
+
   nameFC = new FormControl(this.session.getName(), Validators.required);
   familyFC = new FormControl(this.session.getFamily(), Validators.required);
   cityFC = new FormControl(1, Validators.required);
@@ -170,6 +172,9 @@ export class UserReservationInfoComponent implements OnInit {
     }
   }
 
-
+  getReserveRoomData(reserveRoomData: ReserveRoomDTO) {
+    debugger
+    this.roomsList.push(reserveRoomData);
+  }
 
 }

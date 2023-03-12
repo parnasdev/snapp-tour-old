@@ -13,7 +13,8 @@ export class CounterComponent implements OnInit {
     roomCount: 0,
     roomType: ''
   }
-  @Output() sendReserveRoomData = new EventEmitter();
+
+  @Output() sendReserveRoomData = new EventEmitter<ReserveRoomDTO>();
   count = 0
 
   constructor() { }
@@ -28,8 +29,11 @@ export class CounterComponent implements OnInit {
   }
 
   plus(){
+    debugger
     if (this.count < this.reserveRoomData.capacityPerson) {
       this.count += 1;
+      this.reserveRoomData.capacityPerson = this.count;
+      this.sendReserveRoomData.emit(this.reserveRoomData);
     }
     // this.sendReserveRoomData(reserveRoomData);
   }
