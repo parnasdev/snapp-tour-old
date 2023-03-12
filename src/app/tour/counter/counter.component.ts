@@ -14,7 +14,7 @@ export class CounterComponent implements OnInit {
     roomType: ''
   }
 
-  @Output() sendReserveRoomData = new EventEmitter<ReserveRoomDTO>();
+  @Output() sendReserveRoomData = new EventEmitter();
   count = 0
 
   constructor() { }
@@ -22,19 +22,25 @@ export class CounterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  minus(){
+  minus() {
     if (this.count > 0) {
       this.count -= 1;
+      this.reserveRoomData.capacityPerson = this.count;
+      this.sendReserveRoomData.emit({
+        item: this.reserveRoomData,
+        operation: 'minus'
+      });
     }
   }
 
-  plus(){
-    debugger
+  plus() {
     if (this.count < this.reserveRoomData.capacityPerson) {
       this.count += 1;
       this.reserveRoomData.capacityPerson = this.count;
-      this.sendReserveRoomData.emit(this.reserveRoomData);
-    }
+      this.sendReserveRoomData.emit({
+        item: this.reserveRoomData,
+        operation: 'plus'
+      });    }
     // this.sendReserveRoomData(reserveRoomData);
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReserveRoomDTO } from 'src/app/Core/Models/tourDTO';
 
@@ -7,11 +7,23 @@ import { ReserveRoomDTO } from 'src/app/Core/Models/tourDTO';
   templateUrl: './passengers.component.html',
   styleUrls: ['./passengers.component.scss']
 })
-export class PassengersComponent implements OnInit {
+export class PassengersComponent implements OnInit,OnChanges {
 
-  @Input() RoomData: ReserveRoomDTO[] = [];
+  @Input() RoomData?: ReserveRoomDTO
 
   constructor(public fb: FormBuilder,) { }
+
+
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.RoomData.firstChange) {
+      console.log(this.RoomData)
+      for(let i =0;i<= (this.RoomData?.capacityPerson ?? []);i++) {
+        this.addRow();
+      }
+      
+    }  
+  }
 
   ReserveForm: FormGroup = this.fb.group({
     show: '',
@@ -21,12 +33,7 @@ export class PassengersComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onChanges(changes: SimpleChanges) {
-    if (changes.roomData.currentValue) {
-      debugger
-      this.addRow();
-    }
-  }
+
 
   get PassengerForm() {
     return this.ReserveForm.get('passengers') as FormArray;
@@ -43,7 +50,7 @@ export class PassengersComponent implements OnInit {
       passport_expire: [''],
     })
     this.PassengerForm.push(Passengers);
-    console.log(this.PassengerForm);
+    // console.log(this.PassengerForm);
   }
 
 }

@@ -1,4 +1,4 @@
-<h2 class="title-tour">اطلاعات مسافرین</h2>
+<h2 class="title-tour">اتاق {{ RoomData?.roomType }}</h2>
 <div [formGroup]="ReserveForm">
   <div formArrayName="passengers">
     <div class="set-info-passengers" *ngFor="let item of PassengerForm.controls; let i = index" [formGroupName]="i">

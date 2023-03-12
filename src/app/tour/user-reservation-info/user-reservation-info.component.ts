@@ -208,9 +208,17 @@ export class UserReservationInfoComponent implements OnInit {
     }
   }
 
-  getReserveRoomData(reserveRoomData: ReserveRoomDTO) {
-    debugger
-    this.roomsList.push(reserveRoomData);
+  getReserveRoomData(reserveRoomData: any) {
+    if(reserveRoomData.operation == 'plus') {
+      this.roomsList.push(reserveRoomData.item);
+    }else {
+      this.roomsList.forEach((x,index) => {
+        if(x.roomType === reserveRoomData.item.roomType) {
+          this.roomsList.splice(index, 1);
+        }
+      })
+
+    }
   }
 
 }

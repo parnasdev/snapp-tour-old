@@ -206,7 +206,7 @@
   </div>
 </div>
 
-<prs-passengers [RoomData]="roomsList"></prs-passengers>
+<prs-passengers *ngFor="let room of roomsList" [RoomData]="room"></prs-passengers>
 
 <!-- <div class="promo-code my-3">
   <div class="item-form w-25">
