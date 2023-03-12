@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  isLoading = false;
+  isLoading = true;
   constructor() { }
 
   ngOnInit(): void {
-  }
+    setTimeout(()=>{
+      this.isLoading = false;
+    },3000);
+  };
+
 
 }
