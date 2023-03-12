@@ -87,7 +87,7 @@ export class AgencyLoginComponent implements OnInit {
       this.isLoading = false;
       if (res.isDone) {
         this.session.setUserToSession(res.data);
-        this.router.navigateByUrl('/panel');
+        this.router.navigateByUrl('/panel/profile');
       } else {
         this.messageService.custom(res.message);
       }
