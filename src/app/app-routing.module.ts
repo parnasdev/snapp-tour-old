@@ -30,7 +30,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        canActivate: [HomeGuardService],
+        // canActivate: [HomeGuardService],
         loadChildren: () => import('./store/store.module').then(m => m.StoreModule)
 
       },

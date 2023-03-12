@@ -53,9 +53,9 @@
                         <h3 class="title-tour-special">{{tour.title}}</h3>
                       </a>
                       <div class="date-special">
-                        <span class="from">{{calenderServices.convertDate(tour.transfers[0].dateTime, 'fa')}}</span>
+                        <span class="from">{{tour.transfers[0].jDateTime}}</span>
                         <img src="assets/img/Up%20Down%201.svg" width="20" alt="">
-                        <span class="to">{{calenderServices.convertDate(tour.transfers[1].dateTime, 'fa')}}</span>
+                        <span class="to">{{tour.transfers[1].jDateTime}}</span>
                       </div>
                     </div>
                     <div class="bottom-info-tour-special">
@@ -76,7 +76,7 @@
                     <div class="img-special-tour">
                       <div class="hover-info-img animated pulse">
                         <img class="img-hover-child" src="assets/img/Attachment%201.svg" width="30" alt="">
-                        <a routerLink="/tours/{{ tour.endCity.slugEn }}/{{tour.slug}}" class="view-details-more">مشاهده
+                        <a routerLink="/tours/{{ tour.endCity?.slugEn }}/{{tour.slug}}" class="view-details-more">مشاهده
                           جزئیات بیشتر</a>
                       </div>
                       <img *ngIf="cities.length > 0"
@@ -95,13 +95,13 @@
                       </div>
                     </div>
                     <div class="mid-info-tour-special">
-                      <a routerLink="/tours/{{ tour.endCity.slugEn }}/{{tour.slug}}">
+                      <a routerLink="/tours/{{ tour.endCity?.slugEn }}/{{tour.slug}}">
                         <h3 class="title-tour-special">{{tour.title}}</h3>
                       </a>
                       <div class="date-special">
-                        <span class="from">{{calenderServices.convertDate(tour.transfers[0].dateTime, 'fa')}}</span>
+                        <span *ngIf="tour.transfers && tour.transfers.length > 0" class="from">{{getConvertedDate(tour.transfers[0].dateTime)}}</span>
                         <img src="assets/img/Up%20Down%201.svg" width="20" alt="">
-                        <span class="to">{{calenderServices.convertDate(tour.transfers[1].dateTime, 'fa')}}</span>
+                        <span *ngIf="tour.transfers && tour.transfers.length > 1" class="to">{{getConvertedDate(tour.transfers[1].dateTime)}}</span>
                       </div>
                     </div>
                     <div class="bottom-info-tour-special">

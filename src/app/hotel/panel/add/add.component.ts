@@ -1,22 +1,21 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {HotelApiService} from "../../../Core/Https/hotel-api.service";
-import {MessageService} from "../../../Core/Services/message.service";
-import {CommonApiService} from "../../../Core/Https/common-api.service";
-import {SessionService} from "../../../Core/Services/session.service";
-import {CalenderServices} from "../../../Core/Services/calender-service";
-import {PublicService} from "../../../Core/Services/public.service";
-import {FormBuilder, FormControl, Validators} from "@angular/forms";
-import {MapApiService} from "../../../Core/Https/map-api.service";
-import {MapReverseDTO} from "../../../Core/Models/mapDTO";
-import {CityDTO, CityListRequestDTO, CityResponseDTO} from "../../../Core/Models/cityDTO";
-import {HotelSetRequestDTO, ServiceDTO} from "../../../Core/Models/hotelDTO";
-import {CityApiService} from "../../../Core/Https/city-api.service";
-import {MatDialog} from "@angular/material/dialog";
-import {UploadSingleComponent} from "../../../common-project/upload-single/upload-single.component";
-import {MultipleUploadComponent} from "../../../common-project/multiple-upload/multiple-upload.component";
-import {ErrorsService} from "../../../Core/Services/errors.service";
-import {CheckErrorService} from "../../../Core/Services/check-error.service";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
+import { HotelApiService } from "../../../Core/Https/hotel-api.service";
+import { MessageService } from "../../../Core/Services/message.service";
+import { CommonApiService } from "../../../Core/Https/common-api.service";
+import { SessionService } from "../../../Core/Services/session.service";
+import { CalenderServices } from "../../../Core/Services/calender-service";
+import { PublicService } from "../../../Core/Services/public.service";
+import { FormBuilder, FormControl, Validators } from "@angular/forms";
+import { MapApiService } from "../../../Core/Https/map-api.service";
+import { MapReverseDTO } from "../../../Core/Models/mapDTO";
+import { CityDTO, CityListRequestDTO, CityResponseDTO } from "../../../Core/Models/cityDTO";
+import { HotelSetRequestDTO, ServiceDTO } from "../../../Core/Models/hotelDTO";
+import { CityApiService } from "../../../Core/Https/city-api.service";
+import { MatDialog } from "@angular/material/dialog";
+import { ErrorsService } from "../../../Core/Services/errors.service";
+import { CheckErrorService } from "../../../Core/Services/check-error.service";
+import { UploadResDTO } from 'src/app/agencies/edit/edit.component';
 
 @Component({
   selector: 'prs-add',
@@ -67,19 +66,19 @@ export class AddComponent implements OnInit {
   isLoading = false;
 
   constructor(private route: ActivatedRoute,
-              private router: Router,
-              public checkError: CheckErrorService,
-              public errorService: ErrorsService,
-              public cityApiService: CityApiService,
-              public hotelApi: HotelApiService,
-              public message: MessageService,
-              public commonApi: CommonApiService,
-              public dialog: MatDialog,
-              public session: SessionService,
-              public calenderServices: CalenderServices,
-              public publicServices: PublicService,
-              public mapApi: MapApiService,
-              public fb: FormBuilder) {
+    private router: Router,
+    public checkError: CheckErrorService,
+    public errorService: ErrorsService,
+    public cityApiService: CityApiService,
+    public hotelApi: HotelApiService,
+    public message: MessageService,
+    public commonApi: CommonApiService,
+    public dialog: MatDialog,
+    public session: SessionService,
+    public calenderServices: CalenderServices,
+    public publicServices: PublicService,
+    public mapApi: MapApiService,
+    public fb: FormBuilder) {
   }
 
   //formGroup
@@ -131,8 +130,8 @@ export class AddComponent implements OnInit {
       slugEn: this.hotelForm.value.nameEn.replace(' ', '-'),
       city_id: this.hotelForm.value.city,
       stars: this.currentStar,
-      mediaLink: [{name: 'aparat', link: this.aparatFC.value},
-        {name: 'youtube', link: this.youtubeFC.value}],
+      mediaLink: [{ name: 'aparat', link: this.aparatFC.value },
+      { name: 'youtube', link: this.youtubeFC.value }],
       location: this.hotelForm.value.location,
       address: this.hotelForm.value.address,
       coordinate: {
@@ -181,13 +180,19 @@ export class AddComponent implements OnInit {
     setTimeout(() => this.show = true);
   }
 
-  //
-  // getThumbnail(imageStr: string): void {
-  //   this.thumbnail = imageStr
-  // }
+  getFiles(result: UploadResDTO[]): void {
+    this.images = [];
+    result.forEach(file => {
+      this.getImage(file.path);
+    });
+  }
 
   getImage(imageStr: string): void {
     this.images.push(imageStr)
+  }
+
+  getThumbnail(image: UploadResDTO): void {
+    this.thumbnail = image.path;
   }
 
   getServices(): void {
@@ -245,28 +250,5 @@ export class AddComponent implements OnInit {
     })
   }
 
-  getThumbnail(): void {
-    const dialog = this.dialog.open(UploadSingleComponent, {});
-    dialog.afterClosed().subscribe(result => {
-      this.thumbnail = result
-    })
-  }
 
-  getImages(): void {
-    const dialog = this.dialog.open(MultipleUploadComponent, {});
-    dialog.afterClosed().subscribe((result: any[]) => {
-      result.forEach(x => {
-        this.images.push(x.path);
-      })
-
-    })
-  }
-
-  removeThumbnailImage(): void {
-    this.thumbnail = '';
-  }
-
-  removeImage(index: any): void {
-    this.images.splice(index, 1);
-  }
 }

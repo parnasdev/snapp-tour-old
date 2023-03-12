@@ -18,7 +18,8 @@ export class SelectCityComponent implements OnInit, OnChanges {
   @Input() hasOriginTour: boolean = false;
   @Input() type: number | null = null;
   @Input() hasDestTour: boolean = false;
-  @Input() inCommingCity: any
+  @Input() inCommingCity: any;
+  @Input() title = 'شهر خود را وارد کنید';
   isLoading = false
 
   constructor(

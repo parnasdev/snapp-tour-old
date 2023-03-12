@@ -101,9 +101,10 @@
   border: 1px solid #C6C6C6;
   margin: 12px 0;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   column-gap: 12px;
   padding: 12px;
+  position: relative;
 
   .item-hotel {
     display: flex;
@@ -269,5 +270,21 @@
       width: 70% !important;
     }
   }
-
+}
+.btn-collapse{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--red-color);
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  border: none;
+  outline: none;
+  i{
+    color: var(--white);
+    font-size: 12px;
+  }
 }

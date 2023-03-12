@@ -39,7 +39,7 @@ export class TransferAPIService {
     return this.http.patch<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
 
-  delete(name: string): any {
+  delete(name: any): any {
     const strUrl = this.serverControllerName + `deleteTransfer/${name}`;
     return this.http.delete<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
   }

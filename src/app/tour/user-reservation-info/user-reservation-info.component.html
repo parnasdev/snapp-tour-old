@@ -86,6 +86,9 @@
 </div>
 <h2 class="title-tour">هتل انتخابی</h2>
 <div class="set-request-hotel">
+  <button class="btn-collapse" data-toggle="tooltip" data-placement="top" title="Tooltip on top"  data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    <i class="icon-down-open"></i>
+  </button>
   <!-- twin -->
   <div class="item-hotel">
     <h5>دو تخته</h5>
@@ -157,8 +160,12 @@
     <small>ظرفیت: {{ 0 }}</small>
   </div>
 </div>
-
-<h2 class="title-tour">اطلاعات رزروگیرنده (این مشخصات به عنوان طرف قرارداد درنظر گرفته می شود)</h2>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+  </div>
+</div>
+<h2 style="font-size: 14px" class="title-tour text-danger mt-3">اطلاعات رزروگیرنده (این مشخصات به عنوان طرف قرارداد درنظر گرفته می شود)</h2>
 <div class="set-info-supervisor">
   <div class="item-form">
     <label class="dana-bold" for="">نام</label>

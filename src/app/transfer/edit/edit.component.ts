@@ -1,11 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl} from "@angular/forms";
-import {TransferSetRequestDTO} from "../../Core/Models/transferDTO";
-import {MessageService} from "../../Core/Services/message.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {MatDialog} from "@angular/material/dialog";
-import {TransferAPIService} from "../../Core/Https/transfer-api.service";
-import {UploadSingleComponent} from "../../common-project/upload-single/upload-single.component";
+import { Component, OnInit } from '@angular/core';
+import { FormControl } from "@angular/forms";
+import { TransferSetRequestDTO } from "../../Core/Models/transferDTO";
+import { MessageService } from "../../Core/Services/message.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { MatDialog } from "@angular/material/dialog";
+import { TransferAPIService } from "../../Core/Https/transfer-api.service";
+import { UploadSingleComponent } from "../../common-project/upload-single/upload-single.component";
+import { UploadResDTO } from 'src/app/agencies/edit/edit.component';
 
 @Component({
   selector: 'prs-edit',
@@ -17,14 +18,17 @@ export class EditComponent implements OnInit {
   nameFC = new FormControl();
   statusFC = new FormControl();
   req!: TransferSetRequestDTO
-  logo: string = '';
+  logo: UploadResDTO = {
+    path: '',
+    url: ''
+  };
   info: any
 
   constructor(public message: MessageService,
-              public router: Router,
-              public route: ActivatedRoute,
-              public dialog: MatDialog,
-              public api: TransferAPIService) {
+    public router: Router,
+    public route: ActivatedRoute,
+    public dialog: MatDialog,
+    public api: TransferAPIService) {
   }
 
   ngOnInit(): void {
@@ -33,7 +37,7 @@ export class EditComponent implements OnInit {
     this.getInfo()
   }
 
-  getFile(res: any): void {
+  getLogo(res: any): void {
     if (res) {
       this.message.showMessageBig('فایل شما با موفقیت آپلود شد.');
       this.logo = res
@@ -82,7 +86,7 @@ export class EditComponent implements OnInit {
 
   setReq(): void {
     this.req = {
-      logo: this.logo,
+      logo: this.logo.path,
       name: this.nameFC.value,
       type: 1
     }

@@ -29,12 +29,7 @@
           <div class="box-info-fly mt-0 w-50">
             <div class="info-tour-body-upload">
               <div class="top-one w-100">
-                <div class="item-info w-100">
-                  <button class="btn-upload-img" (click)="getThumbnail()">لوگو ایرلاین را آپلود کنید</button>
-                </div>
-                <div class="single-img-upload-parent" *ngIf="logo !== ''">
-                  <img [src]="logo" width="100%" height="200" alt="">
-                </div>
+                <prs-upload-single [incommingFile]="{path:'',url: info.logo}" (result)="getLogo($event)"></prs-upload-single>
               </div>
             </div>
           </div>

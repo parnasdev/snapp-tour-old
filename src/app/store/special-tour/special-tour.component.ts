@@ -66,6 +66,11 @@ export class SpecialTourComponent implements OnInit {
     })
   }
 
+  getConvertedDate(date: string): string {
+return this.calenderServices.convertDate(date,'fa')
+
+  }
+
   getCities(): void {
     const req: CityListRequestDTO = {
       type: null,
