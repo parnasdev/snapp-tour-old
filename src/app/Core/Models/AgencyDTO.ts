@@ -8,14 +8,14 @@ export interface AgencyDTO {
   LicenseFileA: string | null
   LicenseFileB: string | null
   address: string
-  crewCount:number
+  crewCount: number
   email: string
   logo: string
   necessaryPhone: string
   tell: string;
 
   site: string
-  user?: {name: string, family: string}
+  user?: { name: string, family: string }
 
 }
 
@@ -40,31 +40,31 @@ export interface AgencyUserDTO {
   password: string
 }
 export interface AgencyEditReqDTO {
-    username: string;
-    family: string;
+  username: string;
+  family: string;
+  name: string;
+  phone: string;
+  city: number;
+  id_code: string;
+  gender: string;
+  email: string;
+  agency: {
     name: string;
-    phone: string;
-    city: number;
-    id_code: string;
-    gender: string;
-    email:string;
-    agency: {
-      name: string;
-      logo: string;
-      extra: string;
-      isManager: null;
-      LicenseFileA: string;
-      id: number;
-      LicenseFileB:  string;
-      email: string;
-      address: string;
-      tell: string;
-      site: string;
-      necessaryPhone: string;
-    };
-    birthDay: string;
-    createdAt: string;
-    role: string;
+    logo: string;
+    extra: string;
+    isManager: null;
+    LicenseFileA: string;
+    id: number;
+    LicenseFileB: string;
+    email: string;
+    address: string;
+    tell: string;
+    site: string;
+    necessaryPhone: string;
+  };
+  birthDay: string;
+  createdAt: string;
+  role: string;
 }
 
 export interface AgencyEditDTO {
@@ -75,13 +75,13 @@ export interface AgencyEditDTO {
   city: any;
   id_code: string;
   gender: string;
-  email:string;
+  email: string;
   agency: {
     name: string;
     logo: UploadResDTO;
     isManager: null;
     extra: string;
-    LicenseFileA: UploadResDTO ;
+    LicenseFileA: UploadResDTO;
     id: number;
     LicenseFileB: UploadResDTO;
     email: string;
@@ -93,4 +93,22 @@ export interface AgencyEditDTO {
   birthDay: string;
   createdAt: string;
   role: string;
+}
+
+export interface AdminAgencyDTO {
+  agency: {
+    name: string;
+    logo: string;
+    isManager: null;
+    extra: string;
+    LicenseFileA: string;
+    id: number;
+    LicenseFileB: string;
+    email: string;
+    address: string;
+    tell: string;
+    agencyPercent: number;
+    site: string;
+    necessaryPhone: string;
+  }
 }
