@@ -3,5 +3,8 @@ export const environment = {
   BACK_END_IP: 'https://loadbalancer.iran.liara.run/api/v1/',
   fileManagerAddress: '',
   BACK_END_UPLOAD: 'https://loadbalancer.iran.liara.run/api/',
+  PANEL_URL: 'agency.bilitja.com',
+  SITE_URL: 'tour.snapptrip.com',
+  LOCAL_URL: 'localhost',
   VERSION: '1.1.2'
 };

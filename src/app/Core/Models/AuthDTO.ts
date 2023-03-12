@@ -91,6 +91,7 @@ export interface ProfileDTO {
     id?: number;
     LicenseFileB: string | null;
     email: string;
+    verify?: boolean
     address: string;
     tell: string;
     site: string;

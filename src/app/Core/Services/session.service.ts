@@ -40,6 +40,7 @@ export class SessionService {
           LicenseFileB: obj.user.agency?.LicenseFileB,
           email: obj.user.agency?.email,
           address: obj.user.agency?.address,
+          verify: obj?.user?.agency?.verify,
           tell: obj.user.agency?.tell,
           site: obj.user.agency?.site,
           necessaryPhone: obj.user.agency?.necessaryPhone
@@ -150,6 +151,11 @@ export class SessionService {
   getAgencyName(): any {
     const user = localStorage.getItem('snapp-tour-user');
     return user ? JSON.parse(user).user.agency?.name : '';
+  }
+
+  getAgencyVerified(): any {
+    const user = localStorage.getItem('snapp-tour-user');
+    return user ? JSON.parse(user).user.agency?.verify : false;
   }
 
   getAgencyCommission(): any {
