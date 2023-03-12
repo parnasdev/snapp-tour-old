@@ -46,8 +46,15 @@
                 <h2>{{ tourInfo?.title }}</h2>
               </div>
             </div>
-            <div class="left left-mobile">
-              <span> شروع قیمت از :{{ getStarterPrice() | round | sperator}} تومان </span>
+            <div class="left left-mobile align-items-start">
+              <div class="d-flex flex-column align-items-start">
+                <span> شروع قیمت از :{{ getStarterPrice() | round | sperator}} تومان </span>
+                <div class="d-flex align-items-center">
+                  <h2 style="font-size: 12px !important;" class="r-name-agency">تامین کننده : </h2>
+                  <h2 style="font-size: 12px !important;" class="l-name-agency">{{ tourInfo?.user?.agency }}</h2>
+                </div>
+              </div>
+
               <div class="d-flex flex-column">
                 <div class="d-flex airline">
                   <strong class="airline-title">ایرلاین رفت : </strong>

@@ -9,8 +9,8 @@
   </div>
   <div class="body-trip" *ngFor="let item of reserves">
     <span>{{ item.package.tour.title }}</span>
-    <span>{{ calService.convertDateAndTime(item.package.tour.stDate, 'fa') }}</span>
-    <span>{{ calService.convertDateAndTime(item.package.tour.enDate, 'fa') }}</span>
+    <span dir="ltr">{{ calService.convertDateAndTime(item.package.tour.stDate, 'fa') }}</span>
+    <span dir="ltr">{{ calService.convertDateAndTime(item.package.tour.enDate, 'fa') }}</span>
     <span>{{ checkStatus(item.status) }}</span>
     <span>{{ item.ref_code }}</span>
     <div>
