@@ -41,6 +41,7 @@ export class SpecialTourComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSpecialTours();
+    this.getCities();
   }
 
   getSpecialTours() {
