@@ -30,6 +30,7 @@ import {GalleryModule} from "ng-gallery";
 import {CommonProjectModule} from "../common-project/common-project.module";
 import {MatBadgeModule} from '@angular/material/badge';
 import { SearchComponent } from './search/search.component';
+import { SpecialTourComponent } from './special-tour/special-tour.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { SearchComponent } from './search/search.component';
     ThumbnailTourInfoComponent,
     ThumbnailTourTwoComponent,
     LoadingComponent,
-    SearchComponent
+    SearchComponent,
+    SpecialTourComponent
   ],
   exports: [
     IndexComponent,

@@ -61,26 +61,6 @@ export class IndexComponent implements OnInit {
 
   ngOnInit(): void {
     window.scrollTo(0, 0)
-    $(document).ready(() => {
-      $(".collapse-1").click(() => {
-        $(".icon-1").toggleClass("icon-rotate-collapse")
-      })
-      $(".collapse-2").click(() => {
-        $(".icon-2").toggleClass("icon-rotate-collapse")
-      })
-      $(".collapse-3").click(() => {
-        $(".icon-3").toggleClass("icon-rotate-collapse")
-      })
-      $(".collapse-4").click(() => {
-        $(".icon-4").toggleClass("icon-rotate-collapse")
-      })
-      $(".collapse-5").click(() => {
-        $(".icon-5").toggleClass("icon-rotate-collapse")
-      })
-      $(".collapse-6").click(() => {
-        $(".icon-6").toggleClass("icon-rotate-collapse")
-      })
-    })
     this.setting.Setting$.subscribe(x => {
       if (x === 'true') {
         this.title.setTitle(this.setting.settings.title);
@@ -88,7 +68,6 @@ export class IndexComponent implements OnInit {
       }
     })
     this.getTours();
-    this.getSpecialTours();
     this.getCities()
     this.getHotelCities()
     this.getHotels()
@@ -191,28 +170,6 @@ export class IndexComponent implements OnInit {
     this.api.getTours(reqDTO, this.p).subscribe((res: any) => {
       if (res.isDone) {
         this.tours = res.data;
-      }
-    })
-  }
-
-  getSpecialTours() {
-    const reqDTO: TourListRequestDTO = {
-      origin: null,
-      dest: null,
-      stDate: null,
-      night: null,
-      status: null,
-      paginate: false,
-      limit: 7,
-      sortByDate: false,
-      perPage: 10,
-      offered: true,
-      search: '',
-      type: null
-    }
-    this.api.getTours(reqDTO, this.p).subscribe((res: any) => {
-      if (res.isDone) {
-        this.specialTours = res.data;
       }
     })
   }
