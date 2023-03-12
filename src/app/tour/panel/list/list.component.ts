@@ -35,7 +35,7 @@ export class ListComponent implements OnInit {
     sortByDate: false,
     isAdmin: true,
     search: '',
-    perPage: 20,
+    perPage: 15,
     type: null
   };
   tours: TourListResDTO[] = [];
@@ -83,7 +83,7 @@ export class ListComponent implements OnInit {
       sortByDate: this.sortByDate,
       isAdmin: true,
       search: '',
-      perPage: 20,
+      perPage: 15,
       type: null
     };
     this.tourApiService.getTours(this.tourReq, this.p).subscribe((res: any) => {

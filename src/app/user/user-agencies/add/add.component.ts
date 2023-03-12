@@ -95,9 +95,9 @@ export class AddComponent implements OnInit {
     this.userReq = {
       name: this.userForm.value.name,
       family: this.userForm.value.family,
-      phone: this.userForm.value.phone,
+      phone: this.publicServices.fixNumbers(this.userForm.value.phone),
       birthDay: this.calService.convertDate1(this.userForm.value.birthDay, 'en'),
-      password: this.userForm.value.password,
+      password: this.publicServices.fixNumbers(this.userForm.value.password),
       username: this.userForm.value.username,
       permissions: this.setPermissions,
       role_id: 4

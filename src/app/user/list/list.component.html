@@ -8,7 +8,7 @@
     <div class="header-list-tour">
       <span class="id">#</span>
       <span class="username">نام کامل کاربر</span>
-      <span class="title-tour">تلفن همراه</span>
+      <span class="title-tour">شهر</span>
       <span class="title-tour">نام کاربری</span>
       <span class="view">نقش</span>
       <span class="date-create">تاریخ تولد</span>
@@ -20,8 +20,8 @@
         <span class="id">{{ i + 1 }}</span>
         <span class="username">{{ user.name + ' ' + user.family  }}</span>
         <span class="username">{{ user.phone ? user.phone : '-' }}</span>
-        <span class="username">{{ user.username ? user.username : '-' }}</span>
-        <span class="view">{{ user.role ? getRoleFa(user.role) : '-' }}</span>
+        <span class="username">{{ user.city ? user.city.name : '-' }}</span>
+        <span class="view">{{ user.role ? user.role : '-' }}</span>
         <span class="date-create">{{ user.birthDay ? calService.convertDate1(user.birthDay, 'fa') : '-' }}</span>
         <span class="date-create">{{ user.createdAt ? calService.convertDate1(user.createdAt, 'fa') : '-' }}</span>
         <div class="button-setting">

@@ -1,3 +1,5 @@
+import { CityResponseDTO } from "./cityDTO";
+
 export interface UserReqDTO {
   perPage: number;
   paginate: boolean;
@@ -7,6 +9,7 @@ export interface UserResDTO {
   birthDay: string;
   createdAt: string;
   family: string;
+  city: CityResponseDTO
   id: number;
   name: string;
   username: string;

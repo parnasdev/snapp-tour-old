@@ -31,7 +31,7 @@
     <div class="body-list-tour" *ngIf="tours.length > 0">
       <div class="item" *ngFor="let tour of tours| paginate: paginateConfig |tourStatusFilter : status ;let i = index">
         <span class="id">{{ tour.id}}</span>
-        <span class="username">{{ tour.user.name + ' ' + tour.user.family }}</span>
+        <span class="username">{{ tour.user.name + ' ' + tour.user.family + ' ('+  (tour.user.agency ? tour.user.agency : '---')+')' }}</span>
         <span class="title-tour">{{ tour.title }}</span>
         <span class="from-to">{{ tour.stCity.name + '-' + tour.endCity.name }}</span>
         <span class="day">{{ tour.nightNum + '-' + tour.dayNum }}</span>
@@ -42,8 +42,8 @@
         <div class="button-setting">
           <a *ngIf="setting.checkItemPermission('Tour.edit')" routerLink="/panel/tour/edit/{{tour.slug}}"
             class="edit-btn">ویرایش</a>
-          <a (click)="publicService.openPage('tours/' + tour.endCity.slugEn + '/' + tour.slug )"
-            class="view-btn">نمایش</a>
+          <!-- <a (click)="publicService.openPage('tours/' + tour.endCity.slugEn + '/' + tour.slug )"
+            class="view-btn">نمایش</a> -->
           <a routerLink="/panel/tour/copy/{{ tour.slug }}" class="copy-btn">کپی</a>
           <button class="view-btn" (click)="exportTour(tour.slug)">
             PDF
