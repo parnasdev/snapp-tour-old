@@ -56,4 +56,8 @@ export class ListComponent implements OnInit {
     })
   }
 
+  checkItemPermission(item: string) {
+    return !!this.session.userPermissions.find(x => x.name === item)
+  }
+
 }

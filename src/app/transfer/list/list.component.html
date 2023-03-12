@@ -1,7 +1,7 @@
 <div class="list-tour">
   <div class="title">
     <h2>لیست ایرلاین ها</h2>
-    <a class="btn-add-tour" routerLink="/panel/transfer/add">اضافه</a>
+    <a class="btn-add-tour" *ngIf="checkItemPermission('Transfer.create')" routerLink="/panel/transfer/add">اضافه</a>
   </div>
   <div class="table-list-tour">
     <div class="header-list-tour">

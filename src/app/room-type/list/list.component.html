@@ -1,7 +1,7 @@
 <div class="list-tour">
   <div class="title">
     <h2>لیست اتاق ها</h2>
-    <a class="btn-add-tour" routerLink="/panel/roomType/add">اضافه</a>
+    <a class="btn-add-tour" *ngIf="checkItemPermission('RoomType.create')" routerLink="/panel/roomType/add">اضافه</a>
   </div>
   <div class="table-list-tour">
     <div class="header-list-tour">
