@@ -14,16 +14,11 @@
       <div class="item" *ngFor="let user of data.users; let i = index">
         <span class="id">{{ user.id }}</span>
         <div class="d-flex flex-column">
-                  <span
+      <span
                     class="username">{{user ? ((user.name ? user.name : '---') + ' ' + (user.family ? user.family : '---')) : 'ثبت نشده'  }}</span>
-
-
         </div>
-
         <span class="username">{{ user.phone ? user.phone : '-' }}</span>
         <span class="view">{{ user.isManager ? 'مدیر' : 'کارمند'}}</span>
-
-
         <div class="button-setting">
           <a routerLink="/panel/user/edit/{{user.id}}" [queryParams]="{agency : data.agencyID}"
              class="edit-btn">ویرایش</a>
