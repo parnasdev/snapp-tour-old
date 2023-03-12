@@ -72,8 +72,6 @@ export class InfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // @ts-ignore
-    this.id = this.route.snapshot.paramMap.get('id')
 
     if (this.session.getRole() === 'Admin') {
       this.getAgency();
@@ -96,6 +94,8 @@ export class InfoComponent implements OnInit {
     })
   }
   getAgency(): void {
+        // @ts-ignore
+    this.id = this.route.snapshot.paramMap.get('id')
     this.infoLoading = true;
     this.api.getAgency(+this.id).subscribe((res: any) => {
       this.infoLoading = false;

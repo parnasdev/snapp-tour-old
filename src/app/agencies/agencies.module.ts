@@ -14,7 +14,6 @@ import { CommonProjectModule } from "../common-project/common-project.module";
 import { UserAgencyListComponent } from './user-agency-list/user-agency-list.component';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-
 @NgModule({
     declarations: [
         ListComponent,

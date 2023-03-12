@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
       this.isLoading = false;
       if (res.isDone) {
         this.session.removeUser();
-        this.router.navigateByUrl('/prs-admin')
+        this.router.navigateByUrl('/auth/partner')
 
       }
     }, (error: any) => {
