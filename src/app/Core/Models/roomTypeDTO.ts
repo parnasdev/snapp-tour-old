@@ -3,6 +3,11 @@ export interface RoomTypeReqDTO {
   paginate: boolean;
 }
 
+export interface RoomTypeCapacityReqDTO {
+  perPage: number;
+  paginate: boolean;
+}
+
 export interface RoomTypePriceDTO {
   name: string;
   price: number;
@@ -13,6 +18,7 @@ export interface RoomTypeListDTO {
   name: string;
   label: string;
   isDefault: boolean;
+  capacity?: number;
 }
 
 export interface RoomTypeSetDTO {

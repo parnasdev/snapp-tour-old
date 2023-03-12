@@ -50,7 +50,7 @@
 </div>
 <div class="d-flex align-items-center justify-content-between w-100">
   <div class="d-flex align-items-center mt-4">
-    <h2 class="title-tour">{{ data?.package?.tour?.title }}</h2>
+    <h2 class="title-tour">{{ reserveObj?.package?.tour?.title }}</h2>
   </div>
   <div class="code">
     <span>کد رفرنس: {{ this.reserveCode }}</span>
@@ -58,29 +58,29 @@
 </div>
 <div class="set-request-tour">
   <div class="info-from">
-    <span class="city-name">{{ data?.package?.tour?.stCity?.name }}</span>
+    <span class="city-name">{{ reserveObj?.package?.tour?.stCity?.name }}</span>
     <div class="item">
       <span class="title">تاریخ و ساعت پرواز رفت :</span>
       <span class="text">{{ stDate }}</span>
     </div>
     <div class="item">
       <span class="title">تاریخ ورود به هتل :</span>
-      <span class="text">{{ calService.convertDateAndTime(data?.package?.tour?.stDate, 'fa') }}</span>
+      <span class="text">{{ calService.convertDateAndTime(reserveObj?.package?.tour?.stDate, 'fa') }}</span>
     </div>
   </div>
   <div class="info-time">
     <span class="title">مدت اقامت:</span>
-    <span class="text">{{ data?.package?.tour?.dayNum }} روز و {{ data?.package?.tour?.nightNum }} شب</span>
+    <span class="text">{{ reserveObj?.package?.tour?.dayNum }} روز و {{ reserveObj?.package?.tour?.nightNum }} شب</span>
   </div>
   <div class="info-to">
-    <span class="city-name">{{ data?.package?.tour?.endCity?.name }}</span>
+    <span class="city-name">{{ reserveObj?.package?.tour?.endCity?.name }}</span>
     <div class="item">
       <span class="title">تاریخ و ساعت پرواز برگشت :</span>
       <span class="text">{{enDate }}</span>
     </div>
     <div class="item">
       <span class="title">تاریخ خروج از هتل :</span>
-      <span class="text">{{ calService.convertDateAndTime(data?.package?.tour?.enDate, 'fa') }}</span>
+      <span class="text">{{ calService.convertDateAndTime(reserveObj?.package?.tour?.enDate, 'fa') }}</span>
     </div>
   </div>
 </div>
@@ -90,67 +90,67 @@
   <div class="item-hotel">
     <h5>دو تخته</h5>
     <div class="price">
-      <strong>{{ data.package.tour.defineTour ? (data.package.prices?.twinRate | sperator) : (data.package.prices?.twin | sperator)
+      <strong>{{ reserveObj.package.tour.defineTour ? (reserveObj.package.prices?.twinRate | sperator) : (reserveObj.package.prices?.twin | sperator)
         }}</strong>
       <small>تومان</small>
     </div>
-    <prs-counter [reserveRoomData]="setReseveRoomData(data.package?.prices?.twinCapacity ? data.package.prices?.twinCapacity : '0', 'twin')"
+    <prs-counter [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.twinCapacity ? reserveObj.package.prices?.twinCapacity : '0', 'twin')"
     (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
-    <small>ظرفیت: {{ data.package?.prices?.twinCapacity ? +data.package.prices.twinCapacity : 0 }}</small>
+    <small>ظرفیت: {{ reserveObj.package?.prices?.twinCapacity ? +reserveObj.package.prices.twinCapacity : 0 }}</small>
   </div>
   <!-- single -->
-  <div class="item-hotel" *ngIf="!data.package?.tour?.type">
+  <div class="item-hotel" *ngIf="!reserveObj.package?.tour?.type">
     <h5>یک تخته</h5>
     <div class="price">
-      <strong>{{ data.package.tour.defineTour ? (data.package.prices?.singleRate | sperator) :
-        (data.package.prices?.single | sperator) }}</strong>
+      <strong>{{ reserveObj.package.tour.defineTour ? (reserveObj.package.prices?.singleRate | sperator) :
+        (reserveObj.package.prices?.single | sperator) }}</strong>
       <small>تومان</small>
     </div>
-    <prs-counter [reserveRoomData]="setReseveRoomData(data.package?.prices?.tripleCapacity ? data.package.prices?.tripleCapacity : '0', 'single')"
+    <prs-counter [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.tripleCapacity ? reserveObj.package.prices?.tripleCapacity : '0', 'single')"
     (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
-    <small>ظرفیت: {{ data.package?.prices?.singleCapacity ? +data.package.prices.singleCapacity : 0 }}</small>
+    <small>ظرفیت: {{ reserveObj.package?.prices?.singleCapacity ? +reserveObj.package.prices.singleCapacity : 0 }}</small>
   </div>
   <!-- triple -->
-  <div class="item-hotel" *ngIf="data.package?.tour?.type">
+  <div class="item-hotel" *ngIf="reserveObj.package?.tour?.type">
     <h5>سه تخته</h5>
     <div class="price">
-      <strong>{{ data.package.tour.defineTour ? (data.package.prices?.tripleRate | sperator) :
-        (data.package.prices?.triple | sperator) }}</strong>
+      <strong>{{ reserveObj.package.tour.defineTour ? (reserveObj.package.prices?.tripleRate | sperator) :
+        (reserveObj.package.prices?.triple | sperator) }}</strong>
       <small>تومان</small>
     </div>
-    <prs-counter [reserveRoomData]="setReseveRoomData(data.package?.prices?.tripleCapacity ? data.package.prices?.tripleCapacity : '0', 'triple')"
+    <prs-counter [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.tripleCapacity ? reserveObj.package.prices?.tripleCapacity : '0', 'triple')"
     (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
-    <small>ظرفیت: {{ data.package?.prices?.tripleCapacity ? +data.package.prices.tripleCapacity : 0 }}</small>
+    <small>ظرفیت: {{ reserveObj.package?.prices?.tripleCapacity ? +reserveObj.package.prices.tripleCapacity : 0 }}</small>
   </div>
   <!-- quad -->
-  <div class="item-hotel" *ngIf="data.package?.tour?.type">
+  <div class="item-hotel" *ngIf="reserveObj.package?.tour?.type">
     <h5>چهار تخته</h5>
     <div class="price">
-      <strong>{{ data.package.tour.defineTour ? (data.package.prices?.quad | sperator) : (data.package.prices?.quad | sperator)
+      <strong>{{ reserveObj.package.tour.defineTour ? (reserveObj.package.prices?.quad | sperator) : (reserveObj.package.prices?.quad | sperator)
         }}</strong>
       <small>تومان</small>
     </div>
-    <prs-counter [reserveRoomData]="setReseveRoomData(data.package?.prices?.quadCapacity ? data.package.prices?.quadCapacity : '0', 'quad')" 
+    <prs-counter [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.quadCapacity ? reserveObj.package.prices?.quadCapacity : '0', 'quad')" 
     (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
-    <small>ظرفیت: {{ data.package?.prices?.quadCapacity ? +data.package.prices.quadCapacity : 0 }}</small>
+    <small>ظرفیت: {{ reserveObj.package?.prices?.quadCapacity ? +reserveObj.package.prices.quadCapacity : 0 }}</small>
   </div>
   <!-- cwb -->
-  <div class="item-hotel" *ngIf="!data.package?.tour?.type">
+  <div class="item-hotel" *ngIf="!reserveObj.package?.tour?.type">
     <h5>کودک با تخت</h5>
     <div class="price">
-      <strong>{{ data.package.tour.defineTour ? (data.package.prices?.cwbRate | sperator) : data.package.prices?.cwb
+      <strong>{{ reserveObj.package.tour.defineTour ? (reserveObj.package.prices?.cwbRate | sperator) : reserveObj.package.prices?.cwb
         }}</strong>
       <small>تومان</small>
     </div>
-    <prs-counter [reserveRoomData]="setReseveRoomData(data.package?.prices?.cwbCapacity ? data.package?.prices?.cwbCapacity : '0', 'cwb')"
+    <prs-counter [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.cwbCapacity ? reserveObj.package?.prices?.cwbCapacity : '0', 'cwb')"
     (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
-    <small>ظرفیت: {{ data.package?.prices?.cwbCapacity ? +data.package.prices.cwbCapacity : 0 }}</small>
+    <small>ظرفیت: {{ reserveObj.package?.prices?.cwbCapacity ? +reserveObj.package.prices.cwbCapacity : 0 }}</small>
   </div>
   <!-- cnb -->
-  <div class="item-hotel" *ngIf="!data.package?.tour?.type">
+  <div class="item-hotel" *ngIf="!reserveObj.package?.tour?.type">
     <h5>کودک بدون تخت</h5>
     <div class="price">
-      <strong>{{ data.package.prices.cnb ? (data.package.prices.cnb | sperator) : 0 }}</strong>
+      <strong>{{ reserveObj.package.prices.cnb ? (reserveObj.package.prices.cnb | sperator) : 0 }}</strong>
       <small>تومان</small>
     </div>
     <prs-counter (sendReserveRoomData)="getReserveRoomData($event)" [reserveRoomData]="setReseveRoomData('0', 'cnb')"></prs-counter>

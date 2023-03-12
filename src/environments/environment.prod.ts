@@ -5,6 +5,7 @@ export const environment = {
   BACK_END_UPLOAD: 'https://loadbalancer.iran.liara.run/api/',
   PANEL_URL: 'agency.bilitja.com',
   SITE_URL: 'tour.snapptrip.com',
-  LOCAL_URL: 'localhost',
+  LOCAL_URL: 'snapptour.iran.liara.run',
+  // LOCAL_URL: 'localhost',
   VERSION: '1.1.2'
 };

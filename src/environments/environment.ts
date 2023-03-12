@@ -9,6 +9,7 @@ export const environment = {
   PANEL_URL: 'agency.bilitja.com',
   SITE_URL: 'tour.snapptrip.com',
   LOCAL_URL: 'localhost',
+  // LOCAL_URL: 'snapptour.iran.liara.run',
   VERSION: '0.1'
 };
 /*
