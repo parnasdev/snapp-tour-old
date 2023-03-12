@@ -1,13 +1,12 @@
 User-agent: Google
-Allow: /
+Disallow: /
 
 User-agent: Googlebot
-Allow: /
+Disallow: /
 
 User-agent: Bing
-Allow: /
+Disallow: /
 
 User-agent: *
 Disallow: /
 
-Sitemap: https://snapptour.com/sitemap.xml
