@@ -210,13 +210,11 @@
             </div>
           </div>
         </div>
-        <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="submit()" [isLoading]="isLoading"
+        <prs-btn class="btn-submit-tour w-25" [background]="'blue'" (click)="submit()" [isLoading]="isLoading"
                  [label]="'ثبت پروفایل'"></prs-btn>
       </div>
     </div>
   </form>
-
-
 </div>
 <!-- <prs-info ></prs-info> -->
 <div class="add-tour" *ngIf="!isAdmin && (isAccepted && isCompelete)">
@@ -502,7 +500,7 @@
             </div>
           </div>
         </div>
-        <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="adminSubmit()" [isLoading]="isLoading"
+        <prs-btn class="btn-submit-tour w-25" [background]="'blue'" (click)="adminSubmit()" [isLoading]="isLoading"
                  [label]="'ثبت اطلاعات'"></prs-btn>
       </div>
     </div>
