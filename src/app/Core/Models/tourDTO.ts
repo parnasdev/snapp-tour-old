@@ -178,6 +178,7 @@ export interface PricesDTO {
 export interface TourTransferDTO {
   transfer_id: string;
   dateTime: string;
+  flightCode?:string;
   transfer?: string;
   type: string;
 }

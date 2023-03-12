@@ -26,8 +26,8 @@
               </label>
             </div>
             <span class="required f-10" *ngIf="form.get('status')?.touched && form.get('status')?.invalid">
-            این فیلد الزامی است
-          </span>
+              این فیلد الزامی است
+            </span>
             <div *ngIf="errorService.hasError('status')">
               <span class="text-danger">{{errorService.getError('status')}}</span>
             </div>
@@ -48,7 +48,7 @@
             <label for="">عنوان تور</label>
             <input formControlName="title" (change)="generateSlug()" type="text">
             <span class="required f-10" *ngIf="form.get('title')?.touched && form.get('title')?.invalid">
-            این فیلد الزامی است
+              این فیلد الزامی است
             </span>
             <div *ngIf="errorService.hasError('title')">
               <span class="text-danger">{{errorService.getError('title')}}</span>
@@ -60,7 +60,7 @@
               <label for="">شهر مبدا</label>
 
               <prs-select-city [hasHotel]="true" [inCommingCity]="cities[0]" [cities]="cities"
-                               (citySelected)="getStCity($event)"></prs-select-city>
+                (citySelected)="getStCity($event)"></prs-select-city>
 
             </div>
             <div *ngIf="errorService.hasError('stCity_id')">
@@ -72,7 +72,7 @@
               <label for="">شهر مقصد</label>
 
               <prs-select-city [hasHotel]="true" [cities]="cities"
-                               (citySelected)="getEndCity($event)"></prs-select-city>
+                (citySelected)="getEndCity($event)"></prs-select-city>
               <div *ngIf="errorService.hasError('endCity_id')">
                 <span class="text-danger">{{errorService.getError('endCity_id')}}</span>
               </div>
@@ -114,7 +114,7 @@
             <input *ngIf="isSlugGenerated" formControlName="slug" type="text">
             <span *ngIf="!isSlugGenerated">{{form.value.slug}}</span>
             <span class="required f-10" *ngIf="form.get('slug')?.touched && form.get('slug')?.invalid">
-            این فیلد الزامی است
+              این فیلد الزامی است
             </span>
             <div *ngIf="errorService.hasError('slug')">
               <span class="text-danger">{{errorService.getError('slug')}}</span>
@@ -124,7 +124,7 @@
             <label for="">تاریخ ورود به هتل</label>
             <mat-form-field class="example-full-width" appearance="fill">
               <input matInput [matDatepicker]="picker1" formControlName="stDate" [min]="minDate"
-                     (click)="picker1.open()">
+                (click)="picker1.open()">
               <mat-datepicker #picker1></mat-datepicker>
             </mat-form-field>
             <div *ngIf="errorService.hasError('stDate')">
@@ -135,7 +135,7 @@
             <label for="">تاریخ خروج از هتل</label>
             <mat-form-field class="example-full-width" appearance="fill">
               <input matInput formControlName="enDate" [matDatepicker]="picker2" [min]="minDate"
-                     (click)="picker2.open()">
+                (click)="picker2.open()">
               <mat-datepicker #picker2></mat-datepicker>
             </mat-form-field>
             <div *ngIf="errorService.hasError('enDate')">
@@ -146,7 +146,7 @@
             <label for="">تاریخ انقضا پکیج</label>
             <mat-form-field class="example-full-width" appearance="fill">
               <input matInput formControlName="expireDate" [matDatepicker]="picker3" [min]="minDate"
-                     (click)="picker3.open()">
+                (click)="picker3.open()">
               <mat-datepicker #picker3></mat-datepicker>
             </mat-form-field>
             <div *ngIf="errorService.hasError('expireDate')">
@@ -170,7 +170,7 @@
             <label for="">تاریخ پرواز رفت</label>
             <mat-form-field class="example-full-width" appearance="fill">
               <input matInput [matDatepicker]="picker4" [formControl]="originDateFC" [min]="minDate"
-                     (click)="picker4.open()">
+                (click)="picker4.open()">
               <mat-datepicker #picker4></mat-datepicker>
             </mat-form-field>
 
@@ -189,11 +189,18 @@
             </div>
 
           </div>
+          <div class="item-info-2">
+            <div class="select-info w-100">
+              <label for="">شماره پرواز رفت</label>
+              <input type="text" [formControl]="originFlightCodeFC">
+            </div>
+          </div>
+
           <div class="item-info">
             <label for="">تاریخ پرواز برگشت</label>
             <mat-form-field class="example-full-width" appearance="fill">
               <input matInput [matDatepicker]="picker7" [formControl]="destDateFC" [min]="minDate"
-                     (click)="picker7.open()">
+                (click)="picker7.open()">
               <mat-datepicker #picker7></mat-datepicker>
             </mat-form-field>
           </div>
@@ -208,7 +215,13 @@
                 <option *ngFor="let item of airlines" [value]="item.id">{{item.name}}</option>
               </select>
             </div>
+          </div>
 
+          <div class="item-info-2">
+            <div class="select-info w-100">
+              <label for="">شماره پرواز برگشت</label>
+              <input type="text" [formControl]="destFlightCodeFC">
+            </div>
           </div>
         </div>
 
@@ -227,21 +240,22 @@
           <div class="item-info">
             <label for="">نرخ یورو(تومان)</label>
             <input (keyup)="updatePackagePrices()" formControlName="euroRate" type="text" mask="separator"
-                   thousandSeparator=",">
+              thousandSeparator=",">
           </div>
           <div class="item-info">
             <label for="">نرخ دلار(تومان)</label>
             <input (keyup)="updatePackagePrices()" formControlName="dollarRate" type="text" mask="separator"
-                   thousandSeparator=",">
+              thousandSeparator=",">
           </div>
           <div class="item-info">
             <label for="">نرخ درهم(تومان)</label>
             <input (keyup)="updatePackagePrices()" formControlName="AEDRate" type="text" mask="separator"
-                   thousandSeparator=",">
+              thousandSeparator=",">
           </div>
 
           <div>
-            <p style="font-size: 12px !important;color: #ff0000;margin-top: 8px">نکته مهم: لطفا برای نمایش هر نرخ در باکس نرخ ها مقدار نرخ را وارد کنید.</p>
+            <p style="font-size: 12px !important;color: #ff0000;margin-top: 8px">نکته مهم: لطفا برای نمایش هر نرخ در
+              باکس نرخ ها مقدار نرخ را وارد کنید.</p>
           </div>
 
         </div>
@@ -260,7 +274,7 @@
             <div class="box-services">
               <label for="">نرخ بیمه(تومان/ارزی)</label>
               <input (keyup)="updatePackagePrices()" formControlName="insuranceRate" type="text" mask="separator"
-                     thousandSeparator=",">
+                thousandSeparator=",">
             </div>
             <div class="selectdiv">
               <select (change)="updatePackagePrices()" formControlName="insurancePriceType">
@@ -275,7 +289,7 @@
             <div class="box-services">
               <label for="">نرخ ترانسفر(تومان/ارزی)</label>
               <input (keyup)="updatePackagePrices()" formControlName="transferRate" type="text" mask="separator"
-                     thousandSeparator=",">
+                thousandSeparator=",">
             </div>
             <div class="selectdiv">
               <select (change)="updatePackagePrices()" formControlName="transferPriceType">
@@ -290,7 +304,7 @@
             <div class="box-services">
               <label for="">نرخ ویزا(تومان/ارزی)</label>
               <input (keyup)="updatePackagePrices()" formControlName="visaRate" type="text" mask="separator"
-                     thousandSeparator=",">
+                thousandSeparator=",">
             </div>
             <div class="selectdiv">
               <select (change)="updatePackagePrices()" formControlName="visaPriceType">
@@ -318,7 +332,7 @@
             <div class="box-services w-100">
               <label for="">نرخ پرواز بزرگسال(تومان)</label>
               <input (keyup)="setADLRate($event)" formControlName="ADLFlightRate" type="text" mask="separator"
-                     thousandSeparator=",">
+                thousandSeparator=",">
               <div *ngIf="errorService.hasError('ADLFlightRate')">
                 <span class="text-danger">{{errorService.getError('ADLFlightRate')}}</span>
               </div>
@@ -329,7 +343,7 @@
             <div class="box-services w-100">
               <label for="">نرخ پرواز کودک(تومان)</label>
               <input (keyup)="setCnbRate($event)" formControlName="CHDFlightRate" type="text" mask="separator"
-                     thousandSeparator=",">
+                thousandSeparator=",">
               <div *ngIf="errorService.hasError('CHDFlightRate')">
                 <span class="text-danger">{{errorService.getError('CHDFlightRate')}}</span>
               </div>
@@ -373,13 +387,13 @@
             </select>
 
             <div class="w-50" *ngIf="checkPackageRate()">
-              <input (keyup)="setADLRatePrice($event)" formControlName="ADLFlightRate" placeholder="قیمت پرواز بزرگسال به تومان" type="text" mask="separator"
-                    thousandSeparator=",">
+              <input (keyup)="setADLRatePrice($event)" formControlName="ADLFlightRate"
+                placeholder="قیمت پرواز بزرگسال به تومان" type="text" mask="separator" thousandSeparator=",">
               <div *ngIf="errorService.hasError('ADLFlightRate')">
                 <span class="text-danger">{{errorService.getError('ADLFlightRate')}}</span>
               </div>
-              <input (keyup)="setCnbRatePrice($event)" formControlName="CHDFlightRate" placeholder="قیمت پرواز کودک به تومان" type="text" mask="separator"
-                    thousandSeparator=",">
+              <input (keyup)="setCnbRatePrice($event)" formControlName="CHDFlightRate"
+                placeholder="قیمت پرواز کودک به تومان" type="text" mask="separator" thousandSeparator=",">
               <div *ngIf="errorService.hasError('CHDFlightRate')">
                 <span class="text-danger">{{errorService.getError('CHDFlightRate')}}</span>
               </div>
@@ -415,9 +429,9 @@
             <div></div>
           </div>
           <form [formGroup]="form" class="example-list" formArrayName="packages" action="" cdkDropList
-                (cdkDropListDropped)="drop($event)">
+            (cdkDropListDropped)="drop($event)">
             <div class="body-box example-box" *ngFor="let tour of ToursForm.controls; let i = index" cdkDrag
-                 [formGroupName]="i">
+              [formGroupName]="i">
               <div class="package-item id-package">
                 <div class="icon-from-to">
                   <i class="icon-up-open"></i>
@@ -430,15 +444,14 @@
                 <!--                        [value]="hotel.id">{{tourType ? hotel.name : hotel.nameEn}}</option>-->
                 <!--              </select>-->
                 <prs-select-hotel [hotels]="hotels" [callHotel]="false" [type]="tourType" [isAdmin]="true"
-                                  (hotelSelected)="hotelChange($event,i)"></prs-select-hotel>
+                  (hotelSelected)="hotelChange($event,i)"></prs-select-hotel>
                 <div class="parent-icon under-package d-flex align-items-center">
                   <i class="icon-star text-warning" *ngFor="let star of getStars(i)"></i>
                 </div>
               </div>
               <div class="package-item">
                 <div class="d-flex align-items-center w-100 parent-box-rate">
-                  <div class="package-item rate-width"
-                       *ngIf="form.value.defineTour == 'true' && !tourType">
+                  <div class="package-item rate-width" *ngIf="form.value.defineTour == 'true' && !tourType">
                     <select (change)="updatePackagePrices()" formControlName="rate">
                       <option *ngIf="form.value.dollarRate" [value]="3">دلار</option>
                       <option *ngIf="form.value.euroRate" [value]="2">یورو</option>
@@ -457,42 +470,42 @@
               <!--            local tour-->
               <ng-template class="body-local" [ngIf]="tourType">
                 <div class="package-item">
-                  <input (keyup)="calculatePrice('twin', $event, true, i)" type="text" formControlName="twin"
-                         mask="separator" thousandSeparator=",">
+                  <input placeholder="قیمت (تومان)"  (keyup)="calculatePrice('twin', $event, true, i)" type="text" formControlName="twin"
+                    mask="separator" thousandSeparator=",">
                   <div class="under-package-text d-flex align-items-center"
-                       *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].twin > 0">
-                       <p>{{ getData(i).twinRate.value | sperator }}</p>
+                    *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].twin > 0">
+                    <p>{{ getData(i).twinRate.value | sperator }}</p>
 
                   </div>
-                  <input type="text" formControlName="twinCapacity"
-                         mask="separator" thousandSeparator=",">
+                  <input type="text" formControlName="twinCapacity" placeholder="ظرفیت" mask="separator"
+                    thousandSeparator=",">
                 </div>
                 <div class="package-item">
-                  <input (keyup)="calculatePrice('triple', $event, true, i)" type="text" formControlName="triple"
-                         mask="separator" thousandSeparator=",">
+                  <input placeholder="قیمت (تومان)"  (keyup)="calculatePrice('triple', $event, true, i)" type="text" formControlName="triple"
+                    mask="separator" thousandSeparator=",">
                   <div class="under-package-text"
-                       *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].triple > 0">
+                    *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].triple > 0">
                     <p>{{ getData(i).tripleRate.value | sperator }}</p>
                   </div>
-                  <input type="text" formControlName="tripleCapacity"
-                         mask="separator" thousandSeparator=",">
+                  <input type="text" placeholder="ظرفیت" formControlName="tripleCapacity" mask="separator"
+                    thousandSeparator=",">
                 </div>
                 <div class="package-item">
-                  <input (keyup)="calculatePrice('quad', $event, true, i)" type="text" formControlName="quad"
-                         mask="separator" thousandSeparator=",">
+                  <input placeholder="قیمت (تومان)" (keyup)="calculatePrice('quad', $event, true, i)" type="text" formControlName="quad"
+                    mask="separator" thousandSeparator=",">
                   <div class="under-package-text"
-                       *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].quad > 0">
+                    *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].quad > 0">
                     <p>{{ getData(i).quadRate.value | sperator }}</p>
                   </div>
-                  <input type="text" formControlName="quadCapacity"
-                         mask="separator" thousandSeparator=",">
+                  <input type="text" placeholder="ظرفیت" formControlName="quadCapacity" mask="separator"
+                    thousandSeparator=",">
                 </div>
                 <div class="package-item">
                   <input type="text" formControlName="age">
                 </div>
                 <div class="package-item" *ngIf="form.value.defineTour == 'true'">
                   <input (keyup)="updatePackagePrices()" type="text" formControlName="ADLRate" mask="separator"
-                         thousandSeparator=",">
+                    thousandSeparator=",">
                 </div>
                 <div class="package-item d-flex flex-row">
                   <input formControlName="offered" class="offer-checkbox" type="checkbox">
@@ -506,47 +519,45 @@
               <!--            foreign tour-->
               <ng-template class="body-foreign" [ngIf]="!tourType">
                 <div class="package-item">
-                  <input (keyup)="calculatePrice('twin', $event, true, i)" type="text" formControlName="twin"
-                         mask="separator" thousandSeparator=",">
+                  <input placeholder="قیمت (تومان)"  (keyup)="calculatePrice('twin', $event, true, i)" type="text" formControlName="twin"
+                    mask="separator" thousandSeparator=",">
                   <div class="under-package-text"
-                       *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].twin > 0">
+                    *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].twin > 0">
                     <p>{{ getData(i).twinRate.value | sperator }}</p>
                   </div>
-                  <input type="text" formControlName="twinCapacity"
-                         mask="separator" thousandSeparator=",">
+                  <input type="text" formControlName="twinCapacity" mask="separator" placeholder="ظرفیت"
+                    thousandSeparator=",">
 
                 </div>
                 <div class="package-item">
-                  <input (keyup)="calculatePrice('single', $event, true, i)" type="text" formControlName="single"
-                         mask="separator" thousandSeparator=",">
+                  <input placeholder="قیمت (تومان)"  (keyup)="calculatePrice('single', $event, true, i)" type="text" formControlName="single"
+                    mask="separator" thousandSeparator=",">
                   <div class="under-package-text"
-                       *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].single > 0">
+                    *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].single > 0">
                     <p>{{ getData(i).singleRate.value | sperator }}</p>
                   </div>
-                  <input type="text" formControlName="singleCapacity"
-                         mask="separator" thousandSeparator=",">
+                  <input type="text" placeholder="ظرفیت" formControlName="singleCapacity" mask="separator" thousandSeparator=",">
 
                 </div>
                 <div class="package-item">
-                  <input (keyup)="calculatePrice('cwb', $event, false, i)" type="text" formControlName="cwb"
-                         mask="separator" thousandSeparator=",">
+                  <input (keyup)="calculatePrice('cwb', $event, false, i)" placeholder="قیمت (تومان)"  type="text" formControlName="cwb"
+                    mask="separator" thousandSeparator=",">
                   <div class="under-package-text"
-                       *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].cwb > 0">
+                    *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].cwb > 0">
                     <p>{{ getData(i).cwbRate.value | sperator }}</p>
                   </div>
-                  <input type="text" formControlName="cwbCapacity"
-                         mask="separator" thousandSeparator=",">
+                  <input type="text" placeholder="ظرفیت" formControlName="cwbCapacity" mask="separator" thousandSeparator=",">
 
                 </div>
                 <!-- <div class="package-item">
                   <input type="text" formControlName="cnb" mask="separator" thousandSeparator=",">
                 </div> -->
                 <div class="package-item">
-                  <input type="text" formControlName="age">
+                  <input placeholder="سن کودک"  type="text" formControlName="age">
                 </div>
                 <div class="package-item" *ngIf="form.value.defineTour == 'true'">
                   <input (keyup)="updatePackagePrices()" type="text" formControlName="ADLRate" mask="separator"
-                         thousandSeparator=",">
+                    thousandSeparator=",">
                 </div>
                 <div class="package-item d-flex flex-row">
                   <input formControlName="offered" class="offer-checkbox" type="checkbox">
@@ -584,19 +595,17 @@
           <div *ngIf="errorService.hasError('services')">
             <span class="text-danger">{{errorService.getError('services')}}</span>
           </div>
-          <textarea formControlName="documents" name="" cols="30" rows="10"
-                    placeholder="مدارک مورد نیاز"></textarea>
+          <textarea formControlName="documents" name="" cols="30" rows="10" placeholder="مدارک مورد نیاز"></textarea>
           <div *ngIf="errorService.hasError('documents')">
             <span class="text-danger">{{errorService.getError('documents')}}</span>
           </div>
-          <textarea formControlName="description" name="" cols="30" rows="10"
-                    placeholder="توضیحات تکمیلی"></textarea>
+          <textarea formControlName="description" name="" cols="30" rows="10" placeholder="توضیحات تکمیلی"></textarea>
           <div *ngIf="errorService.hasError('description')">
             <span class="text-danger">{{errorService.getError('description')}}</span>
           </div>
         </div>
-        <prs-btn  style="width: 15% !important;" class="btn-submit-tour " [background]="'blue'" (click)="submit()" [isLoading]="isLoading"
-                 [label]="'ثبت تور'"></prs-btn>
+        <prs-btn style="width: 15% !important;" class="btn-submit-tour " [background]="'blue'" (click)="submit()"
+          [isLoading]="isLoading" [label]="'ثبت تور'"></prs-btn>
       </div>
     </div>
   </form>

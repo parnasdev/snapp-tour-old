@@ -51,6 +51,9 @@ export class AddComponent implements OnInit {
   originTimeFC = new FormControl();
   destDateFC = new FormControl();
   destTimeFC = new FormControl();
+
+  originFlightCodeFC =new FormControl();
+  destFlightCodeFC = new FormControl();
   airlines: any[] = []
   originTime = ''
   destTime = ''
@@ -294,10 +297,12 @@ export class AddComponent implements OnInit {
       transfers: [
         {
           transfer_id: this.originTransferFC.value,
+          flightCode: this.originFlightCodeFC.value,
           dateTime: this.calenderServices.convertDateSpecial(this.originDateFC.value, 'en') + ' ' + this.originTime,
           type: 'origin',
         }, {
           transfer_id: this.destTransferFC.value,
+          flightCode: this.destFlightCodeFC.value,
           dateTime: this.calenderServices.convertDateSpecial(this.destDateFC.value, 'en') + ' ' + this.destTime,
           type: 'destination',
         },],
