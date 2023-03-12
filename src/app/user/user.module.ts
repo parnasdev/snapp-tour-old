@@ -26,7 +26,7 @@ import {ProfileComponent} from "./profile/profile.component";
     EditComponent,
     PermissionsComponent,
     ProfileComponent
-  ],
+  ],exports: [PermissionsComponent],
     imports: [
         CommonModule,
         UserRoutingModule,

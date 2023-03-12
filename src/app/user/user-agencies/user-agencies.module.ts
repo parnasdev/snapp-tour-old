@@ -14,6 +14,7 @@ import { CommonProjectModule } from 'src/app/common-project/common-project.modul
 import { MaterialModule } from 'src/app/common-project/persianDatePickerAdapter/material.module';
 import { ToolsModule } from 'src/app/tools/tools/tools.module';
 import { UserAgenciesRoutingModule } from './user-agencies-routing.module';
+import { UserModule } from '../user.module';
 
 
 
@@ -29,6 +30,7 @@ import { UserAgenciesRoutingModule } from './user-agencies-routing.module';
     FormsModule,
     MatButtonToggleModule,
     ReactiveFormsModule,
+    UserModule,
     MatDatepickerModule,
     MatCheckboxModule,
     MatFormFieldModule,
