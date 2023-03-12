@@ -67,7 +67,6 @@ export class IndexComponent implements OnInit {
         // this.getFaq();
       }
     })
-    this.getTours();
     this.getCities()
     this.getHotelCities()
     this.getHotels()
@@ -149,28 +148,6 @@ export class IndexComponent implements OnInit {
     }, (error: any) => {
       this.message.error();
       this.isLoading = false;
-    })
-  }
-
-
-  getTours(): void {
-    const reqDTO: TourListRequestDTO = {
-      origin: null,
-      dest: null,
-      stDate: null,
-      night: null,
-      status: null,
-      paginate: false,
-      limit: 10,
-      perPage: 10,
-      sortByDate: false,
-      search: '',
-      type: null
-    }
-    this.api.getTours(reqDTO, this.p).subscribe((res: any) => {
-      if (res.isDone) {
-        this.tours = res.data;
-      }
     })
   }
 

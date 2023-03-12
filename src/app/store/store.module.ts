@@ -31,6 +31,7 @@ import {CommonProjectModule} from "../common-project/common-project.module";
 import {MatBadgeModule} from '@angular/material/badge';
 import { SearchComponent } from './search/search.component';
 import { SpecialTourComponent } from './special-tour/special-tour.component';
+import { NewestToursComponent } from './newest-tours/newest-tours.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { SpecialTourComponent } from './special-tour/special-tour.component';
     ThumbnailTourTwoComponent,
     LoadingComponent,
     SearchComponent,
-    SpecialTourComponent
+    SpecialTourComponent,
+    NewestToursComponent
   ],
   exports: [
     IndexComponent,
