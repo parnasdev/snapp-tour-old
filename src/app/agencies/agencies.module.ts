@@ -13,7 +13,7 @@ import { StoreModule } from "../store/store.module";
 import { CommonProjectModule } from "../common-project/common-project.module";
 import { UserAgencyListComponent } from './user-agency-list/user-agency-list.component';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
     declarations: [
@@ -32,6 +32,7 @@ import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/materia
     imports: [
         CommonModule,
         AgenciesRoutingModule,
+        BrowserModule,
         CommonModule,
         MatDialogModule,
         ReactiveFormsModule,

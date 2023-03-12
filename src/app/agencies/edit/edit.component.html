@@ -1,17 +1,17 @@
 <prs-loading *ngIf="infoLoading"></prs-loading>
-<div class="add-tour">
-  <div class="box-accept-2">
-    <svg id="Information" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24">
-      <path id="Path_991" data-name="Path 991" d="M1,12a27.833,27.833,0,0,0,.462,5.827A6.193,6.193,0,0,0,3,21a6.193,6.193,0,0,0,3.172,1.54A27.838,27.838,0,0,0,12,23a27.838,27.838,0,0,0,5.827-.462A6.193,6.193,0,0,0,21,21a6.193,6.193,0,0,0,1.54-3.172A27.838,27.838,0,0,0,23,12a27.838,27.838,0,0,0-.462-5.827A6.193,6.193,0,0,0,21,3a6.193,6.193,0,0,0-3.172-1.54A27.833,27.833,0,0,0,12,1a27.833,27.833,0,0,0-5.827.462A6.193,6.193,0,0,0,3,3a6.193,6.193,0,0,0-1.54,3.172A27.833,27.833,0,0,0,1,12Z" fill="none" stroke="#ff4241" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-      <path id="Path_992" data-name="Path 992" d="M13,17a1,1,0,0,1-2,0V11a1,1,0,0,1,2,0ZM12,9a1,1,0,1,1,1-1A1,1,0,0,1,12,9Z" fill="#ff4241" fill-rule="evenodd"/>
-    </svg>
+<div class="box-accept-2" *ngIf="!isAccepted">
+  <svg id="Information" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24">
+    <path id="Path_991" data-name="Path 991" d="M1,12a27.833,27.833,0,0,0,.462,5.827A6.193,6.193,0,0,0,3,21a6.193,6.193,0,0,0,3.172,1.54A27.838,27.838,0,0,0,12,23a27.838,27.838,0,0,0,5.827-.462A6.193,6.193,0,0,0,21,21a6.193,6.193,0,0,0,1.54-3.172A27.838,27.838,0,0,0,23,12a27.838,27.838,0,0,0-.462-5.827A6.193,6.193,0,0,0,21,3a6.193,6.193,0,0,0-3.172-1.54A27.833,27.833,0,0,0,12,1a27.833,27.833,0,0,0-5.827.462A6.193,6.193,0,0,0,3,3a6.193,6.193,0,0,0-1.54,3.172A27.833,27.833,0,0,0,1,12Z" fill="none" stroke="#ff4241" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path id="Path_992" data-name="Path 992" d="M13,17a1,1,0,0,1-2,0V11a1,1,0,0,1,2,0ZM12,9a1,1,0,1,1,1-1A1,1,0,0,1,12,9Z" fill="#ff4241" fill-rule="evenodd"/>
+  </svg>
+  <span>اطلاعات شما ثبت شد در انتظار تایید از سمت ادمین</span>
+</div>
+<div class="box-accept" *ngIf="isAccepted">
+  <img src="../../../assets/img/success.png" width="45" alt="">
+  <span>آژانس شما با موفقیت تایید شد</span>
+</div>
+<div *ngIf="!isAccepted" class="add-tour">
 
-    <span>اطلاعات شما ثبت شد در انتظار تایید از سمت ادمین</span>
-  </div>
-  <div class="box-accept">
-    <img src="../../../assets/img/success.png" width="45" alt="">
-    <span>آژانس شما با موفقیت تایید شد</span>
-  </div>
   <form [formGroup]="userForm">
     <div class="box-info-tour">
       <div class="info-tour-header">
@@ -209,3 +209,149 @@
 
 
 </div>
+<!-- <prs-info ></prs-info> -->
+<div class="add-tour" *ngIf="isAccepted">
+  <div class="box-info-tour">
+
+    <div class="info-tour-body">
+      <h2 class="title mt-3">اطلاعات کاربر</h2>
+      <div class="top">
+        <div class="item-info-2">
+          <div class="item-info w-100">
+            <label>نام </label>
+            <span>{{ info.name }}</span>
+          </div>
+
+        </div>
+        <div class="item-info-2">
+          <div class="item-info w-100">
+            <label>نام خانوادگی</label>
+            <span>{{ info.family }}</span>
+
+          </div>
+        </div>
+        <div class="item-info-2">
+          <div class="item-info w-100">
+            <label>جنسیت</label>
+            <span>{{ info.gender == '0' ? 'مرد' : 'زن' }}</span>
+
+          </div>
+
+        </div>
+        <div class="item-info-2">
+          <label>شهر</label>
+          <span>{{ info.city?.name }}</span>
+        </div>
+        <div class="item-info-2">
+          <div class="item-info w-100">
+            <label>ایمیل</label>
+            <span>{{ info.email }}</span>
+
+          </div>
+
+        </div>
+        <div class="item-info-2">
+          <div class="item-info w-100">
+            <label>کدملی</label>
+            <span>{{ info.id_code }}</span>
+          </div>
+
+        </div>
+      </div>
+      <h2 style="margin: 2rem 0 0 0 !important;" class="title">اطلاعات آژانس</h2>
+      <div class="top">
+        <div class="item-info-2">
+          <div class="item-info w-100">
+            <label>نام آژانس</label>
+            <span>{{ info.agency.name }}</span>
+
+          </div>
+
+        </div>
+        <div class="item-info-2">
+          <div class="item-info w-100">
+            <label>سایت</label>
+            <span>{{ info.agency.site }}</span>
+          </div>
+        </div>
+        <div class="item-info-2">
+          <div class="item-info w-100">
+            <label>ایمیل شرکت</label>
+            <span>{{ info.agency.email }}</span>
+          </div>
+        </div>
+        <div class="item-info-2">
+          <div class="item-info w-100">
+            <label>تلفن اضطراری</label>
+
+            <span>{{ info.agency.necessaryPhone }}</span>
+
+          </div>
+
+        </div>
+        <div class="item-info-2">
+          <div class="item-info w-100">
+            <label>تلفن آژانس</label>
+            <span>{{ info.agency.tell }}</span>
+          </div>
+        </div>
+        <div class="address w-100 mx-auto">
+          <div style="width: 100% !important;" class="item-info-2">
+            <div class="item-info w-100 px-3">
+              <label>آدرس آژانس</label>
+              <span>{{ info.agency.address }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom">
+        <div class="item-info-upload">
+          <div class="item-info w-100">
+            <div class="top-one">
+              <div class="item-info w-100">
+
+                <span>لوگو</span>
+              </div>
+              <div class="single-img-upload-parent" *ngIf="info.agency.logo?.url !== ''">
+                <img [src]="info.agency.logo ? info.agency.logo.url : ''" width="100%" height="200" alt="">
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="item-info-upload">
+          <div class="item-info w-100">
+            <div class="top-one">
+              <div class="item-info w-100">
+                <span>مجوز بند الف</span>
+              </div>
+              <div class="single-img-upload-parent" *ngIf="info.agency.LicenseFileA?.url !== ''">
+                <img [src]="info.agency.LicenseFileA ? info.agency.LicenseFileA.url : ''" width="100%" height="200" alt="">
+              </div>
+            </div>
+
+          </div>
+          <div style="margin-right: 15px" class="item-info w-100">
+            <div class="top-one">
+              <div class="item-info w-100">
+                <span>مجوز بند ب</span>
+
+
+              </div>
+              <div class="single-img-upload-parent" *ngIf="info.agency.LicenseFileB?.url !==''">
+                <img [src]="info.agency.LicenseFileB ? info.agency.LicenseFileB.url : ''" width="100%" height="200" alt="">
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+</div>
+

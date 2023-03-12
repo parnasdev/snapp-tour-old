@@ -60,7 +60,7 @@ export class EditComponent implements OnInit {
   LicenseFileB: UploadResDTO | null = {
     path: '',
     url: ''
-  };;
+  };
   infoLoading = false;
   forgetIsLoading = false;
   codeFC = new FormControl('', Validators.required);
@@ -139,6 +139,8 @@ export class EditComponent implements OnInit {
     token: ''
   }
 
+
+  isAccepted = false;
   constructor(public fb: FormBuilder,
     public api: AgencyApiService,
     public authApi: AuthApiService,
@@ -156,10 +158,10 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     // @ts-ignore
     this.id = this.route.snapshot.paramMap.get('id')
-
+    this.isAccepted = this.session.getAgencyVerified();
     if (this.session.getRole() === 'Admin') {
       this.getAgency();
-    }else {
+    } else {
       this.getInfo();
     }
 

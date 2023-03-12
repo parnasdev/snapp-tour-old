@@ -6,6 +6,9 @@ export const environment = {
   production: false,
   BACK_END_IP: 'https://snapptour-api.iran.liara.run/api/v1/',
   BACK_END_UPLOAD: 'https://snapptour-api.iran.liara.run/api/',
+  PANEL_URL: 'agency.bilitja.com',
+  SITE_URL: 'tour.snapptrip.com',
+  LOCAL_URL: 'localhost',
   VERSION: '0.1'
 };
 /*
