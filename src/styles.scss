@@ -967,49 +967,12 @@ select::-ms-expand {
     text-align: right !important;
   }
 }
-.under-menu {
-  position: fixed;
-  right: 0;
-  top: 0;
-  height: 100vh;
-  width: 100%;
-  background: var(--white);
-  z-index: 100;
-  display: flex !important;
-  flex-direction: column;
-  align-items: center;
-
-  .p-exit-menu {
-    button {
-      background: unset;
-      border: none;
-      outline: none;
-    }
-  }
-
-  .menu {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 12px;
-
-    .link-header {
-      padding: 20px 0;
-      border-bottom: 1px solid #c6c6c6;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      color: var(--text-color);
-      font-size: 16px;
-    }
-  }
-}
-
 //mobile&tablet
 @media only screen and (max-width: 868px){
   .w-100-mobi{
     width: 100% !important;
+  }
+  .title-hotel-swiper .top .new-tour .text h3 {
+    font-size: 14px !important;
   }
 }
