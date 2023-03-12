@@ -20,6 +20,7 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from '@angular/material/input';
 import { CounterComponent } from './counter/counter.component';
+import { PassengersComponent } from './passengers/passengers.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CounterComponent } from './counter/counter.component';
     UserReservationsComponent,
     UserReservationInfoComponent,
     CounterComponent,
+    PassengersComponent,
   ],
   exports: [
     InfoComponent,

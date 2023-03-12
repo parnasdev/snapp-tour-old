@@ -263,6 +263,7 @@ export interface Tour {
   title : string
   transfers : TourTransferDTO[]
   defineTour: boolean
+  type?: boolean
 }
 
 
@@ -302,6 +303,12 @@ export interface RoomsDTO {
 
 export interface Passengers {
 
+}
+
+export interface ReserveRoomDTO {
+  roomType: string;
+  roomCount: number;
+  capacityPerson:number;
 }
 
 export interface EditReserveReq {

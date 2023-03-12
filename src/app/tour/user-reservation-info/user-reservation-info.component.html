@@ -90,69 +90,70 @@
   <div class="item-hotel">
     <h5>دو تخته</h5>
     <div class="price">
-      <strong>{{ data.package.tour.defineTour ? (data.package.prices?.twinRate | sperator) : data.package.prices?.twin
+      <strong>{{ data.package.tour.defineTour ? (data.package.prices?.twinRate | sperator) : (data.package.prices?.twin | sperator)
         }}</strong>
       <small>تومان</small>
     </div>
-    <prs-counter [capacity]="data.package?.prices?.twinCapacity ? +data.package.prices.twinCapacity : 0"></prs-counter>
+    <prs-counter [reserveRoomData]="setReseveRoomData(data.package?.prices?.twinCapacity ? data.package.prices?.twinCapacity : '0', 'twin')"></prs-counter>
     <small>ظرفیت: {{ data.package?.prices?.twinCapacity ? +data.package.prices.twinCapacity : 0 }}</small>
   </div>
   <!-- single -->
-  <div class="item-hotel">
+  <div class="item-hotel" *ngIf="!data.package?.tour?.type">
     <h5>یک تخته</h5>
     <div class="price">
       <strong>{{ data.package.tour.defineTour ? (data.package.prices?.singleRate | sperator) :
-        data.package.prices?.single }}</strong>
+        (data.package.prices?.single | sperator) }}</strong>
       <small>تومان</small>
     </div>
-    <prs-counter [capacity]="data.package?.prices?.singleCapacity ? +data.package.prices.singleCapacity : 0"></prs-counter>
+    <prs-counter [reserveRoomData]="setReseveRoomData(data.package?.prices?.tripleCapacity ? data.package.prices?.tripleCapacity : '0', 'single')"></prs-counter>
     <small>ظرفیت: {{ data.package?.prices?.singleCapacity ? +data.package.prices.singleCapacity : 0 }}</small>
   </div>
   <!-- triple -->
-  <div class="item-hotel">
+  <div class="item-hotel" *ngIf="data.package?.tour?.type">
     <h5>سه تخته</h5>
     <div class="price">
       <strong>{{ data.package.tour.defineTour ? (data.package.prices?.tripleRate | sperator) :
-        data.package.prices?.triple }}</strong>
+        (data.package.prices?.triple | sperator) }}</strong>
       <small>تومان</small>
     </div>
-    <prs-counter [capacity]="data.package?.prices?.tripleCapacity ? +data.package.prices.tripleCapacity : 0"></prs-counter>
+    <prs-counter [reserveRoomData]="setReseveRoomData(data.package?.prices?.tripleCapacity ? data.package.prices?.tripleCapacity : '0', 'triple')"></prs-counter>
     <small>ظرفیت: {{ data.package?.prices?.tripleCapacity ? +data.package.prices.tripleCapacity : 0 }}</small>
   </div>
   <!-- quad -->
-  <div class="item-hotel">
+  <div class="item-hotel" *ngIf="data.package?.tour?.type">
     <h5>چهار تخته</h5>
     <div class="price">
-      <strong>{{ data.package.tour.defineTour ? (data.package.prices?.quad | sperator) : data.package.prices?.quad
+      <strong>{{ data.package.tour.defineTour ? (data.package.prices?.quad | sperator) : (data.package.prices?.quad | sperator)
         }}</strong>
       <small>تومان</small>
     </div>
-    <prs-counter [capacity]="data.package?.prices?.quadCapacity ? +data.package.prices.quadCapacity : 0"></prs-counter>
+    <prs-counter [reserveRoomData]="setReseveRoomData(data.package?.prices?.quadCapacity ? data.package.prices?.quadCapacity : '0', 'quad')" ></prs-counter>
     <small>ظرفیت: {{ data.package?.prices?.quadCapacity ? +data.package.prices.quadCapacity : 0 }}</small>
   </div>
   <!-- cwb -->
-  <div class="item-hotel">
+  <div class="item-hotel" *ngIf="!data.package?.tour?.type">
     <h5>کودک با تخت</h5>
     <div class="price">
       <strong>{{ data.package.tour.defineTour ? (data.package.prices?.cwbRate | sperator) : data.package.prices?.cwb
         }}</strong>
       <small>تومان</small>
     </div>
-    <prs-counter [capacity]="data.package?.prices?.cwbCapacity ? +data.package.prices.cwbCapacity : 0"></prs-counter>
+    <prs-counter [reserveRoomData]="setReseveRoomData(data.package?.prices?.cwbCapacity ? data.package?.prices?.cwbCapacity : '0', 'cwb')"></prs-counter>
     <small>ظرفیت: {{ data.package?.prices?.cwbCapacity ? +data.package.prices.cwbCapacity : 0 }}</small>
   </div>
   <!-- cnb -->
-  <div class="item-hotel">
+  <div class="item-hotel" *ngIf="!data.package?.tour?.type">
     <h5>کودک بدون تخت</h5>
     <div class="price">
       <strong>{{ data.package.prices.cnb ? (data.package.prices.cnb | sperator) : 0 }}</strong>
       <small>تومان</small>
     </div>
-    <prs-counter [capacity]="data.package?.prices?.cwbCapacity ? +data.package.prices.cwbCapacity : 0"></prs-counter>
-    <small>ظرفیت: {{ data.package?.prices?.cwbCapacity ? +data.package.prices.cwbCapacity : 0 }}</small>
+    <prs-counter [reserveRoomData]="setReseveRoomData('0', 'cnb')"></prs-counter>
+    <small>ظرفیت: {{ 0 }}</small>
   </div>
 </div>
-<h2 class="title-tour">اطلاعات سرپرست</h2>
+
+<h2 class="title-tour">اطلاعات رزروگیرنده (این مشخصات به عنوان طرف قرارداد درنظر گرفته می شود)</h2>
 <div class="set-info-supervisor">
   <div class="item-form">
     <label class="dana-bold" for="">نام</label>
@@ -193,73 +194,9 @@
   </div>
 </div>
 
-<button class="btn-base px-4" style="height: 40px !important;" (click)="addRow()">اضافه کردن</button>
-<h2 class="title-tour">اطلاعات مسافرین</h2>
-<div [formGroup]="ReserveForm">
-  <div formArrayName="passengers">
-    <div class="set-info-passengers" *ngFor="let item of PassengerForm.controls; let i = index" [formGroupName]="i">
-      <div class="item-form">
-        <label class="dana-bold" for="">نام و نام خانوادگی</label>
-        <div class="inp-form mt-2">
-          <input type="text" formControlName="fullName" placeholder="اینجا بنویسید …" >
-        </div>
-      </div>
-      <div class="item-form">
-        <label class="dana-bold" for="">
-          کد ملی
-        </label>
-        <div class="inp-form mt-2">
-          <input type="text" placeholder="اینجا بنویسید …" formControlName="id_code">
-        </div>
-      </div>
-      <div class="item-form">
-        <label class="dana-bold" for="">
-          شهر
-        </label>
-        <div class="inp-form mt-2">
-          <input type="text" placeholder="اینجا بنویسید …" formControlName="city">
-        </div>
-      </div>
-      <div class="item-form">
-        <label class="dana-bold" for="">
-          شماره همراه
-        </label>
-        <div class="inp-form mt-2">
-          <input type="text" formControlName="phoneNumber" placeholder="اینجا بنویسید …">
-        </div>
-      </div>
-      <div class="item-form">
-        <label class="dana-bold" for="">
-          ملیت
-        </label>
-        <div class="inp-form mt-2">
-          <select formControlName="nationality" name="" id="">
-            <option value="0">ایرانی</option>
-            <option value="1">خارجی</option>
-          </select>
-        </div>
-      </div>
-      <div class="item-form">
-        <label class="dana-bold" for="">
-          پاسپورت
-        </label>
-        <div class="inp-form mt-2">
-          <input type="text" placeholder="اینجا بنویسید …" formControlName="passport_number">
-        </div>
-      </div>
-      <div class="item-form">
-        <label class="dana-bold" for="">
-          تاریخ انقضای پاسپورت
-        </label>
-        <div class="inp-form mt-2">
-          <input type="text" placeholder="اینجا بنویسید …" formControlName="passport_expire">
-        </div>
-      </div>
-    </div>
+<prs-passengers></prs-passengers>
 
-  </div>
-</div>
-<div class="promo-code my-3">
+<!-- <div class="promo-code my-3">
   <div class="item-form w-25">
     <label class="dana-bold" for="">کد تخفیف</label>
     <div class="inp-form mt-2">
@@ -267,7 +204,7 @@
       <a href="" class="btn text-danger">ثبت</a>
     </div>
   </div>
-</div>
+</div> -->
 <div class="rules">
   <input type="checkbox">
   <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون

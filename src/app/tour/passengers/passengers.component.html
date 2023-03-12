@@ -1,0 +1,65 @@
+<h2 class="title-tour">اطلاعات مسافرین</h2>
+<div [formGroup]="ReserveForm">
+  <div formArrayName="passengers">
+    <div class="set-info-passengers" *ngFor="let item of PassengerForm.controls; let i = index" [formGroupName]="i">
+      <div class="item-form">
+        <label class="dana-bold" for="">نام و نام خانوادگی</label>
+        <div class="inp-form mt-2">
+          <input type="text" formControlName="fullName" placeholder="اینجا بنویسید …" >
+        </div>
+      </div>
+      <div class="item-form">
+        <label class="dana-bold" for="">
+          کد ملی
+        </label>
+        <div class="inp-form mt-2">
+          <input type="text" placeholder="اینجا بنویسید …" formControlName="id_code">
+        </div>
+      </div>
+      <div class="item-form">
+        <label class="dana-bold" for="">
+          شهر
+        </label>
+        <div class="inp-form mt-2">
+          <input type="text" placeholder="اینجا بنویسید …" formControlName="city">
+        </div>
+      </div>
+      <div class="item-form">
+        <label class="dana-bold" for="">
+          شماره همراه
+        </label>
+        <div class="inp-form mt-2">
+          <input type="text" formControlName="phoneNumber" placeholder="اینجا بنویسید …">
+        </div>
+      </div>
+      <div class="item-form">
+        <label class="dana-bold" for="">
+          ملیت
+        </label>
+        <div class="inp-form mt-2">
+          <select formControlName="nationality" name="" id="">
+            <option value="0">ایرانی</option>
+            <option value="1">خارجی</option>
+          </select>
+        </div>
+      </div>
+      <div class="item-form">
+        <label class="dana-bold" for="">
+          پاسپورت
+        </label>
+        <div class="inp-form mt-2">
+          <input type="text" placeholder="اینجا بنویسید …" formControlName="passport_number">
+        </div>
+      </div>
+      <div class="item-form">
+        <label class="dana-bold" for="">
+          تاریخ انقضای پاسپورت
+        </label>
+        <div class="inp-form mt-2">
+          <input type="text" placeholder="اینجا بنویسید …" formControlName="passport_expire">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
