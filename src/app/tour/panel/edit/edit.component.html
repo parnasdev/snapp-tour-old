@@ -411,9 +411,9 @@
           <div class="package-item">#</div>
           <div class="package-item">نام هتل</div>
           <div class="package-item">خدمات</div>
-          <div class="package-item">دو تخته</div>
-          <div class="package-item">سه تخته</div>
-          <div class="package-item">چهار تخته</div>
+          <div class="package-item">دو تخته/ ظرفیت</div>
+          <div class="package-item"> سه تخته / ظرفیت</div>
+          <div class="package-item">چهار تخته/ ظرفیت</div>
           <div class="package-item">سن کودک</div>
           <div class="package-item" *ngIf="form.value.defineTour == 'true'">نرخ بزرگسال</div>
           <div class="package-item">آفر ویژه</div>
@@ -424,9 +424,9 @@
           <div class="package-item">#</div>
           <div class="package-item">نام هتل</div>
           <div class="package-item">{{ form.value.defineTour == 'true' ? 'نرخ / خدمات' : 'خدمات'}}</div>
-          <div class="package-item">دو تخته</div>
-          <div class="package-item">یه تخته</div>
-          <div class="package-item">کودک با تخت</div>
+          <div class="package-item">دو تخته/ ظرفیت</div>
+          <div class="package-item">یه تخته/ظرفیت</div>
+          <div class="package-item">کودک با تخت / ظرفیت</div>
           <!-- <div class="package-item">کودک بدون تخت</div> -->
           <div class="package-item">سن کودک</div>
           <div class="package-item" *ngIf="form.value.defineTour == 'true'">نرخ بزرگسال</div>
@@ -482,7 +482,10 @@
                      *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].twin > 0">
                   <p>{{ getData(i).twinRate.value | sperator }}</p>
                 </div>
+                <input type="text" formControlName="twinCapacity"
+                       mask="separator" thousandSeparator=",">
               </div>
+
               <div class="package-item">
                 <input (keyup)="calculatePrice('triple', $event, true, i)" type="text" formControlName="triple"
                        mask="separator" thousandSeparator=",">
@@ -492,6 +495,8 @@
                      *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].triple > 0">
                   <p>{{ getData(i).tripleRate.value | sperator }}</p>
                 </div>
+                <input type="text" formControlName="tripleCapacity"
+                       mask="separator" thousandSeparator=",">
               </div>
               <div class="package-item">
                 <input (keyup)="calculatePrice('quad', $event, true, i)" type="text" formControlName="quad"
@@ -502,6 +507,8 @@
                      *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].quad > 0">
                   <p>{{ getData(i).quadRate.value | sperator }}</p>
                 </div>
+                <input type="text" formControlName="quadCapacity"
+                       mask="separator" thousandSeparator=",">
               </div>
               <div class="package-item">
                 <input type="text" formControlName="age">
@@ -530,6 +537,8 @@
                      *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].twin > 0">
                   <p>{{ getData(i).twinRate.value | sperator }}</p>
                 </div>
+                <input type="text" formControlName="twinCapacity"
+                       mask="separator" thousandSeparator=",">
               </div>
               <div class="package-item">
                 <input (keyup)="calculatePrice('single', $event, true, i)" type="text" formControlName="single"
@@ -540,6 +549,8 @@
                      *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].single > 0">
                   <p>{{ getData(i).singleRate.value | sperator }}</p>
                 </div>
+                <input type="text" formControlName="singleCapacity"
+                       mask="separator" thousandSeparator=",">
               </div>
               <div class="package-item">
                 <input (keyup)="calculatePrice('cwb', $event, false, i)" type="text" formControlName="cwb"
@@ -550,6 +561,8 @@
                      *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].cwb > 0">
                   <p>{{ getData(i).cwbRate.value | sperator }}</p>
                 </div>
+                <input type="text" formControlName="cwbCapacity"
+                       mask="separator" thousandSeparator=",">
               </div>
               <!-- <div class="package-item">
                 <input type="text" formControlName="cnb" mask="separator" thousandSeparator=",">
@@ -605,7 +618,7 @@
             <span class="text-danger">{{errorService.getError('description')}}</span>
           </div>
         </div>
-        <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="submit()" [isLoading]="isLoading"
+        <prs-btn class="btn-submit-tour w-25" [background]="'blue'" (click)="submit()" [isLoading]="isLoading"
                  [label]="'ثبت تور'"></prs-btn>
       </div>
     </div>
