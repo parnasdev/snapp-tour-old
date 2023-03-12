@@ -36,9 +36,9 @@
   </div>
 </header>
 <header *ngIf="isMobile" class="header-mobile">
-  <div [ngClass]="[isMenu?'under-menu':'d-none animated fadeOutRight']" class="animated fadeInRight">
+  <div class="animated show-menu fadeInRight">
     <div class="p-exit-menu w-100 d-flex align-items-center justify-content-start p-3">
-      <button (click)="menuClose()">
+      <button class="btn-exit-menu">
         <svg viewBox="0 0 24 24" width="19" height="19" focusable="false" class="chakra-icon css-onkibi"
           aria-hidden="true">
           <path fill="currentColor"
@@ -56,15 +56,15 @@
       <a class="link-header" href="">خرید تور</a>
     </div>
   </div>
-  <div class="d-flex align-items-center w-55 justify-content-between">
-    <button (click)="menuOpen()" class="btn-menu-mobi">
-      <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 32 32" fill="currentColor"
-        focusable="false" class="chakra-icon css-13otjrl">
-        <path
-          d="M28 22.667a1.333 1.333 0 010 2.666H4a1.333 1.333 0 010-2.666h24zm0-8a1.333 1.333 0 010 2.666H4a1.333 1.333 0 010-2.666h24zm0-8a1.333 1.333 0 010 2.666H4a1.333 1.333 0 010-2.666h24z">
-        </path>
-      </svg>
-    </button>
+  <div  class="d-flex align-items-center w-55 justify-content-between">
+      <button   class="btn-menu-mobi text-dark">
+        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 32 32" fill="currentColor"
+             focusable="false" class="chakra-icon css-13otjrl">
+          <path
+            d="M28 22.667a1.333 1.333 0 010 2.666H4a1.333 1.333 0 010-2.666h24zm0-8a1.333 1.333 0 010 2.666H4a1.333 1.333 0 010-2.666h24zm0-8a1.333 1.333 0 010 2.666H4a1.333 1.333 0 010-2.666h24z">
+          </path>
+        </svg>
+      </button>
     <a href="/" class="logo-website"><img width="65" height="45" alt="اسنپ تریپ"
         src="https://cdnsnapptrip.com/images/B2C/Uploads/logo/snapptrip-logo.svg" class="chakra-image css-1ryhtp0"></a>
   </div>
