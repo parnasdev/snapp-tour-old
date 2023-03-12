@@ -8,7 +8,7 @@ import { AuthApiService } from "../../Core/Https/auth-api.service";
 import { CommonApiService } from "../../Core/Https/common-api.service";
 import { PublicService } from "../../Core/Services/public.service";
 import { SessionService } from "../../Core/Services/session.service";
-import { AgencyEditReqDTO } from "../../Core/Models/AgencyDTO";
+import { AdminAgencyDTO, AgencyEditReqDTO } from "../../Core/Models/AgencyDTO";
 import { AgencyApiService } from "../../Core/Https/agency-api.service";
 import { ActivatedRoute } from "@angular/router";
 import { catchError, map } from 'rxjs/operators';
@@ -36,6 +36,8 @@ export class EditComponent implements OnInit {
   emailFC = new FormControl('');
   genderFC = new FormControl('');
   idCodeFC = new FormControl('');
+
+  percentFC = new FormControl('');
 
 
   agencyNameFC = new FormControl('');
@@ -83,6 +85,25 @@ export class EditComponent implements OnInit {
   fileProgress = 0;
   isUpload = false
   fileLoading = false
+
+  adminReq: AdminAgencyDTO = {
+    agency: {
+      name: '',
+      logo: '',
+      isManager: null,
+      extra: '',
+      LicenseFileA: '',
+      id: 0,
+      LicenseFileB: '',
+      email: '',
+      address: '',
+      tell: '',
+      agencyPercent: 0,
+      site: '',
+      necessaryPhone: '',
+    }
+  }
+
   req: AgencyEditReqDTO = {
     username: '',
     family: '',
@@ -201,6 +222,26 @@ export class EditComponent implements OnInit {
       role: this.session.getRole(),
     }
   }
+  setAdminReq(): void {
+    this.adminReq = {
+      agency: {
+        name: this.agencyNameFC?.value,
+        logo: this.logo ? this.logo.path : '',
+        isManager: null,
+        LicenseFileA: this.LicenseFileA ? this.LicenseFileA.path : '',
+        id: 0,
+        agencyPercent: +this.percentFC.value,
+        extra: '',
+        LicenseFileB: this.LicenseFileB ? this.LicenseFileB.path : '',
+        email: this.emailFC.value,
+        address: this.addressFC.value,
+        tell: this.tellFC.value,
+        site: this.siteFC.value,
+        necessaryPhone: this.necessaryPhoneFC.value,
+      },
+
+    }
+  }
 
 
   submit(): void {
@@ -211,6 +252,24 @@ export class EditComponent implements OnInit {
       if (res.isDone) {
         this.message.showMessageBig(res.message);
         this.session.setUserToSession({ token: this.session.getToken(), user: res.data })
+        this.errorsService.clear();
+      } else {
+      }
+    }, (error: any) => {
+      this.isLoading = false;
+      this.errorsService.clear();
+      this.errorsService.check(error);
+    })
+  }
+
+
+  adminSubmit(): void {
+    this.isLoading = true;
+    this.setAdminReq()
+    this.api.editAdminAgency(this.adminReq,+this.id).subscribe((res: any) => {
+      this.isLoading = false;
+      if (res.isDone) {
+        this.message.showMessageBig(res.message);
         this.errorsService.clear();
       } else {
       }
@@ -273,8 +332,10 @@ export class EditComponent implements OnInit {
     this.necessaryPhoneFC.setValue(this.info.agency.necessaryPhone)
     this.isCompelete = this.info.agency.name !== null && this.info.agency.name !== '';
     this.isAccepted = this.info.agency.verify;
-    console.log(this.isCompelete , this.isAccepted);
-    
+    console.log(this.isCompelete, this.isAccepted);
+
+    this.percentFC.setValue(this.info.agency.agencyPercent)
+
 
   }
 

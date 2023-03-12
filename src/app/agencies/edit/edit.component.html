@@ -1,6 +1,6 @@
 <prs-loading *ngIf="infoLoading"></prs-loading>
 <ng-template [ngIf]="!isAdmin">
-  <div class="box-accept-2" *ngIf="!isAccepted || !isCompelete">
+  <div class="box-accept-2" *ngIf="!isAccepted || isCompelete">
     <svg id="Information" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24">
       <path id="Path_991" data-name="Path 991" d="M1,12a27.833,27.833,0,0,0,.462,5.827A6.193,6.193,0,0,0,3,21a6.193,6.193,0,0,0,3.172,1.54A27.838,27.838,0,0,0,12,23a27.838,27.838,0,0,0,5.827-.462A6.193,6.193,0,0,0,21,21a6.193,6.193,0,0,0,1.54-3.172A27.838,27.838,0,0,0,23,12a27.838,27.838,0,0,0-.462-5.827A6.193,6.193,0,0,0,21,3a6.193,6.193,0,0,0-3.172-1.54A27.833,27.833,0,0,0,12,1a27.833,27.833,0,0,0-5.827.462A6.193,6.193,0,0,0,3,3a6.193,6.193,0,0,0-1.54,3.172A27.833,27.833,0,0,0,1,12Z" fill="none" stroke="#ff4241" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
       <path id="Path_992" data-name="Path 992" d="M13,17a1,1,0,0,1-2,0V11a1,1,0,0,1,2,0ZM12,9a1,1,0,1,1,1-1A1,1,0,0,1,12,9Z" fill="#ff4241" fill-rule="evenodd"/>
@@ -373,68 +373,6 @@
         </div>
       </div>
       <div class="info-tour-body">
-        <h2 class="title">اطلاعات کاربر</h2>
-        <div class="top">
-          <div class="item-info-2">
-            <div class="item-info w-100">
-              <label>نام </label>
-              <input [formControl]="nameFC" type="text">
-              <div *ngIf="errorsService.hasError('name')">
-                <span class="text-danger">{{errorsService.getError('name')}}</span>
-              </div>
-            </div>
-
-          </div>
-          <div class="item-info-2">
-            <div class="item-info w-100">
-              <label>نام خانوادگی</label>
-              <input [formControl]="familyFC" type="text">
-              <div *ngIf="errorsService.hasError('family')">
-                <span class="text-danger">{{errorsService.getError('family')}}</span>
-              </div>
-            </div>
-          </div>
-          <div class="item-info-2">
-            <div class="item-info w-100">
-              <label>جنسیت</label>
-              <select name="" id="" [formControl]="genderFC">
-                <option value="0">مرد</option>
-                <option value="1">زن</option>
-
-              </select>
-              <div *ngIf="errorsService.hasError('gender')">
-                <span class="text-danger">{{errorsService.getError('gender')}}</span>
-              </div>
-            </div>
-
-          </div>
-          <div style="width: 32% !important;">
-            <label style="position: relative;top: 14px">شهر</label>
-            <prs-select-city *ngIf="show" [inCommingCity]="info.city ? info.city?.slugEn : null " [hasOriginTour]="false" [hasDestTour]="false"
-                             (citySelected)="citySelected($event)" [type]="1" ></prs-select-city>
-          </div>
-
-          <div class="item-info-2">
-            <div class="item-info w-100">
-              <label>ایمیل</label>
-              <input [formControl]="emailFC" type="text">
-              <div *ngIf="errorsService.hasError('email')">
-                <span class="text-danger">{{errorsService.getError('email')}}</span>
-              </div>
-            </div>
-
-          </div>
-          <div class="item-info-2">
-            <div class="item-info w-100">
-              <label>کدملی</label>
-              <input [formControl]="idCodeFC" type="text">
-              <div *ngIf="errorsService.hasError('id_code')">
-                <span class="text-danger">{{errorsService.getError('id_code')}}</span>
-              </div>
-            </div>
-
-          </div>
-        </div>
         <h2 style="margin: 2rem 0 0 0 !important;" class="title">اطلاعات آژانس</h2>
         <div class="top">
           <div class="item-info-2">
@@ -472,6 +410,16 @@
               <input [formControl]="necessaryPhoneFC" type="text">
               <div *ngIf="errorsService.hasError('agency.necessaryPhone')">
                 <span class="text-danger">{{errorsService.getError('agency.necessaryPhone')}}</span>
+              </div>
+            </div>
+
+          </div>
+          <div class="item-info-2">
+            <div class="item-info w-100">
+              <label>کمیسیون</label>
+              <input [formControl]="percentFC" type="text">
+              <div *ngIf="errorsService.hasError('agency.percent')">
+                <span class="text-danger">{{errorsService.getError('agency.percent')}}</span>
               </div>
             </div>
 
@@ -554,8 +502,8 @@
             </div>
           </div>
         </div>
-        <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="submit()" [isLoading]="isLoading"
-                 [label]="'ثبت پروفایل'"></prs-btn>
+        <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="adminSubmit()" [isLoading]="isLoading"
+                 [label]="'ثبت اطلاعات'"></prs-btn>
       </div>
     </div>
   </form>
