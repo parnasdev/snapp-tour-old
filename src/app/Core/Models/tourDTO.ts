@@ -5,7 +5,7 @@ import { RoomTypePriceDTO } from "./roomTypeDTO";
 
 export interface TourListRequestDTO {
   origin: string | null;
-  dest: string| null;
+  dest: string | null;
   stDate: string | null;
   night: number | string | null;
   status: string | null;
@@ -178,8 +178,8 @@ export interface PricesDTO {
 export interface TourTransferDTO {
   transfer_id: string;
   dateTime: string;
-  flightCode?:string;
-  jDateTime?:string;
+  flightCode?: string;
+  jDateTime?: string;
   transfer?: string;
   type: string;
 }
@@ -253,16 +253,16 @@ export interface RateDTO {
 }
 
 export interface Tour {
-  dayNum:  number | string
+  dayNum: number | string
   enDate: string
   endCity: CityResponseDTO
   nightNum: number
   slug: string
   stCity: CityResponseDTO
-  stDate : string
+  stDate: string
   status: string
-  title : string
-  transfers : TourTransferDTO[]
+  title: string
+  transfers: TourTransferDTO[]
   defineTour: boolean
   type?: boolean
 }
@@ -276,27 +276,27 @@ export interface DatesResDTO {
 
 
 export interface ReserveInfoDTO {
-  id:         number;
-  package:    ReservePackageDTO;
-  user:       string;
-  name:       string;
-  month:      string;
-  city:       string;
-  phone:      string;
-  count:      number;
-  status:     string;
+  id: number;
+  package: ReservePackageDTO;
+  user: string;
+  name: string;
+  month: string;
+  city: string;
+  phone: string;
+  count: number;
+  status: string;
   passengers: RoomPassengersDTO[];
-  bill:       BillDTO;
-  createdAt:  string;
+  bill: BillDTO;
+  createdAt: string;
 }
 
 export interface BillDTO {
-  rooms: RoomsDTO[];
+  rooms: RoomsRequestDTO[];
   totalRoomPrice: number;
   totalPayAble: number;
 }
 
-export interface RoomsDTO {
+export interface RoomsRequestDTO {
   room_type: string
   room_count: number
   room_price: number
@@ -322,7 +322,7 @@ export interface ReserveRoomDTO {
   allCapacity: number;
   roomType: string;
   roomCount: number;
-  capacityPerson:number;
+  capacityPerson: number;
 }
 
 export interface EditReserveReq {
@@ -333,10 +333,17 @@ export interface EditReserveReq {
   id_code: number;
   count: number;
   coupon_id: string;
-  passengers: RoomPassengersDTO[];
+  passengers: RoomDTO[];
   bill: BillDTO;
   changeHotel: number; // 0 or 1
   package_id: string | null;
 }
 
-
+export interface RoomDTO {
+  id: number
+  name: string;
+  capacity: number;
+  passengers: PassengerDTO[]
+  price: number;
+  supply: number
+}

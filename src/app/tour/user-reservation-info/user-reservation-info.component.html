@@ -210,7 +210,7 @@
 <div class="box-empty">
 
 </div>
-<prs-passengers *ngFor="let room of roomsList" [tourType]="getTourType(reserveObj?.package?.tour?.type)" [RoomData]="room" (passengerResult)="getRoomData($event)"></prs-passengers>
+<prs-passengers *ngFor="let room of roomsSelected" [tourType]="getTourType(reserveObj?.package?.tour?.type)" [RoomData]="room" (passengerResult)="getRoomData($event)"></prs-passengers>
 
 <!-- <div class="promo-code my-3">
   <div class="item-form w-25">
@@ -226,5 +226,5 @@
   <p>تمامی قوانین و مقررات مرتبط با سایت اسنپ تریپ و پکیج های این تور را می پذیرم</p>
 </div>
 <div class="p-submit w-100 d-flex justify-content-center mt-4">
-  <button class="btn-base px-4">ثبت درخواست</button>
+  <button class="btn-base px-4" (click)="submit()">ثبت درخواست</button>
 </div>
