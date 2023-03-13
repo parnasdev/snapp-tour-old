@@ -32,3 +32,20 @@
   }
 }
 
+.box-profile-dashboard .form-dashboard .item-form{
+  width: 32%;
+}
+.box-profile-dashboard .form-dashboard .item-form-2{
+  width: 32%;
+}
+:host::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: unset !important;
+  border: 1px solid #e2e8f0 !important;
+  height: 58px !important;
+  border-radius: 8px !important;
+  .mat-form-field-infix {
+    position: relative !important;
+    top: -17px !important;
+    right: -10px !important;
+  }
+}
