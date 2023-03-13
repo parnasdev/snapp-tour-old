@@ -8,7 +8,6 @@ import { PassengerDTO, ReserveRoomDTO, RoomPassengersDTO } from 'src/app/Core/Mo
   styleUrls: ['./passengers.component.scss']
 })
 export class PassengersComponent implements OnInit, OnChanges {
-
   @Input() RoomData?: ReserveRoomDTO
   @Output() passengerResult = new EventEmitter();
 
@@ -47,7 +46,7 @@ export class PassengersComponent implements OnInit, OnChanges {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       id_code: ['', Validators.required],
-      city: ['', Validators.required],
+      birthDate: ['', Validators.required],
       phoneNumber: ['', Validators.required],
       nationality: ['', Validators.required],
       passport_number: ['', Validators.required],
