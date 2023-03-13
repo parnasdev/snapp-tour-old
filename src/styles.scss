@@ -920,13 +920,15 @@ select::-ms-expand {
       border-radius: 8px;
       padding: 12px;
       margin-top: 1rem;
-      .title-profile{
+
+      .title-profile {
         margin-top: 0 !important;
         padding: 0 !important;
         display: flex;
         align-items: center !important;
         justify-content: flex-start;
-        i{
+
+        i {
           font-size: 9px;
           color: var(--base-color);
           margin-left: 7px !important;
@@ -958,18 +960,33 @@ select::-ms-expand {
     }
   }
 }
-.h-45{
+
+.h-45 {
   height: 45px !important;
 }
-.mat-form-field-infix{
-  input{
+
+.mat-form-field-infix {
+  input {
     font-family: 'IRANSans', 'sans-serif' !important;
     text-align: right !important;
   }
 }
+
 //mobile&tablet
-@media only screen and (max-width: 868px){
-  .w-100-mobi{
+@media only screen and (max-width: 868px) {
+  .cdk-overlay-pane {
+    max-width: 95vw !important;
+    width: 95% !important;
+
+    .mat-dialog-container {
+      padding: 12px !important;
+
+      .form-auth {
+        margin: 1rem 0 !important;
+      }
+    }
+  }
+  .w-100-mobi {
     width: 100% !important;
   }
   .title-hotel-swiper .top .new-tour .text h3 {
