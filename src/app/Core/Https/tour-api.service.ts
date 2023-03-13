@@ -91,9 +91,9 @@ export class TourApiService {
 
   editReserve(editReserveReq: EditReserveReq, ref_code: string): any {
     const strUrl = environment.BACK_END_IP + `reserve/editReserve/${ref_code}`;
-    return this.http.post<Result<any>>(strUrl, {
+    return this.http.post<Result<any>>(strUrl, 
         editReserveReq
-    }, this.publicService.getDefaultHeaders());
+    , this.publicService.getDefaultHeaders());
   }
 
   changeStatus(status: string | null, ref_code: string): any {

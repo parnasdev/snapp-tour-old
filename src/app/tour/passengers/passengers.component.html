@@ -30,10 +30,11 @@
           <input type="text" (change)="onChange()" placeholder="اینجا بنویسید …" formControlName="id_code">
 
         </div>
-        <ng-container *ngIf="item.get('birthDate')?.touched && item.get('birthDate')?.hasError('required')">
+        <ng-container *ngIf="item.get('id_code')?.touched && item.get('id_code')?.hasError('required')">
           <span class="text-danger">این فیلد الزامی است</span>
         </ng-container>
       </div>
+    
       <div class="item-form">
         <label class="dana-bold" for="">
           تاریخ تولد
@@ -42,8 +43,8 @@
           <!-- <input type="text" (change)="onChange()" placeholder="اینجا بنویسید …" formControlName="birthDate"> -->
 
           <mat-form-field class="example-full-width" appearance="fill">
-            <input class="input-parent" [max]="minDate" matInput formControlName="birthDate" placeholder="تاریخ تولد" autocomplete="off"
-              [matDatepicker]="picker3" (click)="picker3.open()">
+            <input class="input-parent" [max]="minDate" matInput formControlName="birthDate" placeholder="تاریخ تولد"
+              autocomplete="off" [matDatepicker]="picker3" (click)="picker3.open()">
             <mat-datepicker startView="year" #picker3></mat-datepicker>
           </mat-form-field>
 
@@ -84,8 +85,8 @@
           <input type="text" (change)="onChange()" placeholder="اینجا بنویسید …" formControlName="passport_expire">
 
           <mat-form-field class="example-full-width" appearance="fill">
-            <input class="input-parent" [min]="minDate" matInput formControlName="passport_expire" placeholder="تاریخ تولد" autocomplete="off"
-              [matDatepicker]="picker3" (click)="picker3.open()">
+            <input class="input-parent" [min]="minDate" matInput formControlName="passport_expire"
+              placeholder="" autocomplete="off" [matDatepicker]="picker3" (click)="picker3.open()">
             <mat-datepicker #picker3></mat-datepicker>
           </mat-form-field>
 
