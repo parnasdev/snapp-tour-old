@@ -44,12 +44,12 @@ export class PassengersComponent implements OnInit, OnChanges {
     const Passengers = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      id_code: ['', Validators.required],
+      id_code: [''],
       birthDate: ['', Validators.required],
       phoneNumber: ['', Validators.required],
       nationality: [''],
-      passport_number: ['', Validators.required],
-      passport_expire: ['', Validators.required],
+      passport_number: [''],
+      passport_expire: [''],
     })
     this.PassengerForm.push(Passengers);
     // console.log(this.PassengerForm);
