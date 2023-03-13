@@ -1,15 +1,16 @@
-import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, OnChanges, Output, EventEmitter } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ReserveRoomDTO, RoomPassengersDTO } from 'src/app/Core/Models/tourDTO';
+import { PassengerDTO, ReserveRoomDTO, RoomPassengersDTO } from 'src/app/Core/Models/tourDTO';
 
 @Component({
   selector: 'prs-passengers',
   templateUrl: './passengers.component.html',
   styleUrls: ['./passengers.component.scss']
 })
-export class PassengersComponent implements OnInit,OnChanges {
+export class PassengersComponent implements OnInit, OnChanges {
 
   @Input() RoomData?: ReserveRoomDTO
+  @Output() passengerResult = new EventEmitter();
 
   roomPassengersobj: RoomPassengersDTO = {
     roomName: '',
@@ -20,12 +21,11 @@ export class PassengersComponent implements OnInit,OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.RoomData.firstChange) {
-      console.log(this.RoomData)
-      for(let i =0;i < (this.RoomData?.capacityPerson ?? []);i++) {
+      for (let i = 0; i < (this.RoomData?.capacityPerson ?? []); i++) {
         this.addRow();
       }
-      
-    }  
+
+    }
   }
 
   ReserveForm: FormGroup = this.fb.group({
@@ -44,30 +44,48 @@ export class PassengersComponent implements OnInit,OnChanges {
 
   addRow() {
     const Passengers = this.fb.group({
-      firstName: [''],
-      lastName: [''],
-      id_code: [''],
-      city: [''],
-      phoneNumber: [''],
-      nationality: [''],
-      passport_number: [''],
-      passport_expire: [''],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      id_code: ['', Validators.required],
+      city: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
+      nationality: ['', Validators.required],
+      passport_number: ['', Validators.required],
+      passport_expire: ['', Validators.required],
     })
     this.PassengerForm.push(Passengers);
     // console.log(this.PassengerForm);
   }
 
-  check(){
-    console.log(this.PassengerForm.controls)
+
+  convertPassengerObject() {
+
+    let passengers: PassengerDTO[] = [];
+    this.PassengerForm.controls.forEach((item, index) => {
+      passengers.push(item.value)
+    });
+
+    this.roomPassengersobj = {
+      roomName: this.RoomData?.roomType,
+      passengers: passengers,
+    }
+
+    this.passengerResult.emit(this.roomPassengersobj);
   }
 
-  convertTour() {
-  //   this.PassengerForm.controls.forEach((item, index) => {
-  //     this.roomPassengersobj = {
-  //       roomName: this.RoomData?.roomType,
-  //       passengers: item.
-  //     }
-  //   });
+  onChange(): void {
+    console.log(this.PassengerForm)
+    if (this.PassengerForm.valid) {
+      this.convertPassengerObject()
+    }
   }
 
+  markFormGroupTouched(formGroup: FormGroup): void {
+    (Object as any).values(formGroup.controls).forEach((control: any) => {
+      control.markAsTouched();
+      if (control.controls) {
+        this.markFormGroupTouched(control);
+      }
+    });
+  }
 }

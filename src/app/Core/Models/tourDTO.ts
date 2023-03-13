@@ -314,7 +314,7 @@ export interface PassengerDTO {
 }
 
 export interface RoomPassengersDTO {
-  roomName: string;
+  roomName: string | undefined;
   passengers: PassengerDTO[];
 }
 
