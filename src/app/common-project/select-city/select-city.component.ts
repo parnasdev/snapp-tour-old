@@ -17,6 +17,8 @@ export class SelectCityComponent implements OnInit, OnChanges {
   @Input() hasHotel: boolean = false;
   @Input() hasOriginTour: boolean = false;
   @Input() type: number | null = null;
+  @Input() city: number | null = null;
+
   @Input() hasDestTour: boolean = false;
   @Input() inCommingCity: any;
   @Input() title = 'شهر خود را وارد کنید';
@@ -49,7 +51,11 @@ export class SelectCityComponent implements OnInit, OnChanges {
       startWith(''),
       map(value => this._filter(value)),
     );
-
+    if (changes.city) {
+      console.log(changes);
+      
+      this.getCities();
+    }
 
   }
 
@@ -60,6 +66,7 @@ export class SelectCityComponent implements OnInit, OnChanges {
       hasHotel: this.hasHotel,
       hasOriginTour: this.hasOriginTour,
       hasDestTour: this.hasDestTour,
+      city: null,
       search: null,
       perPage: 20
     }
@@ -68,7 +75,7 @@ export class SelectCityComponent implements OnInit, OnChanges {
       if (res.isDone) {
         this.cities = res.data;
         if (this.inCommingCity && this.inCommingCity !== '') {
-          if(this.cities.filter(c => c.slugEn === this.inCommingCity).length > 0) {
+          if (this.cities.filter(c => c.slugEn === this.inCommingCity).length > 0) {
             this.cityFC.setValue(this.cities.filter(c => c.slugEn === this.inCommingCity)[0].name)
             // this.citySelected.emit(this.cities.filter(c => c.slugEn === this.inCommingCity)[0])
 

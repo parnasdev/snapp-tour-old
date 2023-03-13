@@ -76,7 +76,6 @@ import { HorizontalThumbnailTourComponent } from './horizontal-thumbnail-tour/ho
         MatInputModule,
         MatDatepickerModule,
         MatFormFieldModule,
-
     ]
 })
 export class StoreModule {

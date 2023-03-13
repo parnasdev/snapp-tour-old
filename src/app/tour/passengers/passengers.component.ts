@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges, Output, EventEmitter } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PassengerDTO, ReserveRoomDTO, RoomPassengersDTO } from 'src/app/Core/Models/tourDTO';
+import { PassengerDTO, RoomDTO } from 'src/app/Core/Models/tourDTO';
 
 @Component({
   selector: 'prs-passengers',
@@ -8,20 +8,25 @@ import { PassengerDTO, ReserveRoomDTO, RoomPassengersDTO } from 'src/app/Core/Mo
   styleUrls: ['./passengers.component.scss']
 })
 export class PassengersComponent implements OnInit, OnChanges {
-  @Input() RoomData?: ReserveRoomDTO
+  minDate = new Date();
+  @Input() RoomData: RoomDTO = {
+    capacity: 0,
+    id: 0,
+    name: '',
+    passengers: [],
+    price: 0,
+    supply: 0
+  }
   @Output() passengerResult = new EventEmitter();
   @Input() tourType: boolean = false;   // false = 'تور خارجی'  // true = ' تور داخلی'
 
-  roomPassengersobj: RoomPassengersDTO = {
-    roomName: '',
-    passengers: []
-  }
+
 
   constructor(public fb: FormBuilder,) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.RoomData.firstChange) {
-      for (let i = 0; i < (this.RoomData?.capacityPerson ?? []); i++) {
+      for (let i = 0; i < (this.RoomData?.capacity ?? []); i++) {
         this.addRow();
       }
 
@@ -56,18 +61,13 @@ export class PassengersComponent implements OnInit, OnChanges {
 
 
   convertPassengerObject() {
-
     let passengers: PassengerDTO[] = [];
     this.PassengerForm.controls.forEach((item, index) => {
       passengers.push(item.value)
     });
+    this.RoomData.passengers = passengers;
 
-    this.roomPassengersobj = {
-      roomName: this.RoomData?.roomType,
-      passengers: passengers,
-    }
-
-    this.passengerResult.emit(this.roomPassengersobj);
+    this.passengerResult.emit(this.RoomData);
   }
 
   onChange(): void {

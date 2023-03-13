@@ -8,9 +8,9 @@
     <span>عملیات</span>
   </div>
   <div class="body-trip" *ngFor="let item of reserves">
-    <span>{{ item.package.tour.title }}</span>
-    <span dir="ltr">{{ calService.convertDateAndTime(item.package.tour.stDate, 'fa') }}</span>
-    <span dir="ltr">{{ calService.convertDateAndTime(item.package.tour.enDate, 'fa') }}</span>
+    <span>{{ item.package?.tour?.title }}</span>
+    <span dir="ltr">{{ item.package?.tour?.stDate ? calService.convertDateAndTime(item.package?.tour?.stDate, 'fa') : '' }}</span>
+    <span dir="ltr">{{ item.package?.tour?.stDate ? calService.convertDateAndTime(item.package?.tour?.enDate, 'fa') : '' }}</span>
     <span>{{ publicService.getStatus(item.status) }}</span>
     <span>{{ item.ref_code }}</span>
     <div>
@@ -23,14 +23,14 @@
 </div>
 <div class="p-list-trip-mobi" *ngIf="isTablet">
   <div *ngFor="let item of reserves" class="item-mobi-trip">
-    <h2 class="title"><a href="">{{ item.package.tour.title }}</a></h2>
+    <h2 class="title"><a href="">{{ item.package?.tour?.title }}</a></h2>
     <div class="item w-100 d-flex align-items-center justify-content-between">
       <span class="r">تاریخ رفت</span>
-      <span class="l">{{ calService.convertDateAndTime(item.package.tour.stDate, 'fa') }}</span>
+      <span class="l">{{ calService.convertDateAndTime(item.package?.tour?.stDate, 'fa') }}</span>
     </div>
     <div class="item w-100 d-flex align-items-center justify-content-between">
       <span class="r">تاریخ برگشت</span>
-      <span class="l">{{ calService.convertDateAndTime(item.package.tour.enDate, 'fa') }}</span>
+      <span class="l">{{ calService.convertDateAndTime(item.package?.tour?.enDate, 'fa') }}</span>
     </div>
     <div class="item w-100 d-flex align-items-center justify-content-between">
       <span class="r">وضعیت</span>
