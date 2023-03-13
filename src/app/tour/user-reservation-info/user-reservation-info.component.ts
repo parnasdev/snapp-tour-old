@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RoomTypeApiService } from 'src/app/Core/Https/room-type-api.service';
 import { TourApiService } from 'src/app/Core/Https/tour-api.service';
 import { RoomTypeListDTO } from 'src/app/Core/Models/roomTypeDTO';
-import { DiscountsDTO, EditReserveReq, HotelDTO, PricesDTO, RateDTO, ReserveInfoDTO, ReserveRoomDTO, RoomPassengersDTO, RoomsDTO, Tour } from 'src/app/Core/Models/tourDTO';
+import { DiscountsDTO, EditReserveReq, HotelDTO, PricesDTO, RateDTO, ReserveInfoDTO, ReserveRoomDTO, RoomDTO, RoomPassengersDTO, RoomsRequestDTO, Tour } from 'src/app/Core/Models/tourDTO';
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
 import { CheckErrorService } from 'src/app/Core/Services/check-error.service';
 import { MessageService } from 'src/app/Core/Services/message.service';
@@ -48,7 +48,6 @@ export class UserReservationInfoComponent implements OnInit {
     },
     createdAt: ''
   };
-  roomsSelected: RoomsDTO[] = [];
 
   defineTour = false
 
@@ -87,12 +86,18 @@ export class UserReservationInfoComponent implements OnInit {
     phone: this.phoneFC
   })
 
-  reserveRoomData: ReserveRoomDTO = {
-    allCapacity: 0,
-    capacityPerson: 0,
-    roomCount: 0,
-    roomType: ''
+  reserveRoomData: RoomDTO = {
+    name: '',
+    capacity: 0,
+    id: 0,
+    passengers: [],
+    price: 0,
+    supply: 0
   }
+  roomsSelected: RoomDTO[] = [];
+
+
+
 
   roomsList: ReserveRoomDTO[] = []
 
@@ -161,7 +166,7 @@ export class UserReservationInfoComponent implements OnInit {
     })
   }
 
-  getTourType(tourTpe: boolean | undefined){
+  getTourType(tourTpe: boolean | undefined) {
     return tourTpe !== undefined ? tourTpe : false;
   }
 
@@ -173,12 +178,14 @@ export class UserReservationInfoComponent implements OnInit {
       this.reserveObj?.package?.tour?.transfers[1].dateTime.split(' ')[1];
   }
 
-  setReseveRoomData(capacity: string | undefined, RoomType: string) {
+  setReseveRoomData(capacity: string | undefined, roomName: string) {
     return this.reserveRoomData = {
-      allCapacity: capacity ? +capacity : 0,
-      capacityPerson: this.getCapacity(RoomType),
-      roomCount: 0,
-      roomType: RoomType
+      name: roomName,
+      capacity: this.getCapacity(roomName),
+      passengers: [],
+      id: Math.round(Math.random() * 1000),
+      price: 0,
+      supply: capacity ? +capacity : 0
     }
   }
 
@@ -189,61 +196,46 @@ export class UserReservationInfoComponent implements OnInit {
 
   getReserveRoomData(reserveRoomData: any) {
     if (reserveRoomData.operation == 'plus') {
-      this.roomsList.push(reserveRoomData.item);
+      this.roomsSelected.push(reserveRoomData.item)
     } else {
-      this.roomsList.forEach((x, index) => {
-        if (x.roomType === reserveRoomData.item.roomType) {
-          this.roomsList.splice(index, 1);
+      for (let i = this.roomsSelected.length - 1; i >= 0; i--) {
+        if (this.roomsSelected[i].name === reserveRoomData.item.name) {
+          this.roomsSelected.splice(i, 1);
+          break;
         }
-      })
-
+      }
     }
   }
 
-  getRoomPriceByName(roomName: string, capacity: number, count: number) {
+  getRoomPriceByName(roomName: string, capacity: number) {
     let defineTour: boolean = this.reserveObj.package.tour.defineTour;
     let prices = Object.entries(this.reserveObj.package.prices)
     let result = 0;
-    debugger
     let room_name = defineTour ? roomName + 'Rate' : roomName
     prices.forEach(item => {
-      if(item[0] === room_name){
+      if (item[0] === room_name) {
         result = item[1] * capacity
       }
     })
     return result
   }
 
-  getRoomData(data: RoomPassengersDTO): void {
-    let room_name = data.roomName !== undefined ? data.roomName : ''
-    let room_capacity = this.getRoomCapacityByName(room_name);
-    this.roomPassengersData.push(data)
-    let room_count = this.getroomCount(room_name)
-    let added_room = this.roomsSelected.filter(x => x.room_type === room_name)
-    if (added_room.length > 0) {
-      
-    }
-    let item: RoomsDTO = {
-      room_count: room_count,
-      room_price: this.getRoomPriceByName(room_name, room_capacity, room_count),
-      room_type: room_name
-    }
-    this.roomsSelected.push(item);
-    this.checkTotalPay();
-  }
+  getRoomData(data: RoomDTO): void {
+    this.roomsSelected.forEach(item => {
+      if (item.id === data.id) {
+        item.passengers = data.passengers;
+        item.price = this.getRoomPriceByName(data.name, data.capacity)
+      }
+    })
 
+  }
   getroomCount(roomName: string): number {
     return this.roomPassengersData.filter(x => x.roomName === roomName).length
   }
 
-  getRoomCapacityByName(roomName: string){
-    debugger
+  getRoomCapacityByName(roomName: string) {
     let roomItem = this.roomsCapacityList.filter(x => x.name === roomName)[0];
     return roomItem.capacityPerson !== undefined ? roomItem.capacityPerson : 0;
-  }
-
-  checkTotalPay(){
-    console.log(this.roomsSelected)
   }
 
   setReserveReq(): void {
@@ -253,17 +245,60 @@ export class UserReservationInfoComponent implements OnInit {
       name: this.nameFC.value,
       family: this.familyFC.value,
       id_code: this.idCodeFC.value,
-      passengers: this.roomPassengersData,
+      passengers: this.roomsSelected,
       package_id: this.reserveObj.package.id.toString(),
       count: this.roomPassengersData.length,
       bill: {
-        rooms: this.roomsSelected,
+        rooms: [],
         totalPayAble: 0,
-        totalRoomPrice: 0
+        totalRoomPrice: 0,
       },
       coupon_id: '',
       changeHotel: 0,
     }
+    console.log(this.roomsSelected)
+  }
+
+
+  convertRoomPassengers(): RoomsRequestDTO[] {
+    // this.roomsSelected.forEach(x => {
+    //   let item: RoomsRequestDTO = {
+    //     room_count: 1,
+    //     room_price: x.price,
+    //     room_type: x.name
+    //   }
+    // })
+
+    // let result: RoomsRequestDTO[] = []
+    // this.roomsSelected.forEach(x => {
+    //   if(result.length === 0) {
+    //     let item: RoomsRequestDTO = {
+    //       room_count: 1,
+    //       room_price: x.price,
+    //       room_type: x.name
+    //     }
+    //     result.push(item)
+    //   } else {
+    //     result.forEach(y => {
+    //       console.log(x.name , y.room_type);
+          
+    //       if (x.name === y.room_type) {
+    //         y.room_count = y.room_count + 1;
+    //         y.room_price = y.room_price * y.room_count
+    //       } else {
+    //         let item: RoomsRequestDTO = {
+    //           room_count: 1,
+    //           room_price: x.price,
+    //           room_type: x.name
+    //         }
+    //         result.push(item)
+    //       }
+    //     })
+    //   }
+    // })
+    // result.shift();
+    // return result;
+    return []
   }
 
   submit(): void {

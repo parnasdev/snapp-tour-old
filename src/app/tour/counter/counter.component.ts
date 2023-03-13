@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ReserveRoomDTO } from 'src/app/Core/Models/tourDTO';
+import { ReserveRoomDTO, RoomDTO } from 'src/app/Core/Models/tourDTO';
 
 @Component({
   selector: 'prs-counter',
@@ -8,11 +8,13 @@ import { ReserveRoomDTO } from 'src/app/Core/Models/tourDTO';
 })
 export class CounterComponent implements OnInit {
 
-  @Input() reserveRoomData: ReserveRoomDTO = {
-    allCapacity: 0,
-    capacityPerson: 0,
-    roomCount: 0,
-    roomType: ''
+  @Input() reserveRoomData: RoomDTO = {
+    name: '',
+    capacity: 0,
+    id:0,
+    passengers: [],
+    price: 0,
+    supply: 0,
   }
 
   @Output() sendReserveRoomData = new EventEmitter();
@@ -26,7 +28,6 @@ export class CounterComponent implements OnInit {
   minus() {
     if (this.count > 0) {
       this.count -= 1;
-      this.reserveRoomData.roomCount = this.count;
       this.sendReserveRoomData.emit({
         item: this.reserveRoomData,
         operation: 'minus'
@@ -35,9 +36,8 @@ export class CounterComponent implements OnInit {
   }
 
   plus() {
-    if (this.count < this.reserveRoomData.allCapacity) {
+    if (this.count < this.reserveRoomData.supply) {
       this.count += 1;
-      this.reserveRoomData.roomCount = this.count;
       this.sendReserveRoomData.emit({
         item: this.reserveRoomData,
         operation: 'plus'
