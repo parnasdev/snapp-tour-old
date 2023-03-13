@@ -10,6 +10,7 @@ import { PassengerDTO, ReserveRoomDTO, RoomPassengersDTO } from 'src/app/Core/Mo
 export class PassengersComponent implements OnInit, OnChanges {
   @Input() RoomData?: ReserveRoomDTO
   @Output() passengerResult = new EventEmitter();
+  @Input() tourType: boolean = false;   // false = 'تور خارجی'  // true = ' تور داخلی'
 
   roomPassengersobj: RoomPassengersDTO = {
     roomName: '',
@@ -35,8 +36,6 @@ export class PassengersComponent implements OnInit, OnChanges {
   ngOnInit(): void {
   }
 
-
-
   get PassengerForm() {
     return this.ReserveForm.get('passengers') as FormArray;
   }
@@ -48,7 +47,7 @@ export class PassengersComponent implements OnInit, OnChanges {
       id_code: ['', Validators.required],
       birthDate: ['', Validators.required],
       phoneNumber: ['', Validators.required],
-      nationality: ['', Validators.required],
+      nationality: [''],
       passport_number: ['', Validators.required],
       passport_expire: ['', Validators.required],
     })
