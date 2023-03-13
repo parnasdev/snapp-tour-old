@@ -36,10 +36,11 @@ import { AgencyReservesComponent } from './agency-reserves/agency-reserves.compo
     PassengersComponent,
     AgencyReservesComponent,
   ],
-  exports: [
-    InfoComponent,
-    ExpireTourComponent
-  ],
+    exports: [
+        InfoComponent,
+        ExpireTourComponent,
+        AgencyReservesComponent
+    ],
   imports: [
     CommonModule,
     ReactiveFormsModule,

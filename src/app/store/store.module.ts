@@ -63,23 +63,24 @@ import { NewestToursComponent } from './newest-tours/newest-tours.component';
     SearchSectionComponent,
     SearchComponent
   ],
-  imports: [
-    CommonModule,
-    StoreRoutingModule,
-    ReactiveFormsModule,
-    ToolsModule,
-    SwiperModule,
-    MatNativeDateModule,
-    MaterialModule,
-    PipesModule,
-    LightboxModule,
-    GalleryModule,
-    CommonProjectModule,
-    MatBadgeModule,
-    MatInputModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-  ]
+    imports: [
+        CommonModule,
+        StoreRoutingModule,
+        ReactiveFormsModule,
+        ToolsModule,
+        SwiperModule,
+        MatNativeDateModule,
+        MaterialModule,
+        PipesModule,
+        LightboxModule,
+        GalleryModule,
+        CommonProjectModule,
+        MatBadgeModule,
+        MatInputModule,
+        MatDatepickerModule,
+        MatFormFieldModule,
+        TourModule,
+    ]
 })
 export class StoreModule {
 }
