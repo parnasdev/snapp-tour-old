@@ -405,9 +405,21 @@
             <div class="package-item">#</div>
             <div class="package-item">نام هتل</div>
             <div class="package-item">خدمات</div>
-            <div class="package-item">دو تخته/ظرفیت</div>
-            <div class="package-item">سه تخته/ظرفیت</div>
-            <div class="package-item">چهار تخته/ظرفیت</div>
+            <div class="package-item">
+              دو تخته(هرنفر)
+              <br>
+              ظرفیت
+            </div>
+            <div class="package-item">
+              سه تخته(هرنفر)
+              <br>
+              ظرفیت
+              </div>
+            <div class="package-item">
+              چهار تخته(هرنفر)
+              <br>
+              ظرفیت
+            </div>
             <div class="package-item">سن کودک</div>
             <div class="package-item" *ngIf="form.value.defineTour == 'true'">نرخ بزرگسال</div>
             <div class="package-item">آفر ویژه</div>
@@ -418,9 +430,21 @@
             <div class="package-item">#</div>
             <div class="package-item">نام هتل</div>
             <div class="package-item">{{ form.value.defineTour == 'true' ? 'نرخ / خدمات' : 'خدمات'}}</div>
-            <div class="package-item">دو تخته/ظرفیت</div>
-            <div class="package-item">یه تخته/ظرفیت</div>
-            <div class="package-item">کودک با تخت/ظرفیت</div>
+            <div class="package-item">
+              دو تخته(هرنفر)
+              <br>
+              ظرفیت
+            </div>
+            <div class="package-item">
+              یک تخته(هرنفر)
+              <br>
+              ظرفیت
+            </div>
+            <div class="package-item">
+              کودک با تخت(هرنفر)
+              <br>
+              ظرفیت
+            </div>
             <!-- <div class="package-item">کودک بدون تخت</div> -->
             <div class="package-item">سن کودک</div>
             <div class="package-item" *ngIf="form.value.defineTour == 'true'">نرخ بزرگسال</div>
