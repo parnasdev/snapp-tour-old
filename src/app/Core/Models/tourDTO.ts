@@ -297,9 +297,9 @@ export interface BillDTO {
 }
 
 export interface RoomsDTO {
-  room_type: ''
-  room_count: ''
-  room_price: ''
+  room_type: string
+  room_count: number
+  room_price: string
 }
 
 export interface PassengerDTO {

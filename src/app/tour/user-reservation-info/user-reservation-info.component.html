@@ -91,7 +91,7 @@
   </button>
   <!-- twin -->
   <div class="item-hotel">
-    <h5>دو تخته</h5>
+    <h5>دو تخته (به ازای هر نفر)</h5>
     <div class="price">
       <strong>{{ reserveObj.package.tour.defineTour ? (reserveObj.package.prices?.twinRate | sperator) : (reserveObj.package.prices?.twin | sperator)
         }}</strong>
@@ -99,11 +99,11 @@
     </div>
     <prs-counter *ngIf="isCounterShow" [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.twinCapacity ? reserveObj.package.prices?.twinCapacity : '0', 'twin')"
     (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
-    <small>ظرفیت: {{ reserveObj.package?.prices?.twinCapacity ? +reserveObj.package.prices.twinCapacity : 0 }}</small>
+    <small>موجودی اتاق: {{ reserveObj.package?.prices?.twinCapacity ? +reserveObj.package.prices.twinCapacity : 0 }}</small>
   </div>
   <!-- single -->
   <div class="item-hotel" *ngIf="!reserveObj.package?.tour?.type">
-    <h5>یک تخته</h5>
+    <h5>یک تخته (به ازای هر نفر)</h5>
     <div class="price">
       <strong>{{ reserveObj.package.tour.defineTour ? (reserveObj.package.prices?.singleRate | sperator) :
         (reserveObj.package.prices?.single | sperator) }}</strong>
@@ -111,11 +111,11 @@
     </div>
     <prs-counter *ngIf="isCounterShow" [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.tripleCapacity ? reserveObj.package.prices?.tripleCapacity : '0', 'single')"
     (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
-    <small>ظرفیت: {{ reserveObj.package?.prices?.singleCapacity ? +reserveObj.package.prices.singleCapacity : 0 }}</small>
+    <small>موجودی اتاق: {{ reserveObj.package?.prices?.singleCapacity ? +reserveObj.package.prices.singleCapacity : 0 }}</small>
   </div>
   <!-- triple -->
   <div class="item-hotel" *ngIf="reserveObj.package?.tour?.type">
-    <h5>سه تخته</h5>
+    <h5>سه تخته (به ازای هر نفر)</h5>
     <div class="price">
       <strong>{{ reserveObj.package.tour.defineTour ? (reserveObj.package.prices?.tripleRate | sperator) :
         (reserveObj.package.prices?.triple | sperator) }}</strong>
@@ -123,11 +123,11 @@
     </div>
     <prs-counter *ngIf="isCounterShow" [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.tripleCapacity ? reserveObj.package.prices?.tripleCapacity : '0', 'triple')"
     (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
-    <small>ظرفیت: {{ reserveObj.package?.prices?.tripleCapacity ? +reserveObj.package.prices.tripleCapacity : 0 }}</small>
+    <small>موجودی اتاق: {{ reserveObj.package?.prices?.tripleCapacity ? +reserveObj.package.prices.tripleCapacity : 0 }}</small>
   </div>
   <!-- quad -->
   <div class="item-hotel" *ngIf="reserveObj.package?.tour?.type">
-    <h5>چهار تخته</h5>
+    <h5>چهار تخته (به ازای هر نفر)</h5>
     <div class="price">
       <strong>{{ reserveObj.package.tour.defineTour ? (reserveObj.package.prices?.quad | sperator) : (reserveObj.package.prices?.quad | sperator)
         }}</strong>
@@ -135,7 +135,7 @@
     </div>
     <prs-counter *ngIf="isCounterShow" [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.quadCapacity ? reserveObj.package.prices?.quadCapacity : '0', 'quad')" 
     (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
-    <small>ظرفیت: {{ reserveObj.package?.prices?.quadCapacity ? +reserveObj.package.prices.quadCapacity : 0 }}</small>
+    <small>موجودی اتاق: {{ reserveObj.package?.prices?.quadCapacity ? +reserveObj.package.prices.quadCapacity : 0 }}</small>
   </div>
   <!-- cwb -->
   <div class="item-hotel" *ngIf="!reserveObj.package?.tour?.type">
@@ -147,7 +147,7 @@
     </div>
     <prs-counter *ngIf="isCounterShow" [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.cwbCapacity ? reserveObj.package?.prices?.cwbCapacity : '0', 'cwb')"
     (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
-    <small>ظرفیت: {{ reserveObj.package?.prices?.cwbCapacity ? +reserveObj.package.prices.cwbCapacity : 0 }}</small>
+    <small>موجودی اتاق: {{ reserveObj.package?.prices?.cwbCapacity ? +reserveObj.package.prices.cwbCapacity : 0 }}</small>
   </div>
   <!-- cnb -->
   <div class="item-hotel" *ngIf="!reserveObj.package?.tour?.type">
@@ -157,7 +157,7 @@
       <small>تومان</small>
     </div>
     <prs-counter *ngIf="isCounterShow" (sendReserveRoomData)="getReserveRoomData($event)" [reserveRoomData]="setReseveRoomData('0', 'cnb')"></prs-counter>
-    <small>ظرفیت: {{ 0 }}</small>
+    <small>موجودی اتاق: {{ 0 }}</small>
   </div>
 </div>
 <div class="collapse" id="collapseExample">
@@ -207,7 +207,7 @@
 </div>
 
 <h2>اطلاعات مسافران</h2>
-<prs-passengers *ngFor="let room of roomsList" [RoomData]="room"></prs-passengers>
+<prs-passengers *ngFor="let room of roomsList" [RoomData]="room" (passengerResult)="getRoomData($event)"></prs-passengers>
 
 <!-- <div class="promo-code my-3">
   <div class="item-form w-25">

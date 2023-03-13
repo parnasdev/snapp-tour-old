@@ -47,6 +47,14 @@
         </div>
         <div class="item-form">
           <label class="dana-bold" for="">
+            کدملی
+          </label>
+          <div class="inp-form mt-2">
+            <input [formControl]="idCodeFC" type="text" placeholder="اینجا بنویسید …">
+          </div>
+        </div>
+        <div class="item-form">
+          <label class="dana-bold" for="">
             شماره همراه
           </label>
           <div class="inp-form mt-2">
@@ -54,7 +62,7 @@
           </div>
         </div>
         <div class="item-form-2">
-          <prs-select-city [type]="1" *ngIf="show" [inCommingCity]="req.city.slugEn"
+          <prs-select-city [type]="1" *ngIf="show" [inCommingCity]="req?.city?.slugEn"
             (citySelected)="onCitySelected($event)"></prs-select-city>
         </div>
 

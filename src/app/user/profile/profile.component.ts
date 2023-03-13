@@ -24,6 +24,7 @@ show = true
   familyFC = new FormControl('')
   usernameFC = new FormControl('')
   emailFC = new FormControl()
+  idCodeFC = new FormControl()
   genderFC = new FormControl('');
   cityFC = new FormControl();
   phoneFC = new FormControl()
@@ -39,6 +40,7 @@ show = true
     family: this.familyFC,
     city: this.cityFC,
     username: this.usernameFC,
+    idCode: this.idCodeFC,
     email: this.emailFC,
     gender: this.genderFC
   });
@@ -48,6 +50,7 @@ show = true
     username: '',
     city: {} as CityResponseDTO,
     gender: 0,
+    id_code: '',
     birthDay: '',
     createdAt: '',
     email: '',
@@ -97,6 +100,7 @@ show = true
       city: this.cityFC.value,
       justEditProfile: true,
       gender: this.genderFC.value,
+      id_code: this.idCodeFC.value,
       email: this.emailFC.value,
       birthDay: '',
       createdAt: '',
