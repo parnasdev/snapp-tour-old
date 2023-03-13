@@ -159,7 +159,9 @@ show = true
     this.usernameFC.setValue(this.req.username)
     this.familyFC.setValue(this.req.family)
     this.phoneFC.setValue(this.req.phone)
-    this.emailFC.setValue(this.req.agency.email)
+    this.emailFC.setValue(this.req.email)
+    this.idCodeFC.setValue(this.req.id_code)
+
     this.genderFC.setValue(this.req.gender.toString())
     this.reload()
   }
