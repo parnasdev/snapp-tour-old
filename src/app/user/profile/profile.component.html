@@ -62,10 +62,9 @@
           </div>
         </div>
         <div class="item-form-2">
-          <prs-select-city [type]="1" *ngIf="show" [inCommingCity]="req?.city?.slugEn"
-            (citySelected)="onCitySelected($event)"></prs-select-city>
+          <prs-select-city-two [type]="1" *ngIf="show" [inCommingCity]="req?.city?.slugEn"
+            (citySelected)="onCitySelected($event)"></prs-select-city-two>
         </div>
-
         <div class="item-form-2">
           <button class="btn-base" (click)="submit()">
             ثبت تغییرات
