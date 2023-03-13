@@ -5,7 +5,7 @@
         (citySelected)="originSelected($event)" ></prs-select-city>
     </div>
   <div class="inp-form">
-    <prs-select-city [hasDestTour]="true" [title]="'شهر مقصد'"  [inCommingCity]="destFC.value"
+    <prs-select-city [city]="originID" [hasDestTour]="true" [title]="'شهر مقصد'"  [inCommingCity]="destFC.value"
     (citySelected)="destSelected($event)"></prs-select-city>
   </div>
     <div class="inp-form">

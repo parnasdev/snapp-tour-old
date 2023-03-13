@@ -30,7 +30,7 @@ export class SearchComponent implements OnInit, OnChanges {
   stDateFC = new FormControl(null, Validators.required);
   reservedDates: DatesResDTO[] = [];
   nights: number[] = []
-
+  originID: number | null = null;
 
 
 
@@ -67,9 +67,9 @@ export class SearchComponent implements OnInit, OnChanges {
   myFilter = (d: Date | null): boolean => {
 
     let list = this.reservedDates.filter(x => moment(x.date, 'YYYY-MM-DD').isSame(moment(d, 'YYYY-MM-DD')))
-    if(list.length > 0) {
-        this.nights = list[0].nights;
-        this.nightFC.setValue(this.nights[0])
+    if (list.length > 0) {
+      this.nights = list[0].nights;
+      this.nightFC.setValue(this.nights[0])
     }
     return list.length > 0;
   };
@@ -78,6 +78,7 @@ export class SearchComponent implements OnInit, OnChanges {
 
   originSelected(city: CityResponseDTO): void {
     this.originFC.setValue(city.slugEn)
+    this.originID = city.id;
     if (this.destFC.valid) {
       this.getReservedDates();
     }

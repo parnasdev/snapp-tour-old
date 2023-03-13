@@ -4,6 +4,7 @@ export interface CityListRequestDTO {
   search: string | null;
   hasOriginTour:boolean
   hasDestTour:boolean
+  city?: number | null;
   hasHotel: boolean;
 }
 
