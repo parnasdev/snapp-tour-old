@@ -52,7 +52,6 @@ export class PassengersComponent implements OnInit, OnChanges {
       passport_expire: [''],
     })
     this.PassengerForm.push(Passengers);
-    // console.log(this.PassengerForm);
   }
 
 
@@ -72,7 +71,6 @@ export class PassengersComponent implements OnInit, OnChanges {
   }
 
   onChange(): void {
-    console.log(this.PassengerForm)
     if (this.PassengerForm.valid) {
       this.convertPassengerObject()
     }

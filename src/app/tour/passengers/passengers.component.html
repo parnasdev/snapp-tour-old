@@ -39,9 +39,9 @@
         تاریخ تولد       
        </label>
         <div class="inp-form mt-2">
-          <input type="text" (change)="onChange()" placeholder="اینجا بنویسید …" formControlName="city">
+          <input type="text" (change)="onChange()" placeholder="اینجا بنویسید …" formControlName="birthDate">
         </div>
-        <ng-container *ngIf="item.get('city')?.touched && item.get('city')?.hasError('required')">
+        <ng-container *ngIf="item.get('birthDate')?.touched && item.get('birthDate')?.hasError('required')">
           <span class="text-danger">این فیلد الزامی است</span>
         </ng-container>
       </div>
