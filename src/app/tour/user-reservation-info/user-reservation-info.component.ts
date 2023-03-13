@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RoomTypeApiService } from 'src/app/Core/Https/room-type-api.service';
 import { TourApiService } from 'src/app/Core/Https/tour-api.service';
 import { RoomTypeListDTO } from 'src/app/Core/Models/roomTypeDTO';
-import { DiscountsDTO, EditReserveReq, HotelDTO, PricesDTO, RateDTO, ReserveInfoDTO, ReserveRoomDTO, RoomPassengersDTO, Tour } from 'src/app/Core/Models/tourDTO';
+import { DiscountsDTO, EditReserveReq, HotelDTO, PricesDTO, RateDTO, ReserveInfoDTO, ReserveRoomDTO, RoomPassengersDTO, RoomsDTO, Tour } from 'src/app/Core/Models/tourDTO';
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
 import { CheckErrorService } from 'src/app/Core/Services/check-error.service';
 import { MessageService } from 'src/app/Core/Services/message.service';
@@ -32,7 +32,7 @@ export class UserReservationInfoComponent implements OnInit {
       status: '',
       order_item: 0,
       offered: false,
-    }, 
+    },
     user: '',
     name: '',
     month: '',
@@ -48,6 +48,7 @@ export class UserReservationInfoComponent implements OnInit {
     },
     createdAt: ''
   };
+  roomsSelected: RoomsDTO[] = [];
 
   defineTour = false
 
@@ -112,7 +113,7 @@ export class UserReservationInfoComponent implements OnInit {
     public roomApiService: RoomTypeApiService,
     public api: TourApiService) {
 
-    }
+  }
 
   ngOnInit(): void {
     // @ts-ignore
@@ -120,25 +121,7 @@ export class UserReservationInfoComponent implements OnInit {
     this.getReserve();
   }
 
-  setReq() {
-    this.editReserveData = {
-      city_id: 0,
-      phone: '',
-      name: '',
-      family: '',
-      id_code: 0,
-      count: 0,
-      coupon_id: '',
-      passengers: [],
-      bill: {
-        rooms: [],
-        totalPayAble: 0,
-        totalRoomPrice: 0
-      },
-      changeHotel: 0,
-      package_id: null
-    }
-  }
+
 
   getReserve(): void {
     this.api.getReserve(this.reserveCode).subscribe((res: any) => {
@@ -180,8 +163,80 @@ export class UserReservationInfoComponent implements OnInit {
     })
   }
 
-  editReserve(): void {
-    this.setReq();
+
+
+
+  setDateAndTime(): void {
+    this.stDate = this.calService.convertDate(this.reserveObj?.package?.tour?.transfers[0].dateTime.split(' ')[0], 'fa') + ' ' +
+      this.reserveObj?.package?.tour?.transfers[0].dateTime.split(' ')[1];
+
+    this.enDate = this.calService.convertDate(this.reserveObj?.package?.tour?.transfers[1].dateTime.split(' ')[0], 'fa') + ' ' +
+      this.reserveObj?.package?.tour?.transfers[1].dateTime.split(' ')[1];
+  }
+
+  setReseveRoomData(capacity: string | undefined, RoomType: string) {
+    return this.reserveRoomData = {
+      allCapacity: capacity ? +capacity : 0,
+      capacityPerson: this.getCapacity(RoomType),
+      roomCount: 0,
+      roomType: RoomType
+    }
+  }
+
+  getCapacity(RoomType: string) {
+    const room: any = this.roomsCapacityList.filter(x => x.name === RoomType)
+    return room[0].capacityPerson ? room[0].capacityPerson : 0;
+  }
+
+  getReserveRoomData(reserveRoomData: any) {
+    if (reserveRoomData.operation == 'plus') {
+      this.roomsList.push(reserveRoomData.item);
+    } else {
+      this.roomsList.forEach((x, index) => {
+        if (x.roomType === reserveRoomData.item.roomType) {
+          this.roomsList.splice(index, 1);
+        }
+      })
+
+    }
+  }
+
+  getRoomData(data: RoomPassengersDTO): void {
+    let room_name = data.roomName !== undefined ? data.roomName : ''
+    let item: RoomsDTO = {
+      room_count: this.getroomCount(room_name),
+      room_price: '',
+      room_type: room_name
+    }
+    this.roomsSelected.push(item);
+    this.roomPassengersData.push(data)
+  }
+
+  getroomCount(roomName: string): number {
+    return this.roomPassengersData.filter(x => x.roomName === roomName).length
+  }
+
+  setReserveReq(): void {
+    this.editReserveData = {
+      city_id: this.cityFC.value,
+      phone: this.phoneFC.value,
+      name: this.nameFC.value,
+      family: this.familyFC.value,
+      id_code: this.idCodeFC.value,
+      passengers: this.roomPassengersData,
+      package_id: this.reserveObj.package.id.toString(),
+      count: this.roomPassengersData.length,
+      bill: {
+        rooms: this.roomsSelected,
+        totalPayAble: 0,
+        totalRoomPrice: 0
+      },
+      coupon_id: '',
+      changeHotel: 0,
+    }
+  }
+  submit(): void {
+    this.setReserveReq();
     this.api.editReserve(this.editReserveData, this.reserveCode).subscribe((res: any) => {
       if (res.isDone) {
         this.reserveObj = res.data;
@@ -193,41 +248,4 @@ export class UserReservationInfoComponent implements OnInit {
       this.checkError.check(error);
     })
   }
-
-
-  setDateAndTime(): void {
-    this.stDate = this.calService.convertDate(this.reserveObj?.package?.tour?.transfers[0].dateTime.split(' ')[0], 'fa') + ' ' +
-      this.reserveObj?.package?.tour?.transfers[0].dateTime.split(' ')[1];
-
-    this.enDate = this.calService.convertDate(this.reserveObj?.package?.tour?.transfers[1].dateTime.split(' ')[0], 'fa') + ' ' +
-      this.reserveObj?.package?.tour?.transfers[1].dateTime.split(' ')[1];
-  }
-
-  setReseveRoomData(capacity: string | undefined, RoomType: string){
-    return this.reserveRoomData = {
-      allCapacity: capacity ? +capacity : 0,
-      capacityPerson: this.getCapacity(RoomType),
-      roomCount: 0,
-      roomType: RoomType
-    }
-  }
-
-  getCapacity(RoomType: string) {
-    const room: any = this.roomsCapacityList.filter(x=> x.name === RoomType)
-    return room[0].capacityPerson ? room[0].capacityPerson : 0;
-  }
-
-  getReserveRoomData(reserveRoomData: any) {
-    if(reserveRoomData.operation == 'plus') {
-      this.roomsList.push(reserveRoomData.item);
-    }else {
-      this.roomsList.forEach((x,index) => {
-        if(x.roomType === reserveRoomData.item.roomType) {
-          this.roomsList.splice(index, 1);
-        }
-      })
-
-    }
-  }
-
 }
