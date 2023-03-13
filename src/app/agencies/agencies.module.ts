@@ -14,6 +14,8 @@ import { CommonProjectModule } from "../common-project/common-project.module";
 import { UserAgencyListComponent } from './user-agency-list/user-agency-list.component';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserModule } from '../user/user.module';
+import { ReserveListComponent } from './reserve-list/reserve-list.component';
+import { PipesModule } from '../common-project/pipes/pipes.module';
 
 @NgModule({
     declarations: [
@@ -22,7 +24,8 @@ import { UserModule } from '../user/user.module';
         SetUserPopupComponent,
         InfoComponent,
         EditComponent,
-        UserAgencyListComponent
+        UserAgencyListComponent,
+        ReserveListComponent
     ],
     exports: [
         ManageUserComponent,
@@ -34,6 +37,7 @@ import { UserModule } from '../user/user.module';
         AgenciesRoutingModule,
         CommonModule,
         UserModule,
+        PipesModule,
         MatDialogModule,
         ReactiveFormsModule,
         FormsModule,

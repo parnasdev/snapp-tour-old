@@ -4,6 +4,7 @@ import { EditComponent } from './edit/edit.component';
 import { InfoComponent } from './info/info.component';
 import { ListComponent } from './list/list.component';
 import { ManageUserComponent } from './manage-user/manage-user.component';
+import { ReserveListComponent } from './reserve-list/reserve-list.component';
 import { UserAgencyListComponent } from './user-agency-list/user-agency-list.component';
 
 const routes: Routes = [
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'list',
     component: UserAgencyListComponent
+  },
+  {
+    path: 'reserves',
+    component: ReserveListComponent
   },
   {
     path: ':id',
