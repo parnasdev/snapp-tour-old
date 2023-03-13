@@ -1,4 +1,4 @@
-<div class="w-100 w-100-mobi">
+<div *ngIf="isDesktop" class="w-100 w-100-mobi">
   <div  class="w-100 sidebar-dashboard-p sidebar-desk"
        style="width: 100%;position: relative;display: flex;flex-direction: column;align-items: center">
     <div class="sidebar-dashboard">
@@ -6,7 +6,7 @@
         <img class="img-profile-sidebar" src="../../../assets/img/avatar.jpg" alt="">
         <div class="user-detail">
           <h3>{{session.getPhone()}}</h3>
-   
+
         </div>
         <a class="btn-edit-profile" routerLink="/dashboard/user/profile">
           <svg width="19" height="19" viewBox="0 0 23.907 23.94">
@@ -80,6 +80,95 @@
         </ul>
       </div>
 
+    </div>
+    <img class="img-pattern-sidebar" src="/img/pattern-sidebar.svg" alt="">
+  </div>
+</div>
+<div *ngIf="isTablet" class="w-100 w-100-mobi sidebar-tablet">
+  <div  class="w-100 sidebar-dashboard-p sidebar-desk"
+        style="width: 100%;position: relative;display: flex;flex-direction: column;align-items: center">
+    <div class="sidebar-dashboard">
+      <div class="top-sidebar-dashboard">
+        <img class="img-profile-sidebar" src="../../../assets/img/avatar.jpg" alt="">
+        <div class="user-detail">
+          <h3>{{session.getPhone()}}</h3>
+        </div>
+        <a class="btn-edit-profile" routerLink="/dashboard/user/profile">
+          <svg width="19" height="19" viewBox="0 0 23.907 23.94">
+            <g id="Pen" transform="translate(-0.047 -0.03)">
+              <path id="Path_1089" data-name="Path 1089"
+                    d="M10.5,8.728,3.518,2.068l8.555,1.271a5.579,5.579,0,0,1,4.256,3.219l2.525,5.927-3.045,3.042L12.474,18.8,6.58,16.3a5.574,5.574,0,0,1-3.223-4.251L2.079,3.459l7.044,6.717A1,1,0,0,0,10.5,8.728Zm1.4,12-6.113-2.6-.018-.008a7.574,7.574,0,0,1-4.39-5.785L.082,3.627A3.129,3.129,0,0,1,3.645.065l8.722,1.3a7.579,7.579,0,0,1,5.79,4.386l.008.018,2.794,6.558a1,1,0,0,1,.039.11l.561.551.048.047a19.04,19.04,0,0,1,1.613,1.7,3.008,3.008,0,0,1,.734,1.874,3.008,3.008,0,0,1-.734,1.874,19.066,19.066,0,0,1-1.613,1.7h0l-.048.047-1.42,1.395-.047.046a19.134,19.134,0,0,1-1.734,1.584,3.087,3.087,0,0,1-1.883.714,3.087,3.087,0,0,1-1.883-.714,19.121,19.121,0,0,1-1.734-1.584l-.047-.046-.879-.863Zm2.186-.657.126.123a18.312,18.312,0,0,0,1.579,1.457,1.143,1.143,0,0,0,.684.315,1.143,1.143,0,0,0,.684-.315A18.312,18.312,0,0,0,18.737,20.2l1.42-1.395a18.246,18.246,0,0,0,1.482-1.55c.281-.362.314-.533.314-.647s-.033-.285-.314-.647a18.243,18.243,0,0,0-1.482-1.55l-.179-.175-2.762,2.713Z"
+                    fill="#367ed1" fill-rule="evenodd" />
+              <ellipse id="Ellipse_52" data-name="Ellipse 52" cx="2.113" cy="2.109" rx="2.113"
+                       ry="2.109" transform="matrix(1, -0.016, 0.016, 1, 7.385, 7.05)" fill="#367ed1" />
+            </g>
+          </svg>
+        </a>
+      </div>
+      <button class="btn-collapse-sidebar" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        <i class="icon-down-open icon-sidebar"></i>
+      </button>
+    <div class="w-100 collapse" id="collapseExample">
+      <div class="body-sidebar-dashboard " >
+        <ul class="menu-sidebar">
+          <li  class="li-menu-sidebar">
+            <a routerLink="/dashboard" class="link-dashboard-page">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="22.011" viewBox="0 0 25 22.011">
+                <g id="Megaphone" transform="translate(0 0.005)">
+                  <path id="Path_1020" data-name="Path 1020" d="M5.088,13.549a4.078,4.078,0,1,1,0-8.156H6.437M5.088,13.549S6.5,18.44,7,19.934a1.536,1.536,0,0,0,3-.5V13.809m-4.912-.26H6.437m3.563.26c2.848.649,5.487,2.377,8.026,3.644C23.114,19.99,23,11.942,23,9.471s.114-10.52-4.974-7.982c-3.185,1.588-6.526,3.9-10.24,3.9H6.437M10,13.809a9.939,9.939,0,0,0-2.214-.26H6.437m0,0V5.393" fill="none" stroke="#212135" stroke-width="2"/>
+                  <path id="Path_1021" data-name="Path 1021" d="M24,7v5" fill="none" stroke="#212135" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                </g>
+              </svg>
+
+              داشبورد
+            </a>
+          </li>
+          <li  class="li-menu-sidebar">
+            <a routerLink="/dashboard/user/profile" class="link-dashboard-page">
+              <svg id="User" xmlns="http://www.w3.org/2000/svg" width="22" height="24" viewBox="0 0 22 24">
+                <path id="Path_1192" data-name="Path 1192" d="M1,19a4.777,4.777,0,0,0,.343,2.079,2.207,2.207,0,0,0,1.174,1.055A10.011,10.011,0,0,0,5.56,22.8c1.405.142,3.185.2,5.44.2s4.035-.055,5.44-.2a10.011,10.011,0,0,0,3.043-.669,2.207,2.207,0,0,0,1.174-1.055A4.776,4.776,0,0,0,21,19a4.776,4.776,0,0,0-.343-2.079,2.207,2.207,0,0,0-1.174-1.055A10.011,10.011,0,0,0,16.44,15.2c-1.405-.142-3.185-.2-5.44-.2s-4.035.055-5.44.2a10.011,10.011,0,0,0-3.043.669,2.207,2.207,0,0,0-1.174,1.055A4.777,4.777,0,0,0,1,19Z" fill="none" stroke="#212135" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                <circle id="Ellipse_69" data-name="Ellipse 69" cx="5" cy="5" r="5" transform="translate(16 11) rotate(180)" fill="none" stroke="#212135" stroke-width="2"/>
+              </svg>
+              پروفایل
+            </a>
+          </li>
+          <li  class="li-menu-sidebar">
+            <a routerLink="/dashboard/tour/list" class="link-dashboard-page">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24.06" height="23.688" viewBox="0 0 24.06 23.688">
+                <g id="Location" transform="translate(0.03)">
+                  <path id="Path_1011" data-name="Path 1011" d="M1.156,11.807a12.826,12.826,0,0,0,4.233,6.808,26.276,26.276,0,0,0,5.606,3.81,2.19,2.19,0,0,0,2.01,0,26.277,26.277,0,0,0,5.606-3.81,12.826,12.826,0,0,0,4.233-6.808,8.85,8.85,0,0,0-1.7-7.065C19.5,2.645,16.611,1,12,1S4.5,2.645,2.853,4.742A8.85,8.85,0,0,0,1.156,11.807Z" fill="none" stroke="#212135" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                  <circle id="Ellipse_49" data-name="Ellipse 49" cx="3" cy="3" r="3" transform="translate(15 13) rotate(180)" fill="none" stroke="#212135" stroke-width="2"/>
+                </g>
+              </svg>
+              سفرهای من
+            </a>
+          </li>
+          <li  class="li-menu-sidebar">
+            <a (click)="supportClicked()" class="link-dashboard-page">
+              <svg id="Headphone" xmlns="http://www.w3.org/2000/svg" width="24" height="22" viewBox="0 0 24 22">
+                <path id="Path_977" data-name="Path 977" d="M5,7v.006C8.278,7.089,9,8.075,9,12c0,4.117-.794,5-4.5,5S0,16.117,0,12C0,8.509.571,7.344,3,7.07Q3,7.035,3,7A6.182,6.182,0,0,1,5.946,1.4,11.6,11.6,0,0,1,11.967,0a11.8,11.8,0,0,1,6.049,1.391A6.17,6.17,0,0,1,21,7q0,.035,0,.07c2.432.274,3,1.44,3,4.93,0,4.117-.794,5-4.5,5S15,16.117,15,12c0-3.925.722-4.911,4-4.994V7a4.181,4.181,0,0,0-2.024-3.9A9.858,9.858,0,0,0,11.967,2,9.664,9.664,0,0,0,7,3.106,4.193,4.193,0,0,0,5,7ZM2.143,14.126A11.446,11.446,0,0,1,2,12a11.445,11.445,0,0,1,.143-2.126,1.3,1.3,0,0,1,.2-.58h0C2.357,9.282,2.609,9,4.5,9s2.143.282,2.153.294h0a1.3,1.3,0,0,1,.2.58A11.445,11.445,0,0,1,7,12a11.446,11.446,0,0,1-.143,2.126,1.3,1.3,0,0,1-.2.58h0c-.01.011-.262.294-2.153.294s-2.143-.282-2.153-.294h0A1.3,1.3,0,0,1,2.143,14.126ZM17,12a11.446,11.446,0,0,0,.143,2.126,1.3,1.3,0,0,0,.2.58h0c.01.011.262.294,2.153.294s2.143-.282,2.153-.294h0a1.3,1.3,0,0,0,.2-.58A11.446,11.446,0,0,0,22,12a11.445,11.445,0,0,0-.143-2.126,1.3,1.3,0,0,0-.2-.58h0C21.643,9.282,21.391,9,19.5,9s-2.143.282-2.153.294h0a1.3,1.3,0,0,0-.2.58A11.445,11.445,0,0,0,17,12Z" fill="#212135" fill-rule="evenodd"/>
+                <path id="Path_978" data-name="Path 978" d="M9,21H8a4,4,0,0,1-4-4H4" fill="none" stroke="#212135" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+              </svg>
+              پشتیبانی
+            </a>
+          </li>
+          <a class="btn-exit-dashboard" (click)="logOut()">
+            <svg width="18" height="18" viewBox="0 0 17 18.769">
+              <g id="Upload_1" data-name="Upload 1" transform="translate(0 0.061)">
+                <path id="Path_1179" data-name="Path 1179"
+                      d="M14.083,4.542,10.542,1m0,0L7,4.542M10.542,1v9.917"
+                      transform="translate(-2.042)" fill="none" stroke="#d13936"
+                      stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
+                <path id="Path_1180" data-name="Path 1180"
+                      d="M3.542,9.009a.662.662,0,0,0-.886-.65C.572,9.188,0,10.912,0,14.258c0,5.421,1.5,6.583,8.5,6.583S17,19.679,17,14.258c0-3.346-.572-5.07-2.655-5.9a.662.662,0,0,0-.886.65.814.814,0,0,0,.506.726,2.636,2.636,0,0,1,.543.318c.664.515,1.076,1.5,1.076,4.2s-.412,3.69-1.076,4.2a4.387,4.387,0,0,1-1.967.716,24.851,24.851,0,0,1-4.041.246,24.851,24.851,0,0,1-4.041-.246,4.387,4.387,0,0,1-1.967-.716c-.664-.515-1.076-1.5-1.076-4.2s.412-3.69,1.076-4.2a2.635,2.635,0,0,1,.543-.318A.814.814,0,0,0,3.542,9.009Z"
+                      transform="translate(0 -2.133)" fill="#d13936" fill-rule="evenodd" />
+              </g>
+            </svg>
+            خروج از حساب کاربری
+          </a>
+        </ul>
+      </div>
+    </div>
     </div>
     <img class="img-pattern-sidebar" src="/img/pattern-sidebar.svg" alt="">
   </div>
