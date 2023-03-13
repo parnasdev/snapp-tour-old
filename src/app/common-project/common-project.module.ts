@@ -27,6 +27,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {FaqComponent} from './faq/faq.component';
 import {FooterLinksComponent} from "./footer-links/footer-links.component";
 import {EditorModule} from "@tinymce/tinymce-angular";
+import { SelectCityTwoComponent } from './select-city-two/select-city-two.component';
 
 
 @NgModule({
@@ -49,11 +50,13 @@ import {EditorModule} from "@tinymce/tinymce-angular";
     SelectCategoriesComponent,
     FaqComponent,
     FooterLinksComponent,
+    SelectCityTwoComponent,
   ],
   exports: [
     UploadFileComponent,
     GetLocationComponent,
     TimePickerComponent,
+    SelectCityTwoComponent,
     UploadSingleComponent,
     MultipleUploadComponent,
     EditorComponent,
