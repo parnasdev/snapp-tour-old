@@ -1,8 +1,9 @@
-.code{
+.code {
   font-size: 14px;
   font-weight: 600;
   color: var(--base-color-second);
 }
+
 .title-tour {
   color: var(--text-color);
   font-weight: 500;
@@ -236,25 +237,32 @@
 }
 
 @media only screen and (max-width: 500px) {
-  .rules{
+  :host::ng-deep .set-info-supervisor .cdk-overlay-pane {
+    max-width: 83% !important;
+    left: 7px !important;
+  }
+  .rules {
     align-items: flex-start;
+
     p {
       width: 87% !important;
     }
-    input{
+
+    input {
       top: 3px !important;
     }
+
     .set-request-hotel .item-hotel h5 {
       font-size: 12px !important;
     }
+
     .title-tour {
       font-size: 15px !important;
     }
   }
 
 
-
-  :host::ng-deep prs-select-city{
+  :host::ng-deep prs-select-city {
     width: 100% !important;
   }
   .set-info-supervisor {
@@ -262,13 +270,13 @@
       width: 100% !important;
     }
   }
-  .set-info-passengers{
+  .set-info-passengers {
     .item-form {
       width: 100% !important;
     }
   }
-  .promo-code{
-    .item-form{
+  .promo-code {
+    .item-form {
       width: 100% !important;
     }
   }
@@ -276,23 +284,25 @@
 
 
 @media only screen and (min-width: 501px) and (max-width: 868px) {
+
   .set-info-supervisor {
     .item-form {
       width: 49% !important;
     }
   }
-  .set-info-passengers{
+  .set-info-passengers {
     .item-form {
       width: 49% !important;
     }
   }
-  .promo-code{
-    .item-form{
+  .promo-code {
+    .item-form {
       width: 70% !important;
     }
   }
 }
-.btn-collapse{
+
+.btn-collapse {
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -304,12 +314,14 @@
   bottom: 8px;
   border: none;
   outline: none;
-  i{
+
+  i {
     color: var(--white);
     font-size: 12px;
   }
 }
-.box-empty{
+
+.box-empty {
   padding: 1rem;
   border: 1px solid #c6c6c6;
   width: 100%;

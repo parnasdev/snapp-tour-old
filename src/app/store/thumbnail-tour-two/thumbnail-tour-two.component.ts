@@ -53,7 +53,8 @@ export class ThumbnailTourTwoComponent implements OnInit {
 
   loginPopup(id: number): void {
     const dialog = this.dialog.open(AuthPopupComponent, {
-      width: this.isMobile?'80%':'30%',
+      width: this.isMobile ? '95%' : '30%',
+      maxWidth: this.isMobile ? '95%' : '30%',
       data: id,
     })
     dialog.afterClosed().subscribe(result => {
@@ -76,7 +77,9 @@ export class ThumbnailTourTwoComponent implements OnInit {
 
   openRoom(rooms: RoomTypePriceDTO[]): void {
     const dialog = this.dialog.open(ShowRoomsPopupComponent, {
-      width: '30%',
+      width: this.isMobile ? '95%' : '30%',
+      maxWidth: this.isMobile ? '95%' : '30%',
+
       data: rooms,
     })
     dialog.afterClosed().subscribe(result => {
