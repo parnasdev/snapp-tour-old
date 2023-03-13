@@ -133,7 +133,7 @@
         }}</strong>
       <small>تومان</small>
     </div>
-    <prs-counter *ngIf="isCounterShow" [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.quadCapacity ? reserveObj.package.prices?.quadCapacity : '0', 'quad')" 
+    <prs-counter *ngIf="isCounterShow" [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.quadCapacity ? reserveObj.package.prices?.quadCapacity : '0', 'quad')"
     (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
     <small>موجودی اتاق: {{ reserveObj.package?.prices?.quadCapacity ? +reserveObj.package.prices.quadCapacity : 0 }}</small>
   </div>
@@ -207,6 +207,9 @@
 </div>
 
 <h2>اطلاعات مسافران</h2>
+<div class="box-empty">
+
+</div>
 <prs-passengers *ngFor="let room of roomsList" [RoomData]="room" (passengerResult)="getRoomData($event)"></prs-passengers>
 
 <!-- <div class="promo-code my-3">
