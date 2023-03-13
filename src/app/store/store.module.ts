@@ -16,15 +16,11 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from '@angular/material/input';
-
 import {MatNativeDateModule} from '@angular/material/core';
 import {MaterialModule} from "../common-project/persianDatePickerAdapter/material.module";
-import {ThumbnailTourInfoComponent} from './thumbnail-tour-info/thumbnail-tour-info.component';
 import {ThumbnailTourTwoComponent} from './thumbnail-tour-two/thumbnail-tour-two.component';
 import {PipesModule} from "../common-project/pipes/pipes.module";
-
 import {LoadingComponent} from './loading/loading.component';
-import {TourModule} from "../tour/tour.module";
 import {LightboxModule} from "ng-gallery/lightbox";
 import {GalleryModule} from "ng-gallery";
 import {CommonProjectModule} from "../common-project/common-project.module";
@@ -32,6 +28,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 import { SearchComponent } from './search/search.component';
 import { SpecialTourComponent } from './special-tour/special-tour.component';
 import { NewestToursComponent } from './newest-tours/newest-tours.component';
+import { HorizontalThumbnailTourComponent } from './horizontal-thumbnail-tour/horizontal-thumbnail-tour.component';
 
 @NgModule({
   declarations: [
@@ -44,12 +41,12 @@ import { NewestToursComponent } from './newest-tours/newest-tours.component';
     AboutUsComponent,
     ContactUsComponent,
     SearchSectionComponent,
-    ThumbnailTourInfoComponent,
     ThumbnailTourTwoComponent,
     LoadingComponent,
     SearchComponent,
     SpecialTourComponent,
-    NewestToursComponent
+    NewestToursComponent,
+    HorizontalThumbnailTourComponent
   ],
   exports: [
     IndexComponent,
@@ -57,7 +54,7 @@ import { NewestToursComponent } from './newest-tours/newest-tours.component';
     FooterComponent,
     AddressBarComponent,
     ThumbnailsTourComponent,
-    ThumbnailTourInfoComponent,
+    HorizontalThumbnailTourComponent,
     ThumbnailTourTwoComponent,
     LoadingComponent,
     SearchSectionComponent,

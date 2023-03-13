@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {TourListResDTO} from "../../Core/Models/tourDTO";
 import {CalenderServices} from "../../Core/Services/calender-service";
 
@@ -7,12 +7,15 @@ import {CalenderServices} from "../../Core/Services/calender-service";
   templateUrl: './thumbnails-tour.component.html',
   styleUrls: ['./thumbnails-tour.component.scss']
 })
-export class ThumbnailsTourComponent implements OnInit {
-
+export class ThumbnailsTourComponent implements OnInit,OnChanges {
+@Input() call = false;
   @Input() tours: TourListResDTO[] = [];
   @Input() sortByDate = false;
 
   constructor(public calenderServices: CalenderServices) { }
+  ngOnChanges(changes: SimpleChanges): void {
+    throw new Error('Method not implemented.');
+  }
 
   ngOnInit(): void {
   }
