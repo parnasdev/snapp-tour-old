@@ -1,0 +1,51 @@
+<div class="tour-item">
+    <div class="tour-city">
+      <img src="assets/img/location2.svg" width="40" alt="">
+      <div class="info-tour-city">
+        <a target="_blank" routerLink="/tours/{{ tour.endCity.slugEn }}/{{ tour.slug }}" href="">
+          <h6>{{tour.title}}</h6>
+        </a>
+        <div class="text-price">
+          <small class="title-price">شروع قیمت از :</small>
+          <strong class="price-tour">
+            {{tour.minPrice === '0' ? 'قیمتی ثبت نشده ' : tour.minPrice |round| sperator}}
+            <small>تومان </small>
+          </strong>
+        </div>
+      </div>
+    </div>
+    <div class="tour-days">
+      <div class="night">
+        <img src="assets/img/Moon%201.svg" width="15" alt="">
+        <span>{{tour.nightNum}} شب</span>
+      </div>
+      <div class="day">
+        <img src="assets/img/Sun.svg" width="17" alt="">
+        <span> {{tour.dayNum}} روز</span>
+      </div>
+    </div>
+    <div class="date-tour">
+      <img src="assets/img/Up%20Down%201.svg" width="22" alt="">
+      <div class="info-date">
+        <span class="from"
+              *ngIf="tour.transfers.length > 0">{{calenderServices.convertDate(tour.transfers[0].dateTime, 'fa')}}</span>
+        <span class="to"
+              *ngIf="tour.transfers.length > 1">{{calenderServices.convertDate(tour.transfers[1].dateTime, 'fa')}}</span>
+      </div>
+    </div>
+    <div class="type">
+      <div class="d-flex align-items-center">
+        <img src="assets/img/Up%20Down%202.svg" width="17" alt="">
+        <span>{{tour.transfers.length > 0 ? tour.transfers[0].transfer : '---'}}</span>
+      </div>
+      <div class="d-flex align-items-center mt-2">
+        <img src="assets/img/Up%20Down%202.svg" width="17" alt="">
+        <span>{{tour.transfers.length > 0 ? tour.transfers[1].transfer : '---'}}</span>
+      </div>
+    </div>
+    <a class="ino-tour-btn" routerLink="/tours/{{ tour.endCity.slugEn }}/{{ tour.slug }}" target="_parent">
+      <span class="text-mobi-btn">جزییات</span>
+      <img src="assets/img/Right%20Arrow%202.svg" width="30" alt="">
+    </a>
+  </div>
+  

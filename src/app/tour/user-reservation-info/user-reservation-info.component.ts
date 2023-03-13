@@ -121,8 +121,6 @@ export class UserReservationInfoComponent implements OnInit {
     this.getReserve();
   }
 
-
-
   getReserve(): void {
     this.api.getReserve(this.reserveCode).subscribe((res: any) => {
       if (res.isDone) {
@@ -202,23 +200,50 @@ export class UserReservationInfoComponent implements OnInit {
     }
   }
 
+  getRoomPriceByName(roomName: string, capacity: number, count: number) {
+    let defineTour: boolean = this.reserveObj.package.tour.defineTour;
+    let prices = Object.entries(this.reserveObj.package.prices)
+    let result = 0;
+    debugger
+    let room_name = defineTour ? roomName + 'Rate' : roomName
+    prices.forEach(item => {
+      if(item[0] === room_name){
+        result = item[1] * capacity
+      }
+    })
+    return result
+  }
+
   getRoomData(data: RoomPassengersDTO): void {
     let room_name = data.roomName !== undefined ? data.roomName : ''
+    let room_capacity = this.getRoomCapacityByName(room_name);
+    this.roomPassengersData.push(data)
+    let room_count = this.getroomCount(room_name)
+    let added_room = this.roomsSelected.filter(x => x.room_type === room_name)
+    if (added_room.length > 0) {
+      
+    }
     let item: RoomsDTO = {
-      room_count: this.getroomCount(room_name),
-      room_price: '',
+      room_count: room_count,
+      room_price: this.getRoomPriceByName(room_name, room_capacity, room_count),
       room_type: room_name
     }
     this.roomsSelected.push(item);
-    this.roomPassengersData.push(data)
+    this.checkTotalPay();
   }
 
   getroomCount(roomName: string): number {
     return this.roomPassengersData.filter(x => x.roomName === roomName).length
   }
 
-  checkTotalPay(){
+  getRoomCapacityByName(roomName: string){
+    debugger
+    let roomItem = this.roomsCapacityList.filter(x => x.name === roomName)[0];
+    return roomItem.capacityPerson !== undefined ? roomItem.capacityPerson : 0;
+  }
 
+  checkTotalPay(){
+    console.log(this.roomsSelected)
   }
 
   setReserveReq(): void {

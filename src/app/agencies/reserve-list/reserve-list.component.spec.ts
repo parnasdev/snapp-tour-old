@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ThumbnailTourInfoComponent } from './thumbnail-tour-info.component';
+import { ReserveListComponent } from './reserve-list.component';
 
-describe('ThumbnailTourInfoComponent', () => {
-  let component: ThumbnailTourInfoComponent;
-  let fixture: ComponentFixture<ThumbnailTourInfoComponent>;
+describe('ReserveListComponent', () => {
+  let component: ReserveListComponent;
+  let fixture: ComponentFixture<ReserveListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ThumbnailTourInfoComponent ]
+      declarations: [ ReserveListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ThumbnailTourInfoComponent);
+    fixture = TestBed.createComponent(ReserveListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

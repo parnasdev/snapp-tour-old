@@ -1,47 +1,40 @@
 import {Component, OnInit} from '@angular/core';
 import { TourApiService } from 'src/app/Core/Https/tour-api.service';
-import { ReserveListResDTO, ReserveListReqDTO, UserReserveListResDTO } from 'src/app/Core/Models/tourDTO';
+import { ReserveListReqDTO } from 'src/app/Core/Models/tourDTO';
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
 import { ErrorsService } from 'src/app/Core/Services/errors.service';
 import { MessageService } from 'src/app/Core/Services/message.service';
 import { PublicService } from 'src/app/Core/Services/public.service';
 import { ResponsiveService } from 'src/app/Core/Services/responsive.service';
 import { SessionService } from 'src/app/Core/Services/session.service';
-
 @Component({
-  selector: 'prs-user-reservations',
-  templateUrl: './user-reservations.component.html',
-  styleUrls: ['./user-reservations.component.scss']
+  selector: 'prs-reserve-list',
+  templateUrl: './reserve-list.component.html',
+  styleUrls: ['./reserve-list.component.scss']
 })
-export class UserReservationsComponent implements OnInit {
-  isDesktop = false;
-  isMobile = false;
-  isTablet = false;
-  slug: string = 'dsfsf';
-
-  reserves: UserReserveListResDTO[] = [];
+export class ReserveListComponent implements OnInit {
+  reserves: any[] = []
+  paginate: any;
+  paginateConfig: any;
   reserveReq: ReserveListReqDTO = {
     paginate: true,
     accountType: 'user'
   }
-
   pageNum = 1
 
   constructor(public mobileService: ResponsiveService,
-              public session: SessionService,
-              public calService: CalenderServices,
-              public publicService: PublicService,
-              public api: TourApiService,
-              public messageService: MessageService,
-              public errorService: ErrorsService
-    ) {
-    this.isMobile = mobileService.isTablet()
-    this.isDesktop = mobileService.isDesktop()
-    this.isTablet = mobileService.isTablet()
-  }
+    public session: SessionService,
+    public calService: CalenderServices,
+    public publicService: PublicService,
+    public api: TourApiService,
+    public messageService: MessageService,
+    public errorService: ErrorsService) { }
 
   ngOnInit(): void {
     this.getReserveList();
+  }
+  deleteClicked() {
+
   }
 
   getReserveList(): void {
@@ -56,7 +49,6 @@ export class UserReservationsComponent implements OnInit {
       this.errorService.check(error);
     })
   }
-
 
 
 }

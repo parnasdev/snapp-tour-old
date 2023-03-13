@@ -3,7 +3,7 @@
     <div class="parnas-title">
       <div class="w-100 d-flex justify-content-evenly align-items-center">
         <a href="https://www.snapptrip.com/" class="logo-parnas">
-          <img src="assets/img/snapptrip-logo.svg"  width="55" alt="">
+          <img src="assets/img/snapptrip-logo.svg" width="55" alt="">
         </a>
         <a href="https://bilitja.com/" class="logo-parnas">
           <img src="assets/img/bilitja.webp" width="55" alt="">
@@ -35,7 +35,7 @@
 
         <li class="li-list" *ngIf="checkPermission('Tour')">
           <a class="menu-main menu-main-1" data-toggle="collapse" href="#collapseExample1" role="button"
-             aria-expanded="false" aria-controls="collapseExample">
+            aria-expanded="false" aria-controls="collapseExample">
             <img src="assets/img/master-tour.svg" width="20" alt="">
             تور ها
             <i class="icon-down-open icon-1"></i>
@@ -51,7 +51,7 @@
         </li>
         <li class="li-list" *ngIf="(checkPermission('Hotel') || checkPermission('City')) && userId !== 106">
           <a class="menu-main menu-main-2" data-toggle="collapse" href="#collapseExample2" role="button"
-             aria-expanded="false" aria-controls="collapseExample">
+            aria-expanded="false" aria-controls="collapseExample">
             <img src="assets/img/Dish.svg" width="20" alt="">
             هتل و شهر ها
             <i class="icon-down-open icon-2"></i>
@@ -68,7 +68,7 @@
         </li>
         <li class="li-list" *ngIf="checkPermission('RoomType')">
           <a class="menu-main menu-main-3" data-toggle="collapse" href="#collapseExample12" role="button"
-             aria-expanded="false" aria-controls="collapseExample">
+            aria-expanded="false" aria-controls="collapseExample">
             <img src="assets/img/Ticket.svg" width="20" alt="">
             اتاق ها
             <i class="icon-down-open icon-3"></i>
@@ -82,7 +82,7 @@
         </li>
         <li class="li-list" *ngIf="checkPermission('Transfer') && userId !== 106">
           <a class="menu-main menu-main-3" data-toggle="collapse" href="#collapseExample3" role="button"
-             aria-expanded="false" aria-controls="collapseExample">
+            aria-expanded="false" aria-controls="collapseExample">
             <img src="assets/img/Ticket.svg" width="20" alt="">
             ایرلاین ها
             <i class="icon-down-open icon-3"></i>
@@ -104,7 +104,7 @@
         </li>
         <li class="li-list" *ngIf="checkPermission('User')">
           <a class="menu-main menu-main-5" data-toggle="collapse" href="#collapseExample5" role="button"
-             aria-expanded="false" aria-controls="collapseExample">
+            aria-expanded="false" aria-controls="collapseExample">
             <img src="assets/img/User%20Accepted.svg" width="20" alt="">
             کاربران
             <i class="icon-down-open icon-5"></i>
@@ -117,9 +117,18 @@
             </ul>
           </div>
         </li>
+
+        <li class="li-list">
+          <a class="menu-main menu-main-5" routerLink="/panel/agencies/reserves">
+            <img src="assets/img/User%20Accepted.svg" width="20" alt="">
+            رزروها
+          </a>
+
+        </li>
+
         <li class="li-list">
           <a class="menu-main menu-main-5" data-toggle="collapse" href="#collapseExample10" role="button"
-             aria-expanded="false" aria-controls="collapseExample">
+            aria-expanded="false" aria-controls="collapseExample">
             <img src="assets/img/User%20Accepted.svg" width="20" alt="">
             کارمندان
             <i class="icon-down-open icon-5"></i>
@@ -133,7 +142,7 @@
         </li>
         <li class="li-list" *ngIf="checkItemPermission('Setting.change')">
           <a class="menu-main menu-main-6" data-toggle="collapse" href="#collapseExample6" role="button"
-             aria-expanded="false" aria-controls="collapseExample">
+            aria-expanded="false" aria-controls="collapseExample">
             <img src="assets/img/User%20Accepted.svg" width="20" alt="">
             تیکت های کاربران
             <i class="icon-down-open icon-6"></i>
@@ -154,25 +163,21 @@
         </li> -->
         <li class="li-list" *ngIf="checkItemPermission('Setting.change')">
           <a class="menu-main menu-main-7" data-toggle="collapse" routerLink="/panel/redirector"
-             href="#collapseExample7"
-             role="button"
-             aria-expanded="false" aria-controls="collapseExample">
+            href="#collapseExample7" role="button" aria-expanded="false" aria-controls="collapseExample">
             <img src="assets/img/User%20Accepted.svg" width="20" alt="">
             آدرس ها
           </a>
         </li>
         <li class="li-list" *ngIf="checkItemPermission('Setting.change')">
           <a class="menu-main menu-main-7" data-toggle="collapse" routerLink="/panel/setting" href="#collapseExample8"
-             role="button"
-             aria-expanded="false" aria-controls="collapseExample">
+            role="button" aria-expanded="false" aria-controls="collapseExample">
             <img src="assets/img/User%20Accepted.svg" width="20" alt="">
             تنظیمات
           </a>
         </li>
         <li class="li-list">
           <a class="menu-main menu-main-7" data-toggle="collapse" (click)="logOut()" href="#collapseExample9"
-             role="button"
-             aria-expanded="false" aria-controls="collapseExample">
+            role="button" aria-expanded="false" aria-controls="collapseExample">
             <img src="assets/img/Off.svg" width="20" alt="">
             خروج
             <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>
@@ -210,7 +215,7 @@
           </li>
           <li class="li-list">
             <a class="menu-main menu-main-1" data-toggle="collapse" href="#collapseExample1-mobi" role="button"
-               aria-expanded="false" aria-controls="collapseExample">
+              aria-expanded="false" aria-controls="collapseExample">
               <img src="assets/img/master-tour.svg" width="20" alt="">
               مدیریت تور ها
               <i class="icon-down-open icon-1"></i>
@@ -225,7 +230,7 @@
           </li>
           <li class="li-list">
             <a class="menu-main menu-main-2" data-toggle="collapse" href="#collapseExample2-mobi" role="button"
-               aria-expanded="false" aria-controls="collapseExample">
+              aria-expanded="false" aria-controls="collapseExample">
               <img src="assets/img/Dish.svg" width="20" alt="">
               مدیریت هتل و شهر ها
               <i class="icon-down-open icon-2"></i>
@@ -242,7 +247,7 @@
           </li>
           <li class="li-list">
             <a class="menu-main menu-main-3" data-toggle="collapse" href="#collapseExample3-mobi" role="button"
-               aria-expanded="false" aria-controls="collapseExample">
+              aria-expanded="false" aria-controls="collapseExample">
               <img src="assets/img/Ticket.svg" width="20" alt="">
               مدیریت ایرلاین ها
               <i class="icon-down-open icon-3"></i>
@@ -256,7 +261,7 @@
           </li>
           <li class="li-list">
             <a class="menu-main menu-main-4" data-toggle="collapse" href="#collapseExample4-mobi" role="button"
-               aria-expanded="false" aria-controls="collapseExample">
+              aria-expanded="false" aria-controls="collapseExample">
               <img src="assets/img/Pen.svg" width="20" alt="">
               نوشته ها و نظرات
               <i class="icon-down-open icon-4"></i>
@@ -270,7 +275,7 @@
           </li>
           <li class="li-list" *ngIf="session.getAgencyVerified">
             <a class="menu-main menu-main-5" data-toggle="collapse" href="#collapseExample5-mobi" role="button"
-               aria-expanded="false" aria-controls="collapseExample">
+              aria-expanded="false" aria-controls="collapseExample">
               <img src="assets/img/User%20Accepted.svg" width="20" alt="">
               مدیریت کاربران
               <i class="icon-down-open icon-5"></i>
@@ -283,8 +288,15 @@
             </div>
           </li>
           <li class="li-list">
+            <a routerLink="/panel/agencies/reserves" class="menu-main menu-main-5" role="button">
+              <img src="assets/img/User%20Accepted.svg" width="20" alt="">
+              رزرو ها
+            </a>
+
+          </li>
+          <li class="li-list">
             <a class="menu-main menu-main-6" data-toggle="collapse" href="#collapseExample6-mobi" role="button"
-               aria-expanded="false" aria-controls="collapseExample">
+              aria-expanded="false" aria-controls="collapseExample">
               <img src="assets/img/User%20Accepted.svg" width="20" alt="">
               تیکت های کاربران
               <i class="icon-down-open icon-6"></i>

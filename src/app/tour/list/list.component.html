@@ -1,6 +1,5 @@
 <prs-loading *ngIf="loading"></prs-loading>
 <prs-address-bar [path]="'تورها'" [path2]="''"></prs-address-bar>
-
 <!--tour-->
 <section class="tour">
   <div class="prs-responsive">
@@ -9,7 +8,6 @@
         <div class="col-md-11 m-auto tour-parent">
           <div class="search">
       <prs-search [inCommingSearchObject]="searchObject" (onSubmit)="search($event)"></prs-search>
-
           </div>
           <div class="title-tour-parent">
             <div class="top">
@@ -39,7 +37,19 @@
               <mat-checkbox [(ngModel)]="sortByDate"></mat-checkbox>
               <label>نزدیکترین</label>
             </div>
-            <prs-thumbnails-tour [tours]="tours" [sortByDate]="sortByDate"></prs-thumbnails-tour>
+            <prs-horizontal-thumbnail-tour *ngFor="let tour of tours | paginate: paginateConfig| ordering : sortByDate; let i = index " [tour]="tour"></prs-horizontal-thumbnail-tour>
+            <div>
+              <pagination-controls
+                *ngIf="!loading && paginate.last_page > 1"
+                class="pagination-control"
+                (pageChange)="onPageChanged($event)"
+                previousLabel="قبلی"
+                nextLabel="بعدی"
+                screenReaderPaginationLabel="صفحه بندی"
+                screenReaderPageLabel="صفحه"
+                screenReaderCurrentLabel="شما در صفحه ی">
+              </pagination-controls>
+            </div>
           </div>
           <div style="display: flex; flex-direction: row-reverse" class="w-75" *ngIf="tours.length === 0">
             <!-- <prs-reserve-box [city]="cityInfo" [month]="nights.title"></prs-reserve-box> -->

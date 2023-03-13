@@ -299,7 +299,7 @@ export interface BillDTO {
 export interface RoomsDTO {
   room_type: string
   room_count: number
-  room_price: string
+  room_price: number
 }
 
 export interface PassengerDTO {

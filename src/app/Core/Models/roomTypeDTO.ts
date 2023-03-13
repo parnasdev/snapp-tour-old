@@ -18,7 +18,7 @@ export interface RoomTypeListDTO {
   name: string;
   label: string;
   isDefault: boolean;
-  capacity?: number;
+  capacityPerson?: number;
 }
 
 export interface RoomTypeSetDTO {
