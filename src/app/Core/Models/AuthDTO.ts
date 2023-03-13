@@ -78,6 +78,7 @@ export interface ProfileDTO {
   username: string;
   family: string;
   name: string;
+  id_code: string;
   phone: string;
   email: string;
   gender: number;

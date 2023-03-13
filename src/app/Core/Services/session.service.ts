@@ -30,6 +30,7 @@ export class SessionService {
         city: obj.user?.city,
         email: obj.user?.email,
         gender: obj.user?.gender,
+        id_code: obj.user?.id_code,
         agency: {
           name: obj.user.agency?.name,
           logo: obj.user.agency?.logo,
