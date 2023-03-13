@@ -256,7 +256,6 @@ export class UserReservationInfoComponent implements OnInit {
       coupon_id: '',
       changeHotel: 0,
     }
-    console.log(this.roomsSelected)
   }
 
 

@@ -26,6 +26,7 @@ export class CounterComponent implements OnInit {
   }
 
   minus() {
+
     if (this.count > 0) {
       this.count -= 1;
       this.sendReserveRoomData.emit({
