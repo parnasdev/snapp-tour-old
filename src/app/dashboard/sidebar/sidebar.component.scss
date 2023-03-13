@@ -1,0 +1,31 @@
+.btn-collapse-sidebar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--red-color);
+  border: none;
+  outline: none;
+
+  i {
+    color: var(--white);
+    font-size: 13px;
+    transition: 0.5s ease;
+  }
+}
+
+.sidebar-tablet {
+  margin-bottom: 1.5rem;
+}
+
+@media only screen and (max-width: 868px) {
+  .sidebar-dashboard {
+    padding: 1rem !important;
+  }
+}
+
+.icon-rotate {
+  &:before {
+    content: '\e80b' !important;
+    font-family: "fontello" !important;
+  }
+}
