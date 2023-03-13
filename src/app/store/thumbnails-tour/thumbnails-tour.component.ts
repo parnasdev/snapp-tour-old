@@ -7,15 +7,13 @@ import {CalenderServices} from "../../Core/Services/calender-service";
   templateUrl: './thumbnails-tour.component.html',
   styleUrls: ['./thumbnails-tour.component.scss']
 })
-export class ThumbnailsTourComponent implements OnInit,OnChanges {
+export class ThumbnailsTourComponent implements OnInit {
 @Input() call = false;
   @Input() tours: TourListResDTO[] = [];
   @Input() sortByDate = false;
 
   constructor(public calenderServices: CalenderServices) { }
-  ngOnChanges(changes: SimpleChanges): void {
-    throw new Error('Method not implemented.');
-  }
+
 
   ngOnInit(): void {
   }
