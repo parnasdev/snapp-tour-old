@@ -163,8 +163,9 @@ export class UserReservationInfoComponent implements OnInit {
     })
   }
 
-
-
+  getTourType(tourTpe: boolean | undefined){
+    return tourTpe !== undefined ? tourTpe : false;
+  }
 
   setDateAndTime(): void {
     this.stDate = this.calService.convertDate(this.reserveObj?.package?.tour?.transfers[0].dateTime.split(' ')[0], 'fa') + ' ' +
@@ -216,6 +217,10 @@ export class UserReservationInfoComponent implements OnInit {
     return this.roomPassengersData.filter(x => x.roomName === roomName).length
   }
 
+  checkTotalPay(){
+
+  }
+
   setReserveReq(): void {
     this.editReserveData = {
       city_id: this.cityFC.value,
@@ -235,6 +240,7 @@ export class UserReservationInfoComponent implements OnInit {
       changeHotel: 0,
     }
   }
+
   submit(): void {
     this.setReserveReq();
     this.api.editReserve(this.editReserveData, this.reserveCode).subscribe((res: any) => {

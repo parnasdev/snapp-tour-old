@@ -22,7 +22,7 @@
           <span class="text-danger">این فیلد الزامی است</span>
         </ng-container>
       </div>
-      <div class="item-form">
+      <div class="item-form" *ngIf="tourType">
         <label class="dana-bold" for="">
           کد ملی
         </label>
@@ -30,17 +30,16 @@
           <input type="text" (change)="onChange()" placeholder="اینجا بنویسید …" formControlName="id_code">
 
         </div>
-        <ng-container *ngIf="item.get('id_code')?.touched && item.get('id_code')?.hasError('required')">
+        <ng-container *ngIf="item.get('birthDate')?.touched && item.get('birthDate')?.hasError('required')">
           <span class="text-danger">این فیلد الزامی است</span>
         </ng-container>
       </div>
       <div class="item-form">
         <label class="dana-bold" for="">
-          شهر
-        </label>
+        تاریخ تولد       
+       </label>
         <div class="inp-form mt-2">
           <input type="text" (change)="onChange()" placeholder="اینجا بنویسید …" formControlName="city">
-
         </div>
         <ng-container *ngIf="item.get('city')?.touched && item.get('city')?.hasError('required')">
           <span class="text-danger">این فیلد الزامی است</span>
@@ -58,34 +57,19 @@
           <span class="text-danger">این فیلد الزامی است</span>
         </ng-container>
       </div>
-      <div class="item-form">
-        <label class="dana-bold" for="">
-          ملیت
-        </label>
-        <div class="inp-form mt-2">
-          <select formControlName="nationality" name="" id="">
-            <option value="0">ایرانی</option>
-            <option value="1">خارجی</option>
-          </select>
 
-        </div>
-        <ng-container *ngIf="item.get('nationality')?.touched && item.get('nationality')?.hasError('required')">
-          <span class="text-danger">این فیلد الزامی است</span>
-        </ng-container>
-      </div>
-      <div class="item-form">
+      <div class="item-form" *ngIf="!tourType">
         <label class="dana-bold" for="">
           شماره پاسپورت
         </label>
         <div class="inp-form mt-2">
           <input type="text" (change)="onChange()" placeholder="اینجا بنویسید …" formControlName="passport_number">
-
         </div>
         <ng-container *ngIf="item.get('passport_number')?.touched && item.get('passport_number')?.hasError('required')">
           <span class="text-danger">این فیلد الزامی است</span>
         </ng-container>
       </div>
-      <div class="item-form">
+      <div class="item-form" *ngIf="!tourType">
         <label class="dana-bold" for="">
           تاریخ انقضای پاسپورت
         </label>

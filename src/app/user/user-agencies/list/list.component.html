@@ -17,7 +17,7 @@
     </div>
     <div class="body-list-tour" *ngIf="users.length > 0">
       <div class="item" *ngFor="let user of users; let i = index">
-        <span class="id">{{ i + 1 }}</span>
+        <span class="id">{{ user.id }}</span>
         <span class="username">{{ user.name + ' ' + user.family }}</span>
         <span class="username">{{ user.phone ? user.phone : '-' }}</span>
         <span class="username">{{ user.city ? user.city.name : '' }}</span>
