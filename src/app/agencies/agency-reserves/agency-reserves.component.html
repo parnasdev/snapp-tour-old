@@ -1,12 +1,49 @@
 <div  class="p-info-trip">
+  <button class="btn-base w-25" (click)="changeStatus()">تایید</button>
   <div class="w-100 bg-light bg-info-trip">
     <div class="title-profile w-100">
       <i class="icon-circle"></i>
       <h2 class="dana-bold">اطلاعات تور</h2>
     </div>
     <div class="tour-items w-100">
-      <div class="item w-100 d-flex align-items-center px-2" *ngFor="let item of[1,2,3,4,5,6,7,8]">
-        <span class="title">سوال:</span>
+      <div class="item w-100 d-flex align-items-center px-2" >
+        <span class="title">تاریخ پرواز رفت</span>
+        <span class="text">---</span>
+      </div>
+      <div class="item w-100 d-flex align-items-center px-2" >
+        <span class="title">تاریخ پرواز برگشت:</span>
+        <span class="text">---</span>
+      </div>
+      <div class="item w-100 d-flex align-items-center px-2" >
+        <span class="title">تاریخ ورود به هتل:</span>
+        <span class="text">---</span>
+      </div>
+      <div class="item w-100 d-flex align-items-center px-2" >
+        <span class="title">تاریخ خروج از هتل:</span>
+        <span class="text">---</span>
+      </div>
+      <div class="item w-100 d-flex align-items-center px-2" >
+        <span class="title">ایرلاین رفت:</span>
+        <span class="text">---</span>
+      </div>
+      <div class="item w-100 d-flex align-items-center px-2" >
+        <span class="title">ایرلاین برگشت:</span>
+        <span class="text">---</span>
+      </div>
+      <div class="item w-100 d-flex align-items-center px-2" >
+        <span class="title">شماره پرواز رفت:</span>
+        <span class="text">---</span>
+      </div>
+      <div class="item w-100 d-flex align-items-center px-2" >
+        <span class="title">شماره پروار برگشت:</span>
+        <span class="text">---</span>
+      </div>
+      <div class="item w-100 d-flex align-items-center px-2">
+        <span class="title">نام هتل:</span>
+        <span class="text">پاسخ</span>
+      </div>
+      <div class="item w-100 d-flex align-items-center px-2">
+        <span class="title">اتاق انتخابی:</span>
         <span class="text">پاسخ</span>
       </div>
     </div>
@@ -14,7 +51,7 @@
   <div class="w-100 bg-light bg-info-trip">
     <div class="title-profile w-100">
       <i class="icon-circle"></i>
-      <h2 class="dana-bold">اطلاعات سافران</h2>
+      <h2 class="dana-bold">اطلاعات مسافران</h2>
     </div>
     <div class="tour-items w-100">
       <div class="item w-100 d-flex align-items-center px-2" *ngFor="let item of[1,2,3,4,5,6,7,8]">
@@ -23,28 +60,6 @@
       </div>
     </div>
   </div>
-  <div class="w-100 bg-light bg-info-trip">
-    <div class="title-profile w-100">
-      <i class="icon-circle"></i>
-      <h2 class="dana-bold">اطلاعات پرواز</h2>
-    </div>
-    <div class="tour-items w-100">
-      <div class="item w-100 d-flex align-items-center px-2" *ngFor="let item of[1,2,3,4,5,6,7,8]">
-        <span class="title">سوال:</span>
-        <span class="text">پاسخ</span>
-      </div>
-    </div>
-  </div>
-  <div class="w-100 bg-light bg-info-trip">
-    <div class="title-profile w-100">
-      <i class="icon-circle"></i>
-      <h2 class="dana-bold">اطلاعات هتل</h2>
-    </div>
-    <div class="tour-items w-100">
-      <div class="item w-100 d-flex align-items-center px-2" *ngFor="let item of[1,2,3,4,5,6,7,8]">
-        <span class="title">سوال:</span>
-        <span class="text">پاسخ</span>
-      </div>
-    </div>
-  </div>
+
+
 </div>
