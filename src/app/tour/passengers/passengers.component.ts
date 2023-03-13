@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ReserveRoomDTO } from 'src/app/Core/Models/tourDTO';
+import { ReserveRoomDTO, RoomPassengersDTO } from 'src/app/Core/Models/tourDTO';
 
 @Component({
   selector: 'prs-passengers',
@@ -11,9 +11,12 @@ export class PassengersComponent implements OnInit,OnChanges {
 
   @Input() RoomData?: ReserveRoomDTO
 
+  roomPassengersobj: RoomPassengersDTO = {
+    roomName: '',
+    passengers: []
+  }
+
   constructor(public fb: FormBuilder,) { }
-
-
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.RoomData.firstChange) {
@@ -41,7 +44,8 @@ export class PassengersComponent implements OnInit,OnChanges {
 
   addRow() {
     const Passengers = this.fb.group({
-      fullName: [''],
+      firstName: [''],
+      lastName: [''],
       id_code: [''],
       city: [''],
       phoneNumber: [''],
@@ -51,6 +55,19 @@ export class PassengersComponent implements OnInit,OnChanges {
     })
     this.PassengerForm.push(Passengers);
     // console.log(this.PassengerForm);
+  }
+
+  check(){
+    console.log(this.PassengerForm.controls)
+  }
+
+  convertTour() {
+  //   this.PassengerForm.controls.forEach((item, index) => {
+  //     this.roomPassengersobj = {
+  //       roomName: this.RoomData?.roomType,
+  //       passengers: item.
+  //     }
+  //   });
   }
 
 }

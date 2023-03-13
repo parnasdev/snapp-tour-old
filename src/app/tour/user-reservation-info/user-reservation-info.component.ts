@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { RoomTypeApiService } from 'src/app/Core/Https/room-type-api.service';
 import { TourApiService } from 'src/app/Core/Https/tour-api.service';
 import { RoomTypeListDTO } from 'src/app/Core/Models/roomTypeDTO';
-import { DiscountsDTO, EditReserveReq, HotelDTO, PricesDTO, RateDTO, ReserveInfoDTO, ReserveRoomDTO, Tour } from 'src/app/Core/Models/tourDTO';
+import { DiscountsDTO, EditReserveReq, HotelDTO, PricesDTO, RateDTO, ReserveInfoDTO, ReserveRoomDTO, RoomPassengersDTO, Tour } from 'src/app/Core/Models/tourDTO';
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
 import { CheckErrorService } from 'src/app/Core/Services/check-error.service';
 import { MessageService } from 'src/app/Core/Services/message.service';
@@ -97,6 +97,8 @@ export class UserReservationInfoComponent implements OnInit {
 
   roomsCapacityReq: string[] = [];
   roomsCapacityList: RoomTypeListDTO[] = [];
+
+  roomPassengersData: RoomPassengersDTO[] = []
 
   tourType: any = false;
   isCounterShow = false;

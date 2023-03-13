@@ -285,7 +285,7 @@ export interface ReserveInfoDTO {
   phone:      string;
   count:      number;
   status:     string;
-  passengers: Passengers[];
+  passengers: RoomPassengersDTO[];
   bill:       BillDTO;
   createdAt:  string;
 }
@@ -302,8 +302,20 @@ export interface RoomsDTO {
   room_price: ''
 }
 
-export interface Passengers {
+export interface PassengerDTO {
+  firstName: string;
+  lastName: string;
+  id_code: string;
+  city: string;
+  phoneNumber: string;
+  nationality: string;
+  passport_number: string;
+  passport_expire: string;
+}
 
+export interface RoomPassengersDTO {
+  roomName: string;
+  passengers: PassengerDTO[];
 }
 
 export interface ReserveRoomDTO {
@@ -321,7 +333,7 @@ export interface EditReserveReq {
   id_code: number;
   count: number;
   coupon_id: string;
-  passengers: Passengers[];
+  passengers: RoomPassengersDTO[];
   bill: BillDTO;
   changeHotel: number; // 0 or 1
   package_id: string | null;

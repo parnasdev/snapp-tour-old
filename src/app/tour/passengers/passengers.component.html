@@ -1,11 +1,18 @@
 <h2 class="title-tour">اتاق {{ RoomData?.roomType }}</h2>
+<button (click)="check()"></button>
 <div [formGroup]="ReserveForm">
   <div formArrayName="passengers">
     <div class="set-info-passengers" *ngFor="let item of PassengerForm.controls; let i = index" [formGroupName]="i">
       <div class="item-form">
-        <label class="dana-bold" for="">نام و نام خانوادگی</label>
+        <label class="dana-bold" for="">نام</label>
         <div class="inp-form mt-2">
-          <input type="text" formControlName="fullName" placeholder="اینجا بنویسید …" >
+          <input type="text" formControlName="firstName" placeholder="اینجا بنویسید …" >
+        </div>
+      </div>
+      <div class="item-form">
+        <label class="dana-bold" for="">نام خانوادگی</label>
+        <div class="inp-form mt-2">
+          <input type="text" formControlName="lastName" placeholder="اینجا بنویسید …" >
         </div>
       </div>
       <div class="item-form">
@@ -45,7 +52,7 @@
       </div>
       <div class="item-form">
         <label class="dana-bold" for="">
-          پاسپورت
+          شماره پاسپورت
         </label>
         <div class="inp-form mt-2">
           <input type="text" placeholder="اینجا بنویسید …" formControlName="passport_number">
