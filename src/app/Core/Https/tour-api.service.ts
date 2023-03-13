@@ -96,7 +96,7 @@ export class TourApiService {
     , this.publicService.getDefaultHeaders());
   }
 
-  changeStatus(status: string | null, ref_code: string): any {
+  changeStatus(status: string | null, ref_code: string | null): any {
     const strUrl = environment.BACK_END_IP + `reserve/changeStatusReserve/${ref_code}`;
     return this.http.post<Result<any>>(strUrl, {
       status
