@@ -26,8 +26,8 @@
 
         <span class="title-tour">{{ calService.convertDateAndTime(item.package?.tour?.stDate, 'fa') }}</span>
         <span class="from-to">{{ calService.convertDateAndTime(item.package?.tour?.enDate, 'fa') }}</span>
-        <span class="day">{{ checkStatus(item.status) }}</span>
-        <span class="day">{{ item.package.tour.isTrash ? 'حذف شده' :checkStatus(item.package?.tour?.status) }}</span>
+        <span class="day">{{ publicService.getStatus(item.status) }}</span>
+        <span class="day">{{ item.package.tour.isTrash ? 'حذف شده' :publicService.getStatus(item.package?.tour?.status) }}</span>
 
         <span class="date-create">{{ item.ref_code }}</span>
         <div class="button-setting">

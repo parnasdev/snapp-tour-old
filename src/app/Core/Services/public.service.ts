@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {HttpHeaders} from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -30,23 +30,68 @@ export class PublicService {
     }
   }
 
-  fixNumbers(str: any): string {
-    const persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g];
-    const EnglishNumbers = [/0/g, /1/g, /2/g, /3/g, /4/g, /5/g, /6/g, /7/g, /8/g, /9/g];
-    if (typeof str === 'string') {
-      for (let i = 0; i <= str.length; i++) {
-        str = str.replace(persianNumbers[i], i).replace(EnglishNumbers[i], i);
-      }
+  getStatus(statusEn: string): string {
+    switch (statusEn) {
+      case 'NewReserve':
+        return 'درخواست جدید';
+      case 'Completion':
+        return 'در حال تکمیل';
+      case 'Accepted':
+        return 'تایید شده';
+      case 'NotAccepted':
+        return 'تایید نشده';
+      case 'Pending':
+        return 'در انتظار';
+      case 'Suspended':
+        return 'معلق شده';
+      case 'Show':
+        return 'نمایش';
+      case 'Draft':
+        return 'پیش نویس';
+      case 'NewTicket':
+        return 'تیکت جدید';
+      case 'ExpertAnswerTicket':
+        return 'پاسخ کارشناس به تیکت';
+      case 'UserAnswerTicket':
+        return 'پاسخ تیکت کاربر';
+      case 'ExpertCheckingTicket':
+        return 'بررسی تیکت کارشناس';
+      case 'closeTicket':
+        return 'بستن تیکت';
+      case 'NewReserve':
+        return 'رزرو جدید';
+      case 'PenddingAccept':
+        return 'منتظر تایید آژانس';
+      case 'Paid':
+        return 'پرداخت شده';
+      case 'PenddingPay':
+        return 'منتظر پرداخت';
+        case 'Completed' :
+          return 'تکمیل شده'
+      default:
+        return ''
     }
-    return str;
   }
 
-  setPrefix(image: string | null): string {
-    return 'https://snapptour.com/panel/' + image;
-  }
 
-  openPage(address: string) {
-    const url = 'https://snapptour.com/' + address
-    window.open(url, "_blank");
+
+fixNumbers(str: any): string {
+  const persianNumbers = [/۰/g, /۱/g, /۲/g, /۳/g, /۴/g, /۵/g, /۶/g, /۷/g, /۸/g, /۹/g];
+  const EnglishNumbers = [/0/g, /1/g, /2/g, /3/g, /4/g, /5/g, /6/g, /7/g, /8/g, /9/g];
+  if (typeof str === 'string') {
+    for (let i = 0; i <= str.length; i++) {
+      str = str.replace(persianNumbers[i], i).replace(EnglishNumbers[i], i);
+    }
   }
+  return str;
+}
+
+setPrefix(image: string | null): string {
+  return 'https://snapptour.com/panel/' + image;
+}
+
+openPage(address: string) {
+  const url = 'https://snapptour.com/' + address
+  window.open(url, "_blank");
+}
 }

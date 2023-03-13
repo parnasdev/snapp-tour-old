@@ -4,6 +4,7 @@ import { ReserveListReqDTO } from 'src/app/Core/Models/tourDTO';
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
 import { ErrorsService } from 'src/app/Core/Services/errors.service';
 import { MessageService } from 'src/app/Core/Services/message.service';
+import { PublicService } from 'src/app/Core/Services/public.service';
 import { ResponsiveService } from 'src/app/Core/Services/responsive.service';
 import { SessionService } from 'src/app/Core/Services/session.service';
 @Component({
@@ -24,6 +25,7 @@ export class ReserveListComponent implements OnInit {
   constructor(public mobileService: ResponsiveService,
     public session: SessionService,
     public calService: CalenderServices,
+    public publicService: PublicService,
     public api: TourApiService,
     public messageService: MessageService,
     public errorService: ErrorsService) { }
@@ -48,12 +50,5 @@ export class ReserveListComponent implements OnInit {
     })
   }
 
-  checkStatus(statusEn: string) {
-    switch (statusEn) {
-      case 'NewReserve':
-        return 'درخواست جدید';
-      default:
-        return ''
-    }
-  }
+
 }

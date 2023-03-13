@@ -37,7 +37,8 @@ export class ListComponent implements OnInit {
     type: null,
     status: '',
   };
-
+  paginate: any;
+  paginateConfig: any;
   tours: TourListResDTO[] = [];
   loading = false;
 
@@ -111,11 +112,11 @@ export class ListComponent implements OnInit {
       isAdmin: false,
       stDate:this.searchObject.stDate ?  this.calendarService.convertDate(this.searchObject.stDate, 'en', 'yyyy-MM-DD') : null,
       night: this.searchObject.night === '0' ? null :this.searchObject.night,
-      paginate: false,
+      paginate: true,
       search: null,
       month: null,
       sortByDate: this.sortByDate,
-      perPage: 20,
+      perPage: 15,
       type: null,
       status: null,
     };
@@ -123,6 +124,12 @@ export class ListComponent implements OnInit {
       this.loading = false
       if (res.isDone) {
         this.tours = res.data
+        this.paginate = res.meta;
+        this.paginateConfig = {
+          itemsPerPage: this.paginate.per_page,
+          totalItems: this.paginate.total,
+          currentPage: this.paginate.current_page
+        }
       } else {
         this.message.custom(res.message);
       }
@@ -133,6 +140,10 @@ export class ListComponent implements OnInit {
     });
   }
 
+  onPageChanged(event: any) {
+    this.p = event;
+    this.getTours();
+  }
 
   search(event: SearchObjectDTO) {
     this.searchObject = event;

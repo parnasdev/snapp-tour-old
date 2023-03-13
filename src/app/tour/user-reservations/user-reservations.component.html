@@ -11,7 +11,7 @@
     <span>{{ item.package.tour.title }}</span>
     <span dir="ltr">{{ calService.convertDateAndTime(item.package.tour.stDate, 'fa') }}</span>
     <span dir="ltr">{{ calService.convertDateAndTime(item.package.tour.enDate, 'fa') }}</span>
-    <span>{{ checkStatus(item.status) }}</span>
+    <span>{{ publicService.getStatus(item.status) }}</span>
     <span>{{ item.ref_code }}</span>
     <div>
       <a routerLink="/dashboard/tour/info/{{ item.ref_code }}" style="height: 35px !important;" class="btn-base px-4">جزییات</a>
@@ -34,7 +34,7 @@
     </div>
     <div class="item w-100 d-flex align-items-center justify-content-between">
       <span class="r">وضعیت</span>
-      <span class="l">{{ checkStatus(item.status) }}</span>
+      <span class="l">{{ publicService.getStatus(item.status) }}</span>
     </div>
     <div class="item w-100 d-flex align-items-center justify-content-between">
       <span class="r">کد پیگیری</span>
