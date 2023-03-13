@@ -16,12 +16,10 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from '@angular/material/input';
-
 import {MatNativeDateModule} from '@angular/material/core';
 import {MaterialModule} from "../common-project/persianDatePickerAdapter/material.module";
 import {ThumbnailTourTwoComponent} from './thumbnail-tour-two/thumbnail-tour-two.component';
 import {PipesModule} from "../common-project/pipes/pipes.module";
-
 import {LoadingComponent} from './loading/loading.component';
 import {LightboxModule} from "ng-gallery/lightbox";
 import {GalleryModule} from "ng-gallery";
@@ -30,7 +28,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 import { SearchComponent } from './search/search.component';
 import { SpecialTourComponent } from './special-tour/special-tour.component';
 import { NewestToursComponent } from './newest-tours/newest-tours.component';
-import { VerticalThumbnailTourComponent } from './vertical-thumbnail-tour/vertical-thumbnail-tour.component';
+import { HorizontalThumbnailTourComponent } from './horizontal-thumbnail-tour/horizontal-thumbnail-tour.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +46,7 @@ import { VerticalThumbnailTourComponent } from './vertical-thumbnail-tour/vertic
     SearchComponent,
     SpecialTourComponent,
     NewestToursComponent,
-    VerticalThumbnailTourComponent
+    HorizontalThumbnailTourComponent
   ],
   exports: [
     IndexComponent,
@@ -56,7 +54,7 @@ import { VerticalThumbnailTourComponent } from './vertical-thumbnail-tour/vertic
     FooterComponent,
     AddressBarComponent,
     ThumbnailsTourComponent,
-    VerticalThumbnailTourComponent,
+    HorizontalThumbnailTourComponent,
     ThumbnailTourTwoComponent,
     LoadingComponent,
     SearchSectionComponent,

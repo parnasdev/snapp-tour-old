@@ -37,7 +37,7 @@
               <mat-checkbox [(ngModel)]="sortByDate"></mat-checkbox>
               <label>نزدیکترین</label>
             </div>
-            <prs-vertical-thumbnail-tour *ngFor="let tour of tours | paginate: paginateConfig| ordering : sortByDate; let i = index " [tour]="tour"></prs-vertical-thumbnail-tour>
+            <prs-horizontal-thumbnail-tour *ngFor="let tour of tours | paginate: paginateConfig| ordering : sortByDate; let i = index " [tour]="tour"></prs-horizontal-thumbnail-tour>
             <div>
               <pagination-controls
                 *ngIf="!loading && paginate.last_page > 1"

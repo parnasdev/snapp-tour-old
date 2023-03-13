@@ -4,11 +4,11 @@ import { CityTourInfoDTO, TourListResDTO } from 'src/app/Core/Models/tourDTO';
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
 
 @Component({
-  selector: 'prs-vertical-thumbnail-tour',
-  templateUrl: './vertical-thumbnail-tour.component.html',
-  styleUrls: ['./vertical-thumbnail-tour.component.scss']
+  selector: 'prs-horizontal-thumbnail-tour',
+  templateUrl: './horizontal-thumbnail-tour.component.html',
+  styleUrls: ['./horizontal-thumbnail-tour.component.scss']
 })
-export class VerticalThumbnailTourComponent implements OnInit {
+export class HorizontalThumbnailTourComponent implements OnInit {
   @Input() tour: TourListResDTO = {
     title: '',
     createdAt: '',
