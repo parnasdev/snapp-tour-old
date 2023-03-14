@@ -232,6 +232,10 @@ export class UserReservationInfoComponent implements OnInit {
     })
 
   }
+
+  onCitySelected(city: any) {
+    this.cityFC.setValue(city.id);
+  }
   getroomCount(roomName: string): number {
     return this.roomPassengersData.filter(x => x.roomName === roomName).length
   }
