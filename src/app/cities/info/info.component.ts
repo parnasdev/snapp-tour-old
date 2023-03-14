@@ -126,7 +126,7 @@ export class InfoComponent implements OnInit {
       this.city = this.city.split('-')[1]
       this.show = true;
       this.getInfo()
-      this.getTours()
+
     } else {
       this.router.navigateByUrl('not-found')
     }
@@ -134,17 +134,18 @@ export class InfoComponent implements OnInit {
 
   getTours(): void {
     const reqDTO: TourListRequestDTO = {
-      origin: '',
-      dest: '',
-      stDate: '',
-      night: 0,
-      status: '',
-      paginate: false,
-      limit: 5,
-      perPage: 10,
-      sortByDate:false,
-      search: '',
-      type: null
+      dest: this.info.slugEn,
+      isAdmin: false,
+      month: null,
+      paginate: true,
+      perPage: 15,
+      search: null,
+      sortByDate: false,
+      stDate: null,
+      status: null,
+      type: null,
+      origin: null,
+      night: null,
     }
     this.tourApi.getTours(reqDTO).subscribe((res: any) => {
       if (res.isDone) {
@@ -159,6 +160,7 @@ export class InfoComponent implements OnInit {
       this.isLoading = false;
       if (res.isDone) {
         this.info = res.data
+        this.getTours()
         if (this.info.images) {
           this.fillAlbum(this.info.images);
         }
