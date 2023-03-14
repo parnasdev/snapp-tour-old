@@ -17,6 +17,7 @@ import { SessionService } from 'src/app/Core/Services/session.service';
 })
 export class UserReservationInfoComponent implements OnInit {
   orderForm?: FormGroup;
+  errors: any
   items?: FormArray;
   reserveCode = '';
   reserveObj: ReserveInfoDTO = {
@@ -224,6 +225,7 @@ export class UserReservationInfoComponent implements OnInit {
   }
 
   getRoomData(data: RoomDTO): void {
+    console.log(data)
     this.roomsSelected.forEach(item => {
       if (item.id === data.id) {
         item.passengers = data.passengers;
@@ -288,6 +290,9 @@ export class UserReservationInfoComponent implements OnInit {
         this.messageService.custom(res.message)
       }
     }, (error: any) => {
+      if (error.status === 422) {
+        this.errors = Object.values(error.error.data)
+      }
       this.checkError.check(error);
     })
   }
