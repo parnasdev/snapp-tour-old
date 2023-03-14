@@ -46,4 +46,7 @@
     <!-- <button *ngIf="item.status === 'PenddingPay'" (click)="callPay(item.transactions[0])" class="btn-base">پرداخت</button>
     <a (click)="voucher(item.ref_code)" class="btn-base">نمایش واچر</a> -->
   </div>
+  <div *ngIf="reserves.length==0" class="empty-box">
+    <h3>سفری یافت نشد</h3>
+  </div>
 </div>
