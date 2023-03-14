@@ -51,7 +51,7 @@ export class PassengersComponent implements OnInit, OnChanges {
       lastName: ['', Validators.required],
       id_code: [''],
       birthDate: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
+      phoneNumber: [''],
       nationality: [''],
       passport_number: [''],
       passport_expire: [''],
