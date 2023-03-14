@@ -20,7 +20,8 @@ export class VerifyComponent implements OnInit {
     createdAt: '',
     id: '',
     resnumber: '',
-    status: ''
+    status: '',
+    ref_code: '',
   };
 
   constructor(public route: ActivatedRoute,
@@ -46,6 +47,12 @@ export class VerifyComponent implements OnInit {
     }, (error: any) => {
       this.errorService.check(error);
     })
+  }
+
+  getvoucher(refrence: string){
+    if(refrence) {
+      window.open(`https://loadbalancer.iran.liara.run/api/v1/reserve/getVoucher/${refrence}`, '_blank')
+    }
   }
 
 }

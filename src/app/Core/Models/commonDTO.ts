@@ -45,4 +45,5 @@ export interface transactionDTO {
   id: string;
   resnumber: string;
   status: string;
+  ref_code: string;
 }
