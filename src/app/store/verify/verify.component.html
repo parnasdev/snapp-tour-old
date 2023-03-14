@@ -8,11 +8,11 @@
 <!--                    <img src="/img/pattern-circle-special.png" alt="">-->
 <!--                </div>-->
                 <div class="box-verify">
-                    <div *ngIf="transaction.status == 'Paid'">
+                    <div class="w-100 d-flex flex-column align-items-center" *ngIf="transaction.status == 'Paid'">
                         <img src="assets/img/success.png" width="100" alt="" class="success">
                         <h3 class="title-success">پرداخت موفق ! سپاس از شما</h3>
                     </div>
-                    <div *ngIf="transaction.status == 'Suspended'">
+                    <div class="w-100 d-flex flex-column align-items-center" *ngIf="transaction.status == 'Suspended'">
                         <img src="assets/img/cancel.png" width="100" alt="" class="success">
                         <h3 class="title-unSuccess">پرداخت ناموفق !با پشتیبانی در تماس باشید</h3>
                     </div>
@@ -48,18 +48,16 @@
                             </div>
                         </div>
                     </div>
-                    <span class="point" *ngIf="transaction.status == 'Paid'"></span>
-                    <span class="before-point"*ngIf="transaction.status == 'Suspended'"></span>
-                </div>
-                <div class="w-100 flex-center mt-4">
-                    <a class="btn-verify" href="/dashboard/tour/list">سفارشات
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-                            <g id="Down" transform="translate(24) rotate(90)">
-                              <path id="Path_916" data-name="Path 916" d="M1,12a27.833,27.833,0,0,0,.462,5.827A6.193,6.193,0,0,0,3,21a6.193,6.193,0,0,0,3.172,1.54A27.838,27.838,0,0,0,12,23a27.838,27.838,0,0,0,5.827-.462A6.193,6.193,0,0,0,21,21a6.193,6.193,0,0,0,1.54-3.172A27.838,27.838,0,0,0,23,12a27.838,27.838,0,0,0-.462-5.827A6.193,6.193,0,0,0,21,3a6.193,6.193,0,0,0-3.172-1.54A27.833,27.833,0,0,0,12,1a27.833,27.833,0,0,0-5.827.462A6.193,6.193,0,0,0,3,3a6.193,6.193,0,0,0-1.54,3.172A27.833,27.833,0,0,0,1,12Z" fill="none" stroke="#030000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-                              <path id="Path_917" data-name="Path 917" d="M16,10l-4,4L8,10" fill="none" stroke="#030000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-                            </g>
-                          </svg>
+                  <div class="w-100 d-flex justify-content-center flex-center mt-4">
+                    <a style="height: auto;" class="btn-base px-4 py-3" href="/dashboard/tour/list">سفرهای من
+                      <svg style="margin-right: 4px" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                        <g id="Down" transform="translate(24) rotate(90)">
+                          <path id="Path_916" data-name="Path 916" d="M1,12a27.833,27.833,0,0,0,.462,5.827A6.193,6.193,0,0,0,3,21a6.193,6.193,0,0,0,3.172,1.54A27.838,27.838,0,0,0,12,23a27.838,27.838,0,0,0,5.827-.462A6.193,6.193,0,0,0,21,21a6.193,6.193,0,0,0,1.54-3.172A27.838,27.838,0,0,0,23,12a27.838,27.838,0,0,0-.462-5.827A6.193,6.193,0,0,0,21,3a6.193,6.193,0,0,0-3.172-1.54A27.833,27.833,0,0,0,12,1a27.833,27.833,0,0,0-5.827.462A6.193,6.193,0,0,0,3,3a6.193,6.193,0,0,0-1.54,3.172A27.833,27.833,0,0,0,1,12Z" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                          <path id="Path_917" data-name="Path 917" d="M16,10l-4,4L8,10" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                        </g>
+                      </svg>
                     </a>
+                  </div>
                 </div>
             </div>
         </div>
