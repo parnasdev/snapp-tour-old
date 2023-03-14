@@ -17,11 +17,11 @@
     <span>{{ item.ref_code }}</span>
     <!-- <span *ngIf="isDesktop"></span> -->
     <div class="d-flex price align-items-center">
-      <strong>130000</strong>
+      <strong>{{ item.bill?.totalPayAble | sperator }}</strong>
       <small>تومان</small>
     </div>
     <div class="w-100 d-flex justify-content-center">
-      <a style="height: auto !important;padding: 8px 16px" *ngIf="item.status === 'Completion'" routerLink="/dashboard/tour/info/{{ item.ref_code }}" class="btn-base">جزییات</a>
+      <a style="height: auto !important;padding: 8px 16px" *ngIf="item.status !== 'PenddingPay' && item.status !== 'Paid'" routerLink="/dashboard/tour/info/{{ item.ref_code }}" class="btn-base">جزییات</a>
       <button style="height: auto !important;padding: 8px 16px" *ngIf="item.status === 'PenddingPay'" (click)="callPay(item.transactions[0])" class="btn-base">پرداخت</button>
       <a style="height: auto !important;padding: 8px 16px" *ngIf="item.status === 'Paid'" (click)="voucher(item.ref_code)" class="btn-base">نمایش واچر</a>
     </div>
