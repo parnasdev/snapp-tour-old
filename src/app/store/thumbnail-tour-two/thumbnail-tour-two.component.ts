@@ -21,7 +21,7 @@ export class ThumbnailTourTwoComponent implements OnInit {
   @Input() tourInfo!: TourInfoDTO;
   @Input() tourType = false;
   @Input() defineTour = false;
-  clicked  =false;
+  clicked  = false;
   constructor(public dialog: MatDialog,
               public message: MessageService,
               public tourApi: TourApiService,
@@ -48,7 +48,6 @@ export class ThumbnailTourTwoComponent implements OnInit {
   }
 
   checkReserve(packageId: number) {
-    this.clicked = true;
     this.session.isLoggedIn() ? this.getReserve(packageId) : this.loginPopup(packageId)
   }
 
@@ -64,16 +63,6 @@ export class ThumbnailTourTwoComponent implements OnInit {
         this.getReserve(id)
       }
     })
-
-    // const dialog = this.dialog.open(ReservePopupComponent, {
-    //   width: '30%',
-    //   data: id,
-
-    // })
-    // dialog.afterClosed().subscribe(result => {
-
-    // })
-
   }
 
   openRoom(rooms: RoomTypePriceDTO[]): void {
@@ -89,17 +78,21 @@ export class ThumbnailTourTwoComponent implements OnInit {
   }
 
   getReserve(packageId: number): void {
+    this.clicked = true;
     const req = {
       package_id: packageId,
     }
     this.tourApi.reserve(req).subscribe((res: any) => {
       if (res.isDone) {
+        this.clicked = false;
         // this.message.custom(res.message);
         this.router.navigate(['/dashboard/tour/info/' + res.data.reserve_id]);
       } else {
+        this.clicked = false;
         this.message.custom(res.message);
       }
     }, (error: any) => {
+      this.clicked = false;
       this.message.error()
     })
   }
