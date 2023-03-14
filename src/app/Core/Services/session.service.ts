@@ -123,6 +123,11 @@ export class SessionService {
     return user ? JSON.parse(user).user.agency : '';
   }
 
+  getIdCode():any {
+    const user = localStorage.getItem('snapp-tour-user');
+    return user ? JSON.parse(user).user.id_code : '';
+  }
+
   getId(): any {
     const user = localStorage.getItem('snapp-tour-user');
     return user ? JSON.parse(user).user.id : '';
