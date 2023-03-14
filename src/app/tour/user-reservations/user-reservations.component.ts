@@ -80,15 +80,7 @@ export class UserReservationsComponent implements OnInit {
   }
   
   voucher(refrence:string):void {
-    this.api.getVoucher(refrence).subscribe((res: any) => {
-      if (res.isDone) {
-        console.log(res.data)
-      } else {
-        this.messageService.custom('مشکلی در نمایش اطلاعات به وجود آمده است')
-      }
-    }, (error: any) => {
-      this.errorService.check(error);
-    })
+    window.open(`https://loadbalancer.iran.liara.run/api/v1/reserve/getVoucher/${refrence}`, '_blank')
   }
 
 }

@@ -18,7 +18,7 @@
     <div>
       <a *ngIf="item.status === 'Completion'" routerLink="/dashboard/tour/info/{{ item.ref_code }}" class="btn-base">جزییات</a>
       <button *ngIf="item.status === 'PenddingPay'" (click)="callPay(item.transactions[0])" class="btn-base">پرداخت</button>
-      <a *ngIf="item.status === 'Completed'" (click)="voucher(item.ref_code)" class="btn-base">نمایش واچر</a>
+      <a *ngIf="item.status === 'Paid'" (click)="voucher(item.ref_code)" class="btn-base">نمایش واچر</a>
     </div>
   </div>
   <div *ngIf="reserves.length==0" class="empty-box">
@@ -46,7 +46,7 @@
     </div>
     <a *ngIf="item.status === 'Completion'" routerLink="/dashboard/tour/info/{{ item.ref_code }}" class="btn-base">جزییات</a>
     <button *ngIf="item.status === 'PenddingPay'" (click)="callPay(item.transactions[0])" class="btn-base">پرداخت</button>
-    <a *ngIf="item.status === 'Completed'" (click)="voucher(item.ref_code)" class="btn-base">نمایش واچر</a>
+    <a *ngIf="item.status === 'Paid'" (click)="voucher(item.ref_code)" class="btn-base">نمایش واچر</a>
   </div>
   <div *ngIf="reserves.length==0" class="empty-box">
     <h3>سفری یافت نشد</h3>
