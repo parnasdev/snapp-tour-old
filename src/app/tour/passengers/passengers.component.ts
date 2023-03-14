@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges, Output, EventEmitter } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PassengerDTO, RoomDTO } from 'src/app/Core/Models/tourDTO';
 
 @Component({
@@ -59,31 +59,33 @@ export class PassengersComponent implements OnInit, OnChanges {
     this.PassengerForm.push(Passengers);
   }
 
-
   convertPassengerObject() {
     let passengers: PassengerDTO[] = [];
     this.PassengerForm.controls.forEach((item, index) => {
       passengers.push(item.value)
     });
     this.RoomData.passengers = passengers;
-
     this.passengerResult.emit(this.RoomData);
-    
   }
 
   onChange(): void {
-    console.log(this.PassengerForm)
     if (this.PassengerForm.valid) {
       this.convertPassengerObject()
+    }else {
+      this.markFormGroupTouched()
+      // this.PassengerForm.controls.forEach(x => {
+      //   x.controls.forEach((control:FormControl) => {
+      //   })
+      //   this.markFormGroupTouched(control)
+      // })
     }
   }
 
-  markFormGroupTouched(formGroup: FormGroup): void {
-    (Object as any).values(formGroup.controls).forEach((control: any) => {
-      control.markAsTouched();
-      if (control.controls) {
-        this.markFormGroupTouched(control);
-      }
+  markFormGroupTouched(): void {
+    (<FormArray>this.ReserveForm.get('passengers')).controls.forEach((group: any) => {
+      (<any>Object).values(group.controls).forEach((control: FormControl) => { 
+          control.markAsTouched();
+      }) 
     });
   }
 }

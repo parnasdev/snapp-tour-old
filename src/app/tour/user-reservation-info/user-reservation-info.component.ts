@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RoomTypeApiService } from 'src/app/Core/Https/room-type-api.service';
 import { TourApiService } from 'src/app/Core/Https/tour-api.service';
 import { RoomTypeListDTO } from 'src/app/Core/Models/roomTypeDTO';
@@ -57,9 +57,9 @@ export class UserReservationInfoComponent implements OnInit {
   nameFC = new FormControl(this.session.getName(), Validators.required);
   familyFC = new FormControl(this.session.getFamily(), Validators.required);
   cityFC = new FormControl(1, Validators.required);
-  idCodeFC = new FormControl('', Validators.required);
+  idCodeFC = new FormControl(this.session.getIdCode(), Validators.required);
   phoneFC = new FormControl(this.session.getPhone(), Validators.required);
-
+  isPrivacyCheck = false;
   editReserveData: EditReserveReq = {
     city_id: 0,
     phone: '',
@@ -112,6 +112,7 @@ export class UserReservationInfoComponent implements OnInit {
   constructor(public route: ActivatedRoute,
     public messageService: MessageService,
     public checkError: CheckErrorService,
+    public router: Router,
     public fb: FormBuilder,
     public session: SessionService,
     public calService: CalenderServices,
@@ -140,6 +141,8 @@ export class UserReservationInfoComponent implements OnInit {
       this.checkError.check(error);
     })
   }
+
+
 
   setRoomsCapacityReq() {
     if (this.tourType) {
@@ -258,56 +261,27 @@ export class UserReservationInfoComponent implements OnInit {
     }
   }
 
-
-  convertRoomPassengers(): RoomsRequestDTO[] {
-    // this.roomsSelected.forEach(x => {
-    //   let item: RoomsRequestDTO = {
-    //     room_count: 1,
-    //     room_price: x.price,
-    //     room_type: x.name
-    //   }
-    // })
-
-    // let result: RoomsRequestDTO[] = []
-    // this.roomsSelected.forEach(x => {
-    //   if(result.length === 0) {
-    //     let item: RoomsRequestDTO = {
-    //       room_count: 1,
-    //       room_price: x.price,
-    //       room_type: x.name
-    //     }
-    //     result.push(item)
-    //   } else {
-    //     result.forEach(y => {
-    //       console.log(x.name , y.room_type);
-          
-    //       if (x.name === y.room_type) {
-    //         y.room_count = y.room_count + 1;
-    //         y.room_price = y.room_price * y.room_count
-    //       } else {
-    //         let item: RoomsRequestDTO = {
-    //           room_count: 1,
-    //           room_price: x.price,
-    //           room_type: x.name
-    //         }
-    //         result.push(item)
-    //       }
-    //     })
-    //   }
-    // })
-    // result.shift();
-    // return result;
-    return []
+  submit() {
+    if (this.profileFG.invalid) {
+      this.messageService.custom('لطفا اطلاعات رزرو گیرنده را تکمیل کنید')
+    } else if (this.roomsSelected.length === 0) {
+      this.messageService.custom('لطفا اتاق های مورد نظر خود را انتخاب کنید')
+    } else if (!this.isPrivacyCheck) {
+      this.messageService.custom('لطفا قوانین و مقررات را خوانده و بپذیرید')
+    } else {
+      this.editReserve();
+    }
   }
-
-  submit(): void {
+  editReserve(): void {
     this.setReserveReq();
     this.api.editReserve(this.editReserveData, this.reserveCode).subscribe((res: any) => {
       if (res.isDone) {
         this.reserveObj = res.data;
+        this.messageService.custom(res.message)
         this.setDateAndTime();
+        this.router.navigateByUrl('/dashboard/tour/list')
       } else {
-        this.messageService.custom('مشکلی در نمایش اطلاعات به وجود آمده است')
+        this.messageService.custom(res.message)
       }
     }, (error: any) => {
       this.checkError.check(error);
