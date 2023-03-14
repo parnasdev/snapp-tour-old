@@ -17,6 +17,7 @@ export class HeaderComponent implements OnInit {
   isLoading = false;
   isMobile = false;
   isDesktop = false;
+  isTablet = false;
   isMenu = false;
 
   constructor(public session: SessionService,
@@ -26,6 +27,7 @@ export class HeaderComponent implements OnInit {
               public mobileService: ResponsiveService,
               public checkError: CheckErrorService) {
     this.isMobile = mobileService.isMobile()
+    this.isTablet = mobileService.isTablet()
   }
 
   ngOnInit(): void {
