@@ -15,10 +15,10 @@
     <span>{{ publicService.getStatus(item.status) }}</span>
     <span>{{ item.ref_code }}</span>
     <!-- <span *ngIf="isDesktop"></span> -->
-    <div>
-      <a *ngIf="item.status === 'Completion'" routerLink="/dashboard/tour/info/{{ item.ref_code }}" class="btn-base">جزییات</a>
+    <div class="w-100 d-flex justify-content-center">
+      <a style="height: auto !important;padding: 8px 16px" *ngIf="item.status === 'Completion'" routerLink="/dashboard/tour/info/{{ item.ref_code }}" class="btn-base">جزییات</a>
       <button *ngIf="item.status === 'PenddingPay'" (click)="callPay(item.transactions[0])" class="btn-base">پرداخت</button>
-      <a *ngIf="item.status === 'Paid'" (click)="voucher(item.ref_code)" class="btn-base">نمایش واچر</a>
+      <a style="height: auto !important;padding: 8px 16px" *ngIf="item.status === 'Paid'" (click)="voucher(item.ref_code)" class="btn-base">نمایش واچر</a>
     </div>
   </div>
   <div *ngIf="reserves.length==0" class="empty-box">
