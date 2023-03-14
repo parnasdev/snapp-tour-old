@@ -111,7 +111,7 @@ export class TourApiService {
 
   getVoucher(refrence: string): any {
     const strUrl = environment.BACK_END_IP + `reserve/getVoucher/${refrence}`;
-    return this.http.get<any>(strUrl, this.publicService.getFileHeaders());
+    return this.http.get<any>(strUrl, this.publicService.getDefaultHeaders());
   }
 
   generateSlug(title: string): any {
