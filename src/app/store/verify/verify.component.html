@@ -1,8 +1,67 @@
-<div class="verify-accept" *ngIf="isVerify">
-    <p>پرداخت با موفقیت انجام شد</p>
-</div>
 
-<div class="verify-reject" *ngIf="!isVerify">
-    <p>عملیات پرداخت با شکست مواجه شد</p>
-    <button>بازگشت به لیست سفرها</button>
-</div>
+<section class="s-verify">
+    <div class="prs-responsive">
+        <div class="p-verify w-95 mx-auto d-flex flex-column justify-content-center align-items-center">
+            <img src="/img/logo-footer.png" class="logo-footer" width="220" alt="">
+            <div class="p-box-verify">
+                <div class="pattern">
+                    <img src="/img/pattern-circle-special.png" alt="">
+                </div>
+                <div class="box-verify">
+                    <div *ngIf="transaction.status == 'Paid'">
+                        <img src="/img/success.png" width="100" alt="" class="success">
+                        <h3 class="title-success">پرداخت موفق ! سپاس از شما</h3>
+                    </div>
+                    <div *ngIf="transaction.status == 'Suspended'">
+                        <img src="/img/cancel.png" width="100" alt="" class="success">
+                        <h3 class="title-unSuccess">پرداخت ناموفق !با پشتیبانی در تماس باشید</h3>
+                    </div>
+                    <div class="d-flex factor my-3 align-items-center">
+                        <span>شماره فاکتور : </span>
+                        <span class="ms-2">#{{ transaction.id }}</span>
+                    </div>
+                    <div class="d-flex factor my-3 align-items-center">
+                        <span>شماره پیگیری بانک : </span>
+                        <span class="ms-2">#{{ transaction.id }}</span>
+                    </div>
+                    <div class="price my-2" >
+                        <div *ngIf="transaction.status == 'Paid'">
+                            <strong style="color: #118811">{{ transaction.amount }}</strong>
+                            <small style="color: #118811">تومان</small>
+                        </div>
+                        <div *ngIf="transaction.status == 'Suspended'">
+                            <strong style="color: #D16765">{{ transaction.amount }}</strong>
+                            <small style="color: #D16765">تومان</small>
+                        </div>
+                    </div>
+                    <div class="p-pay">
+                        <!-- <img src="{{config('payment.drivers.'.$order->payment_type)['logo'] ?? '/img/wallet-2.png' }}" width="70" height="70" alt=""
+                             class="img-bank"> -->
+                        <div class="info-pay ms-2">
+                            <div class="date">
+                                <span>تاریخ ثبت : </span>
+                                <span>{{ transaction.createdAt }}</span>
+                            </div>
+                            <div class="type-pay mt-1">
+                                <span>نوع پرداخت :</span>
+                                <span>{{ "آنلاین" }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="point" *ngIf="transaction.status == 'Paid'"></span>
+                    <span class="before-point"*ngIf="transaction.status == 'Suspended'"></span>
+                </div>
+                <div class="w-100 flex-center mt-4">
+                    <a class="btn-verify" href="/dashboard/tour/list">سفارشات
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                            <g id="Down" transform="translate(24) rotate(90)">
+                              <path id="Path_916" data-name="Path 916" d="M1,12a27.833,27.833,0,0,0,.462,5.827A6.193,6.193,0,0,0,3,21a6.193,6.193,0,0,0,3.172,1.54A27.838,27.838,0,0,0,12,23a27.838,27.838,0,0,0,5.827-.462A6.193,6.193,0,0,0,21,21a6.193,6.193,0,0,0,1.54-3.172A27.838,27.838,0,0,0,23,12a27.838,27.838,0,0,0-.462-5.827A6.193,6.193,0,0,0,21,3a6.193,6.193,0,0,0-3.172-1.54A27.833,27.833,0,0,0,12,1a27.833,27.833,0,0,0-5.827.462A6.193,6.193,0,0,0,3,3a6.193,6.193,0,0,0-1.54,3.172A27.833,27.833,0,0,0,1,12Z" fill="none" stroke="#030000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                              <path id="Path_917" data-name="Path 917" d="M16,10l-4,4L8,10" fill="none" stroke="#030000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                            </g>
+                          </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

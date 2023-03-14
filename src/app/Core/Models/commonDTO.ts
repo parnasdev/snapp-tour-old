@@ -37,3 +37,12 @@ export interface metaTagsDTO {
   name: string;
   value: string;
 }
+
+export interface transactionDTO {
+  amount: number;
+  bank_res: string;
+  createdAt: string;
+  id: string;
+  resnumber: string;
+  status: string;
+}

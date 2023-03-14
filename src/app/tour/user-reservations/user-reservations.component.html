@@ -5,6 +5,7 @@
     <span>تاریخ برگشت</span>
     <span>وضعیت</span>
     <span>کد پیگیری</span>
+    <!-- <span>مبلغ قابل پرداخت</span> -->
     <span>عملیات</span>
   </div>
   <div class="body-trip" *ngFor="let item of reserves">
@@ -13,10 +14,11 @@
     <span dir="ltr">{{ item.package?.tour?.stDate ? calService.convertDateAndTime(item.package?.tour?.enDate, 'fa') : '' }}</span>
     <span>{{ publicService.getStatus(item.status) }}</span>
     <span>{{ item.ref_code }}</span>
+    <!-- <span *ngIf="isDesktop"></span> -->
     <div>
-      <a *ngIf="item.status === 'Completion'" routerLink="/dashboard/tour/info/{{ item.ref_code }}" style="height: 35px !important;" class="btn-base px-4">جزییات</a>
-      <!-- <button *ngIf="item.status === 'PenddingPay'" (click)="callPay(item.transactions[0])" class="btn-base">پرداخت</button>
-      <a (click)="voucher(item.ref_code)" class="btn-base">نمایش واچر</a> -->
+      <a *ngIf="item.status === 'Completion'" routerLink="/dashboard/tour/info/{{ item.ref_code }}" class="btn-base">جزییات</a>
+      <button *ngIf="item.status === 'PenddingPay'" (click)="callPay(item.transactions[0])" class="btn-base">پرداخت</button>
+      <a *ngIf="item.status === 'Completed'" (click)="voucher(item.ref_code)" class="btn-base">نمایش واچر</a>
     </div>
   </div>
   <div *ngIf="reserves.length==0" class="empty-box">
@@ -43,8 +45,8 @@
       <span class="l">{{ item.ref_code }}</span>
     </div>
     <a *ngIf="item.status === 'Completion'" routerLink="/dashboard/tour/info/{{ item.ref_code }}" class="btn-base">جزییات</a>
-    <!-- <button *ngIf="item.status === 'PenddingPay'" (click)="callPay(item.transactions[0])" class="btn-base">پرداخت</button>
-    <a (click)="voucher(item.ref_code)" class="btn-base">نمایش واچر</a> -->
+    <button *ngIf="item.status === 'PenddingPay'" (click)="callPay(item.transactions[0])" class="btn-base">پرداخت</button>
+    <a *ngIf="item.status === 'Completed'" (click)="voucher(item.ref_code)" class="btn-base">نمایش واچر</a>
   </div>
   <div *ngIf="reserves.length==0" class="empty-box">
     <h3>سفری یافت نشد</h3>

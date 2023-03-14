@@ -132,4 +132,9 @@ export class TourApiService {
     return this.http.get<Result<any[]>>(strUrl, this.publicService.getDefaultHeaders());
   }
 
+  getTransaction(transactionId: string | null): any {
+    const strUrl =  environment.BACK_END_IP + `transaction/getTransaction/${transactionId}`;
+    return this.http.get<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
+  }
+
 }
