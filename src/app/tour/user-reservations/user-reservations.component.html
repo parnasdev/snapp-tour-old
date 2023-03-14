@@ -5,6 +5,7 @@
     <span>تاریخ برگشت</span>
     <span>وضعیت</span>
     <span>کد پیگیری</span>
+    <span>مبلغ قابل پرداخت</span>
     <!-- <span>مبلغ قابل پرداخت</span> -->
     <span>عملیات</span>
   </div>
@@ -15,9 +16,13 @@
     <span>{{ publicService.getStatus(item.status) }}</span>
     <span>{{ item.ref_code }}</span>
     <!-- <span *ngIf="isDesktop"></span> -->
+    <div class="d-flex price align-items-center">
+      <strong>130000</strong>
+      <small>تومان</small>
+    </div>
     <div class="w-100 d-flex justify-content-center">
       <a style="height: auto !important;padding: 8px 16px" *ngIf="item.status === 'Completion'" routerLink="/dashboard/tour/info/{{ item.ref_code }}" class="btn-base">جزییات</a>
-      <button *ngIf="item.status === 'PenddingPay'" (click)="callPay(item.transactions[0])" class="btn-base">پرداخت</button>
+      <button style="height: auto !important;padding: 8px 16px" *ngIf="item.status === 'PenddingPay'" (click)="callPay(item.transactions[0])" class="btn-base">پرداخت</button>
       <a style="height: auto !important;padding: 8px 16px" *ngIf="item.status === 'Paid'" (click)="voucher(item.ref_code)" class="btn-base">نمایش واچر</a>
     </div>
   </div>
