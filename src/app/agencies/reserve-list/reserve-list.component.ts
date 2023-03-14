@@ -18,7 +18,7 @@ export class ReserveListComponent implements OnInit {
   paginateConfig: any;
   reserveReq: ReserveListReqDTO = {
     paginate: true,
-    accountType: this.session.getRole() === 'Admin' ? null : 'user',
+    accountType: this.session.getRole() === 'Admin' ? null : 'agency',
   }
   pageNum = 1
 
