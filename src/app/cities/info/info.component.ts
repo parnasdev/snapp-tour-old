@@ -123,7 +123,7 @@ export class InfoComponent implements OnInit {
   checkCityInfoExist(): void {
     if (this.city.indexOf('تور-') !== -1) {
       // @ts-ignore
-      this.city = this.city.split('-')[1]
+      this.city = this.city.split('تور-')[1]
       this.show = true;
       this.getInfo()
 
