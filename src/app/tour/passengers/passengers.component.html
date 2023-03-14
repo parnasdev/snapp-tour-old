@@ -51,9 +51,9 @@
           <!-- <input type="text" (change)="onChange()" placeholder="اینجا بنویسید …" formControlName="birthDate"> -->
 
           <mat-form-field class="example-full-width" appearance="fill">
-            <input class="input-parent" readonly (change)="onChange()" [max]="minDate" matInput formControlName="birthDate" placeholder="تاریخ تولد"
-              autocomplete="off" [matDatepicker]="picker3" (click)="picker3.open()">
-            <mat-datepicker startView="year" #picker3></mat-datepicker>
+            <input class="input-parent" readonly (dateChange)="onChange()" [max]="minDate" matInput formControlName="birthDate" placeholder="تاریخ تولد"
+              autocomplete="off" [matDatepicker]="picker4" (click)="picker4.open()">
+            <mat-datepicker startView="year" #picker4></mat-datepicker>
           </mat-form-field>
 
         </div>
@@ -90,10 +90,9 @@
           تاریخ انقضای پاسپورت
         </label>
         <div class="inp-form mt-2">
-          <input type="text" (change)="onChange()"  formControlName="passport_expire">
 
           <mat-form-field class="example-full-width" appearance="fill">
-            <input class="input-parent" readonly [min]="minDate" matInput formControlName="passport_expire"
+            <input class="input-parent" (dateChange)="onChange()"  readonly [min]="minDate" matInput formControlName="passport_expire"
               placeholder="" autocomplete="off" [matDatepicker]="picker3" (click)="picker3.open()">
             <mat-datepicker #picker3></mat-datepicker>
           </mat-form-field>
