@@ -43,7 +43,7 @@
           <!-- <input type="text" (change)="onChange()" placeholder="اینجا بنویسید …" formControlName="birthDate"> -->
 
           <mat-form-field class="example-full-width" appearance="fill">
-            <input class="input-parent" [max]="minDate" matInput formControlName="birthDate" placeholder="تاریخ تولد"
+            <input class="input-parent" (change)="onChange()" [max]="minDate" matInput formControlName="birthDate" placeholder="تاریخ تولد"
               autocomplete="off" [matDatepicker]="picker3" (click)="picker3.open()">
             <mat-datepicker startView="year" #picker3></mat-datepicker>
           </mat-form-field>
