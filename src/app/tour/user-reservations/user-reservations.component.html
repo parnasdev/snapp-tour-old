@@ -14,9 +14,9 @@
     <span>{{ publicService.getStatus(item.status) }}</span>
     <span>{{ item.ref_code }}</span>
     <div>
-      <a routerLink="/dashboard/tour/info/{{ item.ref_code }}" style="height: 35px !important;" class="btn-base px-4">جزییات</a>
-      <button *ngIf="item.status === 'PenddingPay'" (click)="callPay(item.transactions[0])" class="btn-base">پرداخت</button>
-      <a (click)="voucher(item.ref_code)" class="btn-base">نمایش واچر</a>
+      <a *ngIf="item.status === 'Completion'" routerLink="/dashboard/tour/info/{{ item.ref_code }}" style="height: 35px !important;" class="btn-base px-4">جزییات</a>
+      <!-- <button *ngIf="item.status === 'PenddingPay'" (click)="callPay(item.transactions[0])" class="btn-base">پرداخت</button>
+      <a (click)="voucher(item.ref_code)" class="btn-base">نمایش واچر</a> -->
     </div>
   </div>
   <div *ngIf="reserves.length==0" class="empty-box">
@@ -42,8 +42,8 @@
       <span class="r">کد پیگیری</span>
       <span class="l">{{ item.ref_code }}</span>
     </div>
-    <a routerLink="/dashboard/tour/info/{{ item.ref_code }}" class="btn-base">جزییات</a>
-    <button *ngIf="item.status === 'PenddingPay'" (click)="callPay(item.transactions[0])" class="btn-base">پرداخت</button>
-    <a (click)="voucher(item.ref_code)" class="btn-base">نمایش واچر</a>
+    <a *ngIf="item.status === 'Completion'" routerLink="/dashboard/tour/info/{{ item.ref_code }}" class="btn-base">جزییات</a>
+    <!-- <button *ngIf="item.status === 'PenddingPay'" (click)="callPay(item.transactions[0])" class="btn-base">پرداخت</button>
+    <a (click)="voucher(item.ref_code)" class="btn-base">نمایش واچر</a> -->
   </div>
 </div>
