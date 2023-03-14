@@ -93,7 +93,7 @@
                 <h2 >تور های مشابه</h2>
               </div>
             </div>
-            <prs-thumbnails-tour [tours]="tours"></prs-thumbnails-tour>
+            <prs-horizontal-thumbnail-tour *ngFor="let tour of tours; let i = index " [tour]="tour"></prs-horizontal-thumbnail-tour>
             <div *ngIf="tours.length==0" class="empty-box">
               <h3>شهری یافت نشد</h3>
             </div>
