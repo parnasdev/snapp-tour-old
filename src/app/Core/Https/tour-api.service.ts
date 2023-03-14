@@ -110,7 +110,7 @@ export class TourApiService {
   }
 
   getVoucher(req: ReserveListReqDTO, pageNum: number): any {
-    const address = pageNum ? `reserve/getReserves`
+    const address = pageNum ? `reserve/getReserves?page=${pageNum}` : 'reserve/getReserves'
     const strUrl = environment.BACK_END_IP + address;
     return this.http.post<Result<ReserveListResDTO>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
