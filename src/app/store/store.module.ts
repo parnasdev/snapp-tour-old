@@ -29,6 +29,7 @@ import { SearchComponent } from './search/search.component';
 import { SpecialTourComponent } from './special-tour/special-tour.component';
 import { NewestToursComponent } from './newest-tours/newest-tours.component';
 import { HorizontalThumbnailTourComponent } from './horizontal-thumbnail-tour/horizontal-thumbnail-tour.component';
+import { VerifyComponent } from './verify/verify.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { HorizontalThumbnailTourComponent } from './horizontal-thumbnail-tour/ho
     SearchComponent,
     SpecialTourComponent,
     NewestToursComponent,
-    HorizontalThumbnailTourComponent
+    HorizontalThumbnailTourComponent,
+    VerifyComponent
   ],
   exports: [
     IndexComponent,

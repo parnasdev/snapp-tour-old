@@ -1,0 +1,8 @@
+<div class="verify-accept" *ngIf="isVerify">
+    <p>پرداخت با موفقیت انجام شد</p>
+</div>
+
+<div class="verify-reject" *ngIf="!isVerify">
+    <p>عملیات پرداخت با شکست مواجه شد</p>
+    <button>بازگشت به لیست سفرها</button>
+</div>

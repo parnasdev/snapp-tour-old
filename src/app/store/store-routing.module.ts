@@ -5,6 +5,7 @@ import {StoreComponent} from "./store.component";
 import {AboutUsComponent} from "./about-us/about-us.component";
 import {ContactUsComponent} from "./contact-us/contact-us.component";
 import {InfoComponent} from "../cities/info/info.component";
+import { VerifyComponent } from './verify/verify.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,10 @@ const routes: Routes = [
       {
         path: 'about-us',
         component: AboutUsComponent
+      },
+      {
+        path: 'verify',
+        component: VerifyComponent
       },
       {
         path: ':city',
