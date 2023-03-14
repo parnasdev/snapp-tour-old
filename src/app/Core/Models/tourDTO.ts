@@ -1,6 +1,7 @@
 import { CityDTO, CityResponseDTO } from "./cityDTO";
 import { ServicesDTO } from "./hotelDTO";
 import { RoomTypePriceDTO } from "./roomTypeDTO";
+import { UserResDTO } from "./UserDTO";
 
 
 export interface TourListRequestDTO {
@@ -178,7 +179,7 @@ export interface PricesDTO {
 export interface TourTransferDTO {
   transfer_id: string;
   dateTime: string;
-  flightCode?: string;
+  flightCode: string;
   jDateTime?: string;
   transfer?: string;
   type: string;
@@ -279,14 +280,15 @@ export interface DatesResDTO {
 export interface ReserveInfoDTO {
   id: number;
   package: ReservePackageDTO;
-  user: string;
+  user: any;
   name: string;
   month: string;
+  ref_code?: string
   city: string;
   phone: string;
   count: number;
   status: string;
-  passengers: RoomPassengersDTO[];
+  passengers: RoomDTO[];
   bill: BillDTO;
   createdAt: string;
 }

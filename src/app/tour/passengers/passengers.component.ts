@@ -68,9 +68,11 @@ export class PassengersComponent implements OnInit, OnChanges {
     this.RoomData.passengers = passengers;
 
     this.passengerResult.emit(this.RoomData);
+    
   }
 
   onChange(): void {
+    console.log(this.PassengerForm)
     if (this.PassengerForm.valid) {
       this.convertPassengerObject()
     }

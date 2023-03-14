@@ -91,12 +91,12 @@ export class TourApiService {
 
   editReserve(editReserveReq: EditReserveReq, ref_code: string): any {
     const strUrl = environment.BACK_END_IP + `reserve/editReserve/${ref_code}`;
-    return this.http.post<Result<any>>(strUrl, {
+    return this.http.post<Result<any>>(strUrl, 
         editReserveReq
-    }, this.publicService.getDefaultHeaders());
+    , this.publicService.getDefaultHeaders());
   }
 
-  changeStatus(status: string | null, ref_code: string): any {
+  changeStatus(status: string | null, ref_code: string | null): any {
     const strUrl = environment.BACK_END_IP + `reserve/changeStatusReserve/${ref_code}`;
     return this.http.post<Result<any>>(strUrl, {
       status
@@ -107,6 +107,11 @@ export class TourApiService {
     const address = pageNum ? `reserve/getReserves?page=${pageNum}` : 'reserve/getReserves'
     const strUrl = environment.BACK_END_IP + address;
     return this.http.post<Result<ReserveListResDTO>>(strUrl, req, this.publicService.getDefaultHeaders());
+  }
+
+  getVoucher(refrence: string): any {
+    const strUrl = environment.BACK_END_IP + `reserve/getVoucher/${refrence}`;
+    return this.http.get<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
   }
 
   generateSlug(title: string): any {

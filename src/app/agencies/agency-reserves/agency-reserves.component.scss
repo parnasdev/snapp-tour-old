@@ -1,0 +1,54 @@
+.p-info-trip {
+  box-shadow: rgba(100, 100, 111, 0.1) 0 7px 29px 0;
+  border-radius: 10px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+.bg-info-trip {
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 1rem;
+}
+.title-profile {
+  margin-top: 0 !important;
+  padding: 0 !important;
+  display: flex;
+  align-items: center !important;
+  justify-content: flex-start;
+
+  i {
+    font-size: 9px;
+    color: #ff4241;
+    margin-left: 7px !important;
+    position: relative;
+    top: -8px;
+  }
+}
+.tour-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  width: 100%;
+
+  .item {
+    margin-top: 12px;
+
+    .title {
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .text {
+      font-size: 14px;
+      color: #3E3E3E;
+      margin-right: 8px;
+    }
+  }
+}
+.staus-button {
+  margin-right: 2rem;
+}

@@ -1,53 +1,4 @@
-<div *ngIf="false" class="p-info-trip">
-  <div class="w-100 bg-light bg-info-trip">
-    <div class="title-profile w-100">
-      <i class="icon-circle"></i>
-      <h2 class="dana-bold">اطلاعات تور</h2>
-    </div>
-    <div class="tour-items w-100">
-      <div class="item w-100 d-flex align-items-center px-2" *ngFor="let item of[1,2,3,4,5,6,7,8]">
-        <span class="title">سوال:</span>
-        <span class="text">پاسخ</span>
-      </div>
-    </div>
-  </div>
-  <div class="w-100 bg-light bg-info-trip">
-    <div class="title-profile w-100">
-      <i class="icon-circle"></i>
-      <h2 class="dana-bold">اطلاعات سافران</h2>
-    </div>
-    <div class="tour-items w-100">
-      <div class="item w-100 d-flex align-items-center px-2" *ngFor="let item of[1,2,3,4,5,6,7,8]">
-        <span class="title">سوال:</span>
-        <span class="text">پاسخ</span>
-      </div>
-    </div>
-  </div>
-  <div class="w-100 bg-light bg-info-trip">
-    <div class="title-profile w-100">
-      <i class="icon-circle"></i>
-      <h2 class="dana-bold">اطلاعات پرواز</h2>
-    </div>
-    <div class="tour-items w-100">
-      <div class="item w-100 d-flex align-items-center px-2" *ngFor="let item of[1,2,3,4,5,6,7,8]">
-        <span class="title">سوال:</span>
-        <span class="text">پاسخ</span>
-      </div>
-    </div>
-  </div>
-  <div class="w-100 bg-light bg-info-trip">
-    <div class="title-profile w-100">
-      <i class="icon-circle"></i>
-      <h2 class="dana-bold">اطلاعات هتل</h2>
-    </div>
-    <div class="tour-items w-100">
-      <div class="item w-100 d-flex align-items-center px-2" *ngFor="let item of[1,2,3,4,5,6,7,8]">
-        <span class="title">سوال:</span>
-        <span class="text">پاسخ</span>
-      </div>
-    </div>
-  </div>
-</div>
+
 <div class="d-flex align-items-center justify-content-between w-100">
   <div class="d-flex align-items-center mt-4">
     <h2 class="title-tour">{{ reserveObj?.package?.tour?.title }}</h2>
@@ -109,7 +60,7 @@
         (reserveObj.package.prices?.single | sperator) }}</strong>
       <small>تومان</small>
     </div>
-    <prs-counter *ngIf="isCounterShow" [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.tripleCapacity ? reserveObj.package.prices?.tripleCapacity : '0', 'single')"
+    <prs-counter *ngIf="isCounterShow" [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.singleCapacity ? reserveObj.package.prices?.singleCapacity : '0', 'single')"
     (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
     <small>موجودی اتاق: {{ reserveObj.package?.prices?.singleCapacity ? +reserveObj.package.prices.singleCapacity : 0 }}</small>
   </div>
@@ -150,15 +101,14 @@
     <small>موجودی اتاق: {{ reserveObj.package?.prices?.cwbCapacity ? +reserveObj.package.prices.cwbCapacity : 0 }}</small>
   </div>
   <!-- cnb -->
-  <div class="item-hotel" *ngIf="!reserveObj.package?.tour?.type">
-    <h5>کودک بدون تخت</h5>
+  <!-- <div class="item-hotel" *ngIf="!reserveObj.package?.tour?.type">
     <div class="price">
       <strong>{{ reserveObj.package.prices.cnb ? (reserveObj.package.prices.cnb | sperator) : 0 }}</strong>
       <small>تومان</small>
     </div>
     <prs-counter *ngIf="isCounterShow" (sendReserveRoomData)="getReserveRoomData($event)" [reserveRoomData]="setReseveRoomData('0', 'cnb')"></prs-counter>
     <small>موجودی اتاق: {{ 0 }}</small>
-  </div>
+  </div> -->
 </div>
 <div class="collapse" id="collapseExample">
   <div class="card card-body">
@@ -189,7 +139,7 @@
   </div>
   <div class="item-form">
     <label class="dana-bold" for="">
-      شهر
+       شهر محل سکونت
     </label>
     <div class="inp-form mt-2">
       <prs-select-city></prs-select-city>
@@ -224,6 +174,24 @@
 <div class="rules">
   <input type="checkbox">
   <p>تمامی قوانین و مقررات مرتبط با سایت اسنپ تریپ و پکیج های این تور را می پذیرم</p>
+</div>
+<div class="p-info-trip">
+  <div class="w-100 bg-light bg-info-trip">
+    <div class="title-profile w-100">
+      <i class="icon-circle"></i>
+      <h2 class="dana-bold">اطلاعات پرداخت</h2>
+    </div>
+    <div class="tour-items w-100">
+      <div class="item w-100 d-flex align-items-center px-2">
+        <span class="title">مبلغ کل:</span>
+        <span class="text">0</span>
+      </div>
+      <div class="item w-100 d-flex align-items-center px-2">
+        <span class="title">مبلغ قابل پرداخت:</span>
+        <span class="text">0</span>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="p-submit w-100 d-flex justify-content-center mt-4">
   <button class="btn-base px-4" (click)="submit()">ثبت درخواست</button>

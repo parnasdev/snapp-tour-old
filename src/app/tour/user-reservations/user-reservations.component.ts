@@ -75,6 +75,14 @@ export class UserReservationsComponent implements OnInit {
         document.body.appendChild(form);
         form.submit();
         document.body.removeChild(form);
+      }
+    });
+  }
+  
+  voucher(refrence:string):void {
+    this.api.getVoucher(refrence).subscribe((res: any) => {
+      if (res.isDone) {
+        console.log(res.data)
       } else {
         this.messageService.custom('مشکلی در نمایش اطلاعات به وجود آمده است')
       }

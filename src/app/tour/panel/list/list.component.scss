@@ -40,7 +40,7 @@
   height: 40px;
   width: 100%;
   display: grid;
-  grid-template-columns: 0.5fr 0.7fr 1.5fr 0.5fr 0.5fr 1fr 1fr 0.5fr 0.7fr 3fr;
+  grid-template-columns: 0.5fr 1.5fr 1.5fr 0.5fr 0.5fr 1fr 1fr 0.5fr 0.7fr 0.7fr 2.2fr;
   background-color: var(--white);
   border-bottom: 1px solid var(--light-color-two);
 }
@@ -60,7 +60,7 @@
   height: 60px;
   width: 100%;
   display: grid;
-  grid-template-columns: 0.5fr 0.7fr 1.5fr 0.5fr 0.5fr 1fr 1fr 0.5fr 0.7fr 3fr;
+  grid-template-columns: 0.5fr 1.5fr 1.5fr 0.5fr 0.5fr 1fr 1fr 0.5fr 0.7fr 0.7fr 2.2fr;
 }
 
 .body-list-tour .item:not(:last-child) {
@@ -84,6 +84,9 @@
   align-items: center;
   justify-content: space-between;
   padding-left: 4px;
+  button{
+    font-size: 12px !important;
+  }
 }
 
 .button-setting .edit-btn {

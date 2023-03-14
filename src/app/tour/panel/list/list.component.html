@@ -26,6 +26,7 @@
       <span class="date-create">تاریخ انقضا تور</span>
       <span class="view">بازدید</span>
       <span class="status">وضعیت</span>
+      <span class="status">تعداد رزرو</span>
       <span class="setting">تنظیمات</span>
     </div>
     <div class="body-list-tour" *ngIf="tours.length > 0">
@@ -39,6 +40,7 @@
         <span class="date-create">{{ this.calService.convertDate(tour.expireDate, 'fa') }}</span>
         <span class="view">{{ tour.viewCount }}</span>
         <span class="status">{{ getStatus(tour.status) }}</span>
+        <span>تعداد رزرو</span>
         <div class="button-setting">
           <a *ngIf="setting.checkItemPermission('Tour.edit')" routerLink="/panel/tour/edit/{{tour.slug}}"
             class="edit-btn">ویرایش</a>

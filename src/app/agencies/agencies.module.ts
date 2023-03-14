@@ -16,12 +16,14 @@ import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/materia
 import { UserModule } from '../user/user.module';
 import { ReserveListComponent } from './reserve-list/reserve-list.component';
 import { PipesModule } from '../common-project/pipes/pipes.module';
+import { AgencyReservesComponent } from './agency-reserves/agency-reserves.component';
 
 @NgModule({
     declarations: [
         ListComponent,
         ManageUserComponent,
         SetUserPopupComponent,
+        AgencyReservesComponent,
         InfoComponent,
         EditComponent,
         UserAgencyListComponent,
