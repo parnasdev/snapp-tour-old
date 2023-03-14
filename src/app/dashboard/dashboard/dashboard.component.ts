@@ -14,6 +14,4 @@ export class DashboardComponent implements OnInit {
       this.isLoading = false;
     },1500);
   };
-
-
 }

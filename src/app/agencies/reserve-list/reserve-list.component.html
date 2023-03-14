@@ -8,29 +8,33 @@
     <div class="header-list-tour">
       <span class="id">#</span>
       <span class="username">عنوان تور</span>
+      <span>نام رزرو گیرنده</span>
       <span class="username">عنوان هتل</span>
-
       <span class="title-tour">تاریخ رفت</span>
       <span class="from-to">تاریخ برگشت</span>
-      <span class="day">وضعیت</span>
+      <span class="day">وضعیت رزرو</span>
       <span class="day">وضعیت تور</span>
-
       <span class="date-create">کدپیگیری</span>
+      <span>تاریخ ایجاد رزرو</span>
       <span class="setting">عملیات</span>
     </div>
     <div class="body-list-tour" *ngIf="reserves.length > 0">
       <div class="item" *ngFor="let item of reserves ;let i = index">
         <span class="id">{{ item.id}}</span>
-        <span class="username">{{ item.package?.tour?item.package?.tour?.title :'حذف شده' }}</span>
-        <span class="username">{{ item.package?.hotel?.name }}</span>
-
-        <span class="title-tour">{{item.package?.tour?.stDate?  calService.convertDateAndTime(item.package?.tour?.stDate, 'fa') : 'ثبت نشده' }}</span>
-        <span class="from-to">{{item.package?.tour?.enDate ? calService.convertDateAndTime(item.package?.tour?.enDate, 'fa') : 'ثبت نشده' }}</span>
+        <span class="username text-center">{{ item.package?.tour ? item.package?.tour?.title : 'حذف شده' }}</span>
+        <span class="username text-center">{{ item.package?.hotel?.name }}</span>
+        <span>نام رزرو گیرنده</span>
+        <span
+          class="title-tour">{{item.package?.tour?.stDate ? calService.convertDateAndTime(item.package?.tour?.stDate, 'fa') : 'ثبت نشده' }}</span>
+        <span
+          class="from-to">{{item.package?.tour?.enDate ? calService.convertDateAndTime(item.package?.tour?.enDate, 'fa') : 'ثبت نشده' }}</span>
         <span class="day">{{ publicService.getStatus(item.status) }}</span>
-        <span class="day">{{ item.package?.tour?.isTrash ? 'حذف شده' :publicService.getStatus(item.package?.tour?.status) }}</span>
+        <span
+          class="day">{{ item.package?.tour?.isTrash ? 'حذف شده' : publicService.getStatus(item.package?.tour?.status) }}</span>
 
         <span class="date-create">{{ item.ref_code }}</span>
-        <div class="button-setting">
+        <span>تاریخ ایجاد رزرو</span>
+        <div class="button-setting d-flex justify-content-center">
           <!-- <a class="edit-btn">تایید</a> -->
           <a routerLink="/panel/agencies/reserves/{{ item.ref_code }}" class="edit-btn">مشاهده</a>
           <!-- <a class="edit-btn">ویرایش</a> -->
@@ -41,7 +45,6 @@
 
     </div>
   </div>
-
 
 
 </div>

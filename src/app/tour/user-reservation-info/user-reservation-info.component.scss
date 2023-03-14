@@ -241,6 +241,19 @@
     max-width: 83% !important;
     left: 7px !important;
   }
+
+  .p-errorr{
+    display: grid !important;
+    flex-direction: row !important;
+    width: 100%;
+   grid-template-columns: 1fr;
+   gap: 15px;
+   margin-top: 15px;
+   place-items: center;
+    span{
+      font-size: 13px;
+    }
+  }
   .rules {
     align-items: flex-start;
 
@@ -329,4 +342,16 @@
   display: grid;
   place-items: center;
   margin: 1.5rem 0;
+}
+.p-errorr{
+  display: grid !important;
+  flex-direction: row !important;
+  width: 100%;
+ grid-template-columns: 1fr 1fr 1fr;
+ gap: 15px;
+ margin-top: 15px;
+ place-items: center;
+  span{
+    font-size: 13px;
+  }
 }
