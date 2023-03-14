@@ -79,13 +79,6 @@ export class PassengersComponent implements OnInit, OnChanges {
       //   this.markFormGroupTouched(control)
       // })
     }
-  }
 
-  markFormGroupTouched(): void {
-    (<FormArray>this.ReserveForm.get('passengers')).controls.forEach((group: any) => {
-      (<any>Object).values(group.controls).forEach((control: FormControl) => { 
-          control.markAsTouched();
-      }) 
-    });
-  }
+
 }
