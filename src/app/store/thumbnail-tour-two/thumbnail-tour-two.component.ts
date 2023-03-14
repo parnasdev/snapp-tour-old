@@ -21,7 +21,7 @@ export class ThumbnailTourTwoComponent implements OnInit {
   @Input() tourInfo!: TourInfoDTO;
   @Input() tourType = false;
   @Input() defineTour = false;
-
+  clicked  =false;
   constructor(public dialog: MatDialog,
               public message: MessageService,
               public tourApi: TourApiService,
@@ -48,6 +48,7 @@ export class ThumbnailTourTwoComponent implements OnInit {
   }
 
   checkReserve(packageId: number) {
+    this.clicked = true;
     this.session.isLoggedIn() ? this.getReserve(packageId) : this.loginPopup(packageId)
   }
 

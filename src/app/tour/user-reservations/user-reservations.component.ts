@@ -57,6 +57,17 @@ export class UserReservationsComponent implements OnInit {
     })
   }
 
-
+  voucher():void {
+    this.api.getVoucher(this.reserveReq).subscribe((res: any) => {
+      if (res.isDone) {
+        console.log(res.data)
+        this.reserves = res.data;
+      } else {
+        this.messageService.custom('مشکلی در نمایش اطلاعات به وجود آمده است')
+      }
+    }, (error: any) => {
+      this.errorService.check(error);
+    })
+  }
 
 }
