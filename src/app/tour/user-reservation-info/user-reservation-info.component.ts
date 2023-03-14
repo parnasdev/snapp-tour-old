@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { transfersSetDTO } from 'src/app/agencies/agency-reserves/agency-reserves.component';
 import { RoomTypeApiService } from 'src/app/Core/Https/room-type-api.service';
 import { TourApiService } from 'src/app/Core/Https/tour-api.service';
 import { RoomTypeListDTO } from 'src/app/Core/Models/roomTypeDTO';
@@ -8,6 +9,7 @@ import { DiscountsDTO, EditReserveReq, HotelDTO, PricesDTO, RateDTO, ReserveInfo
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
 import { CheckErrorService } from 'src/app/Core/Services/check-error.service';
 import { MessageService } from 'src/app/Core/Services/message.service';
+import { PublicService } from 'src/app/Core/Services/public.service';
 import { SessionService } from 'src/app/Core/Services/session.service';
 
 @Component({
@@ -97,9 +99,6 @@ export class UserReservationInfoComponent implements OnInit {
   }
   roomsSelected: RoomDTO[] = [];
 
-
-
-
   roomsList: ReserveRoomDTO[] = []
 
   roomsCapacityReq: string[] = [];
@@ -109,6 +108,14 @@ export class UserReservationInfoComponent implements OnInit {
 
   tourType: any = false;
   isCounterShow = false;
+  transfers: transfersSetDTO = {
+    stDate: '',
+    enDate: '',
+    originTransfer: '',
+    destTransfer: '',
+    originFlightCode: '',
+    destFlightCode: ''
+  }
 
   constructor(public route: ActivatedRoute,
     public messageService: MessageService,
@@ -116,6 +123,7 @@ export class UserReservationInfoComponent implements OnInit {
     public router: Router,
     public fb: FormBuilder,
     public session: SessionService,
+    public publicService: PublicService,
     public calService: CalenderServices,
     public roomApiService: RoomTypeApiService,
     public api: TourApiService) {
@@ -133,6 +141,7 @@ export class UserReservationInfoComponent implements OnInit {
       if (res.isDone) {
         this.reserveObj = res.data;
         this.tourType = this.reserveObj.package.tour.type;
+        this.setTourTransfers()
         this.getRoomCapacity();
         this.setDateAndTime();
       } else {
@@ -143,7 +152,18 @@ export class UserReservationInfoComponent implements OnInit {
     })
   }
 
-
+  setTourTransfers(): void {
+    if (this.reserveObj.package?.tour && this.reserveObj.package?.tour?.transfers.length > 0) {
+      this.transfers = {
+        stDate: this.calService.convertDate(this.reserveObj.package?.tour?.transfers[0]?.dateTime, 'fa'),
+        enDate: this.calService.convertDate(this.reserveObj.package?.tour?.transfers[1]?.dateTime, 'fa'),
+        originTransfer: this.reserveObj.package.tour.transfers[0].transfer,
+        destTransfer: this.reserveObj.package.tour.transfers[1].transfer,
+        originFlightCode: this.reserveObj.package.tour.transfers[0].flightCode,
+        destFlightCode: this.reserveObj.package.tour.transfers[1].flightCode
+      }
+    }
+  }
 
   setRoomsCapacityReq() {
     if (this.tourType) {

@@ -1,22 +1,7 @@
-<!-- <div class="p-info-trip">
-  <div class="w-100 bg-light bg-info-trip">
-    <div class="title-profile w-100">
-      <i class="icon-circle"></i>
-      <h2 class="dana-bold">اطلاعات پرداخت</h2>
-    </div>
-    <div class="tour-items w-100">
-      <div class="item w-100 d-flex align-items-center px-2">
-        <span class="title">مبلغ کل:</span>
-        <span class="text">0</span>
-      </div>
-      <div class="item w-100 d-flex align-items-center px-2">
-        <span class="title">مبلغ قابل پرداخت:</span>
-        <span class="text">0</span>
-      </div>
-    </div>
-  </div>
-</div> -->
-<div class="d-flex align-items-center justify-content-between w-100">
+
+
+<ng-template [ngIf]="reserveObj.status === 'Completion'">
+  <div class="d-flex align-items-center justify-content-between w-100">
   <div class="d-flex align-items-center mt-4">
     <h2 class="title-tour">{{ reserveObj?.package?.tour?.title }}</h2>
   </div>
@@ -209,3 +194,172 @@
 <div class="p-submit w-100 d-flex justify-content-center mt-4">
   <button class="btn-base px-4" (click)="submit()">ثبت درخواست</button>
 </div>
+</ng-template>
+//////////////////////////////////////////////////    info    ////////////////////////////////////////////////////////
+<ng-template [ngIf]="reserveObj.status !== 'Completion'">
+  <div class="p-info-trip">
+    <div class="d-flex">
+
+    </div>
+      <div class="w-100 bg-light bg-info-trip">
+        <div class="title-profile w-100">
+          <i class="icon-circle"></i>
+          <h2 class="dana-bold">اطلاعات رزرو</h2>
+        </div>
+        <div class="tour-items w-100">
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title">کد رفرنس:</span>
+            <span class="text">{{ reserveObj.ref_code }}</span>
+          </div>
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title">وضعیت:</span>
+            <span class="text">{{publicService.getStatus(reserveObj.status) }}</span>
+          </div>
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title">مبلغ کل:</span>
+            <span class="text">{{reserveObj.bill?.totalRoomPrice | sperator }}</span>
+          </div>
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title">مبلغ قابل پرداخت:</span>
+            <span class="text">{{reserveObj.bill?.totalPayAble | sperator}}</span>
+          </div>
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title">تاریخ درخواست:</span>
+            <span class="text">{{ calService.convertDateAndTime(reserveObj.createdAt,'fa') }}</span>
+          </div>
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title">تاریخ خروج از هتل:</span>
+            <span class="text">{{ calService.convertDate(reserveObj.package?.tour?.enDate,'fa') }}</span>
+          </div>
+    
+    
+        </div>
+      </div>
+      <div class="w-100 bg-light bg-info-trip">
+        <div class="title-profile w-100">
+          <i class="icon-circle"></i>
+          <h2 class="dana-bold">اطلاعات کاربر رزرو گیرنده</h2>
+        </div>
+        <div class="tour-items w-100">
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title">نام:</span>
+            <span class="text">{{ reserveObj.user.name }}</span>
+          </div>
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title">نام خانوادگی:</span>
+            <span class="text">{{reserveObj.user.family }}</span>
+          </div>
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title">شماره همراه:</span>
+            <span class="text">{{reserveObj.user.phone }}</span>
+          </div>
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title"> شهر:</span>
+            <span class="text">{{ reserveObj.user.city?.name}}</span>
+          </div>
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title"> کدملی:</span>
+            <span class="text">{{ reserveObj.user.id_code}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="w-100 bg-light bg-info-trip">
+        <div class="title-profile w-100">
+          <i class="icon-circle"></i>
+          <h2 class="dana-bold">{{ reserveObj.package.tour.title }}</h2>
+        </div>
+        <div class="tour-items w-100">
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title">تاریخ پرواز رفت:</span>
+            <span class="text">{{transfers.stDate}}</span>
+          </div>
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title">تاریخ پرواز برگشت:</span>
+            <span class="text">{{transfers.enDate }}</span>
+          </div>
+    
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title">تعداد روز:</span>
+            <span class="text">{{reserveObj.package?.tour?.dayNum }}</span>
+          </div>
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title">تعداد شب:</span>
+            <span class="text">{{reserveObj.package?.tour?.nightNum }}</span>
+          </div>
+    
+    
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title">تاریخ ورود به هتل:</span>
+            <span class="text">{{ calService.convertDate(reserveObj.package?.tour?.stDate,'fa') }}</span>
+          </div>
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title">تاریخ خروج از هتل:</span>
+            <span class="text">{{ calService.convertDate(reserveObj.package?.tour?.enDate,'fa') }}</span>
+          </div>
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title">ایرلاین رفت:</span>
+            <span class="text">{{ transfers.originTransfer }}</span>
+          </div>
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title">ایرلاین برگشت:</span>
+            <span class="text">{{ transfers.originTransfer }}</span>
+          </div>
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title">شماره پرواز رفت:</span>
+            <span class="text">{{ transfers.originFlightCode }}</span>
+          </div>
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title">شماره پرواز برگشت:</span>
+            <span class="text">{{ transfers.destFlightCode }}</span>
+          </div>
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title">نام هتل:</span>
+            <span class="text">{{ reserveObj.package.hotel.name }}</span>
+          </div>
+    
+        </div>
+      </div>
+      <div *ngFor="let item of reserveObj.passengers" class="w-100 bg-light bg-info-trip">
+        <div class="title-profile w-100">
+          <i class="icon-circle"></i>
+          <h2 class="dana-bold">{{ item.name }}</h2>
+        </div>
+        <div *ngFor="let p of item.passengers" class="tour-items w-100">
+          
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title">نام:</span>
+            <span class="text">{{ p.firstName }}</span>
+          </div>
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title">نام خانوادگی:</span>
+            <span class="text">{{ p.lastName }}</span>
+          </div>
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title">کدملی:</span>
+            <span class="text">{{ p.id_code ?? '---' }}</span>
+          </div>
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title">شماره پاسپورت:</span>
+            <span class="text">{{ p.passport_number }}</span>
+          </div>
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title">انقضا پاسپورت:</span>
+            <span class="text">{{calService.convertDate(p.passport_expire,'en') }}</span>
+          </div>
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title">تاریخ تولد :</span>
+            <span class="text">{{calService.convertDate( p.birthDate,'fa') }}</span>
+          </div>
+          <div class="item w-100 d-flex align-items-center px-2">
+            <span class="title">شماره همراه :</span>
+            <span class="text">{{ p.phoneNumber }}</span>
+          </div>
+    
+        </div>
+      
+    
+      </div>
+    
+    
+    </div>
+</ng-template>
