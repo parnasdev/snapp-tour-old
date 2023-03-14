@@ -12,6 +12,9 @@
           <div class="inp-form mt-2">
             <input [formControl]="nameFC" type="text" placeholder="اینجا بنویسید …">
           </div>
+          <div class="mt-1" *ngIf="errorsService.hasError('name')">
+            <span class="text-danger">{{errorsService.getError('name')}}</span>
+          </div>
         </div>
         <div class="item-form">
           <label class="dana-bold" for="">
@@ -19,6 +22,9 @@
           </label>
           <div class="inp-form mt-2">
             <input [formControl]="familyFC" type="text" placeholder="اینجا بنویسید …">
+          </div>
+          <div class="mt-1" *ngIf="errorsService.hasError('family')">
+            <span class="text-danger">{{errorsService.getError('family')}}</span>
           </div>
         </div>
         <div class="item-form-2">
@@ -37,12 +43,18 @@
 
           </div>
         </div>
+        <div class="mt-1" *ngIf="errorsService.hasError('gender')">
+          <span class="text-danger">{{errorsService.getError('gender')}}</span>
+        </div>
         <div class="item-form">
           <label class="dana-bold" for="">
             ایمیل
           </label>
           <div class="inp-form mt-2">
             <input [formControl]="emailFC" type="text" placeholder="اینجا بنویسید …">
+          </div>
+          <div class="mt-1" *ngIf="errorsService.hasError('email')">
+            <span class="text-danger">{{errorsService.getError('email')}}</span>
           </div>
         </div>
         <div class="item-form">
@@ -52,6 +64,9 @@
           <div class="inp-form mt-2">
             <input [formControl]="idCodeFC" type="text" placeholder="اینجا بنویسید …">
           </div>
+          <div class="mt-1" *ngIf="errorsService.hasError('id_code')">
+            <span class="text-danger">{{errorsService.getError('id_code')}}</span>
+          </div>
         </div>
         <div class="item-form">
           <label class="dana-bold" for="">
@@ -60,18 +75,24 @@
           <div class="inp-form mt-2">
             <input type="text" [formControl]="phoneFC" placeholder="اینجا بنویسید …">
           </div>
+          <div class="mt-1" *ngIf="errorsService.hasError('phone')">
+            <span class="text-danger">{{errorsService.getError('phone')}}</span>
+          </div>
         </div>
         <div class="item-form-2">
           <prs-select-city-two [type]="1" *ngIf="show" [inCommingCity]="req?.city?.slugEn"
             (citySelected)="onCitySelected($event)"></prs-select-city-two>
+        </div>
+        <div class="mt-1" *ngIf="errorsService.hasError('city')">
+          <span class="text-danger">{{errorsService.getError('city')}}</span>
         </div>
         <div class="item-form-2">
           <button class="btn-base" (click)="submit()">
             ثبت تغییرات
           </button>
         </div>
-  
-       
+
+
       </form>
     </div>
 

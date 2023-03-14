@@ -207,7 +207,7 @@ export interface ReserveReqDTO {
 export interface ReserveListReqDTO {
   perPage?: number
   paginate: boolean,
-  accountType?: string
+  accountType?: string | null
 }
 
 export interface ReserveListResDTO {

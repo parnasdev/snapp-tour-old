@@ -137,6 +137,7 @@ show = true
       this.isLoading = false;
       this.errorsService.clear();
       this.errorsService.check(error);
+      this.errorsService.recordError(error.error.data)
     })
   }
 
