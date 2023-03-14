@@ -15,6 +15,7 @@
     <span>{{ item.ref_code }}</span>
     <div>
       <a routerLink="/dashboard/tour/info/{{ item.ref_code }}" style="height: 35px !important;" class="btn-base px-4">جزییات</a>
+      <button *ngIf="item.status === 'PenddingPay'" (click)="callPay(item.transactions[0])" class="btn-base">پرداخت</button>
     </div>
   </div>
   <div *ngIf="reserves.length==0" class="empty-box">
@@ -41,5 +42,6 @@
       <span class="l">{{ item.ref_code }}</span>
     </div>
     <a routerLink="/dashboard/tour/info/{{ item.ref_code }}" class="btn-base">جزییات</a>
+    <button *ngIf="item.status === 'PenddingPay'" (click)="callPay(item.transactions[0])" class="btn-base">پرداخت</button>
   </div>
 </div>

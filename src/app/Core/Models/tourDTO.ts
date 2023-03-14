@@ -232,6 +232,7 @@ export interface UserReserveListResDTO {
   passengers: null
   status: string
   ref_code: string;
+  transactions: any;
 }
 
 export interface ReservePackageDTO {

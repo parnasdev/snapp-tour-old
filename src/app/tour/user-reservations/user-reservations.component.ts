@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { TourApiService } from 'src/app/Core/Https/tour-api.service';
 import { ReserveListResDTO, ReserveListReqDTO, UserReserveListResDTO } from 'src/app/Core/Models/tourDTO';
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
@@ -27,6 +28,8 @@ export class UserReservationsComponent implements OnInit {
 
   pageNum = 1
 
+  formData: any;
+
   constructor(public mobileService: ResponsiveService,
               public session: SessionService,
               public calService: CalenderServices,
@@ -47,7 +50,6 @@ export class UserReservationsComponent implements OnInit {
   getReserveList(): void {
     this.api.getReserves(this.reserveReq,this.pageNum).subscribe((res: any) => {
       if (res.isDone) {
-        console.log(res.data)
         this.reserves = res.data;
       } else {
         this.messageService.custom('مشکلی در نمایش اطلاعات به وجود آمده است')
@@ -57,6 +59,28 @@ export class UserReservationsComponent implements OnInit {
     })
   }
 
-
+  callPay(transactionId: any) {
+    this.api.payTransaction(transactionId.id).subscribe((res: any) => {
+      if (res.isDone) {
+        this.formData = JSON.parse(res.data);
+        console.log(this.formData);
+        var form = document.createElement("form");
+        form.setAttribute("method", "POST");
+        form.setAttribute("action", this.formData.action);
+        form.setAttribute("target", "_self");
+        var hiddenField = document.createElement("input");
+        hiddenField.setAttribute("name", "token");
+        hiddenField.setAttribute("value", this.formData.inputs.Token);
+        form.appendChild(hiddenField);
+        document.body.appendChild(form);
+        form.submit();
+        document.body.removeChild(form);
+      } else {
+        this.messageService.custom('مشکلی در نمایش اطلاعات به وجود آمده است')
+      }
+    }, (error: any) => {
+      this.errorService.check(error);
+    })
+  }
 
 }

@@ -116,8 +116,15 @@ export class TourApiService {
     }
     return this.http.post<Result<string>>(strUrl, entity, this.publicService.getDefaultHeaders());
   }
+
   getDates(originEn: string, destEn: string): any {
     const strUrl = this.serverControllerName + `getDates/${originEn}/${destEn}`;
     return this.http.get<Result<DatesResDTO[]>>(strUrl, this.publicService.getDefaultHeaders());
   }
+
+  payTransaction(transactionId: string): any {
+    const strUrl =  environment.BACK_END_IP + `transaction/pay/${transactionId}`;
+    return this.http.get<Result<any[]>>(strUrl, this.publicService.getDefaultHeaders());
+  }
+
 }
