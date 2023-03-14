@@ -47,7 +47,6 @@ export class AuthPopupComponent implements OnInit {
   }
 
   check(type: string): void {
-    debugger;
     if (type == 'validate'){
       this.validate();
     } else {
@@ -58,14 +57,11 @@ export class AuthPopupComponent implements OnInit {
         accountType: 'user',
         temp: 1
       };
-
       if(this.actionType === 'register') {
         this.register();
       } else {
         this.login();
       }
- 
-     
     }
   }
 
