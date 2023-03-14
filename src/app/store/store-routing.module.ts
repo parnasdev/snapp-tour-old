@@ -43,7 +43,7 @@ const routes: Routes = [
         component: AboutUsComponent
       },
       {
-        path: 'verify',
+        path: 'verify/:reserveId',
         component: VerifyComponent
       },
       {

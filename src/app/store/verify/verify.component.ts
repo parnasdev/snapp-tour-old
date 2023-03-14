@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'prs-verify',
@@ -8,10 +9,11 @@ import { Component, OnInit } from '@angular/core';
 export class VerifyComponent implements OnInit {
 
   isVerify = false;
-
-  constructor() { }
+  slug: string | null = ''
+  constructor(public route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.slug = this.route.snapshot.paramMap.get('reserveId');
   }
 
 }
