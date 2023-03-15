@@ -40,7 +40,6 @@ export class HeaderComponent implements OnInit {
         $(".show-menu").removeClass("under-menu")
       })
     })
-
   }
 
   menuOpen() {
