@@ -17,6 +17,8 @@ import { UserModule } from '../user/user.module';
 import { ReserveListComponent } from './reserve-list/reserve-list.component';
 import { PipesModule } from '../common-project/pipes/pipes.module';
 import { AgencyReservesComponent } from './agency-reserves/agency-reserves.component';
+import { EditReserveComponent } from './edit-reserve/edit-reserve.component';
+import { TourModule } from '../tour/tour.module';
 
 @NgModule({
     declarations: [
@@ -27,7 +29,8 @@ import { AgencyReservesComponent } from './agency-reserves/agency-reserves.compo
         InfoComponent,
         EditComponent,
         UserAgencyListComponent,
-        ReserveListComponent
+        ReserveListComponent,
+        EditReserveComponent
     ],
     exports: [
         ManageUserComponent,
@@ -44,6 +47,7 @@ import { AgencyReservesComponent } from './agency-reserves/agency-reserves.compo
         ReactiveFormsModule,
         FormsModule,
         ToolsModule,
+        TourModule,
         StoreModule,
         CommonProjectModule,
     ], providers: [
