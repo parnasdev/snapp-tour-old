@@ -40,7 +40,6 @@ export class ReserveListComponent implements OnInit {
   getReserveList(): void {
     this.api.getReserves(this.reserveReq,this.pageNum).subscribe((res: any) => {
       if (res.isDone) {
-        console.log(res.data)
         this.reserves = res.data;
       } else {
         this.messageService.custom('مشکلی در نمایش اطلاعات به وجود آمده است')
