@@ -31,6 +31,7 @@ import { NewestToursComponent } from './newest-tours/newest-tours.component';
 import { HorizontalThumbnailTourComponent } from './horizontal-thumbnail-tour/horizontal-thumbnail-tour.component';
 import { VerifyComponent } from './verify/verify.component';
 import { PayComponent } from './pay/pay.component';
+import { VoucherComponent } from './voucher/voucher.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { PayComponent } from './pay/pay.component';
     NewestToursComponent,
     HorizontalThumbnailTourComponent,
     VerifyComponent,
-    PayComponent
+    PayComponent,
+    VoucherComponent
   ],
   exports: [
     IndexComponent,

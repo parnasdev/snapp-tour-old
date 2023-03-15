@@ -7,6 +7,7 @@ import { DashboardGuardService } from './Core/guards/dashboard-guard.service';
 import { AuthGuardService } from './Core/guards/auth-guard.service';
 import { HomeGuardService } from './Core/guards/home-guard.service';
 import { PayComponent } from './store/pay/pay.component';
+import { VoucherComponent } from './store/voucher/voucher.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,10 @@ const routes: Routes = [
       {
         path: 'pay/:transactionId',
         component: PayComponent
+      },
+      {
+        path: 'voucher/:ref_code',
+        component: VoucherComponent
       },
       {
         path: 'not-found',
