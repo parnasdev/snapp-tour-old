@@ -5,6 +5,8 @@ import {transfersSetDTO} from 'src/app/agencies/agency-reserves/agency-reserves.
 import {RoomTypeApiService} from 'src/app/Core/Https/room-type-api.service';
 import {TourApiService} from 'src/app/Core/Https/tour-api.service';
 import {RoomTypeListDTO} from 'src/app/Core/Models/roomTypeDTO';
+
+declare let $: any;
 import {
   DiscountsDTO,
   EditReserveReq,
@@ -151,6 +153,7 @@ export class UserReservationInfoComponent implements OnInit {
     this.reserveCode = this.route.snapshot.paramMap.get('reserveid');
 
     this.getReserve();
+
   }
 
   getReserve(): void {
@@ -170,9 +173,9 @@ export class UserReservationInfoComponent implements OnInit {
     }, (error: any) => {
       this.isLoading = false;
 
-      if(error.status === 404) {
-      this.router.navigateByUrl('/')
-      this.messageService.custom('کد رفرنس نامعتبر است')
+      if (error.status === 404) {
+        this.router.navigateByUrl('/')
+        this.messageService.custom('کد رفرنس نامعتبر است')
 
       }
       this.checkError.check(error);

@@ -1,199 +1,264 @@
-
 <prs-loading *ngIf="isLoading"></prs-loading>
 <ng-template [ngIf]="reserveObj.status === 'Completion'">
-  <div class="d-flex align-items-center justify-content-between w-100">
-  <div class="d-flex align-items-center mt-4">
-    <h2 class="title-tour">{{ reserveObj?.package?.tour?.title }}</h2>
-  </div>
-  <div class="code">
-    <span>کد رفرنس: {{ this.reserveCode }}</span>
-  </div>
-</div>
-<div class="set-request-tour">
-  <div class="info-from">
-    <span class="city-name">{{ reserveObj?.package?.tour?.stCity?.name }}</span>
-    <div class="item">
-      <span class="title">تاریخ و ساعت پرواز رفت :</span>
-      <span class="text">{{ stDate }}</span>
-    </div>
-    <div class="item">
-      <span class="title">تاریخ ورود به هتل :</span>
-      <span class="text">{{ calService.convertDateAndTime(reserveObj?.package?.tour?.stDate, 'fa') }}</span>
-    </div>
-  </div>
-  <div class="info-time">
-    <span class="title">مدت اقامت:</span>
-    <span class="text">{{ reserveObj?.package?.tour?.dayNum }} روز و {{ reserveObj?.package?.tour?.nightNum }} شب</span>
-  </div>
-  <div class="info-to">
-    <span class="city-name">{{ reserveObj?.package?.tour?.endCity?.name }}</span>
-    <div class="item">
-      <span class="title">تاریخ و ساعت پرواز برگشت :</span>
-      <span class="text">{{enDate }}</span>
-    </div>
-    <div class="item">
-      <span class="title">تاریخ خروج از هتل :</span>
-      <span class="text">{{ calService.convertDateAndTime(reserveObj?.package?.tour?.enDate, 'fa') }}</span>
-    </div>
-  </div>
-</div>
-<h2 class="title-tour">هتل انتخابی : {{ reserveObj.package.hotel.name }}</h2>
-<div class="set-request-hotel">
-  <button *ngIf="isDesktop" class="btn-collapse" data-toggle="tooltip" data-placement="top" title="Tooltip on top"  data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    <i class="icon-down-open"></i>
-  </button>
-  <!-- twin -->
-  <div class="item-hotel">
-    <h5>دو تخته (به ازای هر نفر)</h5>
-    <div class="price">
-      <strong>{{ reserveObj.package.tour.defineTour ? (reserveObj.package.prices?.twinRate | sperator) : (reserveObj.package.prices?.twin | sperator)
-        }}</strong>
-      <small>تومان</small>
-    </div>
-    <prs-counter *ngIf="isCounterShow" [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.twinCapacity ? reserveObj.package.prices?.twinCapacity : '0', 'twin')"
-    (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
-    <small>موجودی اتاق: {{ reserveObj.package?.prices?.twinCapacity ? +reserveObj.package.prices.twinCapacity : 0 }}</small>
-  </div>
-  <!-- single -->
-  <div class="item-hotel" *ngIf="!reserveObj.package?.tour?.type">
-    <h5>یک تخته (به ازای هر نفر)</h5>
-    <div class="price">
-      <strong>{{ reserveObj.package.tour.defineTour ? (reserveObj.package.prices?.singleRate | sperator) :
-        (reserveObj.package.prices?.single | sperator) }}</strong>
-      <small>تومان</small>
-    </div>
-    <prs-counter *ngIf="isCounterShow" [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.singleCapacity ? reserveObj.package.prices?.singleCapacity : '0', 'single')"
-    (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
-    <small>موجودی اتاق: {{ reserveObj.package?.prices?.singleCapacity ? +reserveObj.package.prices.singleCapacity : 0 }}</small>
-  </div>
-  <!-- triple -->
-  <div class="item-hotel" *ngIf="reserveObj.package?.tour?.type">
-    <h5>سه تخته (به ازای هر نفر)</h5>
-    <div class="price">
-      <strong>{{ reserveObj.package.tour.defineTour ? (reserveObj.package.prices?.tripleRate | sperator) :
-        (reserveObj.package.prices?.triple | sperator) }}</strong>
-      <small>تومان</small>
-    </div>
-    <prs-counter *ngIf="isCounterShow" [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.tripleCapacity ? reserveObj.package.prices?.tripleCapacity : '0', 'triple')"
-    (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
-    <small>موجودی اتاق: {{ reserveObj.package?.prices?.tripleCapacity ? +reserveObj.package.prices.tripleCapacity : 0 }}</small>
-  </div>
-  <!-- quad -->
-  <div class="item-hotel" *ngIf="reserveObj.package?.tour?.type">
-    <h5>چهار تخته (به ازای هر نفر)</h5>
-    <div class="price">
-      <strong>{{ reserveObj.package.tour.defineTour ? (reserveObj.package.prices?.quad | sperator) : (reserveObj.package.prices?.quad | sperator)
-        }}</strong>
-      <small>تومان</small>
-    </div>
-    <prs-counter *ngIf="isCounterShow" [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.quadCapacity ? reserveObj.package.prices?.quadCapacity : '0', 'quad')"
-    (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
-    <small>موجودی اتاق: {{ reserveObj.package?.prices?.quadCapacity ? +reserveObj.package.prices.quadCapacity : 0 }}</small>
-  </div>
-  <!-- cwb -->
-  <div class="item-hotel" *ngIf="!reserveObj.package?.tour?.type">
-    <h5>کودک با تخت</h5>
-    <div class="price">
-      <strong>{{ reserveObj.package.tour.defineTour ? (reserveObj.package.prices?.cwbRate | sperator) : reserveObj.package.prices?.cwb
-        }}</strong>
-      <small>تومان</small>
-    </div>
-    <prs-counter *ngIf="isCounterShow" [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.cwbCapacity ? reserveObj.package?.prices?.cwbCapacity : '0', 'cwb')"
-    (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
-    <small>موجودی اتاق: {{ reserveObj.package?.prices?.cwbCapacity ? +reserveObj.package.prices.cwbCapacity : 0 }}</small>
-  </div>
-  <!-- cnb -->
-  <!-- <div class="item-hotel" *ngIf="!reserveObj.package?.tour?.type">
-    <div class="price">
-      <strong>{{ reserveObj.package.prices.cnb ? (reserveObj.package.prices.cnb | sperator) : 0 }}</strong>
-      <small>تومان</small>
-    </div>
-    <prs-counter *ngIf="isCounterShow" (sendReserveRoomData)="getReserveRoomData($event)" [reserveRoomData]="setReseveRoomData('0', 'cnb')"></prs-counter>
-    <small>موجودی اتاق: {{ 0 }}</small>
-  </div> -->
-</div>
-<div class="collapse" id="collapseExample">
-  <div class="card card-body">
-    اتاق اضافی موجود نیست
-  </div>
-</div>
-<h2 style="font-size: 14px" class="title-tour text-danger mt-3">اطلاعات رزروگیرنده (این مشخصات به عنوان طرف قرارداد درنظر گرفته می شود)</h2>
-<div class="set-info-supervisor">
-  <div class="item-form">
-    <label class="dana-bold" for="">نام</label>
-    <div class="inp-form mt-2">
-      <input type="text" [formControl]="nameFC" placeholder="اینجا بنویسید …">
-    </div>
-  </div>
-  <div class="item-form">
-    <label class="dana-bold" for=""> نام خانوادگی</label>
-    <div class="inp-form mt-2">
-      <input type="text" [formControl]="familyFC" placeholder="اینجا بنویسید …">
-    </div>
-  </div>
-  <div class="item-form">
-    <label class="dana-bold" for="">
-      کد ملی
-    </label>
-    <div class="inp-form mt-2">
-      <input type="text" [formControl]="idCodeFC" placeholder="اینجا بنویسید …">
-    </div>
-  </div>
-  <div class="item-form">
-    <label class="dana-bold" for="">
-       شهر محل سکونت
-    </label>
-    <div class="inp-form mt-2">
-      <prs-select-city></prs-select-city>
-    </div>
-
-  </div>
-  <div class="item-form">
-    <label class="dana-bold" for="">
-      شماره همراه
-    </label>
-    <div class="inp-form mt-2">
-      <input [formControl]="phoneFC" type="text" placeholder="اینجا بنویسید …">
-    </div>
-  </div>
-</div>
-
-<h2>اطلاعات مسافران</h2>
-<div class="box-empty" *ngIf="roomsSelected.length === 0">
-<span>اتاقی انتخاب نشده است</span>
-</div>
-<prs-passengers *ngFor="let room of roomsSelected" [tourType]="getTourType(reserveObj?.package?.tour?.type)" [RoomData]="room" (passengerResult)="getRoomData($event)"></prs-passengers>
-
-<!-- <div class="p-info-trip">
-  <div class="w-100 bg-light bg-info-trip">
-    <div class="title-profile w-100">
-      <i class="icon-circle"></i>
-      <h2 class="dana-bold">اطلاعات پرداخت</h2>
-    </div>
-    <div class="tour-items w-100">
-      <div class="item w-100 d-flex align-items-center px-2">
-        <span class="title">مبلغ کل:</span>
-        <span class="text">0</span>
+  <div class="prs-responsive">
+    <div class="col-md-11 mx-auto px-mobi">
+      <div class="box-fix-user-reservation animated fadeInUp">
+        <div class="detail-box-fix-user-reservation">
+          <div class="p-detail-reservation col-md-11 mx-auto">
+            <div class="p-price d-flex align-items-center">
+              <span>قیمت کل:</span>
+              <div class="price d-flex align-items-center">
+                <strong>20000</strong>
+                <small>تومان</small>
+              </div>
+            </div>
+            <div class="count-p">
+              <div class="total">
+                <span>تعداد کل(نفر) : 2</span>
+              </div>
+              <div class="room">
+                <span>تعداد اتاق انتخابی : 3</span>
+              </div>
+            </div>
+            <button class="btn-base btn-box-fix">رزرو</button>
+          </div>
+        </div>
       </div>
-      <div class="item w-100 d-flex align-items-center px-2">
-        <span class="title">مبلغ قابل پرداخت:</span>
-        <span class="text">0</span>
+      <div class="d-flex  align-items-center justify-content-between ">
+        <div class="d-flex align-items-center mt-4">
+          <h2 class="title-tour">اطلاعات تور</h2>
+        </div>
+        <div class="code">
+          <span>کد رفرنس: {{ this.reserveCode }}</span>
+        </div>
+      </div>
+      <div class="box-top-box-reserve">
+        <div class="d-flex align-items-center title-top justify-content-between">
+          <h2 class="title-tour">{{ reserveObj?.package?.tour?.title }}</h2>
+          <h2 class="title-tour">هتل انتخابی : {{ reserveObj.package.hotel.name }}</h2>
+        </div>
+        <div class="set-request-tour">
+          <div class="info-from">
+            <div class="d-flex align-items-center">
+              <span>پرواز رفت:</span>
+              <span style="margin-right: 4px" class="city-name">{{ reserveObj?.package?.tour?.stCity?.name }}</span>
+            </div>
+
+            <div class="item">
+              <span class="title">تاریخ و ساعت پرواز رفت :</span>
+              <span class="text">{{ stDate }}</span>
+            </div>
+            <div class="item">
+              <span class="title">تاریخ ورود به هتل :</span>
+              <span class="text">{{ calService.convertDateAndTime(reserveObj?.package?.tour?.stDate, 'fa') }}</span>
+            </div>
+          </div>
+          <div class="info-time">
+            <span class="title">مدت اقامت:</span>
+            <span class="text">{{ reserveObj?.package?.tour?.dayNum }} روز و {{ reserveObj?.package?.tour?.nightNum }}
+              شب</span>
+          </div>
+          <div class="info-to">
+            <div class="d-flex align-items-center">
+              <span>پرواز برگشت:</span>
+              <span style="margin-right: 4px" class="city-name">{{ reserveObj?.package?.tour?.endCity?.name }}</span>
+            </div>
+
+            <div class="item">
+              <span class="title">تاریخ و ساعت پرواز برگشت :</span>
+              <span class="text">{{enDate }}</span>
+            </div>
+            <div class="item">
+              <span class="title">تاریخ خروج از هتل :</span>
+              <span class="text">{{ calService.convertDateAndTime(reserveObj?.package?.tour?.enDate, 'fa') }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2 style="margin-top: 1rem" class="title-tour">انتخاب اتاق</h2>
+      <div class="set-request-hotel">
+        <button *ngIf="isDesktop" class="btn-collapse" data-toggle="tooltip" data-placement="top" title="Tooltip on top"
+                data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+                aria-controls="collapseExample">
+          <i class="icon-down-open"></i>
+        </button>
+        <!-- twin -->
+        <div class="item-hotel">
+          <h5>دو تخته (دو نفر)</h5>
+          <span>انتخاب کنید</span>
+          <prs-counter *ngIf="isCounterShow"
+                       [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.twinCapacity ? reserveObj.package.prices?.twinCapacity : '0', 'twin')"
+                       (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
+          <small>موجودی
+            اتاق: {{ reserveObj.package?.prices?.twinCapacity ? +reserveObj.package.prices.twinCapacity : 0 }}</small>
+          <div class="price mt-2">
+            <strong class="mt-1">{{ reserveObj.package.tour.defineTour ? (reserveObj.package.prices?.twinRate | sperator) : (reserveObj.package.prices?.twin | sperator)
+              }}</strong>
+            <small>تومان</small>
+          </div>
+
+        </div>
+        <!-- single -->
+        <div class="item-hotel" *ngIf="!reserveObj.package?.tour?.type">
+          <h5>یک تخته (دونفر)</h5>
+          <span>انتخاب کنید</span>
+          <prs-counter *ngIf="isCounterShow"
+                       [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.singleCapacity ? reserveObj.package.prices?.singleCapacity : '0', 'single')"
+                       (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
+          <small>موجودی
+            اتاق: {{ reserveObj.package?.prices?.singleCapacity ? +reserveObj.package.prices.singleCapacity : 0 }}</small>
+          <div class="price mt-2">
+            <strong class="mt-1">{{ reserveObj.package.tour.defineTour ? (reserveObj.package.prices?.singleRate | sperator) :
+              (reserveObj.package.prices?.single | sperator) }}</strong>
+            <small>تومان</small>
+          </div>
+
+        </div>
+        <!-- triple -->
+        <div class="item-hotel" *ngIf="reserveObj.package?.tour?.type">
+          <h5>سه تخته (دونفر)</h5>
+          <span>انتخاب کنید</span>
+          <prs-counter *ngIf="isCounterShow"
+                       [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.tripleCapacity ? reserveObj.package.prices?.tripleCapacity : '0', 'triple')"
+                       (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
+          <small>موجودی
+            اتاق: {{ reserveObj.package?.prices?.tripleCapacity ? +reserveObj.package.prices.tripleCapacity : 0 }}</small>
+          <div class="price">
+            <strong class="mt-1">{{ reserveObj.package.tour.defineTour ? (reserveObj.package.prices?.tripleRate | sperator) :
+              (reserveObj.package.prices?.triple | sperator) }}</strong>
+            <small class="mt-2">تومان</small>
+          </div>
+
+        </div>
+        <!-- quad -->
+        <div class="item-hotel" *ngIf="reserveObj.package?.tour?.type">
+          <h5>چهار تخته (دونفر)</h5>
+          <span>انتخاب کنید</span>
+          <prs-counter *ngIf="isCounterShow"
+                       [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.quadCapacity ? reserveObj.package.prices?.quadCapacity : '0', 'quad')"
+                       (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
+          <small>موجودی
+            اتاق: {{ reserveObj.package?.prices?.quadCapacity ? +reserveObj.package.prices.quadCapacity : 0 }}</small>
+          <div class="price mt-2">
+            <strong class="mt-1">{{ reserveObj.package.tour.defineTour ? (reserveObj.package.prices?.quad | sperator) : (reserveObj.package.prices?.quad | sperator)
+              }}</strong>
+            <small>تومان</small>
+          </div>
+
+        </div>
+        <!-- cwb -->
+        <div class="item-hotel" *ngIf="!reserveObj.package?.tour?.type">
+          <h5>کودک با تخت</h5>
+          <span>انتخاب کنید</span>
+          <prs-counter *ngIf="isCounterShow"
+                       [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.cwbCapacity ? reserveObj.package?.prices?.cwbCapacity : '0', 'cwb')"
+                       (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
+          <small>موجودی
+            اتاق: {{ reserveObj.package?.prices?.cwbCapacity ? +reserveObj.package.prices.cwbCapacity : 0 }}</small>
+          <div class="price mt-2">
+            <strong class="mt-1">{{ reserveObj.package.tour.defineTour ? (reserveObj.package.prices?.cwbRate | sperator) : reserveObj.package.prices?.cwb | sperator
+              }}</strong>
+            <small>تومان</small>
+          </div>
+
+        </div>
+        <!-- cnb -->
+        <!-- <div class="item-hotel" *ngIf="!reserveObj.package?.tour?.type">
+          <div class="price">
+            <strong>{{ reserveObj.package.prices.cnb ? (reserveObj.package.prices.cnb | sperator) : 0 }}</strong>
+            <small>تومان</small>
+          </div>
+          <prs-counter *ngIf="isCounterShow" (sendReserveRoomData)="getReserveRoomData($event)" [reserveRoomData]="setReseveRoomData('0', 'cnb')"></prs-counter>
+          <small>موجودی اتاق: {{ 0 }}</small>
+        </div> -->
+      </div>
+      <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+          اتاق اضافی موجود نیست
+        </div>
+      </div>
+      <h2 style="font-size: 14px" class="title-tour text-danger mt-3">اطلاعات رزروگیرنده (این مشخصات به عنوان طرف
+        قرارداد درنظر گرفته می شود)</h2>
+      <div class="set-info-supervisor">
+        <div class="item-form">
+          <label class="dana-bold" for="">نام</label>
+          <div class="inp-form mt-2">
+            <input type="text" [formControl]="nameFC" placeholder="اینجا بنویسید …">
+          </div>
+        </div>
+        <div class="item-form">
+          <label class="dana-bold" for=""> نام خانوادگی</label>
+          <div class="inp-form mt-2">
+            <input type="text" [formControl]="familyFC" placeholder="اینجا بنویسید …">
+          </div>
+        </div>
+        <div class="item-form">
+          <label class="dana-bold" for="">
+            کد ملی
+          </label>
+          <div class="inp-form mt-2">
+            <input type="text" [formControl]="idCodeFC" placeholder="اینجا بنویسید …">
+          </div>
+        </div>
+        <div class="item-form">
+          <label class="dana-bold" for="">
+            شهر محل سکونت
+          </label>
+          <div class="inp-form mt-2">
+            <prs-select-city></prs-select-city>
+          </div>
+
+        </div>
+        <div class="item-form">
+          <label class="dana-bold" for="">
+            شماره همراه
+          </label>
+          <div class="inp-form mt-2">
+            <input [formControl]="phoneFC" type="text" placeholder="اینجا بنویسید …">
+          </div>
+        </div>
+      </div>
+      <h2>اطلاعات مسافران</h2>
+      <div class="box-empty" *ngIf="roomsSelected.length === 0">
+        <span>اتاقی انتخاب نشده است</span>
+      </div>
+      <prs-passengers *ngFor="let room of roomsSelected" [tourType]="getTourType(reserveObj?.package?.tour?.type)"
+                      [RoomData]="room" (passengerResult)="getRoomData($event)"></prs-passengers>
+
+      <!-- <div class="p-info-trip">
+        <div class="w-100 bg-light bg-info-trip">
+          <div class="title-profile w-100">
+            <i class="icon-circle"></i>
+            <h2 class="dana-bold">اطلاعات پرداخت</h2>
+          </div>
+          <div class="tour-items w-100">
+            <div class="item w-100 d-flex align-items-center px-2">
+              <span class="title">مبلغ کل:</span>
+              <span class="text">0</span>
+            </div>
+            <div class="item w-100 d-flex align-items-center px-2">
+              <span class="title">مبلغ قابل پرداخت:</span>
+              <span class="text">0</span>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <div class="rules mt-3">
+        <input type="checkbox" [(ngModel)]="isPrivacyCheck">
+        <p>تمامی قوانین و مقررات مرتبط با سایت اسنپ تریپ و پکیج های این تور را می پذیرم</p>
+      </div>
+
+      <div class="p-errorr">
+        <span class="text-danger" *ngFor="let err of errors">{{ err[0] }}</span>
+      </div>
+
+      <div class="p-submit w-100 d-flex justify-content-center mt-4">
+        <button class="btn-base px-4" (click)="submit()">ثبت درخواست</button>
       </div>
     </div>
+
   </div>
-</div> -->
-<div class="rules">
-  <input type="checkbox" [(ngModel)]="isPrivacyCheck">
-  <p>تمامی قوانین و مقررات مرتبط با سایت اسنپ تریپ و پکیج های این تور را می پذیرم</p>
-</div>
 
-<div class="p-errorr" >
-  <span class="text-danger" *ngFor="let err of errors">{{ err[0] }}</span>
-</div>
-
-<div class="p-submit w-100 d-flex justify-content-center mt-4">
-  <button class="btn-base px-4" (click)="submit()">ثبت درخواست</button>
-</div>
 </ng-template>
 <!-- //////////////////////////////////////////////////    info    //////////////////////////////////////////////////////// -->
 <ng-template [ngIf]="reserveObj.status !== 'Completion'">
@@ -201,167 +266,167 @@
     <div class="d-flex">
 
     </div>
-      <div class="w-100 bg-light bg-info-trip">
-        <div class="title-profile w-100">
-          <i class="icon-circle"></i>
-          <h2 class="dana-bold">اطلاعات رزرو</h2>
+    <div class="w-100 bg-light bg-info-trip">
+      <div class="title-profile w-100">
+        <i class="icon-circle"></i>
+        <h2 class="dana-bold">اطلاعات رزرو</h2>
+      </div>
+      <div class="tour-items w-100">
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">کد رفرنس:</span>
+          <span class="text">{{ reserveObj.ref_code }}</span>
         </div>
-        <div class="tour-items w-100">
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title">کد رفرنس:</span>
-            <span class="text">{{ reserveObj.ref_code }}</span>
-          </div>
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title">وضعیت:</span>
-            <span class="text">{{publicService.getStatus(reserveObj.status) }}</span>
-          </div>
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title">مبلغ کل:</span>
-            <span class="text">{{reserveObj.bill?.totalRoomPrice | sperator }}</span>
-          </div>
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title">مبلغ قابل پرداخت:</span>
-            <span class="text">{{reserveObj.bill?.totalPayAble | sperator}}</span>
-          </div>
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title">تاریخ درخواست:</span>
-            <span class="text">{{ calService.convertDateAndTime(reserveObj.createdAt,'fa') }}</span>
-          </div>
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title">تاریخ خروج از هتل:</span>
-            <span class="text">{{ calService.convertDate(reserveObj.package?.tour?.enDate,'fa') }}</span>
-          </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">وضعیت:</span>
+          <span class="text">{{publicService.getStatus(reserveObj.status) }}</span>
+        </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">مبلغ کل:</span>
+          <span class="text">{{reserveObj.bill?.totalRoomPrice | sperator }}</span>
+        </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">مبلغ قابل پرداخت:</span>
+          <span class="text">{{reserveObj.bill?.totalPayAble | sperator}}</span>
+        </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">تاریخ درخواست:</span>
+          <span class="text">{{ calService.convertDateAndTime(reserveObj.createdAt, 'fa') }}</span>
+        </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">تاریخ خروج از هتل:</span>
+          <span class="text">{{ calService.convertDate(reserveObj.package?.tour?.enDate, 'fa') }}</span>
+        </div>
 
 
+      </div>
+    </div>
+    <div class="w-100 bg-light bg-info-trip">
+      <div class="title-profile w-100">
+        <i class="icon-circle"></i>
+        <h2 class="dana-bold">اطلاعات کاربر رزرو گیرنده</h2>
+      </div>
+      <div class="tour-items w-100">
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">نام:</span>
+          <span class="text">{{ reserveObj.user.name }}</span>
+        </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">نام خانوادگی:</span>
+          <span class="text">{{reserveObj.user.family }}</span>
+        </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">شماره همراه:</span>
+          <span class="text">{{reserveObj.user.phone }}</span>
+        </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title"> شهر:</span>
+          <span class="text">{{ reserveObj.user.city?.name}}</span>
+        </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title"> کدملی:</span>
+          <span class="text">{{ reserveObj.user.id_code}}</span>
         </div>
       </div>
-      <div class="w-100 bg-light bg-info-trip">
-        <div class="title-profile w-100">
-          <i class="icon-circle"></i>
-          <h2 class="dana-bold">اطلاعات کاربر رزرو گیرنده</h2>
-        </div>
-        <div class="tour-items w-100">
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title">نام:</span>
-            <span class="text">{{ reserveObj.user.name }}</span>
-          </div>
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title">نام خانوادگی:</span>
-            <span class="text">{{reserveObj.user.family }}</span>
-          </div>
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title">شماره همراه:</span>
-            <span class="text">{{reserveObj.user.phone }}</span>
-          </div>
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title"> شهر:</span>
-            <span class="text">{{ reserveObj.user.city?.name}}</span>
-          </div>
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title"> کدملی:</span>
-            <span class="text">{{ reserveObj.user.id_code}}</span>
-          </div>
-        </div>
+    </div>
+    <div class="w-100 bg-light bg-info-trip">
+      <div class="title-profile w-100">
+        <i class="icon-circle"></i>
+        <h2 class="dana-bold">{{ reserveObj.package.tour.title }}</h2>
       </div>
-      <div class="w-100 bg-light bg-info-trip">
-        <div class="title-profile w-100">
-          <i class="icon-circle"></i>
-          <h2 class="dana-bold">{{ reserveObj.package.tour.title }}</h2>
+      <div class="tour-items w-100">
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">تاریخ پرواز رفت:</span>
+          <span class="text">{{transfers.stDate}}</span>
         </div>
-        <div class="tour-items w-100">
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title">تاریخ پرواز رفت:</span>
-            <span class="text">{{transfers.stDate}}</span>
-          </div>
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title">تاریخ پرواز برگشت:</span>
-            <span class="text">{{transfers.enDate }}</span>
-          </div>
-
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title">تعداد روز:</span>
-            <span class="text">{{reserveObj.package?.tour?.dayNum }}</span>
-          </div>
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title">تعداد شب:</span>
-            <span class="text">{{reserveObj.package?.tour?.nightNum }}</span>
-          </div>
-
-
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title">تاریخ ورود به هتل:</span>
-            <span class="text">{{ calService.convertDate(reserveObj.package?.tour?.stDate,'fa') }}</span>
-          </div>
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title">تاریخ خروج از هتل:</span>
-            <span class="text">{{ calService.convertDate(reserveObj.package?.tour?.enDate,'fa') }}</span>
-          </div>
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title">ایرلاین رفت:</span>
-            <span class="text">{{ transfers.originTransfer }}</span>
-          </div>
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title">ایرلاین برگشت:</span>
-            <span class="text">{{ transfers.originTransfer }}</span>
-          </div>
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title">شماره پرواز رفت:</span>
-            <span class="text">{{ transfers.originFlightCode }}</span>
-          </div>
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title">شماره پرواز برگشت:</span>
-            <span class="text">{{ transfers.destFlightCode }}</span>
-          </div>
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title">نام هتل:</span>
-            <span class="text">{{ reserveObj.package.hotel.name }}</span>
-          </div>
-
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">تاریخ پرواز برگشت:</span>
+          <span class="text">{{transfers.enDate }}</span>
         </div>
+
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">تعداد روز:</span>
+          <span class="text">{{reserveObj.package?.tour?.dayNum }}</span>
+        </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">تعداد شب:</span>
+          <span class="text">{{reserveObj.package?.tour?.nightNum }}</span>
+        </div>
+
+
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">تاریخ ورود به هتل:</span>
+          <span class="text">{{ calService.convertDate(reserveObj.package?.tour?.stDate, 'fa') }}</span>
+        </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">تاریخ خروج از هتل:</span>
+          <span class="text">{{ calService.convertDate(reserveObj.package?.tour?.enDate, 'fa') }}</span>
+        </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">ایرلاین رفت:</span>
+          <span class="text">{{ transfers.originTransfer }}</span>
+        </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">ایرلاین برگشت:</span>
+          <span class="text">{{ transfers.originTransfer }}</span>
+        </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">شماره پرواز رفت:</span>
+          <span class="text">{{ transfers.originFlightCode }}</span>
+        </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">شماره پرواز برگشت:</span>
+          <span class="text">{{ transfers.destFlightCode }}</span>
+        </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">نام هتل:</span>
+          <span class="text">{{ reserveObj.package.hotel.name }}</span>
+        </div>
+
       </div>
-      <div *ngFor="let item of reserveObj.passengers" class="w-100 bg-light bg-info-trip">
-        <div class="title-profile w-100">
-          <i class="icon-circle"></i>
-          <h2 class="dana-bold">{{ item.name }}</h2>
+    </div>
+    <div *ngFor="let item of reserveObj.passengers" class="w-100 bg-light bg-info-trip">
+      <div class="title-profile w-100">
+        <i class="icon-circle"></i>
+        <h2 class="dana-bold">{{ item.name }}</h2>
+      </div>
+      <h2 class="w-100 font-16">سرپرست</h2>
+      <h2 class="w-100 font-16">همراه</h2>
+      <div *ngFor="let p of item.passengers" class="tour-items w-100">
+
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">نام:</span>
+          <span class="text">{{ p.firstName }}</span>
         </div>
-        <h2 class="w-100 font-16">سرپرست</h2>
-        <h2 class="w-100 font-16">همراه</h2>
-        <div *ngFor="let p of item.passengers" class="tour-items w-100">
-
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title">نام:</span>
-            <span class="text">{{ p.firstName }}</span>
-          </div>
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title">نام خانوادگی:</span>
-            <span class="text">{{ p.lastName }}</span>
-          </div>
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title">کدملی:</span>
-            <span class="text">{{ p.id_code ?? '---' }}</span>
-          </div>
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title">شماره پاسپورت:</span>
-            <span class="text">{{ p.passport_number }}</span>
-          </div>
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title">انقضا پاسپورت:</span>
-            <span class="text">{{calService.convertDate(p.passport_expire,'en') }}</span>
-          </div>
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title">تاریخ تولد :</span>
-            <span class="text">{{calService.convertDate( p.birthDate,'fa') }}</span>
-          </div>
-          <div class="item w-100 d-flex align-items-center px-2">
-            <span class="title">شماره همراه :</span>
-            <span class="text">{{ p.phoneNumber }}</span>
-          </div>
-
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">نام خانوادگی:</span>
+          <span class="text">{{ p.lastName }}</span>
         </div>
-
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">کدملی:</span>
+          <span class="text">{{ p.id_code ? p.id_code : '---' }}</span>
+        </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">شماره پاسپورت:</span>
+          <span class="text">{{ p.passport_number }}</span>
+        </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">انقضا پاسپورت:</span>
+          <span class="text">{{calService.convertDate(p.passport_expire, 'en') }}</span>
+        </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">تاریخ تولد :</span>
+          <span class="text">{{calService.convertDate(p.birthDate, 'fa') }}</span>
+        </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">شماره همراه :</span>
+          <span class="text">{{ p.phoneNumber }}</span>
+        </div>
 
       </div>
 
 
     </div>
+
+
+  </div>
 </ng-template>
