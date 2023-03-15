@@ -5,7 +5,7 @@
   column-gap: 12px;
 }
 
-@media only screen and (max-width: 450px){
+@media only screen and (max-width: 500px){
   .row-search {
     grid-template-columns: 1fr;
     .inp-form{
@@ -16,7 +16,7 @@
     }
   }
 }
-@media only screen and (min-width: 451px) and (max-width: 868px){
+@media only screen and (min-width: 501px) and (max-width: 868px){
   .row-search {
     grid-template-columns: 1fr 1fr;
     .inp-form{
