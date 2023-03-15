@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SettingService} from "../../Core/Services/setting.service";
+import {ResponsiveService} from "../../Core/Services/responsive.service";
 declare let $: any;
 @Component({
   selector: 'prs-footer',
@@ -7,8 +8,18 @@ declare let $: any;
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
+  isMobile=false;
+  isTablet=false;
+  isDesktop=false;
+  constructor(public setting: SettingService,
+  public mobileService: ResponsiveService,
 
-  constructor(public setting: SettingService) { }
+) {
+
+    this.isMobile = mobileService.isMobile()
+    this.isTablet = mobileService.isTablet()
+    this.isDesktop = mobileService.isDesktop()
+  }
 
   ngOnInit(): void {
     const btn = $('#button');

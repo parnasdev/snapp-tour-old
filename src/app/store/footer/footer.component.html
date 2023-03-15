@@ -36,14 +36,10 @@
                   <img src="assets/img/003-telephone.svg" width="20" alt="">
                   <span>۷۵۱۳۲۰۰۰ - ۹۶۶۶۹۰۶۶ (۰۲۱)</span>
                 </div>
-                <!-- <div class="child">
-                  <img src="assets/img/002-speech%20bubble.svg" width="20" alt="">
-                  <span></span>
-                </div> -->
                 <div style="margin-top: 0 !important;" class="child">
                   <img src="assets/img/001-mail%20inbox%20app.svg" width="20" alt="">
                   <span>info@snapptrip.com</span>
-                  <div class="wrapper">
+                  <div *ngIf="isDesktop" class="wrapper">
                     <a class="icon instagram" href="https://instagram.com/snapptrip.tour">
                       <div class="tooltip">https://instagram.com/snapptrip.tour</div>
                       <div class="span-margin"><i class=" icon-instagram"></i></div>
@@ -59,7 +55,21 @@
                     </a>
                   </div>
                 </div>
-
+                <div *ngIf="isTablet" class="wrapper">
+                  <a class="icon instagram" href="https://instagram.com/snapptrip.tour">
+                    <div class="tooltip">https://instagram.com/snapptrip.tour</div>
+                    <div class="span-margin"><i class=" icon-instagram"></i></div>
+                  </a>
+                  <a class="icon instagram" href="mailto:info@snapptrip.com">
+                    <div class="tooltip">info@snapptrip.com</div>
+                    <div class="span-margin"><i class="icon-mail-alt"></i></div>
+                  </a>
+                  <a class="icon instagram" href="https://t.me/snapptrip">
+                    <div class="tooltip">https://t.me/snapptrip
+                    </div>
+                    <div class="span-margin"><i class="icon-telegram"></i></div>
+                  </a>
+                </div>
               </div>
             </div>
             <div class="main">
