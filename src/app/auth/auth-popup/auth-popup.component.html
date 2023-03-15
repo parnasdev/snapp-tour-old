@@ -42,7 +42,7 @@
                           <button type="submit" class="btn-form-auth">ثبت نام
                             <span class="spinner-border spinner-border-sm" *ngIf="isLoading"></span>
                           </button>
-                          <button class="btn-under-link" routerLink="/auth/validate">ویرایش شماره تلفن
+                          <button class="btn-under-link" (click)="changeStep()">ویرایش شماره تلفن
                           </button>
                           <prs-resend-code [phone]="publicService.fixNumbers(this.phoneNumberFC.value)"></prs-resend-code>
                           <!--              <div class="text">-->

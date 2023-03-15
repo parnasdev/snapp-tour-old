@@ -145,4 +145,8 @@ export class AuthPopupComponent implements OnInit {
     });
   }
 
+  changeStep() {
+    this.step = 'validate'
+  }
+
 }
