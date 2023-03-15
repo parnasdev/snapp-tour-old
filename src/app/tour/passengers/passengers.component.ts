@@ -83,28 +83,6 @@ export class PassengersComponent implements OnInit, OnChanges {
   }
 
 
-  public inputValidator(event: any) {
-    //console.log(event.target.value);
-    const pattern = /^[a-zA-Z]$/;
-    //let inputChar = String.fromCharCode(event.charCode)
-    if (!pattern.test(event.target.value)) {
-      event.target.value = event.target.value.replace(/[^a-zA-Z]/g, "");
-      // invalid character, prevent input
-      this.message.custom('لطفا فقط عدد انگلیسی وارد کنید')
-    }
-  }
-  
-  _keyUp(event: any) {
-    const pattern = /[0-9\+\-\ ]/;
-    let inputChar = String.fromCharCode(event.key);
-
-    if (!pattern.test(inputChar)) {
-      // invalid character, prevent input
-      event.preventDefault();
-    }
-}
-
-
   onChange(): void {
     // if (this.PassengerForm.valid) {
     this.convertPassengerObject()
