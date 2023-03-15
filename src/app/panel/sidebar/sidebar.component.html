@@ -44,10 +44,16 @@
             <ul class="under-menu-ul">
               <li *ngIf="checkItemPermission('Tour.create')"><a routerLink="/panel/tour/add">اضافه کردن تور</a></li>
               <li *ngIf="checkItemPermission('Tour.read')"><a routerLink="/panel/tour">لیست تورها</a></li>
-              <li *ngIf="checkItemPermission('Reserve.read')"><a routerLink="/panel/tour/reserves">لیست رزروها</a></li>
               <!-- <li *ngIf="checkItemPermission('Tour.read')"><a (click)="showMessage()">تورهای ویژه</a></li> -->
             </ul>
           </div>
+        </li>
+        <li class="li-list">
+          <a class="menu-main menu-main-5" routerLink="/panel/agencies/reserves">
+            <img src="assets/img/User%20Accepted.svg" width="20" alt="">
+            رزروها
+          </a>
+
         </li>
         <li class="li-list" *ngIf="(checkPermission('Hotel') || checkPermission('City')) && userId !== 106">
           <a class="menu-main menu-main-2" data-toggle="collapse" href="#collapseExample2" role="button"
@@ -118,13 +124,7 @@
           </div>
         </li>
 
-        <li class="li-list">
-          <a class="menu-main menu-main-5" routerLink="/panel/agencies/reserves">
-            <img src="assets/img/User%20Accepted.svg" width="20" alt="">
-            رزروها
-          </a>
-
-        </li>
+   
 
         <li class="li-list">
           <a class="menu-main menu-main-5" data-toggle="collapse" href="#collapseExample10" role="button"
