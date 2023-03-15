@@ -951,3 +951,16 @@
 :host::ng-deep .cdk-overlay-pane{
   margin-top: 12px !important;
 }
+.p-hotel-item-mobi{
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+  white-space: nowrap;
+  overflow-x: scroll;
+  .box-hotel{
+    width: 300px !important;
+    margin: 0 10px !important;
+  }
+}
