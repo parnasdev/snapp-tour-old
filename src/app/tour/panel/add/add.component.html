@@ -500,7 +500,7 @@
                     <p>{{ getData(i).twinRate.value | sperator }}</p>
 
                   </div>
-                  <input type="text" formControlName="twinCapacity" placeholder="ظرفیت" mask="separator"
+                  <input type="text" formControlName="twinCapacity" placeholder="موجودی" mask="separator"
                     thousandSeparator=",">
                 </div>
                 <div class="package-item">
@@ -510,7 +510,7 @@
                     *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].triple > 0">
                     <p>{{ getData(i).tripleRate.value | sperator }}</p>
                   </div>
-                  <input type="text" placeholder="ظرفیت" formControlName="tripleCapacity" mask="separator"
+                  <input type="text" placeholder="موجودی" formControlName="tripleCapacity" mask="separator"
                     thousandSeparator=",">
                 </div>
                 <div class="package-item">
@@ -520,7 +520,7 @@
                     *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].quad > 0">
                     <p>{{ getData(i).quadRate.value | sperator }}</p>
                   </div>
-                  <input type="text" placeholder="ظرفیت" formControlName="quadCapacity" mask="separator"
+                  <input type="text" placeholder="موجودی" formControlName="quadCapacity" mask="separator"
                     thousandSeparator=",">
                 </div>
                 <div class="package-item">
@@ -548,7 +548,7 @@
                     *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].twin > 0">
                     <p>{{ getData(i).twinRate.value | sperator }}</p>
                   </div>
-                  <input type="text" formControlName="twinCapacity" mask="separator" placeholder="ظرفیت"
+                  <input type="text" formControlName="twinCapacity" mask="separator" placeholder="موجودی"
                     thousandSeparator=",">
 
                 </div>
@@ -559,7 +559,7 @@
                     *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].single > 0">
                     <p>{{ getData(i).singleRate.value | sperator }}</p>
                   </div>
-                  <input type="text" placeholder="ظرفیت" formControlName="singleCapacity" mask="separator" thousandSeparator=",">
+                  <input type="text" placeholder="موجودی" formControlName="singleCapacity" mask="separator" thousandSeparator=",">
 
                 </div>
                 <div class="package-item">
@@ -569,7 +569,7 @@
                     *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].cwb > 0">
                     <p>{{ getData(i).cwbRate.value | sperator }}</p>
                   </div>
-                  <input type="text" placeholder="ظرفیت" formControlName="cwbCapacity" mask="separator" thousandSeparator=",">
+                  <input type="text" placeholder="موجودی" formControlName="cwbCapacity" mask="separator" thousandSeparator=",">
 
                 </div>
                 <!-- <div class="package-item">
