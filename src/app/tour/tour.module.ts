@@ -31,15 +31,17 @@ import { AgencyReservesComponent } from './agency-reserves/agency-reserves.compo
     ExpireTourComponent,
     ReserveBoxComponent,
     UserReservationsComponent,
-    UserReservationInfoComponent,
     CounterComponent,
     PassengersComponent,
+    UserReservationInfoComponent,
     AgencyReservesComponent,
   ],
     exports: [
         InfoComponent,
         ExpireTourComponent,
-        AgencyReservesComponent
+        AgencyReservesComponent,
+        CounterComponent,
+        PassengersComponent,
     ],
   imports: [
     CommonModule,

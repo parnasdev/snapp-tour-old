@@ -332,6 +332,7 @@ export interface EditReserveReq {
   city_id: number;
   phone: string;
   name: string;
+  isEditPassenger?: boolean;
   family: string;
   id_code: number;
   count: number;

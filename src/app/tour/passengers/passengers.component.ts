@@ -19,7 +19,14 @@ export class PassengersComponent implements OnInit, OnChanges {
   }
   @Output() passengerResult = new EventEmitter();
   @Input() tourType: boolean = false;   // false = 'تور خارجی'  // true = ' تور داخلی'
-
+  @Input() inCommingPassengers:any = {
+    capacity : 0,
+    id: 0,
+    name: '',
+    passengers : [],
+    price: 0,
+    supply: 0
+  }
 
 
   constructor(public fb: FormBuilder,) { }
@@ -27,10 +34,15 @@ export class PassengersComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.RoomData.firstChange) {
       for (let i = 0; i < (this.RoomData?.capacity ?? []); i++) {
-        this.addRow();
+        this.addRow(this.RoomData.passengers[i]);
       }
-
     }
+
+    // if(changes.inCommingPassengers) {
+    //   changes.inCommingPassengers.currentValue.forEach((element:any) => {
+    //     this.addRow(element);
+    //   });
+    // }
   }
 
   ReserveForm: FormGroup = this.fb.group({
@@ -45,16 +57,16 @@ export class PassengersComponent implements OnInit, OnChanges {
     return this.ReserveForm.get('passengers') as FormArray;
   }
 
-  addRow() {
+  addRow(obj: PassengerDTO | null = null) {
     const Passengers = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      id_code: [''],
-      birthDate: ['', Validators.required],
-      phoneNumber: [''],
-      nationality: [''],
-      passport_number: [''],
-      passport_expire: [''],
+      firstName: [obj? obj.firstName : '', Validators.required],
+      lastName: [obj? obj.lastName : '', Validators.required],
+      id_code: [obj? obj.id_code : ''],
+      birthDate: [obj? obj.birthDate : '', Validators.required],
+      phoneNumber: [obj? obj.phoneNumber : ''],
+      nationality: [obj? obj.nationality : ''],
+      passport_number: [obj? obj.passport_number : ''],
+      passport_expire: [obj? obj.passport_expire : ''],
     })
     this.PassengerForm.push(Passengers);
   }
@@ -70,15 +82,15 @@ export class PassengersComponent implements OnInit, OnChanges {
 
   onChange(): void {
     // if (this.PassengerForm.valid) {
-      this.convertPassengerObject()
+    this.convertPassengerObject()
     // }else {
     //   this.markFormGroupTouched()
-      // this.PassengerForm.controls.forEach(x => {
-      //   x.controls.forEach((control:FormControl) => {
-      //   })
-      //   this.markFormGroupTouched(control)
-      // })
-    }
+    // this.PassengerForm.controls.forEach(x => {
+    //   x.controls.forEach((control:FormControl) => {
+    //   })
+    //   this.markFormGroupTouched(control)
+    // })
+  }
 
 
 }
