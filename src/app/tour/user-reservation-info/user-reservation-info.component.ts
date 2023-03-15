@@ -1,10 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {transfersSetDTO} from 'src/app/agencies/agency-reserves/agency-reserves.component';
-import {RoomTypeApiService} from 'src/app/Core/Https/room-type-api.service';
-import {TourApiService} from 'src/app/Core/Https/tour-api.service';
-import {RoomTypeListDTO} from 'src/app/Core/Models/roomTypeDTO';
+import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { transfersSetDTO } from 'src/app/agencies/agency-reserves/agency-reserves.component';
+import { RoomTypeApiService } from 'src/app/Core/Https/room-type-api.service';
+import { TourApiService } from 'src/app/Core/Https/tour-api.service';
+import { RoomTypeListDTO } from 'src/app/Core/Models/roomTypeDTO';
+
+declare let $: any;
 import {
   DiscountsDTO,
   EditReserveReq,
@@ -18,12 +20,12 @@ import {
   RoomsRequestDTO,
   Tour
 } from 'src/app/Core/Models/tourDTO';
-import {CalenderServices} from 'src/app/Core/Services/calender-service';
-import {CheckErrorService} from 'src/app/Core/Services/check-error.service';
-import {MessageService} from 'src/app/Core/Services/message.service';
-import {PublicService} from 'src/app/Core/Services/public.service';
-import {SessionService} from 'src/app/Core/Services/session.service';
-import {ResponsiveService} from "../../Core/Services/responsive.service";
+import { CalenderServices } from 'src/app/Core/Services/calender-service';
+import { CheckErrorService } from 'src/app/Core/Services/check-error.service';
+import { MessageService } from 'src/app/Core/Services/message.service';
+import { PublicService } from 'src/app/Core/Services/public.service';
+import { SessionService } from 'src/app/Core/Services/session.service';
+import { ResponsiveService } from "../../Core/Services/responsive.service";
 
 @Component({
   selector: 'prs-user-reservation-info',
@@ -133,16 +135,16 @@ export class UserReservationInfoComponent implements OnInit {
   }
 
   constructor(public route: ActivatedRoute,
-              public messageService: MessageService,
-              public checkError: CheckErrorService,
-              public router: Router,
-              public fb: FormBuilder,
-              public session: SessionService,
-              public publicService: PublicService,
-              public calService: CalenderServices,
-              public mobileService: ResponsiveService,
-              public roomApiService: RoomTypeApiService,
-              public api: TourApiService) {
+    public messageService: MessageService,
+    public checkError: CheckErrorService,
+    public router: Router,
+    public fb: FormBuilder,
+    public session: SessionService,
+    public publicService: PublicService,
+    public calService: CalenderServices,
+    public mobileService: ResponsiveService,
+    public roomApiService: RoomTypeApiService,
+    public api: TourApiService) {
     this.isDesktop = mobileService.isDesktop();
   }
 
@@ -151,6 +153,7 @@ export class UserReservationInfoComponent implements OnInit {
     this.reserveCode = this.route.snapshot.paramMap.get('reserveid');
 
     this.getReserve();
+
   }
 
   getReserve(): void {
@@ -170,13 +173,25 @@ export class UserReservationInfoComponent implements OnInit {
     }, (error: any) => {
       this.isLoading = false;
 
-      if(error.status === 404) {
-      this.router.navigateByUrl('/')
-      this.messageService.custom('کد رفرنس نامعتبر است')
+      if (error.status === 404) {
+        this.router.navigateByUrl('/')
+        this.messageService.custom('کد رفرنس نامعتبر است')
 
       }
       this.checkError.check(error);
     })
+  }
+
+  getCapacityPerson(name: string): number {
+    let capacity = 0;
+    this.roomsCapacityList.forEach(item => {
+      if (item.name === name) {
+        if (item.capacityPerson) {
+          capacity = item.capacityPerson;
+        }
+      }
+    })
+    return capacity
   }
 
   setTourTransfers(): void {
@@ -221,6 +236,10 @@ export class UserReservationInfoComponent implements OnInit {
     return tourTpe !== undefined ? tourTpe : false;
   }
 
+  getCity(city: any) {
+    this.cityFC.setValue(city.id)
+  }
+
   setDateAndTime(): void {
     this.stDate = this.calService.convertDate(this.reserveObj?.package?.tour?.transfers[0].dateTime.split(' ')[0], 'fa') + ' ' +
       this.reserveObj?.package?.tour?.transfers[0].dateTime.split(' ')[1];
@@ -256,6 +275,23 @@ export class UserReservationInfoComponent implements OnInit {
         }
       }
     }
+  }
+
+
+  getAllPerson() {
+    let count: number = 0;
+    this.roomsSelected.forEach(x => {
+      count += x.capacity
+    })
+    return count
+  }
+
+  getTotalPrice() {
+    let price: number = 0;
+    this.roomsSelected.forEach(x => {
+      price += this.getRoomPriceByName(x.name, x.capacity)
+    })
+    return price
   }
 
   getRoomPriceByName(roomName: string, capacity: number) {

@@ -7,6 +7,8 @@ import SwiperCore, {
   A11y,
   Thumbs
 } from "swiper";
+
+declare let $: any;
 import {TourApiService} from "../../Core/Https/tour-api.service";
 import {ActivatedRoute} from "@angular/router";
 import {CheckErrorService} from "../../Core/Services/check-error.service";

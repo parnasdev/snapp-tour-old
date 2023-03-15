@@ -32,15 +32,14 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.settingService.getSetting();
-    $(document).ready(() => {
-      $(".btn-menu-mobi").click(() => {
-        $(".show-menu").addClass("under-menu")
-      })
-      $(".btn-exit-menu").click(() => {
-        $(".show-menu").removeClass("under-menu")
-      })
-    })
-
+    // $(document).ready(() => {
+    //   $(".btn-menu-mobi").click(() => {
+    //     $(".show-menu").addClass("under-menu")
+    //   })
+    //   $(".btn-exit-menu").click(() => {
+    //     $(".show-menu").removeClass("under-menu")
+    //   })
+    // })
   }
 
   menuOpen() {

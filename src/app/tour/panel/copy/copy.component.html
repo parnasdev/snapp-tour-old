@@ -470,7 +470,7 @@
               <div class="package-item">
                 <input (keyup)="calculatePrice('twin', $event, true, i)" type="text" formControlName="twin"
                        mask="separator" thousandSeparator=",">
-                       <input type="text" formControlName="twinCapacity"
+                       <input type="text" placeholder="موجودی" formControlName="twinCapacity"
                        mask="separator" thousandSeparator=",">
                 <div class="under-package-text d-flex align-items-center"
                      *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].twin > 0">
@@ -480,7 +480,7 @@
               <div class="package-item">
                 <input (keyup)="calculatePrice('triple', $event, true, i)" type="text" formControlName="triple"
                        mask="separator" thousandSeparator=",">
-                       <input type="text" formControlName="tripleCapacity"
+                       <input type="text" placeholder="موجودی" formControlName="tripleCapacity"
                        mask="separator" thousandSeparator=",">
                 <div class="under-package-text"
                      *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].triple > 0">
@@ -490,7 +490,7 @@
               <div class="package-item">
                 <input (keyup)="calculatePrice('quad', $event, true, i)" type="text" formControlName="quad"
                        mask="separator" thousandSeparator=",">
-                       <input type="text" formControlName="quadCapacity"
+                       <input type="text" placeholder="موجودی" formControlName="quadCapacity"
                        mask="separator" thousandSeparator=",">
                 <div class="under-package-text"
                      *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].quad > 0">
@@ -518,7 +518,7 @@
               <div class="package-item">
                 <input (keyup)="calculatePrice('twin', $event, true, i)" type="text" formControlName="twin"
                        mask="separator" thousandSeparator=",">
-                <input type="text" formControlName="twinCapacity"
+                <input type="text" placeholder="موجودی" formControlName="twinCapacity"
                        mask="separator" thousandSeparator=",">
                 <div class="under-package-text"
                      *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].twin > 0">
@@ -528,7 +528,7 @@
               <div class="package-item">
                 <input (keyup)="calculatePrice('single', $event, true, i)" type="text" formControlName="single"
                        mask="separator" thousandSeparator=",">
-                       <input type="text" formControlName="singleCapacity"
+                       <input type="text" placeholder="موجودی" formControlName="singleCapacity"
                        mask="separator" thousandSeparator=",">
                 <div class="under-package-text"
                      *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].single > 0">
@@ -538,7 +538,7 @@
               <div class="package-item">
                 <input (keyup)="calculatePrice('cwb', $event, false, i)" type="text" formControlName="cwb"
                        mask="separator" thousandSeparator=",">
-                       <input type="text" formControlName="cwbCapacity"
+                       <input type="text" placeholder="موجودی "formControlName="cwbCapacity"
                        mask="separator" thousandSeparator=",">
                 <div class="under-package-text"
                      *ngIf="form.value.defineTour == 'true' && form.get('packages')?.value[i].cwb > 0">
