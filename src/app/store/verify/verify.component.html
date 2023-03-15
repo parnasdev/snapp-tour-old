@@ -23,11 +23,11 @@
                     </div>
                     <div class="price my-2" >
                         <div *ngIf="transaction.status == 'Paid'">
-                            <strong style="color: #118811">{{ transaction.amount }}</strong>
+                            <strong style="color: #118811">{{ transaction.amount | sperator }}</strong>
                             <small style="color: #118811">تومان</small>
                         </div>
                         <div *ngIf="transaction.status == 'Suspended'">
-                            <strong style="color: #D16765">{{ transaction.amount }}</strong>
+                            <strong style="color: #D16765">{{ transaction.amount | sperator }}</strong>
                             <small style="color: #D16765">تومان</small>
                         </div>
                     </div>
@@ -52,14 +52,14 @@
                         </g>
                       </svg>
                     </a>
-                    <button *ngIf="transaction.status == 'Paid'" style="height: auto; width:40% !important" class="btn-base px-4 py-3 mt-3" (click)="getvoucher(transaction.ref_code)">دریافت واچر
+                    <!-- <button *ngIf="transaction.status == 'Paid'" style="height: auto; width:40% !important" class="btn-base px-4 py-3 mt-3" (click)="getvoucher(transaction.ref_code)">دریافت واچر
                         <svg style="margin-right: 3px" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                           <g id="Down" transform="translate(24) rotate(90)">
                             <path id="Path_916" data-name="Path 916" d="M1,12a27.833,27.833,0,0,0,.462,5.827A6.193,6.193,0,0,0,3,21a6.193,6.193,0,0,0,3.172,1.54A27.838,27.838,0,0,0,12,23a27.838,27.838,0,0,0,5.827-.462A6.193,6.193,0,0,0,21,21a6.193,6.193,0,0,0,1.54-3.172A27.838,27.838,0,0,0,23,12a27.838,27.838,0,0,0-.462-5.827A6.193,6.193,0,0,0,21,3a6.193,6.193,0,0,0-3.172-1.54A27.833,27.833,0,0,0,12,1a27.833,27.833,0,0,0-5.827.462A6.193,6.193,0,0,0,3,3a6.193,6.193,0,0,0-1.54,3.172A27.833,27.833,0,0,0,1,12Z" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
                             <path id="Path_917" data-name="Path 917" d="M16,10l-4,4L8,10" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
                           </g>
                         </svg>
-                    </button>
+                    </button> -->
                   </div>
                 </div>
             </div>
