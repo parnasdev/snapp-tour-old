@@ -1,16 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { transfersSetDTO } from 'src/app/agencies/agency-reserves/agency-reserves.component';
-import { RoomTypeApiService } from 'src/app/Core/Https/room-type-api.service';
-import { TourApiService } from 'src/app/Core/Https/tour-api.service';
-import { RoomTypeListDTO } from 'src/app/Core/Models/roomTypeDTO';
-import { DiscountsDTO, EditReserveReq, HotelDTO, PricesDTO, RateDTO, ReserveInfoDTO, ReserveRoomDTO, RoomDTO, RoomPassengersDTO, RoomsRequestDTO, Tour } from 'src/app/Core/Models/tourDTO';
-import { CalenderServices } from 'src/app/Core/Services/calender-service';
-import { CheckErrorService } from 'src/app/Core/Services/check-error.service';
-import { MessageService } from 'src/app/Core/Services/message.service';
-import { PublicService } from 'src/app/Core/Services/public.service';
-import { SessionService } from 'src/app/Core/Services/session.service';
+import {Component, OnInit} from '@angular/core';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {transfersSetDTO} from 'src/app/agencies/agency-reserves/agency-reserves.component';
+import {RoomTypeApiService} from 'src/app/Core/Https/room-type-api.service';
+import {TourApiService} from 'src/app/Core/Https/tour-api.service';
+import {RoomTypeListDTO} from 'src/app/Core/Models/roomTypeDTO';
+import {
+  DiscountsDTO,
+  EditReserveReq,
+  HotelDTO,
+  PricesDTO,
+  RateDTO,
+  ReserveInfoDTO,
+  ReserveRoomDTO,
+  RoomDTO,
+  RoomPassengersDTO,
+  RoomsRequestDTO,
+  Tour
+} from 'src/app/Core/Models/tourDTO';
+import {CalenderServices} from 'src/app/Core/Services/calender-service';
+import {CheckErrorService} from 'src/app/Core/Services/check-error.service';
+import {MessageService} from 'src/app/Core/Services/message.service';
+import {PublicService} from 'src/app/Core/Services/public.service';
+import {SessionService} from 'src/app/Core/Services/session.service';
+import {ResponsiveService} from "../../Core/Services/responsive.service";
 
 @Component({
   selector: 'prs-user-reservation-info',
@@ -19,6 +32,7 @@ import { SessionService } from 'src/app/Core/Services/session.service';
 })
 export class UserReservationInfoComponent implements OnInit {
   orderForm?: FormGroup;
+  isDesktop = false;
   errors: any
   items?: FormArray;
   reserveCode = '';
@@ -118,16 +132,17 @@ export class UserReservationInfoComponent implements OnInit {
   }
 
   constructor(public route: ActivatedRoute,
-    public messageService: MessageService,
-    public checkError: CheckErrorService,
-    public router: Router,
-    public fb: FormBuilder,
-    public session: SessionService,
-    public publicService: PublicService,
-    public calService: CalenderServices,
-    public roomApiService: RoomTypeApiService,
-    public api: TourApiService) {
-
+              public messageService: MessageService,
+              public checkError: CheckErrorService,
+              public router: Router,
+              public fb: FormBuilder,
+              public session: SessionService,
+              public publicService: PublicService,
+              public calService: CalenderServices,
+              public mobileService: ResponsiveService,
+              public roomApiService: RoomTypeApiService,
+              public api: TourApiService) {
+    this.isDesktop = mobileService.isDesktop();
   }
 
   ngOnInit(): void {
@@ -258,6 +273,7 @@ export class UserReservationInfoComponent implements OnInit {
   onCitySelected(city: any) {
     this.cityFC.setValue(city.id);
   }
+
   getroomCount(roomName: string): number {
     return this.roomPassengersData.filter(x => x.roomName === roomName).length
   }
@@ -298,6 +314,7 @@ export class UserReservationInfoComponent implements OnInit {
       this.editReserve();
     }
   }
+
   editReserve(): void {
     this.setReserveReq();
     this.api.editReserve(this.editReserveData, this.reserveCode).subscribe((res: any) => {
