@@ -23,11 +23,11 @@
                     </div>
                     <div class="price my-2" >
                         <div *ngIf="transaction.status == 'Paid'">
-                            <strong style="color: #118811">{{ transaction.amount }}</strong>
+                            <strong style="color: #118811">{{ transaction.amount | sperator }}</strong>
                             <small style="color: #118811">تومان</small>
                         </div>
                         <div *ngIf="transaction.status == 'Suspended'">
-                            <strong style="color: #D16765">{{ transaction.amount }}</strong>
+                            <strong style="color: #D16765">{{ transaction.amount | sperator }}</strong>
                             <small style="color: #D16765">تومان</small>
                         </div>
                     </div>
