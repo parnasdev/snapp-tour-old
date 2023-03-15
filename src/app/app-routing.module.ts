@@ -6,6 +6,7 @@ import { Page404Component } from "./common-project/page404/page404.component";
 import { DashboardGuardService } from './Core/guards/dashboard-guard.service';
 import { AuthGuardService } from './Core/guards/auth-guard.service';
 import { HomeGuardService } from './Core/guards/home-guard.service';
+import { PayComponent } from './store/pay/pay.component';
 
 const routes: Routes = [
   {
@@ -24,7 +25,12 @@ const routes: Routes = [
         path: 'dashboard',
         canActivate: [DashboardGuardService],
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
-      }, {
+      },
+      {
+        path: 'pay/:transactionId',
+        component: PayComponent
+      },
+      {
         path: 'not-found',
         component: Page404Component
       },

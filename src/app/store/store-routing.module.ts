@@ -6,6 +6,7 @@ import {AboutUsComponent} from "./about-us/about-us.component";
 import {ContactUsComponent} from "./contact-us/contact-us.component";
 import {InfoComponent} from "../cities/info/info.component";
 import { VerifyComponent } from './verify/verify.component';
+import { PayComponent } from './pay/pay.component';
 
 const routes: Routes = [
   {

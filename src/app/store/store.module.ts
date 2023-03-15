@@ -30,6 +30,7 @@ import { SpecialTourComponent } from './special-tour/special-tour.component';
 import { NewestToursComponent } from './newest-tours/newest-tours.component';
 import { HorizontalThumbnailTourComponent } from './horizontal-thumbnail-tour/horizontal-thumbnail-tour.component';
 import { VerifyComponent } from './verify/verify.component';
+import { PayComponent } from './pay/pay.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { VerifyComponent } from './verify/verify.component';
     SpecialTourComponent,
     NewestToursComponent,
     HorizontalThumbnailTourComponent,
-    VerifyComponent
+    VerifyComponent,
+    PayComponent
   ],
   exports: [
     IndexComponent,
