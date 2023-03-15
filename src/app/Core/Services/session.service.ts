@@ -29,12 +29,12 @@ export class SessionService {
         family: obj.user?.family,
         city: obj.user?.city,
         email: obj.user?.email,
+        isManager: obj.user?.isManager,
         gender: obj.user?.gender,
         id_code: obj.user?.id_code,
         agency: {
           name: obj.user.agency?.name,
           logo: obj.user.agency?.logo,
-          isManager: obj.user.agency?.isManager,
           LicenseFileA: obj.user.agency?.LicenseFileA,
           id: obj.user.agency?.id,
           extra: obj.user.agency?.extra,
@@ -78,6 +78,11 @@ export class SessionService {
 
   checkItemPermission(item: string) {
     return !!this.userPermissions.find(x => x.name === item)
+  }
+
+  getIsManager():any {
+    const user = localStorage.getItem('snapp-tour-user');
+    return user ? JSON.parse(user).user.isManager : false;
   }
 
   checkUser() {

@@ -20,7 +20,7 @@
             داشبورد
           </a>
         </li> -->
-        <li class="li-list">
+        <li class="li-list" *ngIf="session.getRole() !== 'Admin'">
           <a class="menu-main" href="/panel/profile">
             <img src="assets/img/Home.svg" width="20" alt="">
             پروفایل
@@ -124,9 +124,7 @@
           </div>
         </li>
 
-   
-
-        <li class="li-list">
+        <li class="li-list" *ngIf="session.getIsManager() && session.getRole() !== 'Admin'">
           <a class="menu-main menu-main-5" data-toggle="collapse" href="#collapseExample10" role="button"
             aria-expanded="false" aria-controls="collapseExample">
             <img src="assets/img/User%20Accepted.svg" width="20" alt="">

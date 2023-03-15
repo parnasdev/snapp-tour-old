@@ -82,11 +82,11 @@ export interface ProfileDTO {
   phone: string;
   email: string;
   gender: number;
+  isManager?: boolean | null
   city: CityResponseDTO;
   agency: {
     name: string;
     logo: string | null;
-    isManager?: boolean | null
     LicenseFileA: string | null;
     extra: '',
     id?: number;
