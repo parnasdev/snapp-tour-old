@@ -39,7 +39,7 @@
 </div>
 <h2 class="title-tour">هتل انتخابی : {{ reserveObj.package.hotel.name }}</h2>
 <div class="set-request-hotel">
-  <button class="btn-collapse" data-toggle="tooltip" data-placement="top" title="Tooltip on top"  data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+  <button *ngIf="isDesktop" class="btn-collapse" data-toggle="tooltip" data-placement="top" title="Tooltip on top"  data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
     <i class="icon-down-open"></i>
   </button>
   <!-- twin -->
@@ -231,8 +231,8 @@
             <span class="title">تاریخ خروج از هتل:</span>
             <span class="text">{{ calService.convertDate(reserveObj.package?.tour?.enDate,'fa') }}</span>
           </div>
-    
-    
+
+
         </div>
       </div>
       <div class="w-100 bg-light bg-info-trip">
@@ -277,7 +277,7 @@
             <span class="title">تاریخ پرواز برگشت:</span>
             <span class="text">{{transfers.enDate }}</span>
           </div>
-    
+
           <div class="item w-100 d-flex align-items-center px-2">
             <span class="title">تعداد روز:</span>
             <span class="text">{{reserveObj.package?.tour?.dayNum }}</span>
@@ -286,8 +286,8 @@
             <span class="title">تعداد شب:</span>
             <span class="text">{{reserveObj.package?.tour?.nightNum }}</span>
           </div>
-    
-    
+
+
           <div class="item w-100 d-flex align-items-center px-2">
             <span class="title">تاریخ ورود به هتل:</span>
             <span class="text">{{ calService.convertDate(reserveObj.package?.tour?.stDate,'fa') }}</span>
@@ -316,7 +316,7 @@
             <span class="title">نام هتل:</span>
             <span class="text">{{ reserveObj.package.hotel.name }}</span>
           </div>
-    
+
         </div>
       </div>
       <div *ngFor="let item of reserveObj.passengers" class="w-100 bg-light bg-info-trip">
@@ -325,7 +325,7 @@
           <h2 class="dana-bold">{{ item.name }}</h2>
         </div>
         <div *ngFor="let p of item.passengers" class="tour-items w-100">
-          
+
           <div class="item w-100 d-flex align-items-center px-2">
             <span class="title">نام:</span>
             <span class="text">{{ p.firstName }}</span>
@@ -354,12 +354,12 @@
             <span class="title">شماره همراه :</span>
             <span class="text">{{ p.phoneNumber }}</span>
           </div>
-    
+
         </div>
-      
-    
+
+
       </div>
-    
-    
+
+
     </div>
 </ng-template>

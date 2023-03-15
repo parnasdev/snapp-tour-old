@@ -36,8 +36,8 @@
         <span>{{ this.calService.convertDate(item.createdAt, 'fa') }}</span>
         <div class="button-setting d-flex justify-content-center">
           <!-- <a class="edit-btn">تایید</a> -->
-          <a routerLink="/panel/agencies/reserves/{{ item.ref_code }}" class="edit-btn">مشاهده</a>
-          <!-- <a class="edit-btn">ویرایش</a> -->
+          <a routerLink="/panel/agencies/reserves/{{ item.ref_code }}" style="margin-left:7px;" class="edit-btn">مشاهده</a>
+          <a routerLink="/panel/agencies/reserves/edit/{{ item.ref_code }}" class="delete-btn">ویرایش</a>
         </div>
       </div>
     </div>

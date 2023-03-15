@@ -1,0 +1,99 @@
+<div class="d-flex align-items-center justify-content-between w-100">
+  <div class="d-flex align-items-center mt-4">
+    <h2 class="title-tour">{{ reserveObj?.package?.tour?.title }}</h2>
+  </div>
+  <div class="code">
+    <span>کد رفرنس: {{ this.reserveCode }}</span>
+  </div>
+</div>
+<div class="set-request-tour">
+  <div class="info-from">
+    <span class="city-name">{{ reserveObj?.package?.tour?.stCity?.name }}</span>
+    <div class="item">
+      <span class="title">تاریخ و ساعت پرواز رفت :</span>
+      <span class="text">{{ stDate }}</span>
+    </div>
+    <div class="item">
+      <span class="title">تاریخ ورود به هتل :</span>
+      <span class="text">{{ calService.convertDateAndTime(reserveObj?.package?.tour?.stDate, 'fa') }}</span>
+    </div>
+  </div>
+  <div class="info-time">
+    <span class="title">مدت اقامت:</span>
+    <span class="text">{{ reserveObj?.package?.tour?.dayNum }} روز و {{ reserveObj?.package?.tour?.nightNum }} شب</span>
+  </div>
+  <div class="info-to">
+    <span class="city-name">{{ reserveObj?.package?.tour?.endCity?.name }}</span>
+    <div class="item">
+      <span class="title">تاریخ و ساعت پرواز برگشت :</span>
+      <span class="text">{{enDate }}</span>
+    </div>
+    <div class="item">
+      <span class="title">تاریخ خروج از هتل :</span>
+      <span class="text">{{ calService.convertDateAndTime(reserveObj?.package?.tour?.enDate, 'fa') }}</span>
+    </div>
+  </div>
+</div>
+<h2 class="title-tour">هتل انتخابی : {{ reserveObj.package.hotel.name }}</h2>
+
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    اتاق اضافی موجود نیست
+  </div>
+</div>
+
+<div class="set-info-supervisor">
+  <div class="item-form">
+    <label class="dana-bold" for="">نام</label>
+    <div class="inp-form mt-2">
+      <input type="text" [formControl]="nameFC" placeholder="اینجا بنویسید …">
+    </div>
+  </div>
+  <div class="item-form">
+    <label class="dana-bold" for=""> نام خانوادگی</label>
+    <div class="inp-form mt-2">
+      <input type="text" [formControl]="familyFC" placeholder="اینجا بنویسید …">
+    </div>
+  </div>
+  <div class="item-form">
+    <label class="dana-bold" for="">
+      کد ملی
+    </label>
+    <div class="inp-form mt-2">
+      <input type="text" [formControl]="idCodeFC" placeholder="اینجا بنویسید …">
+    </div>
+  </div>
+  <div class="item-form">
+    <label class="dana-bold" for="">
+      شهر محل سکونت
+    </label>
+    <div class="inp-form mt-2">
+      <prs-select-city></prs-select-city>
+    </div>
+
+  </div>
+  <div class="item-form">
+    <label class="dana-bold" for="">
+      شماره همراه
+    </label>
+    <div class="inp-form mt-2">
+      <input [formControl]="phoneFC" type="text" placeholder="اینجا بنویسید …">
+    </div>
+  </div>
+</div>
+
+<h2>اطلاعات مسافران</h2>
+<div class="box-empty" *ngIf="roomsSelected.length === 0">
+  <span>اتاقی انتخاب نشده است</span>
+</div>
+<prs-passengers *ngFor="let room of roomsSelected" [inCommingPassengers]="room.passengers" [tourType]="getTourType(reserveObj?.package?.tour?.type)"
+  [RoomData]="room" (passengerResult)="getRoomData($event)"></prs-passengers>
+
+
+<div class="p-errorr">
+  <span class="text-danger" *ngFor="let err of errors">{{ err[0] }}</span>
+</div>
+
+<div class="p-submit w-100 d-flex justify-content-center mt-4">
+  <button class="btn-base px-4" (click)="submit()">ویرایش درخواست</button>
+</div>

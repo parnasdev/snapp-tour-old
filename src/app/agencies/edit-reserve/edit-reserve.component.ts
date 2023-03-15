@@ -1,38 +1,24 @@
-import {Component, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {transfersSetDTO} from 'src/app/agencies/agency-reserves/agency-reserves.component';
-import {RoomTypeApiService} from 'src/app/Core/Https/room-type-api.service';
-import {TourApiService} from 'src/app/Core/Https/tour-api.service';
-import {RoomTypeListDTO} from 'src/app/Core/Models/roomTypeDTO';
-import {
-  DiscountsDTO,
-  EditReserveReq,
-  HotelDTO,
-  PricesDTO,
-  RateDTO,
-  ReserveInfoDTO,
-  ReserveRoomDTO,
-  RoomDTO,
-  RoomPassengersDTO,
-  RoomsRequestDTO,
-  Tour
-} from 'src/app/Core/Models/tourDTO';
-import {CalenderServices} from 'src/app/Core/Services/calender-service';
-import {CheckErrorService} from 'src/app/Core/Services/check-error.service';
-import {MessageService} from 'src/app/Core/Services/message.service';
-import {PublicService} from 'src/app/Core/Services/public.service';
-import {SessionService} from 'src/app/Core/Services/session.service';
-import {ResponsiveService} from "../../Core/Services/responsive.service";
-
+import { Component, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { transfersSetDTO } from 'src/app/agencies/agency-reserves/agency-reserves.component';
+import { RoomTypeApiService } from 'src/app/Core/Https/room-type-api.service';
+import { TourApiService } from 'src/app/Core/Https/tour-api.service';
+import { RoomTypeListDTO } from 'src/app/Core/Models/roomTypeDTO';
+import { DiscountsDTO, EditReserveReq, HotelDTO, PricesDTO, RateDTO, ReserveInfoDTO, ReserveRoomDTO, RoomDTO, RoomPassengersDTO, RoomsRequestDTO, Tour } from 'src/app/Core/Models/tourDTO';
+import { CalenderServices } from 'src/app/Core/Services/calender-service';
+import { CheckErrorService } from 'src/app/Core/Services/check-error.service';
+import { MessageService } from 'src/app/Core/Services/message.service';
+import { PublicService } from 'src/app/Core/Services/public.service';
+import { SessionService } from 'src/app/Core/Services/session.service';
 @Component({
-  selector: 'prs-user-reservation-info',
-  templateUrl: './user-reservation-info.component.html',
-  styleUrls: ['./user-reservation-info.component.scss']
+  selector: 'prs-edit-reserve',
+  templateUrl: './edit-reserve.component.html',
+  styleUrls: ['./edit-reserve.component.scss']
 })
-export class UserReservationInfoComponent implements OnInit {
+export class EditReserveComponent implements OnInit {
+
   orderForm?: FormGroup;
-  isDesktop = false;
   errors: any
   items?: FormArray;
   reserveCode = '';
@@ -70,19 +56,18 @@ export class UserReservationInfoComponent implements OnInit {
 
   stDate = '';
   enDate = '';
-
-  nameFC = new FormControl(this.session.getName(), Validators.required);
-  familyFC = new FormControl(this.session.getFamily(), Validators.required);
+  nameFC = new FormControl('', Validators.required);
+  familyFC = new FormControl('', Validators.required);
   cityFC = new FormControl(1, Validators.required);
-  idCodeFC = new FormControl(this.session.getIdCode(), Validators.required);
-  phoneFC = new FormControl(this.session.getPhone(), Validators.required);
-  isPrivacyCheck = false;
+  idCodeFC = new FormControl('', Validators.required);
+  phoneFC = new FormControl('', Validators.required);
   editReserveData: EditReserveReq = {
     city_id: 0,
     phone: '',
     name: '',
     family: '',
     id_code: 0,
+    isEditPassenger: true,
     count: 0,
     coupon_id: '',
     passengers: [],
@@ -112,12 +97,9 @@ export class UserReservationInfoComponent implements OnInit {
     supply: 0
   }
   roomsSelected: RoomDTO[] = [];
-
   roomsList: ReserveRoomDTO[] = []
-
   roomsCapacityReq: string[] = [];
   roomsCapacityList: RoomTypeListDTO[] = [];
-
   roomPassengersData: RoomPassengersDTO[] = []
 
   tourType: any = false;
@@ -132,17 +114,16 @@ export class UserReservationInfoComponent implements OnInit {
   }
 
   constructor(public route: ActivatedRoute,
-              public messageService: MessageService,
-              public checkError: CheckErrorService,
-              public router: Router,
-              public fb: FormBuilder,
-              public session: SessionService,
-              public publicService: PublicService,
-              public calService: CalenderServices,
-              public mobileService: ResponsiveService,
-              public roomApiService: RoomTypeApiService,
-              public api: TourApiService) {
-    this.isDesktop = mobileService.isDesktop();
+    public messageService: MessageService,
+    public checkError: CheckErrorService,
+    public router: Router,
+    public fb: FormBuilder,
+    public session: SessionService,
+    public publicService: PublicService,
+    public calService: CalenderServices,
+    public roomApiService: RoomTypeApiService,
+    public api: TourApiService) {
+
   }
 
   ngOnInit(): void {
@@ -155,6 +136,7 @@ export class UserReservationInfoComponent implements OnInit {
     this.api.getReserve(this.reserveCode).subscribe((res: any) => {
       if (res.isDone) {
         this.reserveObj = res.data;
+        this.setValue();
         this.tourType = this.reserveObj.package.tour.type;
         this.setTourTransfers()
         this.getRoomCapacity();
@@ -165,6 +147,15 @@ export class UserReservationInfoComponent implements OnInit {
     }, (error: any) => {
       this.checkError.check(error);
     })
+  }
+
+  setValue() {
+  this.roomsSelected = this.reserveObj.passengers;
+ this.nameFC.setValue(this.reserveObj.user.name)
+ this.familyFC.setValue(this.reserveObj.user.family)
+ this.cityFC.setValue(this.reserveObj.user.city)
+ this.idCodeFC.setValue(this.reserveObj.user.id_code)
+ this.phoneFC.setValue(this.reserveObj.user.phone)
   }
 
   setTourTransfers(): void {
@@ -273,7 +264,6 @@ export class UserReservationInfoComponent implements OnInit {
   onCitySelected(city: any) {
     this.cityFC.setValue(city.id);
   }
-
   getroomCount(roomName: string): number {
     return this.roomPassengersData.filter(x => x.roomName === roomName).length
   }
@@ -289,6 +279,7 @@ export class UserReservationInfoComponent implements OnInit {
       phone: this.phoneFC.value,
       name: this.nameFC.value,
       family: this.familyFC.value,
+      isEditPassenger: true,
       id_code: this.idCodeFC.value,
       passengers: this.roomsSelected,
       package_id: this.reserveObj.package.id.toString(),
@@ -308,13 +299,10 @@ export class UserReservationInfoComponent implements OnInit {
       this.messageService.custom('لطفا اطلاعات رزرو گیرنده را تکمیل کنید')
     } else if (this.roomsSelected.length === 0) {
       this.messageService.custom('لطفا اتاق های مورد نظر خود را انتخاب کنید')
-    } else if (!this.isPrivacyCheck) {
-      this.messageService.custom('لطفا قوانین و مقررات را خوانده و بپذیرید')
     } else {
       this.editReserve();
     }
   }
-
   editReserve(): void {
     this.setReserveReq();
     this.api.editReserve(this.editReserveData, this.reserveCode).subscribe((res: any) => {
