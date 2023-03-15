@@ -50,9 +50,7 @@ export class VerifyComponent implements OnInit {
   }
 
   getvoucher(refrence: string){
-    if(refrence) {
-      window.open(`https://loadbalancer.iran.liara.run/api/v1/reserve/getVoucher/${refrence}`, '_blank')
-    }
+    window.open(`https://loadbalancer.iran.liara.run/api/v1/reserve/getVoucher/${refrence}`, '_blank')
   }
 
 }
