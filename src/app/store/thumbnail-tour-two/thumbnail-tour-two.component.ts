@@ -86,7 +86,7 @@ export class ThumbnailTourTwoComponent implements OnInit {
       if (res.isDone) {
         this.clicked = false;
         // this.message.custom(res.message);
-        this.router.navigate(['/dashboard/tour/info/' + res.data.reserve_id]);
+        this.router.navigate(['/tours/info/' + res.data.reserve_id]);
       } else {
         this.clicked = false;
         this.message.custom(res.message);
