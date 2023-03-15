@@ -16,8 +16,11 @@
           <a href="https://www.snapptrip.com/landing/csr/index.html?sender=trip" target="_blank" class="baner-right">
             <img src="assets/img/banner.jpg" alt="">
           </a>
-          <a href="https://www.snapptrip.com/blog/landingbuilder/free-cancellation/" target="_blank" class="baner-left">
-            <img src="assets/img/Nowrouz-Campaign---Dom-Hotel---LargeSlider---banner--1280x400-2_981.jpg" alt="">
+          <a *ngIf="isDesktop" href="https://www.snapptrip.com/" target="_blank" class="baner-left">
+            <img src="assets/img/banners/Hotel-banner--1280x400.jpg" alt="">
+          </a>
+          <a *ngIf="isMobile" href="https://www.snapptrip.com/" target="_blank" class="baner-left">
+            <img src="assets/img/banners/Hotel-LargeSlider-mobile-900x448.jpg" alt="">
           </a>
         </div>
       </div>
