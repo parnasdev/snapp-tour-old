@@ -18,7 +18,7 @@ export class UserReservationsComponent implements OnInit {
   isDesktop = false;
   isMobile = false;
   isTablet = false;
-  slug: string = 'dsfsf';
+  slug: string = '';
 
   reserves: UserReserveListResDTO[] = [];
   reserveReq: ReserveListReqDTO = {
@@ -63,7 +63,6 @@ export class UserReservationsComponent implements OnInit {
     this.api.payTransaction(transactionId.id).subscribe((res: any) => {
       if (res.isDone) {
         this.formData = JSON.parse(res.data);
-        console.log(this.formData);
         var form = document.createElement("form");
         form.setAttribute("method", "POST");
         form.setAttribute("action", this.formData.action);
