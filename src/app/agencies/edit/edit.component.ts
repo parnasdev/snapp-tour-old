@@ -192,6 +192,8 @@ export class EditComponent implements OnInit {
 
   }
 
+  
+
 
   setReq(): void {
     this.req = {
@@ -316,7 +318,7 @@ export class EditComponent implements OnInit {
     this.emailFC.setValue(this.info.email)
     this.familyFC.setValue(this.info.family)
     this.idCodeFC.setValue(this.info.idCode)
-    this.cityFC.setValue(this.info.city.slugEn);
+    this.cityFC.setValue(this.info.city?.slugEn);
     this.reload();
 
     this.LicenseFileA = this.info.agency.LicenseFileA
