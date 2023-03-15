@@ -34,6 +34,7 @@ export class UserReservationInfoComponent implements OnInit {
   orderForm?: FormGroup;
   isDesktop = false;
   errors: any
+  isLoading = false
   items?: FormArray;
   reserveCode = '';
   reserveObj: ReserveInfoDTO = {
@@ -148,10 +149,12 @@ export class UserReservationInfoComponent implements OnInit {
   ngOnInit(): void {
     // @ts-ignore
     this.reserveCode = this.route.snapshot.paramMap.get('reserveid');
+
     this.getReserve();
   }
 
   getReserve(): void {
+    this.isLoading = true;
     this.api.getReserve(this.reserveCode).subscribe((res: any) => {
       if (res.isDone) {
         this.reserveObj = res.data;
@@ -162,7 +165,16 @@ export class UserReservationInfoComponent implements OnInit {
       } else {
         this.messageService.custom('مشکلی در نمایش اطلاعات به وجود آمده است')
       }
+      this.isLoading = false;
+
     }, (error: any) => {
+      this.isLoading = false;
+
+      if(error.status === 404) {
+      this.router.navigateByUrl('/')
+      this.messageService.custom('کد رفرنس نامعتبر است')
+
+      }
       this.checkError.check(error);
     })
   }

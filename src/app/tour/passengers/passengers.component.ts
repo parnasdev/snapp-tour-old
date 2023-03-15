@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges, Output, EventEmitter } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PassengerDTO, RoomDTO } from 'src/app/Core/Models/tourDTO';
+import { MessageService } from 'src/app/Core/Services/message.service';
 
 @Component({
   selector: 'prs-passengers',
@@ -19,17 +20,18 @@ export class PassengersComponent implements OnInit, OnChanges {
   }
   @Output() passengerResult = new EventEmitter();
   @Input() tourType: boolean = false;   // false = 'تور خارجی'  // true = ' تور داخلی'
-  @Input() inCommingPassengers:any = {
-    capacity : 0,
+  @Input() inCommingPassengers: any = {
+    capacity: 0,
     id: 0,
     name: '',
-    passengers : [],
+    passengers: [],
     price: 0,
     supply: 0
   }
 
 
-  constructor(public fb: FormBuilder,) { }
+  constructor(public fb: FormBuilder,
+    public message: MessageService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.RoomData.firstChange) {
@@ -59,14 +61,14 @@ export class PassengersComponent implements OnInit, OnChanges {
 
   addRow(obj: PassengerDTO | null = null) {
     const Passengers = this.fb.group({
-      firstName: [obj? obj.firstName : '', Validators.required],
-      lastName: [obj? obj.lastName : '', Validators.required],
-      id_code: [obj? obj.id_code : ''],
-      birthDate: [obj? obj.birthDate : '', Validators.required],
-      phoneNumber: [obj? obj.phoneNumber : ''],
-      nationality: [obj? obj.nationality : ''],
-      passport_number: [obj? obj.passport_number : ''],
-      passport_expire: [obj? obj.passport_expire : ''],
+      firstName: [obj ? obj.firstName : '', Validators.required],
+      lastName: [obj ? obj.lastName : '', Validators.required],
+      id_code: [obj ? obj.id_code : ''],
+      birthDate: [obj ? obj.birthDate : '', Validators.required],
+      phoneNumber: [obj ? obj.phoneNumber : ''],
+      nationality: [obj ? obj.nationality : ''],
+      passport_number: [obj ? obj.passport_number : ''],
+      passport_expire: [obj ? obj.passport_expire : ''],
     })
     this.PassengerForm.push(Passengers);
   }
@@ -79,6 +81,7 @@ export class PassengersComponent implements OnInit, OnChanges {
     this.RoomData.passengers = passengers;
     this.passengerResult.emit(this.RoomData);
   }
+
 
   onChange(): void {
     // if (this.PassengerForm.valid) {

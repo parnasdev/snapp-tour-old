@@ -13,7 +13,6 @@ export class DashboardGuardService {
     public router: Router) {
   }
   canActivate(): any {
-    this.role = this.session.getRole();
     if (this.session.isLoggedIn()) {
       return true;
     } else {

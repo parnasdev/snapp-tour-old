@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import { DashboardGuardService } from '../Core/guards/dashboard-guard.service';
 import { AgencyReservesComponent } from './agency-reserves/agency-reserves.component';
 import {InfoComponent} from "./info/info.component";
 import {ListComponent} from "./list/list.component";
@@ -13,6 +14,7 @@ const routes: Routes = [
   },
   {
     path: 'info/:reserveid',
+    canActivate:[DashboardGuardService],
     component: UserReservationInfoComponent
   },
   {
