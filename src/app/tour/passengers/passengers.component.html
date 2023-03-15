@@ -11,7 +11,7 @@
 
 
       <div class="item-form">
-        <label class="dana-bold" for="">نام</label>
+        <label class="dana-bold" for="">نام (لاتین)</label>
         <div class="inp-form mt-2">
           <input type="text" (change)="onChange()" formControlName="firstName" placeholder="اینجا بنویسید …">
 
@@ -21,7 +21,7 @@
         </ng-container>
       </div>
       <div class="item-form">
-        <label class="dana-bold" for="">نام خانوادگی</label>
+        <label class="dana-bold" for="">نام خانوادگی (لاتین)</label>
         <div class="inp-form mt-2">
           <input type="text" (change)="onChange()" formControlName="lastName" placeholder="اینجا بنویسید …">
 
@@ -52,7 +52,7 @@
 
           <mat-form-field class="example-full-width" appearance="fill">
             <input class="input-parent" readonly (dateChange)="onChange()" [max]="minDate" matInput formControlName="birthDate" placeholder="تاریخ تولد"
-              autocomplete="off" [matDatepicker]="picker4" (click)="picker4.open()">
+              autocomplete="off"  [matDatepicker]="picker4" (click)="picker4.open()">
             <mat-datepicker startView="year" #picker4></mat-datepicker>
           </mat-form-field>
 
@@ -93,7 +93,7 @@
 
           <mat-form-field class="example-full-width" appearance="fill">
             <input class="input-parent" (dateChange)="onChange()"  readonly [min]="minDate" matInput formControlName="passport_expire"
-              placeholder="" autocomplete="off" [matDatepicker]="picker3" (click)="picker3.open()">
+              placeholder="" autocomplete="off" placeholder="تاریخ انقضای پاسپورت" [matDatepicker]="picker3" (click)="picker3.open()">
             <mat-datepicker #picker3></mat-datepicker>
           </mat-form-field>
 
