@@ -35,7 +35,6 @@ export class PayComponent implements OnInit {
   callPay(transactionId: any) {
     this.api.payTransaction(transactionId).subscribe((res: any) => {
       if (res.isDone) {
-        debugger
         this.formData = JSON.parse(res.data);
         var form = document.createElement("form");
         form.setAttribute("method", "POST");
