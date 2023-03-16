@@ -7,7 +7,7 @@
       <div class="row">
         <div class="col-md-11 m-auto tour-parent">
           <div class="search">
-      <prs-search [inCommingSearchObject]="searchObject" (onSubmit)="search($event)"></prs-search>
+            <prs-search [inCommingSearchObject]="searchObject" (onSubmit)="search($event)"></prs-search>
           </div>
           <div class="title-tour-parent">
             <div class="top">
@@ -37,9 +37,12 @@
               <mat-checkbox [(ngModel)]="sortByDate"></mat-checkbox>
               <label>نزدیکترین</label>
             </div>
-            <prs-horizontal-thumbnail-tour *ngFor="let tour of tours | paginate: paginateConfig| ordering : sortByDate; let i = index " [tour]="tour"></prs-horizontal-thumbnail-tour>
+            <prs-horizontal-thumbnail-tour
+              *ngFor="let tour of tours | paginate: paginateConfig| ordering : sortByDate; let i = index "
+              [tour]="tour"></prs-horizontal-thumbnail-tour>
             <div>
               <pagination-controls
+                [maxSize]="isMobilePage?4:7"
                 *ngIf="!loading && paginate.last_page > 1"
                 class="pagination-control"
                 (pageChange)="onPageChanged($event)"
