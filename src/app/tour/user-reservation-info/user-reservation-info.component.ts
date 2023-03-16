@@ -308,7 +308,6 @@ export class UserReservationInfoComponent implements OnInit {
   }
 
   getRoomData(data: RoomDTO): void {
-    console.log(data)
     this.roomsSelected.forEach(item => {
       if (item.id === data.id) {
         item.passengers = data.passengers;

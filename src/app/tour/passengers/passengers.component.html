@@ -63,7 +63,7 @@
             <span class="text-danger">تاریخ تولد الزامی است</span>
           </ng-container>
         </div>
-        <div class="item-form" *ngIf="i === 0">
+        <!-- <div class="item-form" *ngIf="i === 0">
           <label class="dana-bold" for="">
             شماره همراه
           </label>
@@ -74,7 +74,7 @@
           <ng-container *ngIf="item.get('phoneNumber')?.touched && item.get('phoneNumber')?.hasError('required')">
             <span class="text-danger">شماره همراه الزامی است</span>
           </ng-container>
-        </div>
+        </div> -->
 
         <div class="item-form" *ngIf="!tourType">
           <label class="dana-bold" for="">
@@ -84,7 +84,7 @@
             <input type="text" (change)="onChange()" placeholder="اینجا بنویسید …" formControlName="passport_number">
           </div>
           <ng-container *ngIf="item.get('passport_number')?.touched && item.get('passport_number')?.hasError('required')">
-            <span class="text-danger">شماره همراه الزامی است</span>
+            <span class="text-danger">شماره پاسپورت الزامی است</span>
           </ng-container>
         </div>
         <div class="item-form" *ngIf="!tourType">
