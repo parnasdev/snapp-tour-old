@@ -361,24 +361,38 @@ select::-ms-expand {
 }
 
 .ngx-pagination .current {
-  background: var(--base-color-second) !important;
+  border: 2px solid var(--base-color) !important;
+  background: unset !important;
   width: 30px !important;
   display: flex !important;
   justify-content: center !important;
+  border-radius: 4px;
+  color: var(--base-color) !important;
 }
 
 .ngx-pagination li {
-  border-radius: var(--radius-btn) !important;
   overflow: hidden;
-}
 
+}
+.ngx-pagination .pagination-next a{
+  background: var(--base-color) !important;
+  border-radius: 4px !important;
+  padding: 4px 18px 4px 4px !important;
+  color: var(--white) !important;
+}
+.ngx-pagination .pagination-previous a{
+  background: var(--base-color) !important;
+  border-radius: 4px !important;
+  padding: 4px 4px 4px 18px !important;
+  color: var(--white) !important;
+}
 .ngx-pagination .pagination-next a::after, .ngx-pagination .pagination-next.disabled::after {
-  content: '»';
+  content: '' !important;
   font-size: 20px !important;
 }
 
 .ngx-pagination .pagination-previous a::before, .ngx-pagination .pagination-previous.disabled::before {
-  content: '«';
+  content: '' !important;
   font-size: 20px !important;
 }
 
@@ -903,11 +917,13 @@ select::-ms-expand {
     }
   }
 }
-.price{
-  small{
+
+.price {
+  small {
     margin-right: 2px;
   }
 }
+
 .s-dashboard {
   .p-info-trip {
     box-shadow: $box-shadow;
