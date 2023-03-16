@@ -205,9 +205,13 @@ export interface ReserveReqDTO {
 }
 
 export interface ReserveListReqDTO {
-  perPage?: number
-  paginate: boolean,
-  accountType?: string | null
+  perPage?: number;
+  paginate: boolean;
+  agencyName?: string;
+  refCode?: string;
+  date?: string;
+  search?: string;
+  accountType?: string | null;
 }
 
 export interface ReserveListResDTO {
