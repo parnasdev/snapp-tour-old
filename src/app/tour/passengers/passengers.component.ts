@@ -95,5 +95,23 @@ export class PassengersComponent implements OnInit, OnChanges {
     // })
   }
 
+  
+  getRoomNameFa(roomName: string | undefined){
+    switch (roomName) {
+      case 'twin':
+        return 'دو تخته'
+      case 'single':
+          return 'یک تخته'
+      case 'triple':
+        return 'سه تخته'
+      case 'quad':
+        return 'چهارتخته'
+      case 'cwb':
+        return 'کودک با تخت'
+      default:
+        return ''
+    }
+  }
+
 
 }
