@@ -19,7 +19,7 @@
       <span class="setting">عملیات</span>
     </div>
     <div class="body-list-tour" *ngIf="!isLoading && reserves.length > 0">
-      <div class="item" *ngFor="let item of reserves ;let i = index">
+      <div class="item" *ngFor="let item of reserves | paginate: paginateConfig;let i = index">
         <span class="id">{{ item.id}}</span>
         <span class="username text-center">{{ item.package?.tour ? item.package?.tour?.title : 'حذف شده' }}</span>
         <span>{{ item.agency }}</span>

@@ -63,7 +63,6 @@ export class ReserveListComponent implements OnInit {
   }
 
   onPageChanged(event: any) {
-    debugger
     this.p = event;
     this.getReserveList();
   }
