@@ -40,7 +40,7 @@
     height: 40px;
     width: 100%;
     display: grid;
-    grid-template-columns: 0.3fr 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 0.3fr 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     background-color: var(--white);
     border-bottom: 1px solid var(--light-color-two);
     place-items: center;
@@ -61,10 +61,10 @@
   }
 
   .body-list-tour .item {
-    height: 60px;
-    width: 100%;
+    height: 80px;
+    width: 100%;  
     display: grid;
-    grid-template-columns: 0.3fr 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 0.3fr 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     place-items: center;
   }
 
