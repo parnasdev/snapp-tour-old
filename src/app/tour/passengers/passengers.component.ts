@@ -107,7 +107,7 @@ export class PassengersComponent implements OnInit, OnChanges {
       case 'quad':
         return 'چهارتخته'
       case 'cwb':
-        return 'کودک با تخت'
+        return 'cwb'
       default:
         return ''
     }
