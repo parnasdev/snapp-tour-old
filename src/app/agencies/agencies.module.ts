@@ -19,6 +19,7 @@ import { PipesModule } from '../common-project/pipes/pipes.module';
 import { AgencyReservesComponent } from './agency-reserves/agency-reserves.component';
 import { EditReserveComponent } from './edit-reserve/edit-reserve.component';
 import { TourModule } from '../tour/tour.module';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
     declarations: [
@@ -49,6 +50,7 @@ import { TourModule } from '../tour/tour.module';
         ToolsModule,
         TourModule,
         StoreModule,
+        NgxPaginationModule,
         CommonProjectModule,
     ], providers: [
         { provide: MatDialogRef, useValue: {} },

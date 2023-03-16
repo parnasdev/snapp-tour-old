@@ -13,6 +13,9 @@ import { SessionService } from 'src/app/Core/Services/session.service';
   styleUrls: ['./reserve-list.component.scss']
 })
 export class ReserveListComponent implements OnInit {
+
+  p = 1;
+  isLoading = false;
   reserves: any[] = []
   paginate: any;
   paginateConfig: any;
@@ -20,7 +23,6 @@ export class ReserveListComponent implements OnInit {
     paginate: true,
     accountType: this.session.getRole() === 'Admin' ? null : 'agency',
   }
-  pageNum = 1
 
   constructor(public mobileService: ResponsiveService,
     public session: SessionService,
@@ -38,16 +40,30 @@ export class ReserveListComponent implements OnInit {
   }
 
   getReserveList(): void {
-    this.api.getReserves(this.reserveReq,this.pageNum).subscribe((res: any) => {
+    this.isLoading = true;
+    this.api.getReserves(this.reserveReq,this.p).subscribe((res: any) => {
       if (res.isDone) {
+        this.isLoading = false;
         this.reserves = res.data;
+        this.paginate = res.meta;
+        this.paginateConfig = {
+          itemsPerPage: this.paginate.per_page,
+          totalItems: this.paginate.total,
+          currentPage: this.paginate.current_page
+        }
       } else {
+        this.isLoading = false;
         this.messageService.custom('مشکلی در نمایش اطلاعات به وجود آمده است')
       }
     }, (error: any) => {
+      this.isLoading = false;
       this.errorService.check(error);
     })
   }
 
+  onPageChanged(event: any) {
+    this.p = event;
+    this.getReserveList();
+  }
 
 }

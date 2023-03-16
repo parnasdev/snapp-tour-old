@@ -1,8 +1,7 @@
-<!-- <prs-loading *ngIf="loading"></prs-loading> -->
+<prs-loading *ngIf="isLoading"></prs-loading>
 <div class="list-tour">
   <div class="title">
     <h2>رزروها</h2>
-    <!-- <a *ngIf="setting.checkItemPermission('item.create')" class="btn-add-tour" routerLink="/panel/tour/add">اضافه</a> -->
   </div>
   <div class="table-list-tour table-list-tour-desktop">
     <div class="header-list-tour">
@@ -18,7 +17,7 @@
       <span>تاریخ ایجاد رزرو</span>
       <span class="setting">عملیات</span>
     </div>
-    <div class="body-list-tour" *ngIf="reserves.length > 0">
+    <div class="body-list-tour" *ngIf="!isLoading && reserves.length > 0">
       <div class="item" *ngFor="let item of reserves ;let i = index">
         <span class="id">{{ item.id}}</span>
         <span class="username text-center">{{ item.package?.tour ? item.package?.tour?.title : 'حذف شده' }}</span>
@@ -41,9 +40,10 @@
         </div>
       </div>
     </div>
-    <div>
-
-    </div>
+    <pagination-controls *ngIf="!isLoading && paginate.last_page > 1" class="pagination-control"
+      (pageChange)="onPageChanged($event)" previousLabel="قبلی" nextLabel="بعدی" screenReaderPaginationLabel="صفحه بندی"
+      screenReaderPageLabel="صفحه" screenReaderCurrentLabel="شما در صفحه ی">
+    </pagination-controls>
   </div>
 
 

@@ -173,12 +173,12 @@
     display: none;
   }
 
-  .pagination-control {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 10px;
-  }
+  // .pagination-control {
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+  //   padding-top: 10px;
+  // }
   :host::ng-deep .mat-button-toggle-button span{
     font-family: IRANSans !important;
   }
@@ -357,4 +357,11 @@
       padding: 0 10px;
       border-radius: 4px;
     }
+  }
+
+  .pagination-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
   }
