@@ -34,11 +34,11 @@
         </div>
         <!-- کدملی -->
         <div class="item-form" *ngIf="tourType">
-          <label class="dana-bold" for="">
+          <!-- <label class="dana-bold" for="">
             کد ملی
-          </label>
+          </label> -->
           <div class="inp-form mt-2">
-            <input type="text" (change)="onChange()" placeholder="اینجا بنویسید …" formControlName="id_code">
+            <input type="text" (change)="onChange()" placeholder="کدملی" formControlName="id_code">
 
           </div>
           <ng-container *ngIf="item.get('id_code')?.touched && item.get('id_code')?.hasError('required')">
