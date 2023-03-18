@@ -1,97 +1,342 @@
 .list-tour {
-    margin-top: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  display: flex;
+  width: 99%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inp-form {
+  label{
+    width: 100% !important;
+  }
+  select {
+    border: unset !important;
+    outline: unset;
+    background: unset;
+    height: 100%;
     width: 100%;
-    display: flex;
-    flex-direction: column;
   }
+}
 
-  .title {
-    display: flex;
-    width: 99%;
-    align-items: center;
-    justify-content: space-between;
+.btn-search-reserve {
+  width: 200px;
+  height: 45px !important;
+}
+
+.title h2 {
+  font-size: 20px;
+  color: var(--base-color);
+  margin-right: 4px;
+}
+
+.table-list-tour {
+  width: 99%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--light-color-two);
+  margin-top: 10px;
+}
+
+.header-list-tour {
+  height: 40px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 0.3fr 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  background-color: var(--white);
+  border-bottom: 1px solid var(--light-color-two);
+  place-items: center;
+
+  span {
+    text-align: center;
   }
+}
 
-  .title h2 {
-    font-size: 20px;
-    color: var(--base-color);
-    margin-right: 4px;
-  }
+.header-list-tour span {
+  margin: auto;
+  font-size: 13px !important;
+}
 
-  .title button {
-    width: 100px;
-    background-color: var(--base-color-three);
-    color: var(--white);
-    border: none;
-    outline: none;
-    border-radius: var(--radius-btn);
-    height: 35px;
-  }
+.body-list-tour {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 
-  .table-list-tour {
-    width: 99%;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid var(--light-color-two);
-    margin-top: 10px;
-  }
+.body-list-tour .item {
+  height: 80px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 0.3fr 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  place-items: center;
+}
 
-  .header-list-tour {
-    height: 40px;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 0.3fr 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    background-color: var(--white);
-    border-bottom: 1px solid var(--light-color-two);
-    place-items: center;
-    span{
-      text-align: center;
+.body-list-tour .item:not(:last-child) {
+  border-bottom: 1px solid var(--light-color-two);
+}
+
+.body-list-tour .item span {
+  margin: auto;
+  font-size: 13px !important;
+}
+
+.body-list-tour .item .status {
+  color: var(--red-color);
+  font-weight: 500;
+}
+
+.button-setting {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 4px;
+}
+
+.button-setting .edit-btn {
+  width: auto;
+  background-color: var(--base-color-three);
+  color: var(--white);
+  border: none;
+  outline: none;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-setting .view-btn {
+  width: auto;
+  background-color: var(--base-color);
+  color: var(--white);
+  border: none;
+  outline: none;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-setting .delete-btn {
+  width: auto;
+  background-color: var(--red-color);
+  color: var(--white);
+  border: none;
+  outline: none;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 4px;
+}
+
+.button-setting .log-btn {
+  width: auto;
+  background-color: #0d6efd;
+  color: var(--white);
+  border: none;
+  outline: none;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 4px;
+}
+
+.button-setting .copy-btn {
+  width: auto;
+  background-color: var(--green-color);
+  color: var(--white);
+  border: none;
+  outline: none;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 4px;
+}
+
+.date-create {
+  direction: ltr;
+}
+
+.near-date label {
+  margin-right: 12px;
+}
+
+.btn-add-tour {
+  background-color: var(--base-color);
+  color: var(--white);
+  width: 120px;
+  height: 38px;
+  border-radius: var(--radius-btn);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.table-list-tour-mobile {
+  display: none;
+}
+
+// .pagination-control {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   padding-top: 10px;
+// }
+:host::ng-deep .mat-button-toggle-button span {
+  font-family: IRANSans !important;
+}
+
+//-----------------------------------
+@media only screen and (max-width: 868px) {
+  .list-tour {
+    .title {
+      .search-box-hotel{
+        flex-wrap: wrap;
+        .inp-form {
+          width: 100% !important;
+          margin-top: 12px !important;
+          margin-right: 0 !important;
+        }
+        .btn-base{
+          margin-top: 12px !important;
+        }
+      }
     }
   }
+  .table-list-tour {
+    overflow-x: scroll;
 
-  .header-list-tour span {
-    margin: auto;
-    font-size: 13px !important;
+    .header-list-tour {
+      width: 1200px !important;
+      padding: 0 12px;
+      column-gap: 12px;
+    }
+
+    .body-list-tour {
+      width: 1200px !important;
+      padding: 0 12px;
+      column-gap: 12px;
+
+      .id {
+        padding: 4px;
+        font-size: 10px !important;
+        background: var(--base-color);
+        color: var(--white);
+        border-radius: 4px;
+      }
+
+      span {
+        font-size: 12px !important;
+      }
+    }
   }
-
-  .body-list-tour {
+  .button-setting {
+    a {
+      margin-left: 0 !important;
+    }
+  }
+  .list-tour-box {
+    width: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
+    box-shadow: var(--box-shadow);
+    height: auto;
+    padding: 15px;
+    background-color: var(--white);
+    border-radius: 8px;
+    margin-top: 12px !important;
+  }
+  .list-tour-box .user-id {
+    width: auto;
+    height: 25px;
+    border-radius: 4px;
+    background-color: var(--red-color);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    padding: 0 4px;
+    font-size: 12px !important;
+  }
+  .item-list-tour {
     width: 100%;
-  }
-
-  .body-list-tour .item {
-    height: 80px;
-    width: 100%;  
-    display: grid;
-    grid-template-columns: 0.3fr 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    place-items: center;
-  }
-
-  .body-list-tour .item:not(:last-child) {
-    border-bottom: 1px solid var(--light-color-two);
-  }
-
-  .body-list-tour .item span {
-    margin: auto;
-    font-size: 13px !important;
-  }
-
-  .body-list-tour .item .status {
-    color: var(--red-color);
-    font-weight: 500;
-  }
-
-  .button-setting {
-    width: 100%;
-    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-left: 4px;
+    background: var(--white);
+    flex-wrap: wrap;
   }
-
-  .button-setting .edit-btn {
+  .item-list-tour {
+    background: var(--white);
+    display: flex;
+    align-items: center;
+  }
+  .item-tour {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+    width: 49.5%;
+  }
+  .item-list-tour .title {
+    font-weight: 500;
+    color: var(--base-color);
+    font-size: 12px !important;
+    width: auto;
+  }
+  .item-list-tour .text {
+    font-weight: 500;
+    font-size: 12px !important;
+    margin-right: 4px;
+    color: var(--gray-color-dark);
+  }
+  .btn-details-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--base-color);
+    float: left;
+    color: var(--white);
+    height: 30px;
+    width: 100%;
+    border-radius: 4px;
+    margin: 6px 0;
+  }
+  .box-details-more {
+    background-color: #eee !important;
+    border-radius: 4px;
+  }
+  .box-details-more .item-list-tour {
+    background: unset !important;
+    width: 100%;
+    padding: 8px;
+  }
+  .operation-parent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+  .operation {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0 10px;
+    margin-bottom: 8px;
+  }
+  .edit-btn {
     width: auto;
     background-color: var(--base-color-three);
     color: var(--white);
@@ -105,7 +350,7 @@
     justify-content: center;
   }
 
-  .button-setting .view-btn {
+  .view-btn {
     width: auto;
     background-color: var(--base-color);
     color: var(--white);
@@ -118,8 +363,7 @@
     align-items: center;
     justify-content: center;
   }
-
-  .button-setting .delete-btn {
+  .delete-btn {
     width: auto;
     background-color: var(--red-color);
     color: var(--white);
@@ -129,7 +373,33 @@
     padding: 0 10px;
     border-radius: 4px;
   }
-  .button-setting .log-btn {
+  .title {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .title h2 {
+    width: 100%;
+  }
+  .btn-add-tour {
+    margin: 1rem 0;
+  }
+  :host::ng-deep .mat-button-toggle-button span {
+    font-size: 12px !important;
+    font-family: IRANSans !important;
+  }
+  .copy-btn {
+    width: auto;
+    background-color: var(--green-color);
+    color: var(--white);
+    border: none;
+    outline: none;
+    height: 30px;
+    padding: 0 10px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+  }
+  .log-btn {
     width: auto;
     background-color: #0d6efd;
     color: var(--white);
@@ -139,229 +409,11 @@
     padding: 0 10px;
     border-radius: 4px;
   }
+}
 
-  .button-setting .copy-btn {
-    width: auto;
-    background-color: var(--green-color);
-    color: var(--white);
-    border: none;
-    outline: none;
-    height: 30px;
-    padding: 0 10px;
-    border-radius: 4px;
-  }
-
-  .date-create {
-    direction: ltr;
-  }
-  .near-date label{
-    margin-right: 12px;
-  }
-  .btn-add-tour {
-    background-color: var(--base-color);
-    color: var(--white);
-    width: 120px;
-    height: 38px;
-    border-radius: var(--radius-btn);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-
-  .table-list-tour-mobile {
-    display: none;
-  }
-
-  // .pagination-control {
-  //   display: flex;
-  //   flex-direction: column;
-  //   align-items: center;
-  //   padding-top: 10px;
-  // }
-  :host::ng-deep .mat-button-toggle-button span{
-    font-family: IRANSans !important;
-  }
-
-  //-----------------------------------
-  @media only screen and (max-width: 868px) {
-    .table-list-tour-desktop {
-      display: none;
-    }
-    .table-list-tour-mobile {
-      display: block;
-      width: 100%;
-    }
-    .list-tour-box {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      box-shadow: var(--box-shadow);
-      height: auto;
-      padding: 15px;
-      background-color: var(--white);
-      border-radius: 8px;
-      margin-top: 12px !important;
-    }
-    .list-tour-box .user-id {
-      width: auto;
-      height: 25px;
-     border-radius: 4px;
-      background-color: var(--red-color);
-      color: var(--white);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: absolute;
-      right: 6px;
-      top: 6px;
-      padding: 0 4px;
-      font-size: 12px !important;
-    }
-    .item-list-tour {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: var(--white);
-      flex-wrap: wrap;
-    }
-    .item-list-tour {
-      background: var(--white);
-      display: flex;
-      align-items: center;
-    }
-    .item-tour {
-      display: flex;
-      align-items: center;
-      margin-top: 8px;
-      width: 49.5%;
-    }
-    .item-list-tour .title {
-      font-weight: 500;
-      color: var(--base-color);
-      font-size: 12px !important;
-      width: auto;
-    }
-    .item-list-tour .text {
-      font-weight: 500;
-      font-size: 12px !important;
-      margin-right: 4px;
-      color: var(--gray-color-dark);
-    }
-    .btn-details-more {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: var(--base-color);
-      float: left;
-      color: var(--white);
-      height: 30px;
-      width: 100%;
-      border-radius: 4px;
-      margin: 6px 0;
-    }
-    .box-details-more {
-      background-color: #eee !important;
-      border-radius: 4px;
-    }
-    .box-details-more .item-list-tour{
-      background: unset !important;
-      width: 100%;
-      padding: 8px;
-    }
-    .operation-parent{
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 8px;
-    }
-    .operation{
-      display: flex;
-      justify-content: space-evenly;
-      align-items: center;
-      padding: 0 10px;
-      margin-bottom: 8px;
-    }
-     .edit-btn {
-      width: auto;
-      background-color: var(--base-color-three);
-      color: var(--white);
-      border: none;
-      outline: none;
-      height: 30px;
-      padding: 0 10px;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-     .view-btn {
-      width: auto;
-      background-color: var(--base-color);
-      color: var(--white);
-      border: none;
-      outline: none;
-      height: 30px;
-      padding: 0 10px;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-     .delete-btn {
-      width: auto;
-      background-color: var(--red-color);
-      color: var(--white);
-      border: none;
-      outline: none;
-      height: 30px;
-      padding: 0 10px;
-      border-radius: 4px;
-    }
-    .title {
-      width: 100%;
-      flex-wrap: wrap;
-    }
-    .title h2{
-      width: 100%;
-    }
-    .btn-add-tour{
-      margin: 1rem 0;
-    }
-    :host::ng-deep .mat-button-toggle-button span{
-      font-size: 12px !important;
-      font-family: IRANSans !important;
-    }
-    .copy-btn{
-      width: auto;
-      background-color: var(--green-color);
-      color: var(--white);
-      border: none;
-      outline: none;
-      height: 30px;
-      padding: 0 10px;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-    }
-    .log-btn {
-      width: auto;
-      background-color: #0d6efd;
-      color: var(--white);
-      border: none;
-      outline: none;
-      height: 30px;
-      padding: 0 10px;
-      border-radius: 4px;
-    }
-  }
-
-  .pagination-control {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 10px;
-  }
+.pagination-control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+}

@@ -1,9 +1,12 @@
 <div class="p-info-trip">
-<div class="d-flex">
-  <select [formControl]="statusFC" name="" id="">
-    <option *ngFor="let s of statuses" [value]="s.labelEn">{{ s.labelFa }}</option>
-  </select>
-  <button class="btn-base staus-button" (click)="changeStatus()">اعمال وضعیت</button>
+<div class="d-flex w-100 p-search-agency justify-content-end">
+  <div class="inp-form w-25">
+    <select [formControl]="statusFC" name="" id="">
+      <option *ngFor="let s of statuses" [value]="s.labelEn">{{ s.labelFa }}</option>
+    </select>
+  </div>
+
+  <button class="btn-base px-4 staus-button" (click)="changeStatus()">اعمال وضعیت</button>
 </div>
   <div class="w-100 bg-light bg-info-trip">
     <div class="title-profile w-100">
@@ -129,7 +132,7 @@
       <h2 class="dana-bold">{{ item.name }}</h2>
     </div>
     <div *ngFor="let p of item.passengers" class="tour-items w-100">
-      
+
       <div class="item w-100 d-flex align-items-center px-2">
         <span class="title">نام:</span>
         <span class="text">{{ p.firstName }}</span>
@@ -160,7 +163,7 @@
       </div>
 
     </div>
-  
+
 
   </div>
 

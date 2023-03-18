@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {CheckErrorService} from "../../Core/Services/check-error.service";
 import {UserApiService} from "../../Core/Https/user-api.service";
 import {PermissionDTO} from "../../Core/Models/UserDTO";
+import {ResponsiveService} from "../../Core/Services/responsive.service";
 
 declare let $: any;
 
@@ -16,15 +17,19 @@ declare let $: any;
 })
 export class SidebarComponent implements OnInit {
 
-  isLoading = false
+  isLoading = false;
+  isTablet=false;
   userId = 0;
+  isMenu = false;
 
   constructor(public session: SessionService,
               public userApi: UserApiService,
               public api: AuthApiService,
               public router: Router,
               public message: MessageService,
+              public responsiveService:ResponsiveService,
               public checkError: CheckErrorService) {
+    this.isTablet=responsiveService.isTablet();
     $(document).ready(() => {
       $(
         ".menu-main-1").click(() => {
@@ -88,6 +93,13 @@ export class SidebarComponent implements OnInit {
     this.message.custom('این گزینه در حال بروزرسانی می باشد')
   }
 
+  menuOpen() {
+    this.isMenu = true
+  }
+
+  menuClose() {
+    this.isMenu = false
+  }
 
   checkPermission(item: string) {
     return !!this.session.userPermissions.find(x => x.name.split('.')[0] === item)

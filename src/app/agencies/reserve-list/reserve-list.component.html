@@ -2,10 +2,9 @@
 <div class="list-tour">
   <div class="title">
     <h2>رزروها</h2>
-
     <div class="d-flex search-box-hotel">
-      <input [formControl]="keywordFC" placeholder="جستجو براساس عنوان تور" type="text">
-      <div class="selectdiv" style="margin-right: 2rem" *ngIf="isAdmin()">
+      <input class="inp-form" [formControl]="keywordFC" placeholder="جستجو براساس عنوان تور" type="text">
+      <div class="inp-form" style="margin-right: 2rem" *ngIf="isAdmin()">
         <label>
           <select [formControl]="agencyName">
             <!-- <option value="null">آژانس مورد نطر را انتخاب کنید</option> -->
@@ -13,12 +12,12 @@
           </select>
         </label>
       </div>
-      <button class="mr-2" (click)="getReserveList()">جستجو</button>
+      <button class="mr-2 btn-base btn-search-reserve" (click)="getReserveList()">جستجو</button>
     </div>
   </div>
   <div class="table-list-tour table-list-tour-desktop">
     <div class="header-list-tour">
-      <span class="id">#</span> 
+      <span class="id">#</span>
       <span class="username">عنوان تور</span>
       <span class="agencyName">نام آژانس</span>
       <span>نام رزرو گیرنده</span>
