@@ -3,7 +3,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   column-gap: 12px;
+  .host::ng-deep .mat-datepicker-popup{
+    bottom: 0 !important;
+  }
 }
+
+
 
 @media only screen and (max-width: 500px){
   .row-search {
