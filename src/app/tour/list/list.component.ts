@@ -10,6 +10,9 @@ import {Title} from "@angular/platform-browser";
 import {SettingService} from "../../Core/Services/setting.service";
 import {CalenderServices} from 'src/app/Core/Services/calender-service';
 import {ResponsiveService} from "../../Core/Services/responsive.service";
+import { HotelListRes, HotelRequestDTO } from 'src/app/Core/Models/hotelDTO';
+import { HotelApiService } from "../../Core/Https/hotel-api.service";
+import { CityListRequestDTO, CityResponseDTO } from 'src/app/Core/Models/cityDTO';
 
 export interface SearchObjectDTO {
   origin: string;
@@ -38,15 +41,20 @@ export class ListComponent implements OnInit {
     type: null,
     status: '',
   };
+
   isMobilePage = false;
   paginate: any;
   paginateConfig: any;
   tours: TourListResDTO[] = [];
+  hotels: HotelListRes[] = [];
+  cities: CityResponseDTO[] = [];
   loading = false;
 
   p = 1
 
   sortByDate = false;
+
+  step: string = 'hotel'
 
   searchObject: SearchObjectDTO = {
     origin: '',
@@ -61,6 +69,7 @@ export class ListComponent implements OnInit {
               public checkErrorService: CheckErrorService,
               public errorService: ErrorsService,
               public cityApi: CityApiService,
+              public hotelApi: HotelApiService,
               public calendarService: CalenderServices,
               public setting: SettingService,
               public title: Title,
@@ -72,6 +81,7 @@ export class ListComponent implements OnInit {
 
       if (event instanceof NavigationEnd) {
         this.getData()
+        this.getCities();
       }
     });
   }
@@ -153,6 +163,61 @@ export class ListComponent implements OnInit {
     this.getTours();
 
 
+  }
+
+  changeStep(step: string){
+    this.step = step;
+  }
+
+  getCities(): void {
+    const req: CityListRequestDTO = {
+      type: null,
+      hasHotel: true,
+      hasDestTour: true,
+      hasOriginTour: false,
+      search: null,
+      perPage: 20
+    }
+    this.cityApi.getCities(req).subscribe((res: any) => {
+      if (res.isDone) {
+        this.cities = res.data;
+        this.getHotels();
+      }
+    }, (error: any) => {
+      this.message.error()
+    })
+  }
+
+  getCityId(cityName: string){
+    let city = '';
+    city = cityName ? cityName.charAt(0).toUpperCase() + cityName.substr(1).toLowerCase() : '';
+    return this.cities.filter(x => x.nameEn === city)[0].id;
+  }
+
+
+  getHotels(): void {
+    this.loading = true;
+    const req: HotelRequestDTO = {
+      isAdmin: false,
+      paginate: true,
+      perPage: 10,
+      city: this.getCityId(this.searchObject.dest),
+      hasTour: true,
+      search: null,
+    }
+    this.hotelApi.getHotels(req).subscribe((res: any) => {
+      if (res.isDone) {
+        this.hotels = res.data;
+      }
+      this.loading = false;
+    }, (error: any) => {
+      this.message.error();
+      this.loading = false;
+    })
+  }
+
+  getStars(count: string): number[] {
+    return Array.from(Array(+count).keys());
   }
 
 }

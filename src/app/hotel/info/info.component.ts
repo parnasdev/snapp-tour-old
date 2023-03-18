@@ -24,7 +24,34 @@ export class InfoComponent implements OnInit {
   imgs = ['https://www.imgonline.com.ua/examples/bee-on-daisy.jpg',
     'https:http://tour-api.parnasweb.com///source///images///2021///46366665.jpg']
   items: GalleryItem[] = [];
-  hotelInfo!: hotelInfoDTO;
+  hotelInfo: hotelInfoDTO = {
+    name: '',
+    city: {
+      name: '',
+      id: 0,
+      type: 0,
+      image: '',
+      slug: '',
+      slugEn: '',
+      faq: [],
+      description: '',
+      images: [],
+      nameEn: '',
+    },
+    nameEn: '',
+    stars: '',
+    location: '',
+    address: '',
+    coordinate: { lat: 0, lng: 0 },
+    images: [],
+    mediaLink: [],
+    thumbnail: '',
+    body: '',
+    services: [],
+    status: '',
+    phone: '',
+    tours: []
+  };
   hotelName = '';
   public lightbox!: Lightbox
 

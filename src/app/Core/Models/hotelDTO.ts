@@ -67,7 +67,8 @@ export interface HotelRequestDTO {
   isAdmin: boolean
   paginate: boolean
   perPage?: number
-  city: number | null;
+  hasTour?: boolean;
+  city: number | string | null;
   search: string | null;
 }
 
