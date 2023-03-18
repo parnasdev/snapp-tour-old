@@ -200,9 +200,17 @@
 
 .thumbnail-mobile {
   display: none;
+  position: relative;
 }
 
 @media only screen and (max-width: 868px) {
+  .btn-select-hotel-mobile{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 15;
+    font-size: 16px !important;
+  }
   .thumbnail-desktop {
     display: none;
   }
@@ -306,7 +314,7 @@
     align-items: center;
   }
   .start-price span {
-    font-size: 9px !important;
+    font-size: 14px !important;
     color: var(--gray-color-dark);
   }
   .start-price .price {

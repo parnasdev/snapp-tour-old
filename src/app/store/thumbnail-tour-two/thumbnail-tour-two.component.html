@@ -11,7 +11,7 @@
   </div>
   <div class="body-box-hotel" *ngFor="let package of tourInfo.packages">
     <label class="offer-tour" for="" *ngIf="package.offered">آفر ویژه</label>
-    <div class="info-hotel-body">
+    <div class="info-hotel-body ">
       <img class="img-hotel" routerLink="/hotels/{{ package.hotel.slug }}" [src]="package.hotel.thumbnail" alt="">
       <div class="info-info-hotel">
         <a routerLink="/hotels/{{ package.hotel.slug }}" target="_blank">
@@ -74,7 +74,8 @@
 </div>
 <!-----------------------------------------------mobile--------------------------------->
 <div class="thumbnail-mobile" *ngFor="let package of tourInfo.packages; let i = index">
-  <div class="info-hotel-body">
+  <button class="btn-base w-100 btn-select-hotel-mobile">انتخاب هتل</button>
+  <div class="info-hotel-body align-items-start">
     <div class="d-flex flex-column align-items-center">
       <img class="img-hotel" [src]="package.hotel.thumbnail" alt="" routerLink="/hotels/{{ package.hotel.slug }}">
       <div class="rate d-flex flex-column align-items-center">
@@ -106,7 +107,7 @@
   </div>
   <div class="parent-info-more-btn">
     <a data-toggle="collapse" class="btn-more" href="#{{ i }}">
-      اطلاعات بیشتر
+       مشاهده قیمت و رزرو
       <i class="icon-down-open"></i>
     </a>
   </div>
@@ -146,7 +147,7 @@
         <span class="title">سن کودک با تخت</span>
         <span class="text">{{ package.prices.age }}</span>
       </div>
-      <button class="btn-complete-book" [disabled]="clicked" (click)="checkReserve(package.id)">در خواست رزرو</button>
+      <button class="btn-base h-45 w-100 mt-3" [disabled]="clicked" (click)="checkReserve(package.id)">در خواست رزرو</button>
       <p class="text-danger"  *ngIf="package.prices.roomType && package.prices.roomType.length > 0" (click)="openRoom(package.prices.roomType)">قیمت اتاق های دیگر</p>
     </div>
 
