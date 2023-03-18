@@ -32,7 +32,12 @@
 }
 
 .title-tour .right .text span {
-  font-size: 13px !important;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--base-color);
+}
+.title-tour .right .text strong {
+  font-size: 17px;
   font-weight: 500;
   color: var(--base-color);
 }
@@ -78,7 +83,7 @@
 }
 
 .box-img-main {
-  height: 280px;
+  height: 350px;
   width: 100%;
   overflow: hidden;
   border-radius: 20px;
