@@ -96,4 +96,8 @@ export class ThumbnailTourTwoComponent implements OnInit {
       this.message.error()
     })
   }
+
+  scroll(el: HTMLElement) {
+    el.scrollIntoView({behavior: 'smooth'});
+  }
 }

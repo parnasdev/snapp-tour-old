@@ -73,8 +73,9 @@
   </div>
 </div>
 <!-----------------------------------------------mobile--------------------------------->
+<div #target></div>
 <div class="thumbnail-mobile" *ngFor="let package of tourInfo.packages; let i = index">
-  <button class="btn-base w-100 btn-select-hotel-mobile">انتخاب هتل</button>
+  <button class="btn-base w-50 btn-select-hotel-mobile" (click)="scroll(target)">انتخاب هتل و رزرو</button>
   <div class="info-hotel-body align-items-start">
     <div class="d-flex flex-column align-items-center">
       <img class="img-hotel" [src]="package.hotel.thumbnail" alt="" routerLink="/hotels/{{ package.hotel.slug }}">
