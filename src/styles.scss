@@ -374,18 +374,21 @@ select::-ms-expand {
   overflow: hidden;
 
 }
-.ngx-pagination .pagination-next a{
+
+.ngx-pagination .pagination-next a {
   background: var(--base-color) !important;
   border-radius: 4px !important;
   padding: 4px 18px 4px 4px !important;
   color: var(--white) !important;
 }
-.ngx-pagination .pagination-previous a{
+
+.ngx-pagination .pagination-previous a {
   background: var(--base-color) !important;
   border-radius: 4px !important;
   padding: 4px 4px 4px 18px !important;
   color: var(--white) !important;
 }
+
 .ngx-pagination .pagination-next a::after, .ngx-pagination .pagination-next.disabled::after {
   content: '' !important;
   font-size: 20px !important;
@@ -989,6 +992,31 @@ select::-ms-expand {
   input {
     font-family: 'IRANSans', 'sans-serif' !important;
     text-align: right !important;
+  }
+}
+
+.p-call {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  padding: 8px;
+  position: fixed;
+  bottom: 20px;
+  background: var(--base-color);
+  left: 20px;
+  z-index: 50;
+  transition: $transtions;
+
+  &:hover {
+    transition: $transtions;
+    transform: scale(1.1);
+  }
+
+  img {
+    width: 90%;
+    height: 90%;
   }
 }
 
