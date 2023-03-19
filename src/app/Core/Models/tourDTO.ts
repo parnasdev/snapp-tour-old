@@ -21,11 +21,20 @@ export interface TourListRequestDTO {
   offered?: boolean;
 }
 
+export interface TourRequestV2DTO {
+  paginate: boolean
+  origin: string;
+  dest: string;
+  stDate: string;
+  night: number | null;
+}
+
 export interface TourListResDTO {
   title: string;
   createdAt: string;
   id?: number
   dayNum: number;
+  defineTour?: Boolean;
   endCity: CityTourInfoDTO;
   expireDate: string;
   minPrice: string;
@@ -132,6 +141,22 @@ export interface TourPackageDTO {
   discounts: DiscountsDTO;
   prices: PricesDTO;
   status: string;
+}
+
+export interface TourPackageV2DTO {
+  discounts: DiscountsDTO;
+  hotel: HotelDTO;
+  id: number;
+  offered: boolean;
+  order_item: number;
+  prices: PricesDTO;
+  rate: { id: number, name: string };
+  services: {
+    id: number;
+    name: string;
+  };
+  status: string;
+  tour: TourListResDTO;
 }
 
 export interface HotelDTO {

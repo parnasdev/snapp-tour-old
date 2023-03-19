@@ -9,7 +9,7 @@
           <div class="search">
             <prs-search [inCommingSearchObject]="searchObject" (onSubmit)="search($event)"></prs-search>
           </div>
-          <div class="title-tour-parent">
+          <!-- <div class="title-tour-parent">
             <div class="top">
               <div class="new-tour">
                 <img src="assets/img/Bookmark.svg" width="17" alt="">
@@ -23,13 +23,59 @@
                 <button class="btn-base" style="width: 30%" (click)="changeStep('hotel')">هتل ها</button>
                 <button class="btn-base" style="width: 30%; margin-right:5%" (click)="changeStep('tour')">تور ها</button>
               </div>
-              <!-- <a class="view-all-tour" href="">مشاهده همه تور ها</a> -->
+              <a class="view-all-tour" href="">مشاهده همه تور ها</a>
             </div>
             <div class="bottom">
               <div class="border-right"></div>
               <div class="border-left"></div>
             </div>
-          </div>
+          </div> -->
+
+          <!--thumbnail-hotel-->
+            <div class="title-tour-special-swiper">
+              <div class="top">
+                <div class="new-tour">
+                  <img src="assets/img/Bookmark.svg" width="17" alt="">
+                  <div class="text">
+                    <h3>نتایج جستجو</h3>
+                    <span>هتل خود را بر اساس نتایج زیر انتخاب کنید</span>
+                  </div>
+                </div>
+              </div>
+              <div class="bottom">
+                <div class="border-right"></div>
+                <div class="border-left"></div>
+              </div>
+            </div>
+            <div *ngFor="let tour of tours; let i = index" class="thumbnail-hotel">
+              <div class="img-hotel">
+                <img src="{{ tour.hotel.thumbnail }}" alt="">
+              </div>
+              <div class="detail-hotel">
+                <div class="r">
+                  <div class="star">
+                    <i class="icon-star" *ngFor="let star of getStars(tour.hotel.stars)"></i>
+                  </div>
+                  <h2 class="name-hotel"><a href=""> {{ tour.hotel.name }} | {{ tour.hotel.nameEn }}</a></h2>
+                  <div class="address d-flex align-items-center">
+                    <img src="assets/img/location2.svg" width="15" alt="">
+                    <span>{{ tour.hotel.location ?? 'ثبت نشده' }}</span>
+                  </div>
+                </div>
+                <div class="l">
+                  <div class="p-price">
+                    <span class="title">شروع قیمت :</span>
+                    <div class="price d-flex align-items-center">
+                      <strong>{{ getStarterPrice(i) | round| sperator}}</strong>
+                      <small>تومان</small>
+                    </div>
+                  </div>
+                  <a href="" class="btn-base w-100 d-flex align-items-center justify-content-center mt-3">انتخاب هتل
+                    تور</a>
+                </div>    
+              </div>
+            </div>
+          <!--end-->
 
           <!-- empty box -->
           <div *ngIf="tours.length==0" class="empty-box">
@@ -37,7 +83,7 @@
           </div>
 
           <!-- // step === 'tour' -->
-          <div class="tour-list" *ngIf="step === 'tour' && tours.length > 0">
+          <!-- <div class="tour-list" *ngIf="step === 'tour' && Applereader13761377.length > 0">
             <div class="near-date">
               <strong>
                 <i class="icon-filter"></i>
@@ -62,10 +108,10 @@
                 screenReaderCurrentLabel="شما در صفحه ی">
               </pagination-controls>
             </div>
-          </div>
+          </div> -->
 
           <!-- // step === 'hotel' -->
-          <div class="box-hotel-parent"  *ngIf="step === 'hotel' && hotels.length > 0">
+          <!-- <div class="box-hotel-parent"  *ngIf="step === 'hotel' && hotels.length > 0">
             <div *ngFor="let hotel of hotels" [style.background-image]="'url(' + hotel.thumbnail + ')'"
               routerLink="/hotels/{{hotel.slug}}"
               class="box-hotel">
@@ -85,7 +131,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <!-- <div style="display: flex; flex-direction: row-reverse" class="w-75" *ngIf="tours.length === 0">
             <prs-reserve-box [city]="cityInfo" [month]="nights.title"></prs-reserve-box>

@@ -10,6 +10,9 @@ import {
   ReserveReqDTO,
   TourListRequestDTO,
   TourListResDTO,
+  TourPackageDTO,
+  TourPackageV2DTO,
+  TourRequestV2DTO,
   TourSetRequestDTO
 } from "../Models/tourDTO";
 
@@ -135,6 +138,13 @@ export class TourApiService {
   getTransaction(transactionId: string | null): any {
     const strUrl =  environment.BACK_END_IP + `transaction/getTransaction/${transactionId}`;
     return this.http.get<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
+  }
+
+  getToursV2(req: TourRequestV2DTO, pageNum?: number): any {
+    const controllerName = environment.BACK_END_IP_v2 + 'tour/';
+    const address = pageNum ? `getTours?page=${pageNum}` : 'getTours'
+    const strUrl = controllerName + address;
+    return this.http.post<Result<TourPackageV2DTO>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
 
 }

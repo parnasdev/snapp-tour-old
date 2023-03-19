@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TourApiService} from "../../Core/Https/tour-api.service";
-import {TourListRequestDTO, TourListResDTO} from "../../Core/Models/tourDTO";
+import {TourListRequestDTO, TourListResDTO, TourPackageDTO, TourPackageV2DTO, TourRequestV2DTO} from "../../Core/Models/tourDTO";
 import {MessageService} from "../../Core/Services/message.service";
 import {CheckErrorService} from "../../Core/Services/check-error.service";
 import {ErrorsService} from "../../Core/Services/errors.service";
@@ -27,27 +27,20 @@ export interface SearchObjectDTO {
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  tourReq: TourListRequestDTO = {
+  tourReq: TourRequestV2DTO = {
+    paginate: true,
     origin: '',
     dest: '',
-    isAdmin: false,
     stDate: '',
-    night: 0,
-    paginate: true,
-    search: null,
-    month: null,
-    sortByDate: false,
-    perPage: 20,
-    type: null,
-    status: '',
+    night: 0, 
   };
 
   isMobilePage = false;
   paginate: any;
   paginateConfig: any;
-  tours: TourListResDTO[] = [];
-  hotels: HotelListRes[] = [];
-  cities: CityResponseDTO[] = [];
+  tours: TourPackageV2DTO[] = [];
+  // hotels: HotelListRes[] = [];
+  // cities: CityResponseDTO[] = [];
   loading = false;
 
   p = 1
@@ -81,7 +74,7 @@ export class ListComponent implements OnInit {
 
       if (event instanceof NavigationEnd) {
         this.getData()
-        this.getCities();
+        // this.getCities();
       }
     });
   }
@@ -100,7 +93,7 @@ export class ListComponent implements OnInit {
     this.city = this.route.snapshot.paramMap.get('city') ? this.route.snapshot.paramMap.get('city') : null;
     this.route.queryParams.subscribe(params => {
       this.setData(params)
-      this.getTours()
+      this.getToursV2();
     })
 
 
@@ -114,23 +107,122 @@ export class ListComponent implements OnInit {
   }
 
 
-  getTours(): void {
+  // getTours(): void {
+  //   this.loading = true;
+  //   this.tourReq = {
+  //     origin: this.searchObject.origin,
+  //     dest: this.searchObject.dest,
+  //     isAdmin: false,
+  //     stDate: this.searchObject.stDate ? this.calendarService.convertDate(this.searchObject.stDate, 'en', 'yyyy-MM-DD') : null,
+  //     night: this.searchObject.night === '0' ? null : this.searchObject.night,
+  //     paginate: true,
+  //     search: null,
+  //     month: null,
+  //     sortByDate: this.sortByDate,
+  //     perPage: 15,
+  //     type: null,
+  //     status: null,
+  //   };
+  //   this.tourApiService.getTours(this.tourReq, this.p).subscribe((res: any) => {
+  //     this.loading = false
+  //     if (res.isDone) {
+  //       this.tours = res.data
+  //       this.paginate = res.meta;
+  //       this.paginateConfig = {
+  //         itemsPerPage: this.paginate.per_page,
+  //         totalItems: this.paginate.total,
+  //         currentPage: this.paginate.current_page
+  //       }
+  //     } else {
+  //       this.message.custom(res.message);
+  //     }
+  //   }, (error: any) => {
+  //     this.loading = false;
+  //     this.message.error();
+  //     this.checkErrorService.check(error);
+  //   });
+  // }
+
+  onPageChanged(event: any) {
+    this.p = event;
+    this.getToursV2();
+  }
+
+  search(event: SearchObjectDTO) {
+    this.searchObject = event;
+    this.router.navigate([`/tours/`], {
+      queryParams: event
+    })
+    this.getToursV2();
+
+
+  }
+
+  changeStep(step: string){
+    this.step = step;
+  }
+
+  // getCities(): void {
+  //   const req: CityListRequestDTO = {
+  //     type: null,
+  //     hasHotel: true,
+  //     hasDestTour: true,
+  //     hasOriginTour: false,
+  //     search: null,
+  //     perPage: 20
+  //   }
+  //   this.cityApi.getCities(req).subscribe((res: any) => {
+  //     if (res.isDone) {
+  //       this.cities = res.data;
+  //       this.getHotels();
+  //     }
+  //   }, (error: any) => {
+  //     this.message.error()
+  //   })
+  // }
+
+  // getCityId(cityName: string){
+  //   let city = '';
+  //   city = cityName ? cityName.charAt(0).toUpperCase() + cityName.substr(1).toLowerCase() : '';
+  //   return this.cities.filter(x => x.nameEn === city)[0].id;
+  // }
+
+
+  // getHotels(): void {
+  //   this.loading = true;
+  //   const req: HotelRequestDTO = {
+  //     isAdmin: false,
+  //     paginate: true,
+  //     perPage: 10,
+  //     city: this.getCityId(this.searchObject.dest),
+  //     hasTour: true,
+  //     search: null,
+  //   }
+  //   this.hotelApi.getHotels(req).subscribe((res: any) => {
+  //     if (res.isDone) {
+  //       this.hotels = res.data;
+  //     }
+  //     this.loading = false;
+  //   }, (error: any) => {
+  //     this.message.error();
+  //     this.loading = false;
+  //   })
+  // }
+
+  // getStars(count: string): number[] {
+  //   return Array.from(Array(+count).keys());
+  // }
+
+  getToursV2() {
     this.loading = true;
     this.tourReq = {
+      paginate: true,
       origin: this.searchObject.origin,
       dest: this.searchObject.dest,
-      isAdmin: false,
       stDate: this.searchObject.stDate ? this.calendarService.convertDate(this.searchObject.stDate, 'en', 'yyyy-MM-DD') : null,
-      night: this.searchObject.night === '0' ? null : this.searchObject.night,
-      paginate: true,
-      search: null,
-      month: null,
-      sortByDate: this.sortByDate,
-      perPage: 15,
-      type: null,
-      status: null,
-    };
-    this.tourApiService.getTours(this.tourReq, this.p).subscribe((res: any) => {
+      night: this.searchObject.night === '0' ? null : +this.searchObject.night, 
+    }
+    this.tourApiService.getToursV2(this.tourReq, this.p).subscribe((res: any) => {
       this.loading = false
       if (res.isDone) {
         this.tours = res.data
@@ -150,74 +242,16 @@ export class ListComponent implements OnInit {
     });
   }
 
-  onPageChanged(event: any) {
-    this.p = event;
-    this.getTours();
-  }
-
-  search(event: SearchObjectDTO) {
-    this.searchObject = event;
-    this.router.navigate([`/tours/`], {
-      queryParams: event
-    })
-    this.getTours();
-
-
-  }
-
-  changeStep(step: string){
-    this.step = step;
-  }
-
-  getCities(): void {
-    const req: CityListRequestDTO = {
-      type: null,
-      hasHotel: true,
-      hasDestTour: true,
-      hasOriginTour: false,
-      search: null,
-      perPage: 20
-    }
-    this.cityApi.getCities(req).subscribe((res: any) => {
-      if (res.isDone) {
-        this.cities = res.data;
-        this.getHotels();
-      }
-    }, (error: any) => {
-      this.message.error()
-    })
-  }
-
-  getCityId(cityName: string){
-    let city = '';
-    city = cityName ? cityName.charAt(0).toUpperCase() + cityName.substr(1).toLowerCase() : '';
-    return this.cities.filter(x => x.nameEn === city)[0].id;
-  }
-
-
-  getHotels(): void {
-    this.loading = true;
-    const req: HotelRequestDTO = {
-      isAdmin: false,
-      paginate: true,
-      perPage: 10,
-      city: this.getCityId(this.searchObject.dest),
-      hasTour: true,
-      search: null,
-    }
-    this.hotelApi.getHotels(req).subscribe((res: any) => {
-      if (res.isDone) {
-        this.hotels = res.data;
-      }
-      this.loading = false;
-    }, (error: any) => {
-      this.message.error();
-      this.loading = false;
-    })
-  }
-
   getStars(count: string): number[] {
     return Array.from(Array(+count).keys());
+  }
+
+  getStarterPrice(index: number): string {
+    if (this.tours.length > 0) {
+      return this.tours[index].tour.defineTour ? this.tours[index].prices.twinRate : this.tours[index].prices.twin;
+    } else {
+      return '0';
+    }
   }
 
 }
