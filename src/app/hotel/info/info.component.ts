@@ -12,6 +12,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {PopupVideoComponent} from "../../common-project/popup-video/popup-video.component";
 import {Title} from "@angular/platform-browser";
 import {SettingService} from "../../Core/Services/setting.service";
+import { CalenderServices } from 'src/app/Core/Services/calender-service';
 
 @Component({
   selector: 'prs-info',
@@ -63,6 +64,7 @@ export class InfoComponent implements OnInit {
               public setting: SettingService,
               public dialog: MatDialog,
               public gallery: Gallery,
+              public calenderService: CalenderServices,
               public message: MessageService,
               public cityApiService: CityApiService,
               public commonApi: CommonApiService,
@@ -79,7 +81,7 @@ export class InfoComponent implements OnInit {
 
   getInfo(): void {
     this.isLoading = true;
-    this.hotelApi.getHotel(this.hotelName, false).subscribe((res: any) => {
+    this.hotelApi.getHotelV2(this.hotelName, false).subscribe((res: any) => {
       this.isLoading = false;
       if (res.isDone) {
         this.hotelInfo = res.data;

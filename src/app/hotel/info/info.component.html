@@ -1,6 +1,134 @@
 <prs-loading *ngIf="isLoading"></prs-loading>
 
 <prs-address-bar [path]="'هتل'" [path2]="hotelInfo.name ? hotelInfo.name : ''"></prs-address-bar>
+
+
+<!--select-fly-->
+
+<section class="mt-5">
+  <div class="prs-responsive">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-10 m-auto">
+          <div class="title-tour-special-swiper">
+            <div class="top">
+              <div class="new-tour">
+                <img src="assets/img/Bookmark.svg" width="17" alt="">
+                <div class="text">
+                  <h3> انتخاب پرواز</h3>
+                  <span>پرواز خود را از لیست زیر انتخاب کنید</span>
+                </div>
+              </div>
+            </div>
+            <div class="bottom">
+              <div class="border-right"></div>
+              <div class="border-left"></div>
+            </div>
+          </div>
+          <div class="thumbnail-hotel">
+            <div class="img-hotel">
+              <img src="{{ hotelInfo.thumbnail }}" alt="">
+            </div>
+            <div class="detail-hotel">
+              <div class="r">
+                <div class="star">
+                  <i class="icon-star" *ngFor="let star of getStars(hotelInfo.stars)"></i>
+                </div>
+                <h2 class="name-hotel"><a href="">{{ hotelInfo.name }} | {{ hotelInfo.nameEn }}</a></h2>
+                <div class="address d-flex align-items-center">
+                  <img src="assets/img/location2.svg" width="15" alt="">
+                  <span>{{ hotelInfo.location ?? 'ثبت نشده' }}</span>
+                </div>
+              </div>
+              <div class="l">
+                <div class="p-price">
+                  <span class="title">شروع قیمت :</span>
+                  <div class="price d-flex align-items-center">
+                    <strong>1.400.000</strong>
+                    <small>تومان</small>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="thumbnail-flight" *ngFor="let tour of hotelInfo.tours; let i = index">
+            <div class="top">
+              <div class="start">
+                <div class="title">
+                  <span>پرواز رفت :</span>
+                  <strong>{{ tour.stCity.name }}</strong>
+                </div>
+                <div class="p-date">
+                  <div class="date">
+                    <span>تاریخ و ساعت پرواز رفت :</span>
+                    <p *ngIf="tour.transfers.length > 0">{{calenderService.convertDate(tour.transfers[0].dateTime, 'fa')}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="center">
+                <div class="title">
+                  <span>پرواز برگشت :</span>
+                  <strong>{{ tour.endCity.name }}</strong>
+                </div>
+                <div class="p-date">
+                  <div class="date">
+                    <span>تاریخ و ساعت پرواز برگشت :</span>
+                    <p>{{calenderService.convertDate(tour.transfers[1].dateTime, 'fa')}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="end">
+                <span>تامین کننده : {{ tour.user.agency }}</span>
+                <a href="" class="btn-base w-100 d-flex align-items-center justify-content-center h-45 mt-2">
+                  انتخاب تور
+                </a>
+                <a data-toggle="collapse" class="btn-view-more" href="#collapseExample{{i}}" role="button"
+                   aria-expanded="false" aria-controls="collapseExample">
+                  مشاهده اطلاعات اتاق ها
+                  <i class="icon-down-open"></i>
+                </a>
+              </div>
+            </div>
+            <div class="collapse w-100 bottom" id="collapseExample{{i}}">
+              <div class="header-fly">
+                <span>دو تخته(هر نفر)</span>
+                <span>سینگل</span>
+                <span>کودک با تخت</span>
+                <span>کودک بدون تخت</span>
+                <span>سن کودک بدون تخت</span>
+              </div>
+              <div class="body-fly">
+                <div class="price">
+                  <strong>25.000.000</strong>
+                  <small>تومان</small>
+                </div>
+                <div class="price">
+                  <strong>25.000.000</strong>
+                  <small>تومان</small>
+                </div>
+                <div class="price">
+                  <strong>25.000.000</strong>
+                  <small>تومان</small>
+                </div>
+                <div class="price">
+                  <strong>25.000.000</strong>
+                  <small>تومان</small>
+                </div>
+                <span>6</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--end-->
+
+
 <section class="info-hotel">
   <div class="prs-responsive">
     <div class="container-fluid">
@@ -39,7 +167,7 @@
               </div>
             </div>
 
-            <div class="Similar-tour" *ngIf="hotelInfo.tours.length > 0">
+            <!-- <div class="Similar-tour" *ngIf="hotelInfo.tours.length > 0">
               <div class="title-s2">
                 <div class="text">
                   <img src="assets/img/Notification%202.svg" width="35" alt="">
@@ -47,7 +175,9 @@
                 </div>
               </div>
               <prs-thumbnails-tour *ngIf="hotelInfo.tours.length > 0" [tours]="hotelInfo.tours"></prs-thumbnails-tour>
-            </div>
+            </div> -->
+
+            
 
             <div class="parent-gallery" *ngIf="hotelInfo.images && hotelInfo.images.length > 0">
               <div class="right-gallery">
@@ -134,3 +264,6 @@
   </div>
 
 </section>
+
+
+

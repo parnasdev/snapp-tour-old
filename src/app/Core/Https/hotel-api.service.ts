@@ -53,6 +53,14 @@ export class HotelApiService {
     return this.http.post<Result<hotelInfoDTO>>(strUrl, entity, this.publicService.getDefaultHeaders());
   }
 
+  getHotelV2(name: string, isAdmin: boolean): any {
+    const controllerName = environment.BACK_END_IP_v2 + 'hotel/';
+    const address = `getHotel/${name}`;
+    const strUrl = controllerName + address;
+    const entity = {isAdmin}
+    return this.http.post<Result<hotelInfoDTO>>(strUrl, entity, this.publicService.getDefaultHeaders());
+  }
+
   getServices(): any {
     const strUrl = this.serverControllerName + `getServices`;
     return this.http.get<Result<ServiceDTO[]>>(strUrl, this.publicService.getDefaultHeaders());

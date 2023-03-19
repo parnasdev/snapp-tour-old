@@ -47,6 +47,8 @@ export interface TourListResDTO {
   user: {
     name: string;
     family: string;
+    agency?: string;
+    phone?: string;
   };
   viewCount: 0;
 }
