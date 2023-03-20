@@ -56,6 +56,8 @@ export class ListComponent implements OnInit {
     night: 0
   }
 
+  queryParamsResult: any = null
+
 
   constructor(public tourApiService: TourApiService,
               public route: ActivatedRoute,
@@ -77,6 +79,11 @@ export class ListComponent implements OnInit {
         // this.getCities();
       }
     });
+
+    this.route.queryParams.subscribe((params:any) => {
+      this.queryParamsResult = params;
+
+    })
   }
 
   ngOnInit(): void {

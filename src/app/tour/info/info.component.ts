@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 // @ts-ignore
 import SwiperCore, {
   Navigation,
@@ -9,11 +9,11 @@ import SwiperCore, {
 } from "swiper";
 
 declare let $: any;
-import {TourApiService} from "../../Core/Https/tour-api.service";
-import {ActivatedRoute} from "@angular/router";
-import {CheckErrorService} from "../../Core/Services/check-error.service";
-import {ErrorsService} from "../../Core/Services/errors.service";
-import {MessageService} from "../../Core/Services/message.service";
+import { TourApiService } from "../../Core/Https/tour-api.service";
+import { ActivatedRoute } from "@angular/router";
+import { CheckErrorService } from "../../Core/Services/check-error.service";
+import { ErrorsService } from "../../Core/Services/errors.service";
+import { MessageService } from "../../Core/Services/message.service";
 import {
   CityTourInfoDTO,
   TourInfoDTO, TourListResDTO,
@@ -21,13 +21,13 @@ import {
   TourSetRequestDTO,
   TourTransferDTO
 } from "../../Core/Models/tourDTO";
-import {CalenderServices} from "../../Core/Services/calender-service";
-import {ResponsiveService} from "../../Core/Services/responsive.service";
-import {MatDialog} from "@angular/material/dialog";
-import {ReservePopupComponent} from "../reserve-popup/reserve-popup.component";
+import { CalenderServices } from "../../Core/Services/calender-service";
+import { ResponsiveService } from "../../Core/Services/responsive.service";
+import { MatDialog } from "@angular/material/dialog";
+import { ReservePopupComponent } from "../reserve-popup/reserve-popup.component";
 import * as moment from 'jalali-moment';
-import {Title} from "@angular/platform-browser";
-import {SettingService} from "../../Core/Services/setting.service";
+import { Title } from "@angular/platform-browser";
+import { SettingService } from "../../Core/Services/setting.service";
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, Thumbs]);
 
@@ -82,17 +82,22 @@ export class InfoComponent implements OnInit {
     tours: [],
   };
   printContent = '';
+  queryParamsResult:any = null
 
   constructor(public tourApiService: TourApiService,
-              public route: ActivatedRoute,
-              public calService: CalenderServices,
-              public dialog: MatDialog,
-              public title: Title,
-              public setting: SettingService,
-              public checkErrorService: CheckErrorService,
-              public errorService: ErrorsService,
-              public responsiveService: ResponsiveService,
-              public message: MessageService) {
+    public route: ActivatedRoute,
+    public calService: CalenderServices,
+    public dialog: MatDialog,
+    public title: Title,
+    public setting: SettingService,
+    public checkErrorService: CheckErrorService,
+    public errorService: ErrorsService,
+    public responsiveService: ResponsiveService,
+    public message: MessageService) {
+    this.route.queryParams.subscribe((params: any) => {
+      this.queryParamsResult = params;
+
+    })
     this.isMobile = responsiveService.isMobile();
     this.isTablet = responsiveService.isTablet();
   }

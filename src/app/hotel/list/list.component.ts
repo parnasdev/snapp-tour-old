@@ -46,6 +46,7 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params: any) => {
+      // console.log(params)
       if (params['city']) {
         this.cityFC.setValue(params['city'])
       }
