@@ -53,70 +53,86 @@
             </div>
           </div>
 
-          <div class="thumbnail-flight" *ngFor="let tour of hotelInfo.tours; let i = index">
+          <div class="thumbnail-flight" *ngFor="let item of hotelInfo.packages; let i = index">
             <div class="top">
               <div class="start">
                 <div class="title">
                   <span>پرواز رفت :</span>
-                  <strong>{{ tour.stCity.name }}</strong>
+                  <strong>{{ item.tour.stCity.name }}</strong>
                 </div>
                 <div class="p-date">
                   <div class="date">
                     <span>تاریخ و ساعت پرواز رفت :</span>
-                    <p *ngIf="tour.transfers.length > 0">{{calenderService.convertDate(tour.transfers[0].dateTime, 'fa')}}</p>
+                    <p *ngIf="item.tour.transfers.length > 0">{{calenderService.convertDateAndTime(item.tour.transfers[0].dateTime, 'fa')}}</p>
                   </div>
                 </div>
               </div>
               <div class="center">
                 <div class="title">
                   <span>پرواز برگشت :</span>
-                  <strong>{{ tour.endCity.name }}</strong>
+                  <strong>{{ item.tour.endCity.name }}</strong>
                 </div>
                 <div class="p-date">
                   <div class="date">
                     <span>تاریخ و ساعت پرواز برگشت :</span>
-                    <p>{{calenderService.convertDate(tour.transfers[1].dateTime, 'fa')}}</p>
+                    <p>{{calenderService.convertDateAndTime(item.tour.transfers[1].dateTime, 'fa')}}</p>
                   </div>
                 </div>
               </div>
               <div class="end">
-                <span>تامین کننده : {{ tour.user.agency }}</span>
-                <a href="" class="btn-base w-100 d-flex align-items-center justify-content-center h-45 mt-2">
+                <span>تامین کننده : ---</span>
+                <a (click)="checkReserve(item.id)" class="btn-base w-100 d-flex align-items-center justify-content-center h-45 mt-2">
                   انتخاب تور
                 </a>
-                <a data-toggle="collapse" class="btn-view-more" href="#collapseExample{{i}}" role="button"
+                <!-- <a data-toggle="collapse" class="btn-view-more" href="#collapseExample{{i}}" role="button"
                    aria-expanded="false" aria-controls="collapseExample">
                   مشاهده اطلاعات اتاق ها
                   <i class="icon-down-open"></i>
-                </a>
+                </a> -->
               </div>
             </div>
-            <div class="collapse w-100 bottom" id="collapseExample{{i}}">
+            <!-- id="collapseExample{{i}}" -->
+            <!-- collapse -->
+            <div class="w-100 bottom" >  
               <div class="header-fly">
                 <span>دو تخته(هر نفر)</span>
-                <span>سینگل</span>
-                <span>کودک با تخت</span>
-                <span>کودک بدون تخت</span>
+                <span *ngIf="!item.tour.endCity.type">سینگل</span>
+                <span *ngIf="item.tour.endCity.type">سه تخته</span>
+                <span *ngIf="item.tour.endCity.type">چهارتخته</span>
+                <span *ngIf="!item.tour.endCity.type">کودک با تخت</span>
+                <span *ngIf="!item.tour.endCity.type">کودک بدون تخت</span>
                 <span>سن کودک بدون تخت</span>
               </div>
               <div class="body-fly">
-                <div class="price">
-                  <strong>25.000.000</strong>
+                <div class="price" >
+                  <strong>{{ item.tour.defineTour ? (item.prices.twinRate  |round | sperator) : (item.prices.twin |round | sperator) }}</strong>
                   <small>تومان</small>
                 </div>
-                <div class="price">
-                  <strong>25.000.000</strong>
+                <div class="price" *ngIf="!item.tour.endCity.type">
+                  <strong>{{ item.tour.defineTour ? (item.prices.singleRate| round| sperator) : (item.prices.single| round| sperator) }}</strong>
                   <small>تومان</small>
                 </div>
-                <div class="price">
-                  <strong>25.000.000</strong>
+                <div class="price" *ngIf="item.tour.endCity.type">
+                  <strong>{{ item.tour.defineTour ? (item.prices.tripleRate  | round| sperator) : (item.prices.triple  | round| sperator) }}</strong>
                   <small>تومان</small>
                 </div>
-                <div class="price">
-                  <strong>25.000.000</strong>
+
+                <div class="price" *ngIf="item.tour.endCity.type">
+                  <strong>{{ defineTour ? (item.prices.quadRate| round| sperator) : (item.prices.quad| round| sperator) }}</strong>
                   <small>تومان</small>
                 </div>
-                <span>6</span>
+
+
+          
+                <div class="price" *ngIf="!item.tour.endCity.type">
+                  <strong>{{ item.tour.defineTour ? (item.prices.cwbRate| round| sperator) : (item.prices.cwb| round| sperator) }}</strong>
+                  <small>تومان</small>
+                </div>
+                <div class="price" *ngIf="!item.tour.endCity.type">
+                  <strong>{{ item.prices.cnb ? ((item.prices.cnb.toString().split(',').join('')) | round| sperator) : 0 }}</strong>
+                  <small>تومان</small>
+                </div>
+                <span>{{ item.prices.age }}</span>
               </div>
             </div>
           </div>

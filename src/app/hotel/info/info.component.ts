@@ -4,7 +4,6 @@ import {MessageService} from "../../Core/Services/message.service";
 import {CityApiService} from "../../Core/Https/city-api.service";
 import {CommonApiService} from "../../Core/Https/common-api.service";
 import {SessionService} from "../../Core/Services/session.service";
-import {hotelInfoDTO, ServiceDTO} from "../../Core/Models/hotelDTO";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Lightbox} from "ng-gallery/lightbox";
 import {Gallery, GalleryItem, ImageItem} from 'ng-gallery';
@@ -13,6 +12,11 @@ import {PopupVideoComponent} from "../../common-project/popup-video/popup-video.
 import {Title} from "@angular/platform-browser";
 import {SettingService} from "../../Core/Services/setting.service";
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
+import { TourApiService } from 'src/app/Core/Https/tour-api.service';
+import { ResponsiveService } from 'src/app/Core/Services/responsive.service';
+import { RoomTypePriceDTO } from 'src/app/Core/Models/roomTypeDTO';
+import { ShowRoomsPopupComponent } from 'src/app/room-type/show-rooms-popup/show-rooms-popup.component';
+import { AuthPopupComponent } from 'src/app/auth/auth-popup/auth-popup.component';
 
 @Component({
   selector: 'prs-info',
@@ -21,11 +25,13 @@ import { CalenderServices } from 'src/app/Core/Services/calender-service';
 })
 export class InfoComponent implements OnInit {
   isLoading = false
+  isMobile = false;
+  clicked  = false;
   galleryId = 'myLightbox';
   imgs = ['https://www.imgonline.com.ua/examples/bee-on-daisy.jpg',
     'https:http://tour-api.parnasweb.com///source///images///2021///46366665.jpg']
   items: GalleryItem[] = [];
-  hotelInfo: hotelInfoDTO = {
+  hotelInfo: any = {
     name: '',
     city: {
       name: '',
@@ -50,12 +56,13 @@ export class InfoComponent implements OnInit {
     body: '',
     services: [],
     status: '',
+    packages: [],
     phone: '',
     tours: []
   };
   hotelName = '';
   public lightbox!: Lightbox
-
+  defineTour = true;
 
   constructor(public hotelApi: HotelApiService,
               public route: ActivatedRoute,
@@ -68,7 +75,11 @@ export class InfoComponent implements OnInit {
               public message: MessageService,
               public cityApiService: CityApiService,
               public commonApi: CommonApiService,
-              public session: SessionService,) {
+              public tourApi: TourApiService,
+              public session: SessionService,
+              public responsive: ResponsiveService
+              ) {
+                this.isMobile = responsive.isMobile();
   }
 
   ngOnInit(): void {
@@ -119,5 +130,53 @@ export class InfoComponent implements OnInit {
   getStars(count: string): number[] {
     return Array.from(Array(+count).keys());
   }
+  checkReserve(packageId: number) {
+    this.session.isLoggedIn() ? this.getReserve(packageId) : this.loginPopup(packageId)
+  }
 
+  loginPopup(id: number): void {
+    const dialog = this.dialog.open(AuthPopupComponent, {
+      width: this.isMobile ? '95%' : '30%',
+      maxWidth: this.isMobile ? '95%' : '30%',
+      data: id,
+    })
+    dialog.afterClosed().subscribe(result => {
+      if (result) {
+        this.message.custom('ورود شما با موفقیت انجام شد')
+        this.getReserve(id)
+      }
+    })
+  }
+
+  openRoom(rooms: RoomTypePriceDTO[]): void {
+    const dialog = this.dialog.open(ShowRoomsPopupComponent, {
+      width: this.isMobile ? '95%' : '30%',
+      maxWidth: this.isMobile ? '95%' : '30%',
+
+      data: rooms,
+    })
+    dialog.afterClosed().subscribe(result => {
+
+    })
+  }
+
+  getReserve(packageId: number): void {
+    this.clicked = true;
+    const req = {
+      package_id: packageId,
+    }
+    this.tourApi.reserve(req).subscribe((res: any) => {
+      if (res.isDone) {
+        this.clicked = false;
+        // this.message.custom(res.message);
+        this.router.navigate(['/tours/info/' + res.data.reserve_id]);
+      } else {
+        this.clicked = false;
+        this.message.custom(res.message);
+      }
+    }, (error: any) => {
+      this.clicked = false;
+      this.message.error()
+    })
+  }
 }
