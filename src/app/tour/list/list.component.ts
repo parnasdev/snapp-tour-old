@@ -36,7 +36,7 @@ export class ListComponent implements OnInit {
     stDate: '',
     night: 0,
   };
-  starFC = new FormControl();
+  starFC = new FormControl(null);
 
   isMobilePage = false;
   paginate: any;
@@ -233,7 +233,7 @@ export class ListComponent implements OnInit {
     this.tourReq = {
       paginate: true,
       origin: this.searchObject.origin,
-      star: this.starFC.value,
+      star: this.starFC.value === 'null' || this.starFC.value === '0'|| this.starFC.value === 0 ? null : this.starFC.value,
       dest: this.searchObject.dest,
       stDate: this.searchObject.stDate ? this.calendarService.convertDate(this.searchObject.stDate, 'en', 'yyyy-MM-DD') : null,
       night: this.searchObject.night === '0' ? null : +this.searchObject.night,
