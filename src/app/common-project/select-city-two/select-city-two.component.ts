@@ -5,6 +5,9 @@ import { Observable } from "rxjs";
 import { map, startWith } from "rxjs/operators";
 import { CityListRequestDTO, CityResponseDTO } from "../../Core/Models/cityDTO";
 import { CityApiService } from "../../Core/Https/city-api.service";
+import { SelectCityPopupComponent } from '../select-city-popup/select-city-popup.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ResponsiveService } from 'src/app/Core/Services/responsive.service';
 
 @Component({
   selector: 'prs-select-city-two',
@@ -13,6 +16,7 @@ import { CityApiService } from "../../Core/Https/city-api.service";
 })
 export class SelectCityTwoComponent implements OnInit {
   @Output() citySelected = new EventEmitter()
+  isMobile = false;
   @Input() cities: CityResponseDTO[] = []
   @Input() hasHotel: boolean = false;
   @Input() hasOriginTour: boolean = false;
@@ -24,7 +28,10 @@ export class SelectCityTwoComponent implements OnInit {
 
   constructor(
     public cityApi: CityApiService,
+    public dialog: MatDialog,
+    public mobileService: ResponsiveService,
     public message: MessageService) {
+      this.isMobile = mobileService.isMobile();
   }
 
   cityFC = new FormControl();
@@ -85,5 +92,20 @@ export class SelectCityTwoComponent implements OnInit {
     })
   }
 
+  openSelectCity() {
+    const dialog = this.dialog.open(SelectCityPopupComponent, {
+      data: {
+        cities : this.cities
+      }
+    
+    })
+    dialog.afterClosed().subscribe(result => {
+      if (result) {
+        this.cityFC.setValue(result.name)
+        this.citySelected.emit(result)
+
+      }
+    })
+  }
 
 }

@@ -5,6 +5,10 @@ import { Observable } from "rxjs";
 import { map, startWith } from "rxjs/operators";
 import { CityListRequestDTO, CityResponseDTO } from "../../Core/Models/cityDTO";
 import { CityApiService } from "../../Core/Https/city-api.service";
+import { MatDialog } from '@angular/material/dialog';
+import { SelectCityPopupComponent } from '../select-city-popup/select-city-popup.component';
+import { Result } from 'src/app/Core/Models/result';
+import { ResponsiveService } from 'src/app/Core/Services/responsive.service';
 
 @Component({
   selector: 'prs-select-city',
@@ -18,7 +22,7 @@ export class SelectCityComponent implements OnInit, OnChanges {
   @Input() hasOriginTour: boolean = false;
   @Input() type: number | null = null;
   @Input() city: number | null = null;
-
+isMobile = false;
   @Input() hasDestTour: boolean = false;
   @Input() inCommingCity: any;
   @Input() title = 'شهر خود را وارد کنید';
@@ -26,7 +30,10 @@ export class SelectCityComponent implements OnInit, OnChanges {
 
   constructor(
     public cityApi: CityApiService,
+    public dialog: MatDialog,
+    public mobileService: ResponsiveService,
     public message: MessageService) {
+      this.isMobile = mobileService.isMobile();
   }
 
   cityFC = new FormControl();
@@ -53,7 +60,7 @@ export class SelectCityComponent implements OnInit, OnChanges {
     );
     if (changes.city) {
       console.log(changes);
-      
+
       this.getCities();
     }
 
@@ -91,6 +98,23 @@ export class SelectCityComponent implements OnInit, OnChanges {
       this.message.error()
     })
   }
+
+
+  openSelectCity() {
+    const dialog = this.dialog.open(SelectCityPopupComponent, {
+      data: {
+        cities : this.cities
+      }
+    
+    })
+    dialog.afterClosed().subscribe(Result => {
+      if (Result) {
+        this.cityFC.setValue(Result.name)
+        this.citySelected.emit(Result)
+      }
+    })
+  }
+
 
 
 }

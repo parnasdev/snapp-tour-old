@@ -117,7 +117,7 @@ export class ListComponent implements OnInit {
   }
 
   starChanged() {
-
+    this.p = 1
     this.getToursV2();
   }
 
@@ -230,10 +230,11 @@ export class ListComponent implements OnInit {
 
   getToursV2() {
     this.loading = true;
+    console.log(this.starFC.value)
     this.tourReq = {
       paginate: true,
       origin: this.searchObject.origin,
-      star: this.starFC.value === 'null' || this.starFC.value === '0'|| this.starFC.value === 0 ? null : this.starFC.value,
+      star: this.starFC.value === 'null' || this.starFC.value === null || this.starFC.value === undefined || this.starFC.value === '0' || this.starFC.value === 0 ? null : +this.starFC.value,
       dest: this.searchObject.dest,
       stDate: this.searchObject.stDate ? this.calendarService.convertDate(this.searchObject.stDate, 'en', 'yyyy-MM-DD') : null,
       night: this.searchObject.night === '0' ? null : +this.searchObject.night,

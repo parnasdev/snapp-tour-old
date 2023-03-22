@@ -1,0 +1,8 @@
+<div>
+    <div class="inp-form">
+        <input type="text" [(ngModel)]="keyword" class="input">
+    </div>
+    <ul>
+        <li *ngFor="let city of data.cities | cityKeyword : keyword" (click)="onCitySelected(city)">{{ city.name }}</li>
+    </ul>
+</div>
