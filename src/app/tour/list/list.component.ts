@@ -1,18 +1,19 @@
-import {Component, OnInit} from '@angular/core';
-import {TourApiService} from "../../Core/Https/tour-api.service";
-import {TourListRequestDTO, TourListResDTO, TourPackageDTO, TourPackageV2DTO, TourRequestV2DTO} from "../../Core/Models/tourDTO";
-import {MessageService} from "../../Core/Services/message.service";
-import {CheckErrorService} from "../../Core/Services/check-error.service";
-import {ErrorsService} from "../../Core/Services/errors.service";
-import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
-import {CityApiService} from "../../Core/Https/city-api.service";
-import {Title} from "@angular/platform-browser";
-import {SettingService} from "../../Core/Services/setting.service";
-import {CalenderServices} from 'src/app/Core/Services/calender-service';
-import {ResponsiveService} from "../../Core/Services/responsive.service";
+import { Component, OnInit } from '@angular/core';
+import { TourApiService } from "../../Core/Https/tour-api.service";
+import { TourListRequestDTO, TourListResDTO, TourPackageDTO, TourPackageV2DTO, TourRequestV2DTO } from "../../Core/Models/tourDTO";
+import { MessageService } from "../../Core/Services/message.service";
+import { CheckErrorService } from "../../Core/Services/check-error.service";
+import { ErrorsService } from "../../Core/Services/errors.service";
+import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
+import { CityApiService } from "../../Core/Https/city-api.service";
+import { Title } from "@angular/platform-browser";
+import { SettingService } from "../../Core/Services/setting.service";
+import { CalenderServices } from 'src/app/Core/Services/calender-service';
+import { ResponsiveService } from "../../Core/Services/responsive.service";
 import { HotelListRes, HotelRequestDTO } from 'src/app/Core/Models/hotelDTO';
 import { HotelApiService } from "../../Core/Https/hotel-api.service";
 import { CityListRequestDTO, CityResponseDTO } from 'src/app/Core/Models/cityDTO';
+import { FormControl } from '@angular/forms';
 
 export interface SearchObjectDTO {
   origin: string;
@@ -31,9 +32,11 @@ export class ListComponent implements OnInit {
     paginate: true,
     origin: '',
     dest: '',
+    star: null,
     stDate: '',
-    night: 0, 
+    night: 0,
   };
+  starFC = new FormControl();
 
   isMobilePage = false;
   paginate: any;
@@ -60,17 +63,17 @@ export class ListComponent implements OnInit {
 
 
   constructor(public tourApiService: TourApiService,
-              public route: ActivatedRoute,
-              public checkErrorService: CheckErrorService,
-              public errorService: ErrorsService,
-              public cityApi: CityApiService,
-              public hotelApi: HotelApiService,
-              public calendarService: CalenderServices,
-              public setting: SettingService,
-              public title: Title,
-              public responsiveService: ResponsiveService,
-              public router: Router,
-              public message: MessageService) {
+    public route: ActivatedRoute,
+    public checkErrorService: CheckErrorService,
+    public errorService: ErrorsService,
+    public cityApi: CityApiService,
+    public hotelApi: HotelApiService,
+    public calendarService: CalenderServices,
+    public setting: SettingService,
+    public title: Title,
+    public responsiveService: ResponsiveService,
+    public router: Router,
+    public message: MessageService) {
     this.isMobilePage = this.responsiveService.isMobile()
     this.router.events.subscribe(event => {
 
@@ -80,7 +83,7 @@ export class ListComponent implements OnInit {
       }
     });
 
-    this.route.queryParams.subscribe((params:any) => {
+    this.route.queryParams.subscribe((params: any) => {
       this.queryParamsResult = params;
 
     })
@@ -111,6 +114,11 @@ export class ListComponent implements OnInit {
     this.searchObject.dest = params['dest'];
     this.searchObject.night = params['night'];
     this.searchObject.stDate = params['stDate'];
+  }
+
+  starChanged() {
+
+    this.getToursV2();
   }
 
 
@@ -165,7 +173,7 @@ export class ListComponent implements OnInit {
 
   }
 
-  changeStep(step: string){
+  changeStep(step: string) {
     this.step = step;
   }
 
@@ -225,9 +233,10 @@ export class ListComponent implements OnInit {
     this.tourReq = {
       paginate: true,
       origin: this.searchObject.origin,
+      star: this.starFC.value,
       dest: this.searchObject.dest,
       stDate: this.searchObject.stDate ? this.calendarService.convertDate(this.searchObject.stDate, 'en', 'yyyy-MM-DD') : null,
-      night: this.searchObject.night === '0' ? null : +this.searchObject.night, 
+      night: this.searchObject.night === '0' ? null : +this.searchObject.night,
     }
     this.tourApiService.getToursV2(this.tourReq, this.p).subscribe((res: any) => {
       this.loading = false

@@ -41,13 +41,24 @@
                     <span>هتل خود را بر اساس نتایج زیر انتخاب کنید</span>
                   </div>
                 </div>
+                <div class="inp-form w-25">
+                  <select class="select" [formControl]="starFC" (change)="starChanged()">
+                    <option disabled value="null">جستجو بر اساس ستاره</option>
+                    <option value="1">۱ ستاره</option>
+                    <option value="2">۲ ستاره</option>
+                    <option value="3">۳ ستاره</option>
+                    <option value="4">۴ ستاره</option>
+                    <option value="5">۵ ستاره</option>
+                  </select>
+                </div>
+       
               </div>
               <div class="bottom">
                 <div class="border-right"></div>
                 <div class="border-left"></div>
               </div>
             </div>
-            <div *ngFor="let tour of tours; let i = index" class="thumbnail-hotel">
+            <div *ngFor="let tour of tours| paginate: paginateConfig; let i = index" class="thumbnail-hotel">
               <div class="img-hotel">
                 <img src="{{ tour.hotel.thumbnail }}" alt="">
               </div>
@@ -76,6 +87,17 @@
               </div>
             </div>
           <!--end-->
+          <pagination-controls
+          [maxSize]="isMobilePage?4:7"
+          *ngIf="!loading && paginate.last_page > 1"
+          class="pagination-control"
+          (pageChange)="onPageChanged($event)"
+          previousLabel="قبلی"
+          nextLabel="بعدی"
+          screenReaderPaginationLabel="صفحه بندی"
+          screenReaderPageLabel="صفحه"
+          screenReaderCurrentLabel="شما در صفحه ی">
+        </pagination-controls>
 
           <!-- empty box -->
           <div *ngIf="tours.length==0" class="empty-box">
