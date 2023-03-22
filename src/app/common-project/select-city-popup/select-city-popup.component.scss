@@ -1,5 +1,10 @@
-.p-list-city{
-  li{
+.select-city-popup {
+  height: 300px;
+  overflow-y: auto;
+}
+
+.p-list-city {
+  li {
     font-size: 14px;
     color: var(--text-color);
     font-weight: 500;
