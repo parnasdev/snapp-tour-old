@@ -42,7 +42,7 @@ export interface hotelInfoDTO {
   coordinate: { lat: number, lng: number }
   images: string[];
   mediaLink: MediaLinkDTO[]
-
+  packages? : PackageDTO[];
   thumbnail: string;
   body: string;
   services: ServicesDTO[];
@@ -133,4 +133,10 @@ export interface ServicesDTO {
   name: string;
   ids: string[]
   services: ServiceDTO[]
+}
+
+export interface hotelInfoReqDTO {
+  stDate: string;
+  night: number | null;
+  isAdmin: boolean;
 }

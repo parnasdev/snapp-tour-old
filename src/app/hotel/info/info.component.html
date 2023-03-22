@@ -10,6 +10,34 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-10 m-auto">
+          <div class="thumbnail-hotel">
+            <div class="img-hotel">
+              <img src="{{ hotelInfo.thumbnail }}" alt="">
+            </div>
+            <div class="detail-hotel">
+              <div class="r">
+                <div class="star">
+                  <i class="icon-star" *ngFor="let star of getStars(hotelInfo.stars)"></i>
+                </div>
+                <h2 class="name-hotel"><a href="">{{ hotelInfo.name }} | {{ hotelInfo.nameEn }}</a></h2>
+                <div class="address d-flex justify-content-start align-items-center">
+                  <img src="assets/img/location2.svg" width="15" alt="">
+                  <span>{{ hotelInfo.location ?? 'ثبت نشده' }}</span>
+                </div>
+              </div>
+              <div class="l">
+                <div class="p-price">
+                  <span class="title">شروع قیمت :</span>
+                  <div class="price d-flex align-items-center">
+                    <strong>{{ this.minPrice | round| sperator }}</strong>
+                    <small>تومان</small>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
           <div class="title-tour-special-swiper">
             <div class="top">
               <div class="new-tour">
@@ -25,39 +53,13 @@
               <div class="border-left"></div>
             </div>
           </div>
-          <div class="thumbnail-hotel">
-            <div class="img-hotel">
-              <img src="{{ hotelInfo.thumbnail }}" alt="">
-            </div>
-            <div class="detail-hotel">
-              <div class="r">
-                <div class="star">
-                  <i class="icon-star" *ngFor="let star of getStars(hotelInfo.stars)"></i>
-                </div>
-                <h2 class="name-hotel"><a href="">{{ hotelInfo.name }} | {{ hotelInfo.nameEn }}</a></h2>
-                <div class="address d-flex align-items-center">
-                  <img src="assets/img/location2.svg" width="15" alt="">
-                  <span>{{ hotelInfo.location ?? 'ثبت نشده' }}</span>
-                </div>
-              </div>
-              <div class="l">
-                <div class="p-price">
-                  <span class="title">شروع قیمت :</span>
-                  <div class="price d-flex align-items-center">
-                    <strong>1.400.000</strong>
-                    <small>تومان</small>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
 
           <div class="thumbnail-flight" *ngFor="let item of hotelInfo.packages; let i = index">
             <div class="top">
               <div class="start">
+                <img [src]="item.tour.transfers[0].logo" width="35" height="35" />
                 <div class="title">
-                  <span>پرواز رفت :</span>
+                  <span>پرواز رفت از :</span>
                   <strong>{{ item.tour.stCity.name }}</strong>
                 </div>
                 <div class="p-date">
@@ -68,8 +70,9 @@
                 </div>
               </div>
               <div class="center">
+                <img [src]="item.tour.transfers[1].logo" width="35" height="35"/>
                 <div class="title">
-                  <span>پرواز برگشت :</span>
+                  <span>پرواز برگشت از :</span>
                   <strong>{{ item.tour.endCity.name }}</strong>
                 </div>
                 <div class="p-date">
@@ -80,7 +83,7 @@
                 </div>
               </div>
               <div class="end">
-                <span>تامین کننده : ---</span>
+                <span>تامین کننده : {{ item.tour.agency }}</span>
                 <a (click)="checkReserve(item.id)" class="btn-base w-100 d-flex align-items-center justify-content-center h-45 mt-2">
                   انتخاب تور
                 </a>
@@ -173,7 +176,7 @@
             <div class="title-hotel">
               <div class="name-city-country">
                 <img src="assets/img/Location.svg" width="20" alt="">
-                <span class="title-small-fa">شهر و منطقه :</span>
+                <span class="title-small-fa">  و منطقه :</span>
                 <span class="title-fa mr-2">{{ hotelInfo.city.name }}, </span>
                 <span class="title-fa mr-2">{{ hotelInfo.location }}</span>
               </div>

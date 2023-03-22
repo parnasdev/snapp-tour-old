@@ -5,7 +5,7 @@ import {environment} from "../../../environments/environment";
 import {CityListRequestDTO, CitySetRequestDTO} from "../Models/cityDTO";
 import {Result} from "../Models/result";
 import {
-  hotelInfoDTO, HotelListRes,
+  hotelInfoDTO, hotelInfoReqDTO, HotelListRes,
   HotelListResponseDTO,
   HotelRequestDTO,
   HotelSetRequestDTO,
@@ -53,12 +53,11 @@ export class HotelApiService {
     return this.http.post<Result<hotelInfoDTO>>(strUrl, entity, this.publicService.getDefaultHeaders());
   }
 
-  getHotelV2(name: string, isAdmin: boolean): any {
+  getHotelV2(name: string, hotelInfoReq: hotelInfoReqDTO): any {
     const controllerName = environment.BACK_END_IP_v2 + 'hotel/';
     const address = `getHotel/${name}`;
     const strUrl = controllerName + address;
-    const entity = {isAdmin}
-    return this.http.post<Result<hotelInfoDTO>>(strUrl, entity, this.publicService.getDefaultHeaders());
+    return this.http.post<Result<hotelInfoDTO>>(strUrl, hotelInfoReq, this.publicService.getDefaultHeaders());
   }
 
   getServices(): any {

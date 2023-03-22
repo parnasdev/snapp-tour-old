@@ -17,6 +17,7 @@ import { ResponsiveService } from 'src/app/Core/Services/responsive.service';
 import { RoomTypePriceDTO } from 'src/app/Core/Models/roomTypeDTO';
 import { ShowRoomsPopupComponent } from 'src/app/room-type/show-rooms-popup/show-rooms-popup.component';
 import { AuthPopupComponent } from 'src/app/auth/auth-popup/auth-popup.component';
+import { hotelInfoDTO, hotelInfoReqDTO, HotelListResponseDTO } from 'src/app/Core/Models/hotelDTO';
 
 @Component({
   selector: 'prs-info',
@@ -60,9 +61,21 @@ export class InfoComponent implements OnInit {
     phone: '',
     tours: []
   };
+
+  stDate: string = '';
+  night: string = '';
+
   hotelName = '';
   public lightbox!: Lightbox
   defineTour = true;
+
+  minPrice = '';
+
+  hotelInfoReq: hotelInfoReqDTO = {
+    isAdmin: false,
+    night: 0,
+    stDate: ''
+  }
 
   constructor(public hotelApi: HotelApiService,
               public route: ActivatedRoute,
@@ -86,18 +99,30 @@ export class InfoComponent implements OnInit {
     window.scrollTo(0, 0)
     // @ts-ignore
     this.hotelName = this.route.snapshot.paramMap.get('slug');
+    this.route.queryParams
+      .subscribe(params => {
+          this.stDate = this.calenderService.convertDateSpecial(params.stDate, 'en')
+          this.night = params.night
+      }
+    );
     this.getInfo();
 
   }
 
   getInfo(): void {
+    this.hotelInfoReq = {
+      isAdmin: false,
+      night: +this.night,
+      stDate: this.stDate
+    }
     this.isLoading = true;
-    this.hotelApi.getHotelV2(this.hotelName, false).subscribe((res: any) => {
+    this.hotelApi.getHotelV2(this.hotelName, this.hotelInfoReq).subscribe((res: any) => {
       this.isLoading = false;
       if (res.isDone) {
         this.hotelInfo = res.data;
-        this.title.setTitle(this.hotelInfo.name + '|' + this.setting.settings.title)
 
+        this.title.setTitle(this.hotelInfo.name + '|' + this.setting.settings.title)
+        this.getStarterPrice();
         if (this.hotelInfo.images && this.hotelInfo.images.length > 0) {
           this.fillAlbum(this.hotelInfo.images)
         }
@@ -130,6 +155,7 @@ export class InfoComponent implements OnInit {
   getStars(count: string): number[] {
     return Array.from(Array(+count).keys());
   }
+
   checkReserve(packageId: number) {
     this.session.isLoggedIn() ? this.getReserve(packageId) : this.loginPopup(packageId)
   }
@@ -179,4 +205,29 @@ export class InfoComponent implements OnInit {
       this.message.error()
     })
   }
+
+  getStarterPrice() {
+    let defineTour = false;
+    let Prices: any = []
+    // this.hotelInfo.packages.forEach((item:any , index: number) => {
+    //   let currentItem = this.hotelInfo.defineTour ? item.prices.twinRate : item.prices.twin;
+    //   if(index === 0){
+    //     minPrice = currentItem
+    //   }else {
+    //     if(minPrice < currentItem){
+    //       minPrice = currentItem
+    //     }
+    //   }
+    // });
+    // return minPrice
+    defineTour = this.hotelInfo.packages[0].tour.defineTour;
+    this.hotelInfo.packages?.forEach((item: any) => {
+      console.log(item)
+      defineTour ? Prices.push(item.prices.twinRate) : Prices.push(item.prices.twin);
+    });
+    let list = Prices.sort(function(a: any, b:any){return a-b})
+    console.log(list)
+    this.minPrice = list[0]
+  }
+
 }
