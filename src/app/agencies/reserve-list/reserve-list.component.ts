@@ -21,6 +21,7 @@ export class ReserveListComponent implements OnInit {
   agencyList: AgencyDTO[] = []
   keywordFC = new FormControl('');
   agencyName = new FormControl('');
+  statusName = new FormControl('');
   isLoading = false;
   reserves: any[] = []
   paginate: any;
@@ -31,8 +32,48 @@ export class ReserveListComponent implements OnInit {
     agencyName: '',
     refCode: '',
     date: '',
+    status: '',
     accountType: this.session.getRole() === 'Admin' ? null : 'agency',
   }
+
+  statuses = [
+    {nameEn: 'NewReserve',
+    name: 'درخواست جدید'},
+    {nameEn: 'Completion',
+    name: 'در حال تکمیل',},
+    {nameEn: 'Accepted',
+    name: 'تایید شده',},
+    {nameEn: 'NotAccepted',
+    name: 'تایید نشده'},
+    {nameEn: 'Pending',
+    name: 'در انتظار'},
+    {nameEn: 'Suspended',
+    name: 'معلق شده'},
+    {nameEn: 'Show',
+    name: 'نمایش'},
+    {nameEn: 'Draft',
+    name: 'پیش نویس'},
+    {nameEn: 'NewTicket',
+    name: 'تیکت جدید'},
+    {nameEn: 'ExpertAnswerTicket',
+    name: 'پاسخ کارشناس به تیکت'},
+    {nameEn: 'UserAnswerTicket',
+    name: 'پاسخ تیکت کاربر'},
+    {nameEn: 'ExpertCheckingTicket',
+    name: 'بررسی تیکت کارشناس'},
+    {nameEn: 'closeTicket',
+    name: 'بستن تیکت'},
+    {nameEn: 'NewReserve',
+    name: 'رزرو جدید'},
+    {nameEn: 'PenddingAccept',
+    name: 'منتظر تایید آژانس'},
+    {nameEn: 'Paid',
+    name: 'پرداخت شده'},
+    {nameEn: 'PenddingPay',
+    name: 'منتظر پرداخت'},
+    {nameEn: 'Completed' ,
+    name: 'تکمیل شده'},
+  ]
 
   constructor(public mobileService: ResponsiveService,
     public session: SessionService,
@@ -62,6 +103,7 @@ export class ReserveListComponent implements OnInit {
       date: '',
       agencyName: this.agencyName.value,
       search: this.keywordFC.value,
+      status: this.statusName.value,
       refCode: '',
       paginate: true,
       accountType: this.session.getRole() === 'Admin' ? null : 'agency',

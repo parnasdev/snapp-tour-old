@@ -12,6 +12,14 @@
           </select>
         </label>
       </div>
+      <div class="inp-form" style="margin-right: 2rem">
+        <label>
+          <select [formControl]="statusName">
+            <!-- <option value="null">وضعیت مورد نطر را انتخاب کنید</option> -->
+            <option *ngFor="let item of statuses" value="{{ item.nameEn }}">{{ item.name }}</option>
+          </select>
+        </label>
+      </div>
       <button class="mr-2 btn-base btn-search-reserve" (click)="getReserveList()">جستجو</button>
     </div>
   </div>

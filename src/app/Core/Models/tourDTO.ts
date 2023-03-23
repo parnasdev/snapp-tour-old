@@ -239,6 +239,7 @@ export interface ReserveListReqDTO {
   refCode?: string;
   date?: string;
   search?: string;
+  status?: string;
   accountType?: string | null;
 }
 
