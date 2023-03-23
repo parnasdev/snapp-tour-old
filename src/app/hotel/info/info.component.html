@@ -26,7 +26,7 @@
                 </div>
               </div>
               <div class="l">
-                <div class="p-price">
+                <div class="p-price" *ngIf="hotelInfo.packages.length > 0">
                   <span class="title">شروع قیمت :</span>
                   <div class="price d-flex align-items-center">
                     <strong>{{ this.minPrice | round| sperator }}</strong>
@@ -62,6 +62,7 @@
                   <div class="title">
                     <span>پرواز رفت از :</span>
                     <strong>{{ item.tour.stCity.name }} به {{ item.tour.endCity.name }}</strong>
+                    <strong>{{ '-' + ' ' + item.tour.transfers[0].transfer }}</strong>
                   </div>
                   <div class="p-date">
                     <div class="date">
@@ -78,6 +79,7 @@
                   <div class="title">
                     <span>پرواز برگشت از :</span>
                     <strong>{{ item.tour.endCity.name }} به {{ item.tour.stCity.name }}</strong>
+                    <strong>{{ '-' + ' ' + item.tour.transfers[1].transfer }}</strong>
                   </div>
                   <div class="p-date">
                     <div class="date">
@@ -144,6 +146,10 @@
                 <span>{{ item.prices.age }}</span>
               </div>
             </div>
+          </div>
+
+          <div class="empty-box" *ngIf="hotelInfo.packages.length === 0">
+            <span >پروازی برای این هتل یافت نشد</span>
           </div>
         </div>
       </div>

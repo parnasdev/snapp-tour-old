@@ -1010,6 +1010,20 @@ prs-show-location {
   }
 }
 
+.empty-box {
+  height: 100px;
+  padding: 0 12px;
+  border: 1px solid #f2f2f2;
+  box-shadow: var(--box-shadow);
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px;
+  width: 100%;
+}
+
 @media only screen and (max-width: 868px){
   .thumbnail-flight{
     .top{
