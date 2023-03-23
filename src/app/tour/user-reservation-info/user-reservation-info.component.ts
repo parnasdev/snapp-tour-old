@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { transfersSetDTO } from 'src/app/agencies/agency-reserves/agency-reserves.component';
 import { RoomTypeApiService } from 'src/app/Core/Https/room-type-api.service';
 import { TourApiService } from 'src/app/Core/Https/tour-api.service';
+import { CityResponseDTO } from 'src/app/Core/Models/cityDTO';
 import { RoomTypeListDTO } from 'src/app/Core/Models/roomTypeDTO';
 
 declare let $: any;
@@ -43,7 +44,20 @@ export class UserReservationInfoComponent implements OnInit {
     id: 0,
     package: {
       id: 0,
-      tour: {} as Tour,
+      tour: {
+        dayNum: 0,
+        enDate: '',
+        endCity: {} as CityResponseDTO,
+        nightNum: 0,
+        slug: '',
+        stCity: {} as CityResponseDTO,
+        stDate: '',
+        status: '',
+        title: '',
+        transfers: [],
+        defineTour: false,
+        type: false,
+      },
       hotel: {} as HotelDTO,
       services: {} as RateDTO,
       rate: {} as RateDTO,
