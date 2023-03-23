@@ -133,7 +133,7 @@
         </div>
         <!-- quad -->
         <div class="item-hotel" *ngIf="reserveObj.package?.tour?.type">
-          <h5>چهار تخته (دونفر)</h5>
+          <h5>چهار تخته ({{ getCapacityPerson('quad') }}نفر)</h5>
           <span>تعداد اتاق درخواستی</span>
           <prs-counter *ngIf="isCounterShow"
                        [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.quadCapacity ? reserveObj.package.prices?.quadCapacity : '0', 'quad')"
