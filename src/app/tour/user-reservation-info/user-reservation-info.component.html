@@ -141,7 +141,7 @@
           <small>موجودی
             اتاق: {{ reserveObj.package?.prices?.quadCapacity ? +reserveObj.package.prices.quadCapacity : 0 }}</small>
           <div class="price mt-2">
-            <strong class="mt-1">{{ reserveObj.package.tour.defineTour ? (reserveObj.package.prices?.quad | sperator) : (reserveObj.package.prices?.quad | sperator)
+            <strong class="mt-1">{{ reserveObj.package.tour.defineTour ? (reserveObj.package.prices?.quadRate | sperator) : (reserveObj.package.prices?.quad | sperator)
               }}</strong>
             <small>تومان</small>
           </div>
