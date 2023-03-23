@@ -848,7 +848,7 @@ prs-show-location {
     .start {
       width: 40%;
       display: flex;
-      flex-direction: column;
+      align-items: center;
       border-left: 1px dotted #C6C6C6;
       padding: 9px;
 
@@ -888,7 +888,7 @@ prs-show-location {
     .center {
       width: 40%;
       display: flex;
-      flex-direction: column;
+      align-items: center;
       padding: 9px;
 
       .title {
