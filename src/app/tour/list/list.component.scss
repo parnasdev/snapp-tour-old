@@ -228,25 +228,31 @@
 }
 
 //end
-.near-date label{margin-right: 12px}
-.near-date{
+.near-date label {
+  margin-right: 12px
+}
+
+.near-date {
   margin-top: 12px;
 }
-.near-date strong{
+
+.near-date strong {
   margin-left: 8px;
 }
-.near-date strong i{
+
+.near-date strong i {
   font-size: 20px;
 }
-@media only screen and (max-width: 868px){
-  :host::ng-deep prs-select-city{
+
+@media only screen and (max-width: 868px) {
+  :host::ng-deep prs-select-city {
     width: 100% !important;
   }
-  prs-search{
+  prs-search {
     width: 100% !important;
 
   }
-  .box-search{
+  .box-search {
     width: 100% !important;
     flex-direction: column !important;
   }
@@ -254,16 +260,18 @@
     width: 100% !important;
     margin-top: 15px;
   }
-  .btn-search{
+  .btn-search {
     margin-top: 15px !important;
   }
 }
+
 .row-search {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;;
   column-gap: 12px;
 }
+
 .empty-box {
   height: auto;
   width: 100%;
@@ -274,6 +282,7 @@
   margin-top: 1rem;
   display: grid;
   place-items: center;
+
   h3 {
     font-size: 15px;
     color: var(--text-color);
@@ -670,7 +679,7 @@
         width: 100%;
 
         span {
-          color: var(--light-color-two);
+          color: #b26a6a;
         }
 
         .price {

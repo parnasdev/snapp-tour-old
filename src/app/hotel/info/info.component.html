@@ -57,30 +57,36 @@
           <div class="thumbnail-flight" *ngFor="let item of hotelInfo.packages; let i = index">
             <div class="top">
               <div class="start">
-                <img [src]="item.tour.transfers[0].logo" width="35" height="35" />
-                <div class="title">
-                  <span>پرواز رفت از :</span>
-                  <strong>{{ item.tour.stCity.name }} به {{ item.tour.endCity.name }}</strong>
-                </div>
-                <div class="p-date">
-                  <div class="date">
-                    <span>تاریخ و ساعت پرواز رفت :</span>
-                    <p *ngIf="item.tour.transfers.length > 0">{{calenderService.convertDateAndTime(item.tour.transfers[0].dateTime, 'fa')}}</p>
+                <img [src]="item.tour.transfers[0].logo" width="40" height="35" />
+                <div class="d-flex flex-column align-items-start w-100">
+                  <div class="title">
+                    <span>پرواز رفت از :</span>
+                    <strong>{{ item.tour.stCity.name }} به {{ item.tour.endCity.name }}</strong>
+                  </div>
+                  <div class="p-date">
+                    <div class="date">
+                      <span>تاریخ و ساعت پرواز رفت :</span>
+                      <p *ngIf="item.tour.transfers.length > 0">{{calenderService.convertDateAndTime(item.tour.transfers[0].dateTime, 'fa')}}</p>
+                    </div>
                   </div>
                 </div>
+
               </div>
               <div class="center">
-                <img [src]="item.tour.transfers[1].logo" width="35" height="35"/>
-                <div class="title">
-                  <span>پرواز برگشت از :</span>
-                  <strong>{{ item.tour.endCity.name }} به {{ item.tour.stCity.name }}</strong>
-                </div>
-                <div class="p-date">
-                  <div class="date">
-                    <span>تاریخ و ساعت پرواز برگشت :</span>
-                    <p>{{calenderService.convertDateAndTime(item.tour.transfers[1].dateTime, 'fa')}}</p>
+                <img [src]="item.tour.transfers[1].logo" width="40" height="35"/>
+                <div class="w-100 d-flex flex-column align-items-start">
+                  <div class="title">
+                    <span>پرواز برگشت از :</span>
+                    <strong>{{ item.tour.endCity.name }} به {{ item.tour.stCity.name }}</strong>
+                  </div>
+                  <div class="p-date">
+                    <div class="date">
+                      <span>تاریخ و ساعت پرواز برگشت :</span>
+                      <p>{{calenderService.convertDateAndTime(item.tour.transfers[1].dateTime, 'fa')}}</p>
+                    </div>
                   </div>
                 </div>
+
               </div>
               <div class="end">
                 <span>تامین کننده : {{ item.tour.agency }}</span>
@@ -96,7 +102,7 @@
             </div>
             <!-- id="collapseExample{{i}}" -->
             <!-- collapse -->
-            <div class="w-100 bottom" >  
+            <div class="w-100 bottom" >
               <div class="header-fly">
                 <span>دو تخته(هر نفر)</span>
                 <span *ngIf="!item.tour.endCity.type">سینگل</span>
@@ -126,7 +132,7 @@
                 </div>
 
 
-          
+
                 <div class="price" *ngIf="!item.tour.endCity.type">
                   <strong>{{ item.tour.defineTour ? (item.prices.cwbRate| round| sperator) : (item.prices.cwb| round| sperator) }}</strong>
                   <small>تومان</small>
@@ -196,7 +202,7 @@
               <prs-thumbnails-tour *ngIf="hotelInfo.tours.length > 0" [tours]="hotelInfo.tours"></prs-thumbnails-tour>
             </div> -->
 
-            
+
 
             <div class="parent-gallery" *ngIf="hotelInfo.images && hotelInfo.images.length > 0">
               <div class="right-gallery">

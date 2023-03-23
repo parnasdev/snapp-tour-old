@@ -1020,6 +1020,15 @@ select::-ms-expand {
   }
 }
 
+.thumbnail-hotel {
+  border: 1px solid #ebebeb !important;
+  .p-price {
+    span {
+      color: #b26a6a !important;
+    }
+  }
+}
+
 //mobile&tablet
 @media only screen and (max-width: 868px) {
   .w-100-mobi {
