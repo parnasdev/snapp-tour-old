@@ -74,7 +74,7 @@ export class InfoComponent implements OnInit {
   hotelInfoReq: hotelInfoReqDTO = {
     isAdmin: false,
     night: 0,
-    stDate: ''
+    stDate: null
   }
 
   constructor(public hotelApi: HotelApiService,
@@ -101,7 +101,7 @@ export class InfoComponent implements OnInit {
     this.hotelName = this.route.snapshot.paramMap.get('slug');
     this.route.queryParams
       .subscribe(params => {
-          this.stDate = this.calenderService.convertDateSpecial(params.stDate, 'en')
+          this.stDate = params.stDate ? this.calenderService.convertDateSpecial(params.stDate, 'en') : null
           this.night = params.night
       }
     );

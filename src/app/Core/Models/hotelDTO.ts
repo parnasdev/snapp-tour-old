@@ -136,7 +136,7 @@ export interface ServicesDTO {
 }
 
 export interface hotelInfoReqDTO {
-  stDate: string;
+  stDate: string | null;
   night: number | null;
   isAdmin: boolean;
 }
