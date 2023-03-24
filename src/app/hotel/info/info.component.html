@@ -73,6 +73,10 @@
                 </div>
 
               </div>
+              <div *ngIf="isTablet" class="info-time">
+                <span class="title">مدت اقامت :</span>
+                <span style="margin-right: 4px" class="text">4 شب و 3 روز</span>
+              </div>
               <div class="center">
                 <img [src]="item.tour.transfers[1].logo" width="40" height="35"/>
                 <div class="w-100 d-flex flex-column align-items-start">
@@ -104,7 +108,7 @@
             </div>
             <!-- id="collapseExample{{i}}" -->
             <!-- collapse -->
-            <div class="w-100 bottom" >
+            <div *ngIf="isDesktop" class="w-100 bottom" >
               <div class="header-fly">
                 <span>دو تخته(هر نفر)</span>
                 <span *ngIf="!item.tour.endCity.type">سینگل</span>
@@ -127,14 +131,10 @@
                   <strong>{{ item.tour.defineTour ? (item.prices.tripleRate  | round| sperator) : (item.prices.triple  | round| sperator) }}</strong>
                   <small>تومان</small>
                 </div>
-
                 <div class="price" *ngIf="item.tour.endCity.type">
                   <strong>{{ defineTour ? (item.prices.quadRate| round| sperator) : (item.prices.quad| round| sperator) }}</strong>
                   <small>تومان</small>
                 </div>
-
-
-
                 <div class="price" *ngIf="!item.tour.endCity.type">
                   <strong>{{ item.tour.defineTour ? (item.prices.cwbRate| round| sperator) : (item.prices.cwb| round| sperator) }}</strong>
                   <small>تومان</small>
@@ -146,7 +146,58 @@
                 <span>{{ item.prices.age }}</span>
               </div>
             </div>
-          </div>
+            <div class="p-bed-mobi" *ngIf="isTablet">
+                <div class="item">
+                  <span>دو تخته(هر نفر)</span>
+                  <div class="price" >
+                    <strong>{{ item.tour.defineTour ? (item.prices.twinRate  |round | sperator) : (item.prices.twin |round | sperator) }}</strong>
+                    <small>تومان</small>
+                  </div>
+                </div>
+                <div class="item">
+                <span *ngIf="!item.tour.endCity.type">سینگل</span>
+                <div class="price" *ngIf="!item.tour.endCity.type">
+                  <strong>{{ item.tour.defineTour ? (item.prices.singleRate| round| sperator) : (item.prices.single| round| sperator) }}</strong>
+                  <small>تومان</small>
+                </div>
+              </div>
+                <div class="item">
+                  <span *ngIf="item.tour.endCity.type">سه تخته(هر نفر)</span>
+                  <div class="price" *ngIf="item.tour.endCity.type">
+                    <strong>{{ item.tour.defineTour ? (item.prices.tripleRate  | round| sperator) : (item.prices.triple  | round| sperator) }}</strong>
+                    <small>تومان</small>
+                  </div>
+                </div>
+                <div class="item">
+                  <span *ngIf="item.tour.endCity.type">چهارتخته(هر نفر)</span>
+                  <div class="price" *ngIf="item.tour.endCity.type">
+                    <strong>{{ defineTour ? (item.prices.quadRate| round| sperator) : (item.prices.quad| round| sperator) }}</strong>
+                    <small>تومان</small>
+                  </div>
+                </div>
+                <div class="item">
+                  <span *ngIf="!item.tour.endCity.type">کودک با تخت</span>
+                  <div class="price" *ngIf="!item.tour.endCity.type">
+                    <strong>{{ item.tour.defineTour ? (item.prices.cwbRate| round| sperator) : (item.prices.cwb| round| sperator) }}</strong>
+                    <small>تومان</small>
+                  </div>
+
+                </div>
+                <div class="item">
+                  <span *ngIf="!item.tour.endCity.type">کودک بدون تخت</span>
+                  <div class="price" *ngIf="!item.tour.endCity.type">
+                    <strong>{{ item.prices.cnb ? ((item.prices.cnb.toString().split(',').join('')) | round| sperator) : 0 }}</strong>
+                    <small>تومان</small>
+                  </div>
+                </div>
+                <div class="item">
+                  <span>سن کودک بدون تخت</span>
+                  <p>{{ item.prices.age }}</p>
+
+                </div>
+              </div>
+
+            </div>
 
           <div class="empty-box" *ngIf="hotelInfo.packages.length === 0">
             <span >پروازی برای این هتل یافت نشد</span>
