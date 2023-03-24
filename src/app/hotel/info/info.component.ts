@@ -27,6 +27,8 @@ import { hotelInfoDTO, hotelInfoReqDTO, HotelListResponseDTO } from 'src/app/Cor
 export class InfoComponent implements OnInit {
   isLoading = false
   isMobile = false;
+  isTablet = false;
+  isDesktop = false;
   clicked  = false;
   galleryId = 'myLightbox';
   imgs = ['https://www.imgonline.com.ua/examples/bee-on-daisy.jpg',
@@ -93,6 +95,8 @@ export class InfoComponent implements OnInit {
               public responsive: ResponsiveService
               ) {
                 this.isMobile = responsive.isMobile();
+                this.isTablet = responsive.isTablet();
+                this.isDesktop = responsive.isDesktop();
   }
 
   ngOnInit(): void {

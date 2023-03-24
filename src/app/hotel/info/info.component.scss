@@ -788,25 +788,45 @@ prs-show-location {
 @media only screen and (max-width: 868px) {
   .thumbnail-hotel {
     height: auto;
-    flex-direction: column;
     position: relative;
+    align-items: flex-start;
+    border: 1px solid #f7d5d5 !important;
 
     .img-hotel {
-      width: 100%;
-      height: 200px;
+      width: 90px;
+      height: 90px;
+      position: absolute;
+      right: 8px;
+      top: 8px;
+
+      img {
+        border-radius: 4px;
+      }
     }
 
     .detail-hotel {
       flex-direction: column;
+      align-items: flex-end;
       width: 100%;
+      padding: 8px !important;
 
       .r {
-        width: 100%;
+        width: 70%;
 
         .name-hotel {
           width: 100%;
-          text-align: center;
+          text-align: justify;
           margin: 4px 0 !important;
+          line-height: 22px;
+          height: 35px;
+
+          a {
+            font-size: 14px !important;
+          }
+        }
+
+        .address {
+          margin-top: 12px;
         }
       }
 
@@ -814,12 +834,6 @@ prs-show-location {
         width: 100%;
         margin-top: 14px;
       }
-    }
-
-    .star {
-      position: absolute;
-      left: 8px;
-      top: 8px;
     }
   }
 }
@@ -949,15 +963,18 @@ prs-show-location {
       }
     }
   }
-  .bottom{
+
+  .bottom {
     width: 100%;
     border-top: 1px solid #f2f2f2;
     padding: 10px;
-    .header-fly{
+
+    .header-fly {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
       column-gap: 15px;
-      span{
+
+      span {
         width: 100%;
         background: #eeebeb;
         color: var(--text-color);
@@ -969,18 +986,21 @@ prs-show-location {
         font-weight: 500;
       }
     }
-    .body-fly{
+
+    .body-fly {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
       column-gap: 15px;
       height: 80px;
-      .price{
+
+      .price {
         display: flex;
         align-items: center;
         height: 90%;
         justify-content: center;
         position: relative;
-        &:after{
+
+        &:after {
           content: '';
           position: absolute;
           left: -7px;
@@ -988,17 +1008,20 @@ prs-show-location {
           height: 100%;
           border-left: 1px solid #eeebeb;
         }
-        strong{
+
+        strong {
           color: var(--text-color);
           font-size: 17px;
         }
-        small{
+
+        small {
           font-size: 14px;
           color: var(--base-color);
           margin-right: 7px;
         }
       }
-      span{
+
+      span {
         color: var(--text-color);
         font-size: 15px;
         height: 100%;
@@ -1024,34 +1047,87 @@ prs-show-location {
   width: 100%;
 }
 
-@media only screen and (max-width: 868px){
-  .thumbnail-flight{
-    .top{
+@media only screen and (max-width: 868px) {
+  .info-time{
+    width: 95%;
+    margin: 12px auto !important;
+    border-left: none !important;
+    background: #f2f2f2;
+    padding: 12px 0;
+    border-radius: 10px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .thumbnail-flight {
+    .top {
       flex-direction: column;
-      .start{
+
+      .start {
         width: 100%;
         border-left: none;
         padding: 8px !important;
       }
-      .center{
+
+      .center {
         width: 100%;
         padding: 8px !important;
       }
-      .end{
+
+      .end {
         width: 100%;
         padding: 8px !important;
       }
     }
-    .bottom{
+
+    .p-bed-mobi {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 10px;
+      row-gap: 20px;
       width: 100%;
-      overflow-x: scroll;
-      .header-fly{
-        width: 1000px;
-      }
-      .body-fly{
-        width: 1000px;
+      margin-top: 1rem;
+
+      .item {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        p{
+          font-size: 15px !important;
+          padding: 0;
+          margin: 1rem 0 0 0;
+          font-weight: 600;
+        }
+
+        .price {
+          margin-top: 1rem !important;
+          strong{
+            font-size: 15px;
+          }
+          small{
+            color: var(--base-color);
+            margin-right: 3px;
+          }
+        }
+
+        span {
+          width: 100%;
+          background: #eeebeb;
+          color: var(--text-color);
+          font-size: 14px;
+          display: grid;
+          place-items: center;
+          border-radius: 5px;
+          height: 45px;
+          font-weight: 500;
+        }
+
+
       }
     }
   }
 }
+
 //end

@@ -703,25 +703,42 @@
 @media only screen and (max-width: 868px) {
   .thumbnail-hotel {
     height: auto;
-    flex-direction: column;
     position: relative;
+    align-items: flex-start;
+    border: 1px solid #f7d5d5 !important;
 
     .img-hotel {
-      width: 100%;
-      height: 200px;
+      width: 90px;
+      height: 90px;
+      position: absolute;
+      right: 8px;
+      top: 8px;
+      img{
+        border-radius: 4px;
+      }
     }
 
     .detail-hotel {
       flex-direction: column;
+      align-items: flex-end;
       width: 100%;
+      padding: 8px !important;
 
       .r {
-        width: 100%;
+        width: 70%;
 
         .name-hotel {
           width: 100%;
-          text-align: center;
+          text-align: justify;
           margin: 4px 0 !important;
+          line-height: 22px;
+          height: 35px;
+          a{
+            font-size: 14px !important;
+          }
+        }
+        .address{
+          margin-top: 12px;
         }
       }
 
@@ -729,12 +746,6 @@
         width: 100%;
         margin-top: 14px;
       }
-    }
-
-    .star {
-      position: absolute;
-      left: 8px;
-      top: 8px;
     }
   }
 }
