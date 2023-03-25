@@ -32,6 +32,7 @@ import { HorizontalThumbnailTourComponent } from './horizontal-thumbnail-tour/ho
 import { VerifyComponent } from './verify/verify.component';
 import { PayComponent } from './pay/pay.component';
 import { VoucherComponent } from './voucher/voucher.component';
+import { SearchCollapseComponent } from './search-collapse/search-collapse.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { VoucherComponent } from './voucher/voucher.component';
     HorizontalThumbnailTourComponent,
     VerifyComponent,
     PayComponent,
-    VoucherComponent
+    VoucherComponent,
+    SearchCollapseComponent
   ],
   exports: [
     IndexComponent,
@@ -64,7 +66,8 @@ import { VoucherComponent } from './voucher/voucher.component';
     ThumbnailTourTwoComponent,
     LoadingComponent,
     SearchSectionComponent,
-    SearchComponent
+    SearchComponent,
+    SearchCollapseComponent
   ],
     imports: [
         CommonModule,
