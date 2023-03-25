@@ -62,14 +62,16 @@
             </div>
             <div *ngFor="let tour of tours| paginate: paginateConfig; let i = index" class="thumbnail-hotel">
               <div class="img-hotel">
-                <img src="{{ tour.hotel.thumbnail }}" alt="">
+                <a routerLink="/hotels/{{tour.hotel.slug}}" [queryParams]="{stDate: queryParamsResult.stDate,night: queryParamsResult.night}">
+                  <img src="{{ tour.hotel.thumbnail }}" alt="">
+                </a>
               </div>
               <div class="detail-hotel">
                 <div class="r">
                   <div class="star">
                     <i class="icon-star" *ngFor="let star of getStars(tour.hotel.stars)"></i>
                   </div>
-                  <h2 class="name-hotel"><a href=""> {{ tour.hotel.name }} | {{ tour.hotel.nameEn }}</a></h2>
+                  <h2 class="name-hotel"><a routerLink="/hotels/{{tour.hotel.slug}}" [queryParams]="{stDate: queryParamsResult.stDate,night: queryParamsResult.night}"> {{ tour.hotel.name }} | {{ tour.hotel.nameEn }}</a></h2>
                   <div class="address d-flex align-items-center">
                     <img src="assets/img/location2.svg" width="15" alt="">
                     <span>{{ tour.hotel.location ?? 'ثبت نشده' }}</span>
