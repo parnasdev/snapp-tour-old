@@ -75,7 +75,7 @@
               </div>
               <div *ngIf="isTablet" class="info-time">
                 <span class="title">مدت اقامت :</span>
-                <span style="margin-right: 4px" class="text">4 شب و 3 روز</span>
+                <span style="margin-right: 4px" class="text">{{ item.tour.nightNum }} شب و {{ item.tour.dayNum }} روز</span>
               </div>
               <div class="center">
                 <img [src]="item.tour.transfers[1].logo" width="40" height="35"/>
