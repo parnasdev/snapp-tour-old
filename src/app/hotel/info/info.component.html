@@ -146,45 +146,45 @@
               </div>
             </div>
             <div class="p-bed-mobi" *ngIf="isTablet">
-                <div class="item">
+                <div class="item-full">
                   <span>دو تخته(هر نفر)</span>
                   <div class="price" >
                     <strong>{{ item.tour.defineTour ? (item.prices.twinRate  |round | sperator) : (item.prices.twin |round | sperator) }}</strong>
                     <small>تومان</small>
                   </div>
                 </div>
-                <div class="item">
-                <span *ngIf="!item.tour.endCity.type">سینگل</span>
-                <div class="price" *ngIf="!item.tour.endCity.type">
+                <div *ngIf="!item.tour.endCity.type" class="item">
+                <span>سینگل</span>
+                <div class="price">
                   <strong>{{ item.tour.defineTour ? (item.prices.singleRate| round| sperator) : (item.prices.single| round| sperator) }}</strong>
                   <small>تومان</small>
                 </div>
               </div>
-                <div class="item">
-                  <span *ngIf="item.tour.endCity.type">سه تخته(هر نفر)</span>
-                  <div class="price" *ngIf="item.tour.endCity.type">
+                <div *ngIf="item.tour.endCity.type" class="item">
+                  <span >سه تخته(هر نفر)</span>
+                  <div class="price">
                     <strong>{{ item.tour.defineTour ? (item.prices.tripleRate  | round| sperator) : (item.prices.triple  | round| sperator) }}</strong>
                     <small>تومان</small>
                   </div>
                 </div>
-                <div class="item">
-                  <span *ngIf="item.tour.endCity.type">چهارتخته(هر نفر)</span>
-                  <div class="price" *ngIf="item.tour.endCity.type">
+                <div *ngIf="item.tour.endCity.type" class="item">
+                  <span>چهارتخته(هر نفر)</span>
+                  <div class="price">
                     <strong>{{ defineTour ? (item.prices.quadRate| round| sperator) : (item.prices.quad| round| sperator) }}</strong>
                     <small>تومان</small>
                   </div>
                 </div>
-                <div class="item">
-                  <span *ngIf="!item.tour.endCity.type">کودک با تخت</span>
-                  <div class="price" *ngIf="!item.tour.endCity.type">
+                <div *ngIf="!item.tour.endCity.type" class="item-full">
+                  <span >کودک با تخت</span>
+                  <div class="price">
                     <strong>{{ item.tour.defineTour ? (item.prices.cwbRate| round| sperator) : (item.prices.cwb| round| sperator) }}</strong>
                     <small>تومان</small>
                   </div>
 
                 </div>
-                <div class="item">
-                  <span *ngIf="!item.tour.endCity.type">کودک بدون تخت</span>
-                  <div class="price" *ngIf="!item.tour.endCity.type">
+                <div *ngIf="!item.tour.endCity.type" class="item-full">
+                  <span >کودک بدون تخت</span>
+                  <div class="price">
                     <strong>{{ item.prices.cnb ? ((item.prices.cnb.toString().split(',').join('')) | round| sperator) : 0 }}</strong>
                     <small>تومان</small>
                   </div>
