@@ -1098,7 +1098,12 @@ prs-show-location {
         justify-content: space-evenly;
         margin-top: 10px;
         background: var(--white);
-
+        p {
+          font-size: 15px !important;
+          font-weight: 600;
+          padding: 8px 0;
+          margin: 0;
+        }
         span {
           font-size: 14px;
           color: var(--text-color);

@@ -94,8 +94,8 @@
                 </div>
               </div>
               <div class="end">
-                <span>تامین کننده : {{ item.tour.agency }}</span>
-                <a (click)="checkReserve(item.id)" class="btn-base w-100 d-flex align-items-center justify-content-center h-45 mt-2">
+                <span *ngIf="isDesktop">تامین کننده : {{ item.tour.agency }}</span>
+                <a *ngIf="isDesktop" (click)="checkReserve(item.id)" class="btn-base w-100 d-flex align-items-center justify-content-center h-45 mt-2">
                   انتخاب تور
                 </a>
                 <!-- <a data-toggle="collapse" class="btn-view-more" href="#collapseExample{{i}}" role="button"
@@ -147,7 +147,7 @@
             </div>
             <div class="p-bed-mobi" *ngIf="isTablet">
                 <div class="item-full">
-                  <span>دو تخته(هر نفر)</span>
+                  <span>دو تخته (هر نفر)</span>
                   <div class="price" >
                     <strong>{{ item.tour.defineTour ? (item.prices.twinRate  |round | sperator) : (item.prices.twin |round | sperator) }}</strong>
                     <small>تومان</small>
@@ -161,14 +161,14 @@
                 </div>
               </div>
                 <div *ngIf="item.tour.endCity.type" class="item">
-                  <span >سه تخته(هر نفر)</span>
+                  <span >سه تخته (هر نفر)</span>
                   <div class="price">
                     <strong>{{ item.tour.defineTour ? (item.prices.tripleRate  | round| sperator) : (item.prices.triple  | round| sperator) }}</strong>
                     <small>تومان</small>
                   </div>
                 </div>
                 <div *ngIf="item.tour.endCity.type" class="item">
-                  <span>چهارتخته(هر نفر)</span>
+                  <span>چهارتخته (هر نفر)</span>
                   <div class="price">
                     <strong>{{ defineTour ? (item.prices.quadRate| round| sperator) : (item.prices.quad| round| sperator) }}</strong>
                     <small>تومان</small>
@@ -189,12 +189,18 @@
                     <small>تومان</small>
                   </div>
                 </div>
-                <div class="item">
+                <div class="item-full">
                   <span>سن کودک بدون تخت</span>
                   <p>{{ item.prices.age }}</p>
 
                 </div>
               </div>
+            <div *ngIf="isTablet" class="w-100 d-flex my-3 flex-column align-items-center">
+              <span >تامین کننده : {{ item.tour.agency }}</span>
+              <a  (click)="checkReserve(item.id)" class="btn-base w-100 d-flex align-items-center justify-content-center h-45 mt-2">
+                انتخاب تور
+              </a>
+            </div>
 
             </div>
 
