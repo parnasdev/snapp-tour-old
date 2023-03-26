@@ -22,6 +22,8 @@ export class SearchCollapseComponent implements OnInit, OnChanges {
   @Output() onSubmit = new EventEmitter();
   @Input() inCommingSearchObject?: SearchObjectDTO;
   isMobile = false;
+  isTablet = false;
+  isDesktop = false;
   cities: CityResponseDTO[] = [];
   cityReq!: CityListRequestDTO;
 
@@ -44,6 +46,8 @@ export class SearchCollapseComponent implements OnInit, OnChanges {
     public calendarService: CalenderServices,
     public errorService: ErrorsService) {
     this.isMobile = mobileService.isMobile();
+    this.isTablet = mobileService.isTablet();
+    this.isDesktop = mobileService.isDesktop();
   }
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.inCommingSearchObject.firstChange) {
