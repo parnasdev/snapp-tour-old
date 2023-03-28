@@ -16,7 +16,7 @@ export class VoucherComponent implements OnInit {
 
   ngOnInit(): void {
     this.ref_code = this.route.snapshot.paramMap.get('ref_code');
-    this.url = this.domSanitizer.bypassSecurityTrustResourceUrl(`https://loadbalancer.iran.liara.run/api/v1/reserve/getVoucher/${this.ref_code}`);
+    this.url = this.domSanitizer.bypassSecurityTrustResourceUrl(`https://snapptour-api.iran.liara.run/api/v1/reserve/getVoucher/${this.ref_code}`);
     this.getVoucher(this.ref_code);
   }
 
