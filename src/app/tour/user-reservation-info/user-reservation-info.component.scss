@@ -348,6 +348,18 @@
   }
 }
 
+.rule-box {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border: 1px solid #c6c6c6;
+  p {
+    text-align: justify;
+    font-size: 14px !important;
+    line-height: 1.8;
+  }
+}
+
 
 @media only screen and (min-width: 501px) and (max-width: 868px) {
 
