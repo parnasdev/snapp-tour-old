@@ -36,8 +36,8 @@
         <span class="title-tour">{{ tour.title }}</span>
         <span class="from-to">{{ tour.stCity.name + '-' + tour.endCity.name }}</span>
         <span class="day">{{ tour.nightNum + '-' + tour.dayNum }}</span>
-        <span class="date-create">{{this.calService.convertDate1(tour.createdAt, 'fa') }}</span>
-        <span class="date-create">{{ this.calService.convertDate(tour.expireDate, 'fa') }}</span>
+        <span class="date-create">{{ this.calService.isValidDate(tour.createdAt) ? this.calService.convertDate1(tour.createdAt, 'fa') : 'ثبت نشده' }}</span>
+        <span class="date-create">{{ this.calService.isValidDate(tour.expireDate) ? this.calService.convertDate(tour.expireDate, 'fa') : 'ثبت نشده' }}</span>
         <span class="view">{{ tour.viewCount }}</span>
         <span class="status">{{ getStatus(tour.status) }}</span>
         <span>تعداد رزرو</span>

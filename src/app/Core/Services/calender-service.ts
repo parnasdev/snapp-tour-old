@@ -127,5 +127,9 @@ export class CalenderServices {
         }
     }
 
+    isValidDate(date: string, format:string = "YYYY/MM/DD "){
+        return !isNaN(new Date(date).getDate());
+        // return moment(date, format, true).isValid();
+    }
 
 }
