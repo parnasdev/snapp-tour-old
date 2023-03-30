@@ -15,6 +15,7 @@ export class AddComponent implements OnInit {
 
   nameFC = new FormControl('');
   labelFC = new FormControl('');
+  capacityPersonFC = new FormControl('');
   req!: RoomTypeSetDTO;
   listReq!: RoomTypeReqDTO;
   roomId = 0;
@@ -53,6 +54,8 @@ export class AddComponent implements OnInit {
     this.nameFC.setValue(roomItem.name);
     // @ts-ignore
     this.labelFC.setValue(roomItem.label);
+    // @ts-ignore
+    this.capacityPersonFC.setValue(+roomItem.capacityPerson);
   }
 
   add(): void {
@@ -84,7 +87,8 @@ export class AddComponent implements OnInit {
   setReq(): void {
     this.req = {
       name: this.nameFC.value,
-      label: this.labelFC.value
+      label: this.labelFC.value,
+      capacityPerson: this.capacityPersonFC.value
     }
   }
 
