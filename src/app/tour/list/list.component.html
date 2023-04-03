@@ -7,7 +7,8 @@
       <div class="row">
         <div class="col-md-11 m-auto tour-parent">
           <div class="search">
-            <prs-search-collapse [inCommingSearchObject]="searchObject" (onSubmit)="search($event)"></prs-search-collapse>
+            <prs-search-collapse [inCommingSearchObject]="searchObject"
+              (onSubmit)="search($event)"></prs-search-collapse>
           </div>
           <!-- <div class="title-tour-parent">
             <div class="top">
@@ -32,76 +33,84 @@
           </div> -->
 
           <!--thumbnail-hotel-->
-            <div class="title-tour-special-swiper">
-              <div class="top">
-                <div class="new-tour">
-                  <img src="assets/img/Bookmark.svg" width="17" alt="">
-                  <div class="text">
-                    <h3>نتایج جستجو</h3>
-                    <span>هتل خود را بر اساس نتایج زیر انتخاب کنید</span>
-                  </div>
+          <div class="title-tour-special-swiper">
+            <div class="top">
+              <div class="new-tour">
+                <img src="assets/img/Bookmark.svg" width="17" alt="">
+                <div class="text">
+                  <h3>نتایج جستجو</h3>
+                  <span>هتل خود را بر اساس نتایج زیر انتخاب کنید</span>
                 </div>
-                <div class="inp-form w-25">
-                  <select class="select" [formControl]="starFC" (change)="starChanged()">
-                    <option disabled value="null">جستجو بر اساس ستاره</option>
-                    <option value="0">همه</option>
+              </div>
+              <div class="inp-form w-25">
+                <select class="select" [formControl]="starFC" (change)="starChanged()">
+                  <option disabled value="null">جستجو بر اساس ستاره</option>
+                  <option value="0">همه</option>
 
-                    <option value="1">۱ ستاره</option>
-                    <option value="2">۲ ستاره</option>
-                    <option value="3">۳ ستاره</option>
-                    <option value="4">۴ ستاره</option>
-                    <option value="5">۵ ستاره</option>
-                  </select>
-                </div>
-       
+                  <option value="1">۱ ستاره</option>
+                  <option value="2">۲ ستاره</option>
+                  <option value="3">۳ ستاره</option>
+                  <option value="4">۴ ستاره</option>
+                  <option value="5">۵ ستاره</option>
+                </select>
               </div>
-              <div class="bottom">
-                <div class="border-right"></div>
-                <div class="border-left"></div>
+              <div class="d-flex w-50 align-items-center justify-content-end">
+                <div class="inp-form w-50" style="margin-left: 1rem;">
+                  <input class="input" placeholder="جستجو بر اساس نام هتل" [(ngModel)]="keyword"
+                    (keyup.enter)="searchHotel()" type="text">
+                    <i *ngIf="keyword.length > 0" (click)="deleteKeyword()" class="icon-cancel-1 text-danger"></i>
+
+                </div>
+                <button class="btn-base w-25" (click)="searchHotel()">جستجو</button>
+              </div>
+
+            </div>
+            <div class="bottom">
+              <div class="border-right"></div>
+              <div class="border-left"></div>
+            </div>
+          </div>
+          <div *ngFor="let tour of tours| paginate: paginateConfig; let i = index" class="thumbnail-hotel">
+            <div class="img-hotel">
+              <a routerLink="/hotels/{{tour.hotel.slug}}"
+                [queryParams]="{stDate: queryParamsResult.stDate,night: queryParamsResult.night}">
+                <img src="{{ tour.hotel.thumbnail }}" alt="">
+              </a>
+            </div>
+            <div class="detail-hotel">
+              <div class="r">
+                <div class="star">
+                  <i class="icon-star" *ngFor="let star of getStars(tour.hotel.stars)"></i>
+                </div>
+                <h2 class="name-hotel"><a routerLink="/hotels/{{tour.hotel.slug}}"
+                    [queryParams]="{stDate: queryParamsResult.stDate,night: queryParamsResult.night}"> {{
+                    tour.hotel.name }} | {{ tour.hotel.nameEn }}</a></h2>
+                <div class="address d-flex align-items-center">
+                  <img src="assets/img/location2.svg" width="15" alt="">
+                  <span>{{ tour.hotel.location ?? 'ثبت نشده' }}</span>
+                </div>
+              </div>
+              <div class="l">
+                <div class="p-price">
+                  <span class="title">شروع قیمت :</span>
+                  <div class="price d-flex align-items-center">
+                    <strong>{{ getStarterPrice(i) | round| sperator}}</strong>
+                    <small>تومان</small>
+                  </div>
+                </div>
+                <a routerLink="/hotels/{{tour.hotel.slug}}"
+                  [queryParams]="{stDate: queryParamsResult.stDate,night: queryParamsResult.night}"
+                  class="btn-base w-100 d-flex align-items-center justify-content-center mt-3">انتخاب هتل
+                  تور</a>
               </div>
             </div>
-            <div *ngFor="let tour of tours| paginate: paginateConfig; let i = index" class="thumbnail-hotel">
-              <div class="img-hotel">
-                <a routerLink="/hotels/{{tour.hotel.slug}}" [queryParams]="{stDate: queryParamsResult.stDate,night: queryParamsResult.night}">
-                  <img src="{{ tour.hotel.thumbnail }}" alt="">
-                </a>
-              </div>
-              <div class="detail-hotel">
-                <div class="r">
-                  <div class="star">
-                    <i class="icon-star" *ngFor="let star of getStars(tour.hotel.stars)"></i>
-                  </div>
-                  <h2 class="name-hotel"><a routerLink="/hotels/{{tour.hotel.slug}}" [queryParams]="{stDate: queryParamsResult.stDate,night: queryParamsResult.night}"> {{ tour.hotel.name }} | {{ tour.hotel.nameEn }}</a></h2>
-                  <div class="address d-flex align-items-center">
-                    <img src="assets/img/location2.svg" width="15" alt="">
-                    <span>{{ tour.hotel.location ?? 'ثبت نشده' }}</span>
-                  </div>
-                </div>
-                <div class="l">
-                  <div class="p-price">
-                    <span class="title">شروع قیمت :</span>
-                    <div class="price d-flex align-items-center">
-                      <strong>{{ getStarterPrice(i) | round| sperator}}</strong>
-                      <small>تومان</small>
-                    </div>
-                  </div>
-                  <a routerLink="/hotels/{{tour.hotel.slug}}" [queryParams]="{stDate: queryParamsResult.stDate,night: queryParamsResult.night}"  class="btn-base w-100 d-flex align-items-center justify-content-center mt-3">انتخاب هتل
-                    تور</a>
-                </div>    
-              </div>
-            </div>
+          </div>
           <!--end-->
-          <pagination-controls
-          [maxSize]="isMobilePage?4:7"
-          *ngIf="!loading && paginate.last_page > 1"
-          class="pagination-control"
-          (pageChange)="onPageChanged($event)"
-          previousLabel="قبلی"
-          nextLabel="بعدی"
-          screenReaderPaginationLabel="صفحه بندی"
-          screenReaderPageLabel="صفحه"
-          screenReaderCurrentLabel="شما در صفحه ی">
-        </pagination-controls>
+          <pagination-controls [maxSize]="isMobilePage?4:7" *ngIf="!loading && paginate.last_page > 1"
+            class="pagination-control" (pageChange)="onPageChanged($event)" previousLabel="قبلی" nextLabel="بعدی"
+            screenReaderPaginationLabel="صفحه بندی" screenReaderPageLabel="صفحه"
+            screenReaderCurrentLabel="شما در صفحه ی">
+          </pagination-controls>
 
           <!-- empty box -->
           <div *ngIf="tours.length==0" class="empty-box">

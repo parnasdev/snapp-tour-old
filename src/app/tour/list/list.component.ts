@@ -47,7 +47,7 @@ export class ListComponent implements OnInit {
   loading = false;
 
   p = 1
-
+  keyword = ''
   sortByDate = false;
 
   step: string = 'hotel'
@@ -109,6 +109,11 @@ export class ListComponent implements OnInit {
 
   }
 
+
+  searchHotel(): void {
+    this.getToursV2()
+  }
+
   setData(params: any): void {
     this.searchObject.origin = params['origin']
     this.searchObject.dest = params['dest'];
@@ -116,6 +121,11 @@ export class ListComponent implements OnInit {
     this.searchObject.stDate = params['stDate'];
   }
 
+
+  deleteKeyword():void {
+    this.keyword = '';
+    this.getToursV2();
+  }
   starChanged() {
     this.p = 1
     this.getToursV2();
@@ -233,6 +243,7 @@ export class ListComponent implements OnInit {
     console.log(this.starFC.value)
     this.tourReq = {
       paginate: true,
+      search: this.keyword === '' ? null : this.keyword,
       origin: this.searchObject.origin,
       star: this.starFC.value === 'null' || this.starFC.value === null || this.starFC.value === undefined || this.starFC.value === '0' || this.starFC.value === 0 ? null : +this.starFC.value,
       dest: this.searchObject.dest,
