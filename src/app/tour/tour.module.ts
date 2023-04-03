@@ -21,6 +21,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from '@angular/material/input';
 import { CounterComponent } from './counter/counter.component';
 import { PassengersComponent } from './passengers/passengers.component';
+import { RulesComponent } from './rules/rules.component';
 import { AgencyReservesComponent } from './agency-reserves/agency-reserves.component';
 
 @NgModule({
@@ -35,6 +36,7 @@ import { AgencyReservesComponent } from './agency-reserves/agency-reserves.compo
     PassengersComponent,
     UserReservationInfoComponent,
     AgencyReservesComponent,
+    RulesComponent,
   ],
     exports: [
         InfoComponent,

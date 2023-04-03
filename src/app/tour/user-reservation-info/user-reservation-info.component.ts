@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { transfersSetDTO } from 'src/app/agencies/agency-reserves/agency-reserves.component';
 import { RoomTypeApiService } from 'src/app/Core/Https/room-type-api.service';
@@ -27,6 +28,7 @@ import { MessageService } from 'src/app/Core/Services/message.service';
 import { PublicService } from 'src/app/Core/Services/public.service';
 import { SessionService } from 'src/app/Core/Services/session.service';
 import { ResponsiveService } from "../../Core/Services/responsive.service";
+import { RulesComponent } from '../rules/rules.component';
 
 @Component({
   selector: 'prs-user-reservation-info',
@@ -149,6 +151,7 @@ export class UserReservationInfoComponent implements OnInit {
   }
 
   constructor(public route: ActivatedRoute,
+    public dialog: MatDialog,
     public messageService: MessageService,
     public checkError: CheckErrorService,
     public router: Router,
@@ -393,5 +396,12 @@ export class UserReservationInfoComponent implements OnInit {
       }
       this.checkError.check(error);
     })
+  }
+
+  openRulesPopup(){
+    let dialogRef = this.dialog.open(RulesComponent, {
+      height: 'auto',
+      width: '800px',
+    });
   }
 }
