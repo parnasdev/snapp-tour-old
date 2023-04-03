@@ -24,6 +24,7 @@ export interface TourListRequestDTO {
 export interface TourRequestV2DTO {
   paginate: boolean
   origin: string;
+  search?: string | null;
   star: null | number;
   dest: string;
   stDate: string;
