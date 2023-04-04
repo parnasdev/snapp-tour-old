@@ -9,7 +9,8 @@ export class TourStatusFilterPipe implements PipeTransform {
   transform(list: TourListResDTO[], status: string): any {
     if (!list || status === 'All') {
       return list;
+    }else {
+      return list.filter(tour => tour.status === status);
     }
-    return list.filter(tour => tour.status === status);
   }
 }

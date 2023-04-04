@@ -19,7 +19,7 @@ const routes: Routes = [
     component: EditComponent
   },
   {
-    path: 'pricing/:slug',
+    path: 'pricing/:id/:slug',
     component: PricingComponent
   }
 ];

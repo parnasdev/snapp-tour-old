@@ -1,5 +1,6 @@
-import {CityResponseDTO} from "./cityDTO";
-import {RoomDTO, TourListResDTO} from "./tourDTO";
+import { UserDTO } from "./AuthDTO";
+import { CityResponseDTO } from "./cityDTO";
+import { RoomDTO, TourListResDTO } from "./tourDTO";
 
 export interface HotelSetRequestDTO {
   name: string;
@@ -11,7 +12,7 @@ export interface HotelSetRequestDTO {
   stars: number;
   location: string;
   address: string;
-  rooms : any[];
+  rooms: any[];
   coordinate: {
     lat: number;
     lng: number
@@ -44,7 +45,7 @@ export interface hotelInfoDTO {
   coordinate: { lat: number, lng: number }
   images: string[];
   mediaLink: MediaLinkDTO[]
-  packages? : PackageDTO[];
+  packages?: PackageDTO[];
   thumbnail: string;
   body: string;
   services: ServicesDTO[];
@@ -141,4 +142,31 @@ export interface hotelInfoReqDTO {
   stDate: string | null;
   night: number | null;
   isAdmin: boolean;
+}
+
+
+export interface HotelRatesReqDTO {
+  fromDate: string;
+  toDate: string;
+}
+
+export interface HotelRatesSetReqDTO {
+  checkin: string;
+  checkout: string;
+  price: number;
+}
+
+export interface HotelRatesResDTO {
+  checkin: string;
+  price: number
+  roomType: RoomTypeDTO;
+  user: UserDTO
+}
+
+export interface RoomTypeDTO {
+  capacityPerson: number
+  id: number
+  isDefault: boolean
+  label: string
+  name: string
 }
