@@ -17,6 +17,8 @@ import {StoreModule} from "../../store/store.module";
 import {PipesModule} from "../../common-project/pipes/pipes.module";
 import { PricingComponent } from './pricing/pricing.component';
 import {MatSelectModule} from '@angular/material/select';
+import { ConfirmPricingModalComponent } from './confirm-pricing-modal/confirm-pricing-modal.component';
+import { MainPickerComponent } from './main-picker/main-picker.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import {MatSelectModule} from '@angular/material/select';
     EditComponent,
     ListComponent,
     ServicesComponent,
-    PricingComponent
+    PricingComponent,
+    MainPickerComponent,
+    ConfirmPricingModalComponent
   ],
     imports: [
         CommonModule,
@@ -41,7 +45,7 @@ import {MatSelectModule} from '@angular/material/select';
         NgxPaginationModule,
         StoreModule,
         PipesModule,
-        MatSelectModule
+        MatSelectModule,
     ]
 })
 export class HotelPanelModule {

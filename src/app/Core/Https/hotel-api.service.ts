@@ -7,6 +7,8 @@ import {Result} from "../Models/result";
 import {
   hotelInfoDTO, hotelInfoReqDTO, HotelListRes,
   HotelListResponseDTO,
+  HotelRatesReqDTO,
+  HotelRatesSetReqDTO,
   HotelRequestDTO,
   HotelSetRequestDTO,
   ServiceDTO,
@@ -40,6 +42,17 @@ export class HotelApiService {
   edit(req: HotelSetRequestDTO, name: string): any {
     const strUrl = this.serverControllerName + `editHotel/${name}`;
     return this.http.patch<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
+  }
+
+
+  getHotelRates(hotelID:number,roomID:number,req: HotelRatesReqDTO) :any {
+    const strUrl = this.serverControllerName + `getHotelRates/${hotelID}/${roomID}`;
+    return this.http.post<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
+  }
+  
+  addHotelRates(hotelID:number,roomID:number,req: HotelRatesSetReqDTO) :any {
+    const strUrl = this.serverControllerName + `addHotelRates/${hotelID}/${roomID}`;
+    return this.http.post<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
 
   delete(name: string): any {
