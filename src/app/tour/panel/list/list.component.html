@@ -5,12 +5,12 @@
 
 
 
-    <div class="d-flex justify-content-center align-items-center">
+    <div class="d-flex up justify-content-center align-items-center">
       <i class="icon-cancel-1 text-danger" *ngIf="originFC.value" (click)="removeFilter('origin')"></i>
       <prs-select-city *ngIf="show" [inCommingCity]="originFC.value" [hasOriginTour]="true" [title]="'شهر مبدا'"
         (citySelected)="originSelected($event)"></prs-select-city>
     </div>
-    <div class="d-flex justify-content-center align-items-center">
+    <div class="d-flex up justify-content-center align-items-center">
       <i class="icon-cancel-1 text-danger" *ngIf="destFC.value" (click)="removeFilter('dest')"></i>
       <prs-select-city *ngIf="show" [hasDestTour]="true" [title]="'شهر مقصد'" [inCommingCity]="destFC.value"
         (citySelected)="destSelected($event)"></prs-select-city>
@@ -28,7 +28,7 @@
     </div>
     <a *ngIf="setting.checkItemPermission('Tour.create')" class="btn-add-tour" routerLink="/panel/tour/add">اضافه</a>
   </div>
-  <div class="d-flex">
+  <div class="d-flex down-inputs">
     <div class="d-flex justify-content-center align-items-center w-25">
       <i class="icon-cancel-1 text-danger" *ngIf="keyword && keyword.length > 0" (click)="removeFilter('keyword')"></i>
       <div class="inp-form">

@@ -84,7 +84,8 @@
   align-items: center;
   justify-content: space-between;
   padding-left: 4px;
-  button{
+
+  button {
     font-size: 12px !important;
   }
 }
@@ -127,6 +128,7 @@
   padding: 0 10px;
   border-radius: 4px;
 }
+
 .button-setting .log-btn {
   width: auto;
   background-color: #0d6efd;
@@ -152,9 +154,11 @@
 .date-create {
   direction: ltr;
 }
-.near-date label{
+
+.near-date label {
   margin-right: 12px;
 }
+
 .btn-add-tour {
   background-color: var(--base-color);
   color: var(--white);
@@ -177,8 +181,34 @@
   align-items: center;
   padding-top: 10px;
 }
-:host::ng-deep .mat-button-toggle-button span{
+
+:host::ng-deep .mat-button-toggle-button span {
   font-family: IRANSans !important;
+}
+
+:host::ng-deep .down-inputs  input {
+  border: none !important;
+  font-size: 14px !important;
+}
+:host::ng-deep .up .mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: unset !important;
+  img{
+    position: absolute;
+    left: -13px !important;
+    top: 19px !important;
+  }
+  input{
+    border: 1px solid #e2e8f0 !important;
+    height: 45px !important;
+  }
+}
+:host::ng-deep .inp-form {
+  margin-left: 12px !important;
+
+  input {
+    border: none !important;
+    font-size: 14px !important;
+  }
 }
 
 //-----------------------------------
@@ -205,7 +235,7 @@
   .list-tour-box .user-id {
     width: auto;
     height: 25px;
-   border-radius: 4px;
+    border-radius: 4px;
     background-color: var(--red-color);
     color: var(--white);
     display: flex;
@@ -264,25 +294,25 @@
     background-color: #eee !important;
     border-radius: 4px;
   }
-  .box-details-more .item-list-tour{
+  .box-details-more .item-list-tour {
     background: unset !important;
     width: 100%;
     padding: 8px;
   }
-  .operation-parent{
+  .operation-parent {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-top: 8px;
   }
-  .operation{
+  .operation {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     padding: 0 10px;
     margin-bottom: 8px;
   }
-   .edit-btn {
+  .edit-btn {
     width: auto;
     background-color: var(--base-color-three);
     color: var(--white);
@@ -296,7 +326,7 @@
     justify-content: center;
   }
 
-   .view-btn {
+  .view-btn {
     width: auto;
     background-color: var(--base-color);
     color: var(--white);
@@ -309,7 +339,7 @@
     align-items: center;
     justify-content: center;
   }
-   .delete-btn {
+  .delete-btn {
     width: auto;
     background-color: var(--red-color);
     color: var(--white);
@@ -323,17 +353,17 @@
     width: 100%;
     flex-wrap: wrap;
   }
-  .title h2{
+  .title h2 {
     width: 100%;
   }
-  .btn-add-tour{
+  .btn-add-tour {
     margin: 1rem 0;
   }
-  :host::ng-deep .mat-button-toggle-button span{
+  :host::ng-deep .mat-button-toggle-button span {
     font-size: 12px !important;
     font-family: IRANSans !important;
   }
-  .copy-btn{
+  .copy-btn {
     width: auto;
     background-color: var(--green-color);
     color: var(--white);
