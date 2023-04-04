@@ -2,8 +2,21 @@
 <div class="list-tour">
   <div class="title">
     <h2>تورها</h2>
+
+
+
+    <div class="d-flex justify-content-center align-items-center">
+      <i class="icon-cancel-1 text-danger" *ngIf="originFC.value" (click)="removeFilter('origin')"></i>
+      <prs-select-city *ngIf="show" [inCommingCity]="originFC.value" [hasOriginTour]="true" [title]="'شهر مبدا'"
+        (citySelected)="originSelected($event)"></prs-select-city>
+    </div>
+    <div class="d-flex justify-content-center align-items-center">
+      <i class="icon-cancel-1 text-danger" *ngIf="destFC.value" (click)="removeFilter('dest')"></i>
+      <prs-select-city *ngIf="show" [hasDestTour]="true" [title]="'شهر مقصد'" [inCommingCity]="destFC.value"
+        (citySelected)="destSelected($event)"></prs-select-city>
+    </div>
     <mat-button-toggle-group name="fontStyle" [(ngModel)]="status" aria-label="Font Style">
-      <mat-button-toggle value="All">همه</mat-button-toggle>
+      <mat-button-toggle value=" All">همه</mat-button-toggle>
       <mat-button-toggle value="Show">نمایش</mat-button-toggle>
       <mat-button-toggle value="Draft">پیش نویس</mat-button-toggle>
       <mat-button-toggle value="Suspended">معلق/منقضی شده</mat-button-toggle>
@@ -14,6 +27,27 @@
       <label for="">نزدیک ترین ها</label>
     </div>
     <a *ngIf="setting.checkItemPermission('Tour.create')" class="btn-add-tour" routerLink="/panel/tour/add">اضافه</a>
+  </div>
+  <div class="d-flex">
+    <div class="d-flex justify-content-center align-items-center w-25">
+      <i class="icon-cancel-1 text-danger" *ngIf="keyword && keyword.length > 0" (click)="removeFilter('keyword')"></i>
+      <div class="inp-form">
+        <input type="text" class="input" [(ngModel)]="keyword" (change)="getTours()"
+          placeholder="فیلتر بر اساس نام تور">
+      </div>
+    </div>
+    <div class="d-flex justify-content-center align-items-center w-25">
+      <div class="inp-form">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <input class="input-parent" matInput [formControl]="stDateFC" placeholder="تاریخ ورود به هتل"
+            (dateChange)="dateChanged()" [min]="minDate" autocomplete="off" readonly [matDatepicker]="picker3"
+            (click)="picker3.open()">
+          <mat-datepicker #picker3></mat-datepicker>
+        </mat-form-field>
+        <i class="icon-cancel-1 text-danger" *ngIf="stDateFC.value" (click)="removeFilter('stDate')"></i>
+
+      </div>
+    </div>
   </div>
   <div class="table-list-tour table-list-tour-desktop">
     <div class="header-list-tour">
@@ -32,12 +66,15 @@
     <div class="body-list-tour" *ngIf="tours.length > 0">
       <div class="item" *ngFor="let tour of tours| paginate: paginateConfig |tourStatusFilter : status ;let i = index">
         <span class="id">{{ tour.id}}</span>
-        <span class="username">{{ tour.user.name + ' ' + tour.user.family + ' ('+  (tour.user.agency ? tour.user.agency : '---')+')' }}</span>
+        <span class="username">{{ tour.user.name + ' ' + tour.user.family + ' ('+ (tour.user.agency ? tour.user.agency :
+          '---')+')' }}</span>
         <span class="title-tour">{{ tour.title }}</span>
         <span class="from-to">{{ tour.stCity.name + '-' + tour.endCity.name }}</span>
         <span class="day">{{ tour.nightNum + '-' + tour.dayNum }}</span>
-        <span class="date-create">{{ this.calService.isValidDate(tour.createdAt) ? this.calService.convertDate1(tour.createdAt, 'fa') : 'ثبت نشده' }}</span>
-        <span class="date-create">{{ this.calService.isValidDate(tour.expireDate) ? this.calService.convertDate(tour.expireDate, 'fa') : 'ثبت نشده' }}</span>
+        <span class="date-create">{{ this.calService.isValidDate(tour.createdAt) ?
+          this.calService.convertDate1(tour.createdAt, 'fa') : 'ثبت نشده' }}</span>
+        <span class="date-create">{{ this.calService.isValidDate(tour.expireDate) ?
+          this.calService.convertDate(tour.expireDate, 'fa') : 'ثبت نشده' }}</span>
         <span class="view">{{ tour.viewCount }}</span>
         <span class="status">{{ getStatus(tour.status) }}</span>
         <span>تعداد رزرو</span>
@@ -109,12 +146,14 @@
           </div>
         </div>
         <div class="operation">
-          <a *ngIf="session.checkItemPermission('Tour.edit')" routerLink="/panel/tour/edit/{{tour.slug}}" class="edit-btn">ویرایش</a>
+          <a *ngIf="session.checkItemPermission('Tour.edit')" routerLink="/panel/tour/edit/{{tour.slug}}"
+            class="edit-btn">ویرایش</a>
           <!-- <a (click)="publicService.openPage('tours/' + tour.endCity.slugEn + '/' + tour.slug )"
             class="view-btn">نمایش</a> -->
           <a routerLink="/panel/tour/copy/{{ tour.slug }}" class="copy-btn">کپی</a>
           <button (click)="openLogs(tour.id)" class="log-btn">لاگ ها</button>
-          <button *ngIf="session.checkItemPermission('Tour.delete')" (click)="deleteClicked(tour.slug)" class="delete-btn">حذف</button>
+          <button *ngIf="session.checkItemPermission('Tour.delete')" (click)="deleteClicked(tour.slug)"
+            class="delete-btn">حذف</button>
         </div>
 
       </div>

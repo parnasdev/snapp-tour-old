@@ -25,6 +25,7 @@ declare let $: any;
 })
 export class ListComponent implements OnInit {
   status = 'All'
+  show = true
   tourReq: TourListRequestDTO = {
     origin: null,
     dest: null,
@@ -38,6 +39,9 @@ export class ListComponent implements OnInit {
     perPage: 15,
     type: null
   };
+  stDateFC = new FormControl(null);
+  minDate = new Date()
+  keyword: string | null = null
   tours: TourListResDTO[] = [];
   paginate: any;
   paginateConfig: any;
@@ -48,6 +52,8 @@ export class ListComponent implements OnInit {
   p = 1;
   sortByDate = false
   printContent = '';
+  originFC = new FormControl(null);
+  destFC = new FormControl(null);
 
   constructor(public tourApiService: TourApiService,
     public setting: SettingService,
@@ -73,16 +79,18 @@ export class ListComponent implements OnInit {
 
   getTours(): void {
     this.loading = true;
+    console.log(this.stDateFC.value);
+
     this.tourReq = {
-      origin: null,
-      dest: null,
+      origin: this.originFC.value,
+      dest: this.destFC.value,
       night: null,
       status: null,
-      stDate: null,
+      stDate: this.stDateFC.value ? this.calService.convertDate(this.stDateFC.value, 'en', 'yyyy-MM-DD') : null,
       paginate: true,
       sortByDate: this.sortByDate,
       isAdmin: true,
-      search: '',
+      search: this.keyword,
       perPage: 15,
       type: null
     };
@@ -104,6 +112,11 @@ export class ListComponent implements OnInit {
       this.message.error();
       this.checkErrorService.check(error);
     });
+  }
+
+
+  dateChanged() {
+    this.getTours()
   }
 
   getOriginCities(): void {
@@ -132,6 +145,39 @@ export class ListComponent implements OnInit {
 
   statusChanged(): void {
 
+  }
+
+
+  originSelected(city: CityResponseDTO): void {
+    this.originFC.setValue(city.slugEn)
+    this.getTours()
+  }
+  destSelected(city: CityResponseDTO): void {
+    this.destFC.setValue(city.slugEn)
+    this.getTours()
+
+  }
+
+
+  removeFilter(type: string) {
+    if (type === 'origin') {
+      this.originFC.setValue(null)
+    } else if (type === 'dest') {
+      this.destFC.setValue(null)
+    } else if (type === 'stDate') {
+      this.stDateFC.setValue(null)
+    } else {
+      this.keyword = null
+    }
+    this.reload()
+    this.getTours()
+  }
+
+
+
+  reload() {
+    this.show = false;
+    setTimeout(() => this.show = true);
   }
 
   deleteTour(slug: string): void {
@@ -240,5 +286,5 @@ export class ListComponent implements OnInit {
       this.checkErrorService.check(error);
     });
   }
-  
+
 }
