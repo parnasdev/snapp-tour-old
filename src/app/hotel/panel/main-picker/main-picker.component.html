@@ -23,11 +23,11 @@
             </div>
             <div class="body-calender">
                 <ng-template ngFor let-item [ngForOf]="daysOfMonth" let-i="index">
-                    <div *ngIf="i < 42" (click)="onDateClicked(item)"
-                        [class]="item.isDisabled ? 'item opacity3' : 'item opacity2'" [ngStyle]="{'color': item.isHoliday ? '#b51d20' : '',
+                    <div *ngIf="i < 42" (click)="item.isValid && !item.isDisabled ? onDateClicked(item) : null"
+                        [class]="(item.isDisabled || !item.isValid) ? 'item opacity3' : 'item opacity2'" [ngStyle]="{'color': item.isHoliday ? '#b51d20' : '',
                     'background': getColorItem(item)}">
                         {{moment(item.dateFa).isValid() ? (item.dateFa.split('/')[2]) : ''}}
-                        <small class="price-day">
+                        <small class="price-day" *ngIf="!item.isDisabled && item.isValid">
                             {{item.data > 0 ?  item.data / 1000 + 'ت' : '---' }}
                         </small>
                     </div>
@@ -54,12 +54,12 @@
             </div>
             <div class="body-calender">
                 <ng-template ngFor let-item [ngForOf]="daysOfMonth" let-i="index">
-                    <div *ngIf="i > 41" (click)="onDateClicked(item)"
-                        [class]="item.isDisabled ? 'item opacity3' : 'item opacity2'" [ngStyle]="{'color': item.isHoliday ? '#b51d20' : '',
+                    <div *ngIf="i > 41" (click)="item.isValid && !item.isDisabled ? onDateClicked(item) : null"
+                        [class]="(item.isDisabled || !item.isValid) ? 'item opacity3' : 'item opacity2'" [ngStyle]="{'color': item.isHoliday ? '#b51d20' : '',
                     'background': getColorItem(item)}">
                         {{moment(item.dateFa).isValid() ? (item.dateFa.split('/')[2]) : ''}}
-                        <small class="price-day">
-                            {{item.data > 0 ?  item.data / 1000 + 'ت' : '---'}}
+                        <small class="price-day" *ngIf="!item.isDisabled && item.isValid">
+                            {{item.data > 0 ?  item.data / 1000 + 'ت' : '---' }}
                         </small>
                     </div>
                 </ng-template>

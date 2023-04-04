@@ -1,14 +1,14 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'jalali-moment';
-
 import { HotelApiService } from 'src/app/Core/Https/hotel-api.service';
 import { HotelRatesReqDTO, HotelRatesResDTO } from 'src/app/Core/Models/hotelDTO';
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
 import { ErrorsService } from 'src/app/Core/Services/errors.service';
 import { MessageService } from 'src/app/Core/Services/message.service';
 import { ConfirmPricingModalComponent } from '../confirm-pricing-modal/confirm-pricing-modal.component';
+
 @Component({
   selector: 'prs-main-picker',
   templateUrl: './main-picker.component.html',
@@ -80,6 +80,7 @@ export class MainPickerComponent implements OnInit {
     // console.log(this.fixDates(start2, end2))
     const dates = [...this.fixDates(start1, end1), ...this.fixDates(start2, end2)]
     this.daysOfMonth = this.fillObject(dates)
+    console.log(this.daysOfMonth);
 
     this.getHotelRates()
   }
@@ -87,12 +88,14 @@ export class MainPickerComponent implements OnInit {
 
   fillObject(dates: any = []) {
     let result: any[] = [];
+
+
     dates.forEach((date: any) => {
       const object = {
         dateFa: moment(date).isValid() ? date : '',
         dateEn: moment(date).isValid() ? moment(date, 'jYYYY/jMM/jDD').format('YYYY/MM/DD') : '',
         isHoliday: moment(date, 'jYYYY/jMM/jDD').weekday() === 5,
-        isDisabled: !moment(date).isBefore(new Date()),
+        isDisabled: this.isBefore(date),
         isValid: moment(date).isValid(),
         data: this.isExistSelectedDates(date)
       }
@@ -101,9 +104,13 @@ export class MainPickerComponent implements OnInit {
     return result;
   }
 
-  getPrice(date: string) {
-
+  isBefore(date: any) {
+    let d = this.service.convertDate(date, 'en');
+    let today = moment(new Date()).format('jYYYY/jMM/jDD');
+    return moment(d).isBefore(today)
   }
+
+
 
 
   isExistOnPriceList(item: any): any {
@@ -121,14 +128,14 @@ export class MainPickerComponent implements OnInit {
     } else if (this.stDate && !this.enDate) {
 
       if (moment(item.dateFa).isBefore(moment(this.stDate.dateFa))) {
-        alert('تاریخ انتخابی نامعتبر است')
+        this.message.custom('تاریخ انتخابی نامعتبر است')
         this.stDate = null
       } else {
         this.enDate = item
         this.getSelectedDates();
-        if(this.selectedDates.length <= 14) {
+        if (this.selectedDates.length <= 14) {
           this.confirmPricing()
-        }else {
+        } else {
           this.message.custom('تعداد روزهای انتخابی نباید بیشتر از ۱۴ روز باشد')
           this.clearParams()
         }

@@ -147,6 +147,9 @@ export class AddComponent implements OnInit {
     })
   }
 
+
+  
+
   setReq(): void {
     this.req = {
       name: this.hotelForm.value.name,
