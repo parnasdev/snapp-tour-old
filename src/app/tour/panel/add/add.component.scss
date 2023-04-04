@@ -797,3 +797,41 @@ prs-select-hotel {
 .parent-icon{
   position: unset !important;
 }
+
+
+
+.info-tour-body-2{
+  width: 99%;
+
+  .item{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    height: 50px;
+    place-items: center;
+    gap: 8px;
+    border-top: 1px solid #ebebeb;
+    input{
+      width: 28px;
+      height: 28px;
+    }
+    span{
+      font-weight: 600;
+      color: var(--text-color);
+      font-size: 14px;
+    }
+  }
+}
+.item-header{
+  width: 99%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  height: 50px;
+  place-items: center;
+  gap: 8px;
+  span{
+    font-weight: 700 !important;
+    color: var(--text-color);
+    font-size: 14px;
+  }
+}
