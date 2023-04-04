@@ -15,6 +15,7 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {NgxPaginationModule} from "ngx-pagination";
 import {StoreModule} from "../../store/store.module";
 import {PipesModule} from "../../common-project/pipes/pipes.module";
+import { PricingComponent } from './pricing/pricing.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {PipesModule} from "../../common-project/pipes/pipes.module";
     AddComponent,
     EditComponent,
     ListComponent,
-    ServicesComponent
+    ServicesComponent,
+    PricingComponent
   ],
     imports: [
         CommonModule,
