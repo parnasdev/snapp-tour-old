@@ -21,6 +21,12 @@ const routes: Routes = [
         loadChildren: () => import('../transfer/transfer.module').then(m => m.TransferModule)
       },
       {
+        path: 'transferRate',
+        // canActivate: [PanelItemGuardService],
+        // data: {permitions: ['Transfer']},
+        loadChildren: () => import('../transfer-rate/transfer-rate.module').then(m => m.TransferRateModule)
+      },
+      {
         path: 'agencies',
         // canActivate: [PanelItemGuardService],
         // data: {permitions: ['Agency']},
