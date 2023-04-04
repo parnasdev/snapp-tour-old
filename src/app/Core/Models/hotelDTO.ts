@@ -1,5 +1,5 @@
 import {CityResponseDTO} from "./cityDTO";
-import {TourListResDTO} from "./tourDTO";
+import {RoomDTO, TourListResDTO} from "./tourDTO";
 
 export interface HotelSetRequestDTO {
   name: string;
@@ -11,6 +11,7 @@ export interface HotelSetRequestDTO {
   stars: number;
   location: string;
   address: string;
+  rooms : any[];
   coordinate: {
     lat: number;
     lng: number
@@ -38,6 +39,7 @@ export interface hotelInfoDTO {
   nameEn: string;
   stars: string;
   location: string;
+  rooms: any[]
   address: string;
   coordinate: { lat: number, lng: number }
   images: string[];

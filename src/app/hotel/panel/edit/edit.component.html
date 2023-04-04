@@ -114,7 +114,34 @@
       <prs-services *ngIf="showServices" [services]="services" [inComing]="hotelInfo.services[0]"
         (result)="getServicesResult($event)"></prs-services>
     </div>
+    <div class="box-info-fly">
+      <div class="info-tour-header">
+        <div class="right">
+          <h2>انتخای اتاق ها</h2>
+        </div>
+      </div>
+      <div class="info-tour-body">
+        <div class="address-parent">
+   
 
+          <div class="address-hotel">
+            <label for="address">اتاق های این هتل را انتخاب کنید </label>
+            <mat-form-field appearance="fill">
+              <mat-label>اتاق ها</mat-label>
+              <mat-select [compareWith]="compare" [formControl]="selectedRoomsFC" multiple>
+                <mat-select-trigger>
+                  {{selectedRoomsFC.value?.[0] || ''}}
+                  <span *ngIf="(selectedRoomsFC.value?.length || 0) > 1" class="example-additional-selection">
+                    (+{{(selectedRoomsFC.value?.length || 0) - 1}} {{selectedRoomsFC.value?.length === 2 ? 'other' : 'others'}})
+                  </span>
+                </mat-select-trigger>
+                <mat-option *ngFor="let room of roomTypes" [value]="room">{{room.name + ' - ' + room.label}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="box-info-fly">
       <div class="info-tour-header">
         <div class="right">
@@ -123,10 +150,10 @@
       </div>
       <div class="info-tour-body">
         <div class="address-parent">
-          <prs-get-location style="width: 60%;
+          <!-- <prs-get-location style="width: 60%;
              height: 286px;border-radius: 10px" *ngIf="show && cityTypeFC.value" [inCommingLatLng]="[lat,lng]"
             (result)="getLatLng($event)">
-          </prs-get-location>
+          </prs-get-location> -->
 
           <div class="address-hotel">
             <label for="address">آدرس </label>
