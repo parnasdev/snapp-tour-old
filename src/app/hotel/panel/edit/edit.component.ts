@@ -28,6 +28,7 @@ export class EditComponent extends AddComponent implements OnInit {
     nameEn: '',
     stars: '',
     location: '',
+    rooms: [],
     address: '',
     coordinate: { lat: 0, lng: 0 },
     images: [],
@@ -99,6 +100,7 @@ export class EditComponent extends AddComponent implements OnInit {
         this.hotelInfo = res.data;
         this.currentStar = +this.hotelInfo.stars;
         this.cityTypeFC.setValue(this.hotelInfo.city.type != 0)
+        this.getRoomTypes()
         this.getCities()
         this.getServices()
       } else {
@@ -106,6 +108,28 @@ export class EditComponent extends AddComponent implements OnInit {
       }
     }, (error: any) => {
       this.isLoading = false
+      this.message.error()
+    })
+  }
+  compare(c1: {name: string}, c2: {name: string}) {
+    return c1 && c2 && c1.name === c2.name;
+  }
+
+  getRoomTypes(): void {
+    const req = {
+      paginate: false,
+      perPage: 20
+    }
+    this.roomTypeApi.getRoomTypes(req).subscribe((res: any) => {
+      if (res.isDone) {
+        this.roomTypes = res.data;
+        this.selectedRoomsFC.setValue(this.hotelInfo.rooms)
+        console.log(this.selectedRoomsFC.value);
+        
+      } else {
+        this.message.custom(res.message);
+      }
+    }, (error: any) => {
       this.message.error()
     })
   }

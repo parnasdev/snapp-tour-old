@@ -16,6 +16,8 @@ import { MatDialog } from "@angular/material/dialog";
 import { ErrorsService } from "../../../Core/Services/errors.service";
 import { CheckErrorService } from "../../../Core/Services/check-error.service";
 import { UploadResDTO } from 'src/app/agencies/edit/edit.component';
+import { RoomTypeApiService } from 'src/app/Core/Https/room-type-api.service';
+import { RoomTypeListDTO } from 'src/app/Core/Models/roomTypeDTO';
 
 @Component({
   selector: 'prs-add',
@@ -26,6 +28,9 @@ export class AddComponent implements OnInit {
 
   aparatFC = new FormControl('');
   youtubeFC = new FormControl('');
+  selectedRoomsFC = new FormControl('');
+
+  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
   currentStar = 0;
   lat = 0;
   lng = 0;
@@ -43,6 +48,7 @@ export class AddComponent implements OnInit {
     mediaLink: [],
     stars: 3,
     location: '',
+    rooms: [],
     address: '',
     coordinate: {
       lat: 0,
@@ -64,6 +70,7 @@ export class AddComponent implements OnInit {
   services: ServiceDTO[] = []
   serviceIDs: string[] = [];
   isLoading = false;
+  roomTypes: RoomTypeListDTO[] = [];
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -73,6 +80,7 @@ export class AddComponent implements OnInit {
     public hotelApi: HotelApiService,
     public message: MessageService,
     public commonApi: CommonApiService,
+    public roomTypeApi: RoomTypeApiService,
     public dialog: MatDialog,
     public session: SessionService,
     public calenderServices: CalenderServices,
@@ -98,6 +106,7 @@ export class AddComponent implements OnInit {
     this.errorService.clear();
     this.getServices();
     this.getCities()
+    this.getRoomTypes();
   }
 
 
@@ -122,10 +131,27 @@ export class AddComponent implements OnInit {
     })
   }
 
+  getRoomTypes(): void {
+    const req = {
+      paginate: false,
+      perPage: 20
+    }
+    this.roomTypeApi.getRoomTypes(req).subscribe((res: any) => {
+      if (res.isDone) {
+        this.roomTypes = res.data;
+      } else {
+        this.message.custom(res.message);
+      }
+    }, (error: any) => {
+      this.message.error()
+    })
+  }
+
   setReq(): void {
     this.req = {
       name: this.hotelForm.value.name,
       nameEn: this.hotelForm.value.nameEn,
+      rooms: this.selectedRoomsFC.value,
       slug: this.hotelForm.value.name.replace(' ', '-'),
       slugEn: this.hotelForm.value.nameEn.replace(' ', '-'),
       city_id: this.hotelForm.value.city,

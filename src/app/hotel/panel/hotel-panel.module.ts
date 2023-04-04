@@ -16,6 +16,7 @@ import {NgxPaginationModule} from "ngx-pagination";
 import {StoreModule} from "../../store/store.module";
 import {PipesModule} from "../../common-project/pipes/pipes.module";
 import { PricingComponent } from './pricing/pricing.component';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { PricingComponent } from './pricing/pricing.component';
         NgxPaginationModule,
         StoreModule,
         PipesModule,
+        MatSelectModule
     ]
 })
 export class HotelPanelModule {
