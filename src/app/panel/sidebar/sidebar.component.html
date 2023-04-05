@@ -125,6 +125,12 @@
             </ul>
           </div>
         </li>
+        <li class="li-list">
+          <a class="menu-main menu-main-5" role="button" routerLink="/panel/financial">
+            <img src="assets/img/User%20Accepted.svg" width="20" alt="">
+            مالی
+          </a>
+        </li>
 
         <li class="li-list" *ngIf="session.getIsManager() && session.getRole() !== 'Admin'">
           <a class="menu-main menu-main-5" data-toggle="collapse" href="#collapseExample10" role="button"

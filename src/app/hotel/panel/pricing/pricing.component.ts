@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CityApiService } from 'src/app/Core/Https/city-api.service';
 import { HotelApiService } from 'src/app/Core/Https/hotel-api.service';
-import { hotelInfoDTO, HotelRatesReqDTO } from 'src/app/Core/Models/hotelDTO';
+import { hotelInfoDTO } from 'src/app/Core/Models/hotelDTO';
 import { CheckErrorService } from 'src/app/Core/Services/check-error.service';
 import { ErrorsService } from 'src/app/Core/Services/errors.service';
 import { MessageService } from 'src/app/Core/Services/message.service';

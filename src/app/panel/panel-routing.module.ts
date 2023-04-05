@@ -27,6 +27,10 @@ const routes: Routes = [
         loadChildren: () => import('../transfer-rate/transfer-rate.module').then(m => m.TransferRateModule)
       },
       {
+        path: 'financial',
+        loadChildren: () => import('../financial/financial.module').then(m => m.FinancialModule)
+      },
+      {
         path: 'agencies',
         // canActivate: [PanelItemGuardService],
         // data: {permitions: ['Agency']},
