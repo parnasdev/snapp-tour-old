@@ -28,7 +28,7 @@
                     'background': getColorItem(item)}">
                         {{moment(item.dateFa).isValid() ? (item.dateFa.split('/')[2]) : ''}}
                         <small class="price-day" *ngIf="!item.isDisabled && item.isValid">
-                            {{item.data > 0 ?  item.data / 1000 + 'ت' : '---' }}
+                            {{getPriceLabel(item.data) }}
                         </small>
                     </div>
                 </ng-template>
@@ -59,7 +59,7 @@
                     'background': getColorItem(item)}">
                         {{moment(item.dateFa).isValid() ? (item.dateFa.split('/')[2]) : ''}}
                         <small class="price-day" *ngIf="!item.isDisabled && item.isValid">
-                            {{item.data > 0 ?  item.data / 1000 + 'ت' : '---' }}
+                            {{getPriceLabel(item.data) }}
                         </small>
                     </div>
                 </ng-template>

@@ -40,11 +40,11 @@ import { MainPickerComponent } from './main-picker/main-picker.component';
         MatButtonToggleModule,
         ReactiveFormsModule,
         MatCheckboxModule,
+        PipesModule,
         CommonProjectModule,
         BarRatingModule,
         NgxPaginationModule,
         StoreModule,
-        PipesModule,
         MatSelectModule,
     ]
 })

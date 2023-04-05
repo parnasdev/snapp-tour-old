@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { ResponsiveService } from "../../Core/Services/responsive.service";
 import { TourApiService } from "../../Core/Https/tour-api.service";
-import { TourListRequestDTO, TourListResDTO } from "../../Core/Models/tourDTO";
+import { TourListRequestDTO, TourListResDTO, TourPackageV2DTO, TourRequestV2DTO } from "../../Core/Models/tourDTO";
 import { CalenderServices } from "../../Core/Services/calender-service";
 import { CityListRequestDTO, CityResponseDTO, FaqDTO } from "../../Core/Models/cityDTO";
 import { FormControl } from "@angular/forms";
@@ -30,19 +30,31 @@ export class IndexComponent implements OnInit {
   isTablet;
   isDesktop;
   isLoading = false;
+  specialHotel: TourPackageV2DTO[] = [];
+
   @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
   cityFC = new FormControl('')
   tours: TourListResDTO[] = [];
   specialTours: TourListResDTO[] = [];
   cities: CityResponseDTO[] = [];
   hotelCities: CityResponseDTO[] = []
-  hotelCityFC = new FormControl(1);
+  hotelCityFC = new FormControl();
+  specialCityFC = new FormControl('kish')
   hotels: HotelListResponseDTO[] = [];
   blogs: PostResDTO[] = [];
   faqList: FaqDTO[] = []
   p = 1
   rnd = 0
+  tourReq: TourRequestV2DTO = {
+    paginate: true,
+    origin: '',
+    dest: '',
+    star: null,
+    stDate: '',
+    night: 0,
+  };
 
+  citySelected: any = null;
   constructor(
     public api: TourApiService,
     public calenderServices: CalenderServices,
@@ -70,6 +82,7 @@ export class IndexComponent implements OnInit {
     this.getCities()
     this.getHotelCities()
     this.getHotels()
+    this.getSpecialHotel()
     // this.getBlog()
   }
 
@@ -116,7 +129,7 @@ export class IndexComponent implements OnInit {
     const req: CityListRequestDTO = {
       type: null,
       hasHotel: true,
-      hasDestTour: false,
+      hasDestTour: true,
       hasOriginTour: false,
       search: null,
       perPage: 40
@@ -150,9 +163,41 @@ export class IndexComponent implements OnInit {
       this.isLoading = false;
     })
   }
+  getStarterPrice(index: number): string {
+    if (this.specialHotel.length > 0) {
+      return this.specialHotel[index].tour.defineTour ? this.specialHotel[index].prices.twinRate : this.specialHotel[index].prices.twin;
+    } else {
+      return '0';
+    }
+  }
+
+
+  getSpecialHotel() {
+    this.tourReq = {
+      paginate: false,
+      search: null,
+      origin: 'tehran',
+      star: null,
+      dest: this.specialCityFC.value,
+      stDate: '',
+      night: null,
+    }
+    this.api.getToursV2(this.tourReq).subscribe((res: any) => {
+      if (res.isDone) {
+        this.specialHotel = res.data
+
+      } else {
+        this.message.custom(res.message);
+      }
+    }, (error: any) => {
+    });
+  }
 
   hotelCityChanged(): void {
+    this.citySelected = this.specialCityFC.value;
+    console.log(this.citySelected);
     this.getHotels()
+    this.getSpecialHotel()
   }
 
 
