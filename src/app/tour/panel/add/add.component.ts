@@ -22,6 +22,8 @@ import {moveItemInArray} from '@angular/cdk/drag-drop';
 import {MatDialog} from "@angular/material/dialog";
 import {SetPricePopupComponent} from "../../../room-type/set-price-popup/set-price-popup.component";
 import {RoomTypeSetDTO} from "../../../Core/Models/roomTypeDTO";
+import { TransferRateAPIService } from 'src/app/Core/Https/transfer-rate-api.service';
+import { TransferRateListDTO } from 'src/app/Core/Models/transferRateDTO';
 
 @Component({
   selector: 'prs-add',
@@ -55,6 +57,7 @@ export class AddComponent implements OnInit {
   originFlightCodeFC =new FormControl();
   destFlightCodeFC = new FormControl();
   airlines: any[] = []
+  transferRates: TransferRateListDTO[] = [];
   originTime = ''
   destTime = ''
   originTransferFC = new FormControl();
@@ -69,6 +72,7 @@ export class AddComponent implements OnInit {
     public hotelApi: HotelApiService,
     public cityApi: CityApiService,
     public transferApi: TransferAPIService,
+    public transferRateApi: TransferRateAPIService,
     public message: MessageService,
     public tourApi: TourApiService,
     public checkError: CheckErrorService,
@@ -126,10 +130,11 @@ export class AddComponent implements OnInit {
 
   ngOnInit() {
     this.getCities();
-    this.getTransfer()
+    this.getTransfer();
+    this.getTransferRates();
     this.disableFields();
     this.getService();
-    console.log(this.session.checkPermission('Status'))
+    // console.log(this.session.checkPermission('Status'))
     // this.getHotels();
   }
 
@@ -446,6 +451,25 @@ export class AddComponent implements OnInit {
     this.transferApi.getTransfers(req).subscribe((res: any) => {
       if (res.isDone) {
         this.airlines = res.data
+      }
+    }, (error: any) => {
+      this.message.error()
+    })
+  }
+
+  getTransferRates(): void {
+    const req = {
+      departure_date: null,
+      dest: null,
+      origin: null,
+      paginate: true,
+      return_date: null
+    }
+    this.transferRateApi.getTransfers(req).subscribe((res: any) => {
+      if (res.isDone) {
+        this.transferRates = res.data;
+      } else {
+        this.message.custom(res.message);
       }
     }, (error: any) => {
       this.message.error()

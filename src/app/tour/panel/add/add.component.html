@@ -156,76 +156,37 @@
         </div>
       </div>
     </div>
-    <div class="box-info-fly">
 
+    <div class="p-list-fly">
       <div class="info-tour-header">
         <div class="right">
           <h2 class="text-dark">اطلاعات پرواز</h2>
         </div>
       </div>
-
-      <div class="info-tour-body">
-        <div class="top">
-          <div class="item-info">
-            <label for="">تاریخ پرواز رفت</label>
-            <mat-form-field class="example-full-width" appearance="fill">
-              <input matInput [matDatepicker]="picker4" [formControl]="originDateFC" [min]="minDate"
-                     (click)="picker4.open()">
-              <mat-datepicker #picker4></mat-datepicker>
-            </mat-form-field>
-
-          </div>
-          <div class="item-info-timer">
-            <label for="">ساعت پرواز رفت</label>
-            <!--              <ngb-timepicker  [formControl]="originTimeFC" [meridian]="false"></ngb-timepicker>-->
-            <prs-time-picker (result)="getOriginTime($event)"></prs-time-picker>
-          </div>
-          <div class="item-info-2">
-            <div class="select-info w-100">
-              <label for="">ایرلاین</label>
-              <select [formControl]="originTransferFC">
-                <option *ngFor="let item of airlines" [value]="item.id">{{item.name}}</option>
-              </select>
-            </div>
-
-          </div>
-
-          <div class="item-info">
-            <label for="">تاریخ پرواز برگشت</label>
-            <mat-form-field class="example-full-width" appearance="fill">
-              <input matInput [matDatepicker]="picker7" [formControl]="destDateFC" [min]="minDate"
-                     (click)="picker7.open()">
-              <mat-datepicker #picker7></mat-datepicker>
-            </mat-form-field>
-          </div>
-          <div style="width: 32%;display: flex;justify-content: center" class="item-info-timer">
-            <label for="">ساعت پرواز برگشت</label>
-            <prs-time-picker (result)="getDestTime($event)"></prs-time-picker>
-          </div>
-          <div class="item-info">
-            <div class="select-info w-100">
-              <label for="">ایرلاین برگشت</label>
-              <select [formControl]="destTransferFC">
-                <option *ngFor="let item of airlines" [value]="item.id">{{item.name}}</option>
-              </select>
-            </div>
-          </div>
-          <div class="item-info">
-            <div class="select-info w-100">
-              <label for="">شماره پرواز رفت</label>
-              <input type="text" [formControl]="originFlightCodeFC">
-            </div>
-          </div>
-          <div class="item-info">
-            <div class="select-info w-100">
-              <label for="">شماره پرواز برگشت</label>
-              <input type="text" [formControl]="destFlightCodeFC">
-            </div>
-          </div>
-        </div>
-
+      <div class="item-header">
+        <span>#</span>
+        <span>مسیر رفت-برگشت</span>
+        <span>ایرلاین رفت-برگشت</span>
+        <span>تاریخ رفت</span>
+        <span>تاریخ برگشت</span>
+        <span>قیمت بزرگسال</span>
+        <span>قیمت کودک</span>
+        <span>قیمت نوزاد</span>
+        <span>ظرفیت</span>
       </div>
-
+      <div class="info-tour-body-2">
+        <div class="item" *ngFor="let item of transferRates">
+          <input type="checkbox">
+          <span>{{ item.origin.name }} - {{ item.destination.name }}</span>
+          <span>{{ item.destination_transfer.name }} - {{ item.origin_transfer.name }}</span>
+          <span>{{ this.calenderServices.convertDate(item.departure_date, 'fa') }}</span>
+          <span>{{ this.calenderServices.convertDate(item.return_date, 'fa') }}</span>
+          <span>{{ item.adl_price | sperator }}</span>
+          <span>{{ item.chd_price | sperator }}</span>
+          <span>{{ item.inf_price | sperator }}</span>
+          <span>{{ item.capacity }}</span>
+        </div>
+      </div>
     </div>
 
     <div class="box-info-fly" *ngIf="form.value.defineTour == 'true' && !tourType">
@@ -318,7 +279,7 @@
       </div>
     </div>
 
-    <div class="box-info-fly" *ngIf="form.value.defineTour == 'true'">
+    <!-- <div class="box-info-fly" *ngIf="form.value.defineTour == 'true'">
       <div class="info-tour-header">
         <div class="right">
           <h2 class="text-dark">نرخ پرواز</h2>
@@ -351,7 +312,7 @@
 
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="box-info-package">
       <div class="info-tour-header">
@@ -614,6 +575,7 @@
       </div>
 
     </div>
+
     <div class="box-details-tour">
       <div class="info-tour-header">
         <div class="right">
@@ -641,43 +603,4 @@
     </div>
   </form>
 
-</div>
-
-<div class="p-list-fly">
-  <div class="info-tour-header">
-    <div class="right">
-      <h2 class="text-dark">انتخاب پرواز</h2>
-    </div>
-  </div>
-  <div class="item-header">
-    <span>#</span>
-    <span>نام پرواز</span>
-    <span>نام پرواز</span>
-    <span>نام پرواز</span>
-    <span>نام پرواز</span>
-  </div>
-  <div class="info-tour-body-2">
-    <div class="item">
-      <input type="checkbox">
-      <span>نام پرواز</span>
-      <span>نام پرواز</span>
-      <span>نام پرواز</span>
-      <span>نام پرواز</span>
-    </div>
-    <div class="item">
-      <input type="checkbox">
-      <span>نام پرواز</span>
-      <span>نام پرواز</span>
-      <span>نام پرواز</span>
-      <span>نام پرواز</span>
-    </div>
-    <div class="item">
-      <input type="checkbox">
-      <span>نام پرواز</span>
-      <span>نام پرواز</span>
-      <span>نام پرواز</span>
-      <span>نام پرواز</span>
-    </div>
-
-  </div>
 </div>
