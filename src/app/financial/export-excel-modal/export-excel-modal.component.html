@@ -1,0 +1,25 @@
+<div>
+    <div class="d-flex justify-content-center align-items-center w-100">
+        <div class="inp-form">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <input class="input-parent" matInput [formControl]="stDateFC" placeholder="تاریخ شروع"
+                autocomplete="off" readonly [matDatepicker]="picker3"
+              (click)="picker3.open()">
+            <mat-datepicker #picker3></mat-datepicker>
+          </mat-form-field>
+  
+        </div>
+      </div>
+      <div class="d-flex justify-content-center align-items-center w-100">
+        <div class="inp-form">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <input class="input-parent" matInput [formControl]="enDateFC" placeholder="تاریخ پایان"
+              autocomplete="off" readonly [matDatepicker]="picker2"
+              (click)="picker2.open()">
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+
+        </div>
+      </div>
+</div>
+<button class="btn-base w-100" (click)="submit()">خروجی</button>
