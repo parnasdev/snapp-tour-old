@@ -10,7 +10,6 @@ import { PublicService } from 'src/app/Core/Services/public.service';
 import { SessionService } from 'src/app/Core/Services/session.service';
 import * as moment from 'moment';
 import { DomSanitizer } from '@angular/platform-browser';
-import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'prs-export-excel-modal',
