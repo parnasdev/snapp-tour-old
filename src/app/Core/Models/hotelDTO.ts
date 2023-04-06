@@ -153,12 +153,14 @@ export interface HotelRatesReqDTO {
 export interface HotelRatesSetReqDTO {
   checkin: string;
   checkout: string;
+  rate: number;
   price: number;
 }
 
 export interface HotelRatesResDTO {
   checkin: string;
   price: number
+  rate: number;
   roomType: RoomTypeDTO;
   user: UserDTO
 }

@@ -19,6 +19,7 @@ export interface ConfirmPriceReqDTO {
 })
 export class ConfirmPricingModalComponent implements OnInit {
   priceFC = new FormControl()
+  rateFC = new FormControl(1)
   constructor(public dialogRef: MatDialogRef<ConfirmPricingModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ConfirmPriceReqDTO,
     public api: HotelApiService,
@@ -36,9 +37,11 @@ export class ConfirmPricingModalComponent implements OnInit {
   }
 
   addHotelRates() {
+    
     const req: HotelRatesSetReqDTO = {
       checkin: moment(this.data.checkin.dateEn).format('YYYY-MM-DD'),
       checkout: moment(this.data.checkout.dateEn).format('YYYY-MM-DD'),
+      rate: +this.rateFC.value,
       price: +this.priceFC.value
     }
     this.api.addHotelRates(+this.data.hotelID, this.data.roomID, req).subscribe((res: any) => {

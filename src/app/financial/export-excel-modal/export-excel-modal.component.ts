@@ -10,6 +10,8 @@ import { PublicService } from 'src/app/Core/Services/public.service';
 import { SessionService } from 'src/app/Core/Services/session.service';
 import * as moment from 'moment';
 import { DomSanitizer } from '@angular/platform-browser';
+import * as XLSX from 'xlsx';
+
 @Component({
   selector: 'prs-export-excel-modal',
   templateUrl: './export-excel-modal.component.html',
@@ -25,7 +27,6 @@ export class ExportExcelModalComponent implements OnInit {
     toDate: ''
   }
   url: any = '';
-
   excelLink =''
   constructor(public calService: CalenderServices,
     public dialogRef: MatDialogRef<ExportExcelModalComponent>,
@@ -54,6 +55,7 @@ export class ExportExcelModalComponent implements OnInit {
       if (res.isDone) {
         this.excelLink = res.data;
         window.open(this.excelLink)
+       
         this.message.custom(res.message)
       } else {
         this.message.custom(res.message)
@@ -63,12 +65,12 @@ export class ExportExcelModalComponent implements OnInit {
       this.isLoading = false;
       this.errorService.check(error);
     })
-
-
   }
 
 
   submit() {
 this.export()
   }
+
+
 }

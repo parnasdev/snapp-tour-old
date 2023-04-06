@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'jalali-moment';
+import { SperatorPipe } from 'src/app/common-project/pipes/sperator.pipe';
 import { HotelApiService } from 'src/app/Core/Https/hotel-api.service';
 import { HotelRatesReqDTO, HotelRatesResDTO } from 'src/app/Core/Models/hotelDTO';
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
@@ -117,7 +118,7 @@ export class MainPickerComponent implements OnInit {
     const y: any = moment(item).format('YYYY/MM/DD')
     if (this.daysOfMonth.length > 0) {
       let result = this.pricesData.filter((x) => y === moment(x.checkin).format('YYYY/MM/DD'))
-      return result.length > 0 ? result[0].price : 0;
+      return result.length > 0 ? { price: result[0].price, rate: result[0].rate } : null;
     }
   }
 
@@ -186,6 +187,7 @@ export class MainPickerComponent implements OnInit {
 
   confirmPricing(): void {
     const dialog = this.dialog.open(ConfirmPricingModalComponent, {
+      width: '30%',
       data: {
         checkin: this.stDate,
         checkout: this.enDate,
@@ -204,6 +206,33 @@ export class MainPickerComponent implements OnInit {
   }
 
 
+  getPriceLabel(item: any): string {
+    if (item) {
+      if (item.rate === 1) {
+        if (item.price.toString().length > 6) {
+          return Intl.NumberFormat('en').format(item.price / 1000000) + ' ' + 'م ت'
+        } else if (item.price.toString().length > 3) {
+          return Intl.NumberFormat('en').format(item.price / 1000) + ' ' + 'ه ت'
+        } else {
+          return Intl.NumberFormat('en').format(item.price) + 'ت'
+
+        }
+
+      } else if (item.rate === 3) {
+        return item.price + 'دلار'
+      } else if (item.rate === 2) {
+        return item.price + 'یورو'
+      } else {
+        return item.price + 'درهم'
+      }
+    } else {
+      return '---'
+    }
+
+
+  }
+
+
   getHotelRates() {
 
     const req: HotelRatesReqDTO = {
@@ -215,7 +244,7 @@ export class MainPickerComponent implements OnInit {
         this.pricesData = res.data
         this.daysOfMonth.forEach(item => {
           item.data = this.isExistOnPriceList(item.dateEn)
-        })
+        });
       } else {
         this.message.custom(res.message)
       }
