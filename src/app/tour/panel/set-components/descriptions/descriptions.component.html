@@ -1,0 +1,25 @@
+<div class="box-details-tour">
+    <div class="info-tour-header">
+      <div class="right">
+        <h2 class="text-dark">جزییات تور</h2>
+      </div>
+    </div>
+    <div class="details-body-tour">
+      <div class="textarea">
+        <textarea formControlName="services" name="" cols="30" rows="10" placeholder="خدمات"></textarea>
+        <div *ngIf="errorService.hasError('services')">
+          <span class="text-danger">{{errorService.getError('services')}}</span>
+        </div>
+        <textarea formControlName="documents" name="" cols="30" rows="10" placeholder="مدارک مورد نیاز"></textarea>
+        <div *ngIf="errorService.hasError('documents')">
+          <span class="text-danger">{{errorService.getError('documents')}}</span>
+        </div>
+        <textarea formControlName="description" name="" cols="30" rows="10" placeholder="توضیحات تکمیلی"></textarea>
+        <div *ngIf="errorService.hasError('description')">
+          <span class="text-danger">{{errorService.getError('description')}}</span>
+        </div>
+      </div>
+      <prs-btn style="width: 15%;" class="btn-submit-tour w-100-mobi" [background]="'blue'" (click)="submit()"
+               [isLoading]="isLoading" [label]="'ثبت تور'"></prs-btn>
+    </div>
+</div>

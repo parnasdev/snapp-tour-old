@@ -1,0 +1,156 @@
+<div class="box-info-tour">
+    <div class="info-tour-header">
+      <div class="right">
+        <label for="">{{tourType ? 'تور داخلی' : 'تور خارجی'}}</label>
+        <h2 class="text-dark">اطلاعات تور</h2>
+      </div>
+      <div *ngIf="session.getRole() === 'Admin'" class="checkbox d-flex align-content-center">
+        <input formControlName="offered" type="checkbox">
+        <label for="">تور ویژه</label>
+      </div>
+      <div class="left d-flex align-items-center">
+        <div *ngIf="session.checkPermission('Status')">
+          <div class="selectdiv">
+            <label>
+              <select formControlName="status">
+                <option value="Show">انتشار</option>
+                <option value="Draft" selected>پیش نویس</option>
+                <option value="Accepted">تایید شده</option>
+                <option value="NotAccepted">عدم تایید</option>
+                <option value="Pending">در انتظار تایید</option>
+                <option value="Suspended">معلق شده/منقضی شده</option>
+                <option value="Completion">تکمیل شده</option>
+              </select>
+            </label>
+          </div>
+          <span class="required f-10" *ngIf="form.get('status')?.touched && form.get('status')?.invalid">
+            این فیلد الزامی است
+          </span>
+          <div *ngIf="errorService.hasError('status')">
+            <span class="text-danger">{{errorService.getError('status')}}</span>
+          </div>
+        </div>
+        <div class="selectdiv me-2">
+          <label>
+            <select formControlName="defineTour" (change)="disableFields()">
+              <option [value]="false">یکجا</option>
+              <option [value]="true">باجزییات</option>
+            </select>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="info-tour-body">
+      <div class="top">
+        <div class="item-info">
+          <label for="">عنوان تور</label>
+          <input formControlName="title" (change)="generateSlug()" type="text">
+          <span class="required f-10" *ngIf="form.get('title')?.touched && form.get('title')?.invalid">
+            این فیلد الزامی است
+          </span>
+          <div *ngIf="errorService.hasError('title')">
+            <span class="text-danger">{{errorService.getError('title')}}</span>
+          </div>
+        </div>
+        <div class="item-info-2">
+          <div class="select-info">
+
+            <label for="">شهر مبدا</label>
+
+            <prs-select-city  [inCommingCity]="cities[0]" [cities]="cities"
+              (citySelected)="getStCity($event)"></prs-select-city>
+
+          </div>
+          <div *ngIf="errorService.hasError('stCity_id')">
+            <span class="text-danger">{{errorService.getError('stCity_id')}}</span>
+          </div>
+        </div>
+        <div class="item-info">
+          <div class="select-info">
+            <label for="">شهر مقصد</label>
+
+            <prs-select-city [hasHotel]="true" [cities]="cities"
+                             (citySelected)="getEndCity($event)"></prs-select-city>
+            <div *ngIf="errorService.hasError('endCity_id')">
+              <span class="text-danger">{{errorService.getError('endCity_id')}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="item-info-2">
+          <div class="select-info">
+            <label for="">تعداد شب</label>
+            <select (change)="updatePackagePrices()" formControlName="nightNum" name="" id="">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+            </select>
+            <div *ngIf="errorService.hasError('nightNum')">
+              <span class="text-danger">{{errorService.getError('nightNum')}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="item-info">
+          <div class="select-info">
+            <label for="">تعداد روز</label>
+            <!--              <select formControlName="dayNum" name="" id="">-->
+            <!--                <option [value]="+form.value.nightNum + 1">{{ +form.value.nightNum + 1 }}</option>-->
+            <!--              </select>-->
+            <div *ngIf="errorService.hasError('dayNum')">
+              <span class="text-danger">{{errorService.getError('dayNum')}}</span>
+            </div>
+          </div>
+          <span class="number-day-text">{{+form.value.nightNum + 1}}</span>
+        </div>
+        <div class="item-info">
+          <label for="">نامک تور</label>
+          <input *ngIf="isSlugGenerated" formControlName="slug" type="text">
+          <span *ngIf="!isSlugGenerated">{{form.value.slug}}</span>
+          <span class="required f-10" *ngIf="form.get('slug')?.touched && form.get('slug')?.invalid">
+            این فیلد الزامی است
+          </span>
+          <div *ngIf="errorService.hasError('slug')">
+            <span class="text-danger">{{errorService.getError('slug')}}</span>
+          </div>
+        </div>
+        <div class="item-info">
+          <label for="">تاریخ ورود به هتل</label>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <input matInput [matDatepicker]="picker1" formControlName="stDate" [min]="minDate"
+                   (click)="picker1.open()">
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+          <div *ngIf="errorService.hasError('stDate')">
+            <span class="text-danger">{{errorService.getError('stDate')}}</span>
+          </div>
+        </div>
+        <div class="item-info">
+          <label for="">تاریخ خروج از هتل</label>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <input matInput formControlName="enDate" [matDatepicker]="picker2" [min]="minDate"
+                   (click)="picker2.open()">
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+          <div *ngIf="errorService.hasError('enDate')">
+            <span class="text-danger">{{errorService.getError('enDate')}}</span>
+          </div>
+        </div>
+        <div class="item-info">
+          <label for="">تاریخ انقضا پکیج</label>
+          <mat-form-field class="example-full-width" appearance="fill">
+            <input matInput formControlName="expireDate" [matDatepicker]="picker3" [min]="minDate"
+                   (click)="picker3.open()">
+            <mat-datepicker #picker3></mat-datepicker>
+          </mat-form-field>
+          <div *ngIf="errorService.hasError('expireDate')">
+            <span class="text-danger">{{errorService.getError('expireDate')}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

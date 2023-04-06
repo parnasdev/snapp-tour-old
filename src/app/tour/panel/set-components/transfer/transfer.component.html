@@ -1,0 +1,66 @@
+<div class="p-list-fly">
+    <div class="info-tour-header">
+      <div class="right">
+        <h2 class="text-dark">اطلاعات پرواز</h2>
+      </div>
+    </div>
+    <div class="item-header">
+      <span>#</span>
+      <span>مسیر رفت-برگشت</span>
+      <span>ایرلاین رفت-برگشت</span>
+      <span>تاریخ رفت</span>
+      <span>تاریخ برگشت</span>
+      <span>قیمت بزرگسال</span>
+      <span>قیمت کودک</span>
+      <span>قیمت نوزاد</span>
+      <span>ظرفیت</span>
+    </div>
+    <div class="info-tour-body-2">
+      <div class="item" *ngFor="let item of transferRates">
+        <input type="checkbox" (change)="changeTransferRates(item.id)">
+        <span>{{ item.origin.name }} - {{ item.destination.name }}</span>
+        <span>{{ item.destination_transfer.name }} - {{ item.origin_transfer.name }}</span>
+        <span>{{ this.calenderServices.convertDate(item.departure_date, 'fa') }}</span>
+        <span>{{ this.calenderServices.convertDate(item.return_date, 'fa') }}</span>
+        <span>{{ item.adl_price | sperator }}</span>
+        <span>{{ item.chd_price | sperator }}</span>
+        <span>{{ item.inf_price | sperator }}</span>
+        <span>{{ item.capacity }}</span>
+      </div>
+    </div>
+</div>
+
+<!-- <div class="box-info-fly" *ngIf="form.value.defineTour == 'true'">
+      <div class="info-tour-header">
+        <div class="right">
+          <h2 class="text-dark">نرخ پرواز</h2>
+        </div>
+      </div>
+      <div class="info-tour-body">
+        <div class="top">
+
+          <div class="item-info-services">
+            <div class="box-services w-100">
+              <label for="">نرخ پرواز بزرگسال(تومان)</label>
+              <input (keyup)="setADLRate($event)" formControlName="ADLFlightRate" type="text" mask="separator"
+                     thousandSeparator=",">
+              <div *ngIf="errorService.hasError('ADLFlightRate')">
+                <span class="text-danger">{{errorService.getError('ADLFlightRate')}}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="item-info-services">
+            <div class="box-services w-100">
+              <label for="">نرخ پرواز کودک(تومان)</label>
+              <input (keyup)="setCnbRate($event)" formControlName="CHDFlightRate" type="text" mask="separator"
+                     thousandSeparator=",">
+              <div *ngIf="errorService.hasError('CHDFlightRate')">
+                <span class="text-danger">{{errorService.getError('CHDFlightRate')}}</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+</div> -->

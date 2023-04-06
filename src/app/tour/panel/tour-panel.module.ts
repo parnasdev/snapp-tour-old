@@ -27,6 +27,13 @@ import {LogsComponent} from "./logs/logs.component";
 import {StoreModule} from "../../store/store.module";
 import {ReserveListComponent} from './reserve-list/reserve-list.component';
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { BaseInfoComponent } from './set-components/base-info/base-info.component';
+import { TransferComponent } from './set-components/transfer/transfer.component';
+import { ServiceRatesComponent } from './set-components/service-rates/service-rates.component';
+import { CurrencyRatesComponent } from './set-components/currency-rates/currency-rates.component';
+import { SimplePackageComponent } from './set-components/simple-package/simple-package.component';
+import { DetailPackageComponent } from './set-components/detail-package/detail-package.component';
+import { DescriptionsComponent } from './set-components/descriptions/descriptions.component';
 
 
 @NgModule({
@@ -36,6 +43,13 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     LogsComponent,
     CopyComponent,
     ReserveListComponent,
+    BaseInfoComponent,
+    TransferComponent,
+    ServiceRatesComponent,
+    CurrencyRatesComponent,
+    SimplePackageComponent,
+    DetailPackageComponent,
+    DescriptionsComponent,
   ],
   imports: [
     CommonModule,
