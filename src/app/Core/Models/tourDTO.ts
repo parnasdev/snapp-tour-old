@@ -64,7 +64,8 @@ export interface TourSetRequestDTO {
   dayNum: number;
   offered: boolean;
   transferType: number;
-  transfers: TourTransferDTO[];
+  // transfers: TourTransferDTO[];
+  transferIds: number[];
   enDate: string;
   stDate: string
   expireDate: string;

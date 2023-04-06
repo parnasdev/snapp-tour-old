@@ -68,6 +68,9 @@ export class AddComponent implements OnInit {
   ratePricesFC = new FormControl('1');
   isSlugGenerated = false;
 
+  transferIds: number[] = [];
+  hotelRates = []
+
   constructor(
     public hotelApi: HotelApiService,
     public cityApi: CityApiService,
@@ -299,18 +302,19 @@ export class AddComponent implements OnInit {
       nightNum: this.form.value.nightNum,
       offered: this.form.value.offered,
       dayNum: (+this.form.value.nightNum) + 1,
-      transfers: [
-        {
-          transfer_id: this.originTransferFC.value,
-          flightCode: this.originFlightCodeFC.value,
-          dateTime: this.calenderServices.convertDateSpecial(this.originDateFC.value, 'en') + ' ' + this.originTime,
-          type: 'origin',
-        }, {
-          transfer_id: this.destTransferFC.value,
-          flightCode: this.destFlightCodeFC.value,
-          dateTime: this.calenderServices.convertDateSpecial(this.destDateFC.value, 'en') + ' ' + this.destTime,
-          type: 'destination',
-        },],
+      // transfers: [
+      //   {
+      //     transfer_id: this.originTransferFC.value,
+      //     flightCode: this.originFlightCodeFC.value,
+      //     dateTime: this.calenderServices.convertDateSpecial(this.originDateFC.value, 'en') + ' ' + this.originTime,
+      //     type: 'origin',
+      //   }, {
+      //     transfer_id: this.destTransferFC.value,
+      //     flightCode: this.destFlightCodeFC.value,
+      //     dateTime: this.calenderServices.convertDateSpecial(this.destDateFC.value, 'en') + ' ' + this.destTime,
+      //     type: 'destination',
+      //   },],
+      transferIds: this.transferIds,
       enDate: this.calenderServices.convertDateSpecial(this.form.value.enDate, 'en'),
       expireDate: this.calenderServices.convertDateSpecial(this.form.value.expireDate, 'en'),
       CHDFlightRate: this.form.value.CHDFlightRate,
@@ -468,6 +472,23 @@ export class AddComponent implements OnInit {
     this.transferRateApi.getTransfers(req).subscribe((res: any) => {
       if (res.isDone) {
         this.transferRates = res.data;
+      } else {
+        this.message.custom(res.message);
+      }
+    }, (error: any) => {
+      this.message.error()
+    })
+  }
+
+  getHotelRates(hotelId:number){
+    const req = {
+      fromDate: this.form.value.stDate ? this.calenderServices.convertDateSpecial(this.form.value.stDate, 'en') : '',
+      toDate: this.form.value.enDate ? this.calenderServices.convertDateSpecial(this.form.value.enDate, 'en'): '',
+    }
+    this.hotelApi.getHotelRates(hotelId, 0, req).subscribe((res: any) => {
+      if (res.isDone) {
+        console.log(res.data)
+        this.hotelRates = res.data;
       } else {
         this.message.custom(res.message);
       }
@@ -727,6 +748,13 @@ export class AddComponent implements OnInit {
     this.ToursForm.controls[index].controls.hotel_id.setValue(event.id);
   }
 
+  hotelChangeWithRates(event: any, index: number) {
+    this.getStars(index);
+    //@ts-ignore
+    this.ToursForm.controls[index].controls.hotel_id.setValue(event.id);
+    this.getHotelRates(event.id);
+  }
+
   openRoomPopup(index: number) {
     // @ts-ignore
     const data = this.ToursForm.controls[index].controls.roomType.value
@@ -785,6 +813,16 @@ export class AddComponent implements OnInit {
     } else {
       return false;
     }
+  }
+
+  changeTransferRates(id: number){
+    if(!this.transferIds.find(x => x == id)) {
+      this.transferIds.push(id)
+    } else {
+      let itemIndex = this.transferIds.findIndex(x => x == id)
+      this.transferIds.splice(itemIndex, 1)
+    }
+    console.log(this.transferIds)
   }
 
 }

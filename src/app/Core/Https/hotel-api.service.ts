@@ -45,8 +45,13 @@ export class HotelApiService {
   }
 
 
-  getHotelRates(hotelID:number,roomID:number,req: HotelRatesReqDTO) :any {
-    const strUrl = this.serverControllerName + `getHotelRates/${hotelID}/${roomID}`;
+  getHotelRates(hotelID:number,roomID?:number,req?: HotelRatesReqDTO) :any {
+    let strUrl = '';
+    if(roomID === 0) {
+      strUrl = this.serverControllerName + `getHotelRates/${hotelID}`;
+    } else {
+      strUrl = this.serverControllerName + `getHotelRates/${hotelID}/${roomID}`;
+    }
     return this.http.post<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
   
