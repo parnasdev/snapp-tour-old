@@ -1,4 +1,4 @@
-<div class="box-info-package">
+<div class="box-info-package" *ngIf="setService.obj.defineTour == 'true' ">
     <div class="info-tour-header">
       <div class="right">
         <h2 class="text-dark">اطلاعات پکیج</h2>
@@ -44,8 +44,8 @@
           </div>
         </div>
       </div>
-      <!--            local tour-->
       <div class="w-100 d-flex flex-column mobile-package">
+        <!-- local tour -->
         <div class="header-box" *ngIf="tourType">
           <div class="package-item">#</div>
           <div class="package-item">نام هتل</div>
@@ -70,7 +70,7 @@
           <div class="package-item">آفر ویژه</div>
           <div></div>
         </div>
-        <!--            foreign tour-->
+        <!-- foreign tour -->
         <div class="header-box-two" *ngIf="!tourType">
           <div class="package-item">#</div>
           <div class="package-item">نام هتل</div>

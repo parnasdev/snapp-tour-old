@@ -23,6 +23,7 @@ import { PublicService } from 'src/app/Core/Services/public.service';
 import { ResponsiveService } from 'src/app/Core/Services/responsive.service';
 import { SessionService } from 'src/app/Core/Services/session.service';
 import { SetPricePopupComponent } from 'src/app/room-type/set-price-popup/set-price-popup.component';
+import { SetTourService } from '../../set-tour.service';
 
 @Component({
   selector: 'prs-detail-package',
@@ -72,6 +73,8 @@ export class DetailPackageComponent implements OnInit {
   hotelRates = []
 
   constructor(
+    public setService:SetTourService,
+
     public hotelApi: HotelApiService,
     public cityApi: CityApiService,
     public transferApi: TransferAPIService,
