@@ -135,11 +135,11 @@ export class SimplePackageComponent implements OnInit {
   })
 
   ngOnInit() {
-    this.getCities();
-    this.getTransfer();
-    this.getTransferRates();
-    this.disableFields();
-    this.getService();
+    // this.getCities();
+    // this.getTransfer();
+    // this.getTransferRates();
+    // this.disableFields();
+    // this.getService();
     // console.log(this.session.checkPermission('Status'))
     // this.getHotels();
   }

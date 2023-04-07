@@ -70,16 +70,27 @@ export class BaseInfoComponent implements OnInit {
     // @ts-ignore
     this.setService.obj.endCity_id = cityItemSelected.id;
     this.setService.obj.type = cityItemSelected.type;
+    this.setService.transferRates = [];
+    this.setService.getTransferRates();
+
 
   }
 
   getStCity(cityItemSelected: any): void {
     this.setService.obj.stCity_id = cityItemSelected.id;
+    this.setService.transferRates = [];
+    this.setService.getTransferRates();
+
   }
 
   changes() {
-    console.log(this.setService.obj);
     
+  }
+
+
+  dateChanged() {
+    this.setService.transferRates = []
+    this.setService.getTransferRates();
   }
 
   generateSlug(): void {
