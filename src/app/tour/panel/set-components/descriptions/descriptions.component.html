@@ -6,20 +6,14 @@
     </div>
     <div class="details-body-tour">
       <div class="textarea">
-        <textarea formControlName="services" name="" cols="30" rows="10" placeholder="خدمات"></textarea>
-        <div *ngIf="errorService.hasError('services')">
-          <span class="text-danger">{{errorService.getError('services')}}</span>
-        </div>
-        <textarea formControlName="documents" name="" cols="30" rows="10" placeholder="مدارک مورد نیاز"></textarea>
-        <div *ngIf="errorService.hasError('documents')">
-          <span class="text-danger">{{errorService.getError('documents')}}</span>
-        </div>
-        <textarea formControlName="description" name="" cols="30" rows="10" placeholder="توضیحات تکمیلی"></textarea>
-        <div *ngIf="errorService.hasError('description')">
-          <span class="text-danger">{{errorService.getError('description')}}</span>
-        </div>
+        <textarea [(ngModel)]="setService.obj.services" name="" cols="30" rows="10" placeholder="خدمات"></textarea>
+
+        <textarea [(ngModel)]="setService.obj.documents" name="" cols="30" rows="10" placeholder="مدارک مورد نیاز"></textarea>
+
+        <textarea [(ngModel)]="setService.obj.description" name="" cols="30" rows="10" placeholder="توضیحات تکمیلی"></textarea>
+
       </div>
-      <prs-btn style="width: 15%;" class="btn-submit-tour w-100-mobi" [background]="'blue'" (click)="submit()"
-               [isLoading]="isLoading" [label]="'ثبت تور'"></prs-btn>
+      <!-- <prs-btn style="width: 15%;" class="btn-submit-tour w-100-mobi" [background]="'blue'" (click)="submit()"
+                [label]="'ثبت تور'"></prs-btn> -->
     </div>
 </div>

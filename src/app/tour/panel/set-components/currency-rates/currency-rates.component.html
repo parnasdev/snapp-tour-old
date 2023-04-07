@@ -1,32 +1,31 @@
 <div class="box-info-fly" *ngIf="setService.obj.defineTour == 'true' && !setService.obj.type">
-    <div class="info-tour-header">
-      <div class="right">
-        <h2 class="text-dark">نرخ ارزها</h2>
-      </div>
+  <div class="info-tour-header">
+    <div class="right">
+      <h2 class="text-dark">نرخ ارزها</h2>
     </div>
-    <div class="info-tour-body">
-      <div class="top">
-        <div class="item-info">
-          <label for="">نرخ یورو(تومان)</label>
-          <input (keyup)="setService.updatePackagePrices()" [(ngModel)]="setService.obj.euroRate" type="text" mask="separator"
-                 thousandSeparator=",">
-        </div>
-        <div class="item-info">
-          <label for="">نرخ دلار(تومان)</label>
-          <input (keyup)="setService.updatePackagePrices()" [(ngModel)]="setService.obj.dollarRate" type="text" mask="separator"
-                 thousandSeparator=",">
-        </div>
-        <div class="item-info">
-          <label for="">نرخ درهم(تومان)</label>
-          <input (keyup)="setService.updatePackagePrices()" [(ngModel)]="setService.obj.AEDRate" type="text" mask="separator"
-                 thousandSeparator=",">
-        </div>
-
-        <div>
-          <p style="font-size: 12px !important;color: #ff0000;margin-top: 8px">نکته مهم: لطفا برای نمایش هر نرخ در
-            باکس نرخ ها مقدار نرخ را وارد کنید.</p>
-        </div>
-
+  </div>
+  <div class="info-tour-body">
+    <div class="top">
+      <div class="item-info">
+        <label for="">نرخ یورو(تومان)</label>
+        <input (keyup)="updatePackagePrices()" [(ngModel)]="setService.obj.euroRate" type="text" mask="separator"
+          thousandSeparator=",">
       </div>
+      <div class="item-info">
+        <label for="">نرخ دلار(تومان)</label>
+        <input (keyup)="updatePackagePrices()" [(ngModel)]="setService.obj.dollarRate" type="text" mask="separator"
+          thousandSeparator=",">
+      </div>
+      <div class="item-info">
+        <label for="">نرخ درهم(تومان)</label>
+        <input (keyup)="updatePackagePrices()" [(ngModel)]="setService.obj.AEDRate" type="text" mask="separator"
+          thousandSeparator=",">
+      </div>
+      <div>
+        <p style="font-size: 12px !important;color: #ff0000;margin-top: 8px">نکته مهم: لطفا برای نمایش هر نرخ در
+          باکس نرخ ها مقدار نرخ را وارد کنید.</p>
+      </div>
+
     </div>
+  </div>
 </div>
