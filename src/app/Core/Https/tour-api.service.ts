@@ -13,6 +13,7 @@ import {
   TourPackageDTO,
   TourPackageV2DTO,
   TourRequestV2DTO,
+  TourSetDTO,
   TourSetRequestDTO
 } from "../Models/tourDTO";
 
@@ -30,7 +31,7 @@ export class TourApiService {
       environment.BACK_END_IP + this.serverControllerName;
   }
 
-  createTour(req: TourSetRequestDTO): any {
+  createTour(req: TourSetRequestDTO | TourSetDTO): any {
     const strUrl = this.serverControllerName + 'createTour';
     return this.http.post<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
   }

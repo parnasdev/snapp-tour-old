@@ -86,7 +86,7 @@ export class BaseInfoComponent implements OnInit {
   }
 
   changes() {
-    console.log(this.setService.obj);
+   this.setService.obj.dayNum = this.setService.obj.nightNum + 1;
     
   }
 

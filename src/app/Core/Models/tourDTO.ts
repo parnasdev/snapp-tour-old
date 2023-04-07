@@ -420,6 +420,8 @@ export interface TourSetDTO {
   description: string;
   status: string;
   packages: any[]
+
+  
 }
 
 export interface newTourPackageDTO {

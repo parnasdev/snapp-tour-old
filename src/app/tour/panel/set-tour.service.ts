@@ -218,24 +218,26 @@ export class SetTourService {
 
 
   setPackageRate(value: any, index: number) {
-    this.obj.packages[index].rate = value;
+    this.obj.packages[index].rate = value.target.value;
     this.updatePackagePrices()
   }
 
   setPackageServices(value: any, index: number) {
-    this.obj.packages[index].services = value;
+    this.obj.packages[index].services = value.target.value;
   }
 
   setpackageCapacity(value: any, index: number, name: string) {
-    this.obj.packages[index].twinCapacity = value;
+    console.log(value.target.value);
+    
+    this.obj.packages[index][name] = value.target.value;
   }
 
   setpackageAge(value: any, index: number) {
-    this.obj.packages[index].age = value;
+    this.obj.packages[index].age = value.target.value;
   }
 
   setpackageOffered(value: any, index: number) {
-    this.obj.packages[index].offered = value;
+    this.obj.packages[index].offered = value.target.value;
   }
 
   getPrice(price: number, index: number) {
