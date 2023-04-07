@@ -12,7 +12,7 @@ import { CityListRequestDTO, CityResponseDTO } from 'src/app/Core/Models/cityDTO
 import { GetServiceRequestDTO } from 'src/app/Core/Models/commonDTO';
 import { HotelListResponseDTO, HotelRequestDTO } from 'src/app/Core/Models/hotelDTO';
 import { RoomTypeSetDTO } from 'src/app/Core/Models/roomTypeDTO';
-import { TourSetRequestDTO } from 'src/app/Core/Models/tourDTO';
+import { TourSetRequestDTO, hotelRates, newTourPackageDTO } from 'src/app/Core/Models/tourDTO';
 import { TransferListRequestDTO } from 'src/app/Core/Models/transferDTO';
 import { TransferRateListDTO } from 'src/app/Core/Models/transferRateDTO';
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
@@ -55,22 +55,17 @@ export class DetailPackageComponent implements OnInit {
   destDateFC = new FormControl();
   destTimeFC = new FormControl();
 
-  originFlightCodeFC =new FormControl();
-  destFlightCodeFC = new FormControl();
-  airlines: any[] = []
-  transferRates: TransferRateListDTO[] = [];
-  originTime = ''
-  destTime = ''
+
   originTransferFC = new FormControl();
   destTransferFC = new FormControl();
   destCityTypeFC = new FormControl(true);
   tourType = false;
 
   ratePricesFC = new FormControl('1');
-  isSlugGenerated = false;
 
-  transferIds: number[] = [];
-  hotelRates = []
+  hotelRates: hotelRates[] = []
+
+  packages: newTourPackageDTO[] = [];
 
   constructor(
     public setService:SetTourService,
@@ -127,20 +122,9 @@ export class DetailPackageComponent implements OnInit {
     packages: this.fb.array([], Validators.required),
   });
 
-  transferForm = this.fb.group({
-    originDate: this.originDateFC,
-    originTime: this.originTimeFC,
-    destDate: this.destDateFC,
-    destTime: this.destTimeFC,
-  })
-
   ngOnInit() {
-    // this.getCities();
-    // this.getTransfer();
-    // this.getTransferRates();
     // this.disableFields();
-    // this.getService();
-    // console.log(this.session.checkPermission('Status'))
+    this.getService();
     // this.getHotels();
   }
 
@@ -155,124 +139,47 @@ export class DetailPackageComponent implements OnInit {
   }
 
   addRow(hotel_id: number) {
-    const Tours = this.fb.group({
+    const item: newTourPackageDTO = {
       parent: null,
-      user_id: null,
-      order_item: null,
-      hotel_id: [hotel_id],
-      services: [null],
-      rate: [1],
-      discountsTwin: [null],
-      discountsSingle: [null],
-      discountsCwb: [null],
-      discountsCnb: [null],
-      twin: [null],
-      single: [null],
-      cwb: [null],
-      cnb: [this.form.value.CHDFlightRate ? this.form.value.CHDFlightRate : null],
-      quad: [null],
-      triple: [null],
-      twinCapacity: [null],
-      singleCapacity: [null],
-      cwbCapacity: [null],
-      quadCapacity: [null],
-      tripleCapacity: [null],
-      twinRate: [null],
-      singleRate: [null],
-      cwbRate: [null],
-      cnbRate: [null],
-      quadRate: [null],
-      tripleRate: [null],
-      ADLRate: [this.form.value.ADLFlightRate ? this.form.value.ADLFlightRate : null],
-      age: [null],
-      pool: [null],
+      user_id: 0,
+      order_item: 0,
+      hotel_id: hotel_id,
+      services: '',
+      rate: '',
+      discountsTwin: '',
+      discountsSingle: '',
+      discountsCwb: '',
+      discountsCnb: '',
+      twin: '',
+      single: '',
+      cwb: '',
+      cnb: '',
+      quad: '',
+      triple: '',
+      twinCapacity: '',
+      singleCapacity: '',
+      cwbCapacity: '',
+      quadCapacity: '',
+      tripleCapacity: '',
+      twinRate: '',
+      singleRate: '',
+      cwbRate: '',
+      cnbRate: '',
+      quadRate: '',
+      tripleRate: '',
+      age: '',
       offered: false,
-      status: [null],
-      roomType: [[]]
-    });
-    this.ToursForm.push(Tours);
-  }
-
-  convertTour() {
-    this.tourDetail = [];
-    this.ToursForm.controls.forEach((item:any, index:any) => {
-      this.tourDetail.push({
-        parent: null,
-        order_item: index,
-        id: item.value.id ? item.value.id : null,
-        offered: item.value.offered,
-        user_id: item.value.user_id,
-        hotel_id: item.value.hotel_id,
-        services: +item.value.services,
-        rate: item.value.rate,
-        discounts: {
-          twin: item.value.discountsTwin,
-          single: item.value.discountsSingle,
-          cwb: item.value.discountsCwb,
-          cnb: item.value.discountsCnb
-        },
-        prices: this.clean({
-          twin: item.value.twin,
-          single: item.value.single,
-          cwb: item.value.cwb,
-          triple: item.value.triple,
-          quad: item.value.quad,
-          cnb: item.value.cnb,
-          twinCapacity: item.value.twinCapacity,
-          singleCapacity: item.value.singleCapacity,
-          cwbCapacity: item.value.cwbCapacity,
-          quadCapacity: item.value.quadCapacity,
-          tripleCapacity: item.value.tripleCapacity,
-          twinRate: item.value.twinRate,
-          singleRate: item.value.singleRate,
-          cwbRate: item.value.cwbRate,
-          tripleRate: item.value.tripleRate,
-          quadRate: item.value.quadRate,
-          cnbRate: item.value.cnbRate,
-          ADLRate: item.value.ADLRate,
-          age: item.value.age,
-          pool: item.value.pool,
-          roomType: item.value.roomType
-        },),
-        status: 'Show'
-      });
-    });
-  }
-
-  submit() {
-    this.sortOnPrice();
-    this.convertTour();
-    this.fillObj();
-    this.call();
-  }
-
-  call(): void {
-    this.isLoading = true
-    this.tourApi.createTour(this.tourReqDTO).subscribe((res: any) => {
-      this.isLoading = false;
-      if (res.isDone) {
-        this.message.showMessageBig(res.message);
-        this.errorService.clear();
-        this.router.navigateByUrl('/panel/tour');
-      }
-    }, (error: any) => {
-      this.isLoading = false;
-      if (error.status == 422) {
-        this.errorService.recordError(error.error.data);
-        this.markFormGroupTouched(this.form);
-        this.message.showMessageBig('اطلاعات ارسال شده را مجددا بررسی کنید')
-      } else {
-        this.message.showMessageBig('مشکلی رخ داده است لطفا مجددا تلاش کنید')
-      }
-      this.checkError.check(error);
-    })
+      status: '',
+      roomType: []
+    };
+    this.packages.push(item);
   }
 
   getHotels(): void {
     const req: HotelRequestDTO = {
       isAdmin: true,
       paginate: false,
-      city: this.cityID,
+      city: this.setService.obj.endCity_id,
       search: null,
     }
     this.hotelApi.getHotels(req).subscribe((res: any) => {
@@ -289,68 +196,6 @@ export class DetailPackageComponent implements OnInit {
 
   get ToursForm() {
     return this.form.get('packages') as FormArray;
-  }
-
-
-  removePackage(i: any) {
-    this.ToursForm.removeAt(i);
-  }
-
-  fillObj() {
-    this.tourReqDTO = {
-      title: this.form.value.title,
-      slug: this.form.value.slug,
-      stCity_id: this.form.value.stCity_id,
-      endCity_id: this.form.value.endCity_id,
-      nightNum: this.form.value.nightNum,
-      offered: this.form.value.offered,
-      dayNum: (+this.form.value.nightNum) + 1,
-      // transfers: [
-      //   {
-      //     transfer_id: this.originTransferFC.value,
-      //     flightCode: this.originFlightCodeFC.value,
-      //     dateTime: this.calenderServices.convertDateSpecial(this.originDateFC.value, 'en') + ' ' + this.originTime,
-      //     type: 'origin',
-      //   }, {
-      //     transfer_id: this.destTransferFC.value,
-      //     flightCode: this.destFlightCodeFC.value,
-      //     dateTime: this.calenderServices.convertDateSpecial(this.destDateFC.value, 'en') + ' ' + this.destTime,
-      //     type: 'destination',
-      //   },],
-      transferIds: this.transferIds,
-      enDate: this.calenderServices.convertDateSpecial(this.form.value.enDate, 'en'),
-      expireDate: this.calenderServices.convertDateSpecial(this.form.value.expireDate, 'en'),
-      CHDFlightRate: this.form.value.CHDFlightRate,
-      ADLFlightRate: this.form.value.ADLFlightRate,
-      defineTour: this.form.value.defineTour === 'true',
-      euroRate: this.form.value.euroRate,
-      type: this.tourType,
-      dollarRate: this.form.value.dollarRate,
-      AEDRate: this.form.value.AEDRate,
-      visaRate: this.form.value.visaRate,
-      stDate: this.calenderServices.convertDateSpecial(this.form.value.stDate, 'en'),
-      insuranceRate: this.form.value.insuranceRate,
-      transferRate: this.form.value.transferRate,
-      visaPriceType: this.form.value.visaPriceType, // dollar euro derham
-      transferPriceType: this.form.value.transferPriceType,
-      insurancePriceType: this.form.value.insurancePriceType,
-      services: this.form.value.services,
-      documents: this.form.value.documents,
-      description: this.form.value.description,
-      status: this.form.value.status,
-      packages: this.tourDetail,
-      transferType: 1,
-    }
-  }
-
-  markFormGroupTouched(formGroup: any) {
-    (<any>Object).values(formGroup.controls).forEach((control: any) => {
-      control.markAsTouched();
-
-      if (control.controls) {
-        this.markFormGroupTouched(control);
-      }
-    });
   }
 
   getService(): void {
@@ -448,104 +293,6 @@ export class DetailPackageComponent implements OnInit {
     })
   }
 
-  getTransfer(): void {
-    const req: TransferListRequestDTO = {
-      type: 1,
-      search: null,
-      paginate: false,
-      perPage: 20
-    }
-    this.transferApi.getTransfers(req).subscribe((res: any) => {
-      if (res.isDone) {
-        this.airlines = res.data
-      }
-    }, (error: any) => {
-      this.message.error()
-    })
-  }
-
-  getTransferRates(): void {
-    const req = {
-      departure_date: null,
-      dest: null,
-      origin: null,
-      paginate: true,
-      return_date: null
-    }
-    this.transferRateApi.getTransfers(req).subscribe((res: any) => {
-      if (res.isDone) {
-        this.transferRates = res.data;
-      } else {
-        this.message.custom(res.message);
-      }
-    }, (error: any) => {
-      this.message.error()
-    })
-  }
-
-  getHotelRates(hotelId:number){
-    const req = {
-      fromDate: this.form.value.stDate ? this.calenderServices.convertDateSpecial(this.form.value.stDate, 'en') : '',
-      toDate: this.form.value.enDate ? this.calenderServices.convertDateSpecial(this.form.value.enDate, 'en'): '',
-    }
-    this.hotelApi.getHotelRates(hotelId, 0, req).subscribe((res: any) => {
-      if (res.isDone) {
-        console.log(res.data)
-        this.hotelRates = res.data;
-      } else {
-        this.message.custom(res.message);
-      }
-    }, (error: any) => {
-      this.message.error()
-    })
-  }
-
-  getOriginTime(event: any): void {
-    if (event) {
-      this.originTime = event.hour + ':' + event.minute;
-    }
-  }
-
-  getDestTime(event: any): void {
-    if (event) {
-      this.destTime = event.hour + ':' + event.minute;
-    }
-  }
-
-  originCityTypeChange(): void {
-    this.getCities()
-  }
-
-  destCityTypeChange(): void {
-    this.disableFields();
-    this.ToursForm.clear();
-    this.getCities();
-  }
-
-  getCities(): void {
-    const req: CityListRequestDTO = {
-      type: null,
-      hasHotel: true,
-      hasOriginTour: false,
-      search: null,
-      hasDestTour: false,
-      perPage: 20
-    }
-    this.cityApi.getCities(req).subscribe((res: any) => {
-      if (res.isDone) {
-        this.cities = res.data;
-        this.cityID = this.cities[1].id;
-        this.form.controls.stCity_id.setValue(this.cities[0].id.toString());
-        // this.form.controls.endCity_id.setValue(this.cities[1].id.toString());
-        // @ts-ignore
-        // this.tourType = this.cities.find(x => x.id === +this.form.value.endCity_id)?.type;
-        // this.getHotels();
-      }
-    }, (error: any) => {
-      this.message.error()
-    })
-  }
-
   clean(obj: any): void {
     for (var propName in obj) {
       if (obj[propName] === null || obj[propName] === undefined) {
@@ -555,141 +302,51 @@ export class DetailPackageComponent implements OnInit {
     return obj
   }
 
-  calculatePrice(type: string, price: any, isADL: boolean, i: number) {
-    let finallyPrice = '';
-    const ratePrice = +price.target.value.split(',').join('') * (+this.form.value.nightNum * this.getRatePrice(i));
-    const insurancePrice = (this.form.value.insuranceRate ? (+this.form.value.insuranceRate) * this.checkInsuranceRatePrice() : 0);
-    const visaPrice = (this.form.value.visaRate ? (+this.form.value.visaRate) * this.checkVisaRatePrice() : 0);
-    const transferPrice = (this.form.value.transferRate ? (+this.form.value.transferRate) * this.checkTransferRatePrice() : 0);
-    // + نرخ افزایشس کاهشی
-    if (isADL) {
-      finallyPrice = ((+this.form.value.ADLFlightRate) + ratePrice + insurancePrice + visaPrice + transferPrice).toString();
-    } else {
-      finallyPrice = ((+this.form.value.CHDFlightRate) + ratePrice + insurancePrice + visaPrice + transferPrice).toString();
-    }
-    switch (type) {
-      case 'single':
-        // @ts-ignore
-        this.ToursForm.controls[i].controls.singleRate.setValue(finallyPrice)
-        break;
-      case 'twin':
-        // @ts-ignore
-        this.ToursForm.controls[i].controls.twinRate.setValue(finallyPrice)
-        break;
-      case 'triple':
-        // @ts-ignore
-        this.ToursForm.controls[i].controls.tripleRate.setValue(finallyPrice)
-        break;
-      case 'quad':
-        // @ts-ignore
-        this.ToursForm.controls[i].controls.quadRate.setValue(finallyPrice)
-        break;
-      case 'cwb':
-        // @ts-ignore
-        this.ToursForm.controls[i].controls.cwbRate.setValue(finallyPrice)
-        break;
-    }
-  }
-
-  updatePackagePrices() {
-    const insurancePrice = (this.form.value.insuranceRate ? (+this.form.value.insuranceRate) * this.checkInsuranceRatePrice() : 0);
-    const visaPrice = (this.form.value.visaRate ? (+this.form.value.visaRate) * this.checkVisaRatePrice() : 0);
-    const transferPrice = (this.form.value.transferRate ? (+this.form.value.transferRate) * this.checkTransferRatePrice() : 0);
-
-    this.ToursForm.controls.forEach((item, index) => {
-      const ADLRate = item.value.ADLRate ? +item.value.ADLRate.split(',').join('') : 0;
-      const CHDFlightRate = this.form.value.CHDFlightRate ? +this.form.value.CHDFlightRate?.split(',').join('') : 0;
-      // @ts-ignore
-      item.controls.twinRate.setValue((ADLRate + this.getPrice(+item.value.twin, index) + insurancePrice + visaPrice + transferPrice).toString());
-      // @ts-ignore
-      item.controls.singleRate.setValue((ADLRate + this.getPrice(+item.value.single, index) + insurancePrice + visaPrice + transferPrice).toString());
-      // @ts-ignore
-      item.controls.cwbRate.setValue((CHDFlightRate + this.getPrice(+item.value.cwb, index) + insurancePrice + visaPrice + transferPrice).toString());
-      // @ts-ignore
-      item.controls.quadRate.setValue((ADLRate + this.getPrice(+item.value.quad, index) + insurancePrice + visaPrice + transferPrice).toString());
-      // @ts-ignore
-      item.controls.tripleRate.setValue((ADLRate + this.getPrice(+item.value.triple, index) + insurancePrice + visaPrice + transferPrice).toString());
-      // + نرخ افزایشس کاهشی
-    });
-  }
-
-  getPrice(price: number, index: number) {
-    return +price * (+this.form.value.nightNum * this.getRatePrice(index));
-  }
-
-  getRatePrice(index: number): number {
-    if (+this.form.get('packages')?.value[index].rate === 2) {
-      return (+this.form.value.euroRate);
-    } else if (+this.form.get('packages')?.value[index].rate === 3) {
-      return (+this.form.value.dollarRate);
-    } else if (+this.form.get('packages')?.value[index].rate === 4) {
-      return (+this.form.value.AEDRate);
-    } else {
-      return 1;
-    }
-  }
-
   checkInsuranceRatePrice(): number {
-    if (+this.form.value.insurancePriceType === 2) {
-      return +this.form.value.euroRate;
-    } else if (+this.form.value.insurancePriceType === 3) {
-      return +this.form.value.dollarRate;
-    } else if (+this.form.value.insurancePriceType === 4) {
-      return +this.form.value.AEDRate;
+    if (+this.setService.obj.insurancePriceType === 2) {
+      return +this.setService.obj.euroRate;
+    } else if (+this.setService.obj.insurancePriceType === 3) {
+      return +this.setService.obj.dollarRate;
+    } else if (+this.setService.obj.insurancePriceType === 4) {
+      return +this.setService.obj.AEDRate;
     } else {
       return 1
     }
   }
 
   checkVisaRatePrice(): number {
-    if (+this.form.value.visaPriceType === 2) {
-      return +this.form.value.euroRate;
-    } else if (+this.form.value.visaPriceType === 3) {
-      return +this.form.value.dollarRate;
-    } else if (+this.form.value.visaPriceType === 4) {
-      return +this.form.value.AEDRate;
+    if (+this.setService.obj.visaPriceType === 2) {
+      return +this.setService.obj.euroRate;
+    } else if (+this.setService.obj.visaPriceType === 3) {
+      return +this.setService.obj.dollarRate;
+    } else if (+this.setService.obj.visaPriceType === 4) {
+      return +this.setService.obj.AEDRate;
     } else {
       return 1;
     }
   }
 
   checkTransferRatePrice(): number {
-    if (+this.form.value.transferPriceType === 2) {
-      return +this.form.value.euroRate
-    } else if (+this.form.value.transferPriceType === 3) {
-      return +this.form.value.dollarRate
-    } else if (+this.form.value.transferPriceType === 4) {
-      return +this.form.value.AEDRate
+    if (+this.setService.obj.transferPriceType === 2) {
+      return +this.setService.obj.euroRate
+    } else if (+this.setService.obj.transferPriceType === 3) {
+      return +this.setService.obj.dollarRate
+    } else if (+this.setService.obj.transferPriceType === 4) {
+      return +this.setService.obj.AEDRate
     } else {
       return 1;
     }
   }
-
-  setADLRate(event: any) {
-    this.ToursForm.controls.find(x => x.get('ADLRate')?.setValue(event.target.value))
-    this.updatePackagePrices();
-  }
-
-  setCnbRate(event: any) {
-    this.ToursForm.controls.find(x => x.get('cnb')?.setValue(event.target.value))
-    this.updatePackagePrices();
-  }
-
 
   drop(event: any) {
     this.getStars(event.previousIndex);
     // moveItemInArray(this.ToursForm.controls, event.previousIndex, event.currentIndex);
   }
 
-  getData(index: number) {
-    // @ts-ignore
-    return this.ToursForm.controls[index].controls
-  }
-
   // @ts-ignore
   getStars(index: number): number[] {
     // @ts-ignore
-    const item = this.hotels.find(x => x.id === +this.ToursForm.controls[index].controls.hotel_id.value);
+    const item = this.hotels.find(x => x.id === +this.packages[index].hotel_id);
     return Array.from(Array(item ? +item.stars : 0).keys());
   }
 
@@ -731,9 +388,9 @@ export class DetailPackageComponent implements OnInit {
   sortOnPrice() {
     this.ToursForm.controls.sort((a, b) => {
       // @ts-ignore
-      const item1 = JSON.parse(this.form.value.defineTour) ? +a.controls.twinRate.value : +a.controls.twin.value;
+      const item1 = JSON.parse(this.setService.obj.defineTour) ? +a.controls.twinRate.value : +a.controls.twin.value;
       // @ts-ignore
-      const item2 = JSON.parse(this.form.value.defineTour) ? +b.controls.twinRate.value : +b.controls.twin.value;
+      const item2 = JSON.parse(this.setService.obj.defineTour) ? +b.controls.twinRate.value : +b.controls.twin.value;
       if (item1 < item2) {
         return -1;
         // @ts-ignore
@@ -748,15 +405,16 @@ export class DetailPackageComponent implements OnInit {
   hotelChange(event: any, index: number) {
     this.getStars(index);
     //@ts-ignore
-    this.ToursForm.controls[index].controls.hotel_id.setValue(event.id);
+    this.packages[index].hotel_id = event.id;
+    this.getHotelRates(event.id, index);
   }
 
-  hotelChangeWithRates(event: any, index: number) {
-    this.getStars(index);
-    //@ts-ignore
-    this.ToursForm.controls[index].controls.hotel_id.setValue(event.id);
-    this.getHotelRates(event.id);
-  }
+  // hotelChangeWithRates(event: any, index: number) {
+  //   this.getStars(index);
+  //   //@ts-ignore
+  //   this.packages[index].hotel_id = event.id;
+  //   this.getHotelRates(event.id);
+  // }
 
   openRoomPopup(index: number) {
     // @ts-ignore
@@ -774,31 +432,6 @@ export class DetailPackageComponent implements OnInit {
     })
   }
 
-  generateSlug(): void {
-    if (!this.isSlugGenerated) {
-      this.tourApi.generateSlug(this.form.value.title).subscribe((res: any) => {
-        if (res.data) {
-          this.form.controls.slug.setValue(res.data);
-          this.isSlugGenerated = true
-        } else {
-          this.message.custom(res.message)
-        }
-      }, (error: any) => {
-        this.message.error()
-      })
-    } else {
-      this.form.controls.slug.setValue(this.form.value.title.split(' ').join('-'))
-    }
-  }
-
-  setADLRatePrice(event: any) {
-    this.ToursForm.controls.find(x => x.get('ADLRate')?.setValue(event.target.value))
-  }
-
-  setCnbRatePrice(event: any) {
-    this.ToursForm.controls.find(x => x.get('cnb')?.setValue(event.target.value))
-  }
-
   changeRateForPackages(event: any) {
     this.ToursForm.controls.find(x => x.get('rate')?.setValue(event.target.value))
     if (+this.ratePricesFC.value === 1) {
@@ -810,7 +443,7 @@ export class DetailPackageComponent implements OnInit {
   }
 
   checkPackageRate() {
-    if(this.form.value.endCity_id !== ''){
+    if(this.setService.obj.endCity_id !== ''){
       // @ts-ignore
       return +this.ratePricesFC.value > 1
     } else {
@@ -818,14 +451,113 @@ export class DetailPackageComponent implements OnInit {
     }
   }
 
-  changeTransferRates(id: number){
-    if(!this.transferIds.find(x => x == id)) {
-      this.transferIds.push(id)
+  removePackage(i: any) {
+    this.packages.splice(i);
+  }
+
+  getData(index: number) {
+    // @ts-ignore
+    return this.packages[index]
+  }
+
+
+  setPackageRate(value: any, index: number){
+    this.packages[index].rate = value;
+    this.updatePackagePrices()
+  }
+
+  setPackageServices(value: any, index: number){
+    this.packages[index].services = value;
+  }
+
+  setpackageCapacity(value: any, index: number, name: string){
+    this.packages[index].twinCapacity = value;
+  }
+
+  setpackageAge(value: any, index: number){
+    this.packages[index].age = value;
+  }
+
+  setpackageOffered(value: any, index: number){
+    this.packages[index].offered = value;
+  }
+
+  getPrice(price: number, index: number) {
+    return +price * (+this.form.value.nightNum * this.getRatePrice(index));
+  }
+
+  getRatePrice(index: number): number {
+    if (+this.packages[index].rate === 2) {
+      return (+this.setService.obj.euroRate);
+    } else if (+this.packages[index].rate === 3) {
+      return (+this.setService.obj.dollarRate);
+    } else if (+this.packages[index].rate === 4) {
+      return (+this.setService.obj.AEDRate);
     } else {
-      let itemIndex = this.transferIds.findIndex(x => x == id)
-      this.transferIds.splice(itemIndex, 1)
+      return 1;
     }
-    console.log(this.transferIds)
+  }
+
+  getHotelRatePrice(name:string){
+    let price = 0;
+    let list = this.hotelRates.filter(x => x.roomType.name === name)
+    list.forEach(item => {
+      price += item.price
+    })
+    return price
+  }
+
+  getHotelRates(hotelId:number, index: number){
+    const req = {
+      fromDate: this.setService.obj.stDate ? this.calenderServices.convertDateSpecial(this.setService.obj.stDate, 'en') : '',
+      toDate: this.setService.obj.enDate ? this.calenderServices.convertDateSpecial(this.setService.obj.enDate, 'en'): '',
+    }
+    this.hotelApi.getHotelRates(hotelId, 0, req).subscribe((res: any) => {
+      if (res.isDone) {
+        console.log(res.data)
+        this.hotelRates = res.data;
+        this.calculatePrice(index);
+      } else {
+        this.message.custom(res.message);
+      }
+    }, (error: any) => {
+      this.message.error()
+    })
+  }
+
+  calculatePrice(i: number) {
+
+    const insurancePrice = (this.setService.obj.insuranceRate ? (+this.setService.obj.insuranceRate) * this.checkInsuranceRatePrice() : 0);
+    const visaPrice = (this.setService.obj.visaRate ? (+this.setService.obj.visaRate) * this.checkVisaRatePrice() : 0);
+    const transferPrice = (this.setService.obj.transferRate ? (+this.setService.obj.transferRate) * this.checkTransferRatePrice() : 0);
+    
+    this.packages[i].singleRate = (this.getPrice(this.getHotelRatePrice('single'), i) + insurancePrice + visaPrice + transferPrice).toString();
+    this.packages[i].twinRate = (this.getPrice(this.getHotelRatePrice('twin'), i) + insurancePrice + visaPrice + transferPrice).toString();
+    this.packages[i].tripleRate = (this.getPrice(this.getHotelRatePrice('triple'), i) + insurancePrice + visaPrice + transferPrice).toString();
+    this.packages[i].quadRate = (this.getPrice(this.getHotelRatePrice('quad'), i) + insurancePrice + visaPrice + transferPrice).toString();
+    this.packages[i].cwbRate = (this.getPrice(this.getHotelRatePrice('cwb'), i) + insurancePrice + visaPrice + transferPrice).toString();
+  }
+
+  updatePackagePrices() {
+    const insurancePrice = (this.setService.obj.insuranceRate ? (+this.setService.obj.insuranceRate) * this.checkInsuranceRatePrice() : 0);
+    const visaPrice = (this.setService.obj.visaRate ? (+this.setService.obj.visaRate) * this.checkVisaRatePrice() : 0);
+    const transferPrice = (this.setService.obj.transferRate ? (+this.setService.obj.transferRate) * this.checkTransferRatePrice() : 0);
+
+    this.packages.forEach((item, index) => {
+      // const ADLRate = item.value.ADLRate ? +item.value.ADLRate.split(',').join('') : 0;
+      // const CHDFlightRate = this.setService.obj.CHDFlightRate ? +this.setService.obj.CHDFlightRate?.split(',').join('') : 0;
+
+      item.twinRate = ((this.getPrice(this.getHotelRatePrice('twin'), index) + insurancePrice + visaPrice + transferPrice).toString());
+
+      item.singleRate = ((this.getPrice(this.getHotelRatePrice('single'), index) + insurancePrice + visaPrice + transferPrice).toString());
+
+      item.cwbRate = ((this.getPrice(this.getHotelRatePrice('cwb'), index) + insurancePrice + visaPrice + transferPrice).toString());
+
+      item.quadRate = ((this.getPrice(this.getHotelRatePrice('quad'), index) + insurancePrice + visaPrice + transferPrice).toString());
+
+      item.tripleRate = ((this.getPrice(this.getHotelRatePrice('triple'), index) + insurancePrice + visaPrice + transferPrice).toString());
+      // + نرخ افزایشس کاهشی
+    });
   }
 
 }

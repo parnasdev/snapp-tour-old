@@ -421,3 +421,50 @@ export interface TourSetDTO {
   status: string;
   packages: any[]
 }
+
+export interface newTourPackageDTO {
+  parent: null;
+  user_id: number;
+  order_item: number;
+  hotel_id: number;
+  services: string;
+  rate: string;
+  discountsTwin: string;
+  discountsSingle: string;
+  discountsCwb: string;
+  discountsCnb: string;
+  twin: string;
+  single: string;
+  cwb: string;
+  cnb: string;
+  quad: string;
+  triple: string;
+  twinCapacity: string;
+  singleCapacity: string;
+  cwbCapacity: string;
+  quadCapacity: string;
+  tripleCapacity: string;
+  twinRate: string;
+  singleRate: string;
+  cwbRate: string;
+  cnbRate: string;
+  quadRate: string;
+  tripleRate: string;
+  age: string;
+  offered: boolean;
+  status: string;
+  roomType: [];
+}
+
+export interface hotelRates {
+  checkin: string;
+  price: number
+  rate: number
+  roomType: {
+    capacityPerson: number
+    id: number
+    isDefault: boolean
+    label: string
+    name: string;
+  }
+}
