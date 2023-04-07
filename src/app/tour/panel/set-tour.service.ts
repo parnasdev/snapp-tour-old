@@ -48,44 +48,13 @@ export class SetTourService {
     this.obj.packages = packages
   }
 
-  setBaseInfo(baseInfo: any): void {
-    this.obj.title = baseInfo.title;
-    this.obj.slug = baseInfo.slug;
-    this.obj.stCity_id = baseInfo.stCity_id;
-    this.obj.endCity_id = baseInfo.endCity_id;
-    this.obj.nightNum = baseInfo.nightNum;
-    this.obj.dayNum = baseInfo.dayNum;
-    this.obj.stDate = baseInfo.stDate;
-    this.obj.enDate = baseInfo.enDate;
-    this.obj.expireDate = baseInfo.expireDate;
-    this.obj.defineTour = baseInfo.defineTour;
-    this.obj.status = baseInfo.status;
-    this.obj.offered = baseInfo.offered;
-    this.obj.type = baseInfo.type;
-  }
+
 
   setTransfers(transfers: number[]): void {
     this.obj.transferIds = transfers
   }
 
 
-  setServiceRate(rates: any): void {
-    this.obj.visaRate = rates.visaRate;
-    this.obj.insuranceRate = rates.insuranceRate;
-    this.obj.transferRate = rates.transferRate;
-  }
-
-  setCurrencyRate(rates: any): void {
-    this.obj.dollarRate = rates.dollarRate;
-    this.obj.euroRate = rates.euroRate;
-  }
-
-
-  setDescription(data:any) {
-    this.obj.description = data.description;
-    this.obj.documents = data.documents;
-    this.obj.services = data.services;
-  }
 
 
   removeRequestObject():void {
