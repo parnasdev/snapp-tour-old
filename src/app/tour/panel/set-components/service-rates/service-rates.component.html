@@ -9,11 +9,11 @@
         <div class="item-info-services">
           <div class="box-services">
             <label for="">نرخ بیمه(تومان/ارزی)</label>
-            <input (keyup)="updatePackagePrices()" [(ngModel)]="setService.obj.insuranceRate" type="text" mask="separator"
+            <input (keyup)="setService.updatePackagePrices()" [(ngModel)]="setService.obj.insuranceRate" type="text" mask="separator"
                    thousandSeparator=",">
           </div>
           <div class="selectdiv">
-            <select (change)="updatePackagePrices()" [(ngModel)]="setService.obj.insurancePriceType">
+            <select (change)="setService.updatePackagePrices()" [(ngModel)]="setService.obj.insurancePriceType">
               <option *ngIf="setService.obj.dollarRate" [value]="3">دلار</option>
               <option *ngIf="setService.obj.euroRate" [value]="2">یورو</option>
               <option *ngIf="setService.obj.AEDRate" [value]="4">درهم</option>
@@ -24,11 +24,11 @@
         <div class="item-info-services">
           <div class="box-services">
             <label for="">نرخ ترانسفر(تومان/ارزی)</label>
-            <input (keyup)="updatePackagePrices()" [(ngModel)]="setService.obj.transferRate" type="text" mask="separator"
+            <input (keyup)="setService.updatePackagePrices()" [(ngModel)]="setService.obj.transferRate" type="text" mask="separator"
                    thousandSeparator=",">
           </div>
           <div class="selectdiv">
-            <select (change)="updatePackagePrices()" [(ngModel)]="setService.obj.transferPriceType">
+            <select (change)="setService.updatePackagePrices()" [(ngModel)]="setService.obj.transferPriceType">
               <option *ngIf="setService.obj.dollarRate" [value]="3">دلار</option>
               <option *ngIf="setService.obj.euroRate" [value]="2">یورو</option>
               <option *ngIf="setService.obj.AEDRate" [value]="4">درهم</option>
@@ -39,11 +39,11 @@
         <div class="item-info-services" *ngIf="!setService.obj.type">
           <div class="box-services">
             <label for="">نرخ ویزا(تومان/ارزی)</label>
-            <input (keyup)="updatePackagePrices()" [(ngModel)]="setService.obj.visaRate" type="text" mask="separator"
+            <input (keyup)="setService.updatePackagePrices()" [(ngModel)]="setService.obj.visaRate" type="text" mask="separator"
                    thousandSeparator=",">
           </div>
           <div class="selectdiv">
-            <select (change)="updatePackagePrices()" [(ngModel)]="setService.obj.visaPriceType">
+            <select (change)="setService.updatePackagePrices()" [(ngModel)]="setService.obj.visaPriceType">
               <option *ngIf="setService.obj.dollarRate" [value]="3">دلار</option>
               <option *ngIf="setService.obj.euroRate" [value]="2">یورو</option>
               <option *ngIf="setService.obj.AEDRate" [value]="4">درهم</option>

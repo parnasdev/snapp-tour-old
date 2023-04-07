@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { TourApiService } from 'src/app/Core/Https/tour-api.service';
+import { MessageService } from 'src/app/Core/Services/message.service';
 import {EditComponent} from "../edit/edit.component";
 
 @Component({
@@ -9,6 +12,7 @@ import {EditComponent} from "../edit/edit.component";
 export class CopyComponent extends EditComponent implements OnInit {
 
 
+
   ngOnInit(): void {
     this.slug = this.route.snapshot.paramMap.get('slug');
     this.getInfo()
@@ -16,15 +20,7 @@ export class CopyComponent extends EditComponent implements OnInit {
   
 
   submit() {
-    if (this.form.controls.title.value === this.info.title) {
-      this.form.controls.title.setValue(this.info.title + '-کپی');
-      this.form.controls.slug.setValue(this.form.value.title.split(' ').join('-'))
-      this.form.controls.status.setValue('Draft');
-    }
-    this.sortOnPrice();
-    this.convertTour();
-    this.fillObj();
-    this.call();
+
   }
 
 }

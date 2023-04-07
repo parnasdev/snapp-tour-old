@@ -8,17 +8,17 @@
     <div class="top">
       <div class="item-info">
         <label for="">نرخ یورو(تومان)</label>
-        <input (keyup)="updatePackagePrices()" [(ngModel)]="setService.obj.euroRate" type="text" mask="separator"
+        <input (keyup)="setService.updatePackagePrices()" [(ngModel)]="setService.obj.euroRate" type="text" mask="separator"
           thousandSeparator=",">
       </div>
       <div class="item-info">
         <label for="">نرخ دلار(تومان)</label>
-        <input (keyup)="updatePackagePrices()" [(ngModel)]="setService.obj.dollarRate" type="text" mask="separator"
+        <input (keyup)="setService.updatePackagePrices()" [(ngModel)]="setService.obj.dollarRate" type="text" mask="separator"
           thousandSeparator=",">
       </div>
       <div class="item-info">
         <label for="">نرخ درهم(تومان)</label>
-        <input (keyup)="updatePackagePrices()" [(ngModel)]="setService.obj.AEDRate" type="text" mask="separator"
+        <input (keyup)="setService.updatePackagePrices()" [(ngModel)]="setService.obj.AEDRate" type="text" mask="separator"
           thousandSeparator=",">
       </div>
       <div>

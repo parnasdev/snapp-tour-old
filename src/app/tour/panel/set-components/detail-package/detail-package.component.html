@@ -4,15 +4,15 @@
         <h2 class="text-dark">اطلاعات پکیج</h2>
       </div>
       <div class="left">
-        <div class="selectdiv me-2">
-          <label>
+        <!-- <div class="selectdiv me-2"> -->
+          <!-- <label>
             <select (change)="sortPackages($event)">
               <option value="null">مرتب سازی بر اساس:</option>
               <option [value]="1">ارزان ترین قیمت</option>
               <option [value]="2">ستاره</option>
             </select>
-          </label>
-        </div>
+          </label> -->
+        <!-- </div> -->
       </div>
     </div>
     <div class="info-tour-body p-0">
@@ -70,8 +70,8 @@
           <div></div>
         </div>
 
-        <div class="example-list" cdkDropList (cdkDropListDropped)="drop($event)">
-          <div class="body-box example-box" *ngFor="let tour of packages; let i = index" cdkDrag>
+        <div class="example-list">
+          <div class="body-box example-box" *ngFor="let tour of setService.obj.packages; let i = index" cdkDrag>
             <div class="package-item id-package">
               <div class="icon-from-to">
                 <i class="icon-up-open"></i>
@@ -79,16 +79,16 @@
               </div>
             </div>
             <div class="package-item">
-              <prs-select-hotel [hotels]="hotels" [callHotel]="false" [type]="tourType" [isAdmin]="true"
-                                (hotelSelected)="hotelChange($event,i)"></prs-select-hotel>
+              <prs-select-hotel [hotels]="setService.hotels" [callHotel]="false" [type]="setService.obj.type" [isAdmin]="true"
+                                (hotelSelected)="setService.hotelChange($event,i)"></prs-select-hotel>
               <div class="parent-icon under-package d-flex align-items-center">
-                <i class="icon-star text-warning" *ngFor="let star of getStars(i)"></i>
+                <i class="icon-star text-warning" *ngFor="let star of setService.getStars(i)"></i>
               </div>
             </div>
             <div class="package-item">
               <div class="d-flex align-items-center w-100 parent-box-rate">
                 <div class="package-item rate-width" *ngIf="!setService.obj.type">
-                  <select (change)="setPackageRate($event, i)">
+                  <select (change)="setService.setPackageRate($event, i)">
                     <option *ngIf="setService.obj.dollarRate" [value]="3">دلار</option>
                     <option *ngIf="setService.obj.euroRate" [value]="2">یورو</option>
                     <option *ngIf="setService.obj.AEDRate" [value]="4">درهم</option>
@@ -96,7 +96,7 @@
                   </select>
                 </div>
                 <div class="package-item service-width">
-                  <select name="" id="" (change)="setPackageServices($event, i)">
+                  <select name="" id="" (change)="setService.setPackageServices($event, i)">
                     <option *ngFor="let service of services" [value]="service.id">{{service.name}}</option>
                   </select>
                 </div>
@@ -110,9 +110,9 @@
                        formControlName="twin"
                        mask="separator" thousandSeparator=","> -->
                 <div class="under-package-text d-flex align-items-center">
-                  <p>{{ getData(i).twinRate | sperator }}</p>
+                  <p>{{ setService.getData(i).twinRate | sperator }}</p>
                 </div>
-                <input type="text" (change)="setpackageCapacity($event, i, 'twinCapacity')" placeholder="موجودی" mask="separator"
+                <input type="text" (change)="setService.setpackageCapacity($event, i, 'twinCapacity')" placeholder="موجودی" mask="separator"
                        thousandSeparator=",">
               </div>
               <div class="package-item">
@@ -120,9 +120,9 @@
                        formControlName="triple"
                        mask="separator" thousandSeparator=","> -->
                 <div class="under-package-text">
-                  <p>{{ getData(i).tripleRate | sperator }}</p>
+                  <p>{{ setService.getData(i).tripleRate | sperator }}</p>
                 </div>
-                <input type="text" placeholder="موجودی" (change)="setpackageCapacity($event, i, 'tripleCapacity')" mask="separator"
+                <input type="text" placeholder="موجودی" (change)="setService.setpackageCapacity($event, i, 'tripleCapacity')" mask="separator"
                        thousandSeparator=",">
               </div>
               <div class="package-item">
@@ -130,23 +130,23 @@
                        formControlName="quad"
                        mask="separator" thousandSeparator=","> -->
                 <div class="under-package-text">
-                  <p>{{ getData(i).quadRate | sperator }}</p>
+                  <p>{{ setService.getData(i).quadRate | sperator }}</p>
                 </div>
-                <input type="text" placeholder="موجودی" (change)="setpackageCapacity($event, i, 'quadCapacity')" mask="separator"
+                <input type="text" placeholder="موجودی" (change)="setService.setpackageCapacity($event, i, 'quadCapacity')" mask="separator"
                        thousandSeparator=",">
               </div>
               <div class="package-item">
-                <input type="text" (change)="setpackageAge($event, i)">
+                <input type="text" (change)="setService.setpackageAge($event, i)">
               </div>
               <!-- <div class="package-item" *ngIf="form.value.defineTour == 'true'">
                 <input (keyup)="updatePackagePrices()" type="text" formControlName="ADLRate" mask="separator"
                        thousandSeparator=",">
               </div> -->
               <div class="package-item d-flex flex-row">
-                <input (change)="setpackageOffered($event, i)" class="offer-checkbox" type="checkbox">
+                <input (change)="setService.setpackageOffered($event, i)" class="offer-checkbox" type="checkbox">
               </div>
               <div style="flex-direction: row !important;" class="package-item">
-                <i class="icon-trash text-danger" (click)="removePackage(i)"></i>
+                <i class="icon-trash text-danger" (click)="setService.removePackage(i)"></i>
                 <img src="assets/img/FAQ.svg" width="18" class="ms-2" (click)="openRoomPopup(i)">
               </div>
             </ng-template>
@@ -158,9 +158,9 @@
                        formControlName="twin"
                        mask="separator" thousandSeparator=","> -->
                 <div class="under-package-text">
-                  <p>{{ getData(i).twinRate | sperator }}</p>
+                  <p>{{ setService.getData(i).twinRate | sperator }}</p>
                 </div>
-                <input type="text" (change)="setpackageCapacity($event, i, 'twinCapacity')" mask="separator" placeholder="موجودی"
+                <input type="text" (change)="setService.setpackageCapacity($event, i, 'twinCapacity')" mask="separator" placeholder="موجودی"
                        thousandSeparator=",">
               </div>
               <div class="package-item">
@@ -168,9 +168,9 @@
                        formControlName="single"
                        mask="separator" thousandSeparator=","> -->
                 <div class="under-package-text">
-                  <p>{{ getData(i).singleRate | sperator }}</p>
+                  <p>{{ setService.getData(i).singleRate | sperator }}</p>
                 </div>
-                <input type="text" placeholder="موجودی" (change)="setpackageCapacity($event, i, 'singleCapacity')" mask="separator"
+                <input type="text" placeholder="موجودی" (change)="setService.setpackageCapacity($event, i, 'singleCapacity')" mask="separator"
                        thousandSeparator=",">
 
               </div>
@@ -179,9 +179,9 @@
                        formControlName="cwb"
                        mask="separator" thousandSeparator=","> -->
                 <div class="under-package-text">
-                  <p>{{ getData(i).cwbRate | sperator }}</p>
+                  <p>{{ setService.getData(i).cwbRate | sperator }}</p>
                 </div>
-                <input type="text" placeholder="موجودی" (change)="setpackageCapacity($event, i, 'cwbCapacity')" mask="separator"
+                <input type="text" placeholder="موجودی" (change)="setService.setpackageCapacity($event, i, 'cwbCapacity')" mask="separator"
                        thousandSeparator=",">
 
               </div>
@@ -189,18 +189,18 @@
                 <input type="text" formControlName="cnb" mask="separator" thousandSeparator=",">
               </div> -->
               <div class="package-item">
-                <input placeholder="سن کودک" type="text" (change)="setpackageAge($event, i)">
+                <input placeholder="سن کودک" type="text" (change)="setService.setpackageAge($event, i)">
               </div>
               <!-- <div class="package-item" *ngIf="form.value.defineTour == 'true'">
                 <input (keyup)="updatePackagePrices()" type="text" formControlName="ADLRate" mask="separator"
                        thousandSeparator=",">
               </div> -->
               <div class="package-item d-flex flex-row">
-                <input (change)="setpackageOffered($event, i)" class="offer-checkbox" type="checkbox">
+                <input (change)="setService.setpackageOffered($event, i)" class="offer-checkbox" type="checkbox">
                 <!-- <input formControlName="pool" class="offer-checkbox" type="checkbox"> -->
               </div>
               <div style="flex-direction: row !important;" class="package-item">
-                <i class="icon-trash text-danger" (click)="removePackage(i)"></i>
+                <i class="icon-trash text-danger" (click)="setService.removePackage(i)"></i>
                 <img src="assets/img/FAQ.svg" width="18" (click)="openRoomPopup(i)">
               </div>
             </ng-template>
@@ -211,7 +211,7 @@
 
 
       <div class="package-item">
-        <a (click)="addRow(0)" class="btn-add-tour-fix">
+        <a (click)="setService.addRow(0)" class="btn-add-tour-fix">
           <i class="icon-plus-squared-alt"></i>
           <span>اضافه</span>
         </a>

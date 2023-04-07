@@ -72,6 +72,8 @@ export class BaseInfoComponent implements OnInit {
     this.setService.obj.type = cityItemSelected.type;
     this.setService.transferRates = [];
     this.setService.getTransferRates();
+    this.setService.obj.packages = [];
+    this.setService.getHotels();
 
 
   }
@@ -84,6 +86,7 @@ export class BaseInfoComponent implements OnInit {
   }
 
   changes() {
+    console.log(this.setService.obj);
     
   }
 
