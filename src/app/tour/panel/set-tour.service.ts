@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
+import { TransferRateAPIService } from 'src/app/Core/Https/transfer-rate-api.service';
 import { TourSetDTO } from 'src/app/Core/Models/tourDTO';
-
+import { TransferRateListDTO } from 'src/app/Core/Models/transferRateDTO';
+import { MessageService } from 'src/app/Core/Services/message.service';
+import * as moment from 'moment';
 @Injectable({
   providedIn: 'root'
 })
@@ -38,9 +41,11 @@ export class SetTourService {
     type: false,
     transferType: 1,
   }
+  transferRates: TransferRateListDTO[] = [];
 
 
-  constructor() { }
+  constructor(public transferTypeApi: TransferRateAPIService,
+    public message: MessageService) { }
 
 
 
@@ -55,9 +60,29 @@ export class SetTourService {
   }
 
 
+  getTransferRates(): void {
+    const req = {
+      departure_date: this.obj.stDate ?  moment(this.obj.stDate).format('YYYY-MM-DD'): null,
+      dest: this.obj.endCity_id,
+      origin: this.obj.stCity_id,
+      paginate: true,
+      return_date:this.obj.enDate? moment(this.obj.enDate).format('YYYY-MM-DD') : null
+    }
+    this.transferTypeApi.getTransfers(req).subscribe((res: any) => {
+      if (res.isDone) {
+        this.transferRates = res.data;
+      } else {
+        this.message.custom(res.message);
+      }
+    }, (error: any) => {
+      this.message.error()
+    })
+  }
 
 
-  removeRequestObject():void {
+
+
+  removeRequestObject(): void {
     this.obj = {
       title: '',
       slug: '',

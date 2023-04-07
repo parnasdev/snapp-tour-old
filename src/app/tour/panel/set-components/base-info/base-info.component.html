@@ -1,7 +1,7 @@
 <div class="box-info-tour">
     <div class="info-tour-header">
       <div class="right">
-        <label for="">{{tourType ? 'تور داخلی' : 'تور خارجی'}}</label>
+        <label for="">{{setService.obj.type ? 'تور داخلی' : 'تور خارجی'}}</label>
         <h2 class="text-dark">اطلاعات تور</h2>
       </div>
       <div *ngIf="session.getRole() === 'Admin'" class="checkbox d-flex align-content-center">
@@ -98,7 +98,7 @@
         <div class="item-info">
           <label for="">تاریخ ورود به هتل</label>
           <mat-form-field class="example-full-width" appearance="fill">
-            <input matInput [matDatepicker]="picker1" [(ngModel)]="setService.obj.stDate" [min]="minDate"
+            <input matInput [matDatepicker]="picker1" (dateChange)="dateChanged()" [(ngModel)]="setService.obj.stDate" [min]="minDate"
                    (click)="picker1.open()">
             <mat-datepicker #picker1></mat-datepicker>
           </mat-form-field>
@@ -107,7 +107,7 @@
         <div class="item-info">
           <label for="">تاریخ خروج از هتل</label>
           <mat-form-field class="example-full-width" appearance="fill">
-            <input matInput [(ngModel)]="setService.obj.enDate" [matDatepicker]="picker2" [min]="minDate"
+            <input matInput (dateChange)="dateChanged()" [(ngModel)]="setService.obj.enDate" [matDatepicker]="picker2" [min]="minDate"
                    (click)="picker2.open()">
             <mat-datepicker #picker2></mat-datepicker>
           </mat-form-field>

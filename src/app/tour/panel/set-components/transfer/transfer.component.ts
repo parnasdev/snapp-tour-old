@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { TransferAPIService } from 'src/app/Core/Https/transfer-api.service';
 import { TransferRateAPIService } from 'src/app/Core/Https/transfer-rate-api.service';
 import { TransferListRequestDTO } from 'src/app/Core/Models/transferDTO';
-import { TransferRateListDTO } from 'src/app/Core/Models/transferRateDTO';
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
 import { MessageService } from 'src/app/Core/Services/message.service';
 import { SetTourService } from '../../set-tour.service';
@@ -14,7 +13,6 @@ import { SetTourService } from '../../set-tour.service';
 })
 export class TransferComponent implements OnInit {
   airlines: any[] = []
-  transferRates: TransferRateListDTO[] = [];
   transferIds: number[] = [];
 
   constructor(
@@ -28,10 +26,8 @@ export class TransferComponent implements OnInit {
 
   ngOnInit() {
     this.getTransfer();
-    this.getTransferRates();
-
+    this.setService.transferRates = [];
   }
-
 
   changeTransferRates(id: number) {
     if (!this.transferIds.find(x => x == id)) {
@@ -58,22 +54,5 @@ export class TransferComponent implements OnInit {
       this.message.error()
     })
   }
-  getTransferRates(): void {
-    const req = {
-      departure_date: null,
-      dest: null,
-      origin: null,
-      paginate: true,
-      return_date: null
-    }
-    this.transferRateApi.getTransfers(req).subscribe((res: any) => {
-      if (res.isDone) {
-        this.transferRates = res.data;
-      } else {
-        this.message.custom(res.message);
-      }
-    }, (error: any) => {
-      this.message.error()
-    })
-  }
+
 }
