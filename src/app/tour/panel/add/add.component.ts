@@ -302,18 +302,6 @@ export class AddComponent implements OnInit {
       nightNum: this.form.value.nightNum,
       offered: this.form.value.offered,
       dayNum: (+this.form.value.nightNum) + 1,
-      // transfers: [
-      //   {
-      //     transfer_id: this.originTransferFC.value,
-      //     flightCode: this.originFlightCodeFC.value,
-      //     dateTime: this.calenderServices.convertDateSpecial(this.originDateFC.value, 'en') + ' ' + this.originTime,
-      //     type: 'origin',
-      //   }, {
-      //     transfer_id: this.destTransferFC.value,
-      //     flightCode: this.destFlightCodeFC.value,
-      //     dateTime: this.calenderServices.convertDateSpecial(this.destDateFC.value, 'en') + ' ' + this.destTime,
-      //     type: 'destination',
-      //   },],
       transferIds: this.transferIds,
       enDate: this.calenderServices.convertDateSpecial(this.form.value.enDate, 'en'),
       expireDate: this.calenderServices.convertDateSpecial(this.form.value.expireDate, 'en'),

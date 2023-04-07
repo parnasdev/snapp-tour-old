@@ -386,3 +386,38 @@ export interface RoomDTO {
   price: number;
   supply: number
 }
+
+
+export interface TourSetDTO {
+  title: string;
+  slug: string;
+  stCity_id: string;
+  endCity_id: string;
+  nightNum: string;
+  dayNum: string;
+  transferType: number;
+  offered: false;
+  TransferType: string;
+  transferIds: number[]
+  enDate: string;
+  stDate: string;
+  type: boolean;
+  expireDate: string;
+  CHDFlightRate: string;
+  ADLFlightRate: string;
+  defineTour: string;
+  euroRate: string;
+  dollarRate: string;
+  AEDRate: string;
+  visaRate: string;
+  visaPriceType: number;
+  insuranceRate: string;
+  transferPriceType: number
+  transferRate: string;
+  insurancePriceType: number
+  services: string;
+  documents: string;
+  description: string;
+  status: string;
+  packages: any[]
+}
