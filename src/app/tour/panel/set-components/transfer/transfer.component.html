@@ -17,7 +17,7 @@
     </div>
     <div class="info-tour-body-2">
       <div class="item" *ngFor="let item of setService.transferRates">
-        <input type="checkbox" (change)="changeTransferRates(item.id)">
+        <mat-checkbox [(ngModel)]="item.isChecked" (ngModelChange)="changeTransferRates()"></mat-checkbox>
         <span>{{ item.origin.name }} - {{ item.destination.name }}</span>
         <span>{{ item.destination_transfer.name }} - {{ item.origin_transfer.name }}</span>
         <span>{{ this.calenderServices.convertDate(item.departure_date, 'fa') }}</span>

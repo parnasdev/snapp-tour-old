@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { TransferRateAPIService } from 'src/app/Core/Https/transfer-rate-api.service';
-import { hotelRates, newTourPackageDTO, TourSetDTO } from 'src/app/Core/Models/tourDTO';
+import { hotelRates, newTourPackageDTO, TourInfoDTO, TourSetDTO } from 'src/app/Core/Models/tourDTO';
 import { TransferRateListDTO } from 'src/app/Core/Models/transferRateDTO';
 import { MessageService } from 'src/app/Core/Services/message.service';
 import * as moment from 'moment';
 import { HotelListResponseDTO, HotelRequestDTO } from 'src/app/Core/Models/hotelDTO';
 import { HotelApiService } from 'src/app/Core/Https/hotel-api.service';
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
+import { TourApiService } from 'src/app/Core/Https/tour-api.service';
 @Injectable({
   providedIn: 'root'
 })
 export class SetTourService {
-  obj: TourSetDTO = {
+  infoLoading = false
+  obj: TourSetDTO  = {
     title: '',
     slug: '',
     stCity_id: '',
@@ -19,6 +21,7 @@ export class SetTourService {
     nightNum: '1',
     dayNum: '',
     offered: false,
+    transfers: [],
     TransferType: '',
     enDate: '',
     stDate: '',
@@ -44,13 +47,63 @@ export class SetTourService {
     type: false,
     transferType: 1,
   }
+
+
+  // {
+  //   ADLFlightRate  : '',
+  //   AEDRate  : 0,
+  //   CHDFlightRate  : '',
+  //   capacity  : 0,
+  //   category  : "",
+  //   current_capacity  : 0,
+  //   dayNum  : 0,
+  //   defineTour  : false,
+  //   description  : '',
+  //   documents  : '',
+  //   dollarRate  : 0,
+  //   enDate  : '',
+  //   endCity  : null,
+  //   euroRate  : 0,
+  //   expireDate  :'',
+  //   insurancePriceType  : 0,
+  //   insuranceRate  : 0,
+  //   loan  : 0,
+  //   loan_month  : 0,
+  //   loan_percent  : 0,
+  //   minPrice  : 0,
+  //   newTransfers  : [],
+  //   nightNum  : 0,
+  //   offered  : false,
+  //   packages  : [],
+  //   services  : '',
+  //   slug  : '',
+  //   stCity  : null,
+  //   stDate  : '',
+  //   status  : '',
+  //   title  : '',
+  //   totalPrice  : 0,
+  //   tours  : [],
+  //   transferPriceType  : 0,
+  //   transferRate  : 0,
+  //   transferType  : 0,
+  //   transfers  : [],
+  //   type  : true,
+  //   user  : null,
+  //   viewCount  : null,
+  //   visaPriceType  : 0,
+  //   visaRate  : 0,
+  // };
+
+
   transferRates: TransferRateListDTO[] = [];
   hotels: HotelListResponseDTO[] = [];
   hotelRates: hotelRates[] = []
 
 
-  constructor(public transferTypeApi: TransferRateAPIService,
+  constructor(
+    public transferTypeApi: TransferRateAPIService,
     public hotelApi: HotelApiService,
+    public tourApi: TourApiService,
     public calenderServices: CalenderServices,
     public message: MessageService) { }
 
@@ -67,24 +120,7 @@ export class SetTourService {
   }
 
 
-  getTransferRates(): void {
-    const req = {
-      departure_date: this.obj.stDate ? moment(this.obj.stDate).format('YYYY-MM-DD') : null,
-      dest: this.obj.endCity_id,
-      origin: this.obj.stCity_id,
-      paginate: true,
-      return_date: this.obj.enDate ? moment(this.obj.enDate).format('YYYY-MM-DD') : null
-    }
-    this.transferTypeApi.getTransfers(req).subscribe((res: any) => {
-      if (res.isDone) {
-        this.transferRates = res.data;
-      } else {
-        this.message.custom(res.message);
-      }
-    }, (error: any) => {
-      this.message.error()
-    })
-  }
+
 
 
 
@@ -100,6 +136,7 @@ export class SetTourService {
       offered: false,
       TransferType: '',
       enDate: '',
+      transfers: [],
       stDate: '',
       expireDate: '',
       CHDFlightRate: '',
@@ -125,24 +162,7 @@ export class SetTourService {
     }
   }
 
-  getHotels(): void {
-    const req: HotelRequestDTO = {
-      isAdmin: true,
-      paginate: false,
-      city: this.obj.endCity_id,
-      search: null,
-    }
-    this.hotelApi.getHotels(req).subscribe((res: any) => {
-      if (res.isDone) {
-        this.hotels = res.data;
-        if (this.hotels.length > 0) {
-          this.addRow(this.hotels[0].id);
-        }
-      }
-    }, (error: any) => {
-      this.message.error();
-    })
-  }
+
   addRow(hotel_id: number) {
     const item: newTourPackageDTO = {
       parent: null,
@@ -228,7 +248,7 @@ export class SetTourService {
 
   setpackageCapacity(value: any, index: number, name: string) {
     console.log(value.target.value);
-    
+
     this.obj.packages[index][name] = value.target.value;
   }
 

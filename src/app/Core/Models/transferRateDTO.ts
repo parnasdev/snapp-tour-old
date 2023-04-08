@@ -43,6 +43,7 @@ export interface TransferRateListDTO {
   origin_transfer_number: string;
   return_date: string;
   return_time: string;
+  isChecked?: boolean;
   user: null
 }
 

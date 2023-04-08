@@ -53,7 +53,7 @@ export class TourApiService {
     return this.http.delete<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
   }
 
-  getTour(title: string, view: boolean = false): any {
+  getTour(title: string | null, view: boolean = false): any {
     let strUrl = ''
     if (view) {
       strUrl = this.serverControllerName + `getTour/${title}?view=true`;

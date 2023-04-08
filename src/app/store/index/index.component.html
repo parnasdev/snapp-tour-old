@@ -4,6 +4,51 @@
 <!--end-->
 <!-- <prs-special-tour></prs-special-tour> -->
 <!--end-->
+<!--sort-city-->
+<section class="sort-city">
+  <div class="prs-responsive">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-11 m-auto sort-city-parent">
+          <div class="title-sort-swiper">
+            <div class="top">
+              <div class="new-tour">
+                <img src="assets/img/Bookmark.svg" width="17" alt="">
+                <div class="text">
+                  <h3>نمایش تور بر اساس شهر</h3>
+                  <span>مشاهده مناسب ترین تور های لحظه آخری برای شما</span>
+                </div>
+              </div>
+            </div>
+            <div class="bottom">
+              <div class="border-right"></div>
+              <div class="border-left"></div>
+            </div>
+          </div>
+          <swiper class="swiper-sort-city" [slidesPerView]=" this.isMobile? 1.7 :(isTablet ? 3:5.5)" [navigation]="true"
+            [spaceBetween]="this.isMobile?20:(isTablet?20:0)">
+            <ng-template swiperSlide *ngFor="let city of cities">
+              <div class="box-sort-tour-city">
+                <div class="img-sort-tour-city" routerLink="/{{ 'تور' + '-' +city.slug}}">
+                  <div class="info-img-sort-tour-city animated fadeInDown">
+                    <img class="img-hover-child" src="assets/img/Attachment%201.svg" width="30" alt="">
+                    <a class="view-details-more">مشاهده جزئیات بیشتر</a>
+                  </div>
+                  <img [src]="city.image" alt="">
+                </div>
+                <div class="text-sort-tour-city">
+                  <span style="cursor: pointer" routerLink="/{{ 'تور' + '-' +city.slug}}">تور {{city.name}}</span>
+                </div>
+              </div>
+            </ng-template>
+          </swiper>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--end-->
 <section class="tour-special">
   <div class="prs-responsive">
     <div class="container-fluid">
@@ -41,7 +86,7 @@
                   {{ hotel.hotel.name }}
                 </a>
               </h2>
-              <small class="price-start">شروع قیمت :</small>
+              <small class="price-start">شروع قیمت تور از :</small>
               <div class="price">
                 <strong>{{ getStarterPrice(i) | round| sperator}}</strong>
                 <small>تومان</small>
@@ -145,51 +190,7 @@
 </section>
 <!--end-->
 
-<!--sort-city-->
-<section class="sort-city">
-  <div class="prs-responsive">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-11 m-auto sort-city-parent">
-          <div class="title-sort-swiper">
-            <div class="top">
-              <div class="new-tour">
-                <img src="assets/img/Bookmark.svg" width="17" alt="">
-                <div class="text">
-                  <h3>نمایش تور بر اساس شهر</h3>
-                  <span>مشاهده مناسب ترین تور های لحظه آخری برای شما</span>
-                </div>
-              </div>
-            </div>
-            <div class="bottom">
-              <div class="border-right"></div>
-              <div class="border-left"></div>
-            </div>
-          </div>
-          <swiper class="swiper-sort-city" [slidesPerView]=" this.isMobile? 1.7 :(isTablet ? 3:5.5)" [navigation]="true"
-            [spaceBetween]="this.isMobile?20:(isTablet?20:0)">
-            <ng-template swiperSlide *ngFor="let city of cities">
-              <div class="box-sort-tour-city">
-                <div class="img-sort-tour-city" routerLink="/{{ 'تور' + '-' +city.slug}}">
-                  <div class="info-img-sort-tour-city animated fadeInDown">
-                    <img class="img-hover-child" src="assets/img/Attachment%201.svg" width="30" alt="">
-                    <a class="view-details-more">مشاهده جزئیات بیشتر</a>
-                  </div>
-                  <img [src]="city.image" alt="">
-                </div>
-                <div class="text-sort-tour-city">
-                  <span style="cursor: pointer" routerLink="/{{ 'تور' + '-' +city.slug}}">تور {{city.name}}</span>
-                </div>
-              </div>
-            </ng-template>
-          </swiper>
 
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!--end-->
 
 
 <section class="snapp-logo">

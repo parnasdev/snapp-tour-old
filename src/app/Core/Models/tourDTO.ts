@@ -93,7 +93,7 @@ export interface TourInfoDTO {
   AEDRate: number;
   CHDFlightRate: string;
   ADLFlightRate: string;
-  TransferType: string;
+  transferType: string;
   dayNum: number;
   minPrice: string
   defineTour: boolean;
@@ -107,7 +107,7 @@ export interface TourInfoDTO {
   insurancePriceType: number;
   insuranceRate: number;
   nightNum: number;
-  offered: null
+  offered: boolean
   packages: TourPackageDTO[];
   services: string;
   slug: string;
@@ -396,7 +396,8 @@ export interface TourSetDTO {
   nightNum: string;
   dayNum: string;
   transferType: number;
-  offered: false;
+  transfers: any[]
+  offered: boolean;
   TransferType: string;
   transferIds: number[]
   enDate: string;
