@@ -39,7 +39,6 @@
             ظرفیت
           </div>
           <div class="package-item">سن کودک</div>
-          <!-- <div class="package-item" *ngIf="form.value.defineTour == 'true'">نرخ بزرگسال</div> -->
           <div class="package-item">آفر ویژه</div>
           <div></div>
         </div>
@@ -65,13 +64,12 @@
           </div>
           <!-- <div class="package-item">کودک بدون تخت</div> -->
           <div class="package-item">سن کودک</div>
-          <!-- <div class="package-item" *ngIf="form.value.defineTour == 'true'">نرخ بزرگسال</div> -->
           <div class="package-item">آفر ویژه</div>
           <div></div>
         </div>
 
         <div class="example-list">
-          <div class="body-box example-box" *ngFor="let tour of setService.obj.packages; let i = index" cdkDrag>
+          <div class="body-box example-box" *ngFor="let tour of setService.obj.packages; let i = index">
             <div class="package-item id-package">
               <div class="icon-from-to">
                 <i class="icon-up-open"></i>
@@ -106,9 +104,6 @@
             <!-- local tour -->
             <ng-template class="body-local" [ngIf]="setService.obj.type">
               <div class="package-item">
-                <!-- <input placeholder="قیمت (تومان)" (keyup)="calculatePrice('twin', $event, true, i)" type="text"
-                       formControlName="twin"
-                       mask="separator" thousandSeparator=","> -->
                 <div class="under-package-text d-flex align-items-center">
                   <p>{{ setService.getData(i).twinRate | sperator }}</p>
                 </div>
@@ -116,9 +111,6 @@
                        thousandSeparator=",">
               </div>
               <div class="package-item">
-                <!-- <input placeholder="قیمت (تومان)" (keyup)="calculatePrice('triple', $event, true, i)" type="text"
-                       formControlName="triple"
-                       mask="separator" thousandSeparator=","> -->
                 <div class="under-package-text">
                   <p>{{ setService.getData(i).tripleRate | sperator }}</p>
                 </div>
@@ -126,9 +118,6 @@
                        thousandSeparator=",">
               </div>
               <div class="package-item">
-                <!-- <input placeholder="قیمت (تومان)" (keyup)="calculatePrice('quad', $event, true, i)" type="text"
-                       formControlName="quad"
-                       mask="separator" thousandSeparator=","> -->
                 <div class="under-package-text">
                   <p>{{ setService.getData(i).quadRate | sperator }}</p>
                 </div>
@@ -138,10 +127,6 @@
               <div class="package-item">
                 <input type="text" (change)="setService.setpackageAge($event, i)">
               </div>
-              <!-- <div class="package-item" *ngIf="form.value.defineTour == 'true'">
-                <input (keyup)="updatePackagePrices()" type="text" formControlName="ADLRate" mask="separator"
-                       thousandSeparator=",">
-              </div> -->
               <div class="package-item d-flex flex-row">
                 <input (change)="setService.setpackageOffered($event, i)" class="offer-checkbox" type="checkbox">
               </div>
@@ -154,9 +139,6 @@
             <!-- foreign tour -->
             <ng-template class="body-foreign" [ngIf]="!setService.obj.type">
               <div class="package-item">
-                <!-- <input placeholder="قیمت (تومان)" (keyup)="calculatePrice('twin', $event, true, i)" type="text"
-                       formControlName="twin"
-                       mask="separator" thousandSeparator=","> -->
                 <div class="under-package-text">
                   <p>{{ setService.getData(i).twinRate | sperator }}</p>
                 </div>
@@ -164,9 +146,6 @@
                        thousandSeparator=",">
               </div>
               <div class="package-item">
-                <!-- <input placeholder="قیمت (تومان)" (keyup)="calculatePrice('single', $event, true, i)" type="text"
-                       formControlName="single"
-                       mask="separator" thousandSeparator=","> -->
                 <div class="under-package-text">
                   <p>{{ setService.getData(i).singleRate | sperator }}</p>
                 </div>
@@ -175,9 +154,6 @@
 
               </div>
               <div class="package-item">
-                <!-- <input (keyup)="calculatePrice('cwb', $event, false, i)" placeholder="قیمت (تومان)" type="text"
-                       formControlName="cwb"
-                       mask="separator" thousandSeparator=","> -->
                 <div class="under-package-text">
                   <p>{{ setService.getData(i).cwbRate | sperator }}</p>
                 </div>
@@ -185,16 +161,9 @@
                        thousandSeparator=",">
 
               </div>
-              <!-- <div class="package-item">
-                <input type="text" formControlName="cnb" mask="separator" thousandSeparator=",">
-              </div> -->
               <div class="package-item">
                 <input placeholder="سن کودک" type="text" (change)="setService.setpackageAge($event, i)">
               </div>
-              <!-- <div class="package-item" *ngIf="form.value.defineTour == 'true'">
-                <input (keyup)="updatePackagePrices()" type="text" formControlName="ADLRate" mask="separator"
-                       thousandSeparator=",">
-              </div> -->
               <div class="package-item d-flex flex-row">
                 <input (change)="setService.setpackageOffered($event, i)" class="offer-checkbox" type="checkbox">
                 <!-- <input formControlName="pool" class="offer-checkbox" type="checkbox"> -->
@@ -208,7 +177,6 @@
           </div>
         </div>
       </div>
-
 
       <div class="package-item">
         <a (click)="setService.addRow(0)" class="btn-add-tour-fix">

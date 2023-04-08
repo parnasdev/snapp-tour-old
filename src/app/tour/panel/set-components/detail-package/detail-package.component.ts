@@ -30,12 +30,9 @@ export class DetailPackageComponent implements OnInit {
   isMobile;
   isLoading = false;
 
-
   services: GetServiceRequestDTO[] = []
 
   ratePricesFC = new FormControl('1');
-
-
 
   constructor(
     public setService:SetTourService,
@@ -59,11 +56,8 @@ export class DetailPackageComponent implements OnInit {
     this.isMobile = mobileService.isMobile();
   }
 
-
-
   ngOnInit() {
     this.getService();
-    // this.getHotels();
   }
 
   isEmpty(obj: any) {
@@ -75,11 +69,6 @@ export class DetailPackageComponent implements OnInit {
     return JSON.stringify(obj) === JSON.stringify({});
   }
 
-
-
-
-
-
   getService(): void {
     this.commonApi.getServices().subscribe((res: any) => {
       if (res.isDone) {
@@ -89,10 +78,6 @@ export class DetailPackageComponent implements OnInit {
     })
   }
 
-
-
-
-
   clean(obj: any): void {
     for (var propName in obj) {
       if (obj[propName] === null || obj[propName] === undefined) {
@@ -101,9 +86,6 @@ export class DetailPackageComponent implements OnInit {
     }
     return obj
   }
-
-
-
 
   openRoomPopup(index: number) {
     // @ts-ignore
@@ -139,7 +121,5 @@ export class DetailPackageComponent implements OnInit {
       return false;
     }
   }
-
-  
 
 }
