@@ -72,6 +72,8 @@ export class EditComponent implements OnInit {
           this.getTransferRates()
           this.getHotels()
         }
+        this.infoLoading = false;
+
       }, (error: any) => {
         this.infoLoading = false
         this.message.error()

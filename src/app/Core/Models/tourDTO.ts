@@ -406,7 +406,7 @@ export interface TourSetDTO {
   expireDate: string;
   CHDFlightRate: string;
   ADLFlightRate: string;
-  defineTour: string;
+  defineTour: boolean;
   euroRate: string;
   dollarRate: string;
   AEDRate: string;

@@ -1,4 +1,4 @@
-<div class="box-info-package" *ngIf="setService.obj.defineTour == 'true' ">
+<div class="box-info-package" *ngIf="setService.obj.defineTour == true ">
   <div class="info-tour-header">
     <div class="right">
       <h2 class="text-dark">اطلاعات پکیج</h2>
@@ -93,7 +93,7 @@
                 </select>
               </div>
               <div class="package-item service-width">
-                <select name="" id="" (change)="setService.setPackageServices($event, i)">
+                <select (change)="setService.setPackageServices($event, i)">
                   <option *ngFor="let service of services" [value]="service.id">{{service.name}}</option>
                 </select>
               </div>
@@ -124,10 +124,12 @@
                 (change)="setService.setpackageCapacity($event, i, 'quadCapacity')">
             </div>
             <div class="package-item">
-              <input type="text" (change)="setService.setpackageAge($event, i)">
+              <input type="text" [value]="setService.getData(i).prices.age" (change)="setService.setpackageAge($event, i)">
             </div>
             <div class="package-item d-flex flex-row">
-              <input (change)="setService.setpackageOffered($event, i)" class="offer-checkbox" type="checkbox">
+              <input (change)="setService.setpackageOffered($event, i)"
+              [value]="setService.getData(i).prices.offered === 'true' ? true : false"
+              class="offer-checkbox" type="checkbox">
             </div>
             <div style="flex-direction: row !important;" class="package-item">
               <i class="icon-trash text-danger" (click)="setService.removePackage(i)"></i>
@@ -159,15 +161,16 @@
                 (change)="setService.setpackageCapacity($event, i, 'cwbCapacity')">
             </div>
             <div class="package-item">
-              <input placeholder="سن کودک"
-              [value]="setService.getData(i).prices.age"
+              <input 
+              placeholder="سن کودک"
+              [value]="setService.getData(i).prices.age" 
               type="text"
               (change)="setService.setpackageAge($event, i)">
             </div>
             <div class="package-item d-flex flex-row">
-              <input (change)="setService.setpackageOffered($event, i)" 
+              <input (change)="setService.setpackageOffered($event, i)"
                [value]="setService.getData(i).prices.offered"
-              class="offer-checkbox" type="checkbox">
+                class="offer-checkbox" type="checkbox">
               <!-- <input formControlName="pool" class="offer-checkbox" type="checkbox"> -->
             </div>
             <div style="flex-direction: row !important;" class="package-item">
