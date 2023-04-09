@@ -27,8 +27,6 @@ export class BaseInfoComponent implements OnInit {
   tourType = false;
   isSlugGenerated = false;
 
-
-
   constructor(
     public cityApi: CityApiService,
     public setService:SetTourService,

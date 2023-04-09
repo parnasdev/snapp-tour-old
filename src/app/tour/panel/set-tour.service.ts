@@ -7,12 +7,10 @@ import * as moment from 'moment';
 import { HotelListResponseDTO, HotelRequestDTO } from 'src/app/Core/Models/hotelDTO';
 import { HotelApiService } from 'src/app/Core/Https/hotel-api.service';
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
-import { TourApiService } from 'src/app/Core/Https/tour-api.service';
 @Injectable({
   providedIn: 'root'
 })
 export class SetTourService {
-  infoLoading = false
   obj: TourSetDTO  = {
     title: '',
     slug: '',
@@ -47,63 +45,14 @@ export class SetTourService {
     type: false,
     transferType: 1,
   }
-
-
-  // {
-  //   ADLFlightRate  : '',
-  //   AEDRate  : 0,
-  //   CHDFlightRate  : '',
-  //   capacity  : 0,
-  //   category  : "",
-  //   current_capacity  : 0,
-  //   dayNum  : 0,
-  //   defineTour  : false,
-  //   description  : '',
-  //   documents  : '',
-  //   dollarRate  : 0,
-  //   enDate  : '',
-  //   endCity  : null,
-  //   euroRate  : 0,
-  //   expireDate  :'',
-  //   insurancePriceType  : 0,
-  //   insuranceRate  : 0,
-  //   loan  : 0,
-  //   loan_month  : 0,
-  //   loan_percent  : 0,
-  //   minPrice  : 0,
-  //   newTransfers  : [],
-  //   nightNum  : 0,
-  //   offered  : false,
-  //   packages  : [],
-  //   services  : '',
-  //   slug  : '',
-  //   stCity  : null,
-  //   stDate  : '',
-  //   status  : '',
-  //   title  : '',
-  //   totalPrice  : 0,
-  //   tours  : [],
-  //   transferPriceType  : 0,
-  //   transferRate  : 0,
-  //   transferType  : 0,
-  //   transfers  : [],
-  //   type  : true,
-  //   user  : null,
-  //   viewCount  : null,
-  //   visaPriceType  : 0,
-  //   visaRate  : 0,
-  // };
-
-
+  
   transferRates: TransferRateListDTO[] = [];
   hotels: HotelListResponseDTO[] = [];
   hotelRates: hotelRates[] = []
 
 
-  constructor(
-    public transferTypeApi: TransferRateAPIService,
+  constructor(public transferTypeApi: TransferRateAPIService,
     public hotelApi: HotelApiService,
-    public tourApi: TourApiService,
     public calenderServices: CalenderServices,
     public message: MessageService) { }
 
@@ -120,7 +69,24 @@ export class SetTourService {
   }
 
 
-
+  getTransferRates(): void {
+    const req = {
+      departure_date: this.obj.stDate ? moment(this.obj.stDate).format('YYYY-MM-DD') : null,
+      dest: this.obj.endCity_id,
+      origin: this.obj.stCity_id,
+      paginate: true,
+      return_date: this.obj.enDate ? moment(this.obj.enDate).format('YYYY-MM-DD') : null
+    }
+    this.transferTypeApi.getTransfers(req).subscribe((res: any) => {
+      if (res.isDone) {
+        this.transferRates = res.data;
+      } else {
+        this.message.custom(res.message);
+      }
+    }, (error: any) => {
+      this.message.error()
+    })
+  }
 
 
 
@@ -162,40 +128,54 @@ export class SetTourService {
     }
   }
 
-
+  getHotels(): void {
+    const req: HotelRequestDTO = {
+      isAdmin: true,
+      paginate: false,
+      city: this.obj.endCity_id,
+      search: null,
+    }
+    this.hotelApi.getHotels(req).subscribe((res: any) => {
+      if (res.isDone) {
+        this.hotels = res.data;
+        if (this.hotels.length > 0) {
+          this.addRow(this.hotels[0].id);
+        }
+      }
+    }, (error: any) => {
+      this.message.error();
+    })
+  }
   addRow(hotel_id: number) {
     const item: newTourPackageDTO = {
-      parent: null,
-      user_id: 0,
-      order_item: 0,
       hotel_id: hotel_id,
       services: '',
-      rate: '',
-      discountsTwin: '',
-      discountsSingle: '',
-      discountsCwb: '',
-      discountsCnb: '',
-      twin: '',
-      single: '',
-      cwb: '',
-      cnb: '',
-      quad: '',
-      triple: '',
-      twinCapacity: '',
-      singleCapacity: '',
-      cwbCapacity: '',
-      quadCapacity: '',
-      tripleCapacity: '',
-      twinRate: '',
-      singleRate: '',
-      cwbRate: '',
-      cnbRate: '',
-      quadRate: '',
-      tripleRate: '',
-      age: '',
       offered: false,
-      status: '',
-      roomType: []
+      rate: 1,
+      order_item: 0,
+      prices: {
+        twin: '',
+        single: '',
+        cwb: '',
+        cnb: '',
+        quad: '',
+        triple: '',
+        twinCapacity: '',
+        singleCapacity: '',
+        cwbCapacity: '',
+        quadCapacity: '',
+        tripleCapacity: '',
+        twinRate: '',
+        singleRate: '',
+        cwbRate: '',
+        cnbRate: '',
+        quadRate: '',
+        roomType: [],
+        tripleRate: '',
+        ADLRate: '',
+        age: '',
+      },
+      status: 'Show'
     };
     this.obj.packages.push(item);
   }
@@ -207,11 +187,11 @@ export class SetTourService {
     const visaPrice = (this.obj.visaRate ? (+this.obj.visaRate) * this.checkVisaRatePrice() : 0);
     const transferPrice = (this.obj.transferRate ? (+this.obj.transferRate) * this.checkTransferRatePrice() : 0);
 
-    this.obj.packages[i].singleRate = (this.getPrice(this.getHotelRatePrice('single'), i) + insurancePrice + visaPrice + transferPrice).toString();
-    this.obj.packages[i].twinRate = (this.getPrice(this.getHotelRatePrice('twin'), i) + insurancePrice + visaPrice + transferPrice).toString();
-    this.obj.packages[i].tripleRate = (this.getPrice(this.getHotelRatePrice('triple'), i) + insurancePrice + visaPrice + transferPrice).toString();
-    this.obj.packages[i].quadRate = (this.getPrice(this.getHotelRatePrice('quad'), i) + insurancePrice + visaPrice + transferPrice).toString();
-    this.obj.packages[i].cwbRate = (this.getPrice(this.getHotelRatePrice('cwb'), i) + insurancePrice + visaPrice + transferPrice).toString();
+    this.obj.packages[i].prices.singleRate = (this.getPrice(this.getHotelRatePrice('single'), i) + insurancePrice + visaPrice + transferPrice).toString();
+    this.obj.packages[i].prices.twinRate = (this.getPrice(this.getHotelRatePrice('twin'), i) + insurancePrice + visaPrice + transferPrice).toString();
+    this.obj.packages[i].prices.tripleRate = (this.getPrice(this.getHotelRatePrice('triple'), i) + insurancePrice + visaPrice + transferPrice).toString();
+    this.obj.packages[i].prices.quadRate = (this.getPrice(this.getHotelRatePrice('quad'), i) + insurancePrice + visaPrice + transferPrice).toString();
+    this.obj.packages[i].prices.cwbRate = (this.getPrice(this.getHotelRatePrice('cwb'), i) + insurancePrice + visaPrice + transferPrice).toString();
   }
 
   updatePackagePrices() {
@@ -223,15 +203,15 @@ export class SetTourService {
       // const ADLRate = item.value.ADLRate ? +item.value.ADLRate.split(',').join('') : 0;
       // const CHDFlightRate = this.obj.CHDFlightRate ? +this.obj.CHDFlightRate?.split(',').join('') : 0;
 
-      item.twinRate = ((this.getPrice(this.getHotelRatePrice('twin'), index) + insurancePrice + visaPrice + transferPrice).toString());
+      item.prices.twinRate = ((this.getPrice(this.getHotelRatePrice('twin'), index) + insurancePrice + visaPrice + transferPrice).toString());
 
-      item.singleRate = ((this.getPrice(this.getHotelRatePrice('single'), index) + insurancePrice + visaPrice + transferPrice).toString());
+      item.prices.singleRate = ((this.getPrice(this.getHotelRatePrice('single'), index) + insurancePrice + visaPrice + transferPrice).toString());
 
-      item.cwbRate = ((this.getPrice(this.getHotelRatePrice('cwb'), index) + insurancePrice + visaPrice + transferPrice).toString());
+      item.prices.cwbRate = ((this.getPrice(this.getHotelRatePrice('cwb'), index) + insurancePrice + visaPrice + transferPrice).toString());
 
-      item.quadRate = ((this.getPrice(this.getHotelRatePrice('quad'), index) + insurancePrice + visaPrice + transferPrice).toString());
+      item.prices.quadRate = ((this.getPrice(this.getHotelRatePrice('quad'), index) + insurancePrice + visaPrice + transferPrice).toString());
 
-      item.tripleRate = ((this.getPrice(this.getHotelRatePrice('triple'), index) + insurancePrice + visaPrice + transferPrice).toString());
+      item.prices.tripleRate = ((this.getPrice(this.getHotelRatePrice('triple'), index) + insurancePrice + visaPrice + transferPrice).toString());
       // + نرخ افزایشس کاهشی
     });
   }
@@ -243,17 +223,18 @@ export class SetTourService {
   }
 
   setPackageServices(value: any, index: number) {
+    debugger
     this.obj.packages[index].services = value.target.value;
   }
 
   setpackageCapacity(value: any, index: number, name: string) {
     console.log(value.target.value);
-
-    this.obj.packages[index][name] = value.target.value;
+    
+    this.obj.packages[index].prices[name] = value.target.value;
   }
 
   setpackageAge(value: any, index: number) {
-    this.obj.packages[index].age = value.target.value;
+    this.obj.packages[index].prices.age = value.target.value;
   }
 
   setpackageOffered(value: any, index: number) {

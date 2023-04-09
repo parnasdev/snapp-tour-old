@@ -129,9 +129,9 @@ export class EditComponent implements OnInit {
     this.hotelApi.getHotels(req).subscribe((res: any) => {
       if (res.isDone) {
         this.setService.hotels = res.data;
-        if (this.setService.hotels.length > 0) {
-          this.setService.addRow(this.setService.hotels[0].id);
-        }
+        // if (this.setService.hotels.length > 0) {
+        //   this.setService.addRow(this.setService.hotels[0].id);
+        // }
       }
     }, (error: any) => {
       this.message.error();
@@ -214,7 +214,7 @@ export class EditComponent implements OnInit {
       enDate: this.info.enDate,
       stDate: this.info.stDate,
       expireDate: this.info.expireDate,
-      defineTour: this.info.defineTour.toString(),
+      defineTour: this.info.defineTour,
       euroRate: this.info.euroRate.toString(),
       dollarRate: this.info.dollarRate.toString(),
       AEDRate: this.info.AEDRate.toString(),
@@ -230,7 +230,7 @@ export class EditComponent implements OnInit {
       status: this.info.status,
       type: this.info.type,
       transferType: +this.info.transferType,
-      packages: [],
+      packages: this.info.packages,
       CHDFlightRate: '',
       ADLFlightRate: '',
       transferIds: this.getTransferIds(),

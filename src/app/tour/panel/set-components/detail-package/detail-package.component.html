@@ -77,7 +77,7 @@
               </div>
             </div>
             <div class="package-item">
-              <prs-select-hotel [hotels]="setService.hotels" [callHotel]="false" [type]="setService.obj.type" [isAdmin]="true"
+              <prs-select-hotel [hotels]="setService.hotels" [inCommingHotel]="" [callHotel]="false" [type]="setService.obj.type" [isAdmin]="true"
                                 (hotelSelected)="setService.hotelChange($event,i)"></prs-select-hotel>
               <div class="parent-icon under-package d-flex align-items-center">
                 <i class="icon-star text-warning" *ngFor="let star of setService.getStars(i)"></i>
@@ -105,21 +105,21 @@
             <ng-template class="body-local" [ngIf]="setService.obj.type">
               <div class="package-item">
                 <div class="under-package-text d-flex align-items-center">
-                  <p>{{ setService.getData(i).twinRate | sperator }}</p>
+                  <p>{{ setService.getData(i).prices.twinRate | sperator }}</p>
                 </div>
                 <input type="text" (change)="setService.setpackageCapacity($event, i, 'twinCapacity')" placeholder="موجودی" mask="separator"
                        thousandSeparator=",">
               </div>
               <div class="package-item">
                 <div class="under-package-text">
-                  <p>{{ setService.getData(i).tripleRate | sperator }}</p>
+                  <p>{{ setService.getData(i).prices.tripleRate | sperator }}</p>
                 </div>
                 <input type="text" placeholder="موجودی" (change)="setService.setpackageCapacity($event, i, 'tripleCapacity')" mask="separator"
                        thousandSeparator=",">
               </div>
               <div class="package-item">
                 <div class="under-package-text">
-                  <p>{{ setService.getData(i).quadRate | sperator }}</p>
+                  <p>{{ setService.getData(i).prices.quadRate | sperator }}</p>
                 </div>
                 <input type="text" placeholder="موجودی" (change)="setService.setpackageCapacity($event, i, 'quadCapacity')" mask="separator"
                        thousandSeparator=",">
@@ -140,14 +140,14 @@
             <ng-template class="body-foreign" [ngIf]="!setService.obj.type">
               <div class="package-item">
                 <div class="under-package-text">
-                  <p>{{ setService.getData(i).twinRate | sperator }}</p>
+                  <p>{{ setService.getData(i).prices.twinRate | sperator }}</p>
                 </div>
                 <input type="text" (change)="setService.setpackageCapacity($event, i, 'twinCapacity')" mask="separator" placeholder="موجودی"
                        thousandSeparator=",">
               </div>
               <div class="package-item">
                 <div class="under-package-text">
-                  <p>{{ setService.getData(i).singleRate | sperator }}</p>
+                  <p>{{ setService.getData(i).prices.singleRate | sperator }}</p>
                 </div>
                 <input type="text" placeholder="موجودی" (change)="setService.setpackageCapacity($event, i, 'singleCapacity')" mask="separator"
                        thousandSeparator=",">
@@ -155,7 +155,7 @@
               </div>
               <div class="package-item">
                 <div class="under-package-text">
-                  <p>{{ setService.getData(i).cwbRate | sperator }}</p>
+                  <p>{{ setService.getData(i).prices.cwbRate | sperator }}</p>
                 </div>
                 <input type="text" placeholder="موجودی" (change)="setService.setpackageCapacity($event, i, 'cwbCapacity')" mask="separator"
                        thousandSeparator=",">

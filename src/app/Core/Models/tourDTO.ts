@@ -203,7 +203,7 @@ export interface PricesDTO {
   tripleRate: string;
   ADLRate: string;
   age: string;
-  pool: boolean;
+  pool?: boolean;
 }
 
 export interface TourTransferDTO {
@@ -426,37 +426,13 @@ export interface TourSetDTO {
 }
 
 export interface newTourPackageDTO {
-  parent: null;
-  user_id: number;
-  order_item: number;
   hotel_id: number;
-  services: string;
-  rate: string;
-  discountsTwin: string;
-  discountsSingle: string;
-  discountsCwb: string;
-  discountsCnb: string;
-  twin: string;
-  single: string;
-  cwb: string;
-  cnb: string;
-  quad: string;
-  triple: string;
-  twinCapacity: string;
-  singleCapacity: string;
-  cwbCapacity: string;
-  quadCapacity: string;
-  tripleCapacity: string;
-  twinRate: string;
-  singleRate: string;
-  cwbRate: string;
-  cnbRate: string;
-  quadRate: string;
-  tripleRate: string;
-  age: string;
+  order_item: number;
   offered: boolean;
+  services: string;
+  rate: number;
+  prices: PricesDTO;
   status: string;
-  roomType: [];
 }
 
 export interface hotelRates {
