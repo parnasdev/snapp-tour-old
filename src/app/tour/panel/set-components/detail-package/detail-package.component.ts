@@ -8,8 +8,6 @@ import { TourApiService } from 'src/app/Core/Https/tour-api.service';
 import { TransferAPIService } from 'src/app/Core/Https/transfer-api.service';
 import { TransferRateAPIService } from 'src/app/Core/Https/transfer-rate-api.service';
 import { GetServiceRequestDTO } from 'src/app/Core/Models/commonDTO';
-
-
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
 import { CheckErrorService } from 'src/app/Core/Services/check-error.service';
 import { ErrorsService } from 'src/app/Core/Services/errors.service';
@@ -29,14 +27,11 @@ export class DetailPackageComponent implements OnInit {
   //public Variable
   isMobile;
   isLoading = false;
-
   services: GetServiceRequestDTO[] = []
-
   ratePricesFC = new FormControl('1');
 
   constructor(
     public setService:SetTourService,
-
     public cityApi: CityApiService,
     public transferApi: TransferAPIService,
     public transferRateApi: TransferRateAPIService,

@@ -43,7 +43,7 @@ export class TourApiService {
     return this.http.post<Result<TourListResDTO>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
 
-  editTour(req: TourSetRequestDTO, tour: any): any {
+  editTour(req: TourSetRequestDTO | TourSetDTO, tour: any): any {
     const strUrl = this.serverControllerName + `editTour/${tour}`;
     return this.http.patch<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
   }

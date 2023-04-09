@@ -51,6 +51,8 @@ export class SelectHotelComponent implements OnInit,OnChanges {
     );
     if (this.inCommingHotel) {
       this.hotelFC.setValue(this.type ? this.inCommingHotel.name : this.inCommingHotel.nameEn)
+      this.hotelSelected.emit(this.inCommingHotel)
+
     }
 
     if (this.callHotel) {
