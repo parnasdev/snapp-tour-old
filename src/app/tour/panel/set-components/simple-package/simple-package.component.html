@@ -92,7 +92,9 @@
 
             <!-- select hotel -->
             <div class="package-item">
-              <prs-select-hotel [hotels]="setService.hotels" [callHotel]="false" [type]="setService.obj.type" [isAdmin]="true"
+              <prs-select-hotel [hotels]="setService.hotels"
+              [inCommingHotel]="getIncomingHotel(i)"
+              [callHotel]="false" [type]="setService.obj.type" [isAdmin]="true"
                                 (hotelSelected)="hotelChange($event,i)"></prs-select-hotel>
               <div class="parent-icon under-package d-flex align-items-center">
                 <i class="icon-star text-warning" *ngFor="let star of getStars(i)"></i>
@@ -182,7 +184,7 @@
 
       <!-- add package row -->
       <div class="package-item">
-        <a (click)="addRow(0)" class="btn-add-tour-fix">
+        <a (click)="addOldRow(null)" class="btn-add-tour-fix">
           <i class="icon-plus-squared-alt"></i>
           <span>اضافه</span>
         </a>

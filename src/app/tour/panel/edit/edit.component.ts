@@ -39,6 +39,7 @@ export class EditComponent implements OnInit {
   isSlugGenerated = false;
   calledApies: string[] = []
   info: any = null;
+  showPackages: boolean = false;
   constructor(public route: ActivatedRoute,
     public cityApi: CityApiService,
     public commonApi: CommonApiService,
@@ -256,7 +257,7 @@ export class EditComponent implements OnInit {
       transferIds: this.getTransferIds(),
       transfers: [],
     }
-
+    this.showPackages = true;
   }
 
 

@@ -13,6 +13,7 @@ import { SessionService } from 'src/app/Core/Services/session.service';
 import { SetPricePopupComponent } from 'src/app/room-type/set-price-popup/set-price-popup.component';
 import { SetTourService } from '../../set-tour.service';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
+import { newTourPackageDTO } from 'src/app/Core/Models/tourDTO';
 
 @Component({
   selector: 'prs-simple-package',
@@ -57,7 +58,7 @@ export class SimplePackageComponent implements OnInit {
     expireDate: new FormControl('', Validators.required),
     CHDFlightRate: new FormControl(''),
     ADLFlightRate: new FormControl(''),
-    defineTour: new FormControl('false', Validators.required),
+    defineTour: new FormControl(false, Validators.required),
     euroRate: new FormControl(''),
     dollarRate: new FormControl(''),
     AEDRate: new FormControl(''),
@@ -76,6 +77,7 @@ export class SimplePackageComponent implements OnInit {
 
   ngOnInit() {
     this.getService();
+    this.setFormArray(this.setService.obj.packages)
   }
 
   isEmpty(obj: any) {
@@ -88,45 +90,87 @@ export class SimplePackageComponent implements OnInit {
     return JSON.stringify(obj) === JSON.stringify({});
   }
 
-  addRow(hotel_id: number) {
-    const Tours = this.fb.group({
-      parent: null,
-      user_id: null,
-      order_item: null,
-      hotel_id: [hotel_id],
-      services: [null],
-      rate: [1],
-      discountsTwin: [null],
-      discountsSingle: [null],
-      discountsCwb: [null],
-      discountsCnb: [null],
-      twin: [null],
-      single: [null],
-      cwb: [null],
-      cnb: [null],
-      quad: [null],
-      triple: [null],
-      twinCapacity: [null],
-      singleCapacity: [null],
-      cwbCapacity: [null],
-      quadCapacity: [null],
-      tripleCapacity: [null],
-      twinRate: [null],
-      singleRate: [null],
-      cwbRate: [null],
-      cnbRate: [null],
-      quadRate: [null],
-      tripleRate: [null],
-      ADLRate: [null],
-      age: [null],
-      pool: [null],
-      offered: false,
-      status: [null],
-      roomType: [[]]
-    });
-    this.ToursForm.push(Tours);
+  setFormArray(packages: newTourPackageDTO[]): void {
+    this.ToursForm.clear();
+    packages.forEach(x => {
+      this.addOldRow(x);
+    })
   }
 
+
+  addOldRow(packageItem: any | null) {
+    
+    if (packageItem) {
+      const Tours = this.fb.group({
+        parent: 0,
+        order_item: packageItem.order_item,
+        id: packageItem.id,
+        offered: [packageItem.offered],
+        user_id: 0,
+        hotel_id: [packageItem.hotel.id],
+        services: [packageItem.services ? packageItem.services : ''],
+        rate: [packageItem.rate?.id],
+        discountsTwin: [packageItem.prices?.twin],
+        discountsSingle: [packageItem.prices?.single],
+        discountsCwb: [packageItem.prices?.cwb],
+        discountsCnb: [packageItem.prices?.cnb],
+        twin: [packageItem.prices?.twin],
+        single: [packageItem.prices?.single],
+        cwb: [packageItem.prices?.cwb],
+        cnb: [packageItem.prices?.cnb],
+        quad: [packageItem.prices?.quad],
+        triple: [packageItem.prices?.triple],
+        twinRate: [packageItem.prices?.twinRate],
+        twinCapacity: [packageItem.prices?.twinCapacity],
+        tripleCapacity: [packageItem.prices?.tripleCapacity],
+        singleCapacity: [packageItem.prices?.singleCapacity],
+        quadCapacity: [packageItem.prices?.quadCapacity],
+        cwbCapacity: [packageItem.prices?.cwbCapacity],
+        singleRate: [packageItem.prices?.singleRate],
+        cwbRate: [packageItem.prices?.cwbRate],
+        cnbRate: [packageItem.prices?.cnbRate],
+        quadRate: [packageItem.prices?.quadRate],
+        tripleRate: [packageItem.prices?.tripleRate],
+        ADLRate: [packageItem.prices?.ADLRate],
+        age: [packageItem.prices?.age],
+        pool: [packageItem.prices?.pool],
+        status: [packageItem.status],
+        roomType: [packageItem.prices?.roomType]
+      })
+      this.ToursForm.push(Tours);
+    } else {
+      const Tours = this.fb.group({
+        parent: null,
+        user_id: null,
+        order_item: null,
+        hotel_id: [0],
+        services: [null],
+        rate: [1],
+        id: [null],
+        discountsTwin: [null],
+        discountsSingle: [null],
+        discountsCwb: [null],
+        discountsCnb: [null],
+        twin: [null],
+        single: [null],
+        cwb: [null],
+        twinCapacity: [null],
+        tripleCapacity: [null],
+        singleCapacity: [null],
+        quadCapacity: [null],
+        cwbCapacity: [null],
+        cnb: [null],
+        quad: [null],
+        triple: [null],
+        ADLRate: [null],
+        age: [null],
+        pool: [null],
+        status: [null],
+        roomType: [[]]
+      });
+      this.ToursForm.push(Tours);
+    }
+  }
   convertTour() {
     this.tourDetail = [];
     this.ToursForm.controls.forEach((item:any, index:any) => {
@@ -173,6 +217,13 @@ export class SimplePackageComponent implements OnInit {
     });
   }
 
+  getIncomingHotel(index: number) {
+    this.getStars(index)
+    // @ts-ignore
+    return this.setService.hotels.find(x => x.id === this.ToursForm.controls[index].controls.hotel_id.value)
+  }
+
+
   get ToursForm() {
     return this.form.get('packages') as FormArray;
   }
@@ -201,7 +252,7 @@ export class SimplePackageComponent implements OnInit {
   }
 
   clearFields(): void {
-    if (this.form.value.defineTour === 'true') {
+    if (this.form.value.defineTour === true) {
       // with details
       if (this.setService.obj.type) {// inner tour
         this.form.controls.visaRate.reset()

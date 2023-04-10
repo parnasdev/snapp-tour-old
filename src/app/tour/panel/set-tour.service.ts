@@ -287,7 +287,8 @@ export class SetTourService {
         this.hotelRates = res.data;
         if (this.hotelRates.length == 0) {
           this.message.custom('این هتل قیمت گذاری نشده است')
-          this.obj.packages.pop();
+
+          this.obj.packages.splice(index, 1);
         }
 
         this.calculatePrice(index);
