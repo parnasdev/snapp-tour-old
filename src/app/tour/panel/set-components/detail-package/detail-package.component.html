@@ -143,7 +143,7 @@
               <div class="under-package-text">
                 <p>{{ setService.getData(i).prices.twinRate | sperator }}</p>
               </div>
-              <input type="text" [value]="setService.getData(i).prices.twinCapacity"
+              <input type="text" placeholder="موجودی" [value]="setService.getData(i).prices.twinCapacity"
                 (change)="setService.setpackageCapacity($event, i, 'twinCapacity')">
             </div>
             <div class="package-item">

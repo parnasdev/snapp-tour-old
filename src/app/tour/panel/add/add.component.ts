@@ -260,7 +260,7 @@ export class AddComponent implements OnInit {
   getService(): void {
     this.commonApi.getServices().subscribe((res: any) => {
       if (res.isDone) {
-        this.services = res.data;
+        this.setService.services = res.data;
       }
     }, (error: any) => {
     })
