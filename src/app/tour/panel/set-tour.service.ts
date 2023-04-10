@@ -26,7 +26,7 @@ export class SetTourService {
     expireDate: '',
     CHDFlightRate: '',
     ADLFlightRate: '',
-    defineTour: 'false',
+    defineTour: false,
     euroRate: '',
     dollarRate: '',
     AEDRate: '',
@@ -107,7 +107,7 @@ export class SetTourService {
       expireDate: '',
       CHDFlightRate: '',
       ADLFlightRate: '',
-      defineTour: 'false',
+      defineTour: false,
       euroRate: '',
       dollarRate: '',
       AEDRate: '',
@@ -223,12 +223,10 @@ export class SetTourService {
   }
 
   setPackageServices(value: any, index: number) {
-    debugger
     this.obj.packages[index].services = value.target.value;
   }
 
   setpackageCapacity(value: any, index: number, name: string) {
-    console.log(value.target.value);
     
     this.obj.packages[index].prices[name] = value.target.value;
   }
@@ -334,6 +332,8 @@ export class SetTourService {
   }
 
   hotelChange(event: any, index: number) {
+    console.log(event);
+    
     this.getStars(index);
     //@ts-ignore
     this.obj.packages[index].hotel_id = event.id;

@@ -1,11 +1,10 @@
 import {Component, Input, OnInit, EventEmitter, Output, OnChanges, SimpleChanges} from '@angular/core';
 import {HotelListResponseDTO, HotelRequestDTO} from "../../Core/Models/hotelDTO";
-import {FormBuilder, FormControl} from "@angular/forms";
+import {FormControl} from "@angular/forms";
 import {Observable} from "rxjs";
 import {map, startWith} from "rxjs/operators";
 import {HotelApiService} from "../../Core/Https/hotel-api.service";
 import {MessageService} from "../../Core/Services/message.service";
-
 
 @Component({
   selector: 'prs-select-hotel',
@@ -41,7 +40,6 @@ export class SelectHotelComponent implements OnInit,OnChanges {
 
   changed(item: any):void {
     this.hotelSelected.emit(item)
-
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -51,6 +49,8 @@ export class SelectHotelComponent implements OnInit,OnChanges {
     );
     if (this.inCommingHotel) {
       this.hotelFC.setValue(this.type ? this.inCommingHotel.name : this.inCommingHotel.nameEn)
+      this.hotelSelected.emit(this.inCommingHotel)
+
     }
 
     if (this.callHotel) {

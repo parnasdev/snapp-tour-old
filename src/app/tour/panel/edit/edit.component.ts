@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TourApiService } from 'src/app/Core/Https/tour-api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'src/app/Core/Services/message.service';
 import { SetTourService } from '../set-tour.service';
 import { SessionService } from 'src/app/Core/Services/session.service';
@@ -14,6 +14,8 @@ import * as moment from 'jalali-moment';
 import { TransferRateAPIService } from 'src/app/Core/Https/transfer-rate-api.service';
 import { HotelRequestDTO } from 'src/app/Core/Models/hotelDTO';
 import { HotelApiService } from 'src/app/Core/Https/hotel-api.service';
+import { ErrorsService } from 'src/app/Core/Services/errors.service';
+import { CheckErrorService } from 'src/app/Core/Services/check-error.service';
 declare var $: any;
 
 @Component({
@@ -24,6 +26,7 @@ declare var $: any;
 export class EditComponent implements OnInit {
   //public Variable
   slug: string | null = ''
+  isLoading: boolean = false;
   public show = true
   infoLoading = false;
   minDate = new Date(); //datepicker
@@ -41,6 +44,9 @@ export class EditComponent implements OnInit {
     public commonApi: CommonApiService,
     public calenderServices: CalenderServices,
     public hotelApi: HotelApiService,
+    public checkError: CheckErrorService,
+    public router: Router,
+    public errorService: ErrorsService,
     public publicServices: PublicService,
     public transferTypeApi: TransferRateAPIService,
     public mobileService: ResponsiveService,
@@ -66,6 +72,8 @@ export class EditComponent implements OnInit {
           this.getTransferRates()
           this.getHotels()
         }
+        this.infoLoading = false;
+
       }, (error: any) => {
         this.infoLoading = false
         this.message.error()
@@ -248,8 +256,31 @@ export class EditComponent implements OnInit {
     })
     return result;
   }
-  submit() {
 
+
+  submit() {
+    this.isLoading = true
+    this.setService.obj.stDate = this.calenderServices.convertDateSpecial(this.setService.obj.stDate,'en')
+    this.setService.obj.enDate = this.calenderServices.convertDateSpecial(this.setService.obj.enDate,'en')
+    this.setService.obj.expireDate = this.calenderServices.convertDateSpecial(this.setService.obj.expireDate,'en')
+
+    this.tourApi.editTour(this.setService.obj,this.slug).subscribe((res: any) => {
+      this.isLoading = false;
+      if (res.isDone) {
+        this.message.showMessageBig(res.message);
+        this.errorService.clear();
+        this.router.navigateByUrl('/panel/tour');
+      }
+    }, (error: any) => {
+      this.isLoading = false;
+      if (error.status == 422) {
+        this.errorService.recordError(error.error.data);
+        this.message.showMessageBig('اطلاعات ارسال شده را مجددا بررسی کنید')
+      } else {
+        this.message.showMessageBig('مشکلی رخ داده است لطفا مجددا تلاش کنید')
+      }
+      this.checkError.check(error);
+    })
   }
 
 }
