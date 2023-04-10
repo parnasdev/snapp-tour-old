@@ -16,6 +16,9 @@ import { RoomTypeSetDTO } from 'src/app/Core/Models/roomTypeDTO';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { HotelListResponseDTO, HotelRequestDTO } from 'src/app/Core/Models/hotelDTO';
+import { HotelApiService } from 'src/app/Core/Https/hotel-api.service';
+
 
 @Component({
   selector: 'prs-add',
@@ -28,6 +31,7 @@ export class AddComponent implements OnInit {
 
   tourDetail: any = [];
   services: GetServiceRequestDTO[] = []
+  hotels: HotelListResponseDTO[] = [];
 
   typeTour: any;
   minDate = new Date();
@@ -44,6 +48,7 @@ export class AddComponent implements OnInit {
     public cityApi: CityApiService,
     public commonApi: CommonApiService,
     public session: SessionService,
+    public hotelApi: HotelApiService,
     public checkError: CheckErrorService,
     public message: MessageService,
     public calenderService: CalenderServices,
@@ -118,13 +123,32 @@ export class AddComponent implements OnInit {
     this.setService.transferRates = [];
     this.setService.getTransferRates();
     this.setService.obj.packages = [];
-    this.setService.getHotels();
+    this.getHotels();
   }
 
   getStCity(cityItemSelected: any): void {
     this.setService.obj.stCity_id = cityItemSelected.id;
     this.setService.transferRates = [];
     this.setService.getTransferRates();
+  }
+
+  getHotels(): void {
+    const req: HotelRequestDTO = {
+      isAdmin: true,
+      paginate: false,
+      city: this.setService.obj.endCity_id,
+      search: null,
+    }
+    this.hotelApi.getHotels(req).subscribe((res: any) => {
+      if (res.isDone) {
+        this.hotels = res.data;
+        if (this.hotels.length > 0) {
+          this.addRow(this.hotels[0].id);
+        }
+      }
+    }, (error: any) => {
+      this.message.error();
+    })
   }
 
   changes() {
@@ -204,7 +228,6 @@ export class AddComponent implements OnInit {
   }
 
   convertTour() {
-    debugger
     this.setService.obj.packages = [];
     this.ToursForm.controls.forEach((item:any, index:any) => {
       this.setService.obj.packages.push({

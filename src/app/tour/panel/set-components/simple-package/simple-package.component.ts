@@ -99,6 +99,7 @@ export class SimplePackageComponent implements OnInit {
 
 
   addOldRow(packageItem: any | null) {
+    console.log(packageItem);
     
     if (packageItem) {
       const Tours = this.fb.group({
@@ -109,7 +110,7 @@ export class SimplePackageComponent implements OnInit {
         user_id: 0,
         hotel_id: [packageItem.hotel.id],
         services: [packageItem.services ? packageItem.services : ''],
-        rate: [packageItem.rate?.id],
+        rate: [packageItem.rate? packageItem.rate.id : 1],
         discountsTwin: [packageItem.prices?.twin],
         discountsSingle: [packageItem.prices?.single],
         discountsCwb: [packageItem.prices?.cwb],
