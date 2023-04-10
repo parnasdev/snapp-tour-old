@@ -41,7 +41,7 @@ export class SetTourService {
     services: '',
     documents: '',
     description: '',
-    status: 'show',
+    status: 'Show',
     packages: [],
     transferIds: [],
     type: false,
