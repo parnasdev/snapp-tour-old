@@ -28,7 +28,7 @@
         </div>
         <div class="selectdiv me-2">
           <label>
-            <select [(ngModel)]="setService.obj.defineTour" >
+            <select [(ngModel)]="setService.obj.defineTour">
               <option [ngValue]="false">یکجا</option>
               <option [ngValue]="true">باجزییات</option>
             </select>
@@ -41,26 +41,32 @@
         <div class="item-info">
           <label for="">عنوان تور</label>
           <input [(ngModel)]="setService.obj.title" (change)="generateSlug()" type="text">
-   
+          <div *ngIf="errorService.hasError('title')">
+            <span class="text-danger">{{errorService.getError('title')}}</span>
+          </div>
+
         </div>
         <div class="item-info-2">
           <div class="select-info">
 
             <label for="">شهر مبدا</label>
 
-            <prs-select-city  [inCommingCity]="cities[0]" [cities]="cities"
+            <prs-select-city [inCommingCity]="cities[0]" [cities]="cities"
               (citySelected)="getStCity($event)"></prs-select-city>
-
+            <div *ngIf="errorService.hasError('stCity_id')">
+              <span class="text-danger">{{errorService.getError('stCity_id')}}</span>
+            </div>
           </div>
-  
+
         </div>
         <div class="item-info">
           <div class="select-info">
             <label for="">شهر مقصد</label>
 
-            <prs-select-city [hasHotel]="true" [cities]="cities"
-                             (citySelected)="getEndCity($event)"></prs-select-city>
-      
+            <prs-select-city [hasHotel]="true" [cities]="cities" (citySelected)="getEndCity($event)"></prs-select-city>
+            <div *ngIf="errorService.hasError('endCity_id')">
+              <span class="text-danger">{{errorService.getError('endCity_id')}}</span>
+            </div>
           </div>
         </div>
         <div class="item-info-2">
@@ -77,7 +83,9 @@
               <option value="8">8</option>
               <option value="9">9</option>
             </select>
-
+            <div *ngIf="errorService.hasError('nightNum')">
+              <span class="text-danger">{{errorService.getError('nightNum')}}</span>
+            </div>
           </div>
         </div>
         <div class="item-info">
@@ -86,40 +94,51 @@
 
           </div>
           <span class="number-day-text">{{+setService.obj.nightNum + 1}}</span>
+          <div *ngIf="errorService.hasError('dayNum')">
+            <span class="text-danger">{{errorService.getError('dayNum')}}</span>
+          </div>
         </div>
         <div class="item-info">
           <label for="">نامک تور</label>
           <input *ngIf="isSlugGenerated" [(ngModel)]="setService.obj.slug" type="text">
           <span *ngIf="!isSlugGenerated">{{setService.obj.slug}}</span>
 
-    
+          <div *ngIf="errorService.hasError('slug')">
+            <span class="text-danger">{{errorService.getError('slug')}}</span>
+          </div>
         </div>
         <div class="item-info">
           <label for="">تاریخ ورود به هتل</label>
           <mat-form-field class="example-full-width" appearance="fill">
-            <input matInput [matDatepicker]="picker1" (dateChange)="dateChanged()" [(ngModel)]="setService.obj.stDate" [min]="minDate"
-                   (click)="picker1.open()">
+            <input matInput [matDatepicker]="picker1" (dateChange)="dateChanged()" [(ngModel)]="setService.obj.stDate"
+              [min]="minDate" (click)="picker1.open()">
             <mat-datepicker #picker1></mat-datepicker>
           </mat-form-field>
-    
+          <div *ngIf="errorService.hasError('stDate')">
+            <span class="text-danger">{{errorService.getError('stDate')}}</span>
+          </div>
         </div>
         <div class="item-info">
           <label for="">تاریخ خروج از هتل</label>
           <mat-form-field class="example-full-width" appearance="fill">
-            <input matInput (dateChange)="dateChanged()" [(ngModel)]="setService.obj.enDate" [matDatepicker]="picker2" [min]="minDate"
-                   (click)="picker2.open()">
+            <input matInput (dateChange)="dateChanged()" [(ngModel)]="setService.obj.enDate" [matDatepicker]="picker2"
+              [min]="minDate" (click)="picker2.open()">
             <mat-datepicker #picker2></mat-datepicker>
           </mat-form-field>
-      
+          <div *ngIf="errorService.hasError('enDate')">
+            <span class="text-danger">{{errorService.getError('enDate')}}</span>
+          </div>
         </div>
         <div class="item-info">
           <label for="">تاریخ انقضا پکیج</label>
           <mat-form-field class="example-full-width" appearance="fill">
             <input matInput [(ngModel)]="setService.obj.expireDate" [matDatepicker]="picker3" [min]="minDate"
-                   (click)="picker3.open()">
+              (click)="picker3.open()">
             <mat-datepicker #picker3></mat-datepicker>
           </mat-form-field>
-      
+          <div *ngIf="errorService.hasError('expireDate')">
+            <span class="text-danger">{{errorService.getError('expireDate')}}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -211,100 +230,113 @@
         <!-- package body -->
         <form [formGroup]="form" class="example-list" action="" cdkDropList (cdkDropListDropped)="drop($event)">
           <div class="example-list" formArrayName="packages">
-          <div class="body-box example-box" *ngFor="let tour of ToursForm.controls; let i = index" cdkDrag [formGroupName]="i">
-            <!-- up and down -->
-            <div class="package-item id-package">
-              <div class="icon-from-to">
-                <i class="icon-up-open"></i>
-                <i class="icon-down-open"></i>
-              </div>
-            </div>
-
-            <!-- select hotel -->
-            <div class="package-item">
-              <prs-select-hotel [hotels]="setService.hotels" [callHotel]="false" [type]="setService.obj.type" [isAdmin]="true"
-                                (hotelSelected)="hotelChange($event,i)"></prs-select-hotel>
-              <div class="parent-icon under-package d-flex align-items-center">
-                <i class="icon-star text-warning" *ngFor="let star of getStars(i)"></i>
-              </div>
-            </div>
-
-            <!-- select services -->
-            <div class="package-item">
-              <div class="d-flex align-items-center w-100 parent-box-rate">
-                <div class="package-item service-width">
-                  <select name="" id="" formControlName="services">
-                    <option *ngFor="let service of services" [value]="service.id">{{service.name}}</option>
-                  </select>
+            <div class="body-box example-box" *ngFor="let tour of ToursForm.controls; let i = index" cdkDrag
+              [formGroupName]="i">
+              <!-- up and down -->
+              <div class="package-item id-package">
+                <div class="icon-from-to">
+                  <i class="icon-up-open"></i>
+                  <i class="icon-down-open"></i>
                 </div>
               </div>
+
+              <!-- select hotel -->
+              <div class="package-item">
+                <prs-select-hotel [hotels]="setService.hotels" [callHotel]="false" [type]="setService.obj.type"
+                  [isAdmin]="true" (hotelSelected)="hotelChange($event,i)"></prs-select-hotel>
+                <div class="parent-icon under-package d-flex align-items-center">
+                  <i class="icon-star text-warning" *ngFor="let star of getStars(i)"></i>
+                </div>
+              </div>
+
+              <!-- select services -->
+              <div class="package-item">
+                <div class="d-flex align-items-center w-100 parent-box-rate">
+                  <div class="package-item service-width">
+                    <select name="" id="" formControlName="services">
+                      <option *ngFor="let service of services" [value]="service.id">{{service.name}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- local body tour-->
+              <ng-template class="body-local" [ngIf]="setService.obj.type">
+                <!-- twin input -->
+                <div class="package-item">
+                  <input placeholder="قیمت (تومان)" type="text" formControlName="twin" mask="separator"
+                    thousandSeparator=",">
+                  <input type="text" formControlName="twinCapacity" placeholder="موجودی" mask="separator"
+                    thousandSeparator=",">
+                </div>
+                <!-- triple input -->
+                <div class="package-item">
+                  <input placeholder="قیمت (تومان)" type="text" formControlName="triple" mask="separator"
+                    thousandSeparator=",">
+                  <input type="text" placeholder="موجودی" formControlName="tripleCapacity" mask="separator"
+                    thousandSeparator=",">
+                </div>
+                <!-- quad input -->
+                <div class="package-item">
+                  <input placeholder="قیمت (تومان)" type="text" formControlName="quad" mask="separator"
+                    thousandSeparator=",">
+                  <input type="text" placeholder="موجودی" formControlName="quadCapacity" mask="separator"
+                    thousandSeparator=",">
+                </div>
+                <!-- age input -->
+                <div class="package-item">
+                  <input type="text" formControlName="age">
+                </div>
+                <!-- offered checkbox -->
+                <div class="package-item d-flex flex-row">
+                  <input formControlName="offered" class="offer-checkbox" type="checkbox">
+                </div>
+                <!-- remove package -->
+                <div style="flex-direction: row !important;" class="package-item">
+                  <i class="icon-trash text-danger" (click)="removePackage(i)"></i>
+                  <img src="assets/img/FAQ.svg" width="18" class="ms-2" (click)="openRoomPopup(i)">
+                </div>
+              </ng-template>
+
+              <!-- foreign body tour-->
+              <ng-template class="body-foreign" [ngIf]="!setService.obj.type">
+                <!-- twin input -->
+                <div class="package-item">
+                  <input placeholder="قیمت (تومان)" type="text" formControlName="twin" mask="separator"
+                    thousandSeparator=",">
+                  <input type="text" formControlName="twinCapacity" mask="separator" placeholder="موجودی"
+                    thousandSeparator=",">
+                </div>
+                <!-- single input -->
+                <div class="package-item">
+                  <input placeholder="قیمت (تومان)" type="text" formControlName="single" mask="separator"
+                    thousandSeparator=",">
+                  <input type="text" placeholder="موجودی" formControlName="singleCapacity" mask="separator"
+                    thousandSeparator=",">
+                </div>
+                <!-- cwb input -->
+                <div class="package-item">
+                  <input placeholder="قیمت (تومان)" type="text" formControlName="cwb" mask="separator"
+                    thousandSeparator=",">
+                  <input type="text" placeholder="موجودی" formControlName="cwbCapacity" mask="separator"
+                    thousandSeparator=",">
+                </div>
+                <!-- age input -->
+                <div class="package-item">
+                  <input placeholder="سن کودک" type="text" formControlName="age">
+                </div>
+                <!-- offered checkbox -->
+                <div class="package-item d-flex flex-row">
+                  <input formControlName="offered" class="offer-checkbox" type="checkbox">
+                </div>
+                <!-- remove package -->
+                <div style="flex-direction: row !important;" class="package-item">
+                  <i class="icon-trash text-danger" (click)="removePackage(i)"></i>
+                  <img src="assets/img/FAQ.svg" width="18" (click)="openRoomPopup(i)">
+                </div>
+              </ng-template>
+
             </div>
-
-            <!-- local body tour-->
-            <ng-template class="body-local" [ngIf]="setService.obj.type">
-              <!-- twin input -->
-              <div class="package-item">
-                <input placeholder="قیمت (تومان)" type="text" formControlName="twin" mask="separator" thousandSeparator=",">
-                <input type="text" formControlName="twinCapacity" placeholder="موجودی" mask="separator" thousandSeparator=",">
-              </div>
-              <!-- triple input -->
-              <div class="package-item">
-                <input placeholder="قیمت (تومان)" type="text" formControlName="triple" mask="separator" thousandSeparator=",">
-                <input type="text" placeholder="موجودی" formControlName="tripleCapacity" mask="separator" thousandSeparator=",">
-              </div>
-              <!-- quad input -->
-              <div class="package-item">
-                <input placeholder="قیمت (تومان)" type="text" formControlName="quad" mask="separator" thousandSeparator=",">
-                <input type="text" placeholder="موجودی" formControlName="quadCapacity" mask="separator" thousandSeparator=",">
-              </div>
-              <!-- age input -->
-              <div class="package-item">
-                <input type="text" formControlName="age">
-              </div>
-              <!-- offered checkbox -->
-              <div class="package-item d-flex flex-row">
-                <input formControlName="offered" class="offer-checkbox" type="checkbox">
-              </div>
-              <!-- remove package -->
-              <div style="flex-direction: row !important;" class="package-item">
-                <i class="icon-trash text-danger" (click)="removePackage(i)"></i>
-                <img src="assets/img/FAQ.svg" width="18" class="ms-2" (click)="openRoomPopup(i)">
-              </div>
-            </ng-template>
-
-            <!-- foreign body tour-->
-            <ng-template class="body-foreign" [ngIf]="!setService.obj.type">
-              <!-- twin input -->
-              <div class="package-item">
-                <input placeholder="قیمت (تومان)" type="text" formControlName="twin" mask="separator" thousandSeparator=",">
-                <input type="text" formControlName="twinCapacity" mask="separator" placeholder="موجودی" thousandSeparator=",">
-              </div>
-              <!-- single input -->
-              <div class="package-item">
-                <input placeholder="قیمت (تومان)" type="text" formControlName="single" mask="separator" thousandSeparator=",">
-                <input type="text" placeholder="موجودی" formControlName="singleCapacity" mask="separator" thousandSeparator=",">
-              </div>
-              <!-- cwb input -->
-              <div class="package-item">
-                <input placeholder="قیمت (تومان)" type="text" formControlName="cwb" mask="separator" thousandSeparator=",">
-                <input type="text" placeholder="موجودی" formControlName="cwbCapacity" mask="separator" thousandSeparator=",">
-              </div>
-              <!-- age input -->
-              <div class="package-item">
-                <input placeholder="سن کودک" type="text" formControlName="age">
-              </div>
-              <!-- offered checkbox -->
-              <div class="package-item d-flex flex-row">
-                <input formControlName="offered" class="offer-checkbox" type="checkbox">
-              </div>
-              <!-- remove package -->
-              <div style="flex-direction: row !important;" class="package-item">
-                <i class="icon-trash text-danger" (click)="removePackage(i)"></i>
-                <img src="assets/img/FAQ.svg" width="18" (click)="openRoomPopup(i)">
-              </div>
-            </ng-template>
-
-          </div>
           </div>
         </form>
 
@@ -320,9 +352,10 @@
     </div>
 
   </div>
-  
+
   <prs-detail-package class="w-100"></prs-detail-package>
   <prs-descriptions class="w-100"></prs-descriptions>
 
-  <prs-btn style="width: 15%;" class="btn-submit-tour w-100-mobi" [background]="'blue'" (click)="submit()" [label]="'ثبت تور'"></prs-btn>
+  <prs-btn style="width: 15%;" class="btn-submit-tour w-100-mobi" [background]="'blue'" (click)="submit()"
+    [label]="'ثبت تور'"></prs-btn>
 </div>
