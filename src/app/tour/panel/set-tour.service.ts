@@ -7,6 +7,8 @@ import * as moment from 'moment';
 import { HotelListResponseDTO, HotelRequestDTO } from 'src/app/Core/Models/hotelDTO';
 import { HotelApiService } from 'src/app/Core/Https/hotel-api.service';
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
+import { CommonApiService } from 'src/app/Core/Https/common-api.service';
+import { GetServiceRequestDTO } from 'src/app/Core/Models/commonDTO';
 @Injectable({
   providedIn: 'root'
 })
@@ -49,10 +51,12 @@ export class SetTourService {
   transferRates: TransferRateListDTO[] = [];
   hotels: HotelListResponseDTO[] = [];
   hotelRates: hotelRates[] = []
+  services: GetServiceRequestDTO[] = []
 
 
   constructor(public transferTypeApi: TransferRateAPIService,
     public hotelApi: HotelApiService,
+    public commonApi: CommonApiService,
     public calenderServices: CalenderServices,
     public message: MessageService) { }
 
@@ -236,7 +240,7 @@ export class SetTourService {
   }
 
   setpackageOffered(value: any, index: number) {
-    this.obj.packages[index].offered = value.target.value;
+    this.obj.packages[index].prices.offered = value.target.checked;
   }
 
   getPrice(price: number, index: number) {
@@ -282,7 +286,7 @@ export class SetTourService {
       if (res.isDone) {
         this.hotelRates = res.data;
         if (this.hotelRates.length == 0) {
-          this.message.custom('برای این هتل قیمت گذاری نشده است')
+          this.message.custom('این هتل قیمت گذاری نشده است')
           this.obj.packages.pop();
         }
 

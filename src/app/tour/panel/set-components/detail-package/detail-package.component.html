@@ -94,12 +94,13 @@
               </div>
               <div class="package-item service-width">
                 <select (change)="setService.setPackageServices($event, i)">
-                  <option *ngFor="let service of services" [value]="service.id">{{service.name}}</option>
+                  <option *ngFor="let service of setService.services"
+                   [selected]="setService.getData(i).services === service.id"
+                    [value]="service.id">{{service.name}}</option>
                 </select>
               </div>
             </div>
           </div>
-
           <!-- local tour -->
           <ng-template class="body-local" [ngIf]="setService.obj.type">
             <div class="package-item">
@@ -128,7 +129,7 @@
             </div>
             <div class="package-item d-flex flex-row">
               <input (change)="setService.setpackageOffered($event, i)"
-              [value]="setService.getData(i).prices.offered === 'true' ? true : false"
+              [checked]="setService.getData(i).prices.offered"
               class="offer-checkbox" type="checkbox">
             </div>
             <div style="flex-direction: row !important;" class="package-item">
@@ -169,9 +170,8 @@
             </div>
             <div class="package-item d-flex flex-row">
               <input (change)="setService.setpackageOffered($event, i)"
-               [value]="setService.getData(i).prices.offered"
+               [checked]="setService.getData(i).prices.offered"
                 class="offer-checkbox" type="checkbox">
-              <!-- <input formControlName="pool" class="offer-checkbox" type="checkbox"> -->
             </div>
             <div style="flex-direction: row !important;" class="package-item">
               <i class="icon-trash text-danger" (click)="setService.removePackage(i)"></i>
@@ -181,7 +181,6 @@
         </div>
       </div>
     </div>
-
     <div class="package-item">
       <a (click)="setService.addRow(0)" class="btn-add-tour-fix">
         <i class="icon-plus-squared-alt"></i>

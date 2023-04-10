@@ -59,7 +59,7 @@ export class EditComponent implements OnInit {
 
   ngOnInit() {
     this.slug = this.route.snapshot.paramMap.get('slug');
-    this.getInfo()
+    this.getService()
 
   }
   getInfo(): void {
@@ -79,6 +79,16 @@ export class EditComponent implements OnInit {
         this.message.error()
       })
     }
+  }
+
+  getService(): void {
+    this.commonApi.getServices().subscribe((res: any) => {
+      if (res.isDone) {
+        this.setService.services = res.data;
+        this.getInfo();
+      }
+    }, (error: any) => {
+    })
   }
 
 
@@ -182,12 +192,11 @@ export class EditComponent implements OnInit {
         this.setService.transferRates = res.data;
 
         this.setService.transferRates.forEach(x => {
-          x.isChecked = this.info.newTransfers.some((y:any) => y.id === x.id);
-        // if(this.info.transferIds.includes(x.id)){
-        //   x.isChecked = true;
-        // }
+          x.isChecked = this.info.newTransfers.some((y: any) => y.id === x.id);
+          // if(this.info.transferIds.includes(x.id)){
+          //   x.isChecked = true;
+          // }
         })
-        console.log(this.setService.transferRates);
 
 
         this.getHotels();
@@ -205,11 +214,14 @@ export class EditComponent implements OnInit {
     setTimeout(() => this.show = true);
   }
 
-
+  changeHotelServicesToID() {
+    this.info.packages.forEach((item: any) => {
+      item.services = item.services.id;
+    })
+  }
 
   setInfo() {
-    // console.log(this.info)
-
+    this.changeHotelServicesToID();
     this.setService.obj = {
       title: this.info.title,
       slug: this.info.slug,
@@ -260,11 +272,11 @@ export class EditComponent implements OnInit {
 
   submit() {
     this.isLoading = true
-    this.setService.obj.stDate = this.calenderServices.convertDateSpecial(this.setService.obj.stDate,'en')
-    this.setService.obj.enDate = this.calenderServices.convertDateSpecial(this.setService.obj.enDate,'en')
-    this.setService.obj.expireDate = this.calenderServices.convertDateSpecial(this.setService.obj.expireDate,'en')
+    this.setService.obj.stDate = this.calenderServices.convertDateSpecial(this.setService.obj.stDate, 'en')
+    this.setService.obj.enDate = this.calenderServices.convertDateSpecial(this.setService.obj.enDate, 'en')
+    this.setService.obj.expireDate = this.calenderServices.convertDateSpecial(this.setService.obj.expireDate, 'en')
 
-    this.tourApi.editTour(this.setService.obj,this.slug).subscribe((res: any) => {
+    this.tourApi.editTour(this.setService.obj, this.slug).subscribe((res: any) => {
       this.isLoading = false;
       if (res.isDone) {
         this.message.showMessageBig(res.message);

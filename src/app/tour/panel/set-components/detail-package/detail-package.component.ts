@@ -52,7 +52,7 @@ export class DetailPackageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getService();
+    
   }
 
   isEmpty(obj: any) {
@@ -62,15 +62,6 @@ export class DetailPackageComponent implements OnInit {
       }
     }
     return JSON.stringify(obj) === JSON.stringify({});
-  }
-
-  getService(): void {
-    this.commonApi.getServices().subscribe((res: any) => {
-      if (res.isDone) {
-        this.services = res.data;
-      }
-    }, (error: any) => {
-    })
   }
 
   clean(obj: any): void {
