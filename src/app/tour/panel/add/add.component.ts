@@ -390,7 +390,10 @@ export class AddComponent implements OnInit {
   }
 
   submit() {
-    this.convertTour()
+    if(!this.setService.obj) {
+      this.convertTour()
+    }
+    
     // this.fillObj()
 
     if( this.setService.obj.packages.length === 0) {
