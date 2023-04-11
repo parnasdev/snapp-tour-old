@@ -172,6 +172,8 @@ export class SimplePackageComponent implements OnInit {
       this.ToursForm.push(Tours);
     }
   }
+
+  
   convertTour() {
     this.tourDetail = [];
     this.ToursForm.controls.forEach((item:any, index:any) => {

@@ -413,7 +413,7 @@ export class AddComponent implements OnInit {
   }
 
   submit() {
-    if(!this.setService.obj) {
+    if(!this.setService.obj.defineTour) {
       this.convertTour()
     }
     

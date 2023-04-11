@@ -16,6 +16,11 @@ import { HotelRequestDTO } from 'src/app/Core/Models/hotelDTO';
 import { HotelApiService } from 'src/app/Core/Https/hotel-api.service';
 import { ErrorsService } from 'src/app/Core/Services/errors.service';
 import { CheckErrorService } from 'src/app/Core/Services/check-error.service';
+import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { SetPricePopupComponent } from 'src/app/room-type/set-price-popup/set-price-popup.component';
+import { RoomTypeSetDTO } from 'src/app/Core/Models/roomTypeDTO';
+import { MatDialog } from '@angular/material/dialog';
+import { newTourPackageDTO } from 'src/app/Core/Models/tourDTO';
 declare var $: any;
 
 @Component({
@@ -49,18 +54,52 @@ export class EditComponent implements OnInit {
     public router: Router,
     public errorService: ErrorsService,
     public publicServices: PublicService,
+    public fb: FormBuilder,
     public transferTypeApi: TransferRateAPIService,
     public mobileService: ResponsiveService,
     public setService: SetTourService,
     public message: MessageService,
+    public dialog: MatDialog,
     public session: SessionService,
     public tourApi: TourApiService) {
     setService.removeRequestObject()
   }
+  ////formGroup
+  form = this.fb.group({
+    title: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+    slug: new FormControl('', [Validators.required]),
+    stCity_id: new FormControl('', Validators.required),
+    endCity_id: new FormControl('', Validators.required),
+    nightNum: new FormControl('1', Validators.required),
+    dayNum: new FormControl('لطفا تعداد شب را انتخاب کنید', Validators.required),
+    offered: new FormControl(),
+    TransferType: new FormControl(),
+    enDate: new FormControl('', Validators.required),
+    stDate: new FormControl('', Validators.required),
+    expireDate: new FormControl('', Validators.required),
+    CHDFlightRate: new FormControl(''),
+    ADLFlightRate: new FormControl(''),
+    defineTour: new FormControl('false', Validators.required),
+    euroRate: new FormControl(''),
+    dollarRate: new FormControl(''),
+    AEDRate: new FormControl(''),
+    visaRate: new FormControl(''),
+    visaPriceType: new FormControl(1),
+    insuranceRate: new FormControl(''),
+    transferPriceType: new FormControl(1),
+    transferRate: new FormControl(''),
+    insurancePriceType: new FormControl(1),
+    services: new FormControl(''),
+    documents: new FormControl(''),
+    description: new FormControl(''),
+    status: new FormControl('Show', Validators.required),
+    packages: this.fb.array([], Validators.required),
+  });
 
   ngOnInit() {
     this.slug = this.route.snapshot.paramMap.get('slug');
     this.getService()
+
 
   }
   getInfo(): void {
@@ -91,6 +130,58 @@ export class EditComponent implements OnInit {
     }, (error: any) => {
     })
   }
+  get ToursForm() {
+    return this.form.get('packages') as FormArray;
+  }
+  hotelChange(event: any, index: number) {
+    this.getStars(index);
+    //@ts-ignore
+    this.ToursForm.controls[index].controls.hotel_id.setValue(event.id);
+  }
+
+  openRoomPopup(index: number) {
+    // @ts-ignore
+    const data = this.ToursForm.controls[index].controls.roomType.value
+    const dialog = this.dialog.open(SetPricePopupComponent, {
+      width: '50%',
+      height: '70%',
+      data: data
+    });
+    dialog.afterClosed().subscribe((result: RoomTypeSetDTO[]) => {
+      if (result) {
+        // @ts-ignore
+        this.ToursForm.controls[index].controls.roomType.setValue(result);
+      }
+    })
+  }
+
+  removePackage(i: any) {
+    this.ToursForm.removeAt(i);
+  }
+  resetPackageItems() {
+    this.ToursForm.controls.forEach((item: any) => {
+      // @ts-ignore
+      item.controls.singleRate.reset()
+      // @ts-ignore
+      item.controls.twinRate.reset()
+      // @ts-ignore
+      item.controls.tripleRate.reset()
+      // @ts-ignore
+      item.controls.quadRate.reset()
+      // @ts-ignore
+      item.controls.cwbRate.reset()
+      // @ts-ignore
+      item.controls.rate.setValue(1)
+    })
+  }
+
+  // @ts-ignore
+  getStars(index: number): number[] {
+    // @ts-ignore
+    const item = this.setService.hotels.find(x => x.id === +this.ToursForm.controls[index].controls.hotel_id.value);
+    return Array.from(Array(item ? +item.stars : 0).keys());
+  }
+
 
 
 
@@ -148,6 +239,8 @@ export class EditComponent implements OnInit {
     this.hotelApi.getHotels(req).subscribe((res: any) => {
       if (res.isDone) {
         this.setService.hotels = res.data;
+        this.setFormArray(this.setService.obj.packages)
+
         // if (this.setService.hotels.length > 0) {
         //   this.setService.addRow(this.setService.hotels[0].id);
         // }
@@ -155,6 +248,96 @@ export class EditComponent implements OnInit {
     }, (error: any) => {
       this.message.error();
     })
+  }
+
+
+  getIncomingHotel(index: number) {
+    this.getStars(index)
+    // @ts-ignore
+    return this.setService.hotels.find(x => x.id === this.ToursForm.controls[index].controls.hotel_id.value)
+  }
+
+
+  setFormArray(packages: newTourPackageDTO[]): void {
+    this.ToursForm.clear();
+    packages.forEach(x => {
+      this.addRow(x);
+    })
+  }
+
+
+  addRow(packageItem: any | null) {
+
+    if (packageItem) {
+      const Tours = this.fb.group({
+        parent: 0,
+        order_item: packageItem.order_item,
+        id: [packageItem.id],
+        offered: [packageItem.offered],
+        user_id: 0,
+        hotel_id: [packageItem.hotel.id],
+        services: [packageItem.services ? packageItem.services : ''],
+        rate: [packageItem.rate ? packageItem.rate.id : 1],
+        discountsTwin: [packageItem.prices?.twin],
+        discountsSingle: [packageItem.prices?.single],
+        discountsCwb: [packageItem.prices?.cwb],
+        discountsCnb: [packageItem.prices?.cnb],
+        twin: [packageItem.prices?.twin],
+        single: [packageItem.prices?.single],
+        cwb: [packageItem.prices?.cwb],
+        cnb: [packageItem.prices?.cnb],
+        quad: [packageItem.prices?.quad],
+        triple: [packageItem.prices?.triple],
+        twinRate: [packageItem.prices?.twinRate],
+        twinCapacity: [packageItem.prices?.twinCapacity],
+        tripleCapacity: [packageItem.prices?.tripleCapacity],
+        singleCapacity: [packageItem.prices?.singleCapacity],
+        quadCapacity: [packageItem.prices?.quadCapacity],
+        cwbCapacity: [packageItem.prices?.cwbCapacity],
+        singleRate: [packageItem.prices?.singleRate],
+        cwbRate: [packageItem.prices?.cwbRate],
+        cnbRate: [packageItem.prices?.cnbRate],
+        quadRate: [packageItem.prices?.quadRate],
+        tripleRate: [packageItem.prices?.tripleRate],
+        ADLRate: [packageItem.prices?.ADLRate],
+        age: [packageItem.prices?.age],
+        pool: [packageItem.prices?.pool],
+        status: [packageItem.status],
+        roomType: [packageItem.prices?.roomType]
+      })
+      this.ToursForm.push(Tours);
+    } else {
+      const Tours = this.fb.group({
+        parent: null,
+        user_id: null,
+        order_item: null,
+        hotel_id: [0],
+        services: [null],
+        rate: [1],
+        id: [null],
+        discountsTwin: [null],
+        discountsSingle: [null],
+        discountsCwb: [null],
+        discountsCnb: [null],
+        twin: [null],
+        single: [null],
+        cwb: [null],
+        twinCapacity: [null],
+        tripleCapacity: [null],
+        singleCapacity: [null],
+        quadCapacity: [null],
+        cwbCapacity: [null],
+        cnb: [null],
+        quad: [null],
+        triple: [null],
+        ADLRate: [null],
+        age: [null],
+        pool: [null],
+        status: [null],
+        roomType: [[]]
+      });
+      this.ToursForm.push(Tours);
+    }
   }
 
 
@@ -270,8 +453,65 @@ export class EditComponent implements OnInit {
     return result;
   }
 
-
   submit() {
+    if (!this.setService.obj.defineTour) {
+      this.convertTour()
+    }
+
+    // this.fillObj()
+
+    if (this.setService.obj.packages.length === 0) {
+      this.message.custom('لطفا هتل های خود را انتخاب کنید')
+    } else {
+      this.call()
+    }
+  }
+
+  defineChanged(): void {
+    this.setService.obj.packages = [];
+    this.ToursForm.clear()
+    this.addRow(null);
+  }
+
+  convertTour() {
+    this.setService.obj.packages = [];
+    this.ToursForm.controls.forEach((item: any, index: any) => {
+      this.setService.obj.packages.push({
+        hotel_id: item.value.hotel_id,
+        order_item: index,
+        id: item.value.id,
+        offered: item.value.offered,
+        services: item.value.services,
+        rate: item.value.rate,
+        prices: {
+          twin: item.value.twin,
+          single: item.value.single,
+          cwb: item.value.cwb,
+          cnb: item.value.cnb,
+          quad: item.value.quad,
+          triple: item.value.triple,
+          twinCapacity: item.value.twinCapacity,
+          singleCapacity: item.value.singleCapacity,
+          cwbCapacity: item.value.cwbCapacity,
+          quadCapacity: item.value.quadCapacity,
+          tripleCapacity: item.value.tripleCapacity,
+          twinRate: item.value.twinRate,
+          singleRate: item.value.singleRate,
+          cwbRate: item.value.cwbRate,
+          cnbRate: item.value.cnbRate,
+          quadRate: item.value.quadRate,
+          tripleRate: item.value.tripleRate,
+          roomType: [],
+          age: item.value.age,
+        },
+        status: 'Show'
+      });
+    });
+  }
+
+
+
+  call() {
     this.isLoading = true
     this.setService.obj.stDate = this.calenderServices.convertDateSpecial(this.setService.obj.stDate, 'en')
     this.setService.obj.enDate = this.calenderServices.convertDateSpecial(this.setService.obj.enDate, 'en')

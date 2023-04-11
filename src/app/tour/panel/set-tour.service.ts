@@ -93,8 +93,6 @@ export class SetTourService {
   }
 
 
-
-
   removeRequestObject(): void {
     this.obj = {
       title: '',
