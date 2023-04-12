@@ -1,6 +1,6 @@
 import { UserDTO } from "./AuthDTO";
 import { CityResponseDTO } from "./cityDTO";
-import { RoomDTO, TourListResDTO } from "./tourDTO";
+import { RoomDTO, TourListResDTO, newTourPackageDTO, newTourPackageInfoDTO } from "./tourDTO";
 
 export interface HotelSetRequestDTO {
   name: string;
@@ -52,6 +52,29 @@ export interface hotelInfoDTO {
   status: string;
   phone: string;
   tours: TourListResDTO[];
+}
+
+export interface hotelInfoV2DTO {
+address: null;
+body: string;
+city: CityResponseDTO;
+coordinate: {
+  lat: number;
+  lng: number;
+};
+images: string[];
+images_paths: string[]
+location: string
+mediaLink: MediaLinkDTO[]
+name: string;
+nameEn: string;
+packages: newTourPackageInfoDTO[];
+roomPrices: any[]
+services: ServicesDTO[];
+stars: string;
+status: string;
+thumbnail: string;
+thumbnail_paths:string;
 }
 
 export interface HotelListRes {

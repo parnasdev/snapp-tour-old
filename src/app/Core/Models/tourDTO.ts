@@ -425,7 +425,34 @@ export interface TourSetDTO {
   
 }
 
-export interface newTourPackageDTO {
+export interface newTourDTO {
+agency: string;
+dayNum: number;
+defineTour: boolean;
+enDate: string;
+endCity: CityResponseDTO; 
+stCity: CityResponseDTO;
+isTrash: number;
+newTransfers: newTransfersDTO[]
+nightNum: number;
+slug: string;
+stDate: string;
+status: string;
+title: string;
+transfers: any[];
+type: boolean;
+}
+
+export interface TransferDTO {
+id: number;
+logo: string;
+logo_path: string;
+name: string;
+type: {id: number, name: string}
+}
+
+export interface newTourPackageInfoDTO {
+  id: number;
   hotel_id: number;
   order_item: number;
   offered: boolean;
@@ -433,6 +460,39 @@ export interface newTourPackageDTO {
   rate: number;
   prices: PricesDTO;
   status: string;
+  tour: newTourDTO;
+}
+
+export interface newTourPackageDTO {
+  id?: number;
+  hotel_id: number;
+  order_item: number;
+  offered: boolean;
+  services: string;
+  rate: number;
+  prices: PricesDTO;
+  status: string;
+  tour?: newTourDTO;
+}
+
+export interface newTransfersDTO {
+adl_price: number
+capacity: number
+chd_price: number
+departure_date: string;
+departure_time: string;
+destination: CityDTO;
+destination_transfer: TransferDTO;
+destination_transfer_number: string;
+id: number
+inf_price: number
+is_close: boolean
+origin: CityDTO
+origin_transfer: TransferDTO;
+origin_transfer_number: string;
+return_date: string;
+return_time: string;
+user: null
 }
 
 export interface hotelRates {

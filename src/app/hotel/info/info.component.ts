@@ -17,7 +17,8 @@ import { ResponsiveService } from 'src/app/Core/Services/responsive.service';
 import { RoomTypePriceDTO } from 'src/app/Core/Models/roomTypeDTO';
 import { ShowRoomsPopupComponent } from 'src/app/room-type/show-rooms-popup/show-rooms-popup.component';
 import { AuthPopupComponent } from 'src/app/auth/auth-popup/auth-popup.component';
-import { hotelInfoDTO, hotelInfoReqDTO, HotelListResponseDTO } from 'src/app/Core/Models/hotelDTO';
+import { hotelInfoDTO, hotelInfoReqDTO, hotelInfoV2DTO, HotelListResponseDTO, ServicesDTO } from 'src/app/Core/Models/hotelDTO';
+import { CityResponseDTO } from 'src/app/Core/Models/cityDTO';
 
 @Component({
   selector: 'prs-info',
@@ -34,34 +35,27 @@ export class InfoComponent implements OnInit {
   imgs = ['https://www.imgonline.com.ua/examples/bee-on-daisy.jpg',
     'https:http://tour-api.parnasweb.com///source///images///2021///46366665.jpg']
   items: GalleryItem[] = [];
-  hotelInfo: any = {
-    name: '',
-    city: {
-      name: '',
-      id: 0,
-      type: 0,
-      image: '',
-      slug: '',
-      slugEn: '',
-      faq: [],
-      description: '',
-      images: [],
-      nameEn: '',
-    },
-    nameEn: '',
-    stars: '',
-    location: '',
-    address: '',
-    coordinate: { lat: 0, lng: 0 },
-    images: [],
-    mediaLink: [],
-    thumbnail: '',
+  hotelInfo: hotelInfoV2DTO = {
+    address: null,
     body: '',
-    services: [],
-    status: '',
+    city: {} as CityResponseDTO,
+    coordinate: {
+      lat: 0, 
+      lng: 0
+    },
+    images: [],
+    images_paths: [],
+    location: '',
+    mediaLink: [],
+    name: '',
+    nameEn: '',
     packages: [],
-    phone: '',
-    tours: []
+    roomPrices: [],
+    services: [],
+    stars: '',
+    status: '',
+    thumbnail: '',
+    thumbnail_paths:'',
   };
 
   stDate: string = '';
@@ -224,7 +218,7 @@ export class InfoComponent implements OnInit {
     //   }
     // });
     // return minPrice
-    defineTour = this.hotelInfo.packages[0].tour.defineTour;
+    defineTour = this.hotelInfo.packages[0].tour ? this.hotelInfo.packages[0].tour.defineTour : false;
     this.hotelInfo.packages?.forEach((item: any) => {
       console.log(item)
       defineTour ? Prices.push(item.prices.twinRate) : Prices.push(item.prices.twin);
@@ -232,6 +226,10 @@ export class InfoComponent implements OnInit {
     let list = Prices.sort(function(a: any, b:any){return a-b})
     console.log(list)
     this.minPrice = list[0]
+  }
+
+  getFullPrice(roomPrice: string, flightPrice: any){
+    return ((+roomPrice) + flightPrice).toString();
   }
 
 }
