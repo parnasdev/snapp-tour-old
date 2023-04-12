@@ -14,7 +14,8 @@ import {
   TourPackageV2DTO,
   TourRequestV2DTO,
   TourSetDTO,
-  TourSetRequestDTO
+  TourSetRequestDTO,
+  addRequestReserveDTO
 } from "../Models/tourDTO";
 
 @Injectable({
@@ -90,6 +91,18 @@ export class TourApiService {
     const strUrl = environment.BACK_END_IP + `reserve/addMessage/${id}`;
     return this.http.post<Result<any>>(strUrl,
       { message: message },
+      this.publicService.getDefaultHeaders());
+  }
+
+  getRequestLogs(pageNum: number){
+    const strUrl = pageNum ? environment.BACK_END_IP + `log/requestlog?page=${pageNum}` : environment.BACK_END_IP + `log/requestlog`;
+    return this.http.get<Result<any>>(strUrl, this.publicService.getDefaultHeaders());
+  }
+
+  addRequestReserve(requestReserve: addRequestReserveDTO){
+    const strUrl = environment.BACK_END_IP + `log/requestReserve`;
+    return this.http.post<Result<any>>(strUrl,
+      requestReserve,
       this.publicService.getDefaultHeaders());
   }
 

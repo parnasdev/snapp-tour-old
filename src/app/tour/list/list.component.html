@@ -116,6 +116,9 @@
           <div *ngIf="tours.length==0" class="empty-box">
             <h3>سفری یافت نشد</h3>
           </div>
+          <div *ngIf="tours.length==0" class="reserve-box">
+            <prs-reserve-box></prs-reserve-box>
+          </div>
 
           <!-- // step === 'tour' -->
           <!-- <div class="tour-list" *ngIf="step === 'tour' && Applereader13761377.length > 0">

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EditComponent } from '../agencies/edit/edit.component';
 import { PanelComponent } from "./panel/panel.component";
+import { RequestReserveComponent } from './request-reserve/request-reserve.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,10 @@ const routes: Routes = [
       {
         path: 'profile',
         component: EditComponent
+      },
+      {
+        path: 'requestReserves',
+        component: RequestReserveComponent
       },
       {
         path: 'cities',

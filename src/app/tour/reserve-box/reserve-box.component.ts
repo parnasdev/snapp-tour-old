@@ -2,9 +2,10 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ReservePopupComponent} from "../reserve-popup/reserve-popup.component";
 import {MessageService} from "../../Core/Services/message.service";
 import {TourApiService} from "../../Core/Https/tour-api.service";
-import {ReserveReqDTO} from "../../Core/Models/tourDTO";
-import {FormControl} from "@angular/forms";
+import {ReserveReqDTO, addRequestReserveDTO} from "../../Core/Models/tourDTO";
+import {FormControl, Validators} from "@angular/forms";
 import {CityResponseDTO} from "../../Core/Models/cityDTO";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'prs-reserve-box',
@@ -13,9 +14,13 @@ import {CityResponseDTO} from "../../Core/Models/cityDTO";
 })
 export class ReserveBoxComponent implements OnInit {
 
-  req!: ReserveReqDTO
+  req: addRequestReserveDTO = {
+    destination: '',
+    origin: '',
+    phone: '',
+  }
   countFC = new FormControl('1');
-  phoneFC = new FormControl();
+  phoneFC = new FormControl('', [Validators.required]);
   @Input() city: CityResponseDTO = {
     description: '',
     id: 0,
@@ -30,30 +35,38 @@ export class ReserveBoxComponent implements OnInit {
   @Input() month = '';
 
   constructor(public message: MessageService,
+              public route: ActivatedRoute,
               public api: TourApiService) {
   }
 
   ngOnInit(): void {
   }
 
-  reserve(): void {
-    this.req = {
-      count: +this.countFC.value,
-      package_id: null,
-      noPackage: true,
-      phone: this.phoneFC.value,
-      city_id: this.city.id.toString(),
-      month: this.month
-    }
-    this.api.reserve(this.req).subscribe((res: any) => {
-      if (res.isDone) {
-        this.message.custom(res.message);
-      } else {
-        this.message.custom(res.message);
+  setReq(){
+    this.route.queryParams.subscribe(params => {
+      this.req = {
+        destination: params.dest,
+        origin: params.origin,
+        phone: this.phoneFC.value
       }
-    }, (error: any) => {
-      this.message.error()
     })
+  }
+
+  addRequestReserve(): void {
+    if (this.phoneFC.valid) {
+      this.setReq();
+      this.api.addRequestReserve(this.req).subscribe((res: any) => {
+        if (res.isDone) {
+          this.message.custom(res.message);
+        } else {
+          this.message.custom(res.message);
+        }
+      }, (error: any) => {
+        this.message.error()
+      })
+    } else {
+      this.message.custom('لطفا شمار همراه خود را وارد کنید');
+    }
   }
 
 }

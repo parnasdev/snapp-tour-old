@@ -1,24 +1,24 @@
 <div class="parent-reserve">
   <h2>با تشکر از انتخاب شما</h2>
   <p> لطفا جهت رزرو تور
-    <span style="display: inline-flex">{{ city.name + '-' + month}}</span>
+    <!-- <span style="display: inline-flex">{{ city.name + '-' + month}}</span> -->
     با شماره تلفن
-    <span style="display: inline-flex">021-84278</span>
+    <span style="display: inline-flex">021-75132500</span>
     تماس حاصل فرمایید
   </p>
   <strong>یا</strong>
   <p>
     جهت تماس با شما از طریق کارشناسان اسنپ تریپ اطلاعات درخواستی
     زیر را تکمیل و ارسال فرمایید.
-
   </p>
 
-
-  <label for="">شماره همراه</label>
   <div class="inp-form">
     <input type="text" [formControl]="phoneFC" placeholder="شماره همراه خود را وارد کنید">
   </div>
-  <label for="">تعداد مسافر :</label>
+  <div *ngIf="phoneFC.touched && phoneFC.hasError('required')">
+    <span class="text-danger">شماره همراه ضروری است</span>
+  </div>
+  <!-- <label for="">تعداد مسافر :</label>
   <div class="inp-form">
     <select name="" id="" [formControl]="countFC">
       <option value="1">1 نفر</option>
@@ -32,7 +32,7 @@
       <option value="9">9 نفر</option>
       <option value="10">10 نفر</option>
     </select>
-  </div>
-  <prs-btn [label]="'رزرو'" (click)="reserve()" [background]="'dark'"></prs-btn>
+  </div> -->
+  <prs-btn [label]="'درخواست رزرو'" (click)="addRequestReserve()" [background]="'dark'"></prs-btn>
 </div>
 

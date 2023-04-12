@@ -1,0 +1,85 @@
+<!-- <prs-loading *ngIf="loading"></prs-loading> -->
+<div class="list-tour">
+    <div class="title">
+        <h2>درخواست های رزرو</h2>
+    </div>
+
+  <div class="table-list-tour table-list-tour-desktop">
+    <div class="header-list-tour">
+      <span class="id">#</span>
+      <span class="username">شهر مبدا</span>
+      <span class="title-tour">شهر مقصد</span>
+      <!-- <span class="day">نام هتل</span>
+      <span class="date-create">تاریخ ورود</span>
+      <span class="date-create">تعداد شب</span> -->
+      <span class="view">تاریخ ثبت درخواست</span>
+      <span class="status">شماره همراه</span>
+      <!-- <span class="setting">تنظیمات</span> -->
+    </div>
+    <div class="body-list-tour" *ngIf="reqReserveList.length > 0">
+      <div class="item" *ngFor="let item of reqReserveList | paginate: paginateConfig;let i = index">
+        <span class="day">{{ i + 1 }}</span>
+        <span class="id">{{ item.decodeMessage.origin }}</span>
+        <span class="username">{{ item.decodeMessage.destination }}</span>
+        <!-- <span class="title-tour">{{ log.decodeMessage.hotel_search }}</span> -->
+        <!-- <span class="from-to">{{ this.calService.isValidDate(log.decodeMessage.stDate) ? this.calService.convertDate(log.decodeMessage.stDate, 'fa') : 'ثبت نشده' }}</span>
+        <span class="day">{{ log.decodeMessage.nightNum > 0 ? log.decodeMessage.nightNum + ' شب' : 'ثبت نشده'}}</span> -->
+        <span class="day" style="direction: ltr !important">{{ this.calService.isValidDate(item.createdAt) ? this.calService.convertDate1(item.createdAt, 'fa') : 'ثبت نشده' }}</span>
+        <span class="day">{{ item.decodeMessage.phone }}</span>
+        <!-- <div class="button-setting">
+          <button class="delete-btn">حذف</button>
+        </div> -->
+      </div>
+    </div>
+    <div>
+      <pagination-controls *ngIf="!loading && paginate.last_page > 1" class="pagination-control"
+        (pageChange)="onPageChanged($event)" previousLabel="قبلی" nextLabel="بعدی"
+        screenReaderPaginationLabel="صفحه بندی" screenReaderPageLabel="صفحه" screenReaderCurrentLabel="شما در صفحه ی">
+      </pagination-controls>
+    </div>
+  </div>
+
+  <div class="table-list-tour-mobile" *ngIf="reqReserveList.length > 0">
+    <div class="list-tour-box"
+      *ngFor="let item of reqReserveList | paginate: paginateConfig ; let i = index">
+      <label class="user-id" for="">شماره شناسه : {{ i + 1 }}</label>
+      <div class="item-list-tour mt-3">
+        <div class="item-tour">
+            <span class="username">شهر مبدا</span>
+            <span class="id">{{ item.decodeMessage.origin }}</span>
+        </div>
+        <div class="item-tour">
+            <span class="title-tour">شهر مقصد</span>
+            <span class="username">{{ item.decodeMessage.destination }}</span>
+        </div>
+        <!-- <div class="item-tour">
+            <span class="day">نام هتل</span>
+            <span class="title-tour">{{ log.decodeMessage.hotel_search }}</span>
+        </div> -->
+        <!-- <div class="item-tour">
+            <span class="date-create">تاریخ ورود</span>
+            <span class="from-to">{{ this.calService.isValidDate(log.decodeMessage.stDate) ? this.calService.convertDate(log.decodeMessage.stDate, 'fa') : 'ثبت نشده' }}</span>
+        </div> -->
+        <!-- <div class="item-tour">
+            <span class="date-create">تعداد شب</span>
+            <span class="day">{{ log.decodeMessage.nightNum > 0 ? log.decodeMessage.nightNum + ' شب' : 'ثبت نشده'}}</span>
+        </div> -->
+        <!-- <div class="item-tour">
+            <span class="view">تاریخ ایجاد جست و جو</span>
+            <span class="day" style="direction: ltr !important">{{ this.calService.isValidDate(log.decodeMessage.stDate) ? this.calService.convertDate1(log.createdAt, 'fa') : 'ثبت نشده' }}</span>
+        </div> -->
+        <div class="item-tour">
+            <span class="status">شماره همراه</span>
+            <span class="day">{{ item.decodeMessage.phone }}</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <pagination-controls *ngIf="!loading && paginate.last_page > 1" class="pagination-control"
+        (pageChange)="onPageChanged($event)" previousLabel="قبلی" nextLabel="بعدی"
+        screenReaderPaginationLabel="صفحه بندی" screenReaderPageLabel="صفحه" screenReaderCurrentLabel="شما در صفحه ی">
+      </pagination-controls>
+    </div>
+  </div>
+
+</div>

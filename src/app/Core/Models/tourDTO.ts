@@ -507,3 +507,25 @@ export interface hotelRates {
     name: string;
   }
 }
+
+export interface addRequestReserveDTO {
+  origin: string;
+  destination: string;
+  phone: string;
+}
+
+export interface getRequestReserveDTO {
+  createdAt: string;
+  message: string;
+  decodeMessage: decodeMessageDTO;
+  user: {
+    name: string;
+    family: string;
+  }
+}
+
+export interface decodeMessageDTO {
+  origin: string;
+  destination: string;
+  phone: string;
+}
