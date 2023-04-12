@@ -48,7 +48,7 @@ export class SearchComponent implements OnInit, OnChanges {
     if (changes.inCommingSearchObject.firstChange) {
       this.originFC.setValue(changes.inCommingSearchObject.currentValue?.origin)
       this.destFC.setValue(changes.inCommingSearchObject.currentValue?.dest)
-      this.getReservedDates();
+      // this.getReservedDates();
     }
   }
 
@@ -88,9 +88,9 @@ export class SearchComponent implements OnInit, OnChanges {
     this.destFC.setValue(city.slugEn)
     this.reservedDates = [];
     this.stDateFC.setValue(null)
-    this.nightFC.setValue(null)
+    this.nightFC.setValue(0)
     this.inCommingSearchObject = undefined
-    this.getReservedDates();
+    // this.getReservedDates();
   }
 
   getReservedDates(): void {

@@ -53,7 +53,9 @@ export class SearchCollapseComponent implements OnInit, OnChanges {
     if (changes.inCommingSearchObject.firstChange) {
       this.originFC.setValue(changes.inCommingSearchObject.currentValue?.origin)
       this.destFC.setValue(changes.inCommingSearchObject.currentValue?.dest)
-      this.getReservedDates();
+      this.stDateFC.setValue(changes.inCommingSearchObject.currentValue?.stDate)
+      this.nightFC.setValue(changes.inCommingSearchObject.currentValue?.night)
+      // this.getReservedDates();
     }
   }
 
@@ -85,17 +87,17 @@ export class SearchCollapseComponent implements OnInit, OnChanges {
     this.originFC.setValue(city.slugEn)
     this.originID = city.id;
     if (this.destFC.valid) {
-      this.getReservedDates();
+      // this.getReservedDates();
     }
   }
   destSelected(city: CityResponseDTO): void {
 
     this.destFC.setValue(city.slugEn)
     this.reservedDates = [];
-    this.stDateFC.setValue(null)
-    this.nightFC.setValue(null)
+    // this.stDateFC.setValue(null)
+    // this.nightFC.setValue(0)
     this.inCommingSearchObject = undefined
-    this.getReservedDates();
+    // this.getReservedDates();
   }
 
   getReservedDates(): void {

@@ -1,34 +1,42 @@
 <div class="row-search">
-    <div class="inp-form">
-      <prs-select-city [inCommingCity]="originFC.value"
-      [hasOriginTour]="true" [title]="'شهر مبدا'"
-        (citySelected)="originSelected($event)" ></prs-select-city>
-    </div>
   <div class="inp-form">
-    <prs-select-city [city]="originID" [hasDestTour]="true" [title]="'شهر مقصد'"  [inCommingCity]="destFC.value"
-    (citySelected)="destSelected($event)"></prs-select-city>
+    <prs-select-city [inCommingCity]="originFC.value"
+    [title]="'شهر مبدا'"
+      (citySelected)="originSelected($event)" ></prs-select-city>
   </div>
-    <div class="inp-form">
-      <mat-form-field class="example-full-width" appearance="fill">
-        <input class="input-parent"
-               matInput [formControl]="stDateFC"
-               placeholder="تاریخ ورود به هتل"
-               autocomplete="off"
-               readonly
-               [matDatepickerFilter]="myFilter"
-               [matDatepicker]="picker3"
-               (click)="picker3.open()">
-        <mat-datepicker #picker3></mat-datepicker>
-      </mat-form-field>
-    </div>
+<div class="inp-form">
+  <prs-select-city [city]="originID" [title]="'شهر مقصد'"  [inCommingCity]="destFC.value"
+  (citySelected)="destSelected($event)"></prs-select-city>
+</div>
+  <div class="inp-form">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <input class="input-parent"
+             matInput [formControl]="stDateFC"
+             placeholder="تاریخ ورود به هتل"
+             autocomplete="off"
+             readonly
+             [matDatepicker]="picker3"
+             (click)="picker3.open()">
+      <mat-datepicker #picker3></mat-datepicker>
+    </mat-form-field>
+  </div>
 
-    <div class="inp-form">
-      <select [formControl]="nightFC" name="">
-        <option value="0">تعداد شب</option>
-        <option *ngFor="let x of nights" [value]="x">{{x}}
-        <span style="margin-right: 4px">شب</span>
-        </option>
-      </select>
-    </div>
-    <button class="btn-search font-16" (click)="search()">جست و جو</button>
+  <div class="inp-form">
+    <select [formControl]="nightFC" name="">
+      <option value="0">تعداد شب</option>
+      <!-- <option *ngFor="let x of nights" [value]="x">{{x}} -->
+        <option [value]="1">1 شب</option>
+        <option [value]="2">2 شب</option>
+        <option [value]="3">3 شب</option>
+        <option [value]="4">4 شب</option>
+        <option [value]="5">5 شب</option>
+        <option [value]="6">6 شب</option>
+        <option [value]="7">7 شب</option>
+        <option [value]="8">8 شب</option>
+        <option [value]="9">9 شب</option>
+      <!-- <span style="margin-right: 4px">شب</span> -->
+      <!-- </option> -->
+    </select>
+  </div>
+  <button class="btn-search font-16" (click)="search()">جست و جو</button>
 </div>
