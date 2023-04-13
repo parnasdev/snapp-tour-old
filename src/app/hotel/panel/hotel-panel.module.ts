@@ -19,7 +19,10 @@ import { PricingComponent } from './pricing/pricing.component';
 import {MatSelectModule} from '@angular/material/select';
 import { ConfirmPricingModalComponent } from './confirm-pricing-modal/confirm-pricing-modal.component';
 import { MainPickerComponent } from './main-picker/main-picker.component';
-
+import { IConfig, NgxMaskModule } from 'ngx-mask';
+const maskConfig: Partial<IConfig> = {
+  validation: false,
+};
 
 @NgModule({
   declarations: [
@@ -41,6 +44,7 @@ import { MainPickerComponent } from './main-picker/main-picker.component';
         ReactiveFormsModule,
         MatCheckboxModule,
         PipesModule,
+        NgxMaskModule.forRoot(maskConfig),
         CommonProjectModule,
         BarRatingModule,
         NgxPaginationModule,

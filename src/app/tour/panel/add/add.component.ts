@@ -60,43 +60,43 @@ export class AddComponent implements OnInit {
     setService.removeRequestObject()
   }
 
-    ////formGroup
-    form = this.fb.group({
-      title: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-      slug: new FormControl('', [Validators.required]),
-      stCity_id: new FormControl('', Validators.required),
-      endCity_id: new FormControl('', Validators.required),
-      nightNum: new FormControl('1', Validators.required),
-      dayNum: new FormControl('لطفا تعداد شب را انتخاب کنید', Validators.required),
-      offered: new FormControl(),
-      TransferType: new FormControl(),
-      enDate: new FormControl('', Validators.required),
-      stDate: new FormControl('', Validators.required),
-      expireDate: new FormControl('', Validators.required),
-      CHDFlightRate: new FormControl(''),
-      ADLFlightRate: new FormControl(''),
-      defineTour: new FormControl('false', Validators.required),
-      euroRate: new FormControl(''),
-      dollarRate: new FormControl(''),
-      AEDRate: new FormControl(''),
-      visaRate: new FormControl(''),
-      visaPriceType: new FormControl(1),
-      insuranceRate: new FormControl(''),
-      transferPriceType: new FormControl(1),
-      transferRate: new FormControl(''),
-      insurancePriceType: new FormControl(1),
-      services: new FormControl(''),
-      documents: new FormControl(''),
-      description: new FormControl(''),
-      status: new FormControl('Show', Validators.required),
-      packages: this.fb.array([], Validators.required),
-    });
+  ////formGroup
+  form = this.fb.group({
+    title: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+    slug: new FormControl('', [Validators.required]),
+    stCity_id: new FormControl('', Validators.required),
+    endCity_id: new FormControl('', Validators.required),
+    nightNum: new FormControl('1', Validators.required),
+    dayNum: new FormControl('لطفا تعداد شب را انتخاب کنید', Validators.required),
+    offered: new FormControl(),
+    TransferType: new FormControl(),
+    enDate: new FormControl('', Validators.required),
+    stDate: new FormControl('', Validators.required),
+    expireDate: new FormControl('', Validators.required),
+    CHDFlightRate: new FormControl(''),
+    ADLFlightRate: new FormControl(''),
+    defineTour: new FormControl('false', Validators.required),
+    euroRate: new FormControl(''),
+    dollarRate: new FormControl(''),
+    AEDRate: new FormControl(''),
+    visaRate: new FormControl(''),
+    visaPriceType: new FormControl(1),
+    insuranceRate: new FormControl(''),
+    transferPriceType: new FormControl(1),
+    transferRate: new FormControl(''),
+    insurancePriceType: new FormControl(1),
+    services: new FormControl(''),
+    documents: new FormControl(''),
+    description: new FormControl(''),
+    status: new FormControl('Show', Validators.required),
+    packages: this.fb.array([], Validators.required),
+  });
 
   ngOnInit() {
     this.getService();
   }
 
-    getCities(): void {
+  getCities(): void {
     const req: CityListRequestDTO = {
       type: null,
       hasHotel: true,
@@ -123,7 +123,12 @@ export class AddComponent implements OnInit {
     this.setService.transferRates = [];
     this.setService.getTransferRates();
     this.setService.obj.packages = [];
-    this.getHotels();
+    if (this.setService.obj.defineTour) {
+      this.setService.getHotels();
+    } else {
+      this.getHotels();
+
+    }
   }
 
   getStCity(cityItemSelected: any): void {
@@ -152,7 +157,7 @@ export class AddComponent implements OnInit {
   }
 
   changes() {
-   this.setService.obj.dayNum = this.setService.obj.nightNum + 1;
+    this.setService.obj.dayNum = this.setService.obj.nightNum + 1;
   }
 
 
@@ -229,7 +234,7 @@ export class AddComponent implements OnInit {
 
   convertTour() {
     this.setService.obj.packages = [];
-    this.ToursForm.controls.forEach((item:any, index:any) => {
+    this.ToursForm.controls.forEach((item: any, index: any) => {
       this.setService.obj.packages.push({
         hotel_id: item.value.hotel_id,
         order_item: index,
@@ -413,15 +418,15 @@ export class AddComponent implements OnInit {
   }
 
   submit() {
-    if(!this.setService.obj) {
+    if (!this.setService.obj.defineTour) {
       this.convertTour()
     }
-    
+
     // this.fillObj()
 
-    if( this.setService.obj.packages.length === 0) {
+    if (this.setService.obj.packages.length === 0) {
       this.message.custom('لطفا هتل های خود را انتخاب کنید')
-    }else {
+    } else {
       this.call()
     }
   }
@@ -429,9 +434,9 @@ export class AddComponent implements OnInit {
 
   call(): void {
     this.isLoading = true
-    this.setService.obj.stDate = this.calenderService.convertDateSpecial(this.setService.obj.stDate,'en')
-    this.setService.obj.enDate = this.calenderService.convertDateSpecial(this.setService.obj.enDate,'en')
-    this.setService.obj.expireDate = this.calenderService.convertDateSpecial(this.setService.obj.expireDate,'en')
+    this.setService.obj.stDate = this.calenderService.convertDateSpecial(this.setService.obj.stDate, 'en')
+    this.setService.obj.enDate = this.calenderService.convertDateSpecial(this.setService.obj.enDate, 'en')
+    this.setService.obj.expireDate = this.calenderService.convertDateSpecial(this.setService.obj.expireDate, 'en')
 
     this.tourApi.createTour(this.setService.obj).subscribe((res: any) => {
       this.isLoading = false;

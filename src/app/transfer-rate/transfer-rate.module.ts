@@ -16,6 +16,10 @@ import { PipesModule } from '../common-project/pipes/pipes.module';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ToolsModule } from '../tools/tools/tools.module';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { IConfig, NgxMaskModule } from 'ngx-mask';
+const maskConfig: Partial<IConfig> = {
+  validation: false,
+};
 
 
 @NgModule({
@@ -36,6 +40,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatCheckboxModule,
     NgxPaginationModule,
     MatInputModule,
+    NgxMaskModule.forRoot(maskConfig),
+
     MatFormFieldModule,
     PipesModule,
   ]
