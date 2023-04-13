@@ -173,6 +173,8 @@ export class SetComponent implements OnInit {
     // this.footerLinks = links;
   }
 
+
+
   setFormData() {
     this.settingForm.controls['title'].setValue(this.settings.title)
     this.settingForm.controls['metaTags'].setValue(this.settings.metaTags)

@@ -1,7 +1,7 @@
 <div class="list-tour">
     <div class="title">
       <h2>لیست مسیر پرواز ها</h2>
-      <a class="btn-add-tour" *ngIf="checkItemPermission('Transfer.create')" routerLink="/panel/transferRate/add">اضافه</a>
+      <a class="btn-add-tour" routerLink="/panel/transferRate/add">اضافه</a>
     </div>
     <div class="table-list-tour">
       <div class="header-list-tour">
@@ -25,8 +25,8 @@
           <span class="title-tour">{{ transfer.return_date }}</span>
           <span class="title-tour">{{ transfer.capacity }}</span>
           <div class="button-setting">
-            <a *ngIf="session.checkItemPermission('Transfer.edit')" routerLink="/panel/transferRate/edit/{{ transfer.id }}" class="edit-btn">ویرایش</a>
-            <button *ngIf="session.checkItemPermission('Transfer.delete')" (click)="deleteTransfer(transfer.id)" class="delete-btn">حذف</button>
+            <a routerLink="/panel/transferRate/edit/{{ transfer.id }}" class="edit-btn">ویرایش</a>
+            <button (click)="deleteTransfer(transfer.id)" class="delete-btn">حذف</button>
           </div>
         </div>
       </div>

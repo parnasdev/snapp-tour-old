@@ -405,6 +405,8 @@ export class EditComponent implements OnInit {
   }
 
   setInfo() {
+    console.log(this.info.packages);
+    
     this.changeHotelServicesToID();
     this.setService.obj = {
       title: this.info.title,
@@ -443,8 +445,6 @@ export class EditComponent implements OnInit {
     this.showPackages = true;
   }
 
-
-
   getTransferIds(): number[] {
     let result: any[] = [];
     this.info.newTransfers.forEach((item: any) => {
@@ -454,12 +454,11 @@ export class EditComponent implements OnInit {
   }
 
   submit() {
+    debugger
     if (!this.setService.obj.defineTour) {
       this.convertTour()
     }
-
     // this.fillObj()
-
     if (this.setService.obj.packages.length === 0) {
       this.message.custom('لطفا هتل های خود را انتخاب کنید')
     } else {
