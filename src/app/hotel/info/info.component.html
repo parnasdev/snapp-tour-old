@@ -95,7 +95,7 @@
               </div>
               <div class="end">
                 <span *ngIf="isDesktop">تامین کننده : {{ hotelInfo.packages[0].tour.agency }}</span>
-                <a *ngIf="isDesktop" (click)="checkReserve(hotelInfo.packages[0].id)" class="btn-base w-100 d-flex align-items-center justify-content-center h-45 mt-2">
+                <a *ngIf="isDesktop" (click)="checkReserve(hotelInfo.packages[0].id, item.id)" class="btn-base w-100 d-flex align-items-center justify-content-center h-45 mt-2">
                   انتخاب تور
                 </a>
                 <!-- <a data-toggle="collapse" class="btn-view-more" href="#collapseExample{{i}}" role="button"
@@ -196,7 +196,7 @@
               </div>
             <div *ngIf="isTablet" class="w-100 d-flex my-3 flex-column align-items-center">
               <span >تامین کننده : {{ hotelInfo.packages[0].tour.agency }}</span>
-              <a  (click)="checkReserve(hotelInfo.packages[0].id)" class="btn-base w-100 d-flex align-items-center justify-content-center h-45 mt-2">
+              <a  (click)="checkReserve(hotelInfo.packages[0].id, item.id)" class="btn-base w-100 d-flex align-items-center justify-content-center h-45 mt-2">
                 انتخاب تور
               </a>
             </div>

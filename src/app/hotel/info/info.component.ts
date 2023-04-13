@@ -154,11 +154,11 @@ export class InfoComponent implements OnInit {
     return Array.from(Array(+count).keys());
   }
 
-  checkReserve(packageId: number) {
-    this.session.isLoggedIn() ? this.getReserve(packageId) : this.loginPopup(packageId)
+  checkReserve(packageId: number, transferRateId: number) {
+    this.session.isLoggedIn() ? this.getReserve(packageId, transferRateId) : this.loginPopup(packageId, transferRateId)
   }
 
-  loginPopup(id: number): void {
+  loginPopup(id: number, transferRateId: number): void {
     const dialog = this.dialog.open(AuthPopupComponent, {
       width: this.isMobile ? '95%' : '30%',
       maxWidth: this.isMobile ? '95%' : '30%',
@@ -167,7 +167,7 @@ export class InfoComponent implements OnInit {
     dialog.afterClosed().subscribe(result => {
       if (result) {
         this.message.custom('ورود شما با موفقیت انجام شد')
-        this.getReserve(id)
+        this.getReserve(id, transferRateId)
       }
     })
   }
@@ -184,10 +184,11 @@ export class InfoComponent implements OnInit {
     })
   }
 
-  getReserve(packageId: number): void {
+  getReserve(packageId: number, transferRateId: number): void {
     this.clicked = true;
     const req = {
       package_id: packageId,
+      transferRateId: transferRateId
     }
     this.tourApi.reserve(req).subscribe((res: any) => {
       if (res.isDone) {

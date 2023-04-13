@@ -14,8 +14,8 @@ export interface transfersSetDTO {
   enDate: string;
   originTransfer: string | undefined;
   destTransfer: string | undefined;
-  originFlightCode: string;
-  destFlightCode: string
+  originFlightCode: string | undefined;
+  destFlightCode: string | undefined;
 }
 @Component({
   selector: 'prs-agency-reserves',
@@ -28,20 +28,27 @@ export class AgencyReservesComponent implements OnInit {
   statuses = TourStatuses;
   reserveObj: ReserveInfoDTO = {
     id: 0,
+    agency: '',
+    agencyPercent: 0,
+    transactions: [],
+    ref_code: '',
     package: {
       id: 0,
       tour: {
+        agency: '',
         dayNum: 0,
+        defineTour: false,
         enDate: '',
-        endCity: {} as CityResponseDTO,
+        endCity: {} as CityResponseDTO, 
+        stCity: {} as CityResponseDTO,
+        isTrash: 0,
+        newTransfers: [],
         nightNum: 0,
         slug: '',
-        stCity: {} as CityResponseDTO,
         stDate: '',
         status: '',
         title: '',
         transfers: [],
-        defineTour: false,
         type: false
       },
       hotel: {} as HotelDTO,
@@ -54,10 +61,6 @@ export class AgencyReservesComponent implements OnInit {
       offered: false,
     },
     user: '',
-    name: '',
-    month: '',
-    city: '',
-    phone: '',
     count: 0,
     status: '',
     passengers: [],
@@ -116,14 +119,14 @@ export class AgencyReservesComponent implements OnInit {
   }
 
   setTourTransfers(): void {
-    if (this.reserveObj.package?.tour && this.reserveObj.package?.tour?.transfers.length > 0) {
+    if (this.reserveObj.package?.tour && this.reserveObj.transfer) {
       this.transfers = {
-        stDate: this.calendarService.convertDate(this.reserveObj.package?.tour?.transfers[0]?.dateTime, 'fa'),
-        enDate: this.calendarService.convertDate(this.reserveObj.package?.tour?.transfers[1]?.dateTime, 'fa'),
-        originTransfer: this.reserveObj.package.tour.transfers[0].transfer,
-        destTransfer: this.reserveObj.package.tour.transfers[1].transfer,
-        originFlightCode: this.reserveObj.package.tour.transfers[0].flightCode,
-        destFlightCode: this.reserveObj.package.tour.transfers[1].flightCode
+        stDate: this.calendarService.convertDate(this.reserveObj.transfer?.departure_date, 'fa'),
+        enDate: this.calendarService.convertDate(this.reserveObj.transfer?.return_date, 'fa'),
+        originTransfer: this.reserveObj.transfer?.origin_transfer.name,
+        destTransfer: this.reserveObj.transfer?.destination_transfer.name,
+        originFlightCode: this.reserveObj.transfer?.origin_transfer_number,
+        destFlightCode: this.reserveObj.transfer?.origin_transfer_number
       }
     }
   }

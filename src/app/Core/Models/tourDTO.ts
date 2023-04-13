@@ -273,7 +273,7 @@ export interface UserReserveListResDTO {
 
 export interface ReservePackageDTO {
   id: number;
-  tour: Tour;
+  tour: newTourDTO;
   hotel: HotelDTO;
   services: RateDTO;
   rate: RateDTO;
@@ -314,17 +314,17 @@ export interface DatesResDTO {
 
 export interface ReserveInfoDTO {
   id: number;
+  agency: string;
+  agencyPercent: number;
   package: ReservePackageDTO;
   user: any;
-  name: string;
-  month: string;
   ref_code?: string
-  city: string;
-  phone: string;
   count: number;
   status: string;
   passengers: RoomDTO[];
   bill: BillDTO;
+  transactions: any[];
+  transfer?: newTransfersDTO,
   createdAt: string;
 }
 

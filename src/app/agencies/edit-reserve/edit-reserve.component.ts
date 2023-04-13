@@ -5,7 +5,7 @@ import { transfersSetDTO } from 'src/app/agencies/agency-reserves/agency-reserve
 import { RoomTypeApiService } from 'src/app/Core/Https/room-type-api.service';
 import { TourApiService } from 'src/app/Core/Https/tour-api.service';
 import { RoomTypeListDTO } from 'src/app/Core/Models/roomTypeDTO';
-import { DiscountsDTO, EditReserveReq, HotelDTO, PricesDTO, RateDTO, ReserveInfoDTO, ReserveRoomDTO, RoomDTO, RoomPassengersDTO, RoomsRequestDTO, Tour } from 'src/app/Core/Models/tourDTO';
+import { DiscountsDTO, EditReserveReq, HotelDTO, newTourDTO, PricesDTO, RateDTO, ReserveInfoDTO, ReserveRoomDTO, RoomDTO, RoomPassengersDTO, RoomsRequestDTO, Tour } from 'src/app/Core/Models/tourDTO';
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
 import { CheckErrorService } from 'src/app/Core/Services/check-error.service';
 import { MessageService } from 'src/app/Core/Services/message.service';
@@ -24,9 +24,13 @@ export class EditReserveComponent implements OnInit {
   reserveCode = '';
   reserveObj: ReserveInfoDTO = {
     id: 0,
+    agency: '',
+    agencyPercent: 0,
+    transactions: [],
+    ref_code: '',
     package: {
       id: 0,
-      tour: {} as Tour,
+      tour: {} as newTourDTO,
       hotel: {} as HotelDTO,
       services: {} as RateDTO,
       rate: {} as RateDTO,
@@ -37,10 +41,6 @@ export class EditReserveComponent implements OnInit {
       offered: false,
     },
     user: '',
-    name: '',
-    month: '',
-    city: '',
-    phone: '',
     count: 0,
     status: '',
     passengers: [],
@@ -159,14 +159,14 @@ export class EditReserveComponent implements OnInit {
   }
 
   setTourTransfers(): void {
-    if (this.reserveObj.package?.tour && this.reserveObj.package?.tour?.transfers.length > 0) {
+    if (this.reserveObj.package?.tour && this.reserveObj.transfer) {
       this.transfers = {
-        stDate: this.calService.convertDate(this.reserveObj.package?.tour?.transfers[0]?.dateTime, 'fa'),
-        enDate: this.calService.convertDate(this.reserveObj.package?.tour?.transfers[1]?.dateTime, 'fa'),
-        originTransfer: this.reserveObj.package.tour.transfers[0].transfer,
-        destTransfer: this.reserveObj.package.tour.transfers[1].transfer,
-        originFlightCode: this.reserveObj.package.tour.transfers[0].flightCode,
-        destFlightCode: this.reserveObj.package.tour.transfers[1].flightCode
+        stDate: this.calService.convertDate(this.reserveObj.transfer?.departure_date, 'fa'),
+        enDate: this.calService.convertDate(this.reserveObj.transfer?.return_date, 'fa'),
+        originTransfer: this.reserveObj.transfer?.origin_transfer.name,
+        destTransfer: this.reserveObj.transfer?.destination_transfer.name,
+        originFlightCode: this.reserveObj.transfer?.origin_transfer_number,
+        destFlightCode: this.reserveObj.transfer?.origin_transfer_number
       }
     }
   }

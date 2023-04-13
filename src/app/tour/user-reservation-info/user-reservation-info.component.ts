@@ -20,7 +20,8 @@ import {
   RoomDTO,
   RoomPassengersDTO,
   RoomsRequestDTO,
-  Tour
+  Tour,
+  newTransfersDTO
 } from 'src/app/Core/Models/tourDTO';
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
 import { CheckErrorService } from 'src/app/Core/Services/check-error.service';
@@ -44,9 +45,16 @@ export class UserReservationInfoComponent implements OnInit {
   reserveCode = '';
   reserveObj: ReserveInfoDTO = {
     id: 0,
+    agency: '',
+    agencyPercent: 0,
+    transactions: [],
+    ref_code: '',
     package: {
       id: 0,
       tour: {
+        agency: '',
+        isTrash: 0,
+        newTransfers: [],
         dayNum: 0,
         enDate: '',
         endCity: {} as CityResponseDTO,
@@ -70,10 +78,6 @@ export class UserReservationInfoComponent implements OnInit {
       offered: false,
     },
     user: '',
-    name: '',
-    month: '',
-    city: '',
-    phone: '',
     count: 0,
     status: '',
     passengers: [],
@@ -82,7 +86,8 @@ export class UserReservationInfoComponent implements OnInit {
       totalPayAble: 0,
       totalRoomPrice: 0
     },
-    createdAt: ''
+    transfer: {} as newTransfersDTO,
+    createdAt: '',
   };
 
   defineTour = false
@@ -212,14 +217,14 @@ export class UserReservationInfoComponent implements OnInit {
   }
 
   setTourTransfers(): void {
-    if (this.reserveObj.package?.tour && this.reserveObj.package?.tour?.transfers.length > 0) {
+    if (this.reserveObj.package?.tour && this.reserveObj.transfer) {
       this.transfers = {
-        stDate: this.calService.convertDate(this.reserveObj.package?.tour?.transfers[0]?.dateTime, 'fa'),
-        enDate: this.calService.convertDate(this.reserveObj.package?.tour?.transfers[1]?.dateTime, 'fa'),
-        originTransfer: this.reserveObj.package.tour.transfers[0].transfer,
-        destTransfer: this.reserveObj.package.tour.transfers[1].transfer,
-        originFlightCode: this.reserveObj.package.tour.transfers[0].flightCode,
-        destFlightCode: this.reserveObj.package.tour.transfers[1].flightCode
+        stDate: this.calService.convertDate(this.reserveObj.transfer?.departure_date, 'fa'),
+        enDate: this.calService.convertDate(this.reserveObj.transfer?.return_date, 'fa'),
+        originTransfer: this.reserveObj.transfer?.origin_transfer.name,
+        destTransfer: this.reserveObj.transfer?.destination_transfer.name,
+        originFlightCode: this.reserveObj.transfer?.origin_transfer_number,
+        destFlightCode: this.reserveObj.transfer?.origin_transfer_number
       }
     }
   }
@@ -258,11 +263,9 @@ export class UserReservationInfoComponent implements OnInit {
   }
 
   setDateAndTime(): void {
-    this.stDate = this.calService.convertDate(this.reserveObj?.package?.tour?.transfers[0].dateTime.split(' ')[0], 'fa') + ' ' +
-      this.reserveObj?.package?.tour?.transfers[0].dateTime.split(' ')[1];
+    this.stDate = this.calService.convertDate(this.reserveObj.transfer?.departure_date, 'fa') + ' ' + this.reserveObj.transfer?.departure_time
 
-    this.enDate = this.calService.convertDate(this.reserveObj?.package?.tour?.transfers[1].dateTime.split(' ')[0], 'fa') + ' ' +
-      this.reserveObj?.package?.tour?.transfers[1].dateTime.split(' ')[1];
+    this.enDate = this.calService.convertDate(this.reserveObj.transfer?.return_date, 'fa') + ' ' + this.reserveObj.transfer?.return_time;
   }
 
   setReseveRoomData(capacity: string | undefined, roomName: string) {
@@ -312,16 +315,15 @@ export class UserReservationInfoComponent implements OnInit {
   }
 
   getRoomPriceByName(roomName: string, capacity: number) {
-    let defineTour: boolean = this.reserveObj.package.tour.defineTour;
     let prices = Object.entries(this.reserveObj.package.prices)
     let result = 0;
-    let room_name = defineTour ? roomName + 'Rate' : roomName
     prices.forEach(item => {
-      if (item[0] === room_name) {
+      if (item[0] === roomName) {
         result = item[1] * capacity
       }
     })
-    return result
+    const flightPrice = this.reserveObj?.transfer ? this.reserveObj?.transfer?.adl_price : 0;
+    return result + flightPrice
   }
 
   getRoomData(data: RoomDTO): void {
@@ -403,5 +405,10 @@ export class UserReservationInfoComponent implements OnInit {
       height: 'auto',
       width: '800px',
     });
+  }
+
+  getFullPrice(roomPrice: string | undefined, type: any){
+    const flightPrice = this.reserveObj?.transfer ? type === 'adl' ? this.reserveObj?.transfer?.adl_price : this.reserveObj?.transfer?.chd_price : 0;
+    return ((roomPrice ? +roomPrice : 0) + flightPrice).toString();
   }
 }

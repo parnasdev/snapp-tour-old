@@ -43,7 +43,7 @@
             <div class="d-flex align-items-center">
               <span>پرواز رفت:</span>
               <span style="margin-right: 4px" class="city-name">{{ reserveObj?.package?.tour?.stCity?.name }} به {{ reserveObj?.package?.tour?.endCity?.name }}</span>
-              <span>{{ reserveObj.package.tour.transfers.length === 0 ? '' : '-' + ' ' + reserveObj.package.tour.transfers[0].transfer }}</span>
+              <span>{{ '-' + ' ' + reserveObj.transfer?.origin_transfer?.name }}</span>
             </div>
 
             <div class="item">
@@ -52,7 +52,7 @@
             </div>
             <div class="item">
               <span class="title">تاریخ ورود به هتل :</span>
-              <span class="text" style="direction: ltr!important">{{ calService.convertDate(reserveObj?.package?.tour?.stDate, 'fa')}}</span>
+              <span class="text" style="direction: ltr!important">{{ calService.convertDate(reserveObj.transfer?.departure_date, 'fa')}}</span>
             </div>
           </div>
           <div class="info-time">
@@ -64,7 +64,7 @@
             <div class="d-flex align-items-center">
               <span>پرواز برگشت:</span>
               <span style="margin-right: 4px" class="city-name">{{ reserveObj?.package?.tour?.endCity?.name }} به {{ reserveObj?.package?.tour?.stCity?.name }}</span>
-              <span>{{ reserveObj.package.tour.transfers.length === 0 ? '' : '-' + ' ' + reserveObj.package.tour.transfers[1].transfer }}</span>
+              <span>{{ '-' + ' ' + this.reserveObj.transfer?.destination_transfer?.name }}</span>
             </div>
 
             <div class="item">
@@ -73,7 +73,7 @@
             </div>
             <div class="item">
               <span class="title">تاریخ خروج از هتل :</span>
-              <span class="text" style="direction: ltr!important">{{ calService.convertDate(reserveObj?.package?.tour?.enDate, 'fa')}}</span>
+              <span class="text" style="direction: ltr!important">{{ calService.convertDate(reserveObj.transfer?.return_date, 'fa')}}</span>
             </div>
           </div>
         </div>
@@ -95,8 +95,7 @@
           <small>موجودی
             اتاق: {{ reserveObj.package?.prices?.twinCapacity ? +reserveObj.package.prices.twinCapacity : 0 }}</small>
           <div class="price mt-2">
-            <strong class="mt-1">{{ reserveObj.package.tour.defineTour ? (reserveObj.package.prices?.twinRate | sperator) : (reserveObj.package.prices?.twin | sperator)
-              }}</strong>
+            <strong class="mt-1">{{  getFullPrice(reserveObj.package?.prices?.twin, 'adl') | sperator}}</strong>
             <small>تومان</small>
           </div>
 
@@ -111,8 +110,7 @@
           <small>موجودی
             اتاق: {{ reserveObj.package?.prices?.singleCapacity ? +reserveObj.package.prices.singleCapacity : 0 }}</small>
           <div class="price mt-2">
-            <strong class="mt-1">{{ reserveObj.package.tour.defineTour ? (reserveObj.package.prices?.singleRate | sperator) :
-              (reserveObj.package.prices?.single | sperator) }}</strong>
+            <strong class="mt-1">{{ getFullPrice(reserveObj.package?.prices?.single, 'adl') | sperator }}</strong>
             <small>تومان</small>
           </div>
 
@@ -127,8 +125,7 @@
           <small>موجودی
             اتاق: {{ reserveObj.package?.prices?.tripleCapacity ? +reserveObj.package.prices.tripleCapacity : 0 }}</small>
           <div class="price">
-            <strong class="mt-1">{{ reserveObj.package.tour.defineTour ? (reserveObj.package.prices?.tripleRate | sperator) :
-              (reserveObj.package.prices?.triple | sperator) }}</strong>
+            <strong class="mt-1">{{ getFullPrice(reserveObj.package?.prices?.triple, 'adl') | sperator }}</strong>
             <small class="mt-2">تومان</small>
           </div>
 
@@ -143,8 +140,7 @@
           <small>موجودی
             اتاق: {{ reserveObj.package?.prices?.quadCapacity ? +reserveObj.package.prices.quadCapacity : 0 }}</small>
           <div class="price mt-2">
-            <strong class="mt-1">{{ reserveObj.package.tour.defineTour ? (reserveObj.package.prices?.quadRate | sperator) : (reserveObj.package.prices?.quad | sperator)
-              }}</strong>
+            <strong class="mt-1">{{ getFullPrice(reserveObj.package?.prices?.quad, 'adl') | sperator }}</strong>
             <small>تومان</small>
           </div>
 
@@ -159,8 +155,7 @@
           <small>موجودی
             اتاق: {{ reserveObj.package?.prices?.cwbCapacity ? +reserveObj.package.prices.cwbCapacity : 0 }}</small>
           <div class="price mt-2">
-            <strong class="mt-1">{{ reserveObj.package.tour.defineTour ? (reserveObj.package.prices?.cwbRate | sperator) : reserveObj.package.prices?.cwb | sperator
-              }}</strong>
+            <strong class="mt-1">{{ getFullPrice(reserveObj.package?.prices?.cwb, 'adl') | sperator }}</strong>
             <small>تومان</small>
           </div>
 
@@ -356,27 +351,27 @@
 
         <div class="item w-100 d-flex align-items-center px-2">
           <span class="title">تاریخ ورود به هتل:</span>
-          <span class="text">{{ calService.convertDate(reserveObj.package?.tour?.stDate, 'fa') }}</span>
+          <span class="text">{{ calService.convertDate(this.reserveObj.transfer?.departure_date, 'fa') }}</span>
         </div>
         <div class="item w-100 d-flex align-items-center px-2">
           <span class="title">تاریخ خروج از هتل:</span>
-          <span class="text">{{ calService.convertDate(reserveObj.package?.tour?.enDate, 'fa') }}</span>
+          <span class="text">{{ calService.convertDate(this.reserveObj.transfer?.return_date, 'fa') }}</span>
         </div>
         <div class="item w-100 d-flex align-items-center px-2">
           <span class="title">ایرلاین رفت:</span>
-          <span class="text">{{ transfers.originTransfer }}</span>
+          <span class="text">{{ this.reserveObj.transfer?.origin_transfer?.name }}</span>
         </div>
         <div class="item w-100 d-flex align-items-center px-2">
           <span class="title">ایرلاین برگشت:</span>
-          <span class="text">{{ transfers.originTransfer }}</span>
+          <span class="text">{{ this.reserveObj.transfer?.destination_transfer?.name }}</span>
         </div>
         <div class="item w-100 d-flex align-items-center px-2">
           <span class="title">شماره پرواز رفت:</span>
-          <span class="text">{{ transfers.originFlightCode }}</span>
+          <span class="text">{{ this.reserveObj.transfer?.origin_transfer_number }}</span>
         </div>
         <div class="item w-100 d-flex align-items-center px-2">
           <span class="title">شماره پرواز برگشت:</span>
-          <span class="text">{{ transfers.destFlightCode }}</span>
+          <span class="text">{{ this.reserveObj.transfer?.destination_transfer_number }}</span>
         </div>
         <div class="item w-100 d-flex align-items-center px-2">
           <span class="title">نام هتل:</span>
