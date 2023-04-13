@@ -48,7 +48,7 @@
             </ul>
           </div>
         </li>
-        <li class="li-list">
+        <li class="li-list" *ngIf="checkItemPermission('Setting.change')">
           <a class="menu-main menu-main-5" routerLink="/panel/agencies/reserves">
             <img src="assets/img/User%20Accepted.svg" width="20" alt="">
             رزروها
@@ -133,7 +133,7 @@
             </ul>
           </div>
         </li>
-        <li class="li-list">
+        <li class="li-list" *ngIf="checkItemPermission('Setting.change')">
           <a class="menu-main menu-main-5" role="button" routerLink="/panel/financial">
             <img src="assets/img/User%20Accepted.svg" width="20" alt="">
             مالی
