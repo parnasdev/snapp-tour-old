@@ -21,9 +21,14 @@ export class SetComponent implements OnInit {
     consoleGoogle: '',
     description: '',
     descriptionFooter: '',
+    mobileBanner2: '',
     email: '',
     favicon: '',
     location: '',
+    banner1: '',
+    banner2: '',
+    mobileBanner: '',
+
     logo: '',
     faq: [],
     isClose: false,
@@ -41,8 +46,12 @@ export class SetComponent implements OnInit {
     description: '',
     descriptionFooter: '',
     email: '',
+    mobileBanner: '',
     isClose: false,
     favicon: '',
+    mobileBanner2: '',
+    banner1: '',
+    banner2: '',
     location: '',
     logo: '',
     faq: [],
@@ -117,6 +126,11 @@ export class SetComponent implements OnInit {
     description: new FormControl('', [Validators.required]),
     favicon: new FormControl('', [Validators.required]),
     faq: new FormControl('', [Validators.required]),
+    banner1: new FormControl(''),
+    banner2: new FormControl(''),
+    mobileBanner: new FormControl(''),
+    mobileBanner2: new FormControl(''),
+
     isClose: new FormControl(false),
     // footer settings
     location: new FormControl('', [Validators.required]),
@@ -167,7 +181,7 @@ export class SetComponent implements OnInit {
     this.settingForm.controls['description'].setValue(this.settings.description)
     this.settingForm.controls['favicon'].setValue(this.settings.favicon)
     this.settingForm.controls['faq'].setValue(this.settings.faq)
-    this.settingForm.controls['isClose'].setValue((this.settings.isClose === true || this.settings.isClose === '1' )? true : false)
+    this.settingForm.controls['isClose'].setValue((this.settings.isClose === true || this.settings.isClose === '1') ? true : false)
     this.settingForm.controls['location'].setValue(this.settings.location)
 
     this.settingForm.controls['socialLinks'].setValue(this.settings.socialLinks)
@@ -179,6 +193,11 @@ export class SetComponent implements OnInit {
     this.settingForm.controls['whatsapp'].setValue(this.settings.whatsapp)
     this.settingForm.controls['address'].setValue(this.settings.address)
     this.settingForm.controls['email'].setValue(this.settings.email)
+
+    this.settingForm.controls['banner1'].setValue(this.settings.banner2)
+    this.settingForm.controls['banner2'].setValue(this.settings.banner1)
+    this.settingForm.controls['mobileBanner'].setValue(this.settings.mobileBanner)
+    this.settingForm.controls['mobileBanner2'].setValue(this.settings.mobileBanner2)
 
   }
 
@@ -212,6 +231,20 @@ export class SetComponent implements OnInit {
     }
   }
 
+
+  getBanner1(event: any): void {
+    this.settingForm.controls['banner1'].setValue(event.url)
+  }
+  getBanner2(event: any): void {
+    this.settingForm.controls['banner2'].setValue(event.url)
+  }
+  getMobileBanner(event: any): void {
+    this.settingForm.controls['mobileBanner'].setValue(event.url)
+  }
+  getMobileBanner2(event: any): void {
+    this.settingForm.controls['mobileBanner2'].setValue(event.url)
+  }
+
   setSettingReq() {
     this.settingReq = {
       title: this.settingForm.value.title,
@@ -225,6 +258,10 @@ export class SetComponent implements OnInit {
       location: '',
       isClose: this.settingForm.value.isClose,
       logo: '',
+      banner1: this.settingForm.value.banner1,
+      banner2: this.settingForm.value.banner2,
+      mobileBanner: this.settingForm.value.mobileBanner,
+      mobileBanner2: this.settingForm.value.mobileBanner2,
       logoFooter: '',
       // footerLinks: this.footerLinks,
       faq: JSON.stringify(this.faqList),

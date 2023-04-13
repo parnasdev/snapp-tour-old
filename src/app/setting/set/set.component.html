@@ -1,4 +1,4 @@
-<div class="add-tour">
+<div class="add-tour px-5">
   <form [formGroup]="settingForm">
 
     <div class="box-info-tour">
@@ -7,8 +7,7 @@
           <h2>تنظیمات</h2>
         </div>
         <div class="left">
-          <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="setSetting()" [isLoading]="isLoading"
-            [label]="'ثبت تنظیمات'"></prs-btn>
+
           <label for="isClose">اسنپ تریپ بسته است</label>
           <mat-checkbox id="isClose" formControlName="isClose"></mat-checkbox>
         </div>
@@ -18,7 +17,10 @@
           <!--          title-->
           <div class="item-info">
             <label for="">عنوان سایت</label>
-            <input formControlName="title" type="text">
+            <div class="inp-form-setting">
+              <input class="input" formControlName="title" type="text">
+
+            </div>
             <span class="required f-10" *ngIf="settingForm.get('title')?.touched && settingForm.get('title')?.invalid">
               این فیلد الزامی است
             </span>
@@ -26,22 +28,12 @@
               <span class="text-danger">{{errorService.getError('title')}}</span>
             </div>
           </div>
-
-          <div class="item-info">
-            <label for="">ایمیل</label>
-            <input formControlName="email" type="text">
-            <span class="required f-10" *ngIf="settingForm.get('email')?.touched && settingForm.get('email')?.invalid">
-              این فیلد الزامی است
-            </span>
-            <div *ngIf="errorService.hasError('email')">
-              <span class="text-danger">{{errorService.getError('email')}}</span>
-            </div>
-          </div>
-        </div>
-        <div class="bottom">
           <div class="item-info">
             <label for="">کد کنسول گوگل</label>
-            <input formControlName="consoleGoogle" type="text">
+            <div class="inp-form-setting">
+
+              <input formControlName="consoleGoogle" type="text">
+            </div>
             <span class="required f-10"
               *ngIf="settingForm.get('consoleGoogle')?.touched && settingForm.get('consoleGoogle')?.invalid">
               این فیلد الزامی است
@@ -50,7 +42,21 @@
               <span class="text-danger">{{errorService.getError('consoleGoogle')}}</span>
             </div>
           </div>
+          <div class="item-info">
+            <label for="">ایمیل</label>
+            <div class="inp-form-setting">
+
+              <input formControlName="email" type="text">
+            </div>
+            <span class="required f-10" *ngIf="settingForm.get('email')?.touched && settingForm.get('email')?.invalid">
+              این فیلد الزامی است
+            </span>
+            <div *ngIf="errorService.hasError('email')">
+              <span class="text-danger">{{errorService.getError('email')}}</span>
+            </div>
+          </div>
         </div>
+ 
       </div>
     </div>
 
@@ -78,9 +84,11 @@
           <!-- title -->
           <div class="item-info">
             <label for="">عنوان متا</label>
-            <select [formControl]="metaNameFC">
-              <option *ngFor="let item of metaNames" [value]="item">{{ item }}</option>
-            </select>
+            <div class="inp-form-setting">
+              <select [formControl]="metaNameFC">
+                <option *ngFor="let item of metaNames" [value]="item">{{ item }}</option>
+              </select>
+            </div>
             <span class="required f-10" *ngIf="metaNameFC.touched && metaNameFC.invalid">
               این فیلد الزامی است
             </span>
@@ -88,7 +96,10 @@
           <!-- description -->
           <div class="item-info">
             <label for="">مقدار متا</label>
-            <input [formControl]="metaValueFC" type="text">
+            <div class="inp-form-setting">
+
+              <input [formControl]="metaValueFC" type="text">
+            </div>
             <span class="required f-10" *ngIf="metaValueFC.touched && metaValueFC.invalid">
               این فیلد الزامی است
             </span>
@@ -103,7 +114,7 @@
         </div>
 
 
-        <prs-btn class="btn-submit-tour" [background]="'blue'" (click)="addMeta()" [isLoading]="isLoading"
+        <prs-btn class="btn-submit-tour w-15 mt-3" [background]="'blue'" (click)="addMeta()" [isLoading]="isLoading"
           [label]="'ثبت'"></prs-btn>
       </div>
     </div>
@@ -148,19 +159,36 @@
       </div>
     </div>
 
-    <!--    <div class="box-info-tour">-->
-    <!--      <div class="info-tour-header">-->
-    <!--        <div class="right">-->
-    <!--          <h2>مدیریت لینک ها</h2>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--      <div class="info-tour-body">-->
-    <!--        <div class="top">-->
-    <!--          <prs-footer-links [incomingLinks]="settingForm.value.footerLinks"-->
-    <!--                            (result)="getLinksResult($event)"></prs-footer-links>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--    </div>-->
+    <div class="box-info-tour">
+      <div class="info-tour-header">
+        <div class="right">
+          <h2>مدیریت بنر ها</h2>
+        </div>
+      </div>
+      <div class="info-tour-body">
+
+        <div class="top">
+          <prs-upload-single [incommingFile]="{url :settingForm.value.banner1,path: ''}" [title]="'بنر اول'"
+            (result)="getBanner1($event)"></prs-upload-single>
+          <prs-upload-single [incommingFile]="{url :settingForm.value.banner2,path: ''}" [title]="'بنر دوم'"
+            (result)="getBanner2($event)"></prs-upload-single>
+
+        </div>
+
+        <div class="bottom">
+          <prs-upload-single [incommingFile]="{url :settingForm.value.mobileBanner,path: ''}" [title]="'بنر موبایل'"
+            (result)="getMobileBanner($event)"></prs-upload-single>
+          <prs-upload-single [incommingFile]="{url :settingForm.value.mobileBanner2,path: ''}"
+            [title]="' بنر موبایل دوم'" (result)="getMobileBanner2($event)"></prs-upload-single>
+        </div>
+      </div>
+    </div>
+
+  <button class="btn-base w-15 mt-3" (click)="setSetting()">
+  <span *ngIf="isLoading" class="spinner-border spinner-border-sm"></span>
+  ثبت تنظیمات</button>
+
+ 
 
   </form>
 </div>

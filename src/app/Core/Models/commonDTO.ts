@@ -13,6 +13,10 @@ export interface SettingDTO {
   email: string;
   favicon: string;
   location: string;
+  mobileBanner: string;
+  mobileBanner2: string;
+  banner1: string;
+  banner2: string;
   logo: string;
   faq: any
   logoFooter: string;

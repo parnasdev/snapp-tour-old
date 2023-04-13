@@ -110,14 +110,17 @@
     <div class="container-fluid h-100">
       <div class="row h-100">
         <div class="col-md-11 m-auto baner-parent h-100">
-          <a href="https://www.snapptrip.com/landing/csr/index.html?sender=trip" target="_blank" class="baner-right">
-            <img src="assets/img/banner.jpg" alt="">
+          <a *ngIf="isDesktop" href="https://www.snapptrip.com/landing/csr/index.html?sender=trip" target="_blank" class="baner-right">
+            <img src="{{ setting.settings.banner2 }}" alt="">
           </a>
           <a *ngIf="isDesktop" href="https://www.snapptrip.com/" target="_blank" class="baner-left">
-            <img src="assets/img/banners/Hotel-last-second-Offer---LargeSlider---banner--1280x400.jpg" alt="">
+            <img src="{{ setting.settings.banner1 }}" alt="">
           </a>
           <a *ngIf="isMobile" href="https://www.snapptrip.com/" target="_blank" class="baner-left">
-            <img src="assets/img/banners/Hotel-LargeSlider-mobile-900x448.jpg" alt="">
+            <img src="{{ setting.settings.mobileBanner }}" alt="">
+          </a>
+          <a *ngIf="isMobile" href="https://www.snapptrip.com/" target="_blank" class="baner-left">
+            <img src="{{ setting.settings.mobileBanner2 }}" alt="">
           </a>
         </div>
       </div>
