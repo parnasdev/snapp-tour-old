@@ -340,17 +340,18 @@ export interface RoomsRequestDTO {
   room_price: number
 }
 
+
 export interface PassengerDTO {
   firstName: string;
   lastName: string;
   id_code: string;
+  type?:string;
   birthDate: string;
   phoneNumber: string;
   nationality: string;
   passport_number: string;
   passport_expire: string;
 }
-
 export interface RoomPassengersDTO {
   roomName: string | undefined;
   passengers: PassengerDTO[];
