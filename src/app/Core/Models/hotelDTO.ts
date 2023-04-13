@@ -178,6 +178,7 @@ export interface HotelRatesSetReqDTO {
   checkout: string;
   rate: number;
   price: number;
+  capacity?: number;
 }
 
 export interface HotelRatesResDTO {

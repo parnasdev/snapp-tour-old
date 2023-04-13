@@ -20,6 +20,7 @@ export interface ConfirmPriceReqDTO {
 export class ConfirmPricingModalComponent implements OnInit {
   priceFC = new FormControl()
   rateFC = new FormControl(1)
+  capacityFC = new FormControl()
   constructor(public dialogRef: MatDialogRef<ConfirmPricingModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ConfirmPriceReqDTO,
     public api: HotelApiService,
@@ -42,12 +43,13 @@ export class ConfirmPricingModalComponent implements OnInit {
       checkin: moment(this.data.checkin.dateEn).format('YYYY-MM-DD'),
       checkout: moment(this.data.checkout.dateEn).format('YYYY-MM-DD'),
       rate: +this.rateFC.value,
-      price: +this.priceFC.value
+      price: +this.priceFC.value,
+      capacity: +this.capacityFC.value,
     }
     this.api.addHotelRates(+this.data.hotelID, this.data.roomID, req).subscribe((res: any) => {
       if (res.isDone) {
         this.message.custom(res.message)
-this.dialogRef.close(true)
+        this.dialogRef.close(true)
       } else {
         this.message.custom(res.message)
       }
