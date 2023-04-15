@@ -467,7 +467,10 @@
           <span class="title">شماره همراه :</span>
           <span class="text">{{ p.phoneNumber }}</span>
         </div>
-
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">نوع :</span>
+          <span class="text">{{ getPassengerLabel(p.type ? p.type : '') }}</span>
+        </div>
       </div>
 
 
