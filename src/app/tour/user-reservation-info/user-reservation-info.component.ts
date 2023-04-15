@@ -456,4 +456,23 @@ export class UserReservationInfoComponent implements OnInit {
     const flightPrice = this.reserveObj?.transfer ? type === 'adl' ? this.reserveObj?.transfer?.adl_price : this.reserveObj?.transfer?.chd_price : 0;
     return ((roomPrice ? +roomPrice : 0) + flightPrice).toString();
   }
+
+
+  getPassengerLabel(type: string ): string  {
+    let prices: PricesDTO = this.reserveObj.package.prices  
+    switch (type) {
+      case 'supervisor':
+        return 'سرپرست'
+      case 'passenger':
+        return 'بزرگسال'
+      case 'infant':
+        return 'نوزاد'
+      case 'cwb':
+        return 'کودک همراه تخت'
+      case 'cnb':
+        return 'کودک بدون تخت'
+        default : 
+        return '---'
+    }
+  }
 }

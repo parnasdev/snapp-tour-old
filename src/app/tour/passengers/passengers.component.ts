@@ -70,6 +70,7 @@ export class PassengersComponent implements OnInit, OnChanges {
   }
 
   addRow(obj: PassengerDTO | null = null, type: string = '') {
+    debugger
     if (this.checkAllowAddPassengerWithType(type)) {
       const Passengers = this.fb.group({
         firstName: [obj ? obj.firstName : '', Validators.required],
@@ -83,6 +84,9 @@ export class PassengersComponent implements OnInit, OnChanges {
         passport_expire: [obj ? obj.passport_expire : ''],
       })
       this.PassengerForm.push(Passengers);
+    }else {
+      this.message.custom('امکان اضافه کردن بیشتر وجود ندارد')
+
     }
   }
 
@@ -102,10 +106,8 @@ export class PassengersComponent implements OnInit, OnChanges {
     } else {
       let result = true;
       this.PassengerForm.controls.forEach((item, index) => {
-        if (item.value.type === type) {
+        if (item.value.type === type && (type !== 'passenger' && type !== 'supervisor')) {
           result = false;
-          this.message.custom('امکان اضافه کردن بیشتر وجود ندارد')
-
         }
       });
       return result

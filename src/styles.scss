@@ -180,12 +180,61 @@ ul {
   border-radius: 10px;
   border: 2px solid var(--base-color);
   font-weight: 500;
-
   &:hover {
     opacity: 0.7;
     color: var(--white);
   }
 }
+
+.btn-base-2 {
+  background: var(--white);
+  height: 58px;
+  border-radius: 10px;
+  border: 2px solid var(--green-color);
+  font-weight: 500;
+  color: var(--green-color);
+  &:hover {
+    opacity: 0.7;
+    color: var(--green-color);
+  }
+}
+.btn-base-3 {
+  background: var(--green-color);
+  color: var(--white);
+  height: 58px;
+  border-radius: 10px;
+  border: 2px solid var(--green-color);
+  font-weight: 500;
+  &:hover {
+    opacity: 0.7;
+    color: var(--white);
+  }
+}
+.btn-base-dark {
+  background: var(--dark);
+  color: var(--white);
+  height: 58px;
+  border-radius: 10px;
+  border: 2px solid var(--dark);
+  font-weight: 500;
+  &:hover {
+    opacity: 0.7;
+    color: var(--white);
+  }
+}
+.btn-base-gray {
+  background: var(--gray-color-dark);
+  color: var(--white);
+  height: 58px;
+  border-radius: 10px;
+  border: 2px solid var(--gray-color-dark);
+  font-weight: 500;
+  &:hover {
+    opacity: 0.7;
+    color: var(--white);
+  }
+}
+
 
 .font-16 {
   font-size: 16px !important;
