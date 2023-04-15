@@ -46,7 +46,6 @@
                 <select class="select" [formControl]="starFC" (change)="starChanged()">
                   <option disabled value="null">جستجو بر اساس ستاره</option>
                   <option value="0">همه</option>
-
                   <option value="1">۱ ستاره</option>
                   <option value="2">۲ ستاره</option>
                   <option value="3">۳ ستاره</option>
@@ -61,7 +60,7 @@
                     <i *ngIf="keyword.length > 0" (click)="deleteKeyword()" class="icon-cancel-1 text-danger"></i>
 
                 </div>
-                <button class="btn-base w-25" (click)="searchHotel()">جستجو</button>
+                <button class="btn-base-grey w-25" (click)="searchHotel()">جستجو</button>
               </div>
 
             </div>
