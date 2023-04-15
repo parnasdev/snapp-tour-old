@@ -17,7 +17,8 @@
         <label class="label-fix-gray" *ngIf="i>0">{{ getPassebgerLabel(item.get('type')) }}</label>
 
         <!-- نام  -->
-        <div class="item-form">
+        <div class="item-form d-flex align-items-center">
+          <i style="cursor: pointer;font-size: 17px" class="icon-cancel text-danger"></i>
           <!-- <label class="dana-bold" for="">نام (لاتین)</label> -->
           <div class="inp-form mt-2">
             <input type="text" (change)="onChange()" formControlName="firstName" placeholder="نام (لاتین)">
@@ -124,7 +125,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
       <span>مسافر گرامی چنانچه کودک زیر دوسال به همراه دارید جهت ورود اسامی دکمه روبه رو را بزنید</span>
-      <button class="btn-base px-4 h-45" (click)="addRow(null,'infant')">نوزاد</button>
+      <button class="btn-base-2 px-4 h-45" (click)="addRow(null,'infant')">افزودن نوزاد</button>
     </div>
   </div>
 </div>
