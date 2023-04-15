@@ -15,6 +15,7 @@
              placeholder="تاریخ ورود به هتل"
              autocomplete="off"
              readonly
+             [min]="minDate"
              [matDatepicker]="picker3"
              (click)="picker3.open()">
       <mat-datepicker #picker3></mat-datepicker>
@@ -23,7 +24,7 @@
 
   <div class="inp-form">
     <select [formControl]="nightFC" name="">
-      <option value="0">تعداد شب</option>
+      <option value="null">تعداد شب</option>
       <!-- <option *ngFor="let x of nights" [value]="x">{{x}} -->
         <option [value]="1">1 شب</option>
         <option [value]="2">2 شب</option>

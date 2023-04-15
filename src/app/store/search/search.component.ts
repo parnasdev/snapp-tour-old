@@ -26,13 +26,13 @@ export class SearchComponent implements OnInit, OnChanges {
 
   originFC = new FormControl(null, Validators.required);
   destFC = new FormControl(null, Validators.required);
-  nightFC = new FormControl(0, Validators.required);
+  nightFC = new FormControl(null, Validators.required);
   stDateFC = new FormControl(null, Validators.required);
   reservedDates: DatesResDTO[] = [];
   nights: number[] = []
   originID: number | null = null;
 
-
+  minDate = new Date();
 
   constructor(public cityApiService: CityApiService,
     public router: Router,
@@ -88,7 +88,7 @@ export class SearchComponent implements OnInit, OnChanges {
     this.destFC.setValue(city.slugEn)
     this.reservedDates = [];
     this.stDateFC.setValue(null)
-    this.nightFC.setValue(0)
+    this.nightFC.setValue(null)
     this.inCommingSearchObject = undefined
     // this.getReservedDates();
   }
