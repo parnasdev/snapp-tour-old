@@ -222,6 +222,19 @@ ul {
     color: var(--white);
   }
 }
+.btn-base-red {
+  background: var(--red-color);
+  color: var(--white);
+  height: 58px;
+  border-radius: 10px;
+  border: 2px solid var(--red-color);
+  font-weight: 500;
+  &:hover {
+    opacity: 0.7;
+    color: var(--white);
+  }
+}
+
 .btn-base-gray {
   background: var(--gray-color-dark);
   color: var(--white);
