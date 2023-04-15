@@ -1,3 +1,4 @@
+import { DepFlags } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -19,7 +20,8 @@ import {
   ReserveRoomDTO,
   RoomDTO,
   RoomPassengersDTO,
-  newTransfersDTO
+  newTransfersDTO,
+  PassengerDTO
 } from 'src/app/Core/Models/tourDTO';
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
 import { CheckErrorService } from 'src/app/Core/Services/check-error.service';
@@ -153,6 +155,14 @@ export class UserReservationInfoComponent implements OnInit {
     destFlightCode: ''
   }
 
+  otherPrices = {
+    chd_price: 0,
+    adl_price: 0,
+    inf_price: 0,
+  }
+
+  totalPrices = 0
+
   constructor(public route: ActivatedRoute,
     public dialog: MatDialog,
     public messageService: MessageService,
@@ -176,11 +186,22 @@ export class UserReservationInfoComponent implements OnInit {
 
   }
 
+  setOtherPrice() {
+    this.otherPrices = {
+      adl_price: this.reserveObj.transfer ? this.reserveObj.transfer.adl_price : 0,
+      inf_price: this.reserveObj.transfer ? this.reserveObj.transfer.inf_price : 0,
+      chd_price: this.reserveObj.transfer ? this.reserveObj.transfer.chd_price : 0,
+    }
+  }
+
   getReserve(): void {
     this.isLoading = true;
     this.api.getReserve(this.reserveCode).subscribe((res: any) => {
       if (res.isDone) {
         this.reserveObj = res.data;
+        this.setOtherPrice();
+
+
         this.tourType = this.reserveObj.package.tour.type;
         this.setTourTransfers()
         this.getRoomCapacity();
@@ -298,7 +319,6 @@ export class UserReservationInfoComponent implements OnInit {
 
   getAllPerson() {
     let count: number = 0;
-    
     this.roomsSelected.forEach(x => {
       count += x.passengers.length
     })
@@ -308,32 +328,57 @@ export class UserReservationInfoComponent implements OnInit {
   getTotalPrice() {
     let price: number = 0;
     this.roomsSelected.forEach(x => {
-      price += this.getRoomPriceByName(x, x.capacity)
+      price += this.getRommTotalPrice(x.passengers,x.name)
     })
-    return price
+    this.totalPrices = price;
   }
 
-  getRoomPriceByName(room: any, capacity: number) {
-    
+  getRommTotalPrice(passengers: PassengerDTO[],roomName: string)  {
+    let result = 0;
+    passengers.forEach(item => {
+        result += this.getPassengerPrice(item.type ? item.type : '' ,roomName)
+    })
+    return result
+  }
+
+  getRoomPrice(name: string) {
     let prices = Object.entries(this.reserveObj.package.prices)
     let result = 0;
     prices.forEach(item => {
-      if (item[0] === room.name) {
-        result = item[1] * capacity
+      if (item[0] === name) {
+        result = +item[1]
       }
     })
-    const flightPrice = this.reserveObj?.transfer ? this.reserveObj?.transfer?.adl_price : 0;
-    return result + flightPrice
+   return result
+  }
+
+
+  getPassengerPrice(type: string , room: string): number  {
+    let prices: PricesDTO = this.reserveObj.package.prices  
+    switch (type) {
+      case 'supervisor':
+        return this.getRoomPrice(room) + this.otherPrices.adl_price
+      case 'passenger':
+        return this.getRoomPrice(room) + this.otherPrices.adl_price
+      case 'infant':
+        return this.otherPrices.inf_price
+      case 'cwb':
+        return this.otherPrices.chd_price + (prices.cwb ? +prices.cwb : 0);
+      case 'cnb':
+        return this.otherPrices.chd_price
+        default : 
+        return this.getRoomPrice(room) + this.otherPrices.adl_price
+    }
   }
 
   getRoomData(data: RoomDTO): void {
     this.roomsSelected.forEach(item => {
       if (item.id === data.id) {
         item.passengers = data.passengers;
-        item.price = this.getRoomPriceByName(data, data.capacity)
+        item.price = this.getRommTotalPrice(data.passengers,data.name)
       }
     })
-this.getTotalPrice();
+    this.getTotalPrice();
   }
 
   onCitySelected(city: any) {
@@ -400,14 +445,14 @@ this.getTotalPrice();
     })
   }
 
-  openRulesPopup(){
+  openRulesPopup() {
     let dialogRef = this.dialog.open(RulesComponent, {
       height: 'auto',
       width: '800px',
     });
   }
 
-  getFullPrice(roomPrice: string | undefined, type: any){
+  getFullPrice(roomPrice: string | undefined, type: any) {
     const flightPrice = this.reserveObj?.transfer ? type === 'adl' ? this.reserveObj?.transfer?.adl_price : this.reserveObj?.transfer?.chd_price : 0;
     return ((roomPrice ? +roomPrice : 0) + flightPrice).toString();
   }

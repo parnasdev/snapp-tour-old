@@ -8,7 +8,7 @@
             <div class="p-price d-flex align-items-center">
               <span>مبلغ قابل پرداخت:</span>
               <div class="price d-flex align-items-center">
-                <strong>{{ getTotalPrice() | sperator }}</strong>
+                <strong>{{ totalPrices | sperator }}</strong>
                 <small>تومان</small>
               </div>
             </div>
@@ -379,6 +379,57 @@
 
       </div>
     </div>
+
+    <div class="w-100 bg-light bg-info-trip">
+      <div class="title-profile w-100">
+        <i class="icon-circle"></i>
+        <h2 class="dana-bold"> قیمت ها (تومان)</h2>
+      </div>
+      <div class="tour-items w-100">
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">دوتخته</span>
+          <span class="text">{{ reserveObj.package.prices.twin  | sperator}}</span>
+        </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">سه تخته:</span>
+          <span class="text">{{reserveObj.package.prices.triple | sperator}}</span>
+        </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">چهارتخته:</span>
+          <span class="text">{{reserveObj.package.prices.quad | sperator}}</span>
+        </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">یک تخته :</span>
+          <span class="text">{{reserveObj.package.prices.single | sperator}}</span>
+        </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">کودک با تخت:</span>
+          <span class="text">{{ otherPrices.chd_price | sperator}}</span>
+        </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">کودک بدون تخت:</span>
+          <span class="text">{{ otherPrices.chd_price  | sperator}}</span>
+        </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">نوزاد:</span>
+          <span class="text">{{ otherPrices.inf_price| sperator}}</span>
+        </div>
+
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">پرواز بزرگسال:</span>
+          <span class="text">{{ otherPrices.adl_price| sperator}}</span>
+        </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">پرواز کودک:</span>
+          <span class="text">{{ otherPrices.chd_price| sperator}}</span>
+        </div>
+        <div class="item w-100 d-flex align-items-center px-2">
+          <span class="title">پرواز نوزاد:</span>
+          <span class="text">{{ otherPrices.inf_price| sperator}}</span>
+        </div>
+
+      </div>
+    </div>
     <div *ngFor="let item of reserveObj.passengers" class="w-100 bg-light bg-info-trip">
       <div class="title-profile w-100">
         <i class="icon-circle"></i>
@@ -396,23 +447,23 @@
           <span class="title">نام خانوادگی:</span>
           <span class="text">{{ p.lastName }}</span>
         </div>
-        <div class="item w-100 d-flex align-items-center px-2">
+        <div class="item w-100 d-flex align-items-center px-2" *ngIf="p.id_code">
           <span class="title">کدملی:</span>
           <span class="text">{{ p.id_code ? p.id_code : '---' }}</span>
         </div>
-        <div class="item w-100 d-flex align-items-center px-2">
+        <div class="item w-100 d-flex align-items-center px-2" *ngIf="p.passport_number">
           <span class="title">شماره پاسپورت:</span>
           <span class="text">{{ p.passport_number }}</span>
         </div>
-        <div class="item w-100 d-flex align-items-center px-2">
+        <div class="item w-100 d-flex align-items-center px-2" *ngIf="p.passport_expire">
           <span class="title">انقضا پاسپورت:</span>
           <span class="text">{{calService.convertDate(p.passport_expire, 'en') }}</span>
         </div>
-        <div class="item w-100 d-flex align-items-center px-2">
+        <div class="item w-100 d-flex align-items-center px-2" *ngIf="p.birthDate">
           <span class="title">تاریخ تولد :</span>
           <span class="text">{{calService.convertDate(p.birthDate, 'fa') }}</span>
         </div>
-        <div class="item w-100 d-flex align-items-center px-2">
+        <div class="item w-100 d-flex align-items-center px-2" *ngIf="p.phoneNumber">
           <span class="title">شماره همراه :</span>
           <span class="text">{{ p.phoneNumber }}</span>
         </div>
@@ -421,7 +472,6 @@
 
 
     </div>
-
 
   </div>
 </ng-template>
