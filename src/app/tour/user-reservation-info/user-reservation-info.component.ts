@@ -19,8 +19,6 @@ import {
   ReserveRoomDTO,
   RoomDTO,
   RoomPassengersDTO,
-  RoomsRequestDTO,
-  Tour,
   newTransfersDTO
 } from 'src/app/Core/Models/tourDTO';
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
@@ -300,8 +298,9 @@ export class UserReservationInfoComponent implements OnInit {
 
   getAllPerson() {
     let count: number = 0;
+    
     this.roomsSelected.forEach(x => {
-      count += x.capacity
+      count += x.passengers.length
     })
     return count
   }
@@ -309,16 +308,17 @@ export class UserReservationInfoComponent implements OnInit {
   getTotalPrice() {
     let price: number = 0;
     this.roomsSelected.forEach(x => {
-      price += this.getRoomPriceByName(x.name, x.capacity)
+      price += this.getRoomPriceByName(x, x.capacity)
     })
     return price
   }
 
-  getRoomPriceByName(roomName: string, capacity: number) {
+  getRoomPriceByName(room: any, capacity: number) {
+    
     let prices = Object.entries(this.reserveObj.package.prices)
     let result = 0;
     prices.forEach(item => {
-      if (item[0] === roomName) {
+      if (item[0] === room.name) {
         result = item[1] * capacity
       }
     })
@@ -330,10 +330,10 @@ export class UserReservationInfoComponent implements OnInit {
     this.roomsSelected.forEach(item => {
       if (item.id === data.id) {
         item.passengers = data.passengers;
-        item.price = this.getRoomPriceByName(data.name, data.capacity)
+        item.price = this.getRoomPriceByName(data, data.capacity)
       }
     })
-
+this.getTotalPrice();
   }
 
   onCitySelected(city: any) {
