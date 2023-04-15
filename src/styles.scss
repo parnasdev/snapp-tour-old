@@ -187,15 +187,15 @@ ul {
 }
 
 .btn-base-2 {
-  background: var(--base-color-second);
-  color: var(--white);
+  background: var(--white);
   height: 58px;
   border-radius: 10px;
-  border: 2px solid var(--base-color-second);
+  border: 2px solid var(--green-color);
   font-weight: 500;
+  color: var(--green-color);
   &:hover {
     opacity: 0.7;
-    color: var(--white);
+    color: var(--green-color);
   }
 }
 .btn-base-3 {
