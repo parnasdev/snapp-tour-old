@@ -1,11 +1,14 @@
 <div class="box-room mt-3">
   <div class="w-100 d-flex justify-content-between align-items-center posi-relative">
     <h2 class="title-tour">اتاق {{ getRoomNameFa(RoomData?.name) }}</h2>
+
     <div>
-      <button style="margin-left: 11px" class="btn-base-3  px-4 h-45" (click)="addRow(null,'cwb')">افزودن کودک با تخت</button>
+      <button style="margin-left: 11px;" class="btn-base-3 px-4 h-45" (click)="addRow(null,'cwb')">افزودن کودک با تخت</button>
       <button class="btn-base-3 px-4 h-45" (click)="addRow(null,'cnb')">افزودن کودک بدون تخت</button>
     </div>
+
   </div>
+
   <div style="position: relative;" [formGroup]="ReserveForm">
     <div formArrayName="passengers">
       <div class="set-info-passengers posi-relative" *ngFor="let item of PassengerForm.controls; let i = index"

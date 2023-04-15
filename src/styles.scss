@@ -47,8 +47,8 @@ body {
 
 :root {
   --base-color: #ff4241;
-  --base-color-second: #053742;
-  --red-color: #CB1639;
+  --base-color-second: #ff4241;
+  --base-color-three: #053742;
   --light-color-one: #C6ECFF;
   --light-color-two: #E0E0E0;
   --gray-color-light: #646564;
@@ -60,6 +60,7 @@ body {
   --dark: #000;
   --radius-btn: 15px 15px 1px 15px;
   --opacity-color: #3e3e3e78;
+  --red-color: #CB1639;
   --green-color: #0D7B0D;
   --title-header: #d5d5d5bd;
 }
@@ -179,12 +180,12 @@ ul {
   border-radius: 10px;
   border: 2px solid var(--base-color);
   font-weight: 500;
-
   &:hover {
     opacity: 0.7;
     color: var(--white);
   }
 }
+
 .btn-base-2 {
   background: var(--base-color-second);
   color: var(--white);
@@ -192,7 +193,6 @@ ul {
   border-radius: 10px;
   border: 2px solid var(--base-color-second);
   font-weight: 500;
-
   &:hover {
     opacity: 0.7;
     color: var(--white);
@@ -205,7 +205,6 @@ ul {
   border-radius: 10px;
   border: 2px solid var(--green-color);
   font-weight: 500;
-
   &:hover {
     opacity: 0.7;
     color: var(--white);
@@ -218,7 +217,6 @@ ul {
   border-radius: 10px;
   border: 2px solid var(--dark);
   font-weight: 500;
-
   &:hover {
     opacity: 0.7;
     color: var(--white);
@@ -231,7 +229,6 @@ ul {
   border-radius: 10px;
   border: 2px solid var(--gray-color-dark);
   font-weight: 500;
-
   &:hover {
     opacity: 0.7;
     color: var(--white);

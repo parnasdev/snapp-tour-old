@@ -394,8 +394,8 @@ export interface TourSetDTO {
   slug: string;
   stCity_id: string;
   endCity_id: string;
-  nightNum: string;
-  dayNum: string;
+  nightNum: number;
+  dayNum: number;
   transferType: number;
   transfers: any[]
   offered: boolean;

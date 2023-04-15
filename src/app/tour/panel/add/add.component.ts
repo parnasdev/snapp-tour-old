@@ -66,7 +66,7 @@ export class AddComponent implements OnInit {
     slug: new FormControl('', [Validators.required]),
     stCity_id: new FormControl('', Validators.required),
     endCity_id: new FormControl('', Validators.required),
-    nightNum: new FormControl('1', Validators.required),
+    nightNum: new FormControl(1, Validators.required),
     dayNum: new FormControl('لطفا تعداد شب را انتخاب کنید', Validators.required),
     offered: new FormControl(),
     TransferType: new FormControl(),
