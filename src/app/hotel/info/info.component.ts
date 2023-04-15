@@ -19,6 +19,7 @@ import { ShowRoomsPopupComponent } from 'src/app/room-type/show-rooms-popup/show
 import { AuthPopupComponent } from 'src/app/auth/auth-popup/auth-popup.component';
 import { hotelInfoDTO, hotelInfoReqDTO, hotelInfoV2DTO, HotelListResponseDTO, ServicesDTO } from 'src/app/Core/Models/hotelDTO';
 import { CityResponseDTO } from 'src/app/Core/Models/cityDTO';
+import { newTourPackageInfoDTO } from 'src/app/Core/Models/tourDTO';
 
 @Component({
   selector: 'prs-info',
@@ -206,27 +207,12 @@ export class InfoComponent implements OnInit {
   }
 
   getStarterPrice() {
-    let defineTour = false;
     let Prices: any = []
-    // this.hotelInfo.packages.forEach((item:any , index: number) => {
-    //   let currentItem = this.hotelInfo.defineTour ? item.prices.twinRate : item.prices.twin;
-    //   if(index === 0){
-    //     minPrice = currentItem
-    //   }else {
-    //     if(minPrice < currentItem){
-    //       minPrice = currentItem
-    //     }
-    //   }
-    // });
-    // return minPrice
-    defineTour = this.hotelInfo.packages[0].tour ? this.hotelInfo.packages[0].tour.defineTour : false;
-    this.hotelInfo.packages?.forEach((item: any) => {
-      console.log(item)
-      defineTour ? Prices.push(item.prices.twinRate) : Prices.push(item.prices.twin);
+
+    this.hotelInfo.packages.forEach((item:newTourPackageInfoDTO, index: number) => {
+      Prices.push(item.tour.newTransfers.sort(function(a: any, b:any){return a.adl_price - b.adl_price})[0].adl_price + (+item.prices.twin))
     });
-    let list = Prices.sort(function(a: any, b:any){return a-b})
-    console.log(list)
-    this.minPrice = list[0]
+    return Prices.sort(function(a: any, b:any){return a - b})[0]
   }
 
   getFullPrice(roomPrice: string, flightPrice: any){

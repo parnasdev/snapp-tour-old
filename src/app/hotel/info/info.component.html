@@ -29,7 +29,7 @@
                 <div class="p-price" *ngIf="hotelInfo.packages.length > 0">
                   <span class="title">شروع قیمت :</span>
                   <div class="price d-flex align-items-center">
-                    <strong>{{ this.minPrice | round| sperator }}</strong>
+                    <strong>{{ getStarterPrice() | round| sperator }}</strong>
                     <small>تومان</small>
                   </div>
                 </div>
@@ -54,7 +54,8 @@
             </div>
           </div>
 
-          <div class="thumbnail-flight" *ngFor="let item of hotelInfo.packages[0]?.tour?.newTransfers; let i = index">
+        <ng-template ngFor let-i="index" let-package [ngForOf]="hotelInfo.packages">
+          <div class="thumbnail-flight" *ngFor="let item of hotelInfo.packages[i]?.tour?.newTransfers; let j = index">
             <div class="top">
               <div class="start">
                 <img [src]="item.origin_transfer.logo" width="40" height="35" />
@@ -94,8 +95,8 @@
                 </div>
               </div>
               <div class="end">
-                <span *ngIf="isDesktop">تامین کننده : {{ hotelInfo.packages[0].tour.agency }}</span>
-                <a *ngIf="isDesktop" (click)="checkReserve(hotelInfo.packages[0].id, item.id)" class="btn-base w-100 d-flex align-items-center justify-content-center h-45 mt-2">
+                <span *ngIf="isDesktop">تامین کننده : {{ package.tour.agency }}</span>
+                <a *ngIf="isDesktop" (click)="checkReserve(package.id, item.id)" class="btn-base w-100 d-flex align-items-center justify-content-center h-45 mt-2">
                   انتخاب تور
                 </a>
                 <!-- <a data-toggle="collapse" class="btn-view-more" href="#collapseExample{{i}}" role="button"
@@ -110,79 +111,79 @@
             <div *ngIf="isDesktop" class="w-100 bottom" >
               <div class="header-fly">
                 <span>دو تخته(هر نفر)</span>
-                <span *ngIf="!hotelInfo.packages[0].tour.endCity.type">سینگل</span>
-                <span *ngIf="hotelInfo.packages[0].tour.endCity.type">سه تخته(هر نفر)</span>
-                <span *ngIf="hotelInfo.packages[0].tour.endCity.type">چهارتخته(هر نفر)</span>
-                <span *ngIf="!hotelInfo.packages[0].tour.endCity.type">کودک با تخت</span>
-                <span *ngIf="!hotelInfo.packages[0].tour.endCity.type">کودک بدون تخت</span>
+                <span *ngIf="!package.tour.endCity.type">سینگل</span>
+                <span *ngIf="package.tour.endCity.type">سه تخته(هر نفر)</span>
+                <span *ngIf="package.tour.endCity.type">چهارتخته(هر نفر)</span>
+                <span *ngIf="!package.tour.endCity.type">کودک با تخت</span>
+                <span *ngIf="!package.tour.endCity.type">کودک بدون تخت</span>
                 <span>سن کودک بدون تخت</span>
               </div>
               <div class="body-fly">
                 <div class="price" >
-                  <strong>{{ getFullPrice(hotelInfo.packages[0].prices.twin, item.adl_price) |round | sperator }}</strong>
+                  <strong>{{ getFullPrice(package.prices.twin, item.adl_price) |round | sperator }}</strong>
                   <small>تومان</small>
                 </div>
-                <div class="price" *ngIf="!hotelInfo.packages[0].tour.endCity.type">
-                  <strong>{{ getFullPrice(hotelInfo.packages[0].prices.single, item.adl_price) | round| sperator }}</strong>
+                <div class="price" *ngIf="!package.tour.endCity.type">
+                  <strong>{{ getFullPrice(package.prices.single, item.adl_price) | round| sperator }}</strong>
                   <small>تومان</small>
                 </div>
-                <div class="price" *ngIf="hotelInfo.packages[0].tour.endCity.type">
-                  <strong>{{ getFullPrice(hotelInfo.packages[0].prices.triple, item.adl_price)  | round| sperator }}</strong>
+                <div class="price" *ngIf="package.tour.endCity.type">
+                  <strong>{{ getFullPrice(package.prices.triple, item.adl_price)  | round| sperator }}</strong>
                   <small>تومان</small>
                 </div>
-                <div class="price" *ngIf="hotelInfo.packages[0].tour.endCity.type">
-                  <strong>{{ getFullPrice(hotelInfo.packages[0].prices.quad, item.adl_price) | round| sperator }}</strong>
+                <div class="price" *ngIf="package.tour.endCity.type">
+                  <strong>{{ getFullPrice(package.prices.quad, item.adl_price) | round| sperator }}</strong>
                   <small>تومان</small>
                 </div>
-                <div class="price" *ngIf="!hotelInfo.packages[0].tour.endCity.type">
-                  <strong>{{ getFullPrice(hotelInfo.packages[0].prices.cwb, item.chd_price) | round| sperator }}</strong>
+                <div class="price" *ngIf="!package.tour.endCity.type">
+                  <strong>{{ getFullPrice(package.prices.cwb, item.chd_price) | round| sperator }}</strong>
                   <small>تومان</small>
                 </div>
-                <div class="price" *ngIf="!hotelInfo.packages[0].tour.endCity.type">
+                <div class="price" *ngIf="!package.tour.endCity.type">
                   <strong>{{ 0 }}</strong>
                   <small>تومان</small>
                 </div>
-                <span>{{ hotelInfo.packages[0].prices.age }}</span>
+                <span>{{ package.prices.age }}</span>
               </div>
             </div>
             <div class="p-bed-mobi" *ngIf="isTablet">
                 <div class="item-full">
                   <span>دو تخته (هر نفر)</span>
                   <div class="price" >
-                    <strong>{{ (hotelInfo.packages[0].prices.twin |round | sperator) }}</strong>
+                    <strong>{{ (package.prices.twin |round | sperator) }}</strong>
                     <small>تومان</small>
                   </div>
                 </div>
-                <div *ngIf="!hotelInfo.packages[0].tour.endCity.type" class="item">
-                <span>سینگل</span>
-                <div class="price">
-                  <strong>{{ (hotelInfo.packages[0].prices.single| round| sperator) }}</strong>
-                  <small>تومان</small>
+                <div *ngIf="!package.tour.endCity.type" class="item">
+                  <span>سینگل</span>
+                  <div class="price">
+                    <strong>{{ (package.prices.single| round| sperator) }}</strong>
+                    <small>تومان</small>
+                  </div>
                 </div>
-              </div>
-                <div *ngIf="hotelInfo.packages[0].tour.endCity.type" class="item">
+                <div *ngIf="package.tour.endCity.type" class="item">
                   <span >سه تخته (هر نفر)</span>
                   <div class="price">
-                    <strong>{{ (hotelInfo.packages[0].prices.triple  | round| sperator) }}</strong>
+                    <strong>{{ (package.prices.triple  | round| sperator) }}</strong>
                     <small>تومان</small>
                   </div>
                 </div>
-                <div *ngIf="hotelInfo.packages[0].tour.endCity.type" class="item">
+                <div *ngIf="package.tour.endCity.type" class="item">
                   <span>چهارتخته (هر نفر)</span>
                   <div class="price">
-                    <strong>{{ (hotelInfo.packages[0].prices.quad| round| sperator) }}</strong>
+                    <strong>{{ (package.prices.quad| round| sperator) }}</strong>
                     <small>تومان</small>
                   </div>
                 </div>
-                <div *ngIf="!hotelInfo.packages[0].tour.endCity.type" class="item-full">
+                <div *ngIf="!package.tour.endCity.type" class="item-full">
                   <span >کودک با تخت</span>
                   <div class="price">
-                    <strong>{{ (hotelInfo.packages[0].prices.cwb| round| sperator) }}</strong>
+                    <strong>{{ (package.prices.cwb| round| sperator) }}</strong>
                     <small>تومان</small>
                   </div>
 
                 </div>
-                <div *ngIf="!hotelInfo.packages[0].tour.endCity.type" class="item-full">
+                <div *ngIf="!package.tour.endCity.type" class="item-full">
                   <span >کودک بدون تخت</span>
                   <div class="price">
                     <strong>{{ 0 }}</strong>
@@ -191,17 +192,17 @@
                 </div>
                 <div class="item-full">
                   <span>سن کودک بدون تخت</span>
-                  <p>{{ hotelInfo.packages[0].prices.age }}</p>
+                  <p>{{ package.prices.age }}</p>
                 </div>
-              </div>
+            </div>
             <div *ngIf="isTablet" class="w-100 d-flex my-3 flex-column align-items-center">
-              <span >تامین کننده : {{ hotelInfo.packages[0].tour.agency }}</span>
-              <a  (click)="checkReserve(hotelInfo.packages[0].id, item.id)" class="btn-base w-100 d-flex align-items-center justify-content-center h-45 mt-2">
+              <span >تامین کننده : {{ package.tour.agency }}</span>
+              <a  (click)="checkReserve(package.id, item.id)" class="btn-base w-100 d-flex align-items-center justify-content-center h-45 mt-2">
                 انتخاب تور
               </a>
             </div>
-
-            </div>
+          </div>
+        </ng-template>
 
           <div class="empty-box" *ngIf="hotelInfo.packages.length === 0">
             <span >پروازی برای این هتل یافت نشد</span>
