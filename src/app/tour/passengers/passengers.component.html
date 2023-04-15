@@ -1,12 +1,10 @@
 <div class="box-room mt-3">
   <div class="w-100 d-flex justify-content-between align-items-center posi-relative">
     <h2 class="title-tour">اتاق {{ getRoomNameFa(RoomData?.name) }}</h2>
-
     <div>
       <button style="margin-left: 11px;" class="btn-base-2 px-4 h-45" (click)="addRow(null,'cwb')">افزودن کودک با تخت</button>
       <button class="btn-base-2 px-4 h-45" (click)="addRow(null,'cnb')">افزودن کودک بدون تخت</button>
     </div>
-
   </div>
 
   <div style="position: relative;" [formGroup]="ReserveForm">
@@ -18,7 +16,7 @@
 
         <!-- نام  -->
         <div class="item-form d-flex align-items-center">
-          <i style="cursor: pointer;font-size: 17px" class="icon-cancel text-danger"></i>
+          <i style="cursor: pointer;font-size: 17px" class="icon-cancel text-danger" *ngIf="getPassebgerLabel(item.get('type')) !== 'سرپرست' && getPassebgerLabel(item.get('type')) !== 'همراه'" (click)="removeItem(i)"></i>
           <!-- <label class="dana-bold" for="">نام (لاتین)</label> -->
           <div class="inp-form mt-2">
             <input type="text" (change)="onChange()" formControlName="firstName" placeholder="نام (لاتین)">

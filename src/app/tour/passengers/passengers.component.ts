@@ -57,6 +57,13 @@ export class PassengersComponent implements OnInit, OnChanges {
     // }
   }
 
+  removeItem(index:number) {
+    this.PassengerForm.removeAt(index);
+    this.convertPassengerObject()
+
+
+  }
+
   ReserveForm: FormGroup = this.fb.group({
     show: '',
     passengers: this.fb.array([], Validators.required),
@@ -70,7 +77,6 @@ export class PassengersComponent implements OnInit, OnChanges {
   }
 
   addRow(obj: PassengerDTO | null = null, type: string = '') {
-    debugger
     if (this.checkAllowAddPassengerWithType(type)) {
       const Passengers = this.fb.group({
         firstName: [obj ? obj.firstName : '', Validators.required],
