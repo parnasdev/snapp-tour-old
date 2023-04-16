@@ -359,6 +359,50 @@
     line-height: 1.8;
   }
 }
+.title-passenger{
+  font-size: 15px;
+  color: var(--dark);
+  font-weight: 600;
+  margin: 6px 0 12px 0;
+  position: relative;
+  &:after{
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -6px;
+    width: 120px;
+    border-bottom: 2px solid var(--dark);
+  }
+}
+.label-type{
+  background: var(--white);
+  border: 2px solid var(--red-color);
+  left: 12px;
+  top: 12px;
+  width: 130px !important;
+  padding: 8px 10px;
+  color: var(--red-color);
+  display: grid;
+  place-items: center;
+  border-radius: 5px;
+  font-size: 12px !important;
+  font-weight: 600;
+}
+.tour-items-room{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  border: 1px solid #ebebeb;
+  border-radius: 5px;
+  padding: 12px 8px;
+  .text{
+    margin-right: 4px;
+  }
+  span{
+    font-size: 13px !important;
+  }
+}
 
 
 @media only screen and (min-width: 501px) and (max-width: 868px) {
