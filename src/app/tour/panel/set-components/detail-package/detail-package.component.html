@@ -71,7 +71,7 @@
           <span>لطفا شهر مقصد را انتخاب کنید</span>
         </div>
       </div>
-      <div class="empty-packages" *ngIf="(setService.obj.stDate == '' && setService.obj.enDate == '')">
+      <div class="empty-packages" *ngIf="(setService.obj.stDate == '' || setService.obj.enDate == '')">
         <div class="d-flex justify-content-center align-items-center w-100">
           <span>لطفا تاریخ ورود و خروج هتل را انتخاب کنید</span>
         </div>
