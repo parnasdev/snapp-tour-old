@@ -84,6 +84,12 @@ export class CalenderServices {
         return moment(date).add(num, period).format('jYYYY/jMM/jDD');
     }
 
+    changeMiladiDate(date: any, num: number | string, period: any): any {
+        /* period : days or year or month */
+        // date = this.convertDate(date, 'en');
+        return moment(date).add(num, period).format('YYYY/MM/DD');
+    }
+
     getWeekDay(date: string): any {
         // input example : 2019/02/01
         const inCommingDate = new Date(date);

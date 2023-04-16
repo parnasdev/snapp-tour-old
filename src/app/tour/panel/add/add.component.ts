@@ -158,12 +158,25 @@ export class AddComponent implements OnInit {
 
   changes() {
     this.setService.obj.dayNum = (+this.setService.obj.nightNum) + 1;
+    this.setService.updatePackagePrices()
   }
 
 
   dateChanged() {
+    if (this.setService.obj.defineTour) {
+      this.setService.obj.packages = [];
+    }
     this.setService.transferRates = []
     this.setService.getTransferRates();
+  }
+
+  defineChanges() {
+    if (this.setService.obj.defineTour) {
+      this.setService.getHotels();
+    } else {
+      this.getHotels();
+
+    }
   }
 
   generateSlug(): void {

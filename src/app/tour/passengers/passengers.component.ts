@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges, Output, EventEmitter } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PassengerDTO, RoomDTO } from 'src/app/Core/Models/tourDTO';
+import { CalenderServices } from 'src/app/Core/Services/calender-service';
 import { MessageService } from 'src/app/Core/Services/message.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { MessageService } from 'src/app/Core/Services/message.service';
   styleUrls: ['./passengers.component.scss']
 })
 export class PassengersComponent implements OnInit, OnChanges {
-  minDate = new Date();
+
+  @Input() age = '0';
   @Input() RoomData: RoomDTO = {
     capacity: 0,
     id: 0,
@@ -28,9 +30,11 @@ export class PassengersComponent implements OnInit, OnChanges {
     price: 0,
     supply: 0
   }
-
-
+  minDate = new Date();
+  maxDate = new Date();
+  show = false;
   constructor(public fb: FormBuilder,
+    public calenderService: CalenderServices,
     public message: MessageService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -49,15 +53,14 @@ export class PassengersComponent implements OnInit, OnChanges {
         }
       }
     }
+    if (changes.age.firstChange) {
+      this.minDate = new Date(this.calenderService.changeMiladiDate(new Date(), -(+this.age), 'year'));
+      this.show = true
+    }
 
-    // if(changes.inCommingPassengers) {
-    //   changes.inCommingPassengers.currentValue.forEach((element:any) => {
-    //     this.addRow(element);
-    //   });
-    // }
   }
 
-  removeItem(index:number) {
+  removeItem(index: number) {
     this.PassengerForm.removeAt(index);
     this.convertPassengerObject()
 
@@ -90,7 +93,7 @@ export class PassengersComponent implements OnInit, OnChanges {
         passport_expire: [obj ? obj.passport_expire : ''],
       })
       this.PassengerForm.push(Passengers);
-    }else {
+    } else {
       this.message.custom('امکان اضافه کردن بیشتر وجود ندارد')
 
     }

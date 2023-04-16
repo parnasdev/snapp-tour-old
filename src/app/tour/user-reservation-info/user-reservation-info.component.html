@@ -218,7 +218,7 @@
       <div class="box-empty" *ngIf="roomsSelected.length === 0">
         <span>اتاقی انتخاب نشده است</span>
       </div>
-      <prs-passengers *ngFor="let room of roomsSelected" [tourType]="getTourType(reserveObj?.package?.tour?.type)"
+      <prs-passengers *ngFor="let room of roomsSelected" [age]="reserveObj.package.prices?reserveObj.package.prices.age : '0'" [tourType]="getTourType(reserveObj?.package?.tour?.type)"
                       [RoomData]="room" (passengerResult)="getRoomData($event)"></prs-passengers>
 
       <!-- <div class="p-info-trip">
@@ -423,7 +423,7 @@
         </div>
         <div class="item w-100 d-flex align-items-center px-2">
           <span class="title">پرواز نوزاد:</span>
-          <span class="text">{{ otherPrices.inf_price| sperator}}</span>
+          <span class="texxt">{{ otherPrices.inf_price| sperator}}</span>
         </div>
 
       </div>

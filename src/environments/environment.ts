@@ -15,6 +15,7 @@ export const environment = {
   // LOCAL_URL: 'snapptour.iran.liara.run',
   VERSION: '0.1'
 };
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

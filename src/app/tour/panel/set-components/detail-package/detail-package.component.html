@@ -37,7 +37,7 @@
           <br>
           ظرفیت
         </div>
-        <div class="package-item">سن کودک</div>
+        <div class="package-item">سن کودک تا</div>
         <div class="package-item">آفر ویژه</div>
         <div></div>
       </div>
@@ -62,11 +62,21 @@
           ظرفیت
         </div>
         <!-- <div class="package-item">کودک بدون تخت</div> -->
-        <div class="package-item">سن کودک</div>
+        <div class="package-item">سن کودک تا</div>
         <div class="package-item">آفر ویژه</div>
         <div></div>
       </div>
-      <div class="example-list">
+      <div class="empty-packages" *ngIf="setService.obj.endCity_id === ''">
+        <div class="d-flex justify-content-center align-items-center w-100">
+          <span>لطفا شهر مقصد را انتخاب کنید</span>
+        </div>
+      </div>
+      <div class="empty-packages" *ngIf="(setService.obj.stDate == '' && setService.obj.enDate == '')">
+        <div class="d-flex justify-content-center align-items-center w-100">
+          <span>لطفا تاریخ ورود و خروج هتل را انتخاب کنید</span>
+        </div>
+      </div>
+      <div class="example-list" *ngIf="setService.obj.stDate !== '' && setService.obj.enDate !== ''">
         <div class="body-box example-box" *ngFor="let tour of setService.obj.packages; let i = index">
           <div class="package-item id-package">
             <div class="icon-from-to">
@@ -95,8 +105,8 @@
               <div class="package-item service-width">
                 <select (change)="setService.setPackageServices($event, i)">
                   <option *ngFor="let service of setService.services"
-                   [selected]="setService.getData(i).services === service.id"
-                    [value]="service.id">{{service.name}}</option>
+                    [selected]="setService.getData(i).services === service.id" [value]="service.id">{{service.name}}
+                  </option>
                 </select>
               </div>
             </div>
@@ -125,12 +135,12 @@
                 (change)="setService.setpackageCapacity($event, i, 'quadCapacity')">
             </div>
             <div class="package-item">
-              <input type="text" [value]="setService.getData(i).prices.age" (change)="setService.setpackageAge($event, i)">
+              <input type="text" [value]="setService.getData(i).prices.age"
+                (change)="setService.setpackageAge($event, i)">
             </div>
             <div class="package-item d-flex flex-row">
-              <input (change)="setService.setpackageOffered($event, i)"
-              [checked]="setService.getData(i).prices.offered"
-              class="offer-checkbox" type="checkbox">
+              <input (change)="setService.setpackageOffered($event, i)" [checked]="setService.getData(i).prices.offered"
+                class="offer-checkbox" type="checkbox">
             </div>
             <div style="flex-direction: row !important;" class="package-item">
               <i class="icon-trash text-danger" (click)="setService.removePackage(i)"></i>
@@ -162,15 +172,12 @@
                 (change)="setService.setpackageCapacity($event, i, 'cwbCapacity')">
             </div>
             <div class="package-item">
-              <input 
-              placeholder="سن کودک"
-              [value]="setService.getData(i).prices.age" 
-              type="text"
-              (change)="setService.setpackageAge($event, i)">
+              <input placeholder="سن کودک تا ..." [value]="setService.getData(i).prices.age" type="number"
+                (change)="setService.setpackageAge($event, i)">
+
             </div>
             <div class="package-item d-flex flex-row">
-              <input (change)="setService.setpackageOffered($event, i)"
-               [checked]="setService.getData(i).prices.offered"
+              <input (change)="setService.setpackageOffered($event, i)" [checked]="setService.getData(i).prices.offered"
                 class="offer-checkbox" type="checkbox">
             </div>
             <div style="flex-direction: row !important;" class="package-item">
@@ -181,7 +188,7 @@
         </div>
       </div>
     </div>
-    <div class="package-item">
+    <div class="package-item" *ngIf="setService.obj.stDate !== '' && setService.obj.enDate !== ''">
       <a (click)="setService.addRow(0)" class="btn-add-tour-fix">
         <i class="icon-plus-squared-alt"></i>
         <span>اضافه</span>

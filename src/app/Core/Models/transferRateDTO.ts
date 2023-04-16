@@ -2,8 +2,8 @@ import { CityResponseDTO } from "./cityDTO";
 import { TransferListDTO } from "./transferDTO";
 
 export interface TransferRateListReqDTO {
-  departure_date: string | null;
-  return_date: string | null;
+  departureDate: string | null;
+  returnDate: string | null;
   paginate: boolean;
   origin: string | null;
   dest: string | null;

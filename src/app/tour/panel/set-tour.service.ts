@@ -9,11 +9,12 @@ import { HotelApiService } from 'src/app/Core/Https/hotel-api.service';
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
 import { CommonApiService } from 'src/app/Core/Https/common-api.service';
 import { GetServiceRequestDTO } from 'src/app/Core/Models/commonDTO';
+import { Result } from 'src/app/Core/Models/result';
 @Injectable({
   providedIn: 'root'
 })
 export class SetTourService {
-  obj: TourSetDTO  = {
+  obj: TourSetDTO = {
     title: '',
     slug: '',
     stCity_id: '',
@@ -47,7 +48,7 @@ export class SetTourService {
     type: false,
     transferType: 1,
   }
-  
+
   transferRates: TransferRateListDTO[] = [];
   hotels: HotelListResponseDTO[] = [];
   hotelRates: hotelRates[] = []
@@ -75,11 +76,11 @@ export class SetTourService {
 
   getTransferRates(): void {
     const req = {
-      departure_date: this.obj.stDate ? moment(this.obj.stDate).format('YYYY-MM-DD') : null,
+      departureDate: this.obj.stDate ? moment(this.obj.stDate).format('YYYY-MM-DD') : null,
       dest: this.obj.endCity_id,
       origin: this.obj.stCity_id,
       paginate: true,
-      return_date: this.obj.enDate ? moment(this.obj.enDate).format('YYYY-MM-DD') : null
+      returnDate: this.obj.enDate ? moment(this.obj.enDate).format('YYYY-MM-DD') : null
     }
     this.transferTypeApi.getTransfers(req).subscribe((res: any) => {
       if (res.isDone) {
@@ -229,7 +230,7 @@ export class SetTourService {
   }
 
   setpackageCapacity(value: any, index: number, name: string) {
-    
+
     this.obj.packages[index].prices[name] = value.target.value;
   }
 
@@ -280,15 +281,32 @@ export class SetTourService {
       fromDate: this.obj.stDate ? this.calenderServices.convertDateSpecial(this.obj.stDate, 'en') : '',
       toDate: this.obj.enDate ? this.calenderServices.convertDateSpecial(this.obj.enDate, 'en') : '',
     }
+    let daysOfStay: any[] = [];
+    daysOfStay = this.getDaysOfStay(this.obj.stDate, this.obj.enDate);
+    
+
+
     this.hotelApi.getHotelRates(hotelId, 0, req).subscribe((res: any) => {
       if (res.isDone) {
         this.hotelRates = res.data;
-        if (this.hotelRates.length == 0) {
-          this.message.custom('این هتل قیمت گذاری نشده است')
+        let list: any[] = [];
+        this.hotelRates.forEach(item => {
+          list.push(item.checkin);
+        })
+        let result: boolean = true;
+        for (let i = 0; i < daysOfStay.length; i++) {
 
+          if (list.includes(daysOfStay[i])) {
+          } else {
+            result = false;
+            break
+          }
+        }
+        
+        if (!result) {
+          this.message.custom('روزهای انتخابی در این هتل قیمت گذاری نشده است')
           this.obj.packages.splice(index, 1);
         }
-
         this.calculatePrice(index);
       } else {
         this.message.custom(res.message);
@@ -297,6 +315,26 @@ export class SetTourService {
       this.message.error()
     })
   }
+
+  getDaysOfStay(startDate: string, endDate: string) {
+
+    if (startDate && endDate) {
+      var dates = [];
+      var currDate = moment(startDate).startOf('day');
+      var lastDate = moment(endDate).startOf('day');
+      dates.push(moment(currDate.clone().toDate()).format('YYYY-MM-DD'));
+
+      while (currDate.add(1, 'days').diff(lastDate) < 0) {
+        dates.push(moment(currDate.clone().toDate()).format('YYYY-MM-DD'));
+      }
+      dates.push(moment(lastDate.clone().toDate()).format('YYYY-MM-DD'));
+      return dates;
+    } else {
+      return [];
+    }
+  };
+
+
 
   checkInsuranceRatePrice(): number {
     if (+this.obj.insurancePriceType === 2) {
@@ -336,7 +374,7 @@ export class SetTourService {
 
   hotelChange(event: any, index: number) {
     console.log(event);
-    
+
     this.getStars(index);
     //@ts-ignore
     this.obj.packages[index].hotel_id = event.id;
