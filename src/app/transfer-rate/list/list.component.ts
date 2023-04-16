@@ -10,7 +10,7 @@ import { SessionService } from 'src/app/Core/Services/session.service';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  req!: TransferRateListReqDTO;
+  req!: any;
   transfers: TransferRateListDTO[] = [];
 
   constructor(public api: TransferRateAPIService,

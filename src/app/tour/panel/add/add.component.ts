@@ -162,8 +162,20 @@ export class AddComponent implements OnInit {
 
 
   dateChanged() {
+    if (this.setService.obj.defineTour) {
+      this.setService.obj.packages = [];
+    }
     this.setService.transferRates = []
     this.setService.getTransferRates();
+  }
+
+  defineChanges() {
+    if (this.setService.obj.defineTour) {
+      this.setService.getHotels();
+    } else {
+      this.getHotels();
+
+    }
   }
 
   generateSlug(): void {

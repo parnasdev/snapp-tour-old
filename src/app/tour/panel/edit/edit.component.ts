@@ -365,11 +365,11 @@ export class EditComponent implements OnInit {
 
   getTransferRates(): void {
     const req = {
-      departure_date: this.info.stDate ? moment(this.info.stDate).format('YYYY-MM-DD') : null,
+      departureDate: this.info.stDate ? moment(this.info.stDate).format('YYYY-MM-DD') : null,
       dest: this.info.endCity.id,
       origin: this.info.stCity.id,
       paginate: true,
-      return_date: this.info.enDate ? moment(this.info.enDate).format('YYYY-MM-DD') : null
+      returnDate: this.info.enDate ? moment(this.info.enDate).format('YYYY-MM-DD') : null
     }
     this.transferTypeApi.getTransfers(req).subscribe((res: any) => {
       if (res.isDone) {

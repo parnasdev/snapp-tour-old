@@ -28,7 +28,7 @@
         </div>
         <div class="selectdiv me-2">
           <label>
-            <select [(ngModel)]="setService.obj.defineTour">
+            <select [(ngModel)]="setService.obj.defineTour" (ngModelChange)="defineChanges()">
               <option [ngValue]="false">یکجا</option>
               <option [ngValue]="true">باجزییات</option>
             </select>
@@ -140,6 +140,7 @@
             <span class="text-danger">{{errorService.getError('expireDate')}}</span>
           </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -242,8 +243,8 @@
 
               <!-- select hotel -->
               <div class="package-item">
-                <prs-select-hotel [hotels]="hotels" [callHotel]="false" [type]="setService.obj.type"
-                  [isAdmin]="true" (hotelSelected)="hotelChange($event,i)"></prs-select-hotel>
+                <prs-select-hotel [hotels]="hotels" [callHotel]="false" [type]="setService.obj.type" [isAdmin]="true"
+                  (hotelSelected)="hotelChange($event,i)"></prs-select-hotel>
                 <div class="parent-icon under-package d-flex align-items-center">
                   <i class="icon-star text-warning" *ngFor="let star of getStars(i)"></i>
                 </div>
