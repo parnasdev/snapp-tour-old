@@ -76,7 +76,7 @@
           <span>لطفا تاریخ ورود و خروج هتل را انتخاب کنید</span>
         </div>
       </div>
-      <div class="example-list" *ngIf="setService.obj.stDate !== '' && setService.obj.enDate !== ''">
+      <div class="example-list" *ngIf="(setService.obj.stDate !== '' && setService.obj.enDate !== '') && setService.obj.endCity_id !== ''">
         <div class="body-box example-box" *ngFor="let tour of setService.obj.packages; let i = index">
           <div class="package-item id-package">
             <div class="icon-from-to">

@@ -11,7 +11,6 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
   styleUrls: ['./set-price-popup.component.scss']
 })
 export class SetPricePopupComponent implements OnInit {
-
   nameFC = new FormControl('');
   labelFC = new FormControl('');
   req!: RoomTypeReqDTO;
@@ -54,6 +53,7 @@ export class SetPricePopupComponent implements OnInit {
       this.tourDetail.push({
         name: item.value.name,
         label: item.value.label,
+        capacity: item.value.capacity,
         price: item.value.price
       });
     })

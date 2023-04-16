@@ -373,7 +373,6 @@ export class SetTourService {
   }
 
   hotelChange(event: any, index: number) {
-    console.log(event);
 
     this.getStars(index);
     //@ts-ignore

@@ -1,4 +1,3 @@
-import { DepFlags } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -8,7 +7,6 @@ import { RoomTypeApiService } from 'src/app/Core/Https/room-type-api.service';
 import { TourApiService } from 'src/app/Core/Https/tour-api.service';
 import { CityResponseDTO } from 'src/app/Core/Models/cityDTO';
 import { RoomTypeListDTO } from 'src/app/Core/Models/roomTypeDTO';
-
 declare let $: any;
 import {
   DiscountsDTO,

@@ -416,16 +416,16 @@ export class AddComponent implements OnInit {
 
   openRoomPopup(index: number) {
     // @ts-ignore
-    const data = this.ToursForm.controls[index].controls.roomType.value
+    // const data = this.ToursForm.controls[index].controls.roomType.value
     const dialog = this.dialog.open(SetPricePopupComponent, {
       width: '50%',
       height: '70%',
-      data: data
+   
     });
     dialog.afterClosed().subscribe((result: RoomTypeSetDTO[]) => {
       if (result) {
         // @ts-ignore
-        this.ToursForm.controls[index].controls.roomType.setValue(result);
+        // this.ToursForm.controls[index].controls.roomType.setValue(result);
       }
     })
   }
