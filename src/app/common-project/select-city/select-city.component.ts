@@ -25,6 +25,7 @@ export class SelectCityComponent implements OnInit, OnChanges {
 isMobile = false;
   @Input() hasDestTour: boolean = false;
   @Input() inCommingCity: any;
+  @Input() baseType: boolean = false;
   @Input() title = 'شهر خود را وارد کنید';
   isLoading = false
 
@@ -68,6 +69,8 @@ isMobile = false;
 
   getCities(): void {
     this.isLoading = true
+    const inlist = ['تهران', 'مشهد', 'شیراز', 'یزد', 'اهواز', 'اصفهان', 'رشت', 'تبریز', 'بوشهر', 'کرمانشاه']
+    const outlist = ['تهران', 'مشهد', 'شیراز', 'یزد', 'اهواز', 'اصفهان', 'رشت', 'تبریز', 'بوشهر', 'استانبول', 'آنتالیا' , 'دبی' , 'تفلیس' , 'مارماریس' , 'آنکارا', 'رشت']
     const req: CityListRequestDTO = {
       type: this.type,
       hasHotel: this.hasHotel,
@@ -81,14 +84,19 @@ isMobile = false;
       this.isLoading = false
       if (res.isDone) {
         this.cities = res.data;
-        this.cities = this.cities.sort(function(x, y) {
-          return Number(y.type) - Number(x.type);
-        })
+        if(!this.baseType){
+          this. cities = this.cities.filter(x=> inlist.includes(x.name))
+        } else {
+          this. cities = this.cities.filter(x=> outlist.includes(x.name))
+          this.cities = this.cities.sort(function(x, y) {
+            return Number(y.type) - Number(x.type);
+          })
+        }
+        
         if (this.inCommingCity && this.inCommingCity !== '') {
           if (this.cities.filter(c => c.slugEn === this.inCommingCity).length > 0) {
             this.cityFC.setValue(this.cities.filter(c => c.slugEn === this.inCommingCity)[0].name)
             // this.citySelected.emit(this.cities.filter(c => c.slugEn === this.inCommingCity)[0])
-
           }
         }
         this.filteredOptions = this.cityFC.valueChanges.pipe(
