@@ -428,8 +428,10 @@
 
       </div>
     </div>
-    <div *ngFor="let item of reserveObj.passengers" class="w-100 bg-light bg-info-trip">
+    <div class="w-100 d-flex justify-content-start">
       <h3 class="title-passenger">اطلاعات مسافرین</h3>
+    </div>
+    <div *ngFor="let item of reserveObj.passengers" class="w-100 bg-light bg-info-trip">
       <div class="title-profile w-100">
         <i class="icon-circle"></i>
         <h2 class="dana-bold">{{ item.name }}</h2>

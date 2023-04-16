@@ -1105,3 +1105,15 @@ select::-ms-expand {
 .inp-error {
   border: 1px solid red !important;
 }
+
+
+
+@media only screen and (max-width: 500px){
+  .s-dashboard .p-info-trip .tour-items {
+    grid-template-columns: 1fr !important;
+    gap: 8px;
+    span{
+      font-size: 13px !important;
+    }
+  }
+}
