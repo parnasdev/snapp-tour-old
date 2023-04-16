@@ -226,6 +226,8 @@ export class EditComponent implements OnInit {
 
   changes() {
     this.setService.obj.dayNum = this.setService.obj.nightNum + 1;
+    this.setService.updatePackagePrices()
+
   }
 
 

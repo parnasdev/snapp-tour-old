@@ -321,7 +321,20 @@
                 </div>
                 <!-- age input -->
                 <div class="package-item">
-                  <input placeholder="سن کودک" type="text" formControlName="age">
+                  <!-- <input placeholder="سن کودک" type="text" formControlName="age"> -->
+                  <select name="" id="" formControlName="age">
+                    <option [ngValue]="2">تا ۲ سال</option>
+                    <option [ngValue]="3">تا ۳ سال</option>
+                    <option [ngValue]="4">تا ۴ سال</option>
+                    <option [ngValue]="5">تا ۵ سال</option>
+                    <option [ngValue]="6">تا ۶ سال</option>
+                    <option [ngValue]="7">تا ۷ سال</option>
+                    <option [ngValue]="8">تا ۸ سال</option>
+                    <option [ngValue]="9">تا ۹ سال</option>
+                    <option [ngValue]="10">تا ۱۰ سال</option>
+                    <option [ngValue]="11">تا ۱۱ سال</option>
+                    <option [ngValue]="12">تا ۱۲ سال</option>
+                  </select>
                 </div>
                 <!-- offered checkbox -->
                 <div class="package-item d-flex flex-row">
