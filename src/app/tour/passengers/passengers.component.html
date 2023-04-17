@@ -58,7 +58,7 @@
           <div class="inp-form mt-2" *ngIf="show">
             <!-- <input type="text" (change)="onChange()" placeholder="اینجا بنویسید …" formControlName="birthDate"> -->
             <mat-form-field class="example-full-width" appearance="fill">
-              <input class="input-parent" readonly (dateChange)="onChange()" [min]="minDate" [max]="maxDate" matInput
+              <input class="input-parent" readonly (dateChange)="onChange()" [min]="getMinDate(item)" [max]="maxDate" matInput
                 formControlName="birthDate" placeholder="تاریخ تولد" autocomplete="off" [matDatepicker]="picker4"
                 (click)="picker4.open()">
               <mat-datepicker startView="year" #picker4></mat-datepicker>

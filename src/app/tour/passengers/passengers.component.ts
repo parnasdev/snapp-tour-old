@@ -31,6 +31,7 @@ export class PassengersComponent implements OnInit, OnChanges {
     supply: 0
   }
   minDate = new Date();
+  infantMinDate = new Date();
   maxDate = new Date();
   show = false;
   constructor(public fb: FormBuilder,
@@ -55,6 +56,8 @@ export class PassengersComponent implements OnInit, OnChanges {
     }
     if (changes.age.firstChange) {
       this.minDate = new Date(this.calenderService.changeMiladiDate(new Date(), -(+this.age), 'year'));
+      this.infantMinDate = new Date(this.calenderService.changeMiladiDate(new Date(), -(2), 'year'));
+
       this.show = true
     }
 
@@ -73,6 +76,17 @@ export class PassengersComponent implements OnInit, OnChanges {
   })
 
   ngOnInit(): void {
+  }
+
+
+  getMinDate(item: any) {
+    if (this.getPassebgerLabel(item.get('type')) === 'سرپرست' || this.getPassebgerLabel(item.get('type')) === 'همراه') {
+      return null
+    } else if (this.getPassebgerLabel(item.get('type')) === 'نوزاد') {
+      return this.infantMinDate
+    }else {
+      return this.minDate
+    }
   }
 
   get PassengerForm() {

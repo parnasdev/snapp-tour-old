@@ -166,6 +166,8 @@
       </div>
     </div>
     <div class="info-tour-body p-0">
+
+
       <!-- package rate type select -->
       <!-- <div class="change-price-box" *ngIf="!setService.obj.type">
         <span>نرخ پکیج و قیمت پرواز</span>
@@ -231,6 +233,8 @@
         <!-- package body -->
         <form [formGroup]="form" class="example-list" action="" cdkDropList (cdkDropListDropped)="drop($event)">
           <div class="example-list" formArrayName="packages">
+            <span *ngIf="hotels.length === 0" class="empty-packages">هتلی یافت نشد (لطفا مطمئن شوید شهر مقصد انتخاب شده باشد) </span>
+
             <div class="body-box example-box" *ngFor="let tour of ToursForm.controls; let i = index" cdkDrag
               [formGroupName]="i">
               <!-- up and down -->
@@ -240,7 +244,6 @@
                   <i class="icon-down-open"></i>
                 </div>
               </div>
-
               <!-- select hotel -->
               <div class="package-item">
                 <prs-select-hotel [hotels]="hotels" [callHotel]="false" [type]="setService.obj.type" [isAdmin]="true"
@@ -368,7 +371,7 @@
       </div>
 
       <!-- add package row -->
-      <div class="package-item">
+      <div class="package-item" *ngIf="hotels.length > 0">
         <a (click)="addRow(0)" class="btn-add-tour-fix">
           <i class="icon-plus-squared-alt"></i>
           <span>اضافه</span>

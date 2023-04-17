@@ -39,6 +39,8 @@ export interface hotelInfoDTO {
   city: CityResponseDTO;
   nameEn: string;
   stars: string;
+  images_paths? : string[];
+  thumbnail_paths?: string
   location: string;
   rooms: any[]
   address: string;
@@ -184,6 +186,7 @@ export interface HotelRatesSetReqDTO {
 export interface HotelRatesResDTO {
   checkin: string;
   price: number
+  capacity: number;
   rate: number;
   roomType: RoomTypeDTO;
   user: UserDTO
