@@ -39,6 +39,8 @@ export interface hotelInfoDTO {
   city: CityResponseDTO;
   nameEn: string;
   stars: string;
+  images_paths? : string[];
+  thumbnail_paths?: string
   location: string;
   rooms: any[]
   address: string;

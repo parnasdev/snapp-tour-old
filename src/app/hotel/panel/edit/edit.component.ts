@@ -149,8 +149,8 @@ export class EditComponent extends AddComponent implements OnInit {
         this.youtubeFC.setValue(this.hotelInfo.mediaLink[1].link)
       }
     }
-    this.images = this.hotelInfo.images
-    this.thumbnail = this.hotelInfo.thumbnail
+    this.images = this.hotelInfo.images_paths ?? []
+    this.thumbnail = this.hotelInfo.thumbnail_paths ?? ''; 
     this.lat = this.hotelInfo.coordinate.lat
     this.lng = this.hotelInfo.coordinate.lng
     this.reload()
