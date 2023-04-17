@@ -186,6 +186,7 @@ export interface HotelRatesSetReqDTO {
 export interface HotelRatesResDTO {
   checkin: string;
   price: number
+  capacity: number;
   rate: number;
   roomType: RoomTypeDTO;
   user: UserDTO

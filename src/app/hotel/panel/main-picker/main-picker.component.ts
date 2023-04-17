@@ -114,13 +114,6 @@ export class MainPickerComponent implements OnInit {
 
 
 
-  isExistOnPriceList(item: any): any {
-    const y: any = moment(item).format('YYYY/MM/DD')
-    if (this.daysOfMonth.length > 0) {
-      let result = this.pricesData.filter((x) => y === moment(x.checkin).format('YYYY/MM/DD'))
-      return result.length > 0 ? { price: result[0].price, rate: result[0].rate } : null;
-    }
-  }
 
 
   onDateClicked(item: any) {
@@ -253,6 +246,14 @@ export class MainPickerComponent implements OnInit {
     })
   }
 
+
+  isExistOnPriceList(item: any): any {
+    const y: any = moment(item).format('YYYY/MM/DD')
+    if (this.daysOfMonth.length > 0) {
+      let result = this.pricesData.filter((x) => y === moment(x.checkin).format('YYYY/MM/DD'))
+      return result.length > 0 ? { price: result[0].price, rate: result[0].rate , capacity: result[0].capacity} : null;
+    }
+  }
 
   getFirstAndLastDates() {
     let startDate: any = null;
