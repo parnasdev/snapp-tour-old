@@ -149,6 +149,7 @@ export class SetTourService {
       this.message.error();
     })
   }
+
   addRow(hotel_id: number) {
     const item: newTourPackageDTO = {
       hotel_id: hotel_id,
@@ -190,11 +191,11 @@ export class SetTourService {
     const visaPrice = (this.obj.visaRate ? (+this.obj.visaRate) * this.checkVisaRatePrice() : 0);
     const transferPrice = (this.obj.transferRate ? (+this.obj.transferRate) * this.checkTransferRatePrice() : 0);
 
-    this.obj.packages[i].prices.singleRate = (this.getPrice(this.getHotelRatePrice('single'), i) + insurancePrice + visaPrice + transferPrice).toString();
-    this.obj.packages[i].prices.twinRate = (this.getPrice(this.getHotelRatePrice('twin'), i) + insurancePrice + visaPrice + transferPrice).toString();
-    this.obj.packages[i].prices.tripleRate = (this.getPrice(this.getHotelRatePrice('triple'), i) + insurancePrice + visaPrice + transferPrice).toString();
-    this.obj.packages[i].prices.quadRate = (this.getPrice(this.getHotelRatePrice('quad'), i) + insurancePrice + visaPrice + transferPrice).toString();
-    this.obj.packages[i].prices.cwbRate = (this.getPrice(this.getHotelRatePrice('cwb'), i) + insurancePrice + visaPrice + transferPrice).toString();
+    this.obj.packages[i].prices.single = (this.getPrice(this.getHotelRatePrice('single'), i) + insurancePrice + visaPrice + transferPrice).toString();
+    this.obj.packages[i].prices.twin = (this.getPrice(this.getHotelRatePrice('twin'), i) + insurancePrice + visaPrice + transferPrice).toString();
+    this.obj.packages[i].prices.triple = (this.getPrice(this.getHotelRatePrice('triple'), i) + insurancePrice + visaPrice + transferPrice).toString();
+    this.obj.packages[i].prices.quad = (this.getPrice(this.getHotelRatePrice('quad'), i) + insurancePrice + visaPrice + transferPrice).toString();
+    this.obj.packages[i].prices.cwb = (this.getPrice(this.getHotelRatePrice('cwb'), i) + insurancePrice + visaPrice + transferPrice).toString();
   }
 
   updatePackagePrices() {
@@ -206,15 +207,15 @@ export class SetTourService {
       // const ADLRate = item.value.ADLRate ? +item.value.ADLRate.split(',').join('') : 0;
       // const CHDFlightRate = this.obj.CHDFlightRate ? +this.obj.CHDFlightRate?.split(',').join('') : 0;
 
-      item.prices.twinRate = ((this.getPrice(this.getHotelRatePrice('twin'), index) + insurancePrice + visaPrice + transferPrice).toString());
+      item.prices.twin = ((this.getPrice(this.getHotelRatePrice('twin'), index) + insurancePrice + visaPrice + transferPrice).toString());
 
-      item.prices.singleRate = ((this.getPrice(this.getHotelRatePrice('single'), index) + insurancePrice + visaPrice + transferPrice).toString());
+      item.prices.single = ((this.getPrice(this.getHotelRatePrice('single'), index) + insurancePrice + visaPrice + transferPrice).toString());
 
-      item.prices.cwbRate = ((this.getPrice(this.getHotelRatePrice('cwb'), index) + insurancePrice + visaPrice + transferPrice).toString());
+      item.prices.cwb = ((this.getPrice(this.getHotelRatePrice('cwb'), index) + insurancePrice + visaPrice + transferPrice).toString());
 
-      item.prices.quadRate = ((this.getPrice(this.getHotelRatePrice('quad'), index) + insurancePrice + visaPrice + transferPrice).toString());
+      item.prices.quad = ((this.getPrice(this.getHotelRatePrice('quad'), index) + insurancePrice + visaPrice + transferPrice).toString());
 
-      item.prices.tripleRate = ((this.getPrice(this.getHotelRatePrice('triple'), index) + insurancePrice + visaPrice + transferPrice).toString());
+      item.prices.triple = ((this.getPrice(this.getHotelRatePrice('triple'), index) + insurancePrice + visaPrice + transferPrice).toString());
       // + نرخ افزایشس کاهشی
     });
   }
@@ -275,45 +276,52 @@ export class SetTourService {
     })
     return price
   }
+  
+  getRoomCapacityByName(typeName: string) {
+    return this.hotelRates.find(x => x.roomType.name === typeName) ? this.hotelRates.find(x => x.roomType.name === typeName)?.capacity : 0;
+  }
 
   getHotelRates(hotelId: number, index: number) {
     const req = {
       fromDate: this.obj.stDate ? this.calenderServices.convertDateSpecial(this.obj.stDate, 'en') : '',
       toDate: this.obj.enDate ? this.calenderServices.convertDateSpecial(this.obj.enDate, 'en') : '',
     }
-    let daysOfStay: any[] = [];
-    daysOfStay = this.getDaysOfStay(this.obj.stDate, this.obj.enDate);
-    
-
 
     this.hotelApi.getHotelRates(hotelId, 0, req).subscribe((res: any) => {
       if (res.isDone) {
         this.hotelRates = res.data;
-        let list: any[] = [];
-        this.hotelRates.forEach(item => {
-          list.push(item.checkin);
-        })
-        let result: boolean = true;
-        for (let i = 0; i < daysOfStay.length; i++) {
-
-          if (list.includes(daysOfStay[i])) {
-          } else {
-            result = false;
-            break
-          }
+        if(this.obj.defineTour){
+          this.checkHotelRateHasPrice(index);
         }
-        
-        if (!result) {
-          this.message.custom('روزهای انتخابی در این هتل قیمت گذاری نشده است')
-          this.obj.packages.splice(index, 1);
-        }
-        this.calculatePrice(index);
       } else {
         this.message.custom(res.message);
       }
     }, (error: any) => {
       this.message.error()
     })
+  }
+
+  checkHotelRateHasPrice(index: number){
+    let daysOfStay: any[] = [];
+    daysOfStay = this.getDaysOfStay(this.obj.stDate, this.obj.enDate);
+
+    let list: any[] = [];
+    this.hotelRates.forEach(item => {
+      list.push(item.checkin);
+    })
+    let result: boolean = true;
+    for (let i = 0; i < daysOfStay.length; i++) {
+      if (list.includes(daysOfStay[i])) {
+      } else {
+        result = false;
+        break
+      }
+    }
+    if (!result) {
+      this.message.custom('روزهای انتخابی در این هتل قیمت گذاری نشده است')
+      this.obj.packages.splice(index, 1);
+    }
+    this.calculatePrice(index);
   }
 
   getDaysOfStay(startDate: string, endDate: string) {

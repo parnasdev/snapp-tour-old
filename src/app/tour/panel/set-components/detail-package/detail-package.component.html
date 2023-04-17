@@ -115,24 +115,33 @@
           <ng-template class="body-local" [ngIf]="setService.obj.type">
             <div class="package-item">
               <div class="under-package-text d-flex align-items-center">
-                <p>{{ setService.getData(i).prices.twinRate | sperator }}</p>
+                <p>{{ setService.getData(i).prices.twin | sperator }}</p>
               </div>
-              <input type="text" [value]="setService.getData(i).prices.twinCapacity"
-                (change)="setService.setpackageCapacity($event, i, 'twinCapacity')" placeholder="موجودی">
+              <div class="under-package-text d-flex align-items-center">
+                <p>{{ setService.getRoomCapacityByName('twin') | sperator }}</p>
+              </div>
+              <!-- <input type="text" [value]="setService.getData(i).prices.twinCapacity"
+                (change)="setService.setpackageCapacity($event, i, 'twinCapacity')" placeholder="موجودی"> -->
             </div>
             <div class="package-item">
               <div class="under-package-text">
-                <p>{{ setService.getData(i).prices.tripleRate | sperator }}</p>
+                <p>{{ setService.getData(i).prices.triple | sperator }}</p>
               </div>
-              <input type="text" placeholder="موجودی" [value]="setService.getData(i).prices.tripleCapacity"
-                (change)="setService.setpackageCapacity($event, i, 'tripleCapacity')">
+              <div class="under-package-text d-flex align-items-center">
+                <p>{{ setService.getRoomCapacityByName('triple') | sperator }}</p>
+              </div>
+              <!-- <input type="text" placeholder="موجودی" [value]="setService.getData(i).prices.tripleCapacity"
+                (change)="setService.setpackageCapacity($event, i, 'tripleCapacity')"> -->
             </div>
             <div class="package-item">
               <div class="under-package-text">
-                <p>{{ setService.getData(i).prices.quadRate | sperator }}</p>
+                <p>{{ setService.getData(i).prices.quad | sperator }}</p>
               </div>
-              <input type="text" placeholder="موجودی" [value]="setService.getData(i).prices.quadCapacity"
-                (change)="setService.setpackageCapacity($event, i, 'quadCapacity')">
+              <div class="under-package-text d-flex align-items-center">
+                <p>{{ setService.getRoomCapacityByName('quad') | sperator }}</p>
+              </div>
+              <!-- <input type="text" placeholder="موجودی" [value]="setService.getData(i).prices.quadCapacity"
+                (change)="setService.setpackageCapacity($event, i, 'quadCapacity')"> -->
             </div>
             <div class="package-item">
               <input type="text" [value]="setService.getData(i).prices.age"
@@ -151,25 +160,33 @@
           <ng-template class="body-foreign" [ngIf]="!setService.obj.type">
             <div class="package-item">
               <div class="under-package-text">
-                <p>{{ setService.getData(i).prices.twinRate | sperator }}</p>
+                <p>{{ setService.getData(i).prices.twin | sperator }}</p>
               </div>
-              <input type="text" placeholder="موجودی" [value]="setService.getData(i).prices.twinCapacity"
-                (change)="setService.setpackageCapacity($event, i, 'twinCapacity')">
+              <div class="under-package-text d-flex align-items-center">
+                <p>{{ setService.getRoomCapacityByName('twin') | sperator }}</p>
+              </div>
+              <!-- <input type="text" placeholder="موجودی" [value]="setService.getData(i).prices.twinCapacity"
+                (change)="setService.setpackageCapacity($event, i, 'twinCapacity')"> -->
             </div>
             <div class="package-item">
               <div class="under-package-text">
-                <p>{{ setService.getData(i).prices.singleRate | sperator }}</p>
+                <p>{{ setService.getData(i).prices.single | sperator }}</p>
               </div>
-              <input type="text" placeholder="موجودی" [value]="setService.getData(i).prices.singleCapacity"
-                (change)="setService.setpackageCapacity($event, i, 'singleCapacity')">
-
+              <div class="under-package-text d-flex align-items-center">
+                <p>{{ setService.getRoomCapacityByName('single') | sperator }}</p>
+              </div>
+              <!-- <input type="text" placeholder="موجودی" [value]="setService.getData(i).prices.singleCapacity"
+                (change)="setService.setpackageCapacity($event, i, 'singleCapacity')"> -->
             </div>
             <div class="package-item">
               <div class="under-package-text">
-                <p>{{ setService.getData(i).prices.cwbRate | sperator }}</p>
+                <p>{{ setService.getData(i).prices.cwb | sperator }}</p>
               </div>
-              <input type="text" placeholder="موجودی" [value]="setService.getData(i).prices.cwbCapacity"
-                (change)="setService.setpackageCapacity($event, i, 'cwbCapacity')">
+              <div class="under-package-text d-flex align-items-center">
+                <p>{{ setService.getRoomCapacityByName('cwb') | sperator }}</p>
+              </div>
+              <!-- <input type="text" placeholder="موجودی" [value]="setService.getData(i).prices.cwbCapacity"
+                (change)="setService.setpackageCapacity($event, i, 'cwbCapacity')"> -->
             </div>
             <div class="package-item">
               <input placeholder="سن کودک تا ..." [value]="setService.getData(i).prices.age" type="number"

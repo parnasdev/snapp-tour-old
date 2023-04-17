@@ -146,7 +146,7 @@ export interface HotelListResponseDTO {
   thumbnail: string
   city: string
   location: string
-
+  rooms: RoomTypeDTO[]
 }
 
 export interface ServiceDTO {

@@ -16,6 +16,8 @@ import { PublicService } from 'src/app/Core/Services/public.service';
 import { ResponsiveService } from 'src/app/Core/Services/responsive.service';
 import { SessionService } from 'src/app/Core/Services/session.service';
 import { SetTourService } from '../../set-tour.service';
+import { SetPricePopupComponent } from 'src/app/room-type/set-price-popup/set-price-popup.component';
+import { RoomTypeSetDTO } from 'src/app/Core/Models/roomTypeDTO';
 
 @Component({
   selector: 'prs-detail-package',
@@ -74,19 +76,22 @@ export class DetailPackageComponent implements OnInit {
   }
 
   openRoomPopup(index: number) {
-    // @ts-ignore
-    // const data = this.ToursForm.controls[index].controls.roomType.value
-    // const dialog = this.dialog.open(SetPricePopupComponent, {
-    //   width: '50%',
-    //   height: '70%',
-    //   data: data
-    // });
-    // dialog.afterClosed().subscribe((result: RoomTypeSetDTO[]) => {
-    //   if (result) {
-    //     // @ts-ignore
-    //     this.ToursForm.controls[index].controls.roomType.setValue(result);
-    //   }
-    // })
+    let hotelRooms = this.setService.obj.packages[index].hotel_id ? 
+                    this.setService.hotels.find(x=>x.id === this.setService.obj.packages[index].hotel_id)?.rooms : []
+    const data = {
+      'prices': this.setService.obj.packages[index].prices,
+      'hotel_rooms': hotelRooms,
+    } 
+    const dialog = this.dialog.open(SetPricePopupComponent, {
+      width: '50%',
+      height: '70%',
+      data: data
+    });
+    dialog.afterClosed().subscribe((result: RoomTypeSetDTO[]) => {
+      if (result) {
+        this.setService.obj.packages[index].prices = result
+      }
+    })
   }
 
   // changeRateForPackages(event: any) {

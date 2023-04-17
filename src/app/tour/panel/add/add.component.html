@@ -264,24 +264,30 @@
               <ng-template class="body-local" [ngIf]="setService.obj.type">
                 <!-- twin input -->
                 <div class="package-item">
-                  <input placeholder="قیمت (تومان)" type="text" formControlName="twin" mask="separator"
-                    thousandSeparator=",">
-                  <input type="text" formControlName="twinCapacity" placeholder="موجودی" mask="separator"
-                    thousandSeparator=",">
+                  <input placeholder="قیمت (تومان)" type="text" formControlName="twin" mask="separator" thousandSeparator=",">
+                  <div class="under-package-text d-flex align-items-center">
+                    <p>{{ setService.getRoomCapacityByName('twin') | sperator }}</p>
+                  </div>
+                  <!-- <input type="text" formControlName="twinCapacity" placeholder="موجودی" mask="separator"
+                    thousandSeparator=","> -->
                 </div>
                 <!-- triple input -->
                 <div class="package-item">
-                  <input placeholder="قیمت (تومان)" type="text" formControlName="triple" mask="separator"
-                    thousandSeparator=",">
-                  <input type="text" placeholder="موجودی" formControlName="tripleCapacity" mask="separator"
-                    thousandSeparator=",">
+                  <input placeholder="قیمت (تومان)" type="text" formControlName="triple" mask="separator" thousandSeparator=",">
+                  <div class="under-package-text d-flex align-items-center">
+                    <p>{{ setService.getRoomCapacityByName('triple') | sperator }}</p>
+                  </div>
+                  <!-- <input type="text" placeholder="موجودی" formControlName="tripleCapacity" mask="separator"
+                    thousandSeparator=","> -->
                 </div>
                 <!-- quad input -->
                 <div class="package-item">
-                  <input placeholder="قیمت (تومان)" type="text" formControlName="quad" mask="separator"
-                    thousandSeparator=",">
-                  <input type="text" placeholder="موجودی" formControlName="quadCapacity" mask="separator"
-                    thousandSeparator=",">
+                  <input placeholder="قیمت (تومان)" type="text" formControlName="quad" mask="separator" thousandSeparator=",">
+                  <div class="under-package-text d-flex align-items-center">
+                    <p>{{ setService.getRoomCapacityByName('quad') | sperator }}</p>
+                  </div>
+                  <!-- <input type="text" placeholder="موجودی" formControlName="quadCapacity" mask="separator"
+                    thousandSeparator=","> -->
                 </div>
                 <!-- age input -->
                 <div class="package-item">
@@ -302,24 +308,30 @@
               <ng-template class="body-foreign" [ngIf]="!setService.obj.type">
                 <!-- twin input -->
                 <div class="package-item">
-                  <input placeholder="قیمت (تومان)" type="text" formControlName="twin" mask="separator"
-                    thousandSeparator=",">
-                  <input type="text" formControlName="twinCapacity" mask="separator" placeholder="موجودی"
-                    thousandSeparator=",">
+                  <input placeholder="قیمت (تومان)" type="text" formControlName="twin" mask="separator" thousandSeparator=",">
+                  <!-- <input type="text" formControlName="twinCapacity" mask="separator" placeholder="موجودی"
+                    thousandSeparator=","> -->
+                  <div class="under-package-text d-flex align-items-center">
+                    <p>{{ setService.getRoomCapacityByName('twin') | sperator }}</p>
+                  </div>
                 </div>
                 <!-- single input -->
                 <div class="package-item">
-                  <input placeholder="قیمت (تومان)" type="text" formControlName="single" mask="separator"
-                    thousandSeparator=",">
-                  <input type="text" placeholder="موجودی" formControlName="singleCapacity" mask="separator"
-                    thousandSeparator=",">
+                  <input placeholder="قیمت (تومان)" type="text" formControlName="single" mask="separator" thousandSeparator=",">
+                  <div class="under-package-text d-flex align-items-center">
+                    <p>{{ setService.getRoomCapacityByName('single') | sperator }}</p>
+                  </div>
+                  <!-- <input type="text" placeholder="موجودی" formControlName="singleCapacity" mask="separator"
+                    thousandSeparator=","> -->
                 </div>
                 <!-- cwb input -->
                 <div class="package-item">
-                  <input placeholder="قیمت (تومان)" type="text" formControlName="cwb" mask="separator"
-                    thousandSeparator=",">
-                  <input type="text" placeholder="موجودی" formControlName="cwbCapacity" mask="separator"
-                    thousandSeparator=",">
+                  <input placeholder="قیمت (تومان)" type="text" formControlName="cwb" mask="separator" thousandSeparator=",">
+                  <div class="under-package-text d-flex align-items-center">
+                    <p>{{ setService.getRoomCapacityByName('cwb') | sperator }}</p>
+                  </div>
+                  <!-- <input type="text" placeholder="موجودی" formControlName="cwbCapacity" mask="separator"
+                    thousandSeparator=","> -->
                 </div>
                 <!-- age input -->
                 <div class="package-item">
@@ -336,8 +348,6 @@
                     <option value="10">تا ۱۰ سال</option>
                     <option value="11">تا ۱۱ سال</option>
                     <option value="12">تا ۱۲ سال</option>
-
-
                   </select>
                 </div>
                 <!-- offered checkbox -->

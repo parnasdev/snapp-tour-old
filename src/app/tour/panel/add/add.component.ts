@@ -172,10 +172,11 @@ export class AddComponent implements OnInit {
 
   defineChanges() {
     if (this.setService.obj.defineTour) {
+      this.setService.obj.packages = []
       this.setService.getHotels();
     } else {
+      this.ToursForm.clear();
       this.getHotels();
-
     }
   }
 
@@ -412,6 +413,7 @@ export class AddComponent implements OnInit {
     this.getStars(index);
     //@ts-ignore
     this.ToursForm.controls[index].controls.hotel_id.setValue(event.id);
+    this.setService.getHotelRates(event.id, index);
   }
 
   openRoomPopup(index: number) {

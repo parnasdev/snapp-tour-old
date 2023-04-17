@@ -422,8 +422,6 @@ export interface TourSetDTO {
   description: string;
   status: string;
   packages: any[]
-
-  
 }
 
 export interface newTourDTO {
@@ -499,6 +497,7 @@ user: null
 export interface hotelRates {
   checkin: string;
   price: number
+  capacity: number
   rate: number
   roomType: {
     capacityPerson: number
