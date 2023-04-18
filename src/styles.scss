@@ -465,6 +465,10 @@ select::-ms-expand {
   width: 55%;
 }
 
+.w-10 {
+  width: 10%;
+}
+
 //select-apple-safari
 @media not all and (min-resolution: .001dpcm) {
   @supports (-webkit-appearance:none) {

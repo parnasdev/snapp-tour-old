@@ -18,6 +18,7 @@ import { SessionService } from 'src/app/Core/Services/session.service';
 import { SetTourService } from '../../set-tour.service';
 import { SetPricePopupComponent } from 'src/app/room-type/set-price-popup/set-price-popup.component';
 import { RoomTypeSetDTO } from 'src/app/Core/Models/roomTypeDTO';
+import { PricingPopupComponent } from 'src/app/hotel/panel/pricing-popup/pricing-popup.component';
 
 @Component({
   selector: 'prs-detail-package',
@@ -33,7 +34,7 @@ export class DetailPackageComponent implements OnInit {
   ratePricesFC = new FormControl('1');
 
   constructor(
-    public setService:SetTourService,
+    public setService: SetTourService,
     public cityApi: CityApiService,
     public transferApi: TransferAPIService,
     public transferRateApi: TransferRateAPIService,
@@ -54,7 +55,7 @@ export class DetailPackageComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
   }
 
   isEmpty(obj: any) {
@@ -76,12 +77,12 @@ export class DetailPackageComponent implements OnInit {
   }
 
   openRoomPopup(index: number) {
-    let hotelRooms = this.setService.obj.packages[index].hotel_id ? 
-                    this.setService.hotels.find(x=>x.id === this.setService.obj.packages[index].hotel_id)?.rooms : []
+    let hotelRooms = this.setService.obj.packages[index].hotel_id ?
+      this.setService.hotels.find(x => x.id === this.setService.obj.packages[index].hotel_id)?.rooms : []
     const data = {
       'prices': this.setService.obj.packages[index].prices,
       'hotel_rooms': hotelRooms,
-    } 
+    }
     const dialog = this.dialog.open(SetPricePopupComponent, {
       width: '50%',
       height: '70%',
@@ -105,7 +106,7 @@ export class DetailPackageComponent implements OnInit {
   // }
 
   checkPackageRate() {
-    if(this.setService.obj.endCity_id !== ''){
+    if (this.setService.obj.endCity_id !== '') {
       // @ts-ignore
       return +this.ratePricesFC.value > 1
     } else {
@@ -113,4 +114,23 @@ export class DetailPackageComponent implements OnInit {
     }
   }
 
+
+  openPricingCalendar(index: number) {
+    console.log(this.setService.obj.packages[index]);
+    if (this.setService.obj.packages[index].hotel_id === 0) {
+      this.message.custom('لطفا هتل خود را انتخاب کنید')
+    } else {
+      const dialog = this.dialog.open(PricingPopupComponent, {
+        width: '100%',
+        height: '100%',
+        data: {
+          hotelId: this.setService.obj.packages[index].hotel_id,
+          slug: this.setService.obj.packages[index].hotel_slug
+        }
+      });
+      dialog.afterClosed().subscribe((result) => {
+          this.setService.getHotelRates(this.setService.obj.packages[index].hotel_id, index);
+      })
+    }
+  }
 }

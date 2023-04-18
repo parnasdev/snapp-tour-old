@@ -80,7 +80,7 @@
         <div class="body-box example-box" *ngFor="let tour of setService.obj.packages; let i = index">
           <div class="package-item id-package">
             <div class="icon-from-to">
-              <i class="icon-up-open"></i>
+              <i class="icon-up-open"></i>    
               <i class="icon-down-open"></i>
             </div>
           </div>
@@ -152,8 +152,11 @@
                 class="offer-checkbox" type="checkbox">
             </div>
             <div style="flex-direction: row !important;" class="package-item">
-              <i class="icon-trash text-danger" (click)="setService.removePackage(i)"></i>
               <img src="assets/img/FAQ.svg" width="18" class="ms-2" (click)="openRoomPopup(i)">
+              <i class="icon-calendar text-danger font-25" (click)="openPricingCalendar(i)"></i>
+              <i class="icon-trash text-danger font-25" (click)="setService.removePackage(i)"></i>
+  
+
             </div>
           </ng-template>
           <!-- foreign tour -->
@@ -199,6 +202,7 @@
             </div>
             <div style="flex-direction: row !important;" class="package-item">
               <i class="icon-trash text-danger" (click)="setService.removePackage(i)"></i>
+              <i class="icon-calendar text-danger"></i>
               <img src="assets/img/FAQ.svg" width="18" (click)="openRoomPopup(i)">
             </div>
           </ng-template>

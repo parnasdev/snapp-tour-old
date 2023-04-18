@@ -467,6 +467,7 @@ export interface newTourPackageDTO {
   hotel_id: number;
   order_item: number;
   offered: boolean;
+  hotel_slug: string;
   services: string;
   rate: number;
   prices: PricesDTO;

@@ -155,6 +155,7 @@ export class SetTourService {
       hotel_id: hotel_id,
       services: '',
       offered: false,
+      hotel_slug: '',
       rate: 1,
       order_item: 0,
       prices: {
@@ -276,21 +277,22 @@ export class SetTourService {
     })
     return price
   }
-  
+
   getRoomCapacityByName(typeName: string) {
     return this.hotelRates.find(x => x.roomType.name === typeName) ? this.hotelRates.find(x => x.roomType.name === typeName)?.capacity : 0;
   }
 
   getHotelRates(hotelId: number, index: number) {
+    let endDate = this.obj.enDate ? moment(this.obj.enDate).add(-1, 'days').format('YYYY-MM-DD') : ''
     const req = {
       fromDate: this.obj.stDate ? this.calenderServices.convertDateSpecial(this.obj.stDate, 'en') : '',
-      toDate: this.obj.enDate ? this.calenderServices.convertDateSpecial(this.obj.enDate, 'en') : '',
+      toDate: endDate,
     }
 
     this.hotelApi.getHotelRates(hotelId, 0, req).subscribe((res: any) => {
       if (res.isDone) {
         this.hotelRates = res.data;
-        if(this.obj.defineTour){
+        if (this.obj.defineTour) {
           this.checkHotelRateHasPrice(index);
         }
       } else {
@@ -301,9 +303,11 @@ export class SetTourService {
     })
   }
 
-  checkHotelRateHasPrice(index: number){
+  checkHotelRateHasPrice(index: number) {
     let daysOfStay: any[] = [];
-    daysOfStay = this.getDaysOfStay(this.obj.stDate, this.obj.enDate);
+    let endDate = this.obj.enDate ? moment(this.obj.enDate).add(-1, 'days').format('YYYY-MM-DD') : ''
+
+    daysOfStay = this.getDaysOfStay(this.obj.stDate, endDate);
 
     let list: any[] = [];
     this.hotelRates.forEach(item => {
@@ -318,8 +322,8 @@ export class SetTourService {
       }
     }
     if (!result) {
-      this.message.custom('روزهای انتخابی در این هتل قیمت گذاری نشده است')
-      this.obj.packages.splice(index, 1);
+      this.message.custom('این هتل برای تاریخ مورد نظر قیمت گذاری نشده است')
+      // this.obj.packages.splice(index, 1);
     }
     this.calculatePrice(index);
   }
@@ -385,6 +389,8 @@ export class SetTourService {
     this.getStars(index);
     //@ts-ignore
     this.obj.packages[index].hotel_id = event.id;
+    this.obj.packages[index].hotel_slug = event.slug;
+
     this.getHotelRates(event.id, index);
   }
   // @ts-ignore
