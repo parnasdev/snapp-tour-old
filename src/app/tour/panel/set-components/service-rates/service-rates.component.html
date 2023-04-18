@@ -14,9 +14,9 @@
           </div>
           <div class="selectdiv">
             <select (change)="setService.updatePackagePrices()" [(ngModel)]="setService.obj.insurancePriceType">
-              <option *ngIf="setService.obj.dollarRate" [value]="3">دلار</option>
-              <option *ngIf="setService.obj.euroRate" [value]="2">یورو</option>
-              <option *ngIf="setService.obj.AEDRate" [value]="4">درهم</option>
+              <option *ngIf="+setService.obj.dollarRate > 0" [value]="3">دلار</option>
+              <option *ngIf="+setService.obj.euroRate > 0" [value]="2">یورو</option>
+              <option *ngIf="+setService.obj.AEDRate > 0" [value]="4">درهم</option>
               <option [value]="1" selected>تومان</option>
             </select>
           </div>
@@ -29,9 +29,9 @@
           </div>
           <div class="selectdiv">
             <select (change)="setService.updatePackagePrices()" [(ngModel)]="setService.obj.transferPriceType">
-              <option *ngIf="setService.obj.dollarRate" [value]="3">دلار</option>
-              <option *ngIf="setService.obj.euroRate" [value]="2">یورو</option>
-              <option *ngIf="setService.obj.AEDRate" [value]="4">درهم</option>
+              <option *ngIf="+setService.obj.dollarRate > 0" [value]="3">دلار</option>
+              <option *ngIf="+setService.obj.euroRate > 0" [value]="2">یورو</option>
+              <option *ngIf="+setService.obj.AEDRate > 0" [value]="4">درهم</option>
               <option [value]="1">تومان</option>
             </select>
           </div>
@@ -44,9 +44,9 @@
           </div>
           <div class="selectdiv">
             <select (change)="setService.updatePackagePrices()" [(ngModel)]="setService.obj.visaPriceType">
-              <option *ngIf="setService.obj.dollarRate" [value]="3">دلار</option>
-              <option *ngIf="setService.obj.euroRate" [value]="2">یورو</option>
-              <option *ngIf="setService.obj.AEDRate" [value]="4">درهم</option>
+              <option *ngIf="+setService.obj.dollarRate > 0" [value]="3">دلار</option>
+              <option *ngIf="+setService.obj.euroRate > 0" [value]="2">یورو</option>
+              <option *ngIf="+setService.obj.AEDRate > 0" [value]="4">درهم</option>
               <option [value]="1">تومان</option>
             </select>
           </div>

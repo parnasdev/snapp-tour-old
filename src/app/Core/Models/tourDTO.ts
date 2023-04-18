@@ -408,9 +408,9 @@ export interface TourSetDTO {
   CHDFlightRate: string;
   ADLFlightRate: string;
   defineTour: boolean;
-  euroRate: string;
-  dollarRate: string;
-  AEDRate: string;
+  euroRate: number;
+  dollarRate: number;
+  AEDRate: number;
   visaRate: string;
   visaPriceType: number;
   insuranceRate: string;
