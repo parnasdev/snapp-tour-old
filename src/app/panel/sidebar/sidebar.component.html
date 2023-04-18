@@ -390,13 +390,13 @@
           </li>
 
           <li class="li-list" *ngIf="checkPermission('Tour')">
-            <a class="menu-main menu-main-1" data-toggle="collapse" href="#collapseExample1" role="button"
+            <a class="menu-main menu-main-1" data-toggle="collapse" href="#collapseExample30" role="button"
                aria-expanded="false" aria-controls="collapseExample">
               <img style="filter: invert(1)" src="assets/img/master-tour.svg" width="20" alt="">
               تور ها
               <i class="icon-down-open icon-1"></i>
             </a>
-            <div class="collapse" id="collapseExample1">
+            <div class="collapse" id="collapseExample30">
               <ul class="under-menu-ul">
                 <li *ngIf="checkItemPermission('Tour.create')"><a routerLink="/panel/tour/add">اضافه کردن تور</a></li>
                 <li *ngIf="checkItemPermission('Tour.read')"><a routerLink="/panel/tour">لیست تورها</a></li>
@@ -412,7 +412,7 @@
 
           </li>
           <li class="li-list" *ngIf="checkItemPermission('Setting.change')">
-            <a class="menu-main menu-main-7" data-toggle="collapse"  routerLink="/panel/requestReserves" href="#collapseExample14"
+            <a class="menu-main menu-main-7" data-toggle="collapse"  routerLink="/panel/requestReserves" href="#collapseExample31"
                role="button"
                aria-expanded="false" aria-controls="collapseExample">
               <img style="filter: invert(1)" src="assets/img/User%20Accepted.svg" width="20" alt="">
@@ -420,13 +420,13 @@
             </a>
           </li>
           <li class="li-list" *ngIf="(checkPermission('Hotel') || checkPermission('City')) && userId !== 106">
-            <a class="menu-main menu-main-2" data-toggle="collapse" href="#collapseExample2" role="button"
+            <a class="menu-main menu-main-2" data-toggle="collapse" href="#collapseExample32" role="button"
                aria-expanded="false" aria-controls="collapseExample">
               <img style="filter: invert(1)" src="assets/img/Dish.svg" width="20" alt="">
               هتل و شهر ها
               <i class="icon-down-open icon-2"></i>
             </a>
-            <div class="collapse" id="collapseExample2">
+            <div class="collapse" id="collapseExample32">
               <ul class="under-menu-ul">
                 <li *ngIf="checkItemPermission('Hotel.create')"><a routerLink="/panel/hotel/add">اضافه کردن هتل</a></li>
                 <li *ngIf="checkItemPermission('Hotel.read')"><a routerLink="/panel/hotel/list">لیست هتل ها</a></li>
@@ -437,13 +437,13 @@
             </div>
           </li>
           <li class="li-list" *ngIf="checkPermission('RoomType')">
-            <a class="menu-main menu-main-3" data-toggle="collapse" href="#collapseExample12" role="button"
+            <a class="menu-main menu-main-3" data-toggle="collapse" href="#collapseExample33" role="button"
                aria-expanded="false" aria-controls="collapseExample">
               <img style="filter: invert(1)" src="assets/img/Ticket.svg" width="20" alt="">
               اتاق ها
               <i class="icon-down-open icon-3"></i>
             </a>
-            <div class="collapse" id="collapseExample12">
+            <div class="collapse" id="collapseExample33">
               <ul class="under-menu-ul">
                 <li *ngIf="checkItemPermission('RoomType.read')"><a routerLink="/panel/roomType">لیست اتاق ها</a></li>
                 <li *ngIf="checkItemPermission('RoomType.create')"><a routerLink="/panel/roomType/add">اضافه کردن</a></li>
@@ -451,13 +451,13 @@
             </div>
           </li>
           <li class="li-list" *ngIf="checkPermission('Transfer') && userId !== 106">
-            <a class="menu-main menu-main-3" data-toggle="collapse" href="#collapseExample3" role="button"
+            <a class="menu-main menu-main-3" data-toggle="collapse" href="#collapseExample34" role="button"
                aria-expanded="false" aria-controls="collapseExample">
               <img style="filter: invert(1)" src="assets/img/Ticket.svg" width="20" alt="">
               پرواز ها
               <i class="icon-down-open icon-3"></i>
             </a>
-            <div class="collapse" id="collapseExample3">
+            <div class="collapse" id="collapseExample34">
               <ul class="under-menu-ul">
                 <li *ngIf="checkItemPermission('Transfer.read')"><a routerLink="/panel/transferRate">لیست مسیر پرواز ها</a></li>
                 <li *ngIf="checkItemPermission('Transfer.create')"><a routerLink="/panel/transferRate/add">اضافه کردن مسیر پرواز</a></li>
@@ -475,13 +475,13 @@
 
           </li>
           <li class="li-list" *ngIf="checkPermission('User')">
-            <a class="menu-main menu-main-5" data-toggle="collapse" href="#collapseExample5" role="button"
+            <a class="menu-main menu-main-5" data-toggle="collapse" href="#collapseExample35" role="button"
                aria-expanded="false" aria-controls="collapseExample">
               <img style="filter: invert(1)" src="assets/img/User%20Accepted.svg" width="20" alt="">
               کاربران
               <i class="icon-down-open icon-5"></i>
             </a>
-            <div class="collapse" id="collapseExample5">
+            <div class="collapse" id="collapseExample35">
               <ul class="under-menu-ul">
                 <li *ngIf="checkItemPermission('User.read')"><a routerLink="/panel/user/list">لیست کاربران</a></li>
                 <li *ngIf="checkItemPermission('User.create')"><a routerLink="/panel/user/add">اضافه کردن کاربر جدید</a>
@@ -496,13 +496,13 @@
             </a>
           </li>
           <li class="li-list" *ngIf="session.getIsManager() && session.getRole() !== 'Admin'">
-            <a class="menu-main menu-main-5" data-toggle="collapse" href="#collapseExample10" role="button"
+            <a class="menu-main menu-main-5" data-toggle="collapse" href="#collapseExample36" role="button"
                aria-expanded="false" aria-controls="collapseExample">
               <img style="filter: invert(1)" src="assets/img/User%20Accepted.svg" width="20" alt="">
               کارمندان
               <i class="icon-down-open icon-5"></i>
             </a>
-            <div class="collapse" id="collapseExample10">
+            <div class="collapse" id="collapseExample36">
               <ul class="under-menu-ul">
                 <li><a routerLink="/panel/user-agency/list">لیست کارمندان</a></li>
                 <li><a routerLink="/panel/user-agency/add">اضافه کردن کارمند جدید</a></li>
@@ -510,13 +510,13 @@
             </div>
           </li>
           <li class="li-list" *ngIf="checkItemPermission('Setting.change')">
-            <a class="menu-main menu-main-6" data-toggle="collapse" href="#collapseExample6" role="button"
+            <a class="menu-main menu-main-6" data-toggle="collapse" href="#collapseExample37" role="button"
                aria-expanded="false" aria-controls="collapseExample">
               <img style="filter: invert(1)" src="assets/img/User%20Accepted.svg" width="20" alt="">
               تیکت های کاربران
               <i class="icon-down-open icon-6"></i>
             </a>
-            <div class="collapse" id="collapseExample6">
+            <div class="collapse" id="collapseExample37">
               <ul class="under-menu-ul">
                 <li><a (click)="showMessage()">لیست تیکت ها</a></li>
               </ul>
