@@ -20,6 +20,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { ConfirmPricingModalComponent } from './confirm-pricing-modal/confirm-pricing-modal.component';
 import { MainPickerComponent } from './main-picker/main-picker.component';
 import { IConfig, NgxMaskModule } from 'ngx-mask';
+import { PricingPopupComponent } from './pricing-popup/pricing-popup.component';
 const maskConfig: Partial<IConfig> = {
   validation: false,
 };
@@ -32,7 +33,8 @@ const maskConfig: Partial<IConfig> = {
     ServicesComponent,
     PricingComponent,
     MainPickerComponent,
-    ConfirmPricingModalComponent
+    ConfirmPricingModalComponent,
+    PricingPopupComponent
   ],
     imports: [
         CommonModule,

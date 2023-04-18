@@ -14,7 +14,6 @@ import { CommonProjectModule } from "../../common-project/common-project.module"
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { IConfig, NgxMaskModule } from "ngx-mask";
 import { ToolsModule } from "../../tools/tools/tools.module";
-
 const maskConfig: Partial<IConfig> = {
   validation: false,
 };
@@ -37,7 +36,6 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { SetTourSelectCityComponent } from './set-components/set-tour-select-city/set-tour-select-city.component';
-
 
 @NgModule({
   declarations: [AddComponent,
