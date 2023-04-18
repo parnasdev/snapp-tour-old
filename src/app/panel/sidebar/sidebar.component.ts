@@ -5,7 +5,6 @@ import {AuthApiService} from "../../Core/Https/auth-api.service";
 import {Router} from "@angular/router";
 import {CheckErrorService} from "../../Core/Services/check-error.service";
 import {UserApiService} from "../../Core/Https/user-api.service";
-import {PermissionDTO} from "../../Core/Models/UserDTO";
 import {ResponsiveService} from "../../Core/Services/responsive.service";
 
 declare let $: any;
