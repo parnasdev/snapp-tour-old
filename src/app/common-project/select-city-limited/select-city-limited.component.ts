@@ -11,18 +11,18 @@ import { Result } from 'src/app/Core/Models/result';
 import { ResponsiveService } from 'src/app/Core/Services/responsive.service';
 
 @Component({
-  selector: 'prs-select-city',
-  templateUrl: './select-city.component.html',
-  styleUrls: ['./select-city.component.scss']
+  selector: 'prs-select-city-limited',
+  templateUrl: './select-city-limited.component.html',
+  styleUrls: ['./select-city-limited.component.scss']
 })
-export class SelectCityComponent implements OnInit, OnChanges {
+export class SelectCityLimitedComponent implements OnInit {
   @Output() citySelected = new EventEmitter()
   @Input() cities: CityResponseDTO[] = []
   @Input() hasHotel: boolean = false;
   @Input() hasOriginTour: boolean = false;
   @Input() type: number | null = null;
   @Input() city: number | null = null;
-isMobile = false;
+  isMobile = false;
   @Input() hasDestTour: boolean = false;
   @Input() inCommingCity: any;
   @Input() baseType: boolean = false;
@@ -60,8 +60,6 @@ isMobile = false;
       map(value => this._filter(value)),
     );
     if (changes.city) {
-      console.log(changes);
-
       this.getCities();
     }
 
@@ -70,7 +68,7 @@ isMobile = false;
   getCities(): void {
     this.isLoading = true
     const inlist = ['تهران', 'مشهد', 'شیراز', 'یزد', 'اهواز', 'اصفهان', 'رشت', 'تبریز', 'بوشهر', 'کرمانشاه']
-    const outlist = ['تهران', 'مشهد', 'شیراز', 'یزد', 'اهواز', 'اصفهان', 'رشت', 'تبریز', 'بوشهر', 'استانبول', 'آنتالیا' , 'دبی' , 'تفلیس' , 'مارماریس' , 'آنکارا', 'رشت']
+    const outlist = ['تهران', 'مشهد', 'شیراز', 'یزد', 'اهواز', 'اصفهان', 'رشت', 'تبریز', 'بوشهر', 'استانبول', 'آنتالیا' , 'دبی' , 'تفلیس' , 'مارماریس' , 'آنکارا', 'کیش', 'قشم']
     const req: CityListRequestDTO = {
       type: this.type,
       hasHotel: this.hasHotel,
@@ -84,9 +82,14 @@ isMobile = false;
       this.isLoading = false
       if (res.isDone) {
         this.cities = res.data;
-        this.cities = this.cities.sort(function(x, y) {
-          return Number(y.type) - Number(x.type);
-        })
+        if(!this.baseType){
+          this. cities = this.cities.filter(x=> inlist.includes(x.name))
+        } else {
+          this. cities = this.cities.filter(x=> outlist.includes(x.name))
+          this.cities = this.cities.sort(function(x, y) {
+            return Number(y.type) - Number(x.type);
+          })
+        }
         
         if (this.inCommingCity && this.inCommingCity !== '') {
           if (this.cities.filter(c => c.slugEn === this.inCommingCity).length > 0) {
@@ -120,7 +123,5 @@ isMobile = false;
       }
     })
   }
-
-
 
 }

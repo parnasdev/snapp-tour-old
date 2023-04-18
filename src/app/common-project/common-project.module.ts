@@ -29,6 +29,7 @@ import {FooterLinksComponent} from "./footer-links/footer-links.component";
 import {EditorModule} from "@tinymce/tinymce-angular";
 import { SelectCityTwoComponent } from './select-city-two/select-city-two.component';
 import { SelectCityPopupComponent } from './select-city-popup/select-city-popup.component';
+import { SelectCityLimitedComponent } from './select-city-limited/select-city-limited.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { SelectCityPopupComponent } from './select-city-popup/select-city-popup.
     FooterLinksComponent,
     SelectCityTwoComponent,
     SelectCityPopupComponent,
+    SelectCityLimitedComponent,
   ],
   exports: [
     UploadFileComponent,
@@ -69,6 +71,7 @@ import { SelectCityPopupComponent } from './select-city-popup/select-city-popup.
     SelectCategoriesComponent,
     FaqComponent,
     FooterLinksComponent,
+    SelectCityLimitedComponent,
   ],
   imports: [
     CommonModule,
