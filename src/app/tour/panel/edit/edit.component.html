@@ -29,18 +29,19 @@
 
 
         </div>
-        <div class="selectdiv me-2">
+        <!-- <div class="selectdiv me-2">
           <label>
             <select [(ngModel)]="setService.obj.defineTour" (ngModelChange)="defineChanged()">
               <option [ngValue]="false">یکجا</option>
               <option [ngValue]="true">باجزییات</option>
             </select>
           </label>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="info-tour-body">
       <div class="top">
+        <!-- title field -->
         <div class="item-info">
           <label for="">عنوان تور</label>
           <input [(ngModel)]="setService.obj.title"
@@ -52,6 +53,7 @@
 
 
         </div>
+        <!-- origin field -->
         <div class="item-info">
           <div class="select-info">
             <label for="">شهر مبدا</label>
@@ -63,6 +65,7 @@
           </div>
 
         </div>
+        <!-- destination field -->
         <div class="item-info">
           <div class="select-info">
             <label for="">شهر مقصد</label>
@@ -73,39 +76,7 @@
               </div>
           </div>
         </div>
-        <div class="item-info-2">
-          <div class="select-info">
-            <label for="">تعداد شب</label>
-            <select (change)="changes()" [(ngModel)]="setService.obj.nightNum" name="" id="">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-            </select>
-            <div *ngIf="errorService.hasError('nightNum')">
-              <span class="text-danger">{{errorService.getError('nightNum')}}</span>
-            </div>
-          </div>
-        </div>
-        <div class="item-info">
-          <div class="select-info">
-            <label for="">تعداد روز</label>
-
-          </div>
-          <span class="number-day-text">{{+setService.obj.nightNum + 1}}</span>
-        </div>
-        <div class="item-info">
-          <label for="">نامک تور</label>
-          <input *ngIf="isSlugGenerated" [(ngModel)]="setService.obj.slug" type="text">
-          <span *ngIf="!isSlugGenerated">{{setService.obj.slug}}</span>
-
-
-        </div>
+        <!-- stDate field -->
         <div class="item-info">
           <label for="">تاریخ ورود به هتل</label>
           <mat-form-field class="example-full-width" appearance="fill">
@@ -118,6 +89,7 @@
           </div>
 
         </div>
+        <!-- enDate field -->
         <div class="item-info">
           <label for="">تاریخ خروج از هتل</label>
           <mat-form-field class="example-full-width" appearance="fill">
@@ -129,6 +101,35 @@
             <span class="text-danger">{{errorService.getError('enDate')}}</span>
           </div>
         </div>
+        <!-- slug field -->
+        <div class="item-info">
+          <label for="">نامک تور</label>
+          <input *ngIf="isSlugGenerated" [(ngModel)]="setService.obj.slug" type="text">
+          <span *ngIf="!isSlugGenerated">{{setService.obj.slug}}</span>
+
+
+        </div>
+        <!-- nightNum field -->
+        <div class="item-info-2">
+          <div class="select-info">
+            <label for="">تعداد شب</label>
+            <span class="number-day-text">{{+setService.obj.nightNum}}</span>
+            <div *ngIf="errorService.hasError('nightNum')">
+              <span class="text-danger">{{errorService.getError('nightNum')}}</span>
+            </div>
+          </div>
+        </div>
+        <!-- dayNum field -->
+        <div class="item-info">
+          <div class="select-info">
+            <label for="">تعداد روز</label>
+          </div>
+          <span class="number-day-text">{{+setService.obj.dayNum}}</span>
+          <div *ngIf="errorService.hasError('dayNum')">
+            <span class="text-danger">{{errorService.getError('dayNum')}}</span>
+          </div>
+        </div>
+        <!-- expireDate field -->
         <div class="item-info">
           <label for="">تاریخ انقضا پکیج</label>
           <mat-form-field class="example-full-width" appearance="fill">
