@@ -187,3 +187,17 @@
   }
 }
 
+@media only screen and (max-width: 868px){
+  .add-tour{
+    padding: 0 10px !important;
+    .info-tour-body{
+      padding: 12px !important;
+    }
+  }
+}
+:host::ng-deep .btn-submit-tour button{
+  height: 45px !important;
+}
+.h-45{
+  height: 45px !important;
+}

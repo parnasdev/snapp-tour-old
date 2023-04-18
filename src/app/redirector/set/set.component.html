@@ -1,4 +1,6 @@
-<input type="text" [formControl]="oldUrlFC" placeholder="آدرس قدیم را وارد کنید">
-<input type="text" [formControl]="newUrlFC" placeholder="آدرس جدید را وارد کنید">
-<prs-btn *ngIf="isEdit" [background]="'dark'" [label]="'ویرایش'" (click)="edit()"></prs-btn>
-<prs-btn *ngIf="!isEdit" [background]="'dark'" [label]="'افزودن'" (click)="submit()"></prs-btn>
+<div class="w-100 d-flex flex-column">
+  <input class="inp-form mt-2" type="text" [formControl]="oldUrlFC" placeholder="آدرس قدیم را وارد کنید">
+  <input class="inp-form mt-2" type="text" [formControl]="newUrlFC" placeholder="آدرس جدید را وارد کنید">
+  <prs-btn class="mt-2" *ngIf="isEdit" [background]="'dark'" [label]="'ویرایش'" (click)="edit()"></prs-btn>
+  <prs-btn class="mt-2" *ngIf="!isEdit" [background]="'dark'" [label]="'افزودن'" (click)="submit()"></prs-btn>
+</div>

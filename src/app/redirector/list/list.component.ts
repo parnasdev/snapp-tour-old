@@ -61,7 +61,7 @@ export class ListComponent implements OnInit {
       title: 'اطمینان دارید'
     };
     const dialog = this.dialog.open(AlertDialogComponent, {
-      width: '30%',
+      width: '40%',
       data: obj
     });
     dialog.afterClosed().subscribe(result => {
