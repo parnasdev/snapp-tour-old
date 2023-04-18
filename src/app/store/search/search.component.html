@@ -1,11 +1,11 @@
 <div class="row-search">
   <div class="inp-form">
-    <prs-select-city [baseType]="false" [inCommingCity]="originFC.value" [title]="'شهر مبدا'"
-      (citySelected)="originSelected($event)"></prs-select-city>
+    <prs-select-city-limited [baseType]="false" [inCommingCity]="originFC.value" [title]="'شهر مبدا'"
+      (citySelected)="originSelected($event)"></prs-select-city-limited>
   </div>
 <div class="inp-form">
-  <prs-select-city [baseType]="true" [city]="originID" [title]="'شهر مقصد'"  [inCommingCity]="destFC.value"
-  (citySelected)="destSelected($event)"></prs-select-city>
+  <prs-select-city-limited [baseType]="true" [city]="originID" [title]="'شهر مقصد'"  [inCommingCity]="destFC.value"
+  (citySelected)="destSelected($event)"></prs-select-city-limited>
 </div>
   <div class="inp-form">
     <mat-form-field class="example-full-width" appearance="fill">

@@ -95,7 +95,6 @@ export interface TourInfoDTO {
   ADLFlightRate: string;
   transferType: string;
   dayNum: number;
-  minPrice: string
   defineTour: boolean;
   description: string;
   documents: string;
@@ -116,6 +115,7 @@ export interface TourInfoDTO {
   status: string;
   title: string;
   transfers: TourTransferDTO[];
+  newTransfers: [];
   transferPriceType: number;
   transferRate: number;
   type: boolean;
@@ -127,6 +127,8 @@ export interface TourInfoDTO {
   visaPriceType: number;
   visaRate: number;
   tours: TourListResDTO[];
+  minPrice: string;
+  viewCount: number;
 }
 
 export interface TourPackageDTO {
