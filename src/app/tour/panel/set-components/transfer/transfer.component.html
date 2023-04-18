@@ -1,9 +1,10 @@
 <div class="p-list-fly">
-    <div class="info-tour-header">
-      <div class="right">
-        <h2 class="text-dark">اطلاعات پرواز</h2>
-      </div>
+  <div class="info-tour-header">
+    <div class="right">
+      <h2 class="text-dark">اطلاعات پرواز</h2>
     </div>
+  </div>
+  <div class="w-100 p-transfer">
     <div class="item-header">
       <span>#</span>
       <span>مسیر رفت-برگشت</span>
@@ -17,20 +18,22 @@
     </div>
     <div class="info-tour-body-2">
       <span class="empty-transfer" *ngIf="setService.transferRates.length === 0">پروازی یافت نشد</span>
-<div  *ngIf="setService.transferRates.length > 0">
-  <div class="item" *ngFor="let item of setService.transferRates">
-    <mat-checkbox [(ngModel)]="item.isChecked" (ngModelChange)="changeTransferRates()"></mat-checkbox>
-    <span>{{ item.origin.name }} - {{ item.destination.name }}</span>
-    <span>{{ item.destination_transfer.name }} - {{ item.origin_transfer.name }}</span>
-    <span>{{ this.calenderServices.convertDate(item.departure_date, 'fa') }}</span>
-    <span>{{ this.calenderServices.convertDate(item.return_date, 'fa') }}</span>
-    <span>{{ item.adl_price | sperator }}</span>
-    <span>{{ item.chd_price | sperator }}</span>
-    <span>{{ item.inf_price | sperator }}</span>
-    <span>{{ item.capacity }}</span>
-  </div>
-</div>
+      <div *ngIf="setService.transferRates.length > 0">
+        <div class="item" *ngFor="let item of setService.transferRates">
+          <mat-checkbox [(ngModel)]="item.isChecked" (ngModelChange)="changeTransferRates()"></mat-checkbox>
+          <span>{{ item.origin.name }} - {{ item.destination.name }}</span>
+          <span>{{ item.destination_transfer.name }} - {{ item.origin_transfer.name }}</span>
+          <span>{{ this.calenderServices.convertDate(item.departure_date, 'fa') }}</span>
+          <span>{{ this.calenderServices.convertDate(item.return_date, 'fa') }}</span>
+          <span>{{ item.adl_price | sperator }}</span>
+          <span>{{ item.chd_price | sperator }}</span>
+          <span>{{ item.inf_price | sperator }}</span>
+          <span>{{ item.capacity }}</span>
+        </div>
+      </div>
     </div>
+  </div>
+
 </div>
 
 <!-- <div class="box-info-fly" *ngIf="form.value.defineTour == 'true'">
