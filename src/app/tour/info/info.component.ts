@@ -80,6 +80,8 @@ export class InfoComponent implements OnInit {
     visaPriceType: 0,
     visaRate: 0,
     tours: [],
+    newTransfers: [],
+    viewCount: 0
   };
   printContent = '';
   queryParamsResult:any = null

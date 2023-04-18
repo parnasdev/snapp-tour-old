@@ -20,7 +20,8 @@ import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms'
 import { SetPricePopupComponent } from 'src/app/room-type/set-price-popup/set-price-popup.component';
 import { RoomTypeSetDTO } from 'src/app/Core/Models/roomTypeDTO';
 import { MatDialog } from '@angular/material/dialog';
-import { newTourPackageDTO } from 'src/app/Core/Models/tourDTO';
+import { CityTourInfoDTO, TourInfoDTO, newTourPackageDTO } from 'src/app/Core/Models/tourDTO';
+import { TransferRateListReqDTO } from 'src/app/Core/Models/transferRateDTO';
 declare var $: any;
 
 @Component({
@@ -43,7 +44,47 @@ export class EditComponent implements OnInit {
   tourType = false;
   isSlugGenerated = false;
   calledApies: string[] = []
-  info: any = null;
+  info: TourInfoDTO = {
+    AEDRate: 0,
+    CHDFlightRate: '',
+    ADLFlightRate: '',
+    transferType: '',
+    dayNum: 0,
+    defineTour: false,
+    description: '',
+    documents: '',
+    dollarRate: 0,
+    enDate: '',
+    endCity: {} as CityTourInfoDTO,
+    euroRate: 0,
+    expireDate: '',
+    insurancePriceType: 0,
+    insuranceRate: 0,
+    nightNum: 0,
+    offered: false,
+    minPrice: '0',
+    packages: [],
+    services: '',
+    slug: '',
+    stCity: {} as CityTourInfoDTO,
+    stDate: '',
+    status: '',
+    title: '',
+    transfers: [],
+    transferPriceType: 0,
+    transferRate: 0,
+    type: false,
+    user: {
+      name: '',
+      family: '',
+      agency: '',
+    },
+    visaPriceType: 0,
+    visaRate: 0,
+    tours: [],
+    newTransfers: [],
+    viewCount: 0
+  };
   showPackages: boolean = false;
   constructor(public route: ActivatedRoute,
     public cityApi: CityApiService,
@@ -99,9 +140,8 @@ export class EditComponent implements OnInit {
   ngOnInit() {
     this.slug = this.route.snapshot.paramMap.get('slug');
     this.getService()
-
-
   }
+
   getInfo(): void {
     this.infoLoading = true;
     if (this.slug) {
@@ -344,8 +384,16 @@ export class EditComponent implements OnInit {
 
 
   dateChanged() {
+    let dates = this.calenderServices.enumerateDaysBetweenDates(this.setService.obj.stDate, this.setService.obj.enDate)
+    if(dates.length > 0){
+      this.setService.obj.nightNum = dates.length - 1
+      this.setService.obj.dayNum = dates.length
+    }
+    if (this.setService.obj.defineTour) {
+      this.setService.obj.packages = [];
+    }
     this.setService.transferRates = []
-    this.getTransferRates();
+    this.setService.getTransferRates();
   }
 
   generateSlug(): void {
@@ -366,10 +414,10 @@ export class EditComponent implements OnInit {
   }
 
   getTransferRates(): void {
-    const req = {
+    const req: TransferRateListReqDTO = {
       departureDate: this.info.stDate ? moment(this.info.stDate).format('YYYY-MM-DD') : null,
-      dest: this.info.endCity.id,
-      origin: this.info.stCity.id,
+      dest: this.info.endCity.id.toString(),
+      origin: this.info.stCity.id.toString(),
       paginate: true,
       returnDate: this.info.enDate ? moment(this.info.enDate).format('YYYY-MM-DD') : null
     }
@@ -413,19 +461,19 @@ export class EditComponent implements OnInit {
     this.setService.obj = {
       title: this.info.title,
       slug: this.info.slug,
-      stCity_id: this.info.stCity.id,
-      endCity_id: this.info.endCity.id,
-      nightNum: this.info.nightNum.toString(),
-      dayNum: this.info.dayNum.toString(),
+      stCity_id: this.info.stCity.id.toString(),
+      endCity_id: this.info.endCity.id.toString(),
+      nightNum: this.info.nightNum,
+      dayNum: this.info.dayNum,
       offered: this.info.offered,
       TransferType: this.info.transferType,
       enDate: this.info.enDate,
       stDate: this.info.stDate,
       expireDate: this.info.expireDate,
       defineTour: this.info.defineTour,
-      euroRate: this.info.euroRate.toString(),
-      dollarRate: this.info.dollarRate.toString(),
-      AEDRate: this.info.AEDRate.toString(),
+      euroRate: this.info.euroRate,
+      dollarRate: this.info.dollarRate,
+      AEDRate: this.info.AEDRate,
       visaRate: this.info.visaRate.toString(),
       visaPriceType: this.info.visaPriceType,
       insuranceRate: this.info.insuranceRate.toString(),
