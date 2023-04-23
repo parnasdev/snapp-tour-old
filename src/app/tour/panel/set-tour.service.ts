@@ -154,6 +154,7 @@ export class SetTourService {
     const item: newTourPackageDTO = {
       hotel_id: hotel_id,
       services: '',
+      id: 0,
       offered: false,
       hotel_slug: '',
       rate: 1,
@@ -186,39 +187,38 @@ export class SetTourService {
   }
 
 
-  calculatePrice(i: number) {
-
-    const insurancePrice = (this.obj.insuranceRate ? (+this.obj.insuranceRate) * this.checkInsuranceRatePrice() : 0);
-    const visaPrice = (this.obj.visaRate ? (+this.obj.visaRate) * this.checkVisaRatePrice() : 0);
-    const transferPrice = (this.obj.transferRate ? (+this.obj.transferRate) * this.checkTransferRatePrice() : 0);
-
-    this.obj.packages[i].prices.single = (this.getPrice(this.getHotelRatePrice('single'), i) + insurancePrice + visaPrice + transferPrice).toString();
-    this.obj.packages[i].prices.twin = (this.getPrice(this.getHotelRatePrice('twin'), i) + insurancePrice + visaPrice + transferPrice).toString();
-    this.obj.packages[i].prices.triple = (this.getPrice(this.getHotelRatePrice('triple'), i) + insurancePrice + visaPrice + transferPrice).toString();
-    this.obj.packages[i].prices.quad = (this.getPrice(this.getHotelRatePrice('quad'), i) + insurancePrice + visaPrice + transferPrice).toString();
-    this.obj.packages[i].prices.cwb = (this.getPrice(this.getHotelRatePrice('cwb'), i) + insurancePrice + visaPrice + transferPrice).toString();
+  calculatePrice(index: number) {
+    this.obj.packages[index].prices.single = this.getRoomCalculatedPrice('single',index);
+    this.obj.packages[index].prices.twin = this.getRoomCalculatedPrice('twin',index);
+    this.obj.packages[index].prices.triple = this.getRoomCalculatedPrice('triple',index);
+    this.obj.packages[index].prices.quad = this.getRoomCalculatedPrice('quad',index);
+    this.obj.packages[index].prices.cwb = this.getRoomCalculatedPrice('cwb',index);
   }
 
   updatePackagePrices() {
+    this.obj.packages.forEach((item, index) => {
+      item.prices.twin = this.getRoomCalculatedPrice('twin',index);
+      item.prices.single = this.getRoomCalculatedPrice('single',index);
+      item.prices.cwb = this.getRoomCalculatedPrice('cwb',index);
+      item.prices.quad = this.getRoomCalculatedPrice('quad',index);
+      item.prices.triple = this.getRoomCalculatedPrice('triple',index);
+    });
+  }
+
+
+  getRoomCalculatedPrice(type: string, index: number) {
     const insurancePrice = (this.obj.insuranceRate ? (+this.obj.insuranceRate) * this.checkInsuranceRatePrice() : 0);
     const visaPrice = (this.obj.visaRate ? (+this.obj.visaRate) * this.checkVisaRatePrice() : 0);
     const transferPrice = (this.obj.transferRate ? (+this.obj.transferRate) * this.checkTransferRatePrice() : 0);
+   const roomPrice = this.getHotelRatePrice(type);
+    if (roomPrice === 0) {
+      return 0
+    } else {
+      return ((this.getPrice(roomPrice, index) + insurancePrice + visaPrice + transferPrice).toString());
 
-    this.obj.packages.forEach((item, index) => {
-      // const ADLRate = item.value.ADLRate ? +item.value.ADLRate.split(',').join('') : 0;
-      // const CHDFlightRate = this.obj.CHDFlightRate ? +this.obj.CHDFlightRate?.split(',').join('') : 0;
+    }
 
-      item.prices.twin = ((this.getPrice(this.getHotelRatePrice('twin'), index) + insurancePrice + visaPrice + transferPrice).toString());
 
-      item.prices.single = ((this.getPrice(this.getHotelRatePrice('single'), index) + insurancePrice + visaPrice + transferPrice).toString());
-
-      item.prices.cwb = ((this.getPrice(this.getHotelRatePrice('cwb'), index) + insurancePrice + visaPrice + transferPrice).toString());
-
-      item.prices.quad = ((this.getPrice(this.getHotelRatePrice('quad'), index) + insurancePrice + visaPrice + transferPrice).toString());
-
-      item.prices.triple = ((this.getPrice(this.getHotelRatePrice('triple'), index) + insurancePrice + visaPrice + transferPrice).toString());
-      // + نرخ افزایشس کاهشی
-    });
   }
 
 

@@ -856,3 +856,17 @@ prs-select-hotel {
   padding: 30px;
   // border: 1px solid #d6d6d6;
 }
+.p-errorr {
+  display: flex !important;
+  width: 100%;
+  grid-template-columns: 1fr;
+  grid-gap: 70px;
+  margin-top: 15px;
+  place-items: center;
+  span {
+    font-size: 13px;
+    border: 1px solid red;
+    padding: 5px;
+    border-radius: 10px;
+  }
+}

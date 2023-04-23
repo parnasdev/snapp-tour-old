@@ -34,6 +34,7 @@ export class EditComponent implements OnInit {
   slug: string | null = ''
   isLoading: boolean = false;
   public show = true
+  errors: any
   infoLoading = false;
   minDate = new Date(); //datepicker
   typeTour: any;
@@ -577,6 +578,7 @@ export class EditComponent implements OnInit {
       this.isLoading = false;
       if (error.status == 422) {
         this.errorService.recordError(error.error.data);
+        this.errors = Object.values(error.error.data)
         this.message.showMessageBig('اطلاعات ارسال شده را مجددا بررسی کنید')
       } else {
         this.message.showMessageBig('مشکلی رخ داده است لطفا مجددا تلاش کنید')

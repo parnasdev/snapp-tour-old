@@ -32,7 +32,7 @@ export class AddComponent implements OnInit {
   tourDetail: any = [];
   services: GetServiceRequestDTO[] = []
   hotels: HotelListResponseDTO[] = [];
-
+  errors: any
   typeTour: any;
   minDate = new Date();
   dayCount = 2;
@@ -465,8 +465,10 @@ export class AddComponent implements OnInit {
       }
     }, (error: any) => {
       this.isLoading = false;
+  
       if (error.status == 422) {
         this.errorService.recordError(error.error.data);
+        this.errors = Object.values(error.error.data)
         this.message.showMessageBig('اطلاعات ارسال شده را مجددا بررسی کنید')
       } else {
         this.message.showMessageBig('مشکلی رخ داده است لطفا مجددا تلاش کنید')

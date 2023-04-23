@@ -29,7 +29,6 @@ import { BaseInfoComponent } from './set-components/base-info/base-info.componen
 import { TransferComponent } from './set-components/transfer/transfer.component';
 import { ServiceRatesComponent } from './set-components/service-rates/service-rates.component';
 import { CurrencyRatesComponent } from './set-components/currency-rates/currency-rates.component';
-import { SimplePackageComponent } from './set-components/simple-package/simple-package.component';
 import { DetailPackageComponent } from './set-components/detail-package/detail-package.component';
 import { DescriptionsComponent } from './set-components/descriptions/descriptions.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -49,7 +48,6 @@ import { SetTourSelectCityComponent } from './set-components/set-tour-select-cit
     TransferComponent,
     ServiceRatesComponent,
     CurrencyRatesComponent,
-    SimplePackageComponent,
     DetailPackageComponent,
     DescriptionsComponent,
   ],
