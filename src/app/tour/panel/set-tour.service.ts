@@ -215,10 +215,7 @@ export class SetTourService {
       return 0
     } else {
       return ((this.getPrice(roomPrice, index) + insurancePrice + visaPrice + transferPrice).toString());
-
     }
-
-
   }
 
 
@@ -232,7 +229,6 @@ export class SetTourService {
   }
 
   setpackageCapacity(value: any, index: number, name: string) {
-
     this.obj.packages[index].prices[name] = value.target.value;
   }
 
@@ -292,9 +288,8 @@ export class SetTourService {
     this.hotelApi.getHotelRates(hotelId, 0, req).subscribe((res: any) => {
       if (res.isDone) {
         this.hotelRates = res.data;
-        if (this.obj.defineTour) {
           this.checkHotelRateHasPrice(index);
-        }
+          this.updatePackagePrices()
       } else {
         this.message.custom(res.message);
       }

@@ -66,8 +66,6 @@ export class PassengersComponent implements OnInit, OnChanges {
   removeItem(index: number) {
     this.PassengerForm.removeAt(index);
     this.convertPassengerObject()
-
-
   }
 
   ReserveForm: FormGroup = this.fb.group({

@@ -19,7 +19,8 @@ import {
   RoomDTO,
   RoomPassengersDTO,
   newTransfersDTO,
-  PassengerDTO
+  PassengerDTO,
+  hotelRates
 } from 'src/app/Core/Models/tourDTO';
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
 import { CheckErrorService } from 'src/app/Core/Services/check-error.service';
@@ -28,6 +29,8 @@ import { PublicService } from 'src/app/Core/Services/public.service';
 import { SessionService } from 'src/app/Core/Services/session.service';
 import { ResponsiveService } from "../../Core/Services/responsive.service";
 import { RulesComponent } from '../rules/rules.component';
+import * as moment from 'jalali-moment';
+import { HotelApiService } from 'src/app/Core/Https/hotel-api.service';
 
 @Component({
   selector: 'prs-user-reservation-info',
@@ -125,6 +128,8 @@ export class UserReservationInfoComponent implements OnInit {
     phone: this.phoneFC
   })
 
+  hotelRates: hotelRates[] = []
+
   reserveRoomData: RoomDTO = {
     name: '',
     capacity: 0,
@@ -170,6 +175,7 @@ export class UserReservationInfoComponent implements OnInit {
     public session: SessionService,
     public publicService: PublicService,
     public calService: CalenderServices,
+    public hotelApi: HotelApiService,
     public mobileService: ResponsiveService,
     public roomApiService: RoomTypeApiService,
     public api: TourApiService) {
@@ -182,6 +188,25 @@ export class UserReservationInfoComponent implements OnInit {
 
     this.getReserve();
 
+  }
+
+  getHotelRates() {
+    let endDate = this.reserveObj.package.tour.enDate ? moment(this.reserveObj.package.tour.enDate).add(-1, 'days').format('YYYY-MM-DD') : ''
+    const req = {
+      fromDate:  this.reserveObj.package.tour.stDate,
+      toDate: endDate,
+    }
+
+    this.hotelApi.getHotelRates(this.reserveObj.package.hotel.id, 0, req).subscribe((res: any) => {
+      if (res.isDone) {
+        this.hotelRates = res.data;
+ 
+      } else {
+        this.messageService.custom(res.message);
+      }
+    }, (error: any) => {
+      this.messageService.error()
+    })
   }
 
   setOtherPrice() {
@@ -204,6 +229,7 @@ export class UserReservationInfoComponent implements OnInit {
         this.setTourTransfers()
         this.getRoomCapacity();
         this.setDateAndTime();
+        this.getHotelRates()
       } else {
         this.messageService.custom('مشکلی در نمایش اطلاعات به وجود آمده است')
       }
@@ -285,15 +311,25 @@ export class UserReservationInfoComponent implements OnInit {
     this.enDate = this.calService.convertDate(this.reserveObj.transfer?.return_date, 'fa') + ' ' + this.reserveObj.transfer?.return_time;
   }
 
-  setReseveRoomData(capacity: string | undefined, roomName: string) {
+  setReseveRoomData(roomName: string) {
     return this.reserveRoomData = {
       name: roomName,
       capacity: this.getCapacity(roomName),
       passengers: [],
       id: Math.round(Math.random() * 1000),
       price: 0,
-      supply: capacity ? +capacity : 0
+      supply: this.getRoomCountByName(roomName)
     }
+  }
+
+  getRoomCountByName(roomName: string){
+    let list: number[] = [];
+    this.hotelRates.forEach(item => {
+      if(item.roomType.name === roomName){
+        list.push(item.capacity)
+      }
+    })
+    return list.sort((a,b) => a - b)[0]
   }
 
   getCapacity(RoomType: string) {

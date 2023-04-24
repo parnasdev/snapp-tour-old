@@ -89,10 +89,10 @@
           <h5>دو تخته ({{ getCapacityPerson('twin') }} نفر)</h5>
           <span>تعداد اتاق درخواستی</span>
           <prs-counter *ngIf="isCounterShow"
-                       [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.twinCapacity ? reserveObj.package.prices?.twinCapacity : '0', 'twin')"
+                       [reserveRoomData]="setReseveRoomData('twin')"
                        (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
           <small>موجودی
-            اتاق: {{ reserveObj.package?.prices?.twinCapacity ? +reserveObj.package.prices.twinCapacity : 0 }}</small>
+            اتاق: {{ getRoomCountByName('twin') }}</small>
           <div class="price mt-2">
             <strong class="mt-1">{{  getFullPrice(reserveObj.package?.prices?.twin, 'adl') | sperator}}</strong>
             <small>تومان</small>
@@ -103,10 +103,10 @@
           <h5>یک تخته ({{ getCapacityPerson('single') }}نفر)</h5>
           <span>تعداد اتاق درخواستی</span>
           <prs-counter *ngIf="isCounterShow"
-                       [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.singleCapacity ? reserveObj.package.prices?.singleCapacity : '0', 'single')"
+                       [reserveRoomData]="setReseveRoomData('single')"
                        (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
           <small>موجودی
-            اتاق: {{ reserveObj.package?.prices?.singleCapacity ? +reserveObj.package.prices.singleCapacity : 0 }}</small>
+            اتاق: {{ getRoomCountByName('single') }}</small>
           <div class="price mt-2">
             <strong class="mt-1">{{ getFullPrice(reserveObj.package?.prices?.single, 'adl') | sperator }}</strong>
             <small>تومان</small>
@@ -118,10 +118,10 @@
           <h5>سه تخته ({{ getCapacityPerson('triple') }}نفر)</h5>
           <span>تعداد اتاق درخواستی</span>
           <prs-counter *ngIf="isCounterShow"
-                       [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.tripleCapacity ? reserveObj.package.prices?.tripleCapacity : '0', 'triple')"
+                       [reserveRoomData]="setReseveRoomData('triple')"
                        (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
           <small>موجودی
-            اتاق: {{ reserveObj.package?.prices?.tripleCapacity ? +reserveObj.package.prices.tripleCapacity : 0 }}</small>
+            اتاق: {{ getRoomCountByName('triple') }}</small>
           <div class="price">
             <strong class="mt-1">{{ getFullPrice(reserveObj.package?.prices?.triple, 'adl') | sperator }}</strong>
             <small class="mt-2">تومان</small>
@@ -132,10 +132,10 @@
           <h5>چهار تخته ({{ getCapacityPerson('quad') }}نفر)</h5>
           <span>تعداد اتاق درخواستی</span>
           <prs-counter *ngIf="isCounterShow"
-                       [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.quadCapacity ? reserveObj.package.prices?.quadCapacity : '0', 'quad')"
+                       [reserveRoomData]="setReseveRoomData('quad')"
                        (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
           <small>موجودی
-            اتاق: {{ reserveObj.package?.prices?.quadCapacity ? +reserveObj.package.prices.quadCapacity : 0 }}</small>
+            اتاق: {{ getRoomCountByName('quad') }}</small>
           <div class="price mt-2">
             <strong class="mt-1">{{ getFullPrice(reserveObj.package?.prices?.quad, 'adl') | sperator }}</strong>
             <small>تومان</small>
@@ -147,10 +147,10 @@
           <h5>کودک با تخت</h5>
           <span>تعداد اتاق درخواستی</span>
           <prs-counter *ngIf="isCounterShow"
-                       [reserveRoomData]="setReseveRoomData(reserveObj.package?.prices?.cwbCapacity ? reserveObj.package?.prices?.cwbCapacity : '0', 'cwb')"
+                       [reserveRoomData]="setReseveRoomData('cwb')"
                        (sendReserveRoomData)="getReserveRoomData($event)"></prs-counter>
           <small>موجودی
-            اتاق: {{ reserveObj.package?.prices?.cwbCapacity ? +reserveObj.package.prices.cwbCapacity : 0 }}</small>
+            اتاق: {{ getRoomCountByName('cwb') }}</small>
           <div class="price mt-2">
             <strong class="mt-1">{{ getFullPrice(reserveObj.package?.prices?.cwb, 'adl') | sperator }}</strong>
             <small>تومان</small>

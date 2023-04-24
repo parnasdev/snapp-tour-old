@@ -92,9 +92,18 @@ export class BaseInfoComponent implements OnInit {
 
 
   dateChanged() {
+    let dates = this.calenderServices.enumerateDaysBetweenDates(this.setService.obj.stDate, this.setService.obj.enDate)
+    if(dates.length > 0){
+      this.setService.obj.nightNum = dates.length - 1
+      this.setService.obj.dayNum = dates.length
+    }
+    if (this.setService.obj.defineTour) {
+      this.setService.obj.packages = [];
+    }
     this.setService.transferRates = []
     this.setService.getTransferRates();
   }
+
 
   generateSlug(): void {
     if (!this.isSlugGenerated) {
