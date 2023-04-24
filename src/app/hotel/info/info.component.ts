@@ -17,7 +17,9 @@ import { ResponsiveService } from 'src/app/Core/Services/responsive.service';
 import { RoomTypePriceDTO } from 'src/app/Core/Models/roomTypeDTO';
 import { ShowRoomsPopupComponent } from 'src/app/room-type/show-rooms-popup/show-rooms-popup.component';
 import { AuthPopupComponent } from 'src/app/auth/auth-popup/auth-popup.component';
-import { hotelInfoDTO, hotelInfoReqDTO, HotelListResponseDTO } from 'src/app/Core/Models/hotelDTO';
+import { hotelInfoReqDTO, hotelInfoV2DTO } from 'src/app/Core/Models/hotelDTO';
+import { CityResponseDTO } from 'src/app/Core/Models/cityDTO';
+import { newTourPackageInfoDTO } from 'src/app/Core/Models/tourDTO';
 
 @Component({
   selector: 'prs-info',
@@ -34,34 +36,27 @@ export class InfoComponent implements OnInit {
   imgs = ['https://www.imgonline.com.ua/examples/bee-on-daisy.jpg',
     'https:http://tour-api.parnasweb.com///source///images///2021///46366665.jpg']
   items: GalleryItem[] = [];
-  hotelInfo: any = {
-    name: '',
-    city: {
-      name: '',
-      id: 0,
-      type: 0,
-      image: '',
-      slug: '',
-      slugEn: '',
-      faq: [],
-      description: '',
-      images: [],
-      nameEn: '',
-    },
-    nameEn: '',
-    stars: '',
-    location: '',
-    address: '',
-    coordinate: { lat: 0, lng: 0 },
-    images: [],
-    mediaLink: [],
-    thumbnail: '',
+  hotelInfo: hotelInfoV2DTO = {
+    address: null,
     body: '',
-    services: [],
-    status: '',
+    city: {} as CityResponseDTO,
+    coordinate: {
+      lat: 0,
+      lng: 0
+    },
+    images: [],
+    images_paths: [],
+    location: '',
+    mediaLink: [],
+    name: '',
+    nameEn: '',
     packages: [],
-    phone: '',
-    tours: []
+    roomPrices: [],
+    services: [],
+    stars: '',
+    status: '',
+    thumbnail: '',
+    thumbnail_paths: '',
   };
 
   stDate: string = '';
@@ -79,10 +74,6 @@ export class InfoComponent implements OnInit {
     stDate: null
   }
 
-  originCities: any[] = [];
-  filterOriginCity: string =''
-
-  
   constructor(public hotelApi: HotelApiService,
     public route: ActivatedRoute,
     public router: Router,
@@ -111,7 +102,6 @@ export class InfoComponent implements OnInit {
       .subscribe(params => {
         this.stDate = params.stDate ? this.calenderService.convertDateSpecial(params.stDate, 'en') : null
         this.night = params.night
-        this.originCities = params.origin
       }
       );
     this.getInfo();
@@ -129,7 +119,7 @@ export class InfoComponent implements OnInit {
       this.isLoading = false;
       if (res.isDone) {
         this.hotelInfo = res.data;
-        this.getOriginCities()
+
         this.title.setTitle(this.hotelInfo.name + '|' + this.setting.settings.title)
         this.getStarterPrice();
         if (this.hotelInfo.images && this.hotelInfo.images.length > 0) {
@@ -145,31 +135,6 @@ export class InfoComponent implements OnInit {
     })
   }
 
-  getOriginCities(): void {
-    this.originCities= [];
-    this.hotelInfo.packages.forEach((item: any) => {
-      this.originCities.push(item.tour.stCity)
-    })
-    this.originCities = Array.from(new Set(this.originCities)) 
-
-    const expected = new Set();
-    this.originCities = this.originCities.filter(item => !expected.has(JSON.stringify(item)) ? expected.add(JSON.stringify(item)) : false);
-
-
-    this.route.queryParams
-    .subscribe(params => {
-      if(params.origin) {
-        this.filterOriginCity = params.origin
-      }else {
-        this.filterOriginCity = '';
-
-      }
-    }
-    );
-   }
-
-
-
   openMedia(data: any): void {
     const dialog = this.dialog.open(PopupVideoComponent, {
       data: {
@@ -183,17 +148,18 @@ export class InfoComponent implements OnInit {
     this.items = images.map(item => new ImageItem({ src: item, thumb: item }));
     const galleryRef = this.gallery.ref(this.galleryId);
     galleryRef.load(this.items);
+    console.log(this.items)
   }
 
   getStars(count: string): number[] {
     return Array.from(Array(+count).keys());
   }
 
-  checkReserve(packageId: number) {
-    this.getReserve(packageId)
+  checkReserve(packageId: number, transferRateId: number) {
+    this.session.isLoggedIn() ? this.getReserve(packageId, transferRateId) : this.loginPopup(packageId, transferRateId)
   }
 
-  loginPopup(id: number): void {
+  loginPopup(id: number, transferRateId: number): void {
     const dialog = this.dialog.open(AuthPopupComponent, {
       width: this.isMobile ? '95%' : '30%',
       maxWidth: this.isMobile ? '95%' : '30%',
@@ -202,7 +168,7 @@ export class InfoComponent implements OnInit {
     dialog.afterClosed().subscribe(result => {
       if (result) {
         this.message.custom('ورود شما با موفقیت انجام شد')
-        this.getReserve(id)
+        this.getReserve(id, transferRateId)
       }
     })
   }
@@ -219,10 +185,11 @@ export class InfoComponent implements OnInit {
     })
   }
 
-  getReserve(packageId: number): void {
+  getReserve(packageId: number, transferRateId: number): void {
     this.clicked = true;
     const req = {
       package_id: packageId,
+      transferRateId: transferRateId
     }
     this.tourApi.reserve(req).subscribe((res: any) => {
       if (res.isDone) {
@@ -240,25 +207,16 @@ export class InfoComponent implements OnInit {
   }
 
   getStarterPrice() {
-    let defineTour = false;
     let Prices: any = []
-    // this.hotelInfo.packages.forEach((item:any , index: number) => {
-    //   let currentItem = this.hotelInfo.defineTour ? item.prices.twinRate : item.prices.twin;
-    //   if(index === 0){
-    //     minPrice = currentItem
-    //   }else {
-    //     if(minPrice < currentItem){
-    //       minPrice = currentItem
-    //     }
-    //   }
-    // });
-    // return minPrice
-    defineTour = this.hotelInfo.packages[0].tour.defineTour;
-    this.hotelInfo.packages?.forEach((item: any) => {
-      defineTour ? Prices.push(item.prices.twinRate) : Prices.push(item.prices.twin);
+
+    this.hotelInfo.packages.forEach((item: newTourPackageInfoDTO, index: number) => {
+      Prices.push(item.tour.newTransfers.sort(function (a: any, b: any) { return a.adl_price - b.adl_price })[0].adl_price + (+item.prices.twin))
     });
-    let list = Prices.sort(function (a: any, b: any) { return a - b })
-    this.minPrice = list[0]
+    return Prices.sort(function (a: any, b: any) { return a - b })[0]
+  }
+
+  getFullPrice(roomPrice: string, flightPrice: any) {
+    return ((+roomPrice) + flightPrice).toString();
   }
 
 }

@@ -81,8 +81,6 @@ export class IndexComponent implements OnInit {
     })
     this.getCities()
     this.getHotelCities()
-    this.getHotels()
-    this.getSpecialHotel()
     // this.getBlog()
   }
 
@@ -137,6 +135,10 @@ export class IndexComponent implements OnInit {
     this.cityApi.getCities(req).subscribe((res: any) => {
       if (res.isDone) {
         this.hotelCities = res.data;
+        this.specialCityFC.setValue(this.hotelCities[0].slugEn);
+        this.hotelCityFC.setValue(this.hotelCities[0].id);
+        this.getHotels()
+        this.getSpecialHotel()
       }
     }, (error: any) => {
       this.message.error()
@@ -165,7 +167,7 @@ export class IndexComponent implements OnInit {
   }
   getStarterPrice(index: number): string {
     if (this.specialHotel.length > 0) {
-      return this.specialHotel[index].tour.defineTour ? this.specialHotel[index].prices.twinRate : this.specialHotel[index].prices.twin;
+      return this.specialHotel[index].prices.twin;
     } else {
       return '0';
     }
@@ -195,7 +197,6 @@ export class IndexComponent implements OnInit {
 
   hotelCityChanged(): void {
     this.citySelected = this.specialCityFC.value;
-    console.log(this.citySelected);
     this.getHotels()
     this.getSpecialHotel()
   }

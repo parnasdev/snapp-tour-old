@@ -62,7 +62,6 @@
                   <h3> پیشنهادات ویژه تور </h3>
                   <span>مشاهده مناسب ترین تور ها</span>
                 </div>
-              
               </div>
               <div class="inp-form w-25">
                 <select class="select" [formControl]="specialCityFC" name="" id="" (change)="hotelCityChanged()">
@@ -174,7 +173,7 @@
                     <div class="footer-hotel-info">
                       <div class="location-hotel">
                         <img src="assets/img/Location-white.svg" width="17" alt="">
-                        <span>{{hotel.city}} - {{hotel.location ? hotel.location : 'ثبت نشده'}}</span>
+                        <span>{{hotel.city}} - {{hotel.location ? (hotel.location.length > 10 ? hotel.location.slice(0,10) + '...' :hotel.location ) : 'ثبت نشده'}}</span>
                       </div>
                       <div class="rate">
                         <i class="icon-star" *ngFor="let star of getStars(hotel.stars)"></i>
