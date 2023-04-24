@@ -7,6 +7,7 @@ import {ContactUsComponent} from "./contact-us/contact-us.component";
 import {InfoComponent} from "../cities/info/info.component";
 import { VerifyComponent } from './verify/verify.component';
 import { PayComponent } from './pay/pay.component';
+import { TrackingByComponent } from './tracking-by/tracking-by.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
       {
         path: 'verify/:reserveId',
         component: VerifyComponent
+      },
+      {
+        path: 'tracking',
+        component: TrackingByComponent
       },
       {
         path: ':city',

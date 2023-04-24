@@ -33,6 +33,7 @@ import { VerifyComponent } from './verify/verify.component';
 import { PayComponent } from './pay/pay.component';
 import { VoucherComponent } from './voucher/voucher.component';
 import { SearchCollapseComponent } from './search-collapse/search-collapse.component';
+import { TrackingByComponent } from './tracking-by/tracking-by.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { SearchCollapseComponent } from './search-collapse/search-collapse.compo
     VerifyComponent,
     PayComponent,
     VoucherComponent,
-    SearchCollapseComponent
+    SearchCollapseComponent,
+    TrackingByComponent
   ],
   exports: [
     IndexComponent,

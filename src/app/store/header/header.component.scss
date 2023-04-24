@@ -89,6 +89,7 @@
   .isDesktop {
     display: none;
   }
+
   .header-mobile {
     height: 60px;
     background: var(--white);
@@ -163,10 +164,12 @@
 
   }
 }
-.active-link{
+
+.active-link {
   color: var(--base-color) !important;
   position: relative;
-  &:after{
+
+  &:after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -175,9 +178,21 @@
     border-bottom: 5px solid var(--base-color);
   }
 }
-.header-mobile{
+
+.header-mobile {
   z-index: 100;
-  .show-menu{
+
+  .show-menu {
     display: none;
   }
+}
+
+.tracker-button {
+  border: 2px solid var(--base-color);
+  padding: 5px;
+  color: var(--base-color);
+  background: white;
+  font-size: 12px !important;
+  border-radius: 5px;
+
 }
