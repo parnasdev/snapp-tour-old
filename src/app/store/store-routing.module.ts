@@ -14,10 +14,7 @@ const routes: Routes = [
     path: '',
     component: StoreComponent,
     children: [
-      {
-        path: '',
-        component: IndexComponent
-      }, {
+   {
         path: 'about-us',
         component: AboutUsComponent
       }, {
@@ -45,16 +42,20 @@ const routes: Routes = [
         component: AboutUsComponent
       },
       {
-        path: 'verify/:reserveId',
-        component: VerifyComponent
-      },
-      {
         path: 'tracking',
         component: TrackingByComponent
       },
       {
+        path: 'verify/:reserveId',
+        component: VerifyComponent
+      },
+      {
         path: ':city',
         component: InfoComponent
+      },
+      {
+        path: '',
+        component: IndexComponent
       },
     ]
   }

@@ -431,7 +431,7 @@ export class UserReservationInfoComponent implements OnInit {
         this.reserveObj = res.data;
         this.messageService.custom(res.message)
         this.setDateAndTime();
-        this.router.navigateByUrl('/dashboard/tour/list')
+        this.router.navigateByUrl('/tracking');
       } else {
         this.messageService.custom(res.message)
       }

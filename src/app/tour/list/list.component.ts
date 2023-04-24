@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TourApiService } from "../../Core/Https/tour-api.service";
-import { TourListRequestDTO, TourListResDTO, TourPackageDTO, TourPackageV2DTO, TourRequestV2DTO } from "../../Core/Models/tourDTO";
+import { TourPackageV2DTO, TourRequestV2DTO } from "../../Core/Models/tourDTO";
 import { MessageService } from "../../Core/Services/message.service";
 import { CheckErrorService } from "../../Core/Services/check-error.service";
 import { ErrorsService } from "../../Core/Services/errors.service";
@@ -10,9 +10,7 @@ import { Title } from "@angular/platform-browser";
 import { SettingService } from "../../Core/Services/setting.service";
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
 import { ResponsiveService } from "../../Core/Services/responsive.service";
-import { HotelListRes, HotelRequestDTO } from 'src/app/Core/Models/hotelDTO';
 import { HotelApiService } from "../../Core/Https/hotel-api.service";
-import { CityListRequestDTO, CityResponseDTO } from 'src/app/Core/Models/cityDTO';
 import { FormControl } from '@angular/forms';
 
 export interface SearchObjectDTO {

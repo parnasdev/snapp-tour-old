@@ -22,11 +22,12 @@ const routes: Routes = [
         path: 'panel',
         canActivate: [PanelGuardService],
         loadChildren: () => import('./panel/panel.module').then(m => m.PanelModule)
-      }, {
-        path: 'dashboard',
-        canActivate: [DashboardGuardService],
-        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
-      },
+      }, 
+      // {
+      //   path: 'dashboard',
+      //   canActivate: [DashboardGuardService],
+      //   loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
+      // },
       {
         path: 'pay/:transactionId',
         component: PayComponent

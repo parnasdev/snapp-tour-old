@@ -1,10 +1,10 @@
 <div class="row-search">
   <div class="inp-form">
-    <prs-select-city-limited [baseType]="false" [inCommingCity]="originFC.value" [title]="'شهر مبدا'"
+    <prs-select-city-limited class="w-100" [baseType]="false" [inCommingCity]="originFC.value" [title]="'شهر مبدا'"
       (citySelected)="originSelected($event)"></prs-select-city-limited>
   </div>
 <div class="inp-form">
-  <prs-select-city-limited [baseType]="true" [city]="originID" [title]="'شهر مقصد'"  [inCommingCity]="destFC.value"
+  <prs-select-city-limited class="w-100" [baseType]="true" [city]="originID" [title]="'شهر مقصد'"  [inCommingCity]="destFC.value"
   (citySelected)="destSelected($event)"></prs-select-city-limited>
 </div>
   <div class="inp-form">
@@ -38,6 +38,5 @@
       <!-- </option> -->
     </select>
   </div>
-
   <button class="btn-search font-16" (click)="search()">جست و جو</button>
 </div>
