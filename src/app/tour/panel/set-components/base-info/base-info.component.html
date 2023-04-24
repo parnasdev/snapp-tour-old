@@ -51,21 +51,19 @@
         <div class="select-info">
 
           <label for="">شهر مبدا</label>
-
-          <prs-select-city [inCommingCity]="cities[0]" [cities]="cities"
+          <prs-select-city [cities]="cities" [inCommingCity]="setService.obj.stCity_id"
             (citySelected)="getStCity($event)"></prs-select-city>
           <div *ngIf="errorService.hasError('stCity_id')">
             <span class="text-danger">{{errorService.getError('stCity_id')}}</span>
           </div>
         </div>
-
       </div>
       <!-- destination field -->
       <div class="item-info">
         <div class="select-info">
           <label for="">شهر مقصد</label>
-
-          <prs-select-city [hasHotel]="true" [cities]="cities" (citySelected)="getEndCity($event)"></prs-select-city>
+          <prs-select-city [inCommingCity]="setService.obj.endCity_id" [hasHotel]="true" [cities]="cities"
+            (citySelected)="getEndCity($event)"></prs-select-city>
           <div *ngIf="errorService.hasError('endCity_id')">
             <span class="text-danger">{{errorService.getError('endCity_id')}}</span>
           </div>
@@ -73,27 +71,27 @@
       </div>
       <!-- stDate field -->
       <div class="item-info">
-                <label for="">تاریخ ورود به هتل</label>
-                <mat-form-field class="example-full-width" appearance="fill">
-                  <input matInput [matDatepicker]="picker1" (dateChange)="dateChanged()" [(ngModel)]="setService.obj.stDate"
-                    [min]="minDate" (click)="picker1.open()">
-                  <mat-datepicker #picker1></mat-datepicker>
-                </mat-form-field>
-                <div *ngIf="errorService.hasError('stDate')">
-                  <span class="text-danger">{{errorService.getError('stDate')}}</span>
-                </div>
+        <label for="">تاریخ ورود به هتل</label>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <input matInput [matDatepicker]="picker1" (dateChange)="dateChanged()" [(ngModel)]="setService.obj.stDate"
+            [min]="minDate" (click)="picker1.open()">
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <div *ngIf="errorService.hasError('stDate')">
+          <span class="text-danger">{{errorService.getError('stDate')}}</span>
+        </div>
       </div>
       <!-- enDate field -->
       <div class="item-info">
-                <label for="">تاریخ خروج از هتل</label>
-                <mat-form-field class="example-full-width" appearance="fill">
-                  <input matInput (dateChange)="dateChanged()" [(ngModel)]="setService.obj.enDate" [matDatepicker]="picker2"
-                    [min]="minDate" (click)="picker2.open()">
-                  <mat-datepicker #picker2></mat-datepicker>
-                </mat-form-field>
-                <div *ngIf="errorService.hasError('enDate')">
-                  <span class="text-danger">{{errorService.getError('enDate')}}</span>
-                </div>
+        <label for="">تاریخ خروج از هتل</label>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <input matInput (dateChange)="dateChanged()" [(ngModel)]="setService.obj.enDate" [matDatepicker]="picker2"
+            [min]="minDate" (click)="picker2.open()">
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+        <div *ngIf="errorService.hasError('enDate')">
+          <span class="text-danger">{{errorService.getError('enDate')}}</span>
+        </div>
       </div>
       <!-- slug field -->
       <div class="item-info">

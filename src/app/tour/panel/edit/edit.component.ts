@@ -33,6 +33,8 @@ export class EditComponent implements OnInit {
   //public Variable
   slug: string | null = ''
   isLoading: boolean = false;
+ showData = false
+
   public show = true
   errors: any
   infoLoading = false;
@@ -87,6 +89,7 @@ export class EditComponent implements OnInit {
     viewCount: 0
   };
   showPackages: boolean = false;
+
   constructor(public route: ActivatedRoute,
     public cityApi: CityApiService,
     public commonApi: CommonApiService,
@@ -283,7 +286,7 @@ export class EditComponent implements OnInit {
       if (res.isDone) {
         this.setService.hotels = res.data;
         this.setFormArray(this.setService.obj.packages)
-
+        this.showData = true
         // if (this.setService.hotels.length > 0) {
         //   this.setService.addRow(this.setService.hotels[0].id);
         // }

@@ -59,7 +59,7 @@ export class BaseInfoComponent implements OnInit {
       if (res.isDone) {
         this.cities = res.data;
         this.cityID = this.cities[1].id;
-        this.setService.obj.stCity_id = this.cities[0].id.toString();
+        // this.setService.obj.stCity_id = this.cities[0].id.toString();
       }
     }, (error: any) => {
       this.message.error()

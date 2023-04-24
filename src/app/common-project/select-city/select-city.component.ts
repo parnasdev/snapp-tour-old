@@ -87,10 +87,9 @@ isMobile = false;
         this.cities = this.cities.sort(function(x, y) {
           return Number(y.type) - Number(x.type);
         })
-        
         if (this.inCommingCity && this.inCommingCity !== '') {
-          if (this.cities.filter(c => c.slugEn === this.inCommingCity).length > 0) {
-            this.cityFC.setValue(this.cities.filter(c => c.slugEn === this.inCommingCity)[0].name)
+          if (this.cities.filter(c => (c.id === +this.inCommingCity) || (c.slugEn === this.inCommingCity)).length > 0) {
+            this.cityFC.setValue(this.cities.filter(c => (c.id === +this.inCommingCity) || (c.slugEn === this.inCommingCity))[0].name)
             // this.citySelected.emit(this.cities.filter(c => c.slugEn === this.inCommingCity)[0])
           }
         }
