@@ -190,24 +190,7 @@ export class UserReservationInfoComponent implements OnInit {
 
   }
 
-  getHotelRates() {
-    let endDate = this.reserveObj.package.tour.enDate ? moment(this.reserveObj.package.tour.enDate).add(-1, 'days').format('YYYY-MM-DD') : ''
-    const req = {
-      fromDate: this.reserveObj.package.tour.stDate,
-      toDate: endDate,
-    }
 
-    this.hotelApi.getHotelRates(this.reserveObj.package.hotel.id, 0, req).subscribe((res: any) => {
-      if (res.isDone) {
-        this.hotelRates = res.data;
-
-      } else {
-        this.messageService.custom(res.message);
-      }
-    }, (error: any) => {
-      this.messageService.error()
-    })
-  }
 
   setOtherPrice() {
     this.otherPrices = {
@@ -229,7 +212,7 @@ export class UserReservationInfoComponent implements OnInit {
         this.setTourTransfers()
         this.getRoomCapacity();
         this.setDateAndTime();
-        this.getHotelRates()
+        this.hotelRates = this.reserveObj.package.hotel.rates ?? [];
       } else {
         this.messageService.custom('مشکلی در نمایش اطلاعات به وجود آمده است')
       }
