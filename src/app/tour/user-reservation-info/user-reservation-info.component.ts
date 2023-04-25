@@ -307,7 +307,6 @@ export class UserReservationInfoComponent implements OnInit {
 
   setDateAndTime(): void {
     this.stDate = this.calService.convertDate(this.reserveObj.transfer?.departure_date, 'fa') + ' ' + this.reserveObj.transfer?.departure_time
-
     this.enDate = this.calService.convertDate(this.reserveObj.transfer?.return_date, 'fa') + ' ' + this.reserveObj.transfer?.return_time;
   }
 
@@ -464,9 +463,9 @@ export class UserReservationInfoComponent implements OnInit {
     this.setReserveReq();
     this.api.editReserve(this.editReserveData, this.reserveCode).subscribe((res: any) => {
       if (res.isDone) {
-        this.reserveObj = res.data;
+        // this.reserveObj = res.data;
         this.messageService.custom(res.message)
-        this.setDateAndTime();
+        // this.setDateAndTime();
         this.router.navigateByUrl('/tracking');
       } else {
         this.messageService.custom(res.message)

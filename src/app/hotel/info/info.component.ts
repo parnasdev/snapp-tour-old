@@ -156,7 +156,7 @@ export class InfoComponent implements OnInit {
   }
 
   checkReserve(packageId: number, transferRateId: number) {
-    this.session.isLoggedIn() ? this.getReserve(packageId, transferRateId) : this.loginPopup(packageId, transferRateId)
+    this.getReserve(packageId, transferRateId)
   }
 
   loginPopup(id: number, transferRateId: number): void {

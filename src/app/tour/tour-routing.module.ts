@@ -14,7 +14,6 @@ const routes: Routes = [
   },
   {
     path: 'info/:reserveid',
-    canActivate:[DashboardGuardService],
     component: UserReservationInfoComponent
   },
   {
