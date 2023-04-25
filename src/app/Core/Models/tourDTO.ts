@@ -171,6 +171,7 @@ export interface HotelDTO {
   name: string;
   nameEn: string;
   slug: string;
+  rates?: any[];
   slugEn: string;
   stars: string;
   thumbnail: string;
