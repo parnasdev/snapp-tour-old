@@ -22,7 +22,7 @@ export class TransferComponent implements OnInit {
 
 
   ngOnInit() {
-    this.setService.transferRates = [];
+    // this.setService.transferRates = [];
   }
 
   changeTransferRates() {

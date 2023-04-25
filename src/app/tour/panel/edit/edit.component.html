@@ -1,5 +1,7 @@
 <prs-loading *ngIf="infoLoading"></prs-loading>
-<span *ngIf="!showData">در حال دریافت اطلاعات</span>
+<div class="add-tour">
+  <span *ngIf="!showData">در حال دریافت اطلاعات</span>
+</div>
 <div class="add-tour" *ngIf="showData">
   <prs-base-info class="w-100"></prs-base-info>
   <prs-transfer class="w-100"></prs-transfer>

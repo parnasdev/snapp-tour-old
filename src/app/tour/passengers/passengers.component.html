@@ -7,7 +7,6 @@
       <button class="btn-base-2 px-4 h-45" (click)="addRow(null,'cnb')">افزودن کودک بدون تخت</button>
     </div>
   </div>
-
   <div style="position: relative;" [formGroup]="ReserveForm">
     <div formArrayName="passengers">
       <div class="set-info-passengers posi-relative" *ngFor="let item of PassengerForm.controls; let i = index"
