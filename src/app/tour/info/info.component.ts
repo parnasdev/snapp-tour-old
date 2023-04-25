@@ -135,7 +135,7 @@ export class InfoComponent implements OnInit {
 
   getStarterPrice(): string {
     if (this.tourInfo.packages.length) {
-      return this.tourInfo.defineTour ? this.tourInfo.packages[0].prices.twinRate : this.tourInfo.packages[0].prices.twin;
+      return this.tourInfo.packages[0].prices.twin;
     } else {
       return '0';
     }

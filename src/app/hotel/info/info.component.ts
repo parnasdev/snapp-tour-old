@@ -216,7 +216,7 @@ export class InfoComponent implements OnInit {
   }
 
   getFullPrice(roomPrice: string, flightPrice: any) {
-    return ((+roomPrice) + flightPrice).toString();
+    return +roomPrice > 0 ? ((+roomPrice) + flightPrice).toString() : 0;
   }
 
 }
