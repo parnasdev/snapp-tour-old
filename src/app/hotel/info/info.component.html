@@ -120,30 +120,35 @@
               </div>
               <div class="body-fly">
                 <div class="price" >
-                  <strong>{{ getFullPrice(package.prices.twin, item.adl_price) |round | sperator }}</strong>
-                  <small>تومان</small>
+                  <strong *ngIf="+package.prices.twin > 0">{{ getFullPrice(package.prices.twin, item.adl_price) |round | sperator }}</strong>
+                  <small *ngIf="+package.prices.twin > 0">تومان</small>
+                  <small *ngIf="+package.prices.twin === 0">ثبت نشده</small>
                 </div>
                 <div class="price" *ngIf="!package.tour.endCity.type">
-                  <strong>{{ getFullPrice(package.prices.single, item.adl_price) | round| sperator }}</strong>
-                  <small>تومان</small>
+                  <strong *ngIf="+package.prices.single > 0">{{ getFullPrice(package.prices.single, item.adl_price) | round| sperator }}</strong>
+                  <small *ngIf="+package.prices.single > 0">تومان</small>
+                  <small *ngIf="+package.prices.single === 0">ثبت نشده</small>
                 </div>
                 <div class="price" *ngIf="package.tour.endCity.type">
-                  <strong>{{ getFullPrice(package.prices.triple, item.adl_price)  | round| sperator }}</strong>
-                  <small>تومان</small>
+                  <strong *ngIf="+package.prices.triple > 0">{{ getFullPrice(package.prices.triple, item.adl_price)  | round| sperator }}</strong>
+                  <small *ngIf="+package.prices.triple > 0">تومان</small>
+                  <small *ngIf="+package.prices.triple === 0">ثبت نشده</small>
                 </div>
                 <div class="price" *ngIf="package.tour.endCity.type">
-                  <strong>{{ getFullPrice(package.prices.quad, item.adl_price) | round| sperator }}</strong>
-                  <small>تومان</small>
+                  <strong *ngIf="+package.prices.quad > 0">{{ getFullPrice(package.prices.quad, item.adl_price) | round| sperator }}</strong>
+                  <small *ngIf="+package.prices.quad > 0">تومان</small>
+                  <small *ngIf="+package.prices.quad === 0">ثبت نشده</small>
                 </div>
                 <div class="price" *ngIf="!package.tour.endCity.type">
-                  <strong>{{ getFullPrice(package.prices.cwb, item.chd_price) | round| sperator }}</strong>
-                  <small>تومان</small>
+                  <strong *ngIf="+package.prices.cwb > 0">{{ getFullPrice(package.prices.cwb, item.chd_price) | round| sperator }}</strong>
+                  <small *ngIf="+package.prices.cwb > 0">تومان</small>
+                  <small *ngIf="+package.prices.cwb === 0">ثبت نشده</small>
                 </div>
                 <div class="price" *ngIf="!package.tour.endCity.type">
                   <strong>{{ 0 }}</strong>
                   <small>تومان</small>
                 </div>
-                <span>{{ package.prices.age }}</span>
+                <span>{{ package.prices.age ? package.prices.age : 'ثبت نشده' }}</span>
               </div>
             </div>
             <div class="p-bed-mobi" *ngIf="isTablet">

@@ -73,6 +73,7 @@ export class ListComponent implements OnInit {
   }
 
   onPageChanged(event: any) {
+    debugger
     this.p = event;
     this.getTransfers();
   }

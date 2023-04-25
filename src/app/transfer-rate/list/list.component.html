@@ -16,7 +16,7 @@
         <span class="setting">تنظیمات</span>
       </div>
       <div class="body-list-tour" *ngIf="transfers.length > 0">
-        <div class="item" *ngFor="let transfer of transfers;let i = index">
+        <div class="item" *ngFor="let transfer of transfers| paginate: paginateConfig; ;let i = index">
           <span class="id">{{ i + 1 }}</span>
           <span class="title-tour">{{ transfer.origin.name }} - {{ transfer.destination.name }}</span>
           <span class="title-tour">{{ transfer.destination_transfer.name }}</span>
