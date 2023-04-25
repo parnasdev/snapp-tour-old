@@ -193,14 +193,14 @@ export class UserReservationInfoComponent implements OnInit {
   getHotelRates() {
     let endDate = this.reserveObj.package.tour.enDate ? moment(this.reserveObj.package.tour.enDate).add(-1, 'days').format('YYYY-MM-DD') : ''
     const req = {
-      fromDate:  this.reserveObj.package.tour.stDate,
+      fromDate: this.reserveObj.package.tour.stDate,
       toDate: endDate,
     }
 
     this.hotelApi.getHotelRates(this.reserveObj.package.hotel.id, 0, req).subscribe((res: any) => {
       if (res.isDone) {
         this.hotelRates = res.data;
- 
+
       } else {
         this.messageService.custom(res.message);
       }
@@ -322,14 +322,14 @@ export class UserReservationInfoComponent implements OnInit {
     }
   }
 
-  getRoomCountByName(roomName: string){
+  getRoomCountByName(roomName: string) {
     let list: number[] = [];
     this.hotelRates.forEach(item => {
-      if(item.roomType.name === roomName){
+      if (item.roomType.name === roomName) {
         list.push(item.capacity)
       }
     })
-    return list.sort((a,b) => a - b)[0]
+    return list.sort((a, b) => a - b)[0]
   }
 
   getCapacity(RoomType: string) {
@@ -362,15 +362,15 @@ export class UserReservationInfoComponent implements OnInit {
   getTotalPrice() {
     let price: number = 0;
     this.roomsSelected.forEach(x => {
-      price += this.getRommTotalPrice(x.passengers,x.name)
+      price += this.getRommTotalPrice(x.passengers, x.name)
     })
     this.totalPrices = price;
   }
 
-  getRommTotalPrice(passengers: PassengerDTO[],roomName: string)  {
+  getRommTotalPrice(passengers: PassengerDTO[], roomName: string) {
     let result = 0;
     passengers.forEach(item => {
-        result += this.getPassengerPrice(item.type ? item.type : '' ,roomName)
+      result += this.getPassengerPrice(item.type ? item.type : '', roomName)
     })
     return result
   }
@@ -383,12 +383,12 @@ export class UserReservationInfoComponent implements OnInit {
         result = +item[1]
       }
     })
-   return result
+    return result
   }
 
 
-  getPassengerPrice(type: string , room: string): number  {
-    let prices: PricesDTO = this.reserveObj.package.prices  
+  getPassengerPrice(type: string, room: string): number {
+    let prices: PricesDTO = this.reserveObj.package.prices
     switch (type) {
       case 'supervisor':
         return this.getRoomPrice(room) + this.otherPrices.adl_price
@@ -400,7 +400,7 @@ export class UserReservationInfoComponent implements OnInit {
         return this.otherPrices.chd_price + (prices.cwb ? +prices.cwb : 0);
       case 'cnb':
         return this.otherPrices.chd_price
-        default : 
+      default:
         return this.getRoomPrice(room) + this.otherPrices.adl_price
     }
   }
@@ -409,7 +409,7 @@ export class UserReservationInfoComponent implements OnInit {
     this.roomsSelected.forEach(item => {
       if (item.id === data.id) {
         item.passengers = data.passengers;
-        item.price = this.getRommTotalPrice(data.passengers,data.name)
+        item.price = this.getRommTotalPrice(data.passengers, data.name)
       }
     })
     this.getTotalPrice();
@@ -488,12 +488,16 @@ export class UserReservationInfoComponent implements OnInit {
 
   getFullPrice(roomPrice: string | undefined, type: any) {
     const flightPrice = this.reserveObj?.transfer ? type === 'adl' ? this.reserveObj?.transfer?.adl_price : this.reserveObj?.transfer?.chd_price : 0;
-    return ((roomPrice ? +roomPrice : 0) + flightPrice).toString();
+    if (roomPrice && +roomPrice > 0) {
+      return (+roomPrice + flightPrice).toString();
+    } else {
+      return 0
+    }
   }
 
 
-  getPassengerLabel(type: string ): string  {
-    let prices: PricesDTO = this.reserveObj.package.prices  
+  getPassengerLabel(type: string): string {
+    let prices: PricesDTO = this.reserveObj.package.prices
     switch (type) {
       case 'supervisor':
         return 'سرپرست'
@@ -505,7 +509,7 @@ export class UserReservationInfoComponent implements OnInit {
         return 'کودک همراه تخت'
       case 'cnb':
         return 'کودک بدون تخت'
-        default : 
+      default:
         return '---'
     }
   }

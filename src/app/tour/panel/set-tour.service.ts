@@ -192,7 +192,6 @@ export class SetTourService {
     this.obj.packages[index].prices.twin = this.getRoomCalculatedPrice('twin',index);
     this.obj.packages[index].prices.triple = this.getRoomCalculatedPrice('triple',index);
     this.obj.packages[index].prices.quad = this.getRoomCalculatedPrice('quad',index);
-    debugger
     this.obj.packages[index].prices.cwb = this.getRoomCalculatedPrice('cwb',index);
   }
 
