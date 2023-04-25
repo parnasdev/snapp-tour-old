@@ -29,7 +29,10 @@
           <!-- <br>
           ظرفیت -->
         </div>
-
+        <div class="package-item">
+          کودک با تخت <!-- <br>
+          ظرفیت -->
+        </div>
         <div class="package-item">سن کودک تا</div>
         <div class="package-item">آفر ویژه</div>
         <div></div>
@@ -69,11 +72,12 @@
           <span>لطفا تاریخ ورود و خروج هتل را انتخاب کنید</span>
         </div>
       </div>
-      <div class="example-list" *ngIf="(setService.obj.stDate !== '' && setService.obj.enDate !== '') && setService.obj.endCity_id !== ''">
+      <div class="example-list"
+        *ngIf="(setService.obj.stDate !== '' && setService.obj.enDate !== '') && setService.obj.endCity_id !== ''">
         <div class="body-box example-box" *ngFor="let tour of setService.obj.packages; let i = index">
           <div class="package-item id-package">
             <div class="icon-from-to">
-              <i class="icon-up-open"></i>    
+              <i class="icon-up-open"></i>
               <i class="icon-down-open"></i>
             </div>
           </div>
@@ -136,7 +140,16 @@
               <!-- <input type="text" placeholder="موجودی" [value]="setService.getData(i).prices.quadCapacity"
                 (change)="setService.setpackageCapacity($event, i, 'quadCapacity')"> -->
             </div>
-
+            <div class="package-item">
+              <div class="under-package-text">
+                <p>{{ setService.getData(i).prices.cwb | sperator }}</p>
+              </div>
+              <!-- <div class="under-package-text d-flex align-items-center">
+                <p>{{ setService.getRoomCapacityByName('cwb') | sperator }}</p>
+              </div> -->
+              <!-- <input type="text" placeholder="موجودی" [value]="setService.getData(i).prices.cwbCapacity"
+                (change)="setService.setpackageCapacity($event, i, 'cwbCapacity')"> -->
+            </div>
             <div class="package-item">
               <input type="text" [value]="setService.getData(i).prices.age"
                 (change)="setService.setpackageAge($event, i)">
@@ -149,7 +162,7 @@
               <img src="assets/img/FAQ.svg" width="18" class="ms-2" (click)="openRoomPopup(i)">
               <i class="icon-calendar text-danger font-25" (click)="openPricingCalendar(i)"></i>
               <i class="icon-trash text-danger font-25" (click)="setService.removePackage(i)"></i>
-  
+
 
             </div>
           </ng-template>
