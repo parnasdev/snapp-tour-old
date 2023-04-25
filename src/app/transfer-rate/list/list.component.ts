@@ -12,6 +12,10 @@ import { SessionService } from 'src/app/Core/Services/session.service';
 export class ListComponent implements OnInit {
   req!: any;
   transfers: TransferRateListDTO[] = [];
+  loading = false;
+  paginate: any;
+  paginateConfig: any;
+  p = 1;
 
   constructor(public api: TransferRateAPIService,
     public session: SessionService,
@@ -24,10 +28,15 @@ export class ListComponent implements OnInit {
 
   getTransfers(): void {
     this.setReq();
-    this.api.getTransfers(this.req).subscribe((res: any) => {
+    this.api.getTransfers(this.req, this.p).subscribe((res: any) => {
       if (res.isDone) {
         this.transfers = res.data;
-        console.log(res.data)
+        this.paginate = res.meta;
+        this.paginateConfig = {
+          itemsPerPage: this.paginate.per_page,
+          totalItems: this.paginate.total,
+          currentPage: this.paginate.current_page
+        }
       } else {
         this.message.custom(res.message);
       }
@@ -62,4 +71,10 @@ export class ListComponent implements OnInit {
   checkItemPermission(item: string) {
     return !!this.session.userPermissions.find(x => x.name === item)
   }
+
+  onPageChanged(event: any) {
+    this.p = event;
+    this.getTransfers();
+  }
+
 }
