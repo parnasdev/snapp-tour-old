@@ -273,11 +273,7 @@ export class ListComponent implements OnInit {
   }
 
   getStarterPrice(index: number): string {
-    if (this.tours.length > 0) {
-      return this.tours[index].tour.defineTour ? this.tours[index].prices.twinRate : this.tours[index].prices.twin;
-    } else {
-      return '0';
-    }
+    return this.tours.length > 0 ? this.tours[index].prices.twin : '0'
   }
 
 }
