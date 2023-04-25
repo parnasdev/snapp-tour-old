@@ -15,6 +15,7 @@
              placeholder="تاریخ ورود به هتل"
              autocomplete="off"
              readonly
+             [min]="minDate"
              [matDatepicker]="picker3"
              (click)="picker3.open()">
       <mat-datepicker #picker3></mat-datepicker>

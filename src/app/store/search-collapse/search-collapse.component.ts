@@ -35,7 +35,7 @@ export class SearchCollapseComponent implements OnInit, OnChanges {
   nights: number[] = []
   originID: number | null = null;
 
-
+  minDate = new Date();
 
   constructor(public cityApiService: CityApiService,
     public router: Router,
