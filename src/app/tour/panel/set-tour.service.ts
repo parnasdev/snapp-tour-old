@@ -192,6 +192,7 @@ export class SetTourService {
     this.obj.packages[index].prices.twin = this.getRoomCalculatedPrice('twin',index);
     this.obj.packages[index].prices.triple = this.getRoomCalculatedPrice('triple',index);
     this.obj.packages[index].prices.quad = this.getRoomCalculatedPrice('quad',index);
+    debugger
     this.obj.packages[index].prices.cwb = this.getRoomCalculatedPrice('cwb',index);
   }
 
@@ -214,7 +215,7 @@ export class SetTourService {
     if (roomPrice === 0) {
       return 0
     } else {
-      return ((this.getPrice(roomPrice, index) + insurancePrice + visaPrice + transferPrice).toString());
+      return ((roomPrice + insurancePrice + visaPrice + transferPrice).toString());
     }
   }
 
@@ -289,7 +290,7 @@ export class SetTourService {
       if (res.isDone) {
         this.hotelRates = res.data;
           this.checkHotelRateHasPrice(index);
-          this.updatePackagePrices()
+          // this.updatePackagePrices()
       } else {
         this.message.custom(res.message);
       }

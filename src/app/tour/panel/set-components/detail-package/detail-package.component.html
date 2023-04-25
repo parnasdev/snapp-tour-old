@@ -29,6 +29,11 @@
           <!-- <br>
           ظرفیت -->
         </div>
+        <div class="package-item">
+          کودک با تخت
+          <!-- <br>
+          ظرفیت -->
+        </div>
         <div class="package-item">سن کودک تا</div>
         <div class="package-item">آفر ویژه</div>
         <div></div>
@@ -128,6 +133,16 @@
             <div class="package-item">
               <div class="under-package-text">
                 <p>{{ setService.getData(i).prices.quad | sperator }}</p>
+              </div>
+              <!-- <div class="under-package-text d-flex align-items-center">
+                <p>{{ setService.getRoomCapacityByName('quad') | sperator }}</p>
+              </div> -->
+              <!-- <input type="text" placeholder="موجودی" [value]="setService.getData(i).prices.quadCapacity"
+                (change)="setService.setpackageCapacity($event, i, 'quadCapacity')"> -->
+            </div>
+            <div class="package-item">
+              <div class="under-package-text">
+                <p>{{ setService.getData(i).prices.cwb | sperator }}</p>
               </div>
               <!-- <div class="under-package-text d-flex align-items-center">
                 <p>{{ setService.getRoomCapacityByName('quad') | sperator }}</p>
