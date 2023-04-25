@@ -20,7 +20,6 @@ export class TransferRateAPIService {
   }
 
   getTransfers(req: TransferRateListReqDTO, pageNum?: number): any {
-    debugger
     const address = pageNum ? `getTransferRates?page=${pageNum}` : 'getTransferRates'
     const strUrl = this.serverControllerName + address;
     return this.http.post<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());

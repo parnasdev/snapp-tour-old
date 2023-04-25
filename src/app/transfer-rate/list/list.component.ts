@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TransferRateAPIService } from 'src/app/Core/Https/transfer-rate-api.service';
 import { TransferRateListDTO, TransferRateListReqDTO } from 'src/app/Core/Models/transferRateDTO';
+import { CalenderServices } from 'src/app/Core/Services/calender-service';
 import { MessageService } from 'src/app/Core/Services/message.service';
 import { SessionService } from 'src/app/Core/Services/session.service';
 
@@ -19,6 +20,7 @@ export class ListComponent implements OnInit {
 
   constructor(public api: TransferRateAPIService,
     public session: SessionService,
+    public calendarService: CalenderServices,
     public message: MessageService) {
   }
 
