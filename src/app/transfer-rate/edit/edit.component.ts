@@ -13,6 +13,7 @@ export class EditComponent extends AddComponent implements OnInit {
 
   id = '';
   cityID = 0;
+  show = false;
 
   info: TransferRateDTO = {
     id: 0,
@@ -52,8 +53,8 @@ export class EditComponent extends AddComponent implements OnInit {
     this.cityApi.getCities(req).subscribe((res: any) => {
       if (res.isDone) {
         this.cities = res.data;
-        this.form.controls.stCity_id.setValue(this.info.origin.id);
-        this.form.controls.endCity_id.setValue(this.info.destination.id);
+        this.form.controls.origin_id.setValue(this.info.origin.id);
+        this.form.controls.destination_id.setValue(this.info.destination.id);
         // this.reload();
       }
     }, (error: any) => {
@@ -84,8 +85,10 @@ export class EditComponent extends AddComponent implements OnInit {
 
   getTransferRate(){
     this.isLoading = true
+    this.show = false
     this.transferRateApi.getTransfer(+this.id).subscribe((res: any) => {
       if (res.isDone) {
+        this.show = true
         this.info = res.data;
         this.getCities();
         this.getTransfer();
