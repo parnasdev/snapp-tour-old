@@ -163,7 +163,7 @@ export class AddComponent implements OnInit {
   getDestTime(event: any): void {
     if (event) {
       this.destTime = event.hour + ':' + event.minute;
-      this.form.controls.return_time.setValue(this.originTime);
+      this.form.controls.return_time.setValue(this.destTime);
     }
   }
 
