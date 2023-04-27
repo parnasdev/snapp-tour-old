@@ -26,6 +26,7 @@ export class CopyComponent extends EditComponent implements OnInit {
     this.setService.obj.enDate = this.calenderServices.convertDateSpecial(this.setService.obj.enDate, 'en')
     this.setService.obj.expireDate = this.calenderServices.convertDateSpecial(this.setService.obj.expireDate, 'en')
 
+
     this.tourApi.createTour(this.setService.obj).subscribe((res: any) => {
       this.isLoading = false;
       if (res.isDone) {

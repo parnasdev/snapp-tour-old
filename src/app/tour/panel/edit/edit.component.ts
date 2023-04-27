@@ -323,7 +323,7 @@ export class EditComponent implements OnInit {
         user_id: 0,
         hotel_id: [packageItem.hotel.id],
         services: [packageItem.services ? packageItem.services : ''],
-        rate: [packageItem.rate ? packageItem.rate.id : 1],
+        rate: null,
         discountsTwin: [packageItem.prices?.twin],
         discountsSingle: [packageItem.prices?.single],
         discountsCwb: [packageItem.prices?.cwb],
@@ -359,7 +359,7 @@ export class EditComponent implements OnInit {
         order_item: null,
         hotel_id: [0],
         services: [null],
-        rate: [1],
+        rate: null,
         id: [null],
         discountsTwin: [null],
         discountsSingle: [null],
@@ -428,15 +428,9 @@ export class EditComponent implements OnInit {
     this.transferTypeApi.getTransfers(req).subscribe((res: any) => {
       if (res.isDone) {
         this.setService.transferRates = res.data;
-
         this.setService.transferRates.forEach(x => {
           x.isChecked = this.info.newTransfers.some((y: any) => y.id === x.id);
-          // if(this.info.transferIds.includes(x.id)){
-          //   x.isChecked = true;
-          // }
         })
-
-
         this.getHotels();
       } else {
         this.message.custom(res.message);
@@ -535,7 +529,7 @@ export class EditComponent implements OnInit {
         id: item.value.id,
         offered: item.value.offered,
         services: item.value.services,
-        rate: item.value.rate,
+        rate: null,
         prices: {
           twin: item.value.twin,
           single: item.value.single,

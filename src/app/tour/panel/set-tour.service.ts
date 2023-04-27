@@ -54,7 +54,6 @@ export class SetTourService {
   hotelRates: hotelRates[] = []
   services: GetServiceRequestDTO[] = []
 
-
   constructor(public transferTypeApi: TransferRateAPIService,
     public hotelApi: HotelApiService,
     public commonApi: CommonApiService,
@@ -62,11 +61,9 @@ export class SetTourService {
     public message: MessageService) { }
 
 
-
   setPackages(packages: any[]): void {
     this.obj.packages = packages
   }
-
 
 
   setTransfers(transfers: number[]): void {
