@@ -502,10 +502,7 @@ export class EditComponent implements OnInit {
   }
 
   submit() {
-    debugger
-    if (!this.setService.obj.defineTour) {
       this.convertTour()
-    }
     // this.fillObj()
     if (this.setService.obj.packages.length === 0) {
       this.message.custom('لطفا هتل های خود را انتخاب کنید')

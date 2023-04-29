@@ -134,7 +134,7 @@ export class SetTourService {
       city: this.obj.endCity_id,
       withRate: true,
       fromDate: this.obj.stDate ? moment(this.obj.stDate).format('YYYY-MM-DD') : null,
-      toDate: this.obj.enDate ? moment(this.obj.enDate).format('YYYY-MM-DD') : null,
+      toDate: this.obj.enDate ? moment(this.obj.enDate).add(-1, 'days').format('YYYY-MM-DD') : '',
       search: null,
     }
     this.hotelApi.getHotels(req).subscribe((res: any) => {
@@ -269,7 +269,7 @@ export class SetTourService {
     }
   }
   removePackage(i: any) {
-    this.obj.packages.splice(i);
+    this.obj.packages.splice(i,1);
   }
 
   getData(index: number) {
