@@ -7,7 +7,7 @@
            [formControl]="hotelFC"
            [matAutocomplete]="auto">
     <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-      <mat-option *ngFor="let option of filteredOptions | async" (blur)="changed(option)"  [value]="type ? option.name : option.nameEn">
+      <mat-option *ngFor="let option of filteredOptions | async;let i = index" (blur)="changed(option,i)"  [value]="type ? option.name : option.nameEn">
         <span *ngIf="type">
             {{option.name}}
         </span>

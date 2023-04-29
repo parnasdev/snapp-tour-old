@@ -129,6 +129,7 @@ export class DetailPackageComponent implements OnInit {
         }
       });
       dialog.afterClosed().subscribe((result) => {
+
           this.setService.getHotelRates(this.setService.obj.packages[index].hotel_id, index);
       })
     }

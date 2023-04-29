@@ -38,8 +38,8 @@ export class SelectHotelComponent implements OnInit,OnChanges {
     // return this.hotels.filter(hotel => hotel.keyword.toLowerCase().includes(filterValue));
   }
 
-  changed(item: any):void {
-    this.hotelSelected.emit(item)
+  changed(item: any,index: number):void {
+    this.hotelSelected.emit({index : index , item : item})
   }
 
   ngOnChanges(changes: SimpleChanges): void {

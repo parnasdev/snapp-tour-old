@@ -51,7 +51,6 @@ export class SetTourService {
 
   transferRates: TransferRateListDTO[] = [];
   hotels: HotelListResponseDTO[] = [];
-  hotelRates: hotelRates[] = []
   services: GetServiceRequestDTO[] = []
 
   constructor(public transferTypeApi: TransferRateAPIService,
@@ -128,19 +127,24 @@ export class SetTourService {
     }
   }
 
-  getHotels(): void {
+  getHotels(addRow: boolean = true): void {
     const req: HotelRequestDTO = {
       isAdmin: true,
       paginate: false,
       city: this.obj.endCity_id,
+      withRate: true,
+      fromDate: this.obj.stDate ? moment(this.obj.stDate).format('YYYY-MM-DD') : null,
+      toDate: this.obj.enDate ? moment(this.obj.enDate).format('YYYY-MM-DD') : null,
       search: null,
     }
     this.hotelApi.getHotels(req).subscribe((res: any) => {
       if (res.isDone) {
         this.hotels = res.data;
-        if (this.hotels.length > 0) {
-          this.addRow(this.hotels[0].id);
-        }
+        // if(addRow) {
+        //   if (this.hotels.length > 0) {
+        //     this.addRow(this.hotels[0].id);
+        // }
+        // }
       }
     }, (error: any) => {
       this.message.error();
@@ -184,30 +188,42 @@ export class SetTourService {
   }
 
 
-  calculatePrice(index: number) {
-    this.obj.packages[index].prices.single = this.getRoomCalculatedPrice('single',index);
-    this.obj.packages[index].prices.twin = this.getRoomCalculatedPrice('twin',index);
-    this.obj.packages[index].prices.triple = this.getRoomCalculatedPrice('triple',index);
-    this.obj.packages[index].prices.quad = this.getRoomCalculatedPrice('quad',index);
-    this.obj.packages[index].prices.cwb = this.getRoomCalculatedPrice('cwb',index);
+  calculatePrice(packageIndex: number) {
+    let hotelIndex = this.getHotelIndex(this.obj.packages[packageIndex].hotel_id)
+    this.obj.packages[packageIndex].prices.single = this.getRoomCalculatedPrice('single', hotelIndex);
+    this.obj.packages[packageIndex].prices.twin = this.getRoomCalculatedPrice('twin', hotelIndex);
+    this.obj.packages[packageIndex].prices.triple = this.getRoomCalculatedPrice('triple', hotelIndex);
+    this.obj.packages[packageIndex].prices.quad = this.getRoomCalculatedPrice('quad', hotelIndex);
+    this.obj.packages[packageIndex].prices.cwb = this.getRoomCalculatedPrice('cwb', hotelIndex);
   }
 
   updatePackagePrices() {
-    this.obj.packages.forEach((item, index) => {
-      item.prices.twin = this.getRoomCalculatedPrice('twin',index);
-      item.prices.single = this.getRoomCalculatedPrice('single',index);
-      item.prices.cwb = this.getRoomCalculatedPrice('cwb',index);
-      item.prices.quad = this.getRoomCalculatedPrice('quad',index);
-      item.prices.triple = this.getRoomCalculatedPrice('triple',index);
+    this.obj.packages.forEach((item) => {
+      item.prices.twin = this.getRoomCalculatedPrice('twin', this.getHotelIndex(item.hotel_id));
+      item.prices.single = this.getRoomCalculatedPrice('single', this.getHotelIndex(item.hotel_id));
+      item.prices.cwb = this.getRoomCalculatedPrice('cwb', this.getHotelIndex(item.hotel_id));
+      item.prices.quad = this.getRoomCalculatedPrice('quad', this.getHotelIndex(item.hotel_id));
+      item.prices.triple = this.getRoomCalculatedPrice('triple', this.getHotelIndex(item.hotel_id));
     });
   }
 
 
-  getRoomCalculatedPrice(type: string, index: number) {
+  getHotelIndex(hotel_id: number) {
+    let itemIndex = 0
+    this.hotels.forEach((item, index) => {
+      if (hotel_id === item.id) {
+        itemIndex = index;
+      }
+    })
+    return itemIndex;
+  }
+
+
+  getRoomCalculatedPrice(type: string, hotelIndex: number) {
     const insurancePrice = (this.obj.insuranceRate ? (+this.obj.insuranceRate) * this.checkInsuranceRatePrice() : 0);
     const visaPrice = (this.obj.visaRate ? (+this.obj.visaRate) * this.checkVisaRatePrice() : 0);
     const transferPrice = (this.obj.transferRate ? (+this.obj.transferRate) * this.checkTransferRatePrice() : 0);
-   const roomPrice = this.getHotelRatePrice(type);
+    const roomPrice = this.getHotelRatePrice(type, hotelIndex);
     if (roomPrice === 0) {
       return 0
     } else {
@@ -262,20 +278,22 @@ export class SetTourService {
   }
 
 
-  getHotelRatePrice(name: string) {
+  getHotelRatePrice(name: string, hotelIndex: number) {
     let price = 0;
-    let list = this.hotelRates.filter(x => x.roomType.name === name)
-    list.forEach(item => {
-      price += item.price
-    })
+    if (this.hotels[hotelIndex].hotelRates.length > 0) {
+      let list = this.hotels[hotelIndex].hotelRates.filter((x: any) => x.roomType.name === name)
+      list.forEach(item => {
+        price += item.price
+      })
+    }
     return price
   }
 
-  getRoomCapacityByName(typeName: string) {
-    return this.hotelRates.find(x => x.roomType.name === typeName) ? this.hotelRates.find(x => x.roomType.name === typeName)?.capacity : 0;
-  }
+  // getRoomCapacityByName(typeName: string,index: number) {
+  //   return this.hotelRates.find(x => x.roomType.name === typeName) ? this.hotelRates.find(x => x.roomType.name === typeName)?.capacity : 0;
+  // }
 
-  getHotelRates(hotelId: number, index: number) {
+  getHotelRates(hotelId: number, packageIndex: number) {
     let endDate = this.obj.enDate ? moment(this.obj.enDate).add(-1, 'days').format('YYYY-MM-DD') : ''
     const req = {
       fromDate: this.obj.stDate ? this.calenderServices.convertDateSpecial(this.obj.stDate, 'en') : '',
@@ -284,9 +302,10 @@ export class SetTourService {
 
     this.hotelApi.getHotelRates(hotelId, 0, req).subscribe((res: any) => {
       if (res.isDone) {
-        this.hotelRates = res.data;
-          this.checkHotelRateHasPrice(index);
-          // this.updatePackagePrices()
+        let hotelIndex = this.getHotelIndex(this.obj.packages[packageIndex].hotel_id)
+        this.hotels[hotelIndex].hotelRates = res.data;
+        this.checkHotelRateHasPrice(hotelIndex, packageIndex);
+        // this.updatePackagePrices()
       } else {
         this.message.custom(res.message);
       }
@@ -295,14 +314,14 @@ export class SetTourService {
     })
   }
 
-  checkHotelRateHasPrice(index: number) {
+  checkHotelRateHasPrice(hotelIndex: number, packageIndex: number) {
     let daysOfStay: any[] = [];
     let endDate = this.obj.enDate ? moment(this.obj.enDate).add(-1, 'days').format('YYYY-MM-DD') : ''
 
     daysOfStay = this.getDaysOfStay(this.obj.stDate, endDate);
 
     let list: any[] = [];
-    this.hotelRates.forEach(item => {
+    this.hotels[hotelIndex].hotelRates.forEach(item => {
       list.push(item.checkin);
     })
     let result: boolean = true;
@@ -317,7 +336,7 @@ export class SetTourService {
       this.message.custom('این هتل برای تاریخ مورد نظر قیمت گذاری نشده است')
       // this.obj.packages.splice(index, 1);
     }
-    this.calculatePrice(index);
+    this.calculatePrice(packageIndex);
   }
 
   getDaysOfStay(startDate: string, endDate: string) {
@@ -376,19 +395,18 @@ export class SetTourService {
     }
   }
 
-  hotelChange(event: any, index: number) {
-
-    this.getStars(index);
+  hotelChange(event: any, packageIndex: number) {
+    let hotelIndex = event.index
+    this.getStars(packageIndex);
     //@ts-ignore
-    this.obj.packages[index].hotel_id = event.id;
-    this.obj.packages[index].hotel_slug = event.slug;
-
-    this.getHotelRates(event.id, index);
+    this.obj.packages[packageIndex].hotel_id = event.item.id;
+    this.obj.packages[packageIndex].hotel_slug = event.item.slug;
+    this.checkHotelRateHasPrice(hotelIndex, packageIndex)
   }
   // @ts-ignore
-  getStars(index: number): number[] {
+  getStars(packageIndex: number): number[] {
     // @ts-ignore
-    const item = this.hotels.find(x => x.id === +this.obj.packages[index].hotel_id);
+    const item = this.hotels.find(x => x.id === +this.obj.packages[packageIndex].hotel_id);
     return Array.from(Array(item ? +item.stars : 0).keys());
   }
 }

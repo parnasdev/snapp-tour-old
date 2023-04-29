@@ -81,7 +81,6 @@ export class MainPickerComponent implements OnInit {
     // console.log(this.fixDates(start2, end2))
     const dates = [...this.fixDates(start1, end1), ...this.fixDates(start2, end2)]
     this.daysOfMonth = this.fillObject(dates)
-    console.log(this.daysOfMonth);
 
     this.getHotelRates()
   }

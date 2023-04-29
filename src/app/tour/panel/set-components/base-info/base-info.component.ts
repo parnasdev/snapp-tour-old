@@ -74,22 +74,17 @@ export class BaseInfoComponent implements OnInit {
     this.setService.getTransferRates();
     this.setService.obj.packages = [];
     this.setService.getHotels();
-
-
   }
 
   getStCity(cityItemSelected: any): void {
     this.setService.obj.stCity_id = cityItemSelected.id;
     this.setService.transferRates = [];
     this.setService.getTransferRates();
-
   }
 
   changes() {
    this.setService.obj.dayNum = this.setService.obj.nightNum + 1;
-    
   }
-
 
   dateChanged() {
     let dates = this.calenderServices.enumerateDaysBetweenDates(this.setService.obj.stDate, this.setService.obj.enDate)
@@ -102,6 +97,7 @@ export class BaseInfoComponent implements OnInit {
     }
     this.setService.transferRates = []
     this.setService.getTransferRates();
+    this.setService.getHotels();
   }
 
 

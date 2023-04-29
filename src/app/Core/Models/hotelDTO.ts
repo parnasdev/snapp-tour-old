@@ -1,6 +1,6 @@
 import { UserDTO } from "./AuthDTO";
 import { CityResponseDTO } from "./cityDTO";
-import { RoomDTO, TourListResDTO, newTourPackageDTO, newTourPackageInfoDTO } from "./tourDTO";
+import { RoomDTO, TourListResDTO, hotelRates, newTourPackageDTO, newTourPackageInfoDTO } from "./tourDTO";
 
 export interface HotelSetRequestDTO {
   name: string;
@@ -98,6 +98,10 @@ export interface HotelRequestDTO {
   hasTour?: boolean;
   city: number | string | null;
   search: string | null;
+
+  withRate?: boolean;
+  fromDate?: string | null;
+  toDate?: string | null;
 }
 
 export interface SetHotelPackageDTO {
@@ -143,6 +147,7 @@ export interface HotelListResponseDTO {
   nameEn: string
   slug: string
   keyword: string
+  hotelRates: hotelRates[]
   slugEn: string
   stars: string
   thumbnail: string
