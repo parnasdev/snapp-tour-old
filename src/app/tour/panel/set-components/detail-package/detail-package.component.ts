@@ -116,21 +116,22 @@ export class DetailPackageComponent implements OnInit {
 
 
   openPricingCalendar(index: number) {
-    console.log(this.setService.obj.packages[index]);
-    if (this.setService.obj.packages[index].hotel_id === 0) {
+    const hotelId = this.setService.obj.packages[index].hotel_id ?? this.setService.obj.packages[index].hotel.id
+    const hotelSlug = this.setService.obj.packages[index].hotel_slug ?? this.setService.obj.packages[index].hotel.slug
+    if (hotelId === 0) {
       this.message.custom('لطفا هتل خود را انتخاب کنید')
     } else {
       const dialog = this.dialog.open(PricingPopupComponent, {
         width: '100%',
         height: '100%',
         data: {
-          hotelId: this.setService.obj.packages[index].hotel_id,
-          slug: this.setService.obj.packages[index].hotel_slug
+          hotelId: hotelId,
+          slug: hotelSlug
         }
       });
       dialog.afterClosed().subscribe((result) => {
 
-          this.setService.getHotelRates(this.setService.obj.packages[index].hotel_id, index);
+        this.setService.getHotelRates(hotelId, index);
       })
     }
   }
