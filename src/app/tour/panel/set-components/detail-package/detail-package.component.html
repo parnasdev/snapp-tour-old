@@ -91,14 +91,14 @@
           </div>
           <div class="package-item">
             <div class="d-flex align-items-center w-100 parent-box-rate">
-              <div class="package-item rate-width" *ngIf="!setService.obj.type">
+              <!-- <div class="package-item rate-width" *ngIf="!setService.obj.type">
                 <select (change)="setService.setPackageRate($event, i)">
                   <option *ngIf="setService.obj.dollarRate" [value]="3">دلار</option>
                   <option *ngIf="setService.obj.euroRate" [value]="2">یورو</option>
                   <option *ngIf="setService.obj.AEDRate" [value]="4">درهم</option>
                   <option [value]="1">تومان</option>
                 </select>
-              </div>
+              </div> -->
               <div class="package-item service-width">
                 <select (change)="setService.setPackageServices($event, i)">
                   <option *ngFor="let service of setService.services"
@@ -209,7 +209,7 @@
             </div>
             <div style="flex-direction: row !important;" class="package-item">
               <i class="icon-trash text-danger" (click)="setService.removePackage(i)"></i>
-              <i class="icon-calendar text-danger"></i>
+              <i class="icon-calendar text-danger" (click)="openPricingCalendar(i)"></i>
               <!-- <img src="assets/img/FAQ.svg" width="18" (click)="openRoomPopup(i)"> -->
             </div>
           </ng-template>
