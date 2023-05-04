@@ -1,154 +1,17 @@
 <prs-loading *ngIf="infoLoading"></prs-loading>
-
 <div class="add-tour">
-  <div class="box-info-tour">
-    <div class="info-tour-header">
-      <div class="right">
-        <label for="">{{setService.obj.type ? 'تور داخلی' : 'تور خارجی'}}</label>
-        <h2 class="text-dark">اطلاعات تور</h2>
-      </div>
-      <div *ngIf="session.getRole() === 'Admin'" class="checkbox d-flex align-content-center">
-        <input [(ngModel)]="setService.obj.offered" type="checkbox">
-        <label for="">تور ویژه</label>
-      </div>
-      <div class="left d-flex align-items-center">
-        <div *ngIf="session.checkPermission('Status')">
-          <div class="selectdiv">
-            <label>
-              <select [(ngModel)]="setService.obj.status">
-                <option value="Show">انتشار</option>
-                <option value="Draft" selected>پیش نویس</option>
-                <option value="Accepted">تایید شده</option>
-                <option value="NotAccepted">عدم تایید</option>
-                <option value="Pending">در انتظار تایید</option>
-                <option value="Suspended">معلق شده/منقضی شده</option>
-                <option value="Completion">تکمیل شده</option>
-              </select>
-            </label>
-          </div>
-
-
-        </div>
-        <div class="selectdiv me-2">
-          <label>
-            <select [(ngModel)]="setService.obj.defineTour">
-              <option [ngValue]="false">یکجا</option>
-              <option [ngValue]="true">باجزییات</option>
-            </select>
-          </label>
-        </div>
-      </div>
-    </div>
-    <div class="info-tour-body">
-      <div class="top">
-        <div class="item-info">
-          <label for="">عنوان تور</label>
-          <input [(ngModel)]="setService.obj.title"
-            (change)="generateSlug()" type="text">
-
-            <div *ngIf="errorService.hasError('title')">
-              <span class="text-danger">{{errorService.getError('title')}}</span>
-            </div>
-
-
-        </div>
-        <div class="item-info">
-          <div class="select-info">
-            <label for="">شهر مبدا</label>
-            <prs-set-tour-select-city *ngIf="show" [inCommingCity]="info ? info.stCity : null" [cities]="cities"
-              (citySelected)="getStCity($event)"></prs-set-tour-select-city>
-              <div *ngIf="errorService.hasError('stCity')">
-                <span class="text-danger">{{errorService.getError('stCity')}}</span>
-              </div>
-          </div>
-
-        </div>
-        <div class="item-info">
-          <div class="select-info">
-            <label for="">شهر مقصد</label>
-            <prs-set-tour-select-city *ngIf="show" [inCommingCity]="info ? info.endCity : null" [hasHotel]="true"
-              [cities]="cities" (citySelected)="getEndCity($event)"></prs-set-tour-select-city>
-              <div *ngIf="errorService.hasError('endCity')">
-                <span class="text-danger">{{errorService.getError('endCity')}}</span>
-              </div>
-          </div>
-        </div>
-        <div class="item-info-2">
-          <div class="select-info">
-            <label for="">تعداد شب</label>
-            <select (change)="changes()" [(ngModel)]="setService.obj.nightNum" name="" id="">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-            </select>
-            <div *ngIf="errorService.hasError('nightNum')">
-              <span class="text-danger">{{errorService.getError('nightNum')}}</span>
-            </div>
-          </div>
-        </div>
-        <div class="item-info">
-          <div class="select-info">
-            <label for="">تعداد روز</label>
-
-          </div>
-          <span class="number-day-text">{{+setService.obj.nightNum + 1}}</span>
-        </div>
-        <div class="item-info">
-          <label for="">نامک تور</label>
-          <input *ngIf="isSlugGenerated" [(ngModel)]="setService.obj.slug" type="text">
-          <span *ngIf="!isSlugGenerated">{{setService.obj.slug}}</span>
-
-
-        </div>
-        <div class="item-info">
-          <label for="">تاریخ ورود به هتل</label>
-          <mat-form-field class="example-full-width" appearance="fill">
-            <input matInput [matDatepicker]="picker1" (dateChange)="dateChanged()" [(ngModel)]="setService.obj.stDate"
-              [min]="minDate" (click)="picker1.open()">
-            <mat-datepicker #picker1></mat-datepicker>
-          </mat-form-field>
-          <div *ngIf="errorService.hasError('stDate')">
-            <span class="text-danger">{{errorService.getError('stDate')}}</span>
-          </div>
-
-        </div>
-        <div class="item-info">
-          <label for="">تاریخ خروج از هتل</label>
-          <mat-form-field class="example-full-width" appearance="fill">
-            <input matInput (dateChange)="dateChanged()" [(ngModel)]="setService.obj.enDate" [matDatepicker]="picker2"
-              [min]="minDate" (click)="picker2.open()">
-            <mat-datepicker #picker2></mat-datepicker>
-          </mat-form-field>
-          <div *ngIf="errorService.hasError('enDate')">
-            <span class="text-danger">{{errorService.getError('enDate')}}</span>
-          </div>
-        </div>
-        <div class="item-info">
-          <label for="">تاریخ انقضا پکیج</label>
-          <mat-form-field class="example-full-width" appearance="fill">
-            <input matInput [(ngModel)]="setService.obj.expireDate" [matDatepicker]="picker3" [min]="minDate"
-              (click)="picker3.open()">
-            <mat-datepicker #picker3></mat-datepicker>
-          </mat-form-field>
-          <div *ngIf="errorService.hasError('expireDate')">
-            <span class="text-danger">{{errorService.getError('expireDate')}}</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <span *ngIf="!showData">در حال دریافت اطلاعات</span>
+</div>
+<div class="add-tour" *ngIf="showData">
+  <prs-base-info class="w-100"></prs-base-info>
   <prs-transfer class="w-100"></prs-transfer>
   <prs-currency-rates class="w-100"></prs-currency-rates>
   <prs-service-rates class="w-100"></prs-service-rates>
   <prs-detail-package class="w-100"></prs-detail-package>
   <prs-descriptions class="w-100"></prs-descriptions>
-
+  <div class="p-errorr">
+    <span class="text-danger" *ngFor="let err of errors">{{ err[0] }}</span>
+  </div>
   <prs-btn style="width: 15%;" class="btn-submit-tour w-100-mobi" [background]="'blue'" (click)="submit()"
     [label]="'ثبت تور'"></prs-btn>
 </div>
