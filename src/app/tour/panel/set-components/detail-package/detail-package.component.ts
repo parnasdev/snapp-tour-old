@@ -76,6 +76,10 @@ export class DetailPackageComponent implements OnInit {
     return obj
   }
 
+  getHotelObj(hotel_id: number) {
+    return this.setService.hotels.find(x=> x.id === hotel_id) ?? null;
+  }
+
   openRoomPopup(index: number) {
     let hotelRooms = this.setService.obj.packages[index].hotel_id ?
       this.setService.hotels.find(x => x.id === this.setService.obj.packages[index].hotel_id)?.rooms : []

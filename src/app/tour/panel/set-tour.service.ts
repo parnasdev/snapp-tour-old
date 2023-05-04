@@ -14,6 +14,7 @@ import { Result } from 'src/app/Core/Models/result';
   providedIn: 'root'
 })
 export class SetTourService {
+  showData = false;
   obj: TourSetDTO = {
     title: '',
     slug: '',
@@ -127,7 +128,9 @@ export class SetTourService {
     }
   }
 
-  getHotels(addRow: boolean = true): void {
+  getHotels(): void {
+    console.log('service')
+this.showData = false;
     const req: HotelRequestDTO = {
       isAdmin: true,
       paginate: false,
@@ -140,6 +143,8 @@ export class SetTourService {
     this.hotelApi.getHotels(req).subscribe((res: any) => {
       if (res.isDone) {
         this.hotels = res.data;
+        this.showData = true;
+        this.updatePackagePrices()
         // if(addRow) {
         //   if (this.hotels.length > 0) {
         //     this.addRow(this.hotels[0].id);
@@ -150,6 +155,8 @@ export class SetTourService {
       this.message.error();
     })
   }
+
+  
 
   addRow(hotel_id: number) {
     const item: newTourPackageDTO = {
@@ -199,11 +206,12 @@ export class SetTourService {
 
   updatePackagePrices() {
     this.obj.packages.forEach((item) => {
-      item.prices.twin = this.getRoomCalculatedPrice('twin', this.getHotelIndex(item.hotel_id));
-      item.prices.single = this.getRoomCalculatedPrice('single', this.getHotelIndex(item.hotel_id));
-      item.prices.cwb = this.getRoomCalculatedPrice('cwb', this.getHotelIndex(item.hotel_id));
-      item.prices.quad = this.getRoomCalculatedPrice('quad', this.getHotelIndex(item.hotel_id));
-      item.prices.triple = this.getRoomCalculatedPrice('triple', this.getHotelIndex(item.hotel_id));
+      let hotelID = item.hotel_id ?? item.hotel.id;
+      item.prices.twin = this.getRoomCalculatedPrice('twin', this.getHotelIndex(hotelID));
+      item.prices.single = this.getRoomCalculatedPrice('single', this.getHotelIndex(hotelID));
+      item.prices.cwb = this.getRoomCalculatedPrice('cwb', this.getHotelIndex(hotelID));
+      item.prices.quad = this.getRoomCalculatedPrice('quad', this.getHotelIndex(hotelID));
+      item.prices.triple = this.getRoomCalculatedPrice('triple', this.getHotelIndex(hotelID));
     });
   }
 
@@ -305,7 +313,6 @@ export class SetTourService {
         let hotelIndex = this.getHotelIndex(this.obj.packages[packageIndex].hotel_id)
         this.hotels[hotelIndex].hotelRates = res.data;
         this.checkHotelRateHasPrice(hotelIndex, packageIndex);
-        // this.updatePackagePrices()
       } else {
         this.message.custom(res.message);
       }

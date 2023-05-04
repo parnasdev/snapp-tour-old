@@ -142,7 +142,7 @@ export interface TourPackageDTO {
     id: number;
     name: string;
   };
-  hotel: HotelDTO;
+  // hotel: HotelDTO;
   rate: { id: number, name: string };
   roomType: RoomTypePriceDTO[];
   discounts: DiscountsDTO;

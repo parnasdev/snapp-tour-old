@@ -12,7 +12,6 @@ import { PublicService } from 'src/app/Core/Services/public.service';
 import { ResponsiveService } from 'src/app/Core/Services/responsive.service';
 import * as moment from 'jalali-moment';
 import { TransferRateAPIService } from 'src/app/Core/Https/transfer-rate-api.service';
-import { HotelRequestDTO } from 'src/app/Core/Models/hotelDTO';
 import { HotelApiService } from 'src/app/Core/Https/hotel-api.service';
 import { ErrorsService } from 'src/app/Core/Services/errors.service';
 import { CheckErrorService } from 'src/app/Core/Services/check-error.service';
@@ -33,14 +32,12 @@ export class EditComponent implements OnInit {
   //public Variable
   slug: string | null = ''
   isLoading: boolean = false;
- showData = false
 
   public show = true
   errors: any
   infoLoading = false;
   minDate = new Date(); //datepicker
   typeTour: any;
-  dayCount = 2;
   id = 0;
   cityID = 0
   cities: CityResponseDTO[] = []
@@ -108,6 +105,7 @@ export class EditComponent implements OnInit {
     public session: SessionService,
     public tourApi: TourApiService) {
     setService.removeRequestObject()
+    setService.showData = false;
   }
   ////formGroup
   form = this.fb.group({
@@ -152,9 +150,7 @@ export class EditComponent implements OnInit {
       this.tourApi.getTour(this.slug).subscribe((res: any) => {
         if (res.isDone) {
           this.info = res.data;
-          this.getCities()
           this.getTransferRates()
-          this.getHotels()
         }
         this.infoLoading = false;
 
@@ -235,32 +231,14 @@ export class EditComponent implements OnInit {
     this.setService.obj.type = cityItemSelected.type;
     this.setService.transferRates = [];
     this.getTransferRates();
-    this.setService.obj.packages = [];
-    this.getHotels();
+    // this.setService.obj.packages = [];
+    this.setService.getHotels();
 
 
   }
 
 
-  getCities(): void {
-    const req: CityListRequestDTO = {
-      type: null,
-      hasHotel: true,
-      hasOriginTour: false,
-      search: null,
-      hasDestTour: false,
-      perPage: 20
-    }
-    this.cityApi.getCities(req).subscribe((res: any) => {
-      if (res.isDone) {
-        this.cities = res.data;
-        this.setInfo();
-        this.reload()
-      }
-    }, (error: any) => {
-      this.message.error()
-    })
-  }
+
 
   getStCity(cityItemSelected: any): void {
     this.setService.obj.stCity_id = cityItemSelected.id;
@@ -275,26 +253,6 @@ export class EditComponent implements OnInit {
   }
 
 
-  getHotels(): void {
-    const req: HotelRequestDTO = {
-      isAdmin: true,
-      paginate: false,
-      city: this.info.endCity.id,
-      search: null,
-    }
-    this.hotelApi.getHotels(req).subscribe((res: any) => {
-      if (res.isDone) {
-        this.setService.hotels = res.data;
-        this.setFormArray(this.setService.obj.packages)
-        this.showData = true
-        // if (this.setService.hotels.length > 0) {
-        //   this.setService.addRow(this.setService.hotels[0].id);
-        // }
-      }
-    }, (error: any) => {
-      this.message.error();
-    })
-  }
 
 
   getIncomingHotel(index: number) {
@@ -304,118 +262,7 @@ export class EditComponent implements OnInit {
   }
 
 
-  setFormArray(packages: newTourPackageDTO[]): void {
-    this.ToursForm.clear();
-    packages.forEach(x => {
-      this.addRow(x);
-    })
-  }
 
-
-  addRow(packageItem: any | null) {
-
-    if (packageItem) {
-      const Tours = this.fb.group({
-        parent: 0,
-        order_item: packageItem.order_item,
-        id: [packageItem.id],
-        offered: [packageItem.offered],
-        user_id: 0,
-        hotel_id: [packageItem.hotel.id],
-        services: [packageItem.services ? packageItem.services : ''],
-        rate: null,
-        discountsTwin: [packageItem.prices?.twin],
-        discountsSingle: [packageItem.prices?.single],
-        discountsCwb: [packageItem.prices?.cwb],
-        discountsCnb: [packageItem.prices?.cnb],
-        twin: [packageItem.prices?.twin],
-        single: [packageItem.prices?.single],
-        cwb: [packageItem.prices?.cwb],
-        cnb: [packageItem.prices?.cnb],
-        quad: [packageItem.prices?.quad],
-        triple: [packageItem.prices?.triple],
-        twinRate: [packageItem.prices?.twinRate],
-        twinCapacity: [packageItem.prices?.twinCapacity],
-        tripleCapacity: [packageItem.prices?.tripleCapacity],
-        singleCapacity: [packageItem.prices?.singleCapacity],
-        quadCapacity: [packageItem.prices?.quadCapacity],
-        cwbCapacity: [packageItem.prices?.cwbCapacity],
-        singleRate: [packageItem.prices?.singleRate],
-        cwbRate: [packageItem.prices?.cwbRate],
-        cnbRate: [packageItem.prices?.cnbRate],
-        quadRate: [packageItem.prices?.quadRate],
-        tripleRate: [packageItem.prices?.tripleRate],
-        ADLRate: [packageItem.prices?.ADLRate],
-        age: [packageItem.prices?.age],
-        pool: [packageItem.prices?.pool],
-        status: [packageItem.status],
-        roomType: [packageItem.prices?.roomType]
-      })
-      this.ToursForm.push(Tours);
-    } else {
-      const Tours = this.fb.group({
-        parent: null,
-        user_id: null,
-        order_item: null,
-        hotel_id: [0],
-        services: [null],
-        rate: null,
-        id: [null],
-        discountsTwin: [null],
-        discountsSingle: [null],
-        discountsCwb: [null],
-        discountsCnb: [null],
-        twin: [null],
-        single: [null],
-        cwb: [null],
-        twinCapacity: [null],
-        tripleCapacity: [null],
-        singleCapacity: [null],
-        quadCapacity: [null],
-        cwbCapacity: [null],
-        cnb: [null],
-        quad: [null],
-        triple: [null],
-        ADLRate: [null],
-        age: [null],
-        pool: [null],
-        status: [null],
-        roomType: [[]]
-      });
-      this.ToursForm.push(Tours);
-    }
-  }
-
-
-  dateChanged() {
-    let dates = this.calenderServices.enumerateDaysBetweenDates(this.setService.obj.stDate, this.setService.obj.enDate)
-    if(dates.length > 0){
-      this.setService.obj.nightNum = dates.length - 1
-      this.setService.obj.dayNum = dates.length
-    }
-    if (this.setService.obj.defineTour) {
-      this.setService.obj.packages = [];
-    }
-    this.setService.transferRates = []
-    this.setService.getTransferRates();
-  }
-
-  generateSlug(): void {
-    if (!this.isSlugGenerated) {
-      this.tourApi.generateSlug(this.setService.obj.title).subscribe((res: any) => {
-        if (res.data) {
-          this.setService.obj.slug = res.data;
-          this.isSlugGenerated = true
-        } else {
-          this.message.custom(res.message)
-        }
-      }, (error: any) => {
-        this.message.error()
-      })
-    } else {
-      this.setService.obj.slug = this.setService.obj.title.split(' ').join('-')
-    }
-  }
 
   getTransferRates(): void {
     const req: TransferRateListReqDTO = {
@@ -431,7 +278,8 @@ export class EditComponent implements OnInit {
         this.setService.transferRates.forEach(x => {
           x.isChecked = this.info.newTransfers.some((y: any) => y.id === x.id);
         })
-        this.getHotels();
+        this.setInfo();
+     
       } else {
         this.message.custom(res.message);
       }
@@ -453,7 +301,6 @@ export class EditComponent implements OnInit {
   }
 
   setInfo() {
-    console.log(this.info.packages);
     
     this.changeHotelServicesToID();
     this.setService.obj = {
@@ -491,6 +338,7 @@ export class EditComponent implements OnInit {
       transfers: [],
     }
     this.showPackages = true;
+       this.setService.getHotels();
   }
 
   getTransferIds(): number[] {
@@ -502,7 +350,7 @@ export class EditComponent implements OnInit {
   }
 
   submit() {
-      this.convertTour()
+      // this.convertTour()
     // this.fillObj()
     if (this.setService.obj.packages.length === 0) {
       this.message.custom('لطفا هتل های خود را انتخاب کنید')
@@ -511,11 +359,6 @@ export class EditComponent implements OnInit {
     }
   }
 
-  defineChanged(): void {
-    this.setService.obj.packages = [];
-    this.ToursForm.clear()
-    this.addRow(null);
-  }
 
   convertTour() {
     this.setService.obj.packages = [];

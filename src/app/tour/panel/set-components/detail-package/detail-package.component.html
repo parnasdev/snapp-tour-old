@@ -82,7 +82,7 @@
             </div>
           </div>
           <div class="package-item">
-            <prs-select-hotel [hotels]="setService.hotels" [inCommingHotel]="tour.hotel" [callHotel]="false"
+            <prs-select-hotel [hotels]="setService.hotels" [inCommingHotel]="getHotelObj(tour.hotel_id)" [callHotel]="false"
               [type]="setService.obj.type" [isAdmin]="true" (hotelSelected)="setService.hotelChange($event,i)">
             </prs-select-hotel>
             <div class="parent-icon under-package d-flex align-items-center">

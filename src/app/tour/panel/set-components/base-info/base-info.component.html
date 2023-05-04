@@ -44,14 +44,13 @@
         <div *ngIf="errorService.hasError('title')">
           <span class="text-danger">{{errorService.getError('title')}}</span>
         </div>
-
       </div>
-      <!-- origin field -->
+      <!-- on field -->
       <div class="item-info-2">
         <div class="select-info">
 
           <label for="">شهر مبدا</label>
-          <prs-select-city [cities]="cities" [inCommingCity]="setService.obj.stCity_id"
+          <prs-select-city [inCommingCity]="setService.obj.stCity_id"
             (citySelected)="getStCity($event)"></prs-select-city>
           <div *ngIf="errorService.hasError('stCity_id')">
             <span class="text-danger">{{errorService.getError('stCity_id')}}</span>
@@ -62,7 +61,7 @@
       <div class="item-info">
         <div class="select-info">
           <label for="">شهر مقصد</label>
-          <prs-select-city [inCommingCity]="setService.obj.endCity_id" [hasHotel]="true" [cities]="cities"
+          <prs-select-city [inCommingCity]="setService.obj.endCity_id" [hasHotel]="true" 
             (citySelected)="getEndCity($event)"></prs-select-city>
           <div *ngIf="errorService.hasError('endCity_id')">
             <span class="text-danger">{{errorService.getError('endCity_id')}}</span>

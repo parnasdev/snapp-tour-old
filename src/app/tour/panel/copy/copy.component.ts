@@ -1,7 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { TourApiService } from 'src/app/Core/Https/tour-api.service';
-import { MessageService } from 'src/app/Core/Services/message.service';
 import {EditComponent} from "../edit/edit.component";
 
 @Component({
@@ -25,7 +22,7 @@ export class CopyComponent extends EditComponent implements OnInit {
     this.setService.obj.stDate = this.calenderServices.convertDateSpecial(this.setService.obj.stDate, 'en')
     this.setService.obj.enDate = this.calenderServices.convertDateSpecial(this.setService.obj.enDate, 'en')
     this.setService.obj.expireDate = this.calenderServices.convertDateSpecial(this.setService.obj.expireDate, 'en')
-    this.convertTour()
+    // this.convertTour()
 
 
     this.tourApi.createTour(this.setService.obj).subscribe((res: any) => {

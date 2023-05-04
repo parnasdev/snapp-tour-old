@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CityApiService } from 'src/app/Core/Https/city-api.service';
 import { CommonApiService } from 'src/app/Core/Https/common-api.service';
 import { TourApiService } from 'src/app/Core/Https/tour-api.service';
@@ -18,6 +18,7 @@ import { ErrorsService } from 'src/app/Core/Services/errors.service';
 })
 export class BaseInfoComponent implements OnInit {
   //public Variable
+  @Output() datesChanged = new EventEmitter()
   isMobile;
   minDate = new Date(); //datepicker
   typeTour: any;
@@ -43,28 +44,9 @@ export class BaseInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getCities();
+
   }
 
-  getCities(): void {
-    const req: CityListRequestDTO = {
-      type: null,
-      hasHotel: true,
-      hasOriginTour: false,
-      search: null,
-      hasDestTour: false,
-      perPage: 20
-    }
-    this.cityApi.getCities(req).subscribe((res: any) => {
-      if (res.isDone) {
-        this.cities = res.data;
-        this.cityID = this.cities[1].id;
-        // this.setService.obj.stCity_id = this.cities[0].id.toString();
-      }
-    }, (error: any) => {
-      this.message.error()
-    })
-  }
 
   getEndCity(cityItemSelected: any): void {
     // @ts-ignore
@@ -92,9 +74,7 @@ export class BaseInfoComponent implements OnInit {
       this.setService.obj.nightNum = dates.length - 1
       this.setService.obj.dayNum = dates.length
     }
-    if (this.setService.obj.defineTour) {
-      this.setService.obj.packages = [];
-    }
+
     this.setService.transferRates = []
     this.setService.getTransferRates();
     this.setService.getHotels();

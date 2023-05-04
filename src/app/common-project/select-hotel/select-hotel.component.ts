@@ -1,26 +1,28 @@
-import {Component, Input, OnInit, EventEmitter, Output, OnChanges, SimpleChanges} from '@angular/core';
-import {HotelListResponseDTO, HotelRequestDTO} from "../../Core/Models/hotelDTO";
-import {FormControl} from "@angular/forms";
-import {Observable} from "rxjs";
-import {map, startWith} from "rxjs/operators";
-import {HotelApiService} from "../../Core/Https/hotel-api.service";
-import {MessageService} from "../../Core/Services/message.service";
+import { Component, Input, OnInit, EventEmitter, Output, OnChanges, SimpleChanges } from '@angular/core';
+import { HotelListResponseDTO, HotelRequestDTO } from "../../Core/Models/hotelDTO";
+import { FormControl } from "@angular/forms";
+import { Observable } from "rxjs";
+import { map, startWith } from "rxjs/operators";
+import { HotelApiService } from "../../Core/Https/hotel-api.service";
+import { MessageService } from "../../Core/Services/message.service";
+import { SetTourService } from 'src/app/tour/panel/set-tour.service';
 
 @Component({
   selector: 'prs-select-hotel',
   templateUrl: './select-hotel.component.html',
   styleUrls: ['./select-hotel.component.scss']
 })
-export class SelectHotelComponent implements OnInit,OnChanges {
+export class SelectHotelComponent implements OnInit, OnChanges {
   @Output() hotelSelected = new EventEmitter()
-  @Input() hotels: any[] =  [];
-  @Input() callHotel: boolean =  false;
-  @Input() inCommingHotel : any
+  @Input() hotels: any[] = [];
+  @Input() callHotel: boolean = false;
+  @Input() inCommingHotel: any
   @Input() isAdmin = false
   @Input() type = true
   isLoading = false;
   constructor(
     public hotelApi: HotelApiService,
+    public setService: SetTourService,
     public message: MessageService) {
   }
   hotelFC = new FormControl();
@@ -38,8 +40,8 @@ export class SelectHotelComponent implements OnInit,OnChanges {
     // return this.hotels.filter(hotel => hotel.keyword.toLowerCase().includes(filterValue));
   }
 
-  changed(item: any,index: number):void {
-    this.hotelSelected.emit({index : index , item : item})
+  changed(item: any, index: number): void {
+    this.hotelSelected.emit({ item: item, index: index, })
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -49,7 +51,7 @@ export class SelectHotelComponent implements OnInit,OnChanges {
     );
     if (this.inCommingHotel) {
       this.hotelFC.setValue(this.type ? this.inCommingHotel.name : this.inCommingHotel.nameEn)
-      this.hotelSelected.emit(this.inCommingHotel)
+      this.hotelSelected.emit({ item: this.inCommingHotel, index: this.setService.getHotelIndex(this.inCommingHotel.id) })
 
     }
 
