@@ -7,8 +7,8 @@
       <div class="row">
         <div class="col-md-11 m-auto tour-parent">
           <div class="search">
-            <prs-search-collapse [inCommingSearchObject]="searchObject"
-              (onSubmit)="search($event)"></prs-search-collapse>
+            <prs-search-collapse-old [inCommingSearchObject]="searchObject"
+              (onSubmit)="search($event)"></prs-search-collapse-old>
           </div>
           <!-- <div class="title-tour-parent">
             <div class="top">
@@ -58,7 +58,7 @@
                 <div class="inp-form w-100" style="margin-left: 1rem;">
                   <input class="input" placeholder="جستجو بر اساس نام هتل" [(ngModel)]="keyword"
                     (keyup.enter)="searchHotel()" type="text">
-                    <i *ngIf="keyword.length > 0" (click)="deleteKeyword()" class="icon-cancel-1 text-danger"></i>
+                  <i *ngIf="keyword.length > 0" (click)="deleteKeyword()" class="icon-cancel-1 text-danger"></i>
 
                 </div>
                 <button class="btn-base w-25" (click)="searchHotel()">جستجو</button>
@@ -73,8 +73,7 @@
           <div *ngFor="let tour of tours| paginate: paginateConfig; let i = index" class="thumbnail-hotel">
             <div class="img-hotel">
               <a routerLink="/hotels/{{tour.hotel.slug}}"
-              [queryParams]="{origin: queryParamsResult.origin,dest: queryParamsResult.dest,stDate: queryParamsResult.stDate,night: queryParamsResult.night}"
-              >
+                [queryParams]="{origin: queryParamsResult.origin,dest: queryParamsResult.dest,stDate: queryParamsResult.stDate,night: queryParamsResult.night}">
                 <img src="{{ tour.hotel.thumbnail }}" alt="">
               </a>
             </div>
@@ -84,8 +83,8 @@
                   <i class="icon-star" *ngFor="let star of getStars(tour.hotel.stars)"></i>
                 </div>
                 <h2 class="name-hotel"><a routerLink="/hotels/{{tour.hotel.slug}}"
-                  [queryParams]="{origin: queryParamsResult.origin,dest: queryParamsResult.dest,stDate: queryParamsResult.stDate,night: queryParamsResult.night}"
-                  > {{
+                    [queryParams]="{origin: queryParamsResult.origin,dest: queryParamsResult.dest,stDate: queryParamsResult.stDate,night: queryParamsResult.night}">
+                    {{
                     tour.hotel.name }} | {{ tour.hotel.nameEn }}</a></h2>
                 <div class="address d-flex align-items-center">
                   <img src="assets/img/location2.svg" width="15" alt="">

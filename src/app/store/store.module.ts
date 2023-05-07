@@ -34,6 +34,8 @@ import { PayComponent } from './pay/pay.component';
 import { VoucherComponent } from './voucher/voucher.component';
 import { SearchCollapseComponent } from './search-collapse/search-collapse.component';
 import { TrackingByComponent } from './tracking-by/tracking-by.component';
+import { SearchOldComponent } from './search-old/search-old.component';
+import { SearchCollapseOldComponent } from './search-collapse-old/search-collapse-old.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import { TrackingByComponent } from './tracking-by/tracking-by.component';
     PayComponent,
     VoucherComponent,
     SearchCollapseComponent,
-    TrackingByComponent
+    TrackingByComponent,
+    SearchOldComponent,
+    SearchCollapseOldComponent,
   ],
   exports: [
     IndexComponent,
@@ -69,7 +73,9 @@ import { TrackingByComponent } from './tracking-by/tracking-by.component';
     LoadingComponent,
     SearchSectionComponent,
     SearchComponent,
-    SearchCollapseComponent
+    SearchCollapseComponent,
+    SearchOldComponent,
+    SearchCollapseOldComponent,
   ],
     imports: [
         CommonModule,

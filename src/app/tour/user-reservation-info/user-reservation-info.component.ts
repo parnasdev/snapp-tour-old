@@ -459,8 +459,6 @@ export class UserReservationInfoComponent implements OnInit {
       this.messageService.custom('لطفا اطلاعات رزرو گیرنده را تکمیل کنید')
     } else if (this.roomsSelected.length === 0) {
       this.messageService.custom('لطفا اتاق های مورد نظر خود را انتخاب کنید')
-    } else if (!this.isPrivacyCheck) {
-      this.messageService.custom('لطفا قوانین و مقررات را خوانده و بپذیرید')
     } else {
       this.editReserve();
     }

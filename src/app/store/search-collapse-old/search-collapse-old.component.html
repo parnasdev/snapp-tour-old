@@ -1,0 +1,76 @@
+<div *ngIf="isDesktop" class="row-search">
+    <div class="inp-form">
+      <prs-select-city [inCommingCity]="originFC.value"
+      [hasOriginTour]="true" [title]="'شهر مبدا'"
+        (citySelected)="originSelected($event)" ></prs-select-city>
+    </div>
+  <div class="inp-form">
+    <prs-select-city [city]="originID" [hasDestTour]="true" [title]="'شهر مقصد'"  [inCommingCity]="destFC.value"
+    (citySelected)="destSelected($event)"></prs-select-city>
+  </div>
+    <div class="inp-form">
+      <mat-form-field class="example-full-width" appearance="fill">
+        <input class="input-parent"
+               matInput [formControl]="stDateFC"
+               placeholder="تاریخ ورود به هتل"
+               autocomplete="off"
+               readonly
+               [matDatepickerFilter]="myFilter"
+               [matDatepicker]="picker3"
+               (click)="picker3.open()">
+        <mat-datepicker #picker3></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="inp-form">
+      <select [formControl]="nightFC" name="">
+        <option value="0">تعداد شب</option>
+        <option *ngFor="let x of nights" [value]="x">{{x}}
+        <span style="margin-right: 4px">شب</span>
+        </option>
+      </select>
+    </div>
+    <button class="btn-search font-16" (click)="search()">جست و جو</button>
+</div>
+<div *ngIf="isTablet" class="w-100">
+  <a style="color: #000;font-weight: 500;font-size: 14px" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+  جستجوی مجدد
+    <i class="icon-search" style="margin-right: 4px"></i>
+  </a>
+ <div class="collapse w-100" id="collapseExample">
+   <div class="row-search">
+     <div class="inp-form">
+       <prs-select-city [inCommingCity]="originFC.value"
+                        [hasOriginTour]="true" [title]="'شهر مبدا'"
+                        (citySelected)="originSelected($event)" ></prs-select-city>
+     </div>
+     <div class="inp-form">
+       <prs-select-city [city]="originID" [hasDestTour]="true" [title]="'شهر مقصد'"  [inCommingCity]="destFC.value"
+                        (citySelected)="destSelected($event)"></prs-select-city>
+     </div>
+     <div class="inp-form">
+       <mat-form-field class="example-full-width" appearance="fill">
+         <input class="input-parent"
+                matInput [formControl]="stDateFC"
+                placeholder="تاریخ ورود به هتل"
+                autocomplete="off"
+                readonly
+                [matDatepickerFilter]="myFilter"
+                [matDatepicker]="picker3"
+                (click)="picker3.open()">
+         <mat-datepicker #picker3></mat-datepicker>
+       </mat-form-field>
+     </div>
+
+     <div class="inp-form">
+       <select [formControl]="nightFC" name="">
+         <option value="0">تعداد شب</option>
+         <option *ngFor="let x of nights" [value]="x">{{x}}
+           <span style="margin-right: 4px">شب</span>
+         </option>
+       </select>
+     </div>
+     <button class="btn-search font-16" (click)="search()">جست و جو</button>
+   </div>
+ </div>
+</div>
