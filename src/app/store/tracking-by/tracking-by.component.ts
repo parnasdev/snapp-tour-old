@@ -38,6 +38,7 @@ export class TrackingByComponent implements OnInit {
   reserveObj: ReserveInfoDTO = {
     id: 0,
     agency: '',
+    agency_id: null,
     agencyPercent: 0,
     transactions: [],
     ref_code: '',

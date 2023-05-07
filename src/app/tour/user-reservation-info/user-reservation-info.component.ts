@@ -47,6 +47,7 @@ export class UserReservationInfoComponent implements OnInit {
   reserveObj: ReserveInfoDTO = {
     id: 0,
     agency: '',
+    agency_id: null,
     agencyPercent: 0,
     transactions: [],
     ref_code: '',
@@ -205,10 +206,13 @@ export class UserReservationInfoComponent implements OnInit {
 
 
   getHotelInfo(): void {
+    let date = this.reserveObj.package.tour.stDate ? moment(this.reserveObj.package.tour.stDate).add(-1, 'days').format('YYYY-MM-DD') : ''
+
     let item = {
       isAdmin: false,
+      agency_id: this.reserveObj.agency_id,
       night: this.reserveObj.package.tour.nightNum,
-      stDate:this.calService.convertDate(this.reserveObj.package.tour.stDate,'en' ,'YYYY-MM-DD')
+      stDate: date
     }
     this.isLoading = true;
     this.hotelApi.getHotelV2(this.reserveObj.package.hotel_id, item).subscribe((res: any) => {

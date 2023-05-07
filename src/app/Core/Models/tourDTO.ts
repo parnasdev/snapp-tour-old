@@ -319,6 +319,7 @@ export interface DatesResDTO {
 export interface ReserveInfoDTO {
   id: number;
   agency: string;
+  agency_id: number| null;
   agencyPercent: number;
   package: ReservePackageDTO;
   user: any;
