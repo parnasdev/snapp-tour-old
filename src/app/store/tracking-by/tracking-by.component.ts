@@ -3,6 +3,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { transfersSetDTO } from 'src/app/agencies/agency-reserves/agency-reserves.component';
+import { HotelApiService } from 'src/app/Core/Https/hotel-api.service';
 import { RoomTypeApiService } from 'src/app/Core/Https/room-type-api.service';
 import { TourApiService } from 'src/app/Core/Https/tour-api.service';
 import { CityResponseDTO } from 'src/app/Core/Models/cityDTO';
@@ -82,12 +83,15 @@ export class TrackingByComponent implements OnInit {
     createdAt: '',
   };
 
+  hotel:any
+
 
   constructor(public route: ActivatedRoute,
     public dialog: MatDialog,
     public messageService: MessageService,
     public checkError: CheckErrorService,
     public router: Router,
+    public hotelApi: HotelApiService,
     public fb: FormBuilder,
     public session: SessionService,
     public publicService: PublicService,
@@ -132,6 +136,26 @@ export class TrackingByComponent implements OnInit {
   submit() {
     this.getReserve()
   }
+
+
+  getHotelInfo(): void {
+    let item = {
+      isAdmin: false,
+      night: this.reserveObj.package.tour.nightNum,
+      stDate:this.calService.convertDate(this.reserveObj.package.tour.stDate,'en' ,'YYYY-MM-DD')
+    }
+    this.hotelApi.getHotelV2(this.reserveObj.package.hotel_id, item).subscribe((res: any) => {
+      if (res.isDone) {
+        this.hotel = res.data;
+
+
+      } else {
+      }
+    }, (error: any) => {
+
+    })
+  }
+
 
 
   callPay(transactionId: any) {

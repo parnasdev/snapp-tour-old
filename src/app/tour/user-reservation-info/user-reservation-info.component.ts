@@ -215,7 +215,6 @@ export class UserReservationInfoComponent implements OnInit {
       this.isLoading = false;
       if (res.isDone) {
         this.hotel = res.data;
-        debugger
         this.hotelRates = this.hotel.rates ?? [];
 
 

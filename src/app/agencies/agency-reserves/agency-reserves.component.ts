@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { HotelApiService } from 'src/app/Core/Https/hotel-api.service';
 import { TourApiService } from 'src/app/Core/Https/tour-api.service';
 import { CityResponseDTO } from 'src/app/Core/Models/cityDTO';
 import { TourStatuses } from 'src/app/Core/Models/statusenum';
@@ -72,6 +73,7 @@ export class AgencyReservesComponent implements OnInit {
     },
     createdAt: ''
   };
+  hotel: any
 
   transfers: transfersSetDTO = {
     stDate: '',
@@ -86,6 +88,7 @@ export class AgencyReservesComponent implements OnInit {
   constructor(public api: TourApiService,
     public messageService: MessageService,
     public publicService: PublicService,
+    public hotelApi: HotelApiService,
     public calendarService: CalenderServices,
     public route: ActivatedRoute,
     public checkError: CheckErrorService) { }
@@ -104,6 +107,25 @@ export class AgencyReservesComponent implements OnInit {
     })
   }
 
+  getHotelInfo(): void {
+    let item = {
+      isAdmin: false,
+      night: this.reserveObj.package.tour.nightNum,
+      stDate:this.calendarService.convertDate(this.reserveObj.package.tour.stDate,'en' ,'YYYY-MM-DD')
+    }
+    this.hotelApi.getHotelV2(this.reserveObj.package.hotel_id, item).subscribe((res: any) => {
+      if (res.isDone) {
+        this.hotel = res.data;
+
+
+      } else {
+      }
+    }, (error: any) => {
+
+    })
+  }
+
+
 
   getReserve(): void {
     this.api.getReserve(this.reserveid ?? '').subscribe((res: any) => {
@@ -111,6 +133,7 @@ export class AgencyReservesComponent implements OnInit {
         this.reserveObj = res.data;
         this.setTourTransfers()
         this.statusFC.setValue(this.reserveObj.status)
+        this.getHotelInfo()
       } else {
         this.messageService.custom('مشکلی در نمایش اطلاعات به وجود آمده است')
       }

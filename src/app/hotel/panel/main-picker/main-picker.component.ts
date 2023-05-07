@@ -18,6 +18,7 @@ import { ConfirmPricingModalComponent } from '../confirm-pricing-modal/confirm-p
 export class MainPickerComponent implements OnInit {
   @Input() hotelID = 0;
   @Input() roomID = 0;
+  @Input() agencyID: number | null = null;
   moment: any = moment;
   month = ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'آبان', 'آذر', 'دی', 'بهمن', 'اسفند'];
   daysOfMonth: any[] = []
@@ -184,7 +185,8 @@ export class MainPickerComponent implements OnInit {
         checkin: this.stDate,
         checkout: this.enDate,
         roomID: this.roomID,
-        hotelID: this.hotelID
+        hotelID: this.hotelID,
+        agencyID:this.agencyID 
       }
     })
     dialog.afterClosed().subscribe(result => {
@@ -230,6 +232,7 @@ export class MainPickerComponent implements OnInit {
     const req: HotelRatesReqDTO = {
       fromDate: moment(this.getFirstAndLastDates()[0]).format('YYYY-MM-DD'),
       toDate: moment(this.getFirstAndLastDates()[1]).format('YYYY-MM-DD'),
+      agency_id: this.agencyID ? +this.agencyID : null
     }
     this.hotelApi.getHotelRates(+this.hotelID, this.roomID, req).subscribe((res: any) => {
       if (res.isDone) {
@@ -250,7 +253,7 @@ export class MainPickerComponent implements OnInit {
     const y: any = moment(item).format('YYYY/MM/DD')
     if (this.daysOfMonth.length > 0) {
       let result = this.pricesData.filter((x) => y === moment(x.checkin).format('YYYY/MM/DD'))
-      return result.length > 0 ? { price: result[0].price, rate: result[0].rate , capacity: result[0].capacity} : null;
+      return result.length > 0 ? { price: result[0].price, rate: result[0].rate, capacity: result[0].capacity } : null;
     }
   }
 

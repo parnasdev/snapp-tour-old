@@ -48,14 +48,14 @@
             </ul>
           </div>
         </li>
-        <li class="li-list" *ngIf="checkItemPermission('Setting.change')">
+        <li class="li-list">
           <a class="menu-main menu-main-5" routerLink="/panel/agencies/reserves">
             <img src="assets/img/User%20Accepted.svg" width="20" alt="">
             رزروها
           </a>
 
         </li>
-        <li class="li-list" *ngIf="checkItemPermission('Setting.change')">
+        <li class="li-list" *ngIf="checkItemPermission('Reserve.Read')">
           <a class="menu-main menu-main-7" data-toggle="collapse"  routerLink="/panel/requestReserves" href="#collapseExample14"
              role="button"
              aria-expanded="false" aria-controls="collapseExample">

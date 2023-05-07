@@ -10,6 +10,7 @@ export interface ConfirmPriceReqDTO {
   checkin: any;
   checkout: any;
   hotelID: number;
+  agencyID: number
   roomID: number;
 }
 @Component({
@@ -44,7 +45,9 @@ export class ConfirmPricingModalComponent implements OnInit {
       checkout: moment(this.data.checkout.dateEn).format('YYYY-MM-DD'),
       rate: +this.rateFC.value,
       price: +this.priceFC.value,
+      agency_id: this.data.agencyID,
       capacity: +this.capacityFC.value,
+
     }
     this.api.addHotelRates(+this.data.hotelID, this.data.roomID, req).subscribe((res: any) => {
       if (res.isDone) {

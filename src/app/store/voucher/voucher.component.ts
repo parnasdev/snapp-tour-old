@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer} from '@angular/platform-browser';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'prs-voucher',
@@ -16,7 +17,7 @@ export class VoucherComponent implements OnInit {
 
   ngOnInit(): void {
     this.ref_code = this.route.snapshot.paramMap.get('ref_code');
-    this.url = this.domSanitizer.bypassSecurityTrustResourceUrl(`https://snapptour-api.iran.liara.run/api/v1/reserve/getVoucher/${this.ref_code}`);
+    this.url = this.domSanitizer.bypassSecurityTrustResourceUrl(environment.BACK_END_IP + `reserve/getVoucher/${this.ref_code}`);
     this.getVoucher(this.ref_code);
   }
 

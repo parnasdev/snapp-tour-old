@@ -178,12 +178,14 @@ export interface hotelInfoReqDTO {
 export interface HotelRatesReqDTO {
   fromDate: string;
   toDate: string;
+  agency_id?: number | null
 }
 
 export interface HotelRatesSetReqDTO {
   checkin: string;
   checkout: string;
   rate: number;
+  agency_id: number;
   price: number;
   capacity?: number;
 }
