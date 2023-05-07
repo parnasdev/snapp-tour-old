@@ -194,7 +194,7 @@
       <div class="box-empty" *ngIf="roomsSelected.length === 0">
         <span>اتاقی انتخاب نشده است</span>
       </div>
-      <prs-passengers *ngFor="let room of roomsSelected" [age]="reserveObj.package.prices?reserveObj.package.prices.age : '0'" [tourType]="getTourType(reserveObj?.package?.tour?.type)"
+      <prs-passengers *ngFor="let room of roomsSelected" [reserveData]="reserveObj" [age]="reserveObj.package.prices?reserveObj.package.prices.age : '0'" [tourType]="getTourType(reserveObj?.package?.tour?.type)"
                       [RoomData]="room" (passengerResult)="getRoomData($event)"></prs-passengers>
 
       <!-- <div class="p-info-trip">

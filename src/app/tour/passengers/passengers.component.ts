@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges, Output, EventEmitter } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { PassengerDTO, RoomDTO } from 'src/app/Core/Models/tourDTO';
+import { PassengerDTO, ReserveInfoDTO, RoomDTO } from 'src/app/Core/Models/tourDTO';
 import { CalenderServices } from 'src/app/Core/Services/calender-service';
 import { MessageService } from 'src/app/Core/Services/message.service';
 
@@ -12,6 +12,7 @@ import { MessageService } from 'src/app/Core/Services/message.service';
 export class PassengersComponent implements OnInit, OnChanges {
 
   @Input() age = '0';
+  @Input() reserveData!: ReserveInfoDTO
   @Input() RoomData: RoomDTO = {
     capacity: 0,
     id: 0,
@@ -39,6 +40,7 @@ export class PassengersComponent implements OnInit, OnChanges {
     public message: MessageService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log(this.RoomData)
     if (changes.RoomData.firstChange) {
       for (let i = 0; i < (this.RoomData?.capacity ?? []); i++) {
 

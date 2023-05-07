@@ -2,9 +2,9 @@
   <div class="w-100 d-flex flex-column-mobi justify-content-between align-items-center posi-relative">
     <h2 class="title-tour">اتاق {{ getRoomNameFa(RoomData?.name) }}</h2>
     <div class="btn-mobile">
-      <button style="margin-left: 11px;" class="btn-base-2 px-4 h-45" (click)="addRow(null,'cwb')">افزودن کودک با
+      <button style="margin-left: 11px;" class="btn-base-2 px-4 h-45" (click)="addRow(null,'cwb')" *ngIf="(reserveData.transfer?.chd_price ?? 0) > 0 && (+reserveData.package.prices.cwb ?? 0) > 0">افزودن کودک با
         تخت</button>
-      <button class="btn-base-2 px-4 h-45" (click)="addRow(null,'cnb')">افزودن کودک بدون تخت</button>
+      <button class="btn-base-2 px-4 h-45" (click)="addRow(null,'cnb')" *ngIf="(reserveData.transfer?.chd_price ?? 0) > 0">افزودن کودک بدون تخت</button>
     </div>
   </div>
   <div style="position: relative;" [formGroup]="ReserveForm">
@@ -116,7 +116,7 @@
 
     </div>
 
-    <div class="d-flex align-items-center row-end  justify-content-between flex-column-mobi">
+    <div class="d-flex align-items-center row-end  justify-content-between flex-column-mobi" *ngIf="(reserveData.transfer?.inf_price ?? 0) > 0">
       <span>مسافر گرامی چنانچه کودک زیر دوسال به همراه دارید جهت ورود اسامی دکمه روبه رو را بزنید</span>
       <button class="btn-base-2 px-4 h-45" (click)="addRow(null,'infant')">افزودن نوزاد</button>
     </div>
