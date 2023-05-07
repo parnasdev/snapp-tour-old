@@ -280,6 +280,7 @@ export interface ReservePackageDTO {
   hotel: HotelDTO;
   services: RateDTO;
   rate: RateDTO;
+  hotel_id: number
   discounts: DiscountsDTO;
   prices: PricesDTO;
   status: string;

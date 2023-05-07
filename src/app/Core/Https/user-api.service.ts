@@ -19,8 +19,10 @@ export class UserApiService {
       environment.BACK_END_IP + this.serverControllerName;
   }
 
-  getUsers(req: UserReqDTO): any {
-    const strUrl = this.serverControllerName + 'getUsers';
+  getUsers(req: UserReqDTO,pageNum=1): any {
+    const address = pageNum ? `getUsers?page=${pageNum}` : 'getUsers'
+    const strUrl = this.serverControllerName + address;
+
     return this.http.post<Result<any>>(strUrl, req, this.publicService.getDefaultHeaders());
   }
 

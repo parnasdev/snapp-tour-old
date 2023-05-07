@@ -71,6 +71,7 @@ export class UserReservationInfoComponent implements OnInit {
       },
       hotel: {} as HotelDTO,
       services: {} as RateDTO,
+      hotel_id: 0,
       rate: {} as RateDTO,
       discounts: {} as DiscountsDTO,
       prices: {} as PricesDTO,
@@ -127,6 +128,8 @@ export class UserReservationInfoComponent implements OnInit {
     city: this.cityFC,
     phone: this.phoneFC
   })
+
+  hotel: any
 
   hotelRates: hotelRates[] = []
 
@@ -200,19 +203,41 @@ export class UserReservationInfoComponent implements OnInit {
     }
   }
 
+
+  getHotelInfo(): void {
+    let item = {
+      isAdmin: false,
+      night: this.reserveObj.package.tour.nightNum,
+      stDate:this.calService.convertDate(this.reserveObj.package.tour.stDate,'en' ,'YYYY-MM-DD')
+    }
+    this.isLoading = true;
+    this.hotelApi.getHotelV2(this.reserveObj.package.hotel_id, item).subscribe((res: any) => {
+      this.isLoading = false;
+      if (res.isDone) {
+        this.hotel = res.data;
+        debugger
+        this.hotelRates = this.hotel.rates ?? [];
+
+
+      } else {
+      }
+    }, (error: any) => {
+      this.isLoading = false;
+
+    })
+  }
+
   getReserve(): void {
     this.isLoading = true;
     this.api.getReserve(this.reserveCode).subscribe((res: any) => {
       if (res.isDone) {
         this.reserveObj = res.data;
         this.setOtherPrice();
-
-
         this.tourType = this.reserveObj.package.tour.type;
         this.setTourTransfers()
         this.getRoomCapacity();
         this.setDateAndTime();
-        this.hotelRates = this.reserveObj.package.hotel.rates ?? [];
+        this.getHotelInfo();
       } else {
         this.messageService.custom('مشکلی در نمایش اطلاعات به وجود آمده است')
       }

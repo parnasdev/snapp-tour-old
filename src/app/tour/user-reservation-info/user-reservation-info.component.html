@@ -36,7 +36,7 @@
       <div class="box-top-box-reserve">
         <div class="d-flex align-items-center title-top justify-content-between">
           <h2 class="title-tour">{{ reserveObj?.package?.tour?.title }}</h2>
-          <h2 class="title-tour">هتل انتخابی : {{ reserveObj.package.hotel.name }}</h2>
+          <h2 class="title-tour">هتل انتخابی : {{hotel?.name ?? ''}}</h2>
         </div>
         <div class="set-request-tour">
           <div class="info-from">
@@ -348,7 +348,7 @@
         </div>
         <div class="item w-100 d-flex align-items-center px-2">
           <span class="title">نام هتل:</span>
-          <span class="text">{{ reserveObj.package.hotel.name }}</span>
+          <span class="text">---</span>
         </div>
 
       </div>

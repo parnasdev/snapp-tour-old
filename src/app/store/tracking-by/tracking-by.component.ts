@@ -42,6 +42,7 @@ export class TrackingByComponent implements OnInit {
     ref_code: '',
     package: {
       id: 0,
+      hotel_id: 0,
       tour: {
         agency: '',
         isTrash: 0,

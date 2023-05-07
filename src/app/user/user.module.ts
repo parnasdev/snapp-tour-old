@@ -17,6 +17,7 @@ import {ToolsModule} from "../tools/tools/tools.module";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import { PermissionsComponent } from './permissions/permissions.component';
 import {ProfileComponent} from "./profile/profile.component";
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import {ProfileComponent} from "./profile/profile.component";
         MatFormFieldModule,
         MatNativeDateModule,
         MatInputModule,
+        NgxPaginationModule,
         MaterialModule,
         CommonProjectModule,
         ToolsModule,

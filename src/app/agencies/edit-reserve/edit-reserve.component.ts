@@ -30,6 +30,7 @@ export class EditReserveComponent implements OnInit {
     ref_code: '',
     package: {
       id: 0,
+      hotel_id: 0,
       tour: {} as newTourDTO,
       hotel: {} as HotelDTO,
       services: {} as RateDTO,

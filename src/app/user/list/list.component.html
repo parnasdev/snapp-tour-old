@@ -16,7 +16,7 @@
       <span class="setting">تنظیمات</span>
     </div>
     <div class="body-list-tour" *ngIf="users.length > 0">
-      <div class="item" *ngFor="let user of users; let i = index">
+      <div class="item" *ngFor="let user of users| paginate: paginateConfig ; let i = index">
         <span class="id">{{ i + 1 }}</span>
         <span class="username">{{ user.name + ' ' + user.family  }}</span>
         <span class="username">{{ user.phone ? user.phone : '-' }}</span>
@@ -29,6 +29,10 @@
           <button *ngIf="session.checkItemPermission('User.delete')" (click)="deleteClicked(user.id)" class="delete-btn">حذف</button>
         </div>
       </div>
+      <pagination-controls *ngIf="!loading && paginate.last_page > 1" class="pagination-control"
+        (pageChange)="onPageChanged($event)" previousLabel="قبلی" nextLabel="بعدی"
+        screenReaderPaginationLabel="صفحه بندی" screenReaderPageLabel="صفحه" screenReaderCurrentLabel="شما در صفحه ی">
+      </pagination-controls>
     </div>
   </div>
 </div>

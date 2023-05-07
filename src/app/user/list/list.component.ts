@@ -17,7 +17,9 @@ declare var $: any;
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-
+  paginate: any;
+  p =1;
+  paginateConfig: any;
   userReq: UserReqDTO = {
     paginate: true,
     perPage: 20,
@@ -46,9 +48,15 @@ export class ListComponent implements OnInit {
 
   getUsers(): void {
     this.loading = true;
-    this.userApi.getUsers(this.userReq).subscribe((res: any) => {
+    this.userApi.getUsers(this.userReq, this.p).subscribe((res: any) => {
       if (res.isDone) {
         this.users = res.data
+        this.paginate = res.meta;
+        this.paginateConfig = {
+          itemsPerPage: this.paginate.per_page,
+          totalItems: this.paginate.total,
+          currentPage: this.paginate.current_page
+        }
       } else {
         this.message.custom(res.message);
       }
@@ -59,6 +67,13 @@ export class ListComponent implements OnInit {
       this.checkErrorService.check(error);
     });
   }
+
+
+  onPageChanged(event: any) {
+    this.p = event;
+    this.getUsers();
+  }
+
   deleteClicked(userId: number):void {
     const obj: AlertDialogDTO = {
       description: 'حذف شود؟',
