@@ -380,7 +380,7 @@ export interface EditReserveReq {
   coupon_id: string;
   passengers: RoomDTO[];
   bill: BillDTO;
-  changeHotel: number; // 0 or 1
+  changeHotel?: number; // 0 or 1
   package_id: string | null;
 }
 

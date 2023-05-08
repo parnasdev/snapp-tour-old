@@ -118,7 +118,7 @@ export class UserReservationInfoComponent implements OnInit {
       totalPayAble: 0,
       totalRoomPrice: 0
     },
-    changeHotel: 0,
+    isEditPassenger: false,
     package_id: ''
   }
 
@@ -189,9 +189,7 @@ export class UserReservationInfoComponent implements OnInit {
   ngOnInit(): void {
     // @ts-ignore
     this.reserveCode = this.route.snapshot.paramMap.get('reserveid');
-
     this.getReserve();
-
   }
 
 
@@ -444,6 +442,7 @@ export class UserReservationInfoComponent implements OnInit {
       phone: this.phoneFC.value,
       name: this.nameFC.value,
       family: this.familyFC.value,
+      isEditPassenger: false,
       id_code: this.idCodeFC.value,
       passengers: this.roomsSelected,
       package_id: this.reserveObj.package.id.toString(),
@@ -454,7 +453,7 @@ export class UserReservationInfoComponent implements OnInit {
         totalRoomPrice: 0,
       },
       coupon_id: '',
-      changeHotel: 0,
+
     }
   }
 
