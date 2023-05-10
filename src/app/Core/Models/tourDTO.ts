@@ -163,7 +163,7 @@ export interface TourPackageV2DTO {
     name: string;
   };
   status: string;
-  tour: TourListResDTO;
+  tour: newTourDTO;
 }
 
 export interface HotelDTO {

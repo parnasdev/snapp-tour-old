@@ -271,7 +271,11 @@ export class ListComponent implements OnInit {
   }
 
   getStarterPrice(index: number): string {
-    return this.tours.length > 0 ? this.tours[index].prices.twin : '0'
+    let transferPrice = 0;
+    this.tours[index].tour.newTransfers.forEach(item => {
+      transferPrice = item.adl_price > transferPrice ? item.adl_price : transferPrice;
+    })
+    return this.tours.length > 0 ? (+this.tours[index].prices.twin + transferPrice).toString() : '0'
   }
 
   getAddressBarTitle(){
