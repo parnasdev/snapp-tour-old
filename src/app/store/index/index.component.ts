@@ -17,6 +17,7 @@ SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 import { SwiperComponent } from "swiper/angular";
 import { SettingService } from "../../Core/Services/setting.service";
 import { Title } from "@angular/platform-browser";
+import { Router } from '@angular/router';
 
 declare let $: any;
 
@@ -64,6 +65,7 @@ export class IndexComponent implements OnInit {
     public blogApiService: BlogApiService,
     public hotelApi: HotelApiService,
     public message: MessageService,
+    public router: Router,
     public responsiveService: ResponsiveService
   ) {
     this.isMobile = responsiveService.isMobile();
@@ -223,6 +225,18 @@ export class IndexComponent implements OnInit {
       }
     }, (error: any) => {
       this.message.error()
+    })
+  }
+
+  getRoute(city_name: string){
+    let params = {
+      origin: 'tehran',
+      dest: city_name,
+      stDate: null,
+      night: null
+    };
+    this.router.navigate([`/tours/`], {
+      queryParams: params
     })
   }
 

@@ -29,7 +29,7 @@
             [spaceBetween]="this.isMobile?20:(isTablet?20:0)">
             <ng-template swiperSlide *ngFor="let city of cities">
               <div class="box-sort-tour-city">
-                <div class="img-sort-tour-city" routerLink="/{{ 'تور' + '-' +city.slug}}">
+                <div class="img-sort-tour-city" (click)="getRoute(city.slugEn)">
                   <div class="info-img-sort-tour-city animated fadeInDown">
                     <img class="img-hover-child" src="assets/img/Attachment%201.svg" width="30" alt="">
                     <a class="view-details-more">مشاهده جزئیات بیشتر</a>
@@ -37,7 +37,7 @@
                   <img [src]="city.image" alt="">
                 </div>
                 <div class="text-sort-tour-city">
-                  <span style="cursor: pointer" routerLink="/{{ 'تور' + '-' +city.slug}}">تور {{city.name}}</span>
+                  <span style="cursor: pointer" (click)="getRoute(city.slugEn)">تور {{city.name}}</span>
                 </div>
               </div>
             </ng-template>
