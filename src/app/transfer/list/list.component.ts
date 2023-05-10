@@ -13,6 +13,10 @@ export class ListComponent implements OnInit {
   req!: TransferListRequestDTO;
   transfers: TransferListDTO[] = [];
 
+  paginateConfig: any;
+  paginate: any;
+  p = 1;
+
   constructor(public api: TransferAPIService,
     public session: SessionService,
     public message: MessageService) {
@@ -27,6 +31,12 @@ export class ListComponent implements OnInit {
     this.api.getTransfers(this.req).subscribe((res: any) => {
       if (res.isDone) {
         this.transfers = res.data;
+        // this.paginate = res.meta;
+        // this.paginateConfig = {
+        //   itemsPerPage: this.paginate.per_page,
+        //   totalItems: this.paginate.total,
+        //   currentPage: this.paginate.current_page
+        // }
       } else {
         this.message.custom(res.message);
       }
@@ -40,7 +50,8 @@ export class ListComponent implements OnInit {
       paginate: false,
       perPage: 10,
       search: null,
-      type: 1
+      type: 1,
+      // page: this.p
     }
   }
 
@@ -59,6 +70,11 @@ export class ListComponent implements OnInit {
 
   checkItemPermission(item: string) {
     return !!this.session.userPermissions.find(x => x.name === item)
+  }
+
+  onPageChanged(event: any) {
+    this.p = event;
+    this.getTransfers();
   }
 
 }

@@ -1,6 +1,7 @@
 export interface TransferListRequestDTO {
   perPage: number;
   paginate: boolean;
+  page?: number;
   search: any;
   type: number
 }
