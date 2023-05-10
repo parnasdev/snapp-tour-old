@@ -8,6 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 export class AddressBarComponent implements OnInit {
   @Input() path = 'اسنپ تریپ';
   @Input() path2 = ''
+  @Input() path3 = ''
 
   constructor() {
   }

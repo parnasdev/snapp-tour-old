@@ -735,12 +735,9 @@ prs-show-location {
 
       .name-hotel {
         margin-top: 1.2rem;
-
-        a {
-          font-weight: 600;
-          color: #0A246A;
-          font-size: 16px !important;
-        }
+        font-weight: 600;
+        color: #0A246A;
+        font-size: 16px !important;
       }
 
       .address {
@@ -774,8 +771,8 @@ prs-show-location {
           }
 
           small {
-            color: var(--base-color);
-            margin-right: 4px;
+            // color: var(--base-color);
+            margin-right: 3px;
             font-size: 15px;
           }
         }
@@ -886,7 +883,7 @@ prs-show-location {
 
           span {
             font-size: 14px;
-            color: var(--base-color);
+            // color: var(--base-color);
           }
 
           p {
@@ -925,7 +922,7 @@ prs-show-location {
 
           span {
             font-size: 14px;
-            color: var(--base-color);
+            // color: var(--base-color);
           }
 
           p {
@@ -1016,8 +1013,8 @@ prs-show-location {
 
         small {
           font-size: 14px;
-          color: var(--base-color);
-          margin-right: 7px;
+          // color: var(--base-color);
+          margin-right: 5px;
         }
       }
 
@@ -1116,8 +1113,8 @@ prs-show-location {
           }
 
           small {
-            color: var(--base-color);
-            margin-right: 3px;
+            // color: var(--base-color);
+            margin-right: 2px;
           }
         }
       }
@@ -1143,8 +1140,8 @@ prs-show-location {
           }
 
           small {
-            color: var(--base-color);
-            margin-right: 3px;
+            // color: var(--base-color);
+            margin-right: 2px;
           }
         }
 

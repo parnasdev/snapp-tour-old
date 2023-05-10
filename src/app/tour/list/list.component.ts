@@ -103,8 +103,6 @@ export class ListComponent implements OnInit {
       this.setData(params)
       this.getToursV2();
     })
-
-
   }
 
 
@@ -274,6 +272,10 @@ export class ListComponent implements OnInit {
 
   getStarterPrice(index: number): string {
     return this.tours.length > 0 ? this.tours[index].prices.twin : '0'
+  }
+
+  getAddressBarTitle(){
+    return this.searchObject.dest && this.tours.length > 0 ? 'هتل های تور' + ' ' + this.tours[0].tour.endCity.name : 'لیست هتل ها'
   }
 
 }

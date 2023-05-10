@@ -74,6 +74,9 @@ export class InfoComponent implements OnInit {
     stDate: null
   }
 
+  originCities: any[] = [];
+  filterOriginCity: string =''
+
   constructor(public hotelApi: HotelApiService,
     public route: ActivatedRoute,
     public router: Router,
