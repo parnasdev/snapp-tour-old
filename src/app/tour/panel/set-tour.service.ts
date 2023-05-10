@@ -129,8 +129,7 @@ export class SetTourService {
   }
 
   getHotels(): void {
-    console.log('service')
-this.showData = false;
+    this.showData = false;
     const req: HotelRequestDTO = {
       isAdmin: true,
       paginate: false,
@@ -276,6 +275,7 @@ this.showData = false;
       return 1;
     }
   }
+
   removePackage(i: any) {
     this.obj.packages.splice(i,1);
   }
@@ -291,7 +291,8 @@ this.showData = false;
     if (this.hotels[hotelIndex].hotelRates.length > 0) {
       let list = this.hotels[hotelIndex].hotelRates.filter((x: any) => x.roomType.name === name)
       list.forEach(item => {
-        price += item.price
+        let ratePrice = this.checkRate(item.rate);
+        price += item.price * ratePrice
       })
     }
     return price
@@ -396,6 +397,18 @@ this.showData = false;
     } else if (+this.obj.transferPriceType === 3) {
       return +this.obj.dollarRate
     } else if (+this.obj.transferPriceType === 4) {
+      return +this.obj.AEDRate
+    } else {
+      return 1;
+    }
+  }
+
+  checkRate(rate: number): number {
+    if (rate === 2) {
+      return +this.obj.euroRate
+    } else if (rate === 3) {
+      return +this.obj.dollarRate
+    } else if (rate === 4) {
       return +this.obj.AEDRate
     } else {
       return 1;
