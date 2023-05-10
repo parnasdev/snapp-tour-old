@@ -1,6 +1,7 @@
 export interface RoomTypeReqDTO {
   perPage: number;
   paginate: boolean;
+  page?: number;
 }
 
 export interface RoomTypeCapacitReqDTO {

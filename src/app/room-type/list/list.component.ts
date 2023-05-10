@@ -14,6 +14,10 @@ export class ListComponent implements OnInit {
   req!: RoomTypeReqDTO;
   roomTypes: RoomTypeListDTO[] = [];
 
+  paginateConfig: any;
+  paginate: any;
+  p = 1;
+
   constructor(public roomTypeApi: RoomTypeApiService,
     public session: SessionService,
               public message: MessageService) {
@@ -28,6 +32,12 @@ export class ListComponent implements OnInit {
     this.roomTypeApi.getRoomTypes(this.req).subscribe((res: any) => {
       if (res.isDone) {
         this.roomTypes = res.data;
+        this.paginate = res.meta;
+        this.paginateConfig = {
+          itemsPerPage: this.paginate.per_page,
+          totalItems: this.paginate.total,
+          currentPage: this.paginate.current_page
+        }
       } else {
         this.message.custom(res.message);
       }
@@ -39,7 +49,8 @@ export class ListComponent implements OnInit {
   setReq(): void {
     this.req = {
       paginate: true,
-      perPage: 20
+      perPage: 20,
+      page: this.p
     }
   }
 
@@ -58,6 +69,11 @@ export class ListComponent implements OnInit {
 
   checkItemPermission(item: string) {
     return !!this.session.userPermissions.find(x => x.name === item)
+  }
+
+  onPageChanged(event: any) {
+    this.p = event;
+    this.getRoomTypes();
   }
 
 }

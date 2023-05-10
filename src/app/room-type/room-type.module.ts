@@ -8,6 +8,7 @@ import {SetPricePopupComponent} from './set-price-popup/set-price-popup.componen
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ShowRoomsPopupComponent } from './show-rooms-popup/show-rooms-popup.component';
 import {PipesModule} from "../common-project/pipes/pipes.module";
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import {PipesModule} from "../common-project/pipes/pipes.module";
     CommonModule,
     RoomTypeRoutingModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
     FormsModule,
     PipesModule,
   ]
