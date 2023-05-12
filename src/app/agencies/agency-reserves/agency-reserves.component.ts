@@ -151,7 +151,7 @@ export class AgencyReservesComponent implements OnInit {
         originTransfer: this.reserveObj.transfer?.origin_transfer.name,
         destTransfer: this.reserveObj.transfer?.destination_transfer.name,
         originFlightCode: this.reserveObj.transfer?.origin_transfer_number,
-        destFlightCode: this.reserveObj.transfer?.origin_transfer_number
+        destFlightCode: this.reserveObj.transfer?.destination_transfer_number
       }
     }
   }
