@@ -1,9 +1,19 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, Validators} from "@angular/forms";
-import {RoomTypeListDTO, RoomTypePriceDTO, RoomTypeReqDTO} from "../../Core/Models/roomTypeDTO";
-import {RoomTypeApiService} from "../../Core/Https/room-type-api.service";
-import {MessageService} from "../../Core/Services/message.service";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, Validators } from "@angular/forms";
+import { RoomTypeListDTO, RoomTypePriceDTO, RoomTypeReqDTO } from "../../Core/Models/roomTypeDTO";
+import { RoomTypeApiService } from "../../Core/Https/room-type-api.service";
+import { MessageService } from "../../Core/Services/message.service";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { RoomTypeDTO } from 'src/app/Core/Models/hotelDTO';
+import { hotelRates } from 'src/app/Core/Models/tourDTO';
+import { SetTourService } from 'src/app/tour/panel/set-tour.service';
+
+interface RoomPopUpInputDTO {
+  'prices': string;
+  'hotel_rooms': RoomTypeDTO[],
+  'rates': hotelRates[]
+  'hotel_id' :number
+}
 
 @Component({
   selector: 'prs-set-price-popup',
@@ -18,82 +28,59 @@ export class SetPricePopupComponent implements OnInit {
 
   tourDetail: any;
 
+
+  rooms: any[] = []
+
   constructor(public fb: FormBuilder,
-              public dialogRef: MatDialogRef<SetPricePopupComponent>,
-              public message: MessageService,
-              @Inject(MAT_DIALOG_DATA) public data: RoomTypePriceDTO[],
-              public roomTypeApi: RoomTypeApiService) {
-  }
+    public setService: SetTourService,
+    public dialogRef: MatDialogRef<SetPricePopupComponent>,
+    public message: MessageService,
+    @Inject(MAT_DIALOG_DATA) public data: RoomPopUpInputDTO,
+    public roomTypeApi: RoomTypeApiService) { }
 
   form = this.fb.group({
     rooms: this.fb.array([], Validators.required)
   });
 
   ngOnInit(): void {
-    this.getRoomTypes();
-    if (this.data && this.data.length > 0) {
-      this.setFormArray();
-    }
+    this.rooms = this.data.hotel_rooms;
+    // if (this.data && this.data.length > 0) {
+    //   this.setFormArray();
+    // }
   }
 
-  setFormArray(): void {
-    this.RoomForm.clear();
-    this.data.forEach(x => {
-      this.addRow(x);
-    })
+
+  getPrice(roomName: string) {
+    return this.setService.getRoomCalculatedPrice(roomName, this.setService.getHotelIndex(this.data.hotel_id));
+
+
+
+    // let result = 0
+    // this.data.rates.forEach((item: hotelRates) => {
+    //   if (item.roomType.name === roomName) {
+    //     result += item.price
+    //   }
+    // })
+    // return result;
   }
-
-  get RoomForm() {
-    return this.form.get('rooms') as FormArray;
-  }
-
-  submit() {
-    this.tourDetail = [];
-    this.RoomForm.controls.forEach((item, index) => {
-      this.tourDetail.push({
-        name: item.value.name,
-        label: item.value.label,
-        capacity: item.value.capacity,
-        price: item.value.price
-      });
-    })
-    this.dialogRef.close(this.tourDetail);
-  }
-
-  getRoomTypes(): void {
-    this.setReq();
-    this.roomTypeApi.getRoomTypes(this.req).subscribe((res: any) => {
-      if (res.isDone) {
-        this.roomTypes = res.data.filter((x: any) => !x.isDefault);
-
-        if (this.data.length === 0) {
-          this.addRow();
-        }
-      } else {
-        this.message.custom(res.message);
+  getCapacity(roomName: string) {
+    let result = 0
+    this.data.rates.forEach((item: hotelRates) => {
+      if (item.roomType.name === roomName) {
+        result = item.capacity
       }
-    }, (error: any) => {
-      this.message.error()
     })
+    return result;
+  }
+  getRooms() {
+
+
+    // this.data.rates.forEach((item: hotelRates) => {
+    //   if (!this.rooms.find(x => x.roomType.name === item.roomType.name)) {
+    //     this.rooms.push(item)
+    //   }
+    // })
   }
 
-  addRow(item?: RoomTypePriceDTO) {
-    const rooms = this.fb.group({
-      name: [item ? item.name : ''],
-      price: [item ? item.price : ''],
-    });
-    this.RoomForm.push(rooms);
-  }
-
-  removePackage(i: any) {
-    this.RoomForm.removeAt(i);
-  }
-
-  setReq(): void {
-    this.req = {
-      paginate: true,
-      perPage: 20
-    }
-  }
 
 }

@@ -1,6 +1,6 @@
 <div class="box-room mt-3">
   <div class="w-100 d-flex flex-column-mobi justify-content-between align-items-center posi-relative">
-    <h2 class="title-tour">اتاق {{ getRoomNameFa(RoomData?.name) }}</h2>
+    <h2 class="title-tour">اتاق {{ RoomData?.label }}</h2>
     <div class="btn-mobile">
       <button style="margin-left: 11px;" class="btn-base-2 px-4 h-45" (click)="addRow(null,'cwb')" *ngIf="(reserveData.transfer?.chd_price ?? 0) > 0 && (+reserveData.package.prices.cwb ?? 0) > 0">افزودن کودک با
         تخت</button>

@@ -92,12 +92,10 @@ export class UserReservationInfoComponent implements OnInit {
     transfer: {} as newTransfersDTO,
     createdAt: '',
   };
-
   defineTour = false
-
   stDate = '';
   enDate = '';
-
+  rooms: hotelRates[] = []
   nameFC = new FormControl(this.session.getName(), Validators.required);
   familyFC = new FormControl(this.session.getFamily(), Validators.required);
   cityFC = new FormControl(1, Validators.required);
@@ -137,6 +135,7 @@ export class UserReservationInfoComponent implements OnInit {
   reserveRoomData: RoomDTO = {
     name: '',
     capacity: 0,
+    label: '',
     id: 0,
     passengers: [],
     price: 0,
@@ -204,7 +203,7 @@ export class UserReservationInfoComponent implements OnInit {
 
 
   getHotelInfo(): void {
-    let date = this.reserveObj.package.tour.stDate ? moment(this.reserveObj.package.tour.stDate).add(-1, 'days').format('YYYY-MM-DD') : ''
+    let date = this.reserveObj.package.tour.stDate ? moment(this.reserveObj.package.tour.stDate).format('YYYY-MM-DD') : ''
 
     let item = {
       isAdmin: false,
@@ -218,7 +217,7 @@ export class UserReservationInfoComponent implements OnInit {
       if (res.isDone) {
         this.hotel = res.data;
         this.hotelRates = this.hotel.rates ?? [];
-
+        this.createRoomList()
 
       } else {
       }
@@ -322,12 +321,18 @@ export class UserReservationInfoComponent implements OnInit {
   setReseveRoomData(roomName: string) {
     return this.reserveRoomData = {
       name: roomName,
+      label: this.getRoomLabel(roomName),
       capacity: this.getCapacity(roomName),
       passengers: [],
       id: Math.round(Math.random() * 1000),
       price: 0,
       supply: this.getRoomCountByName(roomName)
     }
+  }
+
+  getRoomLabel(RoomType:string) {
+    const room: any = this.hotelRates.filter(x => x.roomType.name === RoomType)
+    return room.length > 0 ?  room[0].roomType.label ? room[0].roomType.label : '' : '';
   }
 
   getRoomCountByName(roomName: string) {
@@ -341,11 +346,12 @@ export class UserReservationInfoComponent implements OnInit {
   }
 
   getCapacity(RoomType: string) {
-    const room: any = this.roomsCapacityList.filter(x => x.name === RoomType)
-    return room[0].capacityPerson ? room[0].capacityPerson : 0;
+    const room: any = this.hotelRates.filter(x => x.roomType.name === RoomType)
+    return room.length > 0 ?  room[0].roomType.capacityPerson ? room[0].roomType.capacityPerson : 0 : 0;
   }
 
   getReserveRoomData(reserveRoomData: any) {
+    debugger
     if (reserveRoomData.operation == 'plus') {
       this.roomsSelected.push(reserveRoomData.item)
     } else {
@@ -373,6 +379,16 @@ export class UserReservationInfoComponent implements OnInit {
       price += this.getRommTotalPrice(x.passengers, x.name)
     })
     this.totalPrices = price;
+  }
+
+  getPrice(roomName:string) {
+    let result = 0
+    this.hotel.rates.forEach((item: hotelRates) => {
+      if (item.roomType.name === roomName) {
+        result += item.price
+      }
+    })
+    return result;
   }
 
   getRommTotalPrice(passengers: PassengerDTO[], roomName: string) {
@@ -520,4 +536,25 @@ export class UserReservationInfoComponent implements OnInit {
         return '---'
     }
   }
+
+
+  getRoomPrices(roomName: string, flighPrice: number) {
+    let result = 0
+    this.hotel.rates.forEach((item: hotelRates) => {
+      if (item.roomType.name === roomName) {
+        result += item.price
+      }
+    })
+    result = result + flighPrice;
+    return result;
+  }
+  createRoomList() {
+
+    this.hotel.rates.forEach((item: hotelRates) => {
+      if (!this.rooms.find(x => x.roomType.name === item.roomType.name)) {
+        this.rooms.push(item)
+      }
+    })
+  }
+
 }

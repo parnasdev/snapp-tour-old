@@ -12,6 +12,7 @@ export class CounterComponent implements OnInit {
     name: '',
     capacity: 0,
     id:0,
+    label: '',
     passengers: [],
     price: 0,
     supply: 0,

@@ -1,5 +1,5 @@
 import { CityDTO, CityResponseDTO } from "./cityDTO";
-import { ServicesDTO } from "./hotelDTO";
+import { RoomTypeDTO, ServicesDTO } from "./hotelDTO";
 import { RoomTypePriceDTO } from "./roomTypeDTO";
 import { UserResDTO } from "./UserDTO";
 
@@ -387,6 +387,7 @@ export interface EditReserveReq {
 export interface RoomDTO {
   id: number
   name: string;
+  label: '',
   capacity: number;
   passengers: PassengerDTO[]
   price: number;
@@ -505,13 +506,7 @@ export interface hotelRates {
   price: number
   capacity: number
   rate: number
-  roomType: {
-    capacityPerson: number
-    id: number
-    isDefault: boolean
-    label: string
-    name: string;
-  }
+  roomType: RoomTypeDTO
 }
 
 export interface addRequestReserveDTO {

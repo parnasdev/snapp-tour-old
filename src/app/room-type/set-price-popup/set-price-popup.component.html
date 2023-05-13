@@ -1,10 +1,7 @@
 <div class="box-info-package h-100">
   <div class="info-tour-header">
       <h2>اطلاعات نوع اتاق</h2>
-    <a (click)="addRow()" class="btn-add-tour-fix">
-      <i class="icon-plus-squared-alt"></i>
-      <span>اضافه</span>
-    </a>
+
 
   </div>
   <div class="info-tour-body p-0">
@@ -12,37 +9,33 @@
     <div class="header-box">
       <div class="package-item">#</div>
       <div class="package-item">نام اتاق</div>
-      <div class="package-item">قیمت اتاق</div>
-      <div></div>
+      <div class="package-item">قیمت(تومان)  </div>
+      <div class="package-item">موجودی </div>
     </div>
-    <form [formGroup]="form"  action="" class="example-list">
-      <div class="body-fix" formArrayName="rooms">
-        <div class="body-box example-box" *ngFor="let room of RoomForm.controls; let i = index"
-             [formGroupName]="i">
+    <div  class="example-list">
+      <div class="body-fix">
+        <div class="body-box example-box" *ngFor="let room of rooms let i = index">
           <div class="package-item id-package">
             <div class="icon-from-to">
               <p>{{ i + 1 }}</p>
             </div>
           </div>
           <div class="package-item">
-            <select name="" id="" formControlName="name">
-              <option *ngFor="let room of roomTypes"
-                      [value]="room.name + '-' + room.label">{{ room.name }}</option>
-            </select>
+            <span>{{ room.label }}</span>
           </div>
           <div class="package-item">
-            <input type="text" formControlName="price" mask="separator" thousandSeparator=",">
+            <span>{{ getPrice(room.name)  | sperator}}</span>
           </div>
-          <i class="icon-cancel-1 text-danger" (click)="removePackage(i)"></i>
+          <div class="package-item">
+            <span>{{ getCapacity(room.name)}}</span>
+          </div>
+          <!-- <i class="icon-cancel-1 text-danger" (click)="removePackage(i)"></i> -->
         </div>
       </div>
-    </form>
-    <div class="package-item">
     </div>
+
   </div>
 
-  <div>
-    <button class="w-100 btn-submit-fix" (click)="submit()">ثبت اطلاعات اتاق</button>
-  </div>
+
 
 </div>

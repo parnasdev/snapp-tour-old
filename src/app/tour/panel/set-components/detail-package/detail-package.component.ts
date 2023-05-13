@@ -83,9 +83,13 @@ export class DetailPackageComponent implements OnInit {
   openRoomPopup(index: number) {
     let hotelRooms = this.setService.obj.packages[index].hotel_id ?
       this.setService.hotels.find(x => x.id === this.setService.obj.packages[index].hotel_id)?.rooms : []
+      let hotelRates = this.setService.obj.packages[index].hotel_id ?
+      this.setService.hotels.find(x => x.id === this.setService.obj.packages[index].hotel_id)?.hotelRates : []
     const data = {
       'prices': this.setService.obj.packages[index].prices,
       'hotel_rooms': hotelRooms,
+      'rates' : hotelRates,
+      'hotel_id':this.setService.obj.packages[index].hotel_id
     }
     const dialog = this.dialog.open(SetPricePopupComponent, {
       width: '50%',
@@ -130,7 +134,7 @@ export class DetailPackageComponent implements OnInit {
         height: '100%',
         data: {
           hotelId: hotelId,
-          slug: hotelSlug
+          slug: hotelSlug,
         }
       });
       dialog.afterClosed().subscribe((result) => {

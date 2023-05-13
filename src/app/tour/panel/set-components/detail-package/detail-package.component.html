@@ -10,80 +10,29 @@
   <div class="info-tour-body p-0">
     <div class="w-100 d-flex flex-column mobile-package">
       <!-- local tour -->
-      <div class="header-box" *ngIf="setService.obj.type">
+      <div class="header-box">
         <div class="package-item">#</div>
         <div class="package-item">نام هتل</div>
         <div class="package-item">خدمات</div>
-        <div class="package-item">
-          دو تخته(هرنفر)
-          <!-- <br>
-          ظرفیت -->
-        </div>
-        <div class="package-item">
-          سه تخته(هرنفر)
-          <!-- <br>
-          ظرفیت -->
-        </div>
-        <div class="package-item">
-          چهار تخته(هرنفر)
-          <!-- <br>
-          ظرفیت -->
-        </div>
-        <div class="package-item">
-          کودک با تخت <!-- <br>
-          ظرفیت -->
-        </div>
         <div class="package-item">سن کودک تا</div>
+        <div class="package-item"></div>
+        <div class="package-item"></div>
         <div class="package-item">آفر ویژه</div>
-        <div></div>
+        <div class="package-item"></div>
+
       </div>
-      <!-- foreign tour -->
-      <div class="header-box-two" *ngIf="!setService.obj.type">
-        <div class="package-item">#</div>
-        <div class="package-item">نام هتل</div>
-        <div class="package-item">{{ 'نرخ / خدمات'}}</div>
-        <div class="package-item">
-          دو تخته(هرنفر)
-          <!-- <br>
-          ظرفیت -->
-        </div>
-        <div class="package-item">
-          یک تخته(هرنفر)
-          <!-- <br>
-          ظرفیت -->
-        </div>
-        <div class="package-item">
-          کودک با تخت(هرنفر)
-          <!-- <br>
-          ظرفیت -->
-        </div>
-        <!-- <div class="package-item">کودک بدون تخت</div> -->
-        <div class="package-item">سن کودک تا</div>
-        <div class="package-item">آفر ویژه</div>
-        <div></div>
-      </div>
-      <div class="empty-packages" *ngIf="setService.obj.endCity_id === ''">
-        <div class="d-flex justify-content-center align-items-center w-100">
-          <span>لطفا شهر مقصد را انتخاب کنید</span>
-        </div>
-      </div>
-      <div class="empty-packages" *ngIf="(setService.obj.stDate == '' || setService.obj.enDate == '')">
-        <div class="d-flex justify-content-center align-items-center w-100">
-          <span>لطفا تاریخ ورود و خروج هتل را انتخاب کنید</span>
-        </div>
-      </div>
+
+
       <div class="example-list"
         *ngIf="(setService.obj.stDate !== '' && setService.obj.enDate !== '') && setService.obj.endCity_id !== ''">
         <div class="body-box example-box" *ngFor="let tour of setService.obj.packages; let i = index">
           <div class="package-item id-package">
-            <div class="icon-from-to">
-              <i class="icon-up-open"></i>
-              <i class="icon-down-open"></i>
-            </div>
+            <span>{{ i + 1 }}</span>
           </div>
           <div class="package-item">
-            <prs-select-hotel [hotels]="setService.hotels" [inCommingHotel]="getHotelObj(tour.hotel_id)" [callHotel]="false"
-              [type]="setService.obj.type" [isAdmin]="true" (hotelSelected)="setService.hotelChange($event,i)">
+            <prs-select-hotel [hotels]="setService.hotels" [inCommingHotel]="getHotelObj(tour.hotel_id)"
+              [callHotel]="false" [type]="setService.obj.type" [isAdmin]="true"
+              (hotelSelected)="setService.hotelChange($event,i)">
             </prs-select-hotel>
             <div class="parent-icon under-package d-flex align-items-center">
               <i class="icon-star text-warning" *ngFor="let star of setService.getStars(i)"></i>
@@ -91,14 +40,7 @@
           </div>
           <div class="package-item">
             <div class="d-flex align-items-center w-100 parent-box-rate">
-              <!-- <div class="package-item rate-width" *ngIf="!setService.obj.type">
-                <select (change)="setService.setPackageRate($event, i)">
-                  <option *ngIf="setService.obj.dollarRate" [value]="3">دلار</option>
-                  <option *ngIf="setService.obj.euroRate" [value]="2">یورو</option>
-                  <option *ngIf="setService.obj.AEDRate" [value]="4">درهم</option>
-                  <option [value]="1">تومان</option>
-                </select>
-              </div> -->
+
               <div class="package-item service-width">
                 <select (change)="setService.setPackageServices($event, i)">
                   <option *ngFor="let service of setService.services"
@@ -109,110 +51,38 @@
             </div>
           </div>
           <!-- local tour -->
-          <ng-template class="body-local" [ngIf]="setService.obj.type">
-            <div class="package-item">
-              <div class="under-package-text d-flex align-items-center">
-                <p>{{ setService.getData(i).prices.twin | sperator }}</p>
-              </div>
-              <!-- <div class="under-package-text d-flex align-items-center">
-                <p>{{ setService.getRoomCapacityByName('twin') | sperator }}</p>
-              </div> -->
-              <!-- <input type="text" [value]="setService.getData(i).prices.twinCapacity"
-                (change)="setService.setpackageCapacity($event, i, 'twinCapacity')" placeholder="موجودی"> -->
-            </div>
-            <div class="package-item">
-              <div class="under-package-text">
-                <p>{{ setService.getData(i).prices.triple | sperator }}</p>
-              </div>
-              <!-- <div class="under-package-text d-flex align-items-center">
-                <p>{{ setService.getRoomCapacityByName('triple') | sperator }}</p>
-              </div> -->
-              <!-- <input type="text" placeholder="موجودی" [value]="setService.getData(i).prices.tripleCapacity"
-                (change)="setService.setpackageCapacity($event, i, 'tripleCapacity')"> -->
-            </div>
-            <div class="package-item">
-              <div class="under-package-text">
-                <p>{{ setService.getData(i).prices.quad | sperator }}</p>
-              </div>
-              <!-- <div class="under-package-text d-flex align-items-center">
-                <p>{{ setService.getRoomCapacityByName('quad') | sperator }}</p>
-              </div> -->
-              <!-- <input type="text" placeholder="موجودی" [value]="setService.getData(i).prices.quadCapacity"
-                (change)="setService.setpackageCapacity($event, i, 'quadCapacity')"> -->
-            </div>
-            <div class="package-item">
-              <div class="under-package-text">
-                <p>{{ setService.getData(i).prices.cwb | sperator }}</p>
-              </div>
-              <!-- <div class="under-package-text d-flex align-items-center">
-                <p>{{ setService.getRoomCapacityByName('cwb') | sperator }}</p>
-              </div> -->
-              <!-- <input type="text" placeholder="موجودی" [value]="setService.getData(i).prices.cwbCapacity"
-                (change)="setService.setpackageCapacity($event, i, 'cwbCapacity')"> -->
-            </div>
-            <div class="package-item">
-              <input type="text" [value]="setService.getData(i).prices.age"
-                (change)="setService.setpackageAge($event, i)">
-            </div>
-            <div class="package-item d-flex flex-row">
-              <input (change)="setService.setpackageOffered($event, i)" [checked]="setService.getData(i).prices.offered"
-                class="offer-checkbox" type="checkbox">
-            </div>
-            <div style="flex-direction: row !important;" class="package-item">
-              <!-- <img src="assets/img/FAQ.svg" width="18" class="ms-2" (click)="openRoomPopup(i)"> -->
-              <i class="icon-calendar text-danger font-25" (click)="openPricingCalendar(i)"></i>
-              <i class="icon-trash text-danger font-25" (click)="setService.removePackage(i)"></i>
 
+          <div class="package-item">
+            <input type="text" [value]="setService.getData(i).prices.age"
+              (change)="setService.setpackageAge($event, i)">
+          </div>
 
-            </div>
-          </ng-template>
-          <!-- foreign tour -->
-          <ng-template class="body-foreign" [ngIf]="!setService.obj.type">
-            <div class="package-item">
-              <div class="under-package-text">
-                <p>{{ setService.getData(i).prices.twin | sperator }}</p>
-              </div>
-              <!-- <div class="under-package-text d-flex align-items-center">
-                <p>{{ setService.getRoomCapacityByName('twin') | sperator }}</p>
-              </div> -->
-              <!-- <input type="text" placeholder="موجودی" [value]="setService.getData(i).prices.twinCapacity"
-                (change)="setService.setpackageCapacity($event, i, 'twinCapacity')"> -->
-            </div>
-            <div class="package-item">
-              <div class="under-package-text">
-                <p>{{ setService.getData(i).prices.single | sperator }}</p>
-              </div>
-              <!-- <div class="under-package-text d-flex align-items-center">
-                <p>{{ setService.getRoomCapacityByName('single') | sperator }}</p>
-              </div> -->
-              <!-- <input type="text" placeholder="موجودی" [value]="setService.getData(i).prices.singleCapacity"
-                (change)="setService.setpackageCapacity($event, i, 'singleCapacity')"> -->
-            </div>
-            <div class="package-item">
-              <div class="under-package-text">
-                <p>{{ setService.getData(i).prices.cwb | sperator }}</p>
-              </div>
-              <!-- <div class="under-package-text d-flex align-items-center">
-                <p>{{ setService.getRoomCapacityByName('cwb') | sperator }}</p>
-              </div> -->
-              <!-- <input type="text" placeholder="موجودی" [value]="setService.getData(i).prices.cwbCapacity"
-                (change)="setService.setpackageCapacity($event, i, 'cwbCapacity')"> -->
-            </div>
-            <div class="package-item">
-              <input placeholder="سن کودک تا ..." [value]="setService.getData(i).prices.age" type="number"
-                (change)="setService.setpackageAge($event, i)">
+          <div class="package-item">
+            <button class="btn-base-dark h-50 w-75" (click)="openRoomPopup(i)">اتاق ها</button>
+          </div>
+          <div class="package-item">
+            <button class="btn-base-2 h-50 w-75" (click)="openPricingCalendar(i)">قیمت گذاری</button>
+          </div>
+          <div class="package-item d-flex flex-row">
+            <input (change)="setService.setpackageOffered($event, i)" [checked]="setService.getData(i).prices.offered"
+              class="offer-checkbox" type="checkbox">
+          </div>
+          <div style="flex-direction: row !important;" class="package-item">
+            <!-- <img src="assets/img/FAQ.svg" width="18" class="ms-2" (click)="openRoomPopup(i)"> -->
+            <!-- <i class="icon-calendar text-danger font-25" (click)="openPricingCalendar(i)"></i> -->
+            <i class="icon-trash text-danger font-25" (click)="setService.removePackage(i)"></i>
+          </div>
 
-            </div>
-            <div class="package-item d-flex flex-row">
-              <input (change)="setService.setpackageOffered($event, i)" [checked]="setService.getData(i).prices.offered"
-                class="offer-checkbox" type="checkbox">
-            </div>
-            <div style="flex-direction: row !important;" class="package-item">
-              <i class="icon-trash text-danger" (click)="setService.removePackage(i)"></i>
-              <i class="icon-calendar text-danger" (click)="openPricingCalendar(i)"></i>
-              <!-- <img src="assets/img/FAQ.svg" width="18" (click)="openRoomPopup(i)"> -->
-            </div>
-          </ng-template>
+        </div>
+      </div>
+      <div class="empty-packages" *ngIf="setService.obj.endCity_id === ''">
+        <div class="d-flex justify-content-center align-items-center w-100">
+          <span>لطفا شهر مقصد را انتخاب کنید</span>
+        </div>
+      </div>
+      <div class="empty-packages" *ngIf="(setService.obj.stDate == '' || setService.obj.enDate == '')">
+        <div class="d-flex justify-content-center align-items-center w-100">
+          <span>لطفا تاریخ ورود و خروج هتل را انتخاب کنید</span>
         </div>
       </div>
     </div>

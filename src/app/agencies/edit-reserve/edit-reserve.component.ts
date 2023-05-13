@@ -95,6 +95,7 @@ export class EditReserveComponent implements OnInit {
     capacity: 0,
     id: 0,
     passengers: [],
+    label: '',
     price: 0,
     supply: 0
   }
@@ -213,6 +214,7 @@ export class EditReserveComponent implements OnInit {
   setReseveRoomData(capacity: string | undefined, roomName: string) {
     return this.reserveRoomData = {
       name: roomName,
+      label: '',
       capacity: this.getCapacity(roomName),
       passengers: [],
       id: Math.round(Math.random() * 1000),

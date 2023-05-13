@@ -19,7 +19,8 @@ import { ShowRoomsPopupComponent } from 'src/app/room-type/show-rooms-popup/show
 import { AuthPopupComponent } from 'src/app/auth/auth-popup/auth-popup.component';
 import { hotelInfoReqDTO, hotelInfoV2DTO } from 'src/app/Core/Models/hotelDTO';
 import { CityResponseDTO } from 'src/app/Core/Models/cityDTO';
-import { newTourPackageInfoDTO } from 'src/app/Core/Models/tourDTO';
+import { RateDTO, hotelRates, newTourPackageInfoDTO } from 'src/app/Core/Models/tourDTO';
+import * as moment from 'moment';
 
 @Component({
   selector: 'prs-info',
@@ -47,6 +48,7 @@ export class InfoComponent implements OnInit {
     images: [],
     images_paths: [],
     location: '',
+    rates: [],
     mediaLink: [],
     name: '',
     nameEn: '',
@@ -58,6 +60,8 @@ export class InfoComponent implements OnInit {
     thumbnail: '',
     thumbnail_paths: '',
   };
+
+  rooms: hotelRates[] = []
 
   stDate: string = '';
   night: string = '';
@@ -71,11 +75,12 @@ export class InfoComponent implements OnInit {
   hotelInfoReq: hotelInfoReqDTO = {
     isAdmin: false,
     night: 0,
-    stDate: null
+    stDate: null,
+
   }
 
   originCities: any[] = [];
-  filterOriginCity: string =''
+  filterOriginCity: string = ''
 
   constructor(public hotelApi: HotelApiService,
     public route: ActivatedRoute,
@@ -115,14 +120,15 @@ export class InfoComponent implements OnInit {
     this.hotelInfoReq = {
       isAdmin: false,
       night: +this.night,
-      stDate: this.stDate
+      stDate: this.stDate,
+
     }
     this.isLoading = true;
     this.hotelApi.getHotelV2(this.hotelName, this.hotelInfoReq).subscribe((res: any) => {
       this.isLoading = false;
       if (res.isDone) {
         this.hotelInfo = res.data;
-
+        this.getPrices();
         this.title.setTitle(this.hotelInfo.name + '|' + this.setting.settings.title)
         this.getStarterPrice();
         if (this.hotelInfo.images && this.hotelInfo.images.length > 0) {
@@ -161,6 +167,7 @@ export class InfoComponent implements OnInit {
   checkReserve(packageId: number, transferRateId: number) {
     this.getReserve(packageId, transferRateId)
   }
+
 
   loginPopup(id: number, transferRateId: number): void {
     const dialog = this.dialog.open(AuthPopupComponent, {
@@ -218,8 +225,23 @@ export class InfoComponent implements OnInit {
     return Prices.sort(function (a: any, b: any) { return a - b })[0]
   }
 
-  getFullPrice(roomPrice: string, flightPrice: any) {
-    return +roomPrice > 0 ? ((+roomPrice) + flightPrice).toString() : 0;
+  getFullPrice(roomName: string, flighPrice: number) {
+    let result = 0
+    this.hotelInfo.rates.forEach((item: hotelRates) => {
+      if (item.roomType.name === roomName) {
+        result += item.price
+      }
+    })
+    result = result + flighPrice;
+    return result;
+  }
+  getPrices() {
+
+    this.hotelInfo.rates.forEach((item: hotelRates) => {
+      if (!this.rooms.find(x => x.roomType.name === item.roomType.name)) {
+        this.rooms.push(item)
+      }
+    })
   }
 
 }

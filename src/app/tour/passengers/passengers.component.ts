@@ -17,6 +17,7 @@ export class PassengersComponent implements OnInit, OnChanges {
     capacity: 0,
     id: 0,
     name: '',
+    label: '',
     passengers: [],
     price: 0,
     supply: 0

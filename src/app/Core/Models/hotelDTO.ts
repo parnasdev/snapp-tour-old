@@ -70,6 +70,7 @@ location: string
 mediaLink: MediaLinkDTO[]
 name: string;
 nameEn: string;
+rates: hotelRates[]
 packages: newTourPackageInfoDTO[];
 roomPrices: any[]
 services: ServicesDTO[];
@@ -147,12 +148,12 @@ export interface HotelListResponseDTO {
   nameEn: string
   slug: string
   keyword: string
-  hotelRates: hotelRates[]
   slugEn: string
   stars: string
   thumbnail: string
   city: string
   location: string
+  hotelRates: hotelRates[]
   rooms: RoomTypeDTO[]
 }
 
