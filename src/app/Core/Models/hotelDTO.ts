@@ -173,6 +173,8 @@ export interface hotelInfoReqDTO {
   stDate: string | null;
   night: number | null;
   isAdmin: boolean;
+  origin?: string;
+  dest?: string;
 }
 
 

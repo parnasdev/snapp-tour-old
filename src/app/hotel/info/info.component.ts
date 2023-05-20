@@ -65,6 +65,8 @@ export class InfoComponent implements OnInit {
 
   stDate: string = '';
   night: string = '';
+  origin: string = '';
+  dest: string = '';
 
   hotelName = '';
   public lightbox!: Lightbox
@@ -76,6 +78,8 @@ export class InfoComponent implements OnInit {
     isAdmin: false,
     night: 0,
     stDate: null,
+    origin: '',
+    dest: ''
 
   }
 
@@ -110,6 +114,8 @@ export class InfoComponent implements OnInit {
       .subscribe(params => {
         this.stDate = params.stDate ? this.calenderService.convertDateSpecial(params.stDate, 'en') : null
         this.night = params.night
+        this.origin = params.origin
+        this.dest = params.dest
       }
       );
     this.getInfo();
@@ -121,7 +127,8 @@ export class InfoComponent implements OnInit {
       isAdmin: false,
       night: +this.night,
       stDate: this.stDate,
-
+      origin: this.origin,
+      dest: this.dest
     }
     this.isLoading = true;
     this.hotelApi.getHotelV2(this.hotelName, this.hotelInfoReq).subscribe((res: any) => {
